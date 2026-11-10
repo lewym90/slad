@@ -1,0 +1,112 @@
+{
+ "cases": [
+  {
+   "id": "001",
+   "title": "Dom, który pamięta",
+   "tagline": "Morderstwo w odosobnionej rezydencji",
+   "genre": "Thriller psychologiczny",
+   "duration": "75–110 min",
+   "players": "2–6",
+   "difficulty": "Wymagająca",
+   "cover": "assets/art/001-manor.webp",
+   "ready": true,
+   "teaser": "Most zalany, pięć osób w domu, doktor martwy przy kominku. I kobieta, która według aktu zgonu spłonęła trzynaście lat temu."
+  },
+  {
+   "id": "002",
+   "title": "Ostatni pociąg",
+   "tagline": "Zamknięty krąg w nocnym składzie",
+   "genre": "Kryminał",
+   "duration": "70–100 min",
+   "players": "2–6",
+   "difficulty": "Wymagająca",
+   "cover": "assets/cases/002-cover.webp",
+   "ready": false,
+   "teaser": "Nocny skład Wierzbno–Karsk. Pasażer z wagonu 4 znika między stacjami."
+  },
+  {
+   "id": "003",
+   "title": "Cisza w sanatorium",
+   "tagline": "Światło na piętrze, którego nie ma",
+   "genre": "Mroczne mystery",
+   "duration": "70–100 min",
+   "players": "2–6",
+   "difficulty": "Wymagająca",
+   "cover": "assets/cases/003-cover.webp",
+   "ready": false,
+   "teaser": "Sanatorium Wrzos zamknięto osiem lat temu. Od tygodnia w nocy pali się tam światło."
+  },
+  {
+   "id": "004",
+   "title": "Martwy kanał",
+   "tagline": "Alarm, którego nie było",
+   "genre": "Techno-thriller",
+   "duration": "80–110 min",
+   "players": "2–6",
+   "difficulty": "Trudna",
+   "cover": "assets/cases/004-cover.webp",
+   "ready": false,
+   "teaser": "Ruda. Noc awarii systemu ostrzegania i zapis alarmowy, który zniknął z archiwum."
+  },
+  {
+   "id": "005",
+   "title": "Pokój bez okien",
+   "tagline": "Hotel Gryf, pokój 214",
+   "genre": "Psychologiczne mystery",
+   "duration": "80–110 min",
+   "players": "2–6",
+   "difficulty": "Trudna",
+   "cover": "assets/cases/005-cover.webp",
+   "ready": false,
+   "teaser": "Zamknięta konferencja, pokój zamknięty od środka i archiwista, którego nazwisko znika z listy."
+  },
+  {
+   "id": "006",
+   "title": "Ostatni seans",
+   "tagline": "Projektor po północy",
+   "genre": "Gotycki kryminał",
+   "duration": "70–100 min",
+   "players": "2–6",
+   "difficulty": "Wymagająca",
+   "cover": "assets/cases/006-cover.webp",
+   "ready": false,
+   "teaser": "Kino Iluzja jest zamknięte od lat. A jednak ktoś puścił film."
+  },
+  {
+   "id": "007",
+   "title": "Biała cisza",
+   "tagline": "Zimowa ekspedycja",
+   "genre": "Survival thriller",
+   "duration": "80–110 min",
+   "players": "2–6",
+   "difficulty": "Trudna",
+   "cover": "assets/cases/007-cover.webp",
+   "ready": false,
+   "teaser": "Karkonosze, zamknięty schron i nadajnik, który pracował po północy."
+  },
+  {
+   "id": "008",
+   "title": "Cień w galerii",
+   "tagline": "Kradzież podczas wernisażu",
+   "genre": "Kryminał artystyczny",
+   "duration": "70–100 min",
+   "players": "2–6",
+   "difficulty": "Wymagająca",
+   "cover": "assets/cases/008-cover.webp",
+   "ready": false,
+   "teaser": "Galeria Vesper. Obraz znika, a alarm milczy."
+  },
+  {
+   "id": "009",
+   "title": "Czarna skrzynka",
+   "tagline": "Prom Orkan dryfuje",
+   "genre": "Thriller morski",
+   "duration": "80–110 min",
+   "players": "2–6",
+   "difficulty": "Trudna",
+   "cover": "assets/cases/009-cover.webp",
+   "ready": false,
+   "teaser": "Czterdzieści minut dryfu, luka w zapisie i karta, która zniknęła z rejestratora."
+  }
+ ]
+}

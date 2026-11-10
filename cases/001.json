@@ -1,0 +1,2026 @@
+{
+ "id": "001",
+ "title": "Dom, który pamięta",
+ "subtitle": "Morderstwo w odosobnionej rezydencji",
+ "genre": "Thriller psychologiczny",
+ "duration": "75–110 min",
+ "players": "2–6",
+ "difficulty": "Wymagająca",
+ "cover": "assets/cases/001-cover.webp",
+ "keyart": "assets/art/001-keyart.webp",
+ "ambience": "assets/audio/case-001.mp3",
+ "par": 50,
+ "intro": {
+  "lead": "Sobota, 7 listopada, 8:15. Willa Różyckich na skraju Brzezin. Woda w rzece Mrowie właśnie opadła.",
+  "brief": [
+   "Dziś o 7:10 gospodyni Helena Wolska znalazła w gabinecie ciało doktora Leona Różyckiego (62 l.). Leżał przy kominku, obok przewróconej drabiny bibliotecznej. Rodzina od rana powtarza jedno słowo: wypadek.",
+   "Wczoraj o 21:30 woda zalała jedyny most prowadzący do willi. Do 6:05 rano nikt nie mógł ani wejść, ani wyjechać. W domu nocowało pięć osób — czworo żyje.",
+   "Jest jeszcze coś. Od piątku w willi mieszka kobieta, która twierdzi, że jest Anną Różycką — córką doktora. Tą samą Anną, która według aktu zgonu zginęła trzynaście lat temu w pożarze zachodniego skrzydła.",
+   "Wasz wydział dostał tę sprawę, bo ktoś na górze uznał, że ten dom ma za dużo tajemnic jak na jeden nieszczęśliwy wypadek."
+  ],
+  "task": [
+   "Kto zabił Leona Różyckiego, czym i dlaczego?",
+   "O której godzinie doszło do ataku?",
+   "Kim naprawdę jest kobieta podająca się za Annę?",
+   "Co wydarzyło się w noc pożaru trzynaście lat temu?"
+  ],
+  "rules": [
+   "Każde przeszukanie miejsca i każde pytanie zadane świadkowi to jeden ruch. Ruchów nie brakuje, ale najlepsze zespoły zamykają sprawę oszczędnie.",
+   "Świadkowie kłamią. Gdy znajdziecie dowód, który przeczy zeznaniu, użyjcie konfrontacji. Nietrafiona konfrontacja kosztuje punkty.",
+   "Każdy gracz dostaje tajne akta. Tylko on je widzi — od was zależy, kiedy i czy podzielicie się nimi z zespołem.",
+   "Raport końcowy oceni wnioski i dowody, które na ich poparcie wskażecie."
+  ]
+ },
+ "people": [
+  {
+   "id": "helena",
+   "name": "Helena Wolska",
+   "role": "Gospodyni od 26 lat",
+   "age": 58,
+   "desc": "Mieszka w oficynie po drugiej stronie podwórza. Znalazła ciało. Ręce jej drżą, ale odpowiada rzeczowo.",
+   "deflect": [
+    "Nie rozumiem, co to ma do rzeczy.",
+    "Mówię, jak było. Nic więcej nie wiem.",
+    "Proszę mnie nie łapać za słowa."
+   ],
+   "questions": [
+    {
+     "id": "h-q1",
+     "q": "Proszę opowiedzieć o wczorajszym wieczorze.",
+     "a": "Kolacja była o ósmej, dla wszystkich. Pani Marta powiedziała przy stole coś przykrego doktorowi, wszyscy słyszeli. Koło wpół do jedenastej doktor kłócił się w gabinecie z… z tą panią. Krzyczał: „W moim domu nie będziesz stawiać mi warunków”. Potem było cicho.",
+     "claims": [
+      "h-c1"
+     ],
+     "time": [
+      [
+       "2026-11-06 20:00",
+       "Kolacja w jadalni — obecni wszyscy domownicy",
+       "Helena"
+      ],
+      [
+       "2026-11-06 22:30",
+       "Kłótnia Leona z kobietą podającą się za Annę w gabinecie",
+       "Helena"
+      ]
+     ]
+    },
+    {
+     "id": "h-q2",
+     "q": "Kiedy ostatni raz widziała pani doktora żywego?",
+     "a": "Kwadrans po jedenastej zadzwonił do kuchni po dwie herbaty. Zaniosłam tacę. Kiedy wychodziłam, nastawiał płytę — było może dwadzieścia po jedenastej. Potem przeszłam przez podwórze do oficyny i położyłam się spać. Sama.",
+     "claims": [
+      "h-c2",
+      "h-l1"
+     ],
+     "time": [
+      [
+       "2026-11-06 23:15",
+       "Leon prosi o dwie herbaty do gabinetu",
+       "Helena"
+      ],
+      [
+       "2026-11-06 23:20",
+       "Helena wychodzi z gabinetu; Leon nastawia płytę",
+       "Helena"
+      ]
+     ]
+    },
+    {
+     "id": "h-q3",
+     "q": "Dla kogo była druga filiżanka?",
+     "requires": [
+      "e07"
+     ],
+     "a": "Nie powiedział. Pan Wiktor siedział wtedy w bibliotece, za ścianą. Doktor zawsze zamawiał dwie, jak spodziewał się rozmowy.",
+     "claims": []
+    },
+    {
+     "id": "h-q4",
+     "q": "Jak wyglądał gabinet, gdy znalazła pani ciało?",
+     "a": "Drzwi były przymknięte, nie na klucz. Drabina leżała. Doktor przy kominku, na boku. Muzyki nie było, tylko taki szum z gramofonu. W kominku dogasało. Krzyknęłam i obudziłam cały dom.",
+     "claims": [],
+     "time": [
+      [
+       "2026-11-07 07:10",
+       "Helena znajduje ciało w gabinecie",
+       "Helena"
+      ]
+     ]
+    },
+    {
+     "id": "h-q5",
+     "q": "Czy ta kobieta to Anna?",
+     "a": "Pani Marta mówi, że tak. Zna dom, zna nasze zwyczaje… Ja nie mnie to oceniać. Ja tu tylko sprzątam.",
+     "claims": [
+      "h-c3"
+     ]
+    },
+    {
+     "id": "h-q6",
+     "q": "Gdzie była pani w noc pożaru trzynaście lat temu?",
+     "requires": [
+      "e25"
+     ],
+     "a": "W oficynie. Obudziły mnie syreny. Moja Kinga miała wtedy dziewiętnaście lat — przyjaźniła się z Anią jak siostra. Rano wyjechała do Irlandii, tak jak planowała. Od tamtej pory nie zadzwoniła ani razu. Ani razu przez trzynaście lat.",
+     "claims": [],
+     "time": [
+      [
+       "2013-11-15 08:00",
+       "Kinga Wolska wyjeżdża do Irlandii (według Heleny)",
+       "Helena"
+      ]
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "h-c1",
+     "text": "O 22:30 doktor kłócił się w gabinecie z kobietą podającą się za Annę.",
+     "truth": true
+    },
+    {
+     "id": "h-c2",
+     "text": "Około 23:20 zaniosła dwie herbaty, a Leon nastawiał płytę.",
+     "truth": true
+    },
+    {
+     "id": "h-c3",
+     "text": "Nie potrafi powiedzieć, czy ta kobieta to Anna.",
+     "truth": true
+    },
+    {
+     "id": "h-l1",
+     "text": "Po 23:20 była w oficynie sama i spała.",
+     "contradicts": [
+      "e21",
+      "e22"
+     ],
+     "response": "…Dobrze. Nie spałam. Dzwoniłam do siostry, do Teresy. Burza, nerwy… Rozmawiałyśmy o burzy. Byłam sama, przysięgam. Możecie do niej zadzwonić.",
+     "gives": [
+      "t1",
+      "e29"
+     ],
+     "reveals": [
+      "h-l2"
+     ]
+    },
+    {
+     "id": "h-l2",
+     "text": "Rozmawiała z siostrą o burzy i była w oficynie sama.",
+     "contradicts": [
+      "e29",
+      "e22"
+     ],
+     "response": "(długa cisza) To Kinga. Ta kobieta to moja Kinga. Poznałam ją pierwszego wieczoru, po tym, jak trzyma kubek. Wpół do dwunastej przyszła do mnie przez podwórze, cała mokra. Siedziała u mnie do północy. Dałam ją Teresie do telefonu. Ona nikogo nie zabiła — była ze mną.",
+     "gives": [
+      "t2"
+     ],
+     "time": [
+      [
+       "2026-11-06 23:30",
+       "Kinga przychodzi do oficyny Heleny",
+       "Helena"
+      ],
+      [
+       "2026-11-07 00:02",
+       "Kinga wychodzi z oficyny",
+       "Helena"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "anna",
+   "name": "„Anna Różycka”",
+   "revealName": "Kinga Wolska",
+   "role": "Kobieta podająca się za córkę doktora",
+   "revealRole": "Córka Heleny, przyjaciółka zmarłej Anny",
+   "age": 32,
+   "desc": "Przyjechała w piątek o 17:40 bez bagażu i bez dokumentów. Mówi spokojnie i zbyt dokładnie, jak ktoś, kto ćwiczył te zdania.",
+   "deflect": [
+    "Szukacie kozła ofiarnego. Wygodnie.",
+    "To niczego nie dowodzi.",
+    "Pytajcie dalej. Ja się nie śpieszę."
+   ],
+   "questions": [
+    {
+     "id": "a-q1",
+     "q": "Dlaczego wróciła pani po trzynastu latach?",
+     "a": "Bo ojciec musiał wreszcie powiedzieć prawdę o tamtej nocy. Matce, mnie, wszystkim. Trzynaście lat to wystarczająco długo.",
+     "claims": []
+    },
+    {
+     "id": "a-q2",
+     "q": "O co pokłóciła się pani z doktorem o 22:30?",
+     "a": "Chciałam, żeby powiedział Marcie prawdę. Odmówił. Krzyczał, że nie będę stawiać mu warunków. Wyszłam po kwadransie — żył i był wściekły. Potem poszłam do swojego pokoju i już z niego nie wychodziłam.",
+     "claims": [
+      "a-c1",
+      "a-l1"
+     ],
+     "time": [
+      [
+       "2026-11-06 22:45",
+       "Koniec kłótni; kobieta wychodzi z gabinetu",
+       "„Anna”"
+      ]
+     ]
+    },
+    {
+     "id": "a-q3",
+     "q": "Gdzie są pani dokumenty?",
+     "a": "Zgubiłam je w podróży. Wiem, jak to brzmi. Wyrobię nowe, jak tylko ktoś w tym domu przestanie patrzeć na mnie jak na złodziejkę.",
+     "claims": []
+    },
+    {
+     "id": "a-q4",
+     "q": "Kim jest dla pani Helena Wolska?",
+     "a": "Gospodynią. Zawsze tu była. Robiła najlepsze racuchy w Brzezinach.",
+     "claims": [
+      "a-l2"
+     ]
+    },
+    {
+     "id": "a-q5",
+     "q": "Co pamięta pani z nocy pożaru?",
+     "a": "Dym. Krzyk. Że nie mogłam otworzyć drzwi. (urywa) Nie chcę o tym mówić.",
+     "claims": [
+      "a-l2"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "a-c1",
+     "text": "Gdy wychodziła z gabinetu około 22:45, Leon żył.",
+     "truth": true
+    },
+    {
+     "id": "a-l1",
+     "text": "Po kłótni poszła do swojego pokoju i już z niego nie wychodziła.",
+     "contradicts": [
+      "e26",
+      "t2",
+      "e29"
+     ],
+     "response": "Dobrze. Wyszłam. Wpół do dwunastej przebiegłam przez podwórze do oficyny — do Heleny. Wróciłam przez kuchnię kilka minut po północy i poszłam do gabinetu po list, który mu dałam. Drzwi były uchylone. Leżał przy kominku. Gramofon tylko szumiał. Zamknęłam drzwi i uciekłam do pokoju. Wiedziałam, jak to wygląda — obca kobieta bez dokumentów przy trupie.",
+     "gives": [
+      "t3"
+     ],
+     "time": [
+      [
+       "2026-11-07 00:05",
+       "Kinga wchodzi do gabinetu i zastaje Leona martwego; gramofon szumi",
+       "Kinga"
+      ]
+     ]
+    },
+    {
+     "id": "a-l2",
+     "text": "Jest Anną Różycką, córką Leona i Marty.",
+     "contradicts": [
+      "x5",
+      "e28",
+      "t2",
+      "e29"
+     ],
+     "response": "Nazywam się Kinga Wolska. Ania była moją najlepszą przyjaciółką. Czternastego listopada mieliśmy razem wyjechać do Dublina. O dziewiątej wieczorem widziałam z ogrodu, jak Leon przekręca klucz w drzwiach jej pokoju. Czekałam pod oknem do wpół do dwunastej, aż on zaśnie. Wtedy zobaczyłam ogień. Okno było za wysoko. Leon wyszedł do mnie w ogród i powiedział, że to moje świece i że pójdę siedzieć za podpalenie, jeśli piśnę słowo. Rano wyjechałam. Chciałam, żeby wreszcie zapłacił. I tak — chciałam też tego, co Ania miała dostać.",
+     "gives": [
+      "t4"
+     ],
+     "time": [
+      [
+       "2013-11-14 21:00",
+       "Leon zamyka Annę na klucz w jej pokoju (według Kingi)",
+       "Kinga"
+      ],
+      [
+       "2013-11-14 23:40",
+       "Pożar w zachodnim skrzydle",
+       "Kinga"
+      ]
+     ]
+    }
+   ],
+   "revealOn": [
+    "a-l2",
+    "h-l2"
+   ]
+  },
+  {
+   "id": "wiktor",
+   "name": "Wiktor Różycki",
+   "role": "Brat zmarłego, notariusz",
+   "age": 55,
+   "desc": "Od lat prowadzi sprawy majątkowe rodziny. Nocował w bibliotece, za ścianą gabinetu. Elegancki, uprzejmy, nieruchome spojrzenie.",
+   "deflect": [
+    "Proszę nie sugerować rzeczy, których nie potraficie wykazać.",
+    "Jako prawnik zapewniam, że to nic nie znaczy.",
+    "Słucham uważnie. Nadal nie widzę związku."
+   ],
+   "questions": [
+    {
+     "id": "w-q1",
+     "q": "Co robił pan wieczorem?",
+     "a": "Po kolacji czytałem w bibliotece. Około jedenastej zasnąłem na kanapie. Spałem jak kamień — burza, deszcz, niczego nie słyszałem. Obudził mnie krzyk Heleny.",
+     "claims": [
+      "w-l1",
+      "w-l4"
+     ]
+    },
+    {
+     "id": "w-q2",
+     "q": "Rozmawiał pan z bratem po kolacji?",
+     "a": "Nie. Leon był zajęty… tą osobą. Ja nie zamierzałem brać udziału w tym przedstawieniu.",
+     "claims": [
+      "w-l1"
+     ]
+    },
+    {
+     "id": "w-q3",
+     "q": "Co pan sądzi o kobiecie podającej się za Annę?",
+     "a": "Oszustka. Leon dał się omotać na stare lata. Ktoś, kto urządza takie przedstawienie, jest zdolny do wszystkiego. Nawet do tego, żeby uderzyć starego człowieka w tył głowy, kiedy się odwróci. Proszę ją dobrze sprawdzić. Ja wiem tylko tyle, co rano powiedzieliście nam w holu.",
+     "claims": [
+      "w-l2"
+     ]
+    },
+    {
+     "id": "w-q4",
+     "q": "Jak się mają sprawy majątkowe rodziny?",
+     "a": "Wzorowo. Od lat prowadzę je osobiście. Ziemia Zawiszów, umowy, księgi — wszystko jest w porządku i udokumentowane.",
+     "claims": [
+      "w-l3"
+     ]
+    },
+    {
+     "id": "w-q5",
+     "q": "Dlaczego wyczyścił pan buty w nocy?",
+     "requires": [
+      "e16"
+     ],
+     "a": "Zawsze czyszczę buty wieczorem. Nawyk z wojska. Nie wiem, czemu to kogoś interesuje.",
+     "claims": [
+      "w-l4"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "w-l1",
+     "text": "Po kolacji nie rozmawiał z Leonem i od 23:00 spał w bibliotece.",
+     "contradicts": [
+      "e06",
+      "e07",
+      "e15"
+     ],
+     "response": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach fundacji, nic ważnego. Wyszedłem przed za dwadzieścia dwunasta. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi.",
+     "gives": [
+      "t5"
+     ],
+     "time": [
+      [
+       "2026-11-06 23:30",
+       "Wiktor wchodzi do gabinetu na rozmowę z Leonem",
+       "Wiktor"
+      ],
+      [
+       "2026-11-06 23:40",
+       "Wiktor twierdzi, że wyszedł z gabinetu",
+       "Wiktor"
+      ]
+     ]
+    },
+    {
+     "id": "w-l2",
+     "text": "O śmierci brata wie tylko to, co rano przekazała rodzinie policja.",
+     "contradicts": [
+      "x1"
+     ],
+     "response": "(Wiktor długo milczy, potem poprawia mankiet) Każdy by się domyślił. Przy kominku… drabina… To była figura retoryczna. Na tym kończymy. Dalsze pytania proszę kierować przez mojego adwokata.",
+     "gives": [
+      "t6"
+     ]
+    },
+    {
+     "id": "w-l3",
+     "text": "Sprawy majątkowe rodziny są w porządku i udokumentowane.",
+     "contradicts": [
+      "e30",
+      "e08",
+      "e10"
+     ],
+     "response": "Marta podpisała to pełnomocnictwo. Po prostu nie pamięta — była wtedy w złym stanie. Wszystko odbyło się zgodnie z prawem. Nic więcej nie powiem.",
+     "gives": [
+      "t8"
+     ]
+    },
+    {
+     "id": "w-l4",
+     "text": "Od chwili przyjazdu nie wchodził do oranżerii.",
+     "contradicts": [
+      "e18",
+      "e16",
+      "e19"
+     ],
+     "response": "Wyszedłem… zaczerpnąć powietrza. W nocy. Do oranżerii, bo padało. Czy to przestępstwo? Proszę mi nie wmawiać rzeczy, których nie zrobiłem.",
+     "gives": [
+      "t7"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "marta",
+   "name": "Marta Różycka",
+   "role": "Była żona Leona, matka Anny",
+   "age": 60,
+   "desc": "Przyjechała w piątek wieczorem. Ziemia, na której stoi willa, to jej rodzinny majątek Zawiszów. Nie kryje, że nienawidziła męża.",
+   "deflect": [
+    "Myślicie, że to ja? Proszę bardzo, szukajcie.",
+    "Nie wiem, czego ode mnie chcecie.",
+    "To nie ma znaczenia. Ania wróciła — tylko to ma znaczenie."
+   ],
+   "questions": [
+    {
+     "id": "m-q1",
+     "q": "Czy wierzy pani, że to Anna?",
+     "a": "Zna kołysankę, którą śpiewałam Ani do snu. Zna nazwy wszystkich pokoi, wie, gdzie skrzypi podłoga. Chcę wierzyć. Czy to zbrodnia — chcieć odzyskać dziecko? Leon nic mi wcześniej nie mówił — dowiedziałam się dopiero tutaj, w piątek wieczorem.",
+     "claims": [
+      "m-c1",
+      "m-l1"
+     ]
+    },
+    {
+     "id": "m-q2",
+     "q": "Co robiła pani w nocy?",
+     "a": "O jedenastej wzięłam tabletkę nasenną, jak co noc od trzynastu lat. Spałam do krzyku Heleny.",
+     "claims": [
+      "m-c2"
+     ]
+    },
+    {
+     "id": "m-q3",
+     "q": "Co powiedziała pani mężowi przy kolacji?",
+     "a": "Że kiedyś zapłaci za tamtą noc. Wszyscy słyszeli. Nie żałuję. Nigdy nie uwierzyłam, że Ania zamknęła się sama.",
+     "claims": [
+      "m-c3"
+     ]
+    },
+    {
+     "id": "m-q4",
+     "q": "Co wydarzyło się trzynaście lat temu?",
+     "a": "Pożar w zachodnim skrzydle. Ania spłonęła w swoim pokoju. Leon rozpoznał ją po bransoletce i zegarku, ja nie dostałam nawet zobaczyć ciała. Mam kopię raportu straży — walczyłam o nią dwa lata. Proszę, przeczytajcie sami.",
+     "gives": [
+      "e25"
+     ],
+     "claims": [],
+     "time": [
+      [
+       "2013-11-14 23:40",
+       "Pożar zachodniego skrzydła; ginie Anna Różycka (oficjalnie)",
+       "Marta"
+      ]
+     ]
+    },
+    {
+     "id": "m-q5",
+     "q": "Czy podpisywała pani komuś pełnomocnictwo do swojej ziemi?",
+     "requires": [
+      "e10"
+     ],
+     "a": "Nigdy. Nikomu. A w 2019 roku na pewno nie — od lutego do końca kwietnia leżałam w szpitalu w Poznaniu, pierwsze tygodnie w śpiączce farmakologicznej. Mam kartę wypisu w telefonie, proszę.",
+     "gives": [
+      "e30"
+     ],
+     "claims": [],
+     "time": [
+      [
+       "2019-02-20 00:00",
+       "Marta trafia do szpitala w Poznaniu (do 30.04.2019)",
+       "Marta"
+      ]
+     ]
+    },
+    {
+     "id": "m-q6",
+     "q": "Czy Anna była praworęczna?",
+     "requires": [
+      "x5"
+     ],
+     "a": "Ania? Leworęczna. Nauczycielka chciała ją przestawiać, a ja poszłam do szkoły i zrobiłam awanturę. Dlaczego pytacie?",
+     "claims": []
+    }
+   ],
+   "statements": [
+    {
+     "id": "m-c1",
+     "text": "Kobieta zna kołysankę i rozkład domu, więc może być Anną.",
+     "truth": true
+    },
+    {
+     "id": "m-c2",
+     "text": "O 23:00 wzięła tabletkę nasenną i spała do rana.",
+     "truth": true
+    },
+    {
+     "id": "m-c3",
+     "text": "Przy kolacji powiedziała Leonowi, że zapłaci za tamtą noc.",
+     "truth": true
+    },
+    {
+     "id": "m-l1",
+     "text": "Nie wiedziała wcześniej, że Leon chce uznać tę kobietę za Annę.",
+     "contradicts": [
+      "e27"
+     ],
+     "response": "Zadzwonił w czwartek. Pierwszy raz od lat płakał do słuchawki. Powiedział: „Ania wróciła, przyjedź w piątek, Wiktor przygotuje papiery”. Przyjechałam. Powiedziałam przy kolacji, że wszystko, co moje, będzie jej. Wiktor zbladł, ale pomyślałam, że ze zdziwienia.",
+     "gives": [
+      "t9"
+     ],
+     "time": [
+      [
+       "2026-11-05 19:12",
+       "Leon dzwoni do Marty: „Ania wróciła” (40 min)",
+       "Marta"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "locations": [
+  {
+   "id": "study",
+   "name": "Gabinet Leona",
+   "kind": "Miejsce zdarzenia",
+   "desc": "Ciemne drewno, regały pod sufit, kominek z kamiennym obramowaniem. Tu znaleziono ciało.",
+   "spots": [
+    {
+     "id": "sp-body",
+     "name": "Ciało i drabina",
+     "text": "Leon w szlafroku i domowych pantoflach leży na boku przy kominku. Drabina biblioteczna przewrócona, obok gruby atlas anatomii. Na nadgarstku smartwatch.",
+     "gives": [
+      "e04",
+      "e13"
+     ]
+    },
+    {
+     "id": "sp-desk",
+     "name": "Biurko",
+     "text": "Skórzany blat, lampa, kalendarz. Pod spodkiem na tacy złożona karteczka. W rogu blatu dziwny, jaśniejszy kwadrat.",
+     "gives": [
+      "e05",
+      "e06",
+      "e14"
+     ]
+    },
+    {
+     "id": "sp-cups",
+     "name": "Taca z herbatą",
+     "text": "Dwie filiżanki na stoliku przy oknie.",
+     "gives": [
+      "e07"
+     ]
+    },
+    {
+     "id": "sp-fire",
+     "name": "Kominek",
+     "text": "W popiele grubszy plik papierów — spalony tylko z wierzchu.",
+     "gives": [
+      "e08"
+     ]
+    },
+    {
+     "id": "sp-gramo",
+     "name": "Gramofon",
+     "text": "Talerz wciąż się kręci. Igła drapie w rowku na końcu płyty.",
+     "gives": [
+      "e09"
+     ]
+    },
+    {
+     "id": "sp-printer",
+     "name": "Drukarka",
+     "text": "W tacy odbiorczej leżą wydruki z piątku.",
+     "gives": [
+      "e10"
+     ]
+    },
+    {
+     "id": "sp-drawer",
+     "name": "Szuflada z zamkiem szyfrowym",
+     "text": "Prawa szuflada biurka ma mosiężny zamek z czterema pokrętłami cyfr.",
+     "gives": [
+      "e11",
+      "e12"
+     ],
+     "requires": {
+      "puzzle": "p-drawer"
+     },
+     "lockedText": "Zamek na cztery cyfry. Bez kodu nie otworzycie jej, nie niszcząc mebla — a to dowód."
+    }
+   ]
+  },
+  {
+   "id": "library",
+   "name": "Biblioteka",
+   "kind": "Pokój Wiktora tej nocy",
+   "desc": "Sąsiaduje z gabinetem przez ścianę. Kanapa, fotel, lampa do czytania.",
+   "spots": [
+    {
+     "id": "sp-lamp",
+     "name": "Kanapa i lampa",
+     "text": "Lampa do czytania wciąż się świeci. Na kanapie złożony koc.",
+     "gives": [
+      "e15"
+     ]
+    },
+    {
+     "id": "sp-shoes",
+     "name": "Buty przy kanapie",
+     "text": "Para eleganckich mokasynów, ustawionych równo jak w sklepie. Obok szczotka.",
+     "gives": [
+      "e16"
+     ]
+    },
+    {
+     "id": "sp-wall",
+     "name": "Ściana od strony gabinetu",
+     "text": "Technik puszcza w gabinecie płytę na tej samej głośności, co w nocy. Słuchacie z kanapy.",
+     "gives": [
+      "e17"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orangery",
+   "name": "Oranżeria",
+   "kind": "Ogród zimowy",
+   "desc": "Szklany pawilon na końcu korytarza za gabinetem. Palmy w ciężkich donicach, przeciekający dach.",
+   "spots": [
+    {
+     "id": "sp-floor",
+     "name": "Mokra posadzka",
+     "text": "Pod przeciekiem nad palmą rozlała się szeroka kałuża. W wodzie widać odciski.",
+     "gives": [
+      "e18"
+     ]
+    },
+    {
+     "id": "sp-pots",
+     "name": "Duże donice",
+     "text": "Ziemia w donicy z palmą jest wyraźnie poruszona, przyklepana dłonią.",
+     "gives": [
+      "e19"
+     ],
+     "requires": {
+      "puzzle": "p-weapon"
+     },
+     "lockedText": "Ziemia jest poruszona, ale donic jest dziewięć, każda po pół metra ziemi. Zanim zaczniecie kopać, ustalcie, czego szukacie."
+    },
+    {
+     "id": "sp-gdoor",
+     "name": "Drzwi do ogrodu",
+     "text": "Szklane drzwi z oranżerii prosto do ogrodu.",
+     "gives": [
+      "e20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "outbuilding",
+   "name": "Oficyna",
+   "kind": "Mieszkanie Heleny",
+   "desc": "Niski budynek po drugiej stronie brukowanego podwórza, około 30 metrów od kuchennych drzwi willi.",
+   "spots": [
+    {
+     "id": "sp-phone",
+     "name": "Telefon stacjonarny",
+     "text": "Stary aparat z tarczą. Operator przysłał na prośbę wydziału wykaz połączeń.",
+     "gives": [
+      "e21"
+     ]
+    },
+    {
+     "id": "sp-hroom",
+     "name": "Pokój Heleny",
+     "text": "Mały pokój, dwa krzesła przy stole, łóżko pod oknem.",
+     "gives": [
+      "e22"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "westwing",
+   "name": "Zachodnie skrzydło",
+   "kind": "Pogorzelisko sprzed 13 lat",
+   "desc": "Zamknięte od pożaru. Zapach starej sadzy. Pokój Anny na końcu korytarza nigdy nie został wyremontowany.",
+   "spots": [
+    {
+     "id": "sp-door13",
+     "name": "Drzwi pokoju Anny",
+     "text": "Osmalone dębowe drzwi. W zamku od strony korytarza tkwi zardzewiały klucz.",
+     "gives": [
+      "e23"
+     ]
+    },
+    {
+     "id": "sp-window13",
+     "name": "Okno pokoju Anny",
+     "text": "Wysoko nad ogrodem. Rama wypalona, szyba wybita.",
+     "gives": [
+      "e24"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guestrooms",
+   "name": "Pokoje gościnne",
+   "kind": "Piętro, skrzydło wschodnie",
+   "desc": "Dwa pokoje naprzeciw siebie: kobiety podającej się za Annę i Marty Różyckiej.",
+   "spots": [
+    {
+     "id": "sp-aroom",
+     "name": "Pokój „Anny”",
+     "text": "Na krześle płaszcz, pod nim trampki. Na stoliku bilet i podpisany rano protokół.",
+     "gives": [
+      "e26",
+      "e28"
+     ]
+    },
+    {
+     "id": "sp-mroom",
+     "name": "Pokój Marty",
+     "text": "Na szafce nocnej opakowanie tabletek i telefon. Marta zgadza się pokazać historię połączeń.",
+     "gives": [
+      "e27"
+     ]
+    }
+   ]
+  }
+ ],
+ "evidence": [
+  {
+   "id": "e01",
+   "type": "Raport",
+   "title": "Raport z miejsca zdarzenia",
+   "summary": "Pierwsze ustalenia patrolu, sobota 8:15.",
+   "start": true,
+   "body": [
+    {
+     "kv": [
+      [
+       "Miejsce",
+       "Willa Różyckich, Brzeziny, gabinet na parterze"
+      ],
+      [
+       "Zgłoszenie",
+       "sobota 7.11, 07:24, Helena Wolska"
+      ],
+      [
+       "Przyjazd patrolu",
+       "08:15 (dojazd możliwy od 06:05)"
+      ],
+      [
+       "Zmarły",
+       "dr Leon Różycki, 62 l."
+      ]
+     ]
+    },
+    "Most na Mrowie, jedyny dojazd do willi, był zalany od 21:30 w piątek do 06:05 w sobotę (potwierdzenie z gminy). Teren otacza wysoki mur i rzeka. W tym czasie w willi i oficynie przebywało pięć osób: Leon Różycki, Wiktor Różycki, Marta Różycka, Helena Wolska oraz kobieta przedstawiająca się jako Anna Różycka.",
+    "Ciało w gabinecie przy kominku, obok przewróconej drabiny bibliotecznej. Rodzinę o 08:30 poinformowano wyłącznie o tym, że przyczyną mógł być upadek.",
+    {
+     "note": "Śladów włamania brak. Okna parteru zamknięte."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-06 21:30",
+     "Most na Mrowie zalany — nikt nie wchodzi ani nie wychodzi do 06:05",
+     "Raport"
+    ]
+   ]
+  },
+  {
+   "id": "e02",
+   "type": "Opinia",
+   "title": "Wstępna opinia lekarza",
+   "summary": "Lekarz sądowy, oględziny o 9:05. Nie wygląda to na wypadek.",
+   "start": true,
+   "body": [
+    {
+     "kv": [
+      [
+       "Czas zgonu",
+       "piątek 23:00 – sobota 01:00 (wstępnie)"
+      ],
+      [
+       "Obrażenie",
+       "rana tłuczona okolicy potylicznej z wgłobieniem kości"
+      ]
+     ]
+    },
+    "Rana ma kształt półkolisty, średnica ok. 4 cm. Krawędź kamiennego obramowania kominka jest prosta — upadek na nią dałby ranę linijną, nie okrągłą. Na obramowaniu jest tylko smuga krwi, jakby ktoś przetarł o nie głową.",
+    "Plamy opadowe wskazują, że ciało przemieszczono wkrótce po śmierci.",
+    {
+     "note": "Wniosek wstępny: uderzenie twardym przedmiotem o kulistej powierzchni, zadane od tyłu. Upozorowanie upadku prawdopodobne."
+    }
+   ]
+  },
+  {
+   "id": "e03",
+   "type": "Plan",
+   "title": "Plan willi",
+   "summary": "Rozkład pomieszczeń i odległości.",
+   "start": true,
+   "body": [
+    {
+     "h": "Parter"
+    },
+    "Hol — jadalnia — kuchnia z wyjściem na podwórze. Z holu korytarz do gabinetu. Gabinet i biblioteka mają wspólną ścianę. Z korytarza za gabinetem drzwi do oranżerii — droga nie prowadzi przez hol.",
+    {
+     "h": "Piętro (skrzydło wschodnie)"
+    },
+    "Dwa pokoje gościnne naprzeciw siebie. Schody schodzą do holu.",
+    {
+     "h": "Poza budynkiem"
+    },
+    "Oficyna: po drugiej stronie podwórza, ok. 30 m od drzwi kuchennych. Zachodnie skrzydło: zamknięte od pożaru, wejście z końca holu."
+   ]
+  },
+  {
+   "id": "e04",
+   "type": "Oględziny",
+   "title": "Oględziny ciała i drabiny",
+   "summary": "Szlafrok, pantofle, przewrócona drabina.",
+   "body": [
+    "Leon ma na sobie szlafrok i domowe pantofle w rozmiarze 43. Podeszwy suche i czyste.",
+    "Drabina biblioteczna zwykle stoi przy regale po przeciwnej stronie pokoju niż kominek. Leżała tak, jakby ktoś ją przewrócił w stronę ciała. Obok leży atlas anatomii, jakby Leon sięgał po coś z góry — ale luka po atlasie jest na najniższej półce przy biurku. Po ten tom nie trzeba wchodzić na drabinę.",
+    {
+     "note": "Upadek z drabiny przy regale nie mógł zakończyć się przy kominku, trzy metry dalej."
+    }
+   ]
+  },
+  {
+   "id": "e05",
+   "type": "Obserwacja",
+   "title": "Wyblakły kwadrat na biurku",
+   "summary": "Na blacie czegoś brakuje.",
+   "body": [
+    "W lewym rogu skórzanego blatu biurka jest ciemniejszy, niewyblakły kwadrat mniej więcej 8 × 8 cm. Reszta skóry wypłowiała od słońca. Przez lata stał tu jakiś ciężki przedmiot na płaskiej podstawie.",
+    "Teraz w tym miejscu nic nie ma. Helena twierdzi, że w piątek rano niczego z biurka nie zdejmowała."
+   ]
+  },
+  {
+   "id": "e06",
+   "type": "Notatka",
+   "title": "Karteczka spod spodka",
+   "summary": "Pismo Leona, piątek.",
+   "body": [
+    {
+     "quote": "W. — 23:30, tutaj. 214/3?? Pełnomocnictwo M. z marca 2019 — M. leżała wtedy w szpitalu!! Jeśli nie wyjaśni → jutro prokuratura.",
+     "by": "pismo Leona Różyckiego"
+    },
+    {
+     "note": "Kartka wsunięta pod spodek filiżanki — łatwo ją przeoczyć."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-06 23:30",
+     "Leon umawia się z „W.” w gabinecie (notatka)",
+     "Notatka Leona"
+    ]
+   ]
+  },
+  {
+   "id": "e07",
+   "type": "Fotografia",
+   "title": "Dwie filiżanki",
+   "summary": "Jedna wypita, druga pełna.",
+   "body": [
+    "Taca z dwiema filiżankami i dzbankiem. Filiżanka po lewej wypita do połowy — na uszku odciski Leona. Druga pełna, zimna, nietknięta. Obie zaparzone tą samą herbatą.",
+    "Krzesło naprzeciw fotela Leona odsunięte od stołu, poduszka wgnieciona: ktoś tu siedział."
+   ]
+  },
+  {
+   "id": "e08",
+   "type": "Dokument",
+   "title": "Spalone fragmenty z kominka",
+   "summary": "Gruby plik papierów spłonął tylko z wierzchu.",
+   "body": [
+    "Technik wydobył z popiołu środkową część pliku. Czytelne fragmenty:",
+    {
+     "log": [
+      "„…Repertorium A nr 1187/2019…”",
+      "„…sprzedająca Marta Różycka, reprezentowana przez pełnomocnika Wiktora Ró…”",
+      "„…na podstawie pełnomocnictwa z dnia 12 marca 2019 r.…”",
+      "„…działka ewid. nr 214/… obręb Brzeziny-Zawisze…”",
+      "„…cena 1 240 000 zł… przelew na rachunek WR Consult…”"
+     ]
+    },
+    {
+     "note": "Plik spłonął słabo, bo był gruby i ciasno złożony. Ktoś wrzucił go do dogasającego ognia."
+    }
+   ]
+  },
+  {
+   "id": "e09",
+   "type": "Obserwacja",
+   "title": "Gramofon",
+   "summary": "Igła w rowku na końcu płyty.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Płyta",
+       "F. Chopin, Nokturny, strona B"
+      ],
+      [
+       "Czas trwania strony",
+       "24 min 10 s"
+      ],
+      [
+       "Mechanizm",
+       "bez automatycznego powrotu ramienia"
+      ]
+     ]
+    },
+    "Ramię zostało w rowku wybiegowym; talerz kręcił się do rana. Według Heleny Leon zawsze przewracał płytę na drugą stronę, gdy się kończyła."
+   ]
+  },
+  {
+   "id": "e10",
+   "type": "Wydruk",
+   "title": "Wydruk z księgi wieczystej",
+   "summary": "Leon drukował w piątek o 16:52.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Księga",
+       "Elektroniczna księga wieczysta, obręb Brzeziny-Zawisze"
+      ],
+      [
+       "Właścicielka (dział II)",
+       "Marta Różycka z d. Zawisza"
+      ],
+      [
+       "Data wydruku",
+       "piątek 6.11, 16:52"
+      ]
+     ]
+    },
+    {
+     "log": [
+      "Działka 214/1 — siedlisko z willą — bez zmian",
+      "Działka 214/3 — łąka nad Mrową — WYŁĄCZONA: sprzedaż, umowa z 28.03.2019, Rep. A 1187/2019",
+      "Działka 214/5 — las — bez zmian"
+     ]
+    },
+    {
+     "note": "Na marginesie długopisem, pismem Leona: „Marta nic nie wie?”"
+    }
+   ]
+  },
+  {
+   "id": "e11",
+   "type": "Dziennik",
+   "title": "Kartka z dziennika Leona (2013)",
+   "summary": "Zapis z 15 listopada 2013 r.",
+   "body": [
+    {
+     "quote": "15 listopada. Zamknąłem ją o dziewiątej, jak tyle razy przedtem. Chciała jechać rano z tą dziewczyną Wolskiej do Dublina. Klucz został w zamku. Nie słyszałem nic aż do syren. Strażakom powiedziałem, że zamykała się sama. Wiktor załatwił resztę — ma znajomości, nikt nie będzie pytał. Mała Wolska stała w ogrodzie. Wie. Powiedziałem jej, że to jej świece i że pójdzie siedzieć. Wyjechała. Niech mi Bóg wybaczy, bo ja sobie nie wybaczę.",
+     "by": "pismo Leona Różyckiego"
+    }
+   ],
+   "time": [
+    [
+     "2013-11-14 21:00",
+     "Leon zamyka Annę na klucz (dziennik Leona)",
+     "Dziennik"
+    ]
+   ]
+  },
+  {
+   "id": "e12",
+   "type": "List",
+   "title": "List bez podpisu",
+   "summary": "Leon trzymał go pod kluczem.",
+   "body": [
+    {
+     "quote": "Leon. Ty wiesz, kim jestem, a ja wiem, kto przekręcił klucz czternastego listopada. Od piątku jestem Anną. Uznasz mnie przy Marcie i przy notariuszu — albo powiem wszystkim, co widziałam z ogrodu. Nie chcę twojej skruchy. Chcę tego, co Ania miała dostać.",
+     "by": "list wręczony Leonowi w środę, 4.11"
+    }
+   ]
+  },
+  {
+   "id": "e13",
+   "type": "Dane",
+   "title": "Eksport danych z zegarka Leona",
+   "summary": "Pomiar tętna z ostatniej doby.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Urządzenie",
+       "smartwatch L. Różyckiego"
+      ],
+      [
+       "Źródło",
+       "serwer producenta, eksport 2026-11-07T08:12Z"
+      ],
+      [
+       "Format",
+       "ISO 8601"
+      ]
+     ]
+    },
+    {
+     "log": [
+      "2026-11-06T19:10Z   HR 68",
+      "2026-11-06T21:30Z   HR 97",
+      "2026-11-06T21:34Z   HR 114",
+      "2026-11-06T21:41Z   HR 106",
+      "2026-11-06T21:46Z   HR 83",
+      "2026-11-06T22:00Z   HR 74",
+      "2026-11-06T22:20Z   HR 71",
+      "2026-11-06T22:32Z   HR 86",
+      "2026-11-06T22:40Z   HR 99",
+      "2026-11-06T22:44Z   HR 112",
+      "2026-11-06T22:46Z   HR 131",
+      "2026-11-06T22:47Z   --  brak odczytu (utrata kontaktu ze skórą / brak tętna)",
+      "2026-11-06T22:50Z   --  brak odczytu",
+      "2026-11-07T06:00Z   --  brak odczytu"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e14",
+   "type": "Notes",
+   "title": "Kalendarz Leona",
+   "summary": "Zapiski z ostatnich dni.",
+   "body": [
+    {
+     "log": [
+      "śr 4.11 — K./A. przyszła. LIST. Nie mam wyjścia.",
+      "czw 5.11 — zadzwonić do Marty. Wiktor: przygotować papiery fundacji na piątek.",
+      "pt 6.11 — 9:00 sąd, wydział KW: akta działki 214/3 — kopia aktu i pełnomocnictwa!",
+      "pt 6.11 — kolacja 20:00, wszyscy. Wydrukować KW!",
+      "Szyfr szuflady zmieniam co roku. W tym roku: dzień i miesiąc, w którym przestałem być ojcem."
+     ]
+    },
+    {
+     "note": "Wpis „K./A.” — litera K przekreślona, nad nią dopisane A."
+    }
+   ]
+  },
+  {
+   "id": "e15",
+   "type": "Obserwacja",
+   "title": "Biblioteka: lampa i koc",
+   "summary": "Ktoś tu nie spał.",
+   "body": [
+    "Lampa do czytania świeciła się całą noc. Koc na kanapie złożony w kostkę, poduszka nieugnieciona. Na stoliku otwarta książka — zakładka na stronie 12.",
+    "Helena: „Zawsze rano rozkładam koc gościom. Nikt go nie ruszał”."
+   ]
+  },
+  {
+   "id": "e16",
+   "type": "Obserwacja",
+   "title": "Mokasyny Wiktora",
+   "summary": "Rozmiar 44, metalowe podkówki.",
+   "body": [
+    "Mokasyny w rozmiarze 44. Na obcasach metalowe półksiężycowe podkówki — przy chodzeniu po kamiennej posadzce stukają.",
+    "Buty świeżo wyczyszczone, szczotka obok jeszcze wilgotna. W szwie przy podeszwie lewego buta tkwi kilka drobnych białych granulek — technik rozpoznaje perlit, dodatek do ziemi doniczkowej."
+   ]
+  },
+  {
+   "id": "e17",
+   "type": "Eksperyment",
+   "title": "Próba słyszalności",
+   "summary": "Ściana między gabinetem a biblioteką.",
+   "body": [
+    "Płyta puszczona w gabinecie na tej samej głośności jest w bibliotece wyraźnie słyszalna. Rozmowę podniesionym głosem słychać słowo w słowo; zwykłą rozmowę — jako szmer.",
+    {
+     "note": "Kto spał w bibliotece, mógł nie słyszeć. Kto nie spał — słyszał muzykę."
+    }
+   ]
+  },
+  {
+   "id": "e18",
+   "type": "Fotografia",
+   "title": "Odciski butów w oranżerii",
+   "summary": "Ślady w kałuży spod przeciekającego dachu.",
+   "body": [
+    "Dach nad palmą przecieka tylko przy ulewie — wtedy pod donicą rozlewa się szeroka kałuża (potwierdza Helena). Odciski w wodzie i błocie: podeszwa gładka, długość ok. 29 cm (rozmiar ok. 44). Na pięcie każdego odcisku wyraźny półksiężyc — ślad metalowej podkówki.",
+    "Trasa: drzwi od korytarza za gabinetem → donica z palmą → z powrotem do drzwi. Odciski leżą na rozlanej wodzie, nie pod nią."
+   ]
+  },
+  {
+   "id": "e19",
+   "type": "Przedmiot",
+   "title": "Przycisk do papieru w donicy",
+   "summary": "Zakopany 15 cm pod ziemią przy palmie.",
+   "body": [
+    "Mosiężna kula o średnicy 4 cm na marmurowej podstawie 8 × 8 cm, waga ok. 1,4 kg. Grawer na podstawie: „L.R. 1998”.",
+    "Powierzchnia starannie wytarta, ale w rowkach grawerunku zachowały się ślady krwi. Ziemia doniczkowa z perlitem.",
+    {
+     "note": "Kształt kuli odpowiada ranie opisanej przez lekarza. Podstawa odpowiada kwadratowi na biurku."
+    }
+   ]
+  },
+  {
+   "id": "e20",
+   "type": "Obserwacja",
+   "title": "Drzwi z oranżerii do ogrodu",
+   "summary": "Zamknięte od środka.",
+   "body": [
+    "Drzwi zamknięte od wewnątrz na zasuwę, zasuwa zardzewiała i nieruszana — na rdzy brak świeżych zarysowań. Przed drzwiami na zewnątrz nietknięte błoto.",
+    {
+     "note": "Nikt tej nocy nie wszedł ani nie wyszedł tędy. Kto zostawił ślady w oranżerii, przyszedł z wnętrza domu."
+    }
+   ]
+  },
+  {
+   "id": "e21",
+   "type": "Wykaz",
+   "title": "Wykaz połączeń — telefon w oficynie",
+   "summary": "Operator, linia stacjonarna oficyny.",
+   "body": [
+    {
+     "log": [
+      "pt 6.11  18:02  wych.  Apteka Brzeziny     2 min",
+      "pt 6.11  23:39  wych.  T. Wolska (Kalisz)  23 min",
+      "sob 7.11 07:24  wych.  112                  4 min"
+     ]
+    },
+    {
+     "note": "Linia stacjonarna — aparat w oficynie, nie da się z niej dzwonić z willi."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-06 23:39",
+     "Połączenie z telefonu oficyny do Teresy Wolskiej, 23 min (do 00:02)",
+     "Wykaz połączeń"
+    ]
+   ]
+  },
+  {
+   "id": "e22",
+   "type": "Obserwacja",
+   "title": "Pokój Heleny",
+   "summary": "Ktoś tu był w nocy.",
+   "body": [
+    "Na stole dwa kubki po herbacie, oba wypite. Na oparciu drugiego krzesła zaschnięty, wodnisty ślad — ktoś usiadł w mokrym ubraniu.",
+    "Na komodzie oprawione zdjęcie dziewczynki w szkolnym mundurku. Podpis na odwrocie: „Kinia, 1 klasa”."
+   ]
+  },
+  {
+   "id": "e23",
+   "type": "Obserwacja",
+   "title": "Drzwi pokoju Anny",
+   "summary": "Klucz w zamku od zewnątrz.",
+   "body": [
+    "Dębowe drzwi pokoju Anny, osmalone od środka. W zamku od strony korytarza tkwi zardzewiały klucz — zamek w pozycji zamkniętej. Od wewnątrz brak klamki z zamkiem: drzwi można było zamknąć na klucz tylko od korytarza.",
+    {
+     "note": "Ten pokój nie mógł zostać zamknięty od środka."
+    }
+   ]
+  },
+  {
+   "id": "e24",
+   "type": "Obserwacja",
+   "title": "Okno pokoju Anny",
+   "summary": "Ok. 6 metrów nad ogrodem.",
+   "body": [
+    "Okno na piętrze, ok. 6 m nad ziemią, pod nim kamienny taras. Szkło wybite od środka — odłamki leżały na zewnątrz. Okiennica od zewnątrz zablokowana wtedy zapadką.",
+    "Z ogrodu pod oknem widać okna korytarza zachodniego skrzydła."
+   ]
+  },
+  {
+   "id": "e25",
+   "type": "Raport",
+   "title": "Raport straży pożarnej (2013)",
+   "summary": "Kopia, którą Marta wywalczyła po dwóch latach.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Data",
+       "14 listopada 2013 r., zgłoszenie 23:48"
+      ],
+      [
+       "Miejsce",
+       "Willa Różyckich, skrzydło zachodnie, pokój na piętrze"
+      ],
+      [
+       "Ofiary",
+       "1 — Anna Różycka, 19 l."
+      ],
+      [
+       "Prawdopodobna przyczyna",
+       "zaprószenie ognia od świec"
+      ]
+     ]
+    },
+    "Drzwi pokoju zastano zamknięte na klucz, klucz w zamku od strony korytarza. Okno wybite od środka. Właściciel oświadczył, że córka „miała zwyczaj zamykać się sama”.",
+    "Identyfikacji dokonano na podstawie bransoletki i zegarka; tożsamość potwierdził ojciec. Postępowanie umorzono.",
+    {
+     "note": "Nikt nie zadał pytania, jak można zamknąć się od środka kluczem tkwiącym na zewnątrz."
+    }
+   ],
+   "time": [
+    [
+     "2013-11-14 23:40",
+     "Pożar pokoju Anny w zachodnim skrzydle",
+     "Raport straży"
+    ]
+   ]
+  },
+  {
+   "id": "e26",
+   "type": "Obserwacja",
+   "title": "Pokój „Anny”: płaszcz i buty",
+   "summary": "Wychodziła na zewnątrz w ulewie.",
+   "body": [
+    "Płaszcz przemoczony na plecach i ramionach, jeszcze wilgotny. Trampki rozmiar 39, mokre, z piaskiem z bruku między bieżnikiem. Na stoliku bilet autobusowy Kraków–Brzeziny z piątku, 15:05.",
+    "Okno pokoju wychodzi na front domu — z wnętrza willi nie da się zmoknąć."
+   ]
+  },
+  {
+   "id": "e27",
+   "type": "Wykaz",
+   "title": "Telefon Marty — historia połączeń",
+   "summary": "Pokazała dobrowolnie.",
+   "body": [
+    {
+     "log": [
+      "czw 5.11  19:12  przych.  Leon          40 min",
+      "pt 6.11   14:30  wych.    Taxi Kalisz    1 min"
+     ]
+    },
+    {
+     "note": "Inne połączenia z ostatniego tygodnia: rodzina i przychodnia."
+    }
+   ]
+  },
+  {
+   "id": "e28",
+   "type": "Protokół",
+   "title": "Protokół oświadczenia",
+   "summary": "Podpisany przez kobietę podającą się za Annę.",
+   "body": [
+    "Oświadczenie przyjęto o 8:40. Kobieta podała dane: Anna Różycka, ur. 3 grudnia 1994 r. Dokumentów nie okazała.",
+    {
+     "note": "Uwaga funkcjonariusza: podpisała szybko, pewnie, prawą ręką. Długopis trzymała jak osoba praworęczna od zawsze."
+    }
+   ]
+  },
+  {
+   "id": "e29",
+   "type": "Notatka",
+   "title": "Rozmowa z Teresą Wolską",
+   "summary": "Siostra Heleny, telefonicznie, 11:20.",
+   "body": [
+    "Teresa Wolska (Kalisz) potwierdza połączenie od siostry w piątek o 23:39. Helena płakała i mówiła bez przerwy. Powiedziała: „Tereska, Kinga wróciła. Siedzi przy mnie”.",
+    "Około 23:50 Helena podała słuchawkę. Kobiecy głos powiedział: „Ciociu, to ja, Kinia”. Teresa jest pewna: „Tak mówiła tylko ona, od dziecka”. Rozmowa trwała do 00:02; do końca słyszała obie kobiety.",
+    {
+     "note": "Teresa nie wiedziała nic o śmierci Leona ani o kobiecie podającej się za Annę."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-06 23:50",
+     "Kinga rozmawia przez telefon z Teresą Wolską z oficyny",
+     "Teresa Wolska"
+    ]
+   ]
+  },
+  {
+   "id": "e30",
+   "type": "Dokument",
+   "title": "Karta wypisu Marty (2019)",
+   "summary": "Szpital w Poznaniu.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Pacjentka",
+       "Marta Różycka"
+      ],
+      [
+       "Przyjęcie",
+       "20.02.2019"
+      ],
+      [
+       "Wypis",
+       "30.04.2019"
+      ],
+      [
+       "Przebieg",
+       "śpiączka farmakologiczna 22.02–19.03.2019"
+      ]
+     ]
+    },
+    {
+     "note": "12 marca 2019 r. Marta była nieprzytomna. Nie mogła podpisać żadnego pełnomocnictwa."
+    }
+   ]
+  },
+  {
+   "id": "x1",
+   "type": "Notatka służbowa",
+   "title": "Co wie rodzina",
+   "summary": "Komunikat dla domowników, 8:30.",
+   "private": true,
+   "body": [
+    "O 8:30 dyżurny przekazał domownikom zebranym w holu jedno zdanie: „Doktor prawdopodobnie spadł z drabiny w gabinecie, szczegóły po oględzinach”.",
+    {
+     "note": "Opinii lekarza ani szczegółów obrażeń nikomu z rodziny nie ujawniono. Ciało leżało na boku twarzą do kominka — z progu gabinetu nie widać tyłu głowy."
+    }
+   ]
+  },
+  {
+   "id": "x2",
+   "type": "Wycinek",
+   "title": "„Domy z duszą” — artykuł z 2019",
+   "summary": "Reportaż o willi, z opisem gabinetu.",
+   "private": true,
+   "body": [
+    {
+     "quote": "Na biurku doktora, w lewym rogu, stoi jego talizman: mosiężna kula wielkości mandarynki na kwadratowej marmurowej podstawie — prezent od brata z okazji obrony doktoratu w 1998 roku. „Przycisk do papieru, który przeżył trzy przeprowadzki i jeden pożar” — śmieje się gospodarz.",
+     "by": "miesięcznik „Domy z duszą”, maj 2019"
+    }
+   ]
+  },
+  {
+   "id": "x3",
+   "type": "Notatka",
+   "title": "Uwaga technika informatyka",
+   "summary": "O formacie danych z urządzeń.",
+   "private": true,
+   "body": [
+    "Eksporty z serwerów producentów zegarków podają czas w formacie ISO 8601. Litera „Z” na końcu znacznika oznacza czas uniwersalny UTC, a nie czas lokalny.",
+    {
+     "note": "W Polsce od ostatniej niedzieli października obowiązuje czas zimowy: UTC+1."
+    }
+   ]
+  },
+  {
+   "id": "x4",
+   "type": "Notatka",
+   "title": "Obuwie domowników",
+   "summary": "Spis technika z holu i pokoi, 8:50.",
+   "private": true,
+   "body": [
+    {
+     "log": [
+      "Leon R.      — pantofle domowe, 43 (na nogach)",
+      "Wiktor R.    — mokasyny, 44, metalowe podkówki na obcasach",
+      "Marta R.     — botki na obcasie, 38",
+      "„Anna”       — trampki, 39",
+      "Helena W.    — kalosze 38, półbuty 38"
+     ]
+    },
+    {
+     "note": "Innego męskiego obuwia w domu nie znaleziono."
+    }
+   ]
+  },
+  {
+   "id": "x5",
+   "type": "Fotografia",
+   "title": "Zdjęcie z albumu Marty",
+   "summary": "Lato 2013. Dwie dziewczyny na tarasie.",
+   "private": true,
+   "body": [
+    "Dwie dziewiętnastolatki przy stole na tarasie. Ta po lewej pisze coś w zeszycie — długopis w lewej ręce, łokieć wysunięty. Na odwrocie pismem Marty: „Ania i Kinia, lipiec 2013. Ania znowu leworęcznie, jak zawsze”.",
+    {
+     "note": "Obie dziewczyny są podobnego wzrostu, obie ciemnowłose."
+    }
+   ]
+  },
+  {
+   "id": "x6",
+   "type": "Komunikat",
+   "title": "Dane pogodowe IMGW",
+   "summary": "Stacja Brzeziny, noc z 6 na 7 listopada.",
+   "private": true,
+   "body": [
+    {
+     "log": [
+      "21:00–22:50  opady umiarkowane",
+      "22:50–01:40  ulewa, porywy do 70 km/h",
+      "01:40–05:00  opady słabe"
+     ]
+    },
+    {
+     "note": "Godziny podano w czasie urzędowym (lokalnym)."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-06 22:50",
+     "Początek ulewy (IMGW)",
+     "IMGW"
+    ]
+   ]
+  },
+  {
+   "id": "t1",
+   "type": "Zeznanie",
+   "title": "Helena: telefon do siostry",
+   "summary": "Sprostowanie po okazaniu wykazu połączeń.",
+   "testimony": true,
+   "body": [
+    "Helena przyznaje, że nie spała, tylko o 23:39 zadzwoniła do siostry Teresy. Twierdzi, że rozmawiały o burzy i że była sama."
+   ]
+  },
+  {
+   "id": "t2",
+   "type": "Zeznanie",
+   "title": "Helena: „To moja Kinga”",
+   "summary": "Helena rozpoznaje w kobiecie swoją córkę.",
+   "testimony": true,
+   "body": [
+    "Helena zeznaje, że kobieta podająca się za Annę to jej córka, Kinga Wolska. Rozpoznała ją pierwszego wieczoru. Kinga przyszła do oficyny o 23:30, cała mokra, i była tam do 00:02. Około 23:50 rozmawiała przez telefon z ciotką Teresą."
+   ]
+  },
+  {
+   "id": "t3",
+   "type": "Zeznanie",
+   "title": "Kinga: znalazła ciało",
+   "summary": "Była w gabinecie kilka minut po północy.",
+   "testimony": true,
+   "body": [
+    "Kinga przyznaje, że o 23:30 przeszła do oficyny, a po 00:02 wróciła przez kuchnię i poszła do gabinetu po swój list. Drzwi były uchylone, Leon leżał przy kominku, gramofon tylko szumiał. Zamknęła drzwi i uciekła do pokoju. Nikomu nie powiedziała."
+   ]
+  },
+  {
+   "id": "t4",
+   "type": "Zeznanie",
+   "title": "Kinga: noc pożaru",
+   "summary": "Kim jest i co widziała w 2013 roku.",
+   "testimony": true,
+   "body": [
+    "Kobieta to Kinga Wolska. 14 listopada 2013 r. o 21:00 widziała z ogrodu, jak Leon przekręca klucz w drzwiach pokoju Anny. Czekała pod oknem, aż zobaczyła ogień. Leon zastraszył ją oskarżeniem o podpalenie. Wyjechała rano do Irlandii. Wróciła, by zmusić go do przyznania się — i po pieniądze, które miała dostać Anna."
+   ]
+  },
+  {
+   "id": "t5",
+   "type": "Zeznanie",
+   "title": "Wiktor: rozmowa o 23:30",
+   "summary": "Przyznaje, że był w gabinecie.",
+   "testimony": true,
+   "body": [
+    "Wiktor przyznaje, że o 23:30 poszedł do gabinetu na rozmowę z Leonem „o papierach fundacji”. Twierdzi, że wyszedł przed 23:40, a Leon żył i pił herbatę."
+   ]
+  },
+  {
+   "id": "t6",
+   "type": "Zeznanie",
+   "title": "Wiktor: „figura retoryczna”",
+   "summary": "Reakcja na pytanie o tył głowy.",
+   "testimony": true,
+   "body": [
+    "Zapytany, skąd wie o uderzeniu w tył głowy, skoro rodzinie powiedziano wyłącznie o upadku z drabiny, Wiktor twierdzi, że to „figura retoryczna”, i odmawia dalszych odpowiedzi bez adwokata."
+   ]
+  },
+  {
+   "id": "t7",
+   "type": "Zeznanie",
+   "title": "Wiktor: nocna wizyta w oranżerii",
+   "summary": "„Zaczerpnąć powietrza”.",
+   "testimony": true,
+   "body": [
+    "Wiktor przyznaje, że w nocy był w oranżerii — według niego „żeby zaczerpnąć powietrza”. Nie potrafi podać godziny."
+   ]
+  },
+  {
+   "id": "t8",
+   "type": "Zeznanie",
+   "title": "Wiktor: pełnomocnictwo Marty",
+   "summary": "Twierdzi, że Marta podpisała.",
+   "testimony": true,
+   "body": [
+    "Wiktor przyznaje, że w 2019 r. sprzedał działkę 214/3 jako pełnomocnik Marty. Twierdzi, że Marta podpisała pełnomocnictwo, „tylko nie pamięta”."
+   ]
+  },
+  {
+   "id": "t9",
+   "type": "Zeznanie",
+   "title": "Marta: telefon w czwartek",
+   "summary": "Wiedziała o „powrocie Ani”.",
+   "testimony": true,
+   "body": [
+    "Leon zadzwonił w czwartek: „Ania wróciła, przyjedź w piątek, Wiktor przygotuje papiery”. Przy kolacji Marta oznajmiła, że wszystko, co ma, przekaże córce. Wiktor wtedy zbladł."
+   ]
+  }
+ ],
+ "privateClues": [
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5",
+  "x6"
+ ],
+ "puzzles": [
+  {
+   "id": "p-drawer",
+   "kind": "Zamek szyfrowy",
+   "title": "Szuflada Leona",
+   "prompt": "Zamek ma cztery pokrętła z cyframi 0–9. Ustawcie właściwy kod.",
+   "requires": [
+    "e14"
+   ],
+   "input": "digits4",
+   "answers": [
+    "1411"
+   ],
+   "hints": [
+    "Kalendarz Leona mówi, jak wybierał kod w tym roku. O jakie wydarzenie chodzi?",
+    "Leon „przestał być ojcem” w dniu śmierci córki. Datę znajdziecie w dokumentach o pożarze.",
+    "Pożar wybuchł 14 listopada 2013 r. Dzień i miesiąc: 14 i 11."
+   ],
+   "solution": "Kod to 1411 — 14 listopada, dzień pożaru, w którym zginęła Anna.",
+   "reward": {
+    "spots": [
+     "sp-drawer"
+    ],
+    "search": true
+   }
+  },
+  {
+   "id": "p-weapon",
+   "kind": "Dedukcja",
+   "title": "Narzędzie zbrodni",
+   "prompt": "Czym uderzono Leona? Wpiszcie nazwę przedmiotu.",
+   "requires": [
+    "e02",
+    "e05"
+   ],
+   "input": "text",
+   "answers": [
+    "przycisk do papieru",
+    "przycisk do papierow",
+    "przycisk",
+    "przycisk do papieru kula",
+    "mosiezna kula",
+    "kula",
+    "mosiezny przycisk",
+    "mosiezny przycisk do papieru",
+    "przycisk z kula",
+    "globus"
+   ],
+   "hints": [
+    "Lekarz opisuje kształt i rozmiar narzędzia. Czego brakuje w gabinecie?",
+    "Na biurku został ślad po ciężkim przedmiocie na kwadratowej podstawie 8 × 8 cm. Ktoś mógł opisać biurko Leona wcześniej.",
+    "Artykuł z 2019 r. opisuje mosiężną kulę na marmurowej podstawie — przycisk do papieru."
+   ],
+   "solution": "Przycisk do papieru: mosiężna kula o średnicy ok. 4 cm na podstawie 8 × 8 cm. Kształt pasuje do rany, podstawa do kwadratu na biurku. Zniknął z gabinetu.",
+   "reward": {
+    "spots": [
+     "sp-pots"
+    ]
+   }
+  },
+  {
+   "id": "p-time",
+   "kind": "Analiza danych",
+   "title": "Godzina ataku",
+   "prompt": "O której godzinie czasu polskiego zaatakowano Leona? Podajcie godzinę i minutę.",
+   "requires": [
+    "e13"
+   ],
+   "input": "time",
+   "answers": [
+    "23:46"
+   ],
+   "hints": [
+    "Spójrzcie na tętno. W którym momencie dzieje się coś gwałtownego?",
+    "Porównajcie skok tętna o 21:30 z tym, co o 22:30 słyszała Helena. Co oznacza litera Z w znacznikach?",
+    "Z = UTC. W listopadzie czas polski to UTC+1, więc 22:46Z to 23:46."
+   ],
+   "solution": "Znaczniki z literą Z są w czasie UTC. Skok tętna 22:46Z i utrata odczytu 22:47Z to 23:46–23:47 czasu polskiego. Potwierdza to przesunięcie: kłótnia o 22:30 widoczna jest w danych jako 21:30Z.",
+   "reward": {
+    "time": [
+     [
+      "2026-11-06 23:46",
+      "Atak na Leona — gwałtowny skok tętna, minutę później brak odczytu",
+      "Zegarek Leona (ustalone)"
+     ]
+    ]
+   }
+  }
+ ],
+ "hintTrail": [
+  {
+   "unless": [
+    "e02"
+   ],
+   "text": "Zacznijcie od akt startowych: opinia lekarza zmienia wszystko."
+  },
+  {
+   "unless": [
+    "sp-body",
+    "sp-desk"
+   ],
+   "text": "Przeszukajcie gabinet — biurko i ciało."
+  },
+  {
+   "unless": [
+    "p-weapon"
+   ],
+   "when": [
+    "e05"
+   ],
+   "text": "Na biurku czegoś brakuje. Opis rany mówi, czego szukać. Czy ktoś z was ma w tajnych aktach opis tego biurka?"
+  },
+  {
+   "unless": [
+    "p-time"
+   ],
+   "when": [
+    "e13"
+   ],
+   "text": "Dane z zegarka są kluczowe. Zanim im zaufacie, sprawdźcie, w jakiej strefie czasowej je zapisano."
+  },
+  {
+   "unless": [
+    "lie:h-l1"
+   ],
+   "when": [
+    "e21"
+   ],
+   "text": "Helena twierdzi, że spała. Wykaz połączeń z oficyny mówi co innego."
+  },
+  {
+   "unless": [
+    "lie:w-l1"
+   ],
+   "when": [
+    "e06"
+   ],
+   "text": "Notatka spod spodka wskazuje, kto miał przyjść o 23:30. Skonfrontujcie to z jego wersją."
+  },
+  {
+   "unless": [
+    "sp-floor"
+   ],
+   "text": "Korytarz za gabinetem prowadzi do oranżerii. Ktoś mógł nim przejść, nie mijając holu."
+  },
+  {
+   "unless": [
+    "lie:w-l2"
+   ],
+   "when": [
+    "w-q3"
+   ],
+   "text": "Przeczytajcie jeszcze raz, co Wiktor powiedział o kobiecie podającej się za Annę. Skąd mógł to wiedzieć?"
+  },
+  {
+   "unless": [
+    "p-drawer"
+   ],
+   "when": [
+    "e14"
+   ],
+   "text": "Kalendarz zdradza, jak Leon ustawiał kod szuflady. Data jest w dokumentach o pożarze — Marta ma raport."
+  },
+  {
+   "unless": [
+    "lie:a-l2"
+   ],
+   "text": "Kto naprawdę mieszka w pokoju „Anny”? Porównajcie, jak pisze ona, a jak pisała Anna."
+  },
+  {
+   "unless": [
+    "e30"
+   ],
+   "when": [
+    "e10"
+   ],
+   "text": "Sprzedaż działki 214/3 opiera się na pełnomocnictwie Marty. Zapytajcie ją, gdzie była w marcu 2019 r."
+  },
+  {
+   "text": "Macie dość, by złożyć raport. Upewnijcie się, że każdy wniosek umiecie podeprzeć dowodem."
+  }
+ ],
+ "report": {
+  "questions": [
+   {
+    "id": "r-who",
+    "q": "Kto zabił Leona Różyckiego?",
+    "type": "single",
+    "points": 13,
+    "options": [
+     [
+      "wiktor",
+      "Wiktor Różycki"
+     ],
+     [
+      "anna",
+      "Kobieta podająca się za Annę"
+     ],
+     [
+      "helena",
+      "Helena Wolska"
+     ],
+     [
+      "marta",
+      "Marta Różycka"
+     ],
+     [
+      "accident",
+      "Nikt — to był nieszczęśliwy wypadek"
+     ]
+    ],
+    "correct": "wiktor",
+    "proof": {
+     "count": 3,
+     "each": 4,
+     "valid": [
+      "e16",
+      "e18",
+      "x4",
+      "e19",
+      "t6",
+      "x1",
+      "t5",
+      "e06",
+      "e07",
+      "e15",
+      "e17",
+      "t7",
+      "e20"
+     ],
+     "label": "Wskażcie trzy dowody, które najmocniej łączą sprawcę z zabójstwem."
+    }
+   },
+   {
+    "id": "r-weapon",
+    "q": "Czym zadano cios?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "paperweight",
+      "Mosiężnym przyciskiem do papieru"
+     ],
+     [
+      "poker",
+      "Pogrzebaczem od kominka"
+     ],
+     [
+      "hearth",
+      "Nie było ciosu — głowa uderzyła w obramowanie kominka"
+     ],
+     [
+      "candlestick",
+      "Świecznikiem z gzymsu"
+     ]
+    ],
+    "correct": "paperweight"
+   },
+   {
+    "id": "r-time",
+    "q": "O której nastąpił atak?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "2246",
+      "22:46"
+     ],
+     [
+      "2320",
+      "23:20"
+     ],
+     [
+      "2346",
+      "23:46"
+     ],
+     [
+      "0005",
+      "00:05"
+     ]
+    ],
+    "correct": "2346"
+   },
+   {
+    "id": "r-motive",
+    "q": "Jaki był motyw?",
+    "type": "single",
+    "points": 15,
+    "options": [
+     [
+      "fraud",
+      "Ukrycie sfałszowanego pełnomocnictwa i sprzedaży działki 214/3"
+     ],
+     [
+      "revenge",
+      "Zemsta za śmierć Anny"
+     ],
+     [
+      "heir",
+      "Obawa, że majątek trafi do „Anny”, a nie do rodziny Różyckich"
+     ],
+     [
+      "blackmail",
+      "Leon szantażował sprawcę wiedzą o pożarze"
+     ]
+    ],
+    "correct": "fraud"
+   },
+   {
+    "id": "r-identity",
+    "q": "Kim jest kobieta podająca się za Annę?",
+    "type": "single",
+    "points": 15,
+    "options": [
+     [
+      "anna",
+      "Anną Różycką — przeżyła pożar"
+     ],
+     [
+      "kinga",
+      "Kingą Wolską, córką Heleny"
+     ],
+     [
+      "stranger",
+      "Obcą oszustką bez związku z domem"
+     ],
+     [
+      "teresa",
+      "Teresą Wolską"
+     ]
+    ],
+    "correct": "kinga"
+   },
+   {
+    "id": "r-past",
+    "q": "Co wydarzyło się w noc pożaru 13 lat temu?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "locked",
+      "Anna zginęła, bo Leon zamknął ją na klucz od zewnątrz"
+     ],
+     [
+      "survived",
+      "Anna przeżyła, a w pożarze zginęła inna dziewczyna"
+     ],
+     [
+      "arson",
+      "Kinga podpaliła pokój Anny z zazdrości"
+     ],
+     [
+      "wiktor",
+      "Wiktor podpalił skrzydło, by przejąć majątek"
+     ]
+    ],
+    "correct": "locked"
+   },
+   {
+    "id": "r-order",
+    "q": "Ułóżcie wydarzenia piątkowej nocy we właściwej kolejności.",
+    "type": "order",
+    "points": 15,
+    "items": [
+     [
+      "fight",
+      "Kłótnia Leona z kobietą podającą się za Annę"
+     ],
+     [
+      "tea",
+      "Helena przynosi dwie herbaty, Leon nastawia płytę"
+     ],
+     [
+      "meet",
+      "Wiktor wchodzi do gabinetu"
+     ],
+     [
+      "attack",
+      "Cios przyciskiem do papieru"
+     ],
+     [
+      "hide",
+      "Ukrycie narzędzia w donicy w oranżerii"
+     ],
+     [
+      "found",
+      "Kinga zastaje Leona martwego"
+     ]
+    ],
+    "correct": [
+     "fight",
+     "tea",
+     "meet",
+     "attack",
+     "hide",
+     "found"
+    ]
+   }
+  ]
+ },
+ "solution": {
+  "summary": "Leona Różyckiego zabił jego brat Wiktor, o 23:46, ciosem mosiężnego przycisku do papieru w tył głowy.",
+  "steps": [
+   {
+    "h": "To nie był wypadek",
+    "p": "Rana jest okrągła (Ø 4 cm), a krawędź kominka prosta. Ciało przeniesiono, drabinę przewrócono w złą stronę, atlas podłożono z niewłaściwej półki."
+   },
+   {
+    "h": "Narzędzie",
+    "p": "Z biurka zniknął ciężki przedmiot na podstawie 8 × 8 cm. Artykuł z 2019 r. opisuje go jako mosiężną kulę — przycisk do papieru. Znalazł się zakopany w donicy w oranżerii, z krwią w grawerunku."
+   },
+   {
+    "h": "Godzina",
+    "p": "Eksport z zegarka podaje czas UTC. Skok tętna 22:46Z to 23:46 czasu polskiego; przesunięcie potwierdza kłótnia o 22:30 widoczna jako 21:30Z. Kto czytał dane dosłownie, wskazywał na kłótnię z „Anną” — to pułapka."
+   },
+   {
+    "h": "Kto był w gabinecie",
+    "p": "Leon umówił „W.” na 23:30 i zamówił dwie herbaty. Wiktor najpierw zaprzeczył, potem przyznał, że był w gabinecie od 23:30 do „przed 23:40”. Twierdził, że spał — ale nie rozłożył koca, a przez ścianę słychać każdą płytę."
+   },
+   {
+    "h": "Ślady",
+    "p": "W oranżerii odciski rozmiaru 44 z półksiężycem podkówki — jedyne takie buty w domu to mokasyny Wiktora. Odciski leżą na wodzie z przecieku, który pojawia się dopiero przy ulewie (od 22:50). Drzwi do ogrodu zamknięte na zasuwę: sprawca przyszedł z domu. W szwie butów Wiktora — perlit z ziemi doniczkowej."
+   },
+   {
+    "h": "Wpadka",
+    "p": "Rodzinie powiedziano tylko o upadku z drabiny, a ciało leżało tyłem głowy do kominka. Wiktor sam z siebie mówił o „uderzeniu starego człowieka w tył głowy, kiedy się odwróci”."
+   },
+   {
+    "h": "Motyw",
+    "p": "W 2019 r. Wiktor sprzedał działkę 214/3 Marty za 1,24 mln zł na podstawie pełnomocnictwa z 12 marca — gdy Marta była w śpiączce. Pieniądze trafiły do WR Consult. Gdy Leon postanowił uznać „Annę”, a Marta zapowiedziała przekazanie jej majątku, oszustwo musiało wyjść na jaw. Leon odkrył je w piątek i dał bratu czas do rana. Wiktor spalił dokumenty — ale gruby plik spłonął tylko z wierzchu."
+   },
+   {
+    "h": "Alibi pozostałych",
+    "p": "Helena i Kinga były w oficynie od 23:30 do 00:02 — potwierdza to wykaz połączeń i niezależna relacja Teresy Wolskiej, która słyszała obie kobiety. Marta nie ma alibi, ale żaden ślad nie łączy jej z gabinetem; nienawiść do Leona była fałszywym tropem."
+   },
+   {
+    "h": "Kim jest „Anna”",
+    "p": "Anna była leworęczna; kobieta podpisuje się prawą ręką. Helena rozpoznała w niej córkę, Teresa — głos siostrzenicy. To Kinga Wolska."
+   },
+   {
+    "h": "Noc pożaru",
+    "p": "Drzwi pokoju Anny można było zamknąć tylko od korytarza, a klucz do dziś tkwi w zamku od zewnątrz. Dziennik Leona i relacja Kingi zgadzają się: Leon zamknął córkę na noc, by nie wyjechała do Dublina. Zginęła w pożarze od świec. Wiktor „załatwił resztę”."
+   }
+  ]
+ },
+ "endings": {
+  "correct": {
+   "title": "Zatrzymanie",
+   "text": "Wiktor Różycki zostaje zatrzymany jeszcze tego samego popołudnia, w holu, przy wszystkich. Na kamiennej posadzce stukają jego obcasy — tym razem nikt nie udaje, że nie słyszy. Prokurator stawia mu zarzut zabójstwa i fałszerstwa pełnomocnictwa.",
+   "decision": {
+    "q": "Zostaje Marta. Ktoś musi jej powiedzieć, kim jest kobieta w pokoju naprzeciwko i co wydarzyło się trzynaście lat temu. Co zrobicie?",
+    "options": [
+     {
+      "id": "all",
+      "label": "Cała prawda — dla Marty i dla prokuratury",
+      "text": "Mówicie Marcie wszystko: o kluczu w zamku, o dzienniku, o Kindze. Marta słucha w milczeniu, a potem prosi, by ją zostawić samą w zachodnim skrzydle. Kinga dostaje zarzut usiłowania oszustwa. Na rozprawie Marta siada w pierwszym rzędzie — po stronie Heleny. Dom pamięta. Teraz pamiętają wszyscy."
+     },
+     {
+      "id": "mercy",
+      "label": "Prawda o Annie, łaska dla Kingi",
+      "text": "Mówicie Marcie prawdę o pożarze i o tym, kim jest Kinga, ale nie składacie zawiadomienia o oszustwie — Kinga niczego nie zdążyła wyłudzić. Marta długo patrzy na córkę Heleny, potem mówi: „Ania by cię obroniła”. Kinga zostaje w Brzezinach. Pierwszy raz od trzynastu lat Helena nie je kolacji sama."
+     },
+     {
+      "id": "spare",
+      "label": "Oszczędzić Marcie prawdy o kluczu",
+      "text": "Mówicie Marcie, kim jest Kinga, ale przemilczacie dziennik Leona. Uznaliście, że dosyć już straciła. Miesiąc później obrońca Wiktora odczytuje dziennik na sali sądowej, żeby zdyskredytować zmarłego brata. Marta dowiaduje się prawdy z ust zabójcy. Nigdy wam tego nie wybacza."
+     }
+    ]
+   }
+  },
+  "wrong": {
+   "anna": {
+    "title": "Wygodna winna",
+    "text": "Zatrzymujecie kobietę bez dokumentów. Tydzień później jej alibi potwierdza Teresa Wolska z Kalisza, a prokurator zwalnia ją z aresztu. Przez ten tydzień Wiktor zdążył wyczyścić konta WR Consult i wyjechać. Prawdziwy zabójca jest wolny, a w aktach zostaje wasz podpis."
+   },
+   "helena": {
+    "title": "Służąca zawsze pod ręką",
+    "text": "Oskarżacie gospodynię, która jako jedyna miała wtedy alibi potwierdzone przez dwie osoby. Sprawa rozpada się na pierwszym posiedzeniu. Wiktor, jako wykonawca testamentu, wypowiada Helenie mieszkanie w oficynie."
+   },
+   "marta": {
+    "title": "Motyw to za mało",
+    "text": "Marta nienawidziła męża i wszyscy to słyszeli. Ale motyw to nie dowód. Żaden ślad nie łączy jej z gabinetem i sąd nie ma wątpliwości. Wiktor składa jej kondolencje przed budynkiem sądu."
+   },
+   "accident": {
+    "title": "Nieszczęśliwy wypadek",
+    "text": "Sprawa zostaje zamknięta jako wypadek. Wiktor przejmuje zarząd majątkiem Zawiszów jako pełnomocnik owdowiałej rodziny. Rok później znika następna działka. Dom pamięta — ale nikt już nie pyta."
+   }
+  },
+  "partial": "Wskazaliście właściwą osobę, ale część waszych wniosków jest błędna lub niepoparta dowodami. Prokurator przyjmuje sprawę, choć obrona będzie miała o co walczyć."
+ },
+ "art": "assets/art/001-manor.webp"
+}
