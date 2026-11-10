@@ -2,7 +2,7 @@
 
 Kooperacyjna gra detektywistyczna dla 2–6 osób przy jednym ekranie (telefon, tablet, komputer). Instaluje się jak aplikacja (PWA) i po pierwszym uruchomieniu działa offline.
 
-Wersja **2.1.0** — nowy silnik, nowa oprawa, sprawa 001 „Dom, który pamięta” przepisana od zera. Sprawy 002–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane).
+Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”. Sprawy 004–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
 
 ## Tryby gry (wybór po otwarciu sprawy)
 - **Wspólny stół** — jeden ekran (laptop, telewizor, tablet). Wszyscy widzą wszystko. Informacje, które w drugim trybie są tajnymi aktami, trzeba zdobyć w śledztwie (m.in. w miejscu „Centrala wydziału”). Najlepszy we dwoje.
@@ -14,8 +14,9 @@ Wersja **2.1.0** — nowy silnik, nowa oprawa, sprawa 001 „Dom, który pamięt
 1. Przeszukujcie **miejsca** i przesłuchujcie **osoby**. Każdy ruch jest liczony (norma ruchów wpływa na wynik).
 2. Świadkowie kłamią. W **protokole zeznań** podważajcie zeznania dowodami (konfrontacja). Nietrafiona konfrontacja kosztuje punkty.
 3. **Zagadki** wymagają połączenia kilku dokumentów — odpowiedzi nie ma w pytaniu.
-4. **Tablica** (korkowa, z czerwoną nitką), **oś czasu** i **notatki** pomagają poukładać fakty.
-5. **Akt oskarżenia**: sprawca, narzędzie, godzina, motyw, tożsamość, przeszłość, kolejność zdarzeń + wskazanie dowodów. Wynik 0–100, ranga, epilog i decyzja zespołu.
+4. **Szkic miejsca zdarzenia** (zakładka Miejsca) pokazuje rozkład pomieszczeń; żółte tabliczki pojawiają się na przeszukanych punktach, obrys ciała — po oględzinach.
+5. **Tablica** (korkowa, z czerwoną nitką), **oś czasu** i **notatki** pomagają poukładać fakty.
+6. **Akt oskarżenia**: pytania o sprawcę, sposób, czas, motyw i tło sprawy, kolejność zdarzeń + wskazanie dowodów. Wynik 0–100, ranga, epilog i decyzja zespołu.
 
 ## Aktualizacje
 Gra sama sprawdza nową wersję przy każdym otwarciu, powrocie z tła i co 15 minut, po czym przeładowuje się w tym samym miejscu. Numer wersji: Ustawienia → „Wersja gry” (przycisk „Sprawdź”).
@@ -46,11 +47,13 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - `tools/audit.mjs` — audyt techniczny: pliki offline, tryb offline, przycisk Wstecz, prywatność tajnych akt, błędne raporty, przepełnienia na 7 rozmiarach ekranu.
 - `tools/gen_audio.py` — generator ambientu (bezszwowa pętla) i efektów dźwiękowych, normalizacja głośności (LUFS).
 - `tools/cut_sheet.py` — cięcie plansz z grafikami na pojedyncze pliki.
+- `tools/plans.py` — szkice miejsc zdarzenia (sekcja `plan` w plikach spraw).
+- `tools/build_003.py` — źródło danych sprawy 003 (generuje `cases/003.json`).
 
 ## Testy
 ```bash
 node tools/validate.js
-MODE=table node tools/e2e.mjs http://localhost:8000/ phone    # MODE: table | phones; urządzenie: phone | tablet | desktop
+CASE=001 MODE=table node tools/e2e.mjs http://localhost:8000/ phone    # CASE: 001|002|003; MODE: table | phones; urządzenie: phone | tablet | desktop
 node tools/audit.mjs http://localhost:8000/ /tmp/state.json
 ```
 

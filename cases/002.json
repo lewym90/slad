@@ -920,8 +920,8 @@
    "body": [
     {
      "log": [
-      "Toaleta T2B   — spłukiwanie sprawne, zbiornik pełny, brak wycieku",
-      "Toaleta T1A   — sprawna",
+      "Toaleta T2B   spłukiwanie sprawne, zbiornik pełny, brak wycieku",
+      "Toaleta T1A   sprawna",
       "Okna korytarzy wagonu 2 — zablokowane konstrukcyjnie, nie otwierają się",
       "Okno przedziału służbowego — otwierane (uchylne i przesuwne)"
      ]
@@ -1231,7 +1231,7 @@
      "log": [
       "22:41  Emil: Wypiłem herbatę w barze. Barman mnie poznał. Patrzył tak, jak oni wszyscy wtedy.",
       "23:02  Emil: Stoimy przed Gajem. Akurat tutaj. Nie mogę oddychać.",
-      "23:03  Iga:  Oddychaj. Jestem za ścianą. Za pół godziny będzie po wszystkim.",
+      "23:03  Iga: Oddychaj. Jestem za ścianą. Za pół godziny będzie po wszystkim.",
       "23:24  Emil: wychodze technicznymi drzwiami. nie podchodz do okna. nie czekaj",
       "23:31  Olek: Minął mnie. Nie zatrzymał się. Poszedł za budynek."
      ]
@@ -1282,11 +1282,11 @@
    "body": [
     {
      "log": [
-      "Roman Kot      kierownik pociągu   nr 4471   189 cm   smycz czerwona",
-      "Wiesław Pająk  konduktor           nr 2290   170 cm   smycz granatowa",
-      "Tomasz Nowik   pomocnik konduktora nr 5108   186 cm   smycz granatowa",
-      "Jan Wrona      maszynista          nr 3305   175 cm   smycz granatowa",
-      "Damian Lis     barman (catering)   —         188 cm   smycz czarna"
+      "Roman Kot      kierownik pociągu    nr 4471   189 cm   smycz czerwona",
+      "Wiesław Pająk  konduktor            nr 2290   170 cm   smycz granatowa",
+      "Tomasz Nowik   pomocnik konduktora  nr 5108   186 cm   smycz granatowa",
+      "Jan Wrona      maszynista           nr 3305   175 cm   smycz granatowa",
+      "Damian Lis     barman (catering)    —         188 cm   smycz czarna"
      ]
     },
     "Umundurowanie: kierownik, konduktor, pomocnik i maszynista — granatowe mundury z poziomymi srebrnymi paskami odblaskowymi na rękawach. Barman — biała marynarka firmy cateringowej.",
@@ -1530,7 +1530,7 @@
     "182-196"
    ],
    "hints": [
-    "Zdjęcie pokazuje mężczyznę tuż przy gablocie z rozkładem. Ktoś z was ma plan peronu z jej wymiarami.",
+    "Zdjęcie pokazuje mężczyznę tuż przy gablocie z rozkładem. Wymiary gabloty ma plan peronu — w tajnych aktach albo w centrali.",
     "Gablota zaczyna się 1,10 m nad peronem, a kończy na 2,10 m. Ile to jest cztery piąte jej wysokości, licząc od dołu?",
     "1,10 m + 0,8 × 1,00 m = 1,90 m do czubka kaszkietu. Bez nakrycia głowy: ok. 186–188 cm."
    ],
@@ -1559,7 +1559,7 @@
    ],
    "hints": [
     "Logowania telefonu mówią, kiedy zamilkł. Ale żeby wiedzieć gdzie, trzeba wiedzieć, gdzie wtedy był pociąg.",
-    "Ktoś z was ma wydruk z rejestratora prędkości lokomotywy, a ktoś mapę zasięgu nadajników. Telefon zamilkł o 23:52.",
+    "Potrzebny jest wydruk z rejestratora prędkości lokomotywy i mapa zasięgu nadajników — są w tajnych aktach albo w centrali. Telefon zamilkł o 23:52.",
     "O 23:52 pociąg był na km 87,3 — w zasięgu BTS Las Karski (km 82–89). Szukajcie na 87. kilometrze."
    ],
    "solution": "Telefon zalogował się ostatni raz o 23:52 w BTS Las Karski. Rejestrator prędkości pokazuje, że o 23:52 pociąg był na km 87,3. Telefon jechał pociągiem dalej za Wrzos — Emil z nim nie wysiadł.",
@@ -1691,7 +1691,7 @@
    "when": [
     "e29"
    ],
-   "text": "Zdjęcie Olka pokazuje mężczyznę przy gablocie. Ktoś ma plan peronu z jej wymiarami — policzcie, jak wysoki był ten człowiek."
+   "text": "Zdjęcie Olka pokazuje mężczyznę przy gablocie. Wymiary gabloty ma plan peronu (tajne akta albo centrala) — policzcie, jak wysoki był ten człowiek."
   },
   {
    "unless": [

@@ -412,7 +412,8 @@
      "text": "Ojciec poszedł spać o 22:00 i tej nocy nie wychodził z domu.",
      "contradicts": [
       "e08",
-      "e22"
+      "e22",
+      "e21"
      ],
      "response": "Słyszałam, jak wychodził, za dziesięć jedenasta. Zapytałam z góry, dokąd idzie. Powiedział: „Muszę coś zabrać, zanim to pokażą”. Nie zeszłam. Byłam na niego zła — od wieczora nie chciał powiedzieć, co jest w tym filmie.",
      "gives": [
@@ -1007,14 +1008,17 @@
    "summary": "Pełna rozdzielczość z karty kamery.",
    "body": [
     {
-     "log": [
-      "0435  starszy mężczyzna w puchowej kurtce przy otwartej szafie, w ręku gruby zeszyt;",
-      "      w drzwiach sali, na skraju kadru, ramię drugiej osoby",
-      "0436  obraz rozmazany, lampa na statywie przechyla się; na pierwszym planie rękaw",
-      "      ciemnego płaszcza z okrągłymi metalowymi guzikami, dłoń zaciśnięta na puchowej kurtce",
-      "0437  czarny kadr"
-     ]
-    }
+     "h": "Klatka 0435"
+    },
+    "Starszy mężczyzna w puchowej kurtce przy otwartej szafie, w ręku gruby zeszyt. W drzwiach sali, na skraju kadru, ramię drugiej osoby.",
+    {
+     "h": "Klatka 0436"
+    },
+    "Obraz rozmazany, lampa na statywie przechyla się. Na pierwszym planie rękaw ciemnego płaszcza z okrągłymi metalowymi guzikami; dłoń zaciśnięta na puchowej kurtce.",
+    {
+     "h": "Klatka 0437"
+    },
+    "Czarny kadr."
    ],
    "time": [
     [
@@ -1023,6 +1027,7 @@
      "Kamera (ustalone)"
     ]
    ],
+   "wide": true,
    "img": "assets/evidence/003-frames.webp"
   },
   {
@@ -1671,7 +1676,7 @@
    "when": [
     "e08"
    ],
-   "text": "W każdym odcisku jest inna ilość świeżego śniegu. Ktoś z was ma dane, jak szybko padało."
+   "text": "W każdym odcisku jest inna ilość świeżego śniegu. Dane IMGW o tym, jak szybko padało, są w tajnych aktach albo w centrali."
   },
   {
    "unless": [

@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.7.1';
+const VERSION = '2.7.2';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -392,7 +392,7 @@ function blocksHTML(body) {
     if (typeof b === 'string') return `<p>${esc(b)}</p>`;
     if (b.h) return `<h5>${esc(b.h)}</h5>`;
     if (b.kv) return `<dl class="kv">${b.kv.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`;
-    if (b.log) return `<div class="log">${b.log.map(esc).join('\n')}</div>`;
+    if (b.log) return `<div class="log">${b.log.map(l => `<span class="ln"><span class="lw">${esc(l)}</span><span class="lc">${esc(l.trim().replace(/\s{2,}/g, ' · '))}</span></span>`).join('')}</div>`;
     if (b.quote) return `<blockquote class="quote">${esc(b.quote)}${b.by ? `<cite>— ${esc(b.by)}</cite>` : ''}</blockquote>`;
     if (b.note) return `<div class="note">${esc(b.note)}</div>`;
     return '';
@@ -401,7 +401,7 @@ function blocksHTML(body) {
 function docHTML(c, e, compact) {
   const kind = e.private ? 'Tajne akta' : e.testimony ? 'Protokół' : 'Dowód';
   return `<article class="paper doc"><div class="dh"><div><small>Akta ${esc(c.id)} · ${kind} ${esc(e.id.toUpperCase())}</small><h3>${esc(e.title)}</h3></div><span class="stamp">${esc(e.type)}</span></div>
-   ${imgsOf(e).length ? `<div class="photos">${imgsOf(e).map((src, i) => `<figure class="photo" style="--rot:${i % 2 ? '1.6deg' : '-1.2deg'}"><img src="${esc(src)}" alt="${esc(e.title)}" loading="lazy"></figure>`).join('')}</div>` : ''}
+   ${imgsOf(e).length ? `<div class="photos">${imgsOf(e).map((src, i) => `<figure class="photo${e.wide ? ' wide' : ''}" style="--rot:${i % 2 ? '1.6deg' : '-1.2deg'}"><img src="${esc(src)}" alt="${esc(e.title)}" loading="lazy"></figure>`).join('')}</div>` : ''}
    ${compact ? '' : `<p style="font-style:italic;color:var(--paperMuted);margin-top:0">${esc(e.summary)}</p>`}${blocksHTML(e.body)}</article>`;
 }
 

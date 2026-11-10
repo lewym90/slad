@@ -91,12 +91,10 @@ evidence = [
    'Podest przed salą: oryginalna balustrada z 1936 roku, wysokość 80 cm. Na poręczy świeże otarcie, kurz starty na odcinku pół metra. Pod podestem dusza klatki opada aż na parter.',
    'W kurzu na podeście odciski: gładkie kalosze ok. 43 oraz filcowe buty ok. 44 z łatą na prawej pięcie. Ślady się przenikają, kurz rozmazany jak po szamotaninie.']),
  ev('e18', 'Kadry', 'Klatki 0435–0437', 'Pełna rozdzielczość z karty kamery.', [
-   {'log': ['0435  starszy mężczyzna w puchowej kurtce przy otwartej szafie, w ręku gruby zeszyt;',
-            '      w drzwiach sali, na skraju kadru, ramię drugiej osoby',
-            '0436  obraz rozmazany, lampa na statywie przechyla się; na pierwszym planie rękaw',
-            '      ciemnego płaszcza z okrągłymi metalowymi guzikami, dłoń zaciśnięta na puchowej kurtce',
-            '0437  czarny kadr']}],
-   time=[[f'{D} 23:51', 'Kamera: szamotanina przy szafie w izolatorium (klatki 0435–0436)', 'Kamera (ustalone)']]),
+   {'h': 'Klatka 0435'}, 'Starszy mężczyzna w puchowej kurtce przy otwartej szafie, w ręku gruby zeszyt. W drzwiach sali, na skraju kadru, ramię drugiej osoby.',
+   {'h': 'Klatka 0436'}, 'Obraz rozmazany, lampa na statywie przechyla się. Na pierwszym planie rękaw ciemnego płaszcza z okrągłymi metalowymi guzikami; dłoń zaciśnięta na puchowej kurtce.',
+   {'h': 'Klatka 0437'}, 'Czarny kadr.'],
+   time=[[f'{D} 23:51', 'Kamera: szamotanina przy szafie w izolatorium (klatki 0435–0436)', 'Kamera (ustalone)']], wide=True),
  ev('e19', 'Przedmiot', 'Płaszcz z szafy stróża', 'Zielona wełna, mosiężne guziki.', [
    'Zielony płaszcz leśnika z mosiężnymi guzikami z liściem dębu. Przy prawym mankiecie brakuje jednego guzika — wyrwano go razem z kawałkiem materiału, zostały postrzępione nitki. Dół płaszcza wilgotny.']),
  ev('e20', 'Dokument', 'Dziennik izolatorium', 'Zawinięty w ręcznik na dnie szafy stróża.', [
@@ -243,7 +241,7 @@ people = [
    Q('j-q5', 'Co pani robiła w piątek po 23:00?', 'Byłam w swoim pokoju na piętrze. Czytałam do pierwszej.'),
   ],
   'statements': [
-   ST('j-l1', 'Ojciec poszedł spać o 22:00 i tej nocy nie wychodził z domu.', ['e08', 'e22'],
+   ST('j-l1', 'Ojciec poszedł spać o 22:00 i tej nocy nie wychodził z domu.', ['e08', 'e22', 'e21'],
       'Słyszałam, jak wychodził, za dziesięć jedenasta. Zapytałam z góry, dokąd idzie. Powiedział: „Muszę coś zabrać, zanim to pokażą”. Nie zeszłam. Byłam na niego zła — od wieczora nie chciał powiedzieć, co jest w tym filmie.', ['t9']),
   ], 'img': img('people', 'joanna')},
 ]
@@ -346,7 +344,7 @@ hintTrail = [
  {'unless': ['p-floor'], 'when': ['e09'], 'text': 'Siatka nad II piętrem jest rozdarta od góry, a plan twierdzi, że wyżej nic nie ma. Policzcie rzędy okien, o których mówi świadek.'},
  {'unless': ['sp-tracks'], 'text': 'Zanim śnieg stopnieje: obejrzyjcie ślady przed bocznymi drzwiami.'},
  {'unless': ['lie:z-l1'], 'when': ['e08'], 'text': 'Stróż mówi, że w nocy nie wychodził. Ślady od stróżówki mówią co innego.'},
- {'unless': ['p-snow'], 'when': ['e08'], 'text': 'W każdym odcisku jest inna ilość świeżego śniegu. Ktoś z was ma dane, jak szybko padało.'},
+ {'unless': ['p-snow'], 'when': ['e08'], 'text': 'W każdym odcisku jest inna ilość świeżego śniegu. Dane IMGW o tym, jak szybko padało, są w tajnych aktach albo w centrali.'},
  {'unless': ['k-q6'], 'when': ['z-q4'], 'text': 'Stróż mówi o „dzienniku”. W zwiastunie była mowa tylko o szafie. Zapytajcie Kamila, komu mówił, co w niej jest.'},
  {'unless': ['lie:k-l2'], 'when': ['e16'], 'text': 'Na miniaturach z kamery są dwie osoby. Kamil twierdzi, że był sam.'},
  {'unless': ['p-frame'], 'when': ['e16'], 'text': 'Świadek podała dokładną godzinę, o której zgasło światło. Kamera robi klatkę co 30 sekund.'},
