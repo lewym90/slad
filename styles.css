@@ -689,3 +689,4 @@ svg.plan .pln.tear{stroke:#7a2a1c;stroke-width:2.5}
 html,body{touch-action:manipulation}
 .zoom,.zoom *{touch-action:none}
 input,textarea,select{font-size:max(16px,1em)}
+.board-wrap{touch-action:pan-x pan-y}

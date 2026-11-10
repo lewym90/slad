@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.9.2';
+const VERSION = '2.9.3';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -728,7 +728,7 @@ function boardLabel(c, g, key) {
 }
 let boardSel = null, linkMode = false;
 function viewBoard(c, g) {
-  return `<div class="page-head"><div><div class="eyebrow">Tablica śledcza</div><h2>Tablica</h2><p>Przypinajcie dowody i osoby z akt i przesłuchań. Przeciągajcie karty, łączcie je czerwoną nitką. Dotknij nitki, by ją usunąć.</p></div></div>
+  return `<div class="page-head"><div><div class="eyebrow">Tablica śledcza</div><h2>Tablica</h2><p>Przypinajcie dowody i osoby z akt i przesłuchań. Przeciągajcie karty, łączcie je czerwoną nitką. Dotknij nitki, by ją usunąć. Tablicę przybliżacie dwoma palcami, przyciskami + i − albo Ctrl + kółkiem myszy.</p></div></div>
    <div class="board-tools"><button class="btn small ${linkMode ? 'red' : 'ghost'}" data-a="link-mode">${I.link} ${linkMode ? 'Wybierz dwie karty' : 'Połącz'}</button>
     <button class="btn small ghost" data-a="note-add">${I.plus} Notatka</button>
     <button class="btn small ghost" data-a="board-del" ${boardSel ? '' : 'disabled'}>${I.trash} Usuń kartę</button>
@@ -736,8 +736,24 @@ function viewBoard(c, g) {
    <div class="board-wrap" id="bwrap"><div style="position:relative;width:${1700 * (g.board.zoom || 1)}px;height:${1150 * (g.board.zoom || 1)}px"><div class="board" id="board" style="transform:scale(${g.board.zoom || 1})"></div></div></div>
    ${g.board.items.length ? '' : '<p class="muted" style="margin-top:10px">Tablica jest pusta. Otwórzcie dowód lub osobę i użyjcie przycisku „Na tablicę”.</p>'}`;
 }
+let boardPinch = false;
+function boardZoomTo(g, nz, fx, fy) { // fx, fy — punkt w oknie tablicy, który ma zostać pod palcami
+  const w = $('#bwrap'), b = $('#board'); if (!w || !b) return; const z0 = g.board.zoom || 1; nz = Math.max(0.4, Math.min(1.6, nz)); if (Math.abs(nz - z0) < 0.001) return;
+  const bx = (w.scrollLeft + fx) / z0, by = (w.scrollTop + fy) / z0; g.board.zoom = nz;
+  b.style.transform = `scale(${nz})`; b.parentElement.style.width = 1700 * nz + 'px'; b.parentElement.style.height = 1150 * nz + 'px'; b.parentElement.style.setProperty('--z', nz);
+  w.scrollLeft = bx * nz - fx; w.scrollTop = by * nz - fy;
+}
+function mountBoardGestures(g) {
+  const w = $('#bwrap'); if (!w || w.dataset.g) return; w.dataset.g = '1';
+  let d0 = 0, z0 = 1; const pts = e => [...e.touches].slice(0, 2); const rel = (t, r) => ({ x: (t[0].clientX + t[1].clientX) / 2 - r.left, y: (t[0].clientY + t[1].clientY) / 2 - r.top });
+  w.addEventListener('touchstart', e => { if (e.touches.length === 2) { const t = pts(e); d0 = Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); z0 = g.board.zoom || 1; boardPinch = true; } }, { passive: true });
+  w.addEventListener('touchmove', e => { if (e.touches.length !== 2 || !d0) return; e.preventDefault(); const t = pts(e); const d = Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); const c = rel(t, w.getBoundingClientRect()); boardZoomTo(g, z0 * d / d0, c.x, c.y); }, { passive: false });
+  const end = e => { if (boardPinch && e.touches.length < 2) { boardPinch = false; d0 = 0; save(); } };
+  w.addEventListener('touchend', end); w.addEventListener('touchcancel', end);
+  w.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); const r = w.getBoundingClientRect(); boardZoomTo(g, (g.board.zoom || 1) * Math.exp(-e.deltaY / 300), e.clientX - r.left, e.clientY - r.top); clearTimeout(w._t); w._t = setTimeout(save, 300); }, { passive: false });
+}
 function mountBoard(c, g) {
-  const b = $('#board'); if (!b) return;
+  const b = $('#board'); if (!b) return; mountBoardGestures(g);
   const z = g.board.zoom || 1;
   b.parentElement.style.setProperty('--z', z);
   const items = g.board.items.map(it => {
@@ -762,7 +778,7 @@ function attachDrag(el, c, g) {
   const it = () => g.board.items.find(x => x.key === el.dataset.key);
   el.addEventListener('pointerdown', e => { pid = e.pointerId; el.setPointerCapture(pid); const i = it(); sx = e.clientX; sy = e.clientY; ox = i.x; oy = i.y; moved = false; el.classList.add('drag'); });
   el.addEventListener('pointermove', e => {
-    if (pid !== e.pointerId) return; const z = g.board.zoom || 1;
+    if (pid !== e.pointerId) return; if (boardPinch) { moved = true; return; } const z = g.board.zoom || 1;
     const dx = (e.clientX - sx) / z, dy = (e.clientY - sy) / z; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
     if (!moved) return; const i = it(); i.x = Math.max(0, Math.min(1530, ox + dx)); i.y = Math.max(10, Math.min(1000, oy + dy));
     el.style.left = i.x + 'px'; el.style.top = i.y + 'px'; drawStrings(g);
@@ -1073,7 +1089,7 @@ const handlers = {
   'link-mode': () => { linkMode = !linkMode; if (!linkMode) boardSel = null; render(); if (linkMode) toast('Łączenie', 'Dotknij pierwszej, potem drugiej karty', 'Tablica'); },
   'note-add': () => { const t = prompt('Treść notatki na tablicy:'); if (t && t.trim()) { const { g } = ctx(); pinToBoard(g, 'n:' + Date.now(), t.trim().slice(0, 140)); render(); } },
   'board-del': () => { const { g } = ctx(); if (!boardSel) return; g.board.items = g.board.items.filter(x => x.key !== boardSel); g.board.links = g.board.links.filter(l => l.a !== boardSel && l.b !== boardSel); boardSel = null; save(); render(); },
-  zoom: el => { const { g } = ctx(); g.board.zoom = Math.max(0.4, Math.min(1.4, Math.round(((g.board.zoom || 1) + 0.2 * +el.dataset.d) * 10) / 10)); save(); render(); },
+  zoom: el => { const { g } = ctx(); const w = $('#bwrap'); boardZoomTo(g, Math.round(((g.board.zoom || 1) + 0.2 * +el.dataset.d) * 10) / 10, w ? w.clientWidth / 2 : 0, w ? w.clientHeight / 2 : 0); save(); },
   trop: () => openOv({ type: 'trop' }),
   'trop-go': () => { const { c, g } = ctx(); const rule = c.hintTrail.find(h => (!h.when || h.when.every(t => has(g, c, t))) && !(h.unless && h.unless.every(t => has(g, c, t)))); if (usePower(g, 'trop')) g.freeTrops = (g.freeTrops || 0) + 1; else g.trops++; save(); topOv().text = rule ? rule.text : 'Macie wszystko, czego potrzeba.'; rerender(); },
   rstep: el => { const { g, c } = ctx(); g.draft.step = Math.max(0, Math.min(c.report.questions.length, g.draft.step + +el.dataset.d)); save(); render(); $('#main') && ($('#main').scrollTop = 0); },
