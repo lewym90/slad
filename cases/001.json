@@ -101,7 +101,9 @@
      "id": "h-q7",
      "q": "Gdzie byli pozostali domownicy, kiedy niosła pani herbatę do gabinetu?",
      "a": "Pani Marta poszła na górę zaraz po jedenastej. W bibliotece paliło się światło, drzwi były uchylone — pan Wiktor siedział w fotelu z książką. Tej pani nie widziałam, jej pokój jest na piętrze.",
-     "claims": []
+     "claims": [
+      "h-c4"
+     ]
     },
     {
      "id": "h-q4",
@@ -218,6 +220,11 @@
        "Helena"
       ]
      ]
+    },
+    {
+     "id": "h-c4",
+     "text": "Około 23:15 Wiktor siedział w bibliotece w fotelu z książką.",
+     "truth": true
     }
    ],
    "img": "assets/people/001-helena.webp"
@@ -406,7 +413,8 @@
      "contradicts": [
       "e06",
       "e07",
-      "e15"
+      "e15",
+      "st:h-c4"
      ],
      "response": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach ziemi Marty, nic ważnego. Wyszedłem przed 23:40. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi.",
      "gives": [
@@ -1305,7 +1313,8 @@
      "Pożar pokoju Anny w zachodnim skrzydle",
      "Raport straży"
     ]
-   ]
+   ],
+   "mark": "P"
   },
   {
    "id": "e26",
@@ -2958,5 +2967,28 @@
     }
    }
   ]
- }
+ },
+ "breakthroughs": [
+  {
+   "id": "b-weapon",
+   "when": "e19",
+   "title": "Narzędzie zbrodni",
+   "text": "Mosiężna kula na marmurowej podstawie, zakopana w donicy. W rowkach grawerunku — krew. To nie był upadek z drabiny.",
+   "img": "assets/evidence/001-paperweight.webp"
+  },
+  {
+   "id": "b-time",
+   "when": "p-time",
+   "title": "23:46, nie 22:46",
+   "text": "Zegarek zapisywał czas uniwersalny. Atak nastąpił o 23:46 — godzinę później, niż pokazywały surowe dane.",
+   "img": "assets/evidence/001-watch.webp"
+  },
+  {
+   "id": "b-anna",
+   "when": "lie:a-l2",
+   "title": "To nie jest Anna",
+   "text": "Kobieta podaje swoje prawdziwe nazwisko: Kinga Wolska. Anna Różycka naprawdę zginęła trzynaście lat temu — a Kinga widziała, jak do tego doszło.",
+   "img": "assets/evidence/001-x5-anna2013.webp"
+  }
+ ]
 }

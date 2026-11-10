@@ -158,7 +158,8 @@
      "id": "z-l5",
      "text": "Nie znał Ewy Rudnickiej.",
      "contradicts": [
-      "x5"
+      "x5",
+      "st:kb-c1"
      ],
      "response": "(długo milczy) Ewka była moją córką. Po rozwodzie zostawiła nazwisko męża. Przyjechała tu się leczyć z depresji, a wróciła w trumnie. Powiedzieli, że pielęgniarka pomyliła dawkę. Wziąłem tę robotę, żeby… żeby być blisko. Tylko tyle.",
      "gives": [
@@ -338,7 +339,9 @@
      "requires": [
       "kb-q3"
      ],
-     "claims": []
+     "claims": [
+      "kb-c1"
+     ]
     },
     {
      "id": "kb-q6",
@@ -348,6 +351,11 @@
     }
    ],
    "statements": [
+    {
+     "id": "kb-c1",
+     "text": "Na każdej rozprawie siedział ojciec Ewy: duży mężczyzna z siwą brodą, w zielonym płaszczu leśnika.",
+     "truth": true
+    },
     {
      "id": "kb-l1",
      "text": "Nie była w sanatorium od marca 2018 roku.",
@@ -1202,7 +1210,8 @@
      "Śmierć Ewy Rudnickiej w sanatorium „Jodła”",
      "Wyrok"
     ]
-   ]
+   ],
+   "mark": "M"
   },
   {
    "id": "e27",
@@ -1629,6 +1638,29 @@
   ],
   "questions": {}
  },
+ "breakthroughs": [
+  {
+   "id": "b-floor",
+   "when": "p-floor",
+   "title": "Piętro, którego nie ma",
+   "text": "Czwarty rząd okien to poddasze, do którego według planu nie ma wejścia. A jednak ktoś tam co noc zapalał światło — i ktoś stamtąd spadł.",
+   "img": "assets/evidence/003-panel.webp"
+  },
+  {
+   "id": "b-frame",
+   "when": "e18",
+   "title": "Klatka 0436",
+   "text": "Kamera zarejestrowała szamotaninę przy szafie: rękaw ciemnego płaszcza z metalowymi guzikami i dłoń zaciśnięta na kurtce doktora.",
+   "img": "assets/evidence/003-frames.webp"
+  },
+  {
+   "id": "b-father",
+   "when": "lie:z-l5",
+   "title": "Ewka była moją córką",
+   "text": "Stróż sanatorium jest ojcem pacjentki, która zmarła tu w 2018 roku. Osiem lat pilnował budynku, w którym straciła życie.",
+   "img": "assets/people/003-zenon.webp"
+  }
+ ],
  "hintTrail": [
   {
    "unless": [

@@ -37,7 +37,7 @@ for (const [f, c] of runs) {
   c.people.forEach(p => { p.questions.forEach(q => { if (qs.has(q.id)) E(`duplikat pytania ${q.id}`); qs.set(q.id, { ...q, person: p.id }); }); p.statements.forEach(s => { if (st.has(s.id)) E(`duplikat zeznania ${s.id}`); st.set(s.id, { ...s, person: p.id }); }); });
   const pz = new Map(c.puzzles.map(p => [p.id, p]));
   if (ev.size !== c.evidence.length) E('powtórzone ID dowodów');
-  const isTok = t => t.startsWith('lie:') ? st.has(t.slice(4)) : ev.has(t) || spots.has(t) || qs.has(t) || pz.has(t);
+  const isTok = t => t.startsWith('lie:') || t.startsWith('st:') ? st.has(t.slice(t.indexOf(':') + 1)) : ev.has(t) || spots.has(t) || qs.has(t) || pz.has(t);
   const needEv = (id, where) => { if (!ev.has(id)) E(`${where}: brak dowodu ${id}`); };
 
   // 1. Referencje
@@ -47,7 +47,7 @@ for (const [f, c] of runs) {
     if (s.truth && s.contradicts && s.contradicts.length) E(`zeznanie ${id}: prawdziwe, a ma sprzeczne dowody`);
     if (!s.truth && !s.unbreakable && !(s.contradicts || []).length) E(`zeznanie ${id}: kłamstwo bez dowodu, który mu przeczy`);
     if (!s.truth && !s.response) E(`zeznanie ${id}: brak reakcji po konfrontacji`);
-    (s.contradicts || []).forEach(x => needEv(x, `zeznanie ${id}`)); (s.gives || []).forEach(x => needEv(x, `zeznanie ${id}`)); (s.reveals || []).forEach(x => { if (!st.has(x)) E(`zeznanie ${id}: ujawnia nieznane ${x}`); });
+    (s.contradicts || []).filter(x => !x.startsWith('st:')).forEach(x => needEv(x, `zeznanie ${id}`)); (s.gives || []).forEach(x => needEv(x, `zeznanie ${id}`)); (s.reveals || []).forEach(x => { if (!st.has(x)) E(`zeznanie ${id}: ujawnia nieznane ${x}`); });
   }
   for (const [id, p] of pz) {
     p.requires.forEach(x => { if (!isTok(x)) E(`zagadka ${id}: nieznany wymóg ${x}`); });
@@ -82,20 +82,25 @@ for (const [f, c] of runs) {
   // 2. Symulacja osiągalności (zespół ujawnia wszystkie tajne akta)
   const K = new Set([...c.evidence.filter(e => e.start).map(e => e.id), ...(c.privateClues || [])]);
   const done = new Set(), claims = new Set(), broken = new Set(), solved = new Set();
-  const has = t => t.startsWith('lie:') ? broken.has(t.slice(4)) : pz.has(t) ? solved.has(t) : spots.has(t) || qs.has(t) ? done.has(t) : K.has(t);
+  const has = t => t.startsWith('lie:') ? broken.has(t.slice(4)) : t.startsWith('st:') ? claims.has(t.slice(3)) : pz.has(t) ? solved.has(t) : spots.has(t) || qs.has(t) ? done.has(t) : K.has(t);
   let changed = true, rounds = 0;
   while (changed && rounds++ < 200) {
     changed = false;
     for (const [id, s] of spots) if (!done.has(id) && (!s.requires || ((!s.requires.puzzle || solved.has(s.requires.puzzle)) && (!s.requires.all || s.requires.all.every(has))))) { done.add(id); (s.gives || []).forEach(x => K.add(x)); changed = true; }
     for (const [id, q] of qs) if (!done.has(id) && (q.requires || []).every(has) && (!q.requiresAny || q.requiresAny.some(has))) { done.add(id); (q.gives || []).forEach(x => K.add(x)); (q.claims || []).forEach(x => claims.add(x)); changed = true; }
     for (const [id, p] of pz) if (!solved.has(id) && p.requires.every(has)) { solved.add(id); if (p.reward && p.reward.search) (p.reward.spots || []).forEach(s => { done.add(s); (spots.get(s).gives || []).forEach(x => K.add(x)); }); changed = true; }
-    for (const id of claims) { const s = st.get(id); if (!broken.has(id) && !s.truth && (s.contradicts || []).some(x => K.has(x))) { broken.add(id); (s.gives || []).forEach(x => K.add(x)); (s.reveals || []).forEach(x => claims.add(x)); changed = true; } }
+    for (const id of claims) { const s = st.get(id); if (!broken.has(id) && !s.truth && (s.contradicts || []).some(x => x.startsWith('st:') ? claims.has(x.slice(3)) : K.has(x))) { broken.add(id); (s.gives || []).forEach(x => K.add(x)); (s.reveals || []).forEach(x => claims.add(x)); changed = true; } }
   }
   c.evidence.forEach(e => { if (!K.has(e.id)) E(`dowód ${e.id} nieosiągalny w pełnym przejściu`); });
   spots.forEach((_, id) => { if (!done.has(id)) E(`punkt ${id} nieosiągalny`); });
   qs.forEach((_, id) => { if (!done.has(id)) E(`pytanie ${id} nigdy się nie pojawi`); });
   pz.forEach((_, id) => { if (!solved.has(id)) E(`zagadka ${id} nigdy się nie odblokuje`); });
   st.forEach((s, id) => { if (!claims.has(id)) E(`zeznanie ${id} nigdy nie padnie`); else if (!s.truth && !s.unbreakable && !broken.has(id)) E(`kłamstwa ${id} nie da się podważyć`); });
+
+  // 5b. Przełomy, pieczęcie archiwisty, sprzeczności zeznań
+  (c.breakthroughs || []).forEach(b => { if (!b.id || !b.title || !b.text) E(`przełom ${b.id}: brak pól`); if (!isTok(b.when)) E(`przełom ${b.id}: nieznany token ${b.when}`); else if (!has(b.when)) E(`przełom ${b.id}: nieosiągalny`); });
+  c.evidence.forEach(e => { if (e.mark && !/^[A-ZĄĆĘŁŃÓŚŹŻ]$/.test(e.mark)) E(`dowód ${e.id}: zła pieczęć ${e.mark}`); });
+  st.forEach((s, id) => (s.contradicts || []).forEach(x => { if (!isTok(x) && !ev.has(x)) E(`zeznanie ${id}: nieznana sprzeczność ${x}`); if (x.startsWith('st:') && !st.get(x.slice(3)).truth) E(`zeznanie ${id}: ${x} nie jest prawdą`); }));
 
   // 6. Raport
   let total = 0;

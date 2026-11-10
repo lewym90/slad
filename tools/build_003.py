@@ -191,7 +191,7 @@ people = [
       'Chłopak chciał nagrywać. Dał półtora tysiąca, dałem mu drugi klucz do bocznych drzwi. Budynek i tak stoi pusty.', ['t2']),
    ST('z-l4', 'Nigdy nie był wyżej niż na podeście II piętra.', ['e17'],
       'Byłem. W czwartek, jak chłopak poszedł. Chciałem zobaczyć, co tam znalazł. Łóżka z pasami. I tę szafę.', ['t3']),
-   ST('z-l5', 'Nie znał Ewy Rudnickiej.', ['x5'],
+   ST('z-l5', 'Nie znał Ewy Rudnickiej.', ['x5', 'st:kb-c1'],
       '(długo milczy) Ewka była moją córką. Po rozwodzie zostawiła nazwisko męża. Przyjechała tu się leczyć z depresji, a wróciła w trumnie. Powiedzieli, że pielęgniarka pomyliła dawkę. Wziąłem tę robotę, żeby… żeby być blisko. Tylko tyle.', ['t4']),
    ST('z-l6', 'W nocy w budynku nikogo nie spotkał.', ['e19', 'e18'],
       '(patrzy na guzik, potem na swoje ręce) Był tam. Stał przy szafie z jej… z tym zeszytem. Powiedziałem mu, kim jestem. Resztę powiem przed sądem.', ['t5']),
@@ -223,10 +223,11 @@ people = [
    Q('kb-q2', 'Kiedy ostatnio była pani w sanatorium?', 'W marcu 2018 roku. Tej nocy, kiedy umarła pani Ewa.', claims=['kb-l1']),
    Q('kb-q3', 'Co wydarzyło się w nocy z 2 na 3 marca 2018 roku?', 'Umarła pani Ewa Rudnicka. Sąd uznał, że podałam jej trzydzieści jednostek insuliny zamiast trzech. Karta zleceń mówiła: trzy. Kartę wypisywał doktor Wilk.'),
    Q('kb-q4', 'Gdzie leżała pani Ewa Rudnicka tamtej nocy?', 'Według akt — na II piętrze, w sali 7. Znalazłam ją tam nad ranem, już nie żyła. O dziesiątej wieczorem, kiedy robiłam obchód, jej łóżko było puste.', requires=['kb-q3']),
-   Q('kb-q5', 'Czy ktoś z rodziny pani Ewy przychodził na rozprawy?', 'Ojciec. Na każdą. Duży mężczyzna z siwą brodą, w zielonym płaszczu leśnika. Siedział z tyłu i nigdy się nie odezwał.', requires=['kb-q3']),
+   Q('kb-q5', 'Czy ktoś z rodziny pani Ewy przychodził na rozprawy?', 'Ojciec. Na każdą. Duży mężczyzna z siwą brodą, w zielonym płaszczu leśnika. Siedział z tyłu i nigdy się nie odezwał.', requires=['kb-q3'], claims=['kb-c1']),
    Q('kb-q6', 'Gdzie była pani w piątek po 22:00?', 'W domu. Sama. Nikt tego nie potwierdzi.'),
   ],
   'statements': [
+   ST('kb-c1', 'Na każdej rozprawie siedział ojciec Ewy: duży mężczyzna z siwą brodą, w zielonym płaszczu leśnika.', truth=True),
    ST('kb-l1', 'Nie była w sanatorium od marca 2018 roku.', ['t7'],
       'Byłam. W piątek, od wpół do dziewiątej do dziesiątej. Zaprowadziłam chłopaka na poddasze i pokazałam szafę. Osiem lat czekałam, aż ktoś tam wejdzie. Wyszłam, zanim zaczął padać śnieg. Doktora nie widziałam.', ['t8']),
   ], 'img': img('people', 'krystyna')},
@@ -422,8 +423,15 @@ case = {
  'people': people, 'locations': locations, 'evidence': evidence,
  'privateClues': ['x1', 'x2', 'x3', 'x4', 'x5', 'x6'], 'puzzles': puzzles,
  'tableMode': {'parBonus': 6, 'locations': [hq], 'questions': {}},
+ 'breakthroughs': [
+  {'id': 'b-floor', 'when': 'p-floor', 'title': 'Piętro, którego nie ma', 'text': 'Czwarty rząd okien to poddasze, do którego według planu nie ma wejścia. A jednak ktoś tam co noc zapalał światło — i ktoś stamtąd spadł.', 'img': 'assets/evidence/003-panel.webp'},
+  {'id': 'b-frame', 'when': 'e18', 'title': 'Klatka 0436', 'text': 'Kamera zarejestrowała szamotaninę przy szafie: rękaw ciemnego płaszcza z metalowymi guzikami i dłoń zaciśnięta na kurtce doktora.', 'img': 'assets/evidence/003-frames.webp'},
+  {'id': 'b-father', 'when': 'lie:z-l5', 'title': 'Ewka była moją córką', 'text': 'Stróż sanatorium jest ojcem pacjentki, która zmarła tu w 2018 roku. Osiem lat pilnował budynku, w którym straciła życie.', 'img': 'assets/people/003-zenon.webp'}],
  'hintTrail': hintTrail, 'report': report, 'solution': solution, 'endings': endings,
 }
+MARKS = {'e26': 'M'}
+for e in evidence:
+    if e['id'] in MARKS: e['mark'] = MARKS[e['id']]
 EVIMG = {'e07': 'button', 'e13': 'boots', 'e19': 'coat', 'e08': 'snow', 'e15': 'floodlight', 'e16': 'camera', 'e20': 'journal', 'e14': 'panel', 'e09': 'net', 'e18': 'frames'}
 for e in evidence:
     if e['id'] in EVIMG and img('evidence', EVIMG[e['id']]): e['img'] = img('evidence', EVIMG[e['id']])

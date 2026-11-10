@@ -89,7 +89,7 @@ for (const [who, title] of [['anna', 'Wygodna winna'], ['marta', 'Motyw to za ma
 
 // 6. Przepełnienia na wielu ekranach
 const VPS = [['iPhone SE 1', 320, 568], ['iPhone SE', 375, 667], ['iPhone 15', 390, 844], ['telefon poziomo', 844, 390], ['iPad pionowo', 768, 1024], ['iPad poziomo', 1024, 768], ['Full HD', 1920, 1080]];
-const ROUTES = ['#/', '#/sprawa/001', '#/gra/001/akta', '#/gra/001/miejsca', '#/gra/001/osoby', '#/gra/001/analiza', '#/gra/001/tablica', '#/gra/001/raport'];
+const ROUTES = ['#/', '#/sprawa/001', '#/gra/001/akta', '#/gra/001/miejsca', '#/gra/001/osoby', '#/gra/001/analiza', '#/gra/001/tablica', '#/gra/001/raport', '#/kronika'];
 for (const [name, w, h] of VPS) {
   const { ctx, p } = await page({ width: w, height: h }, w < 1100); const bad = [];
   for (const r of ROUTES) {

@@ -13,8 +13,9 @@ const p = await ctx.newPage(); const errs = [];
 p.on('pageerror', e => errs.push('PAGE ' + e.message)); p.on('console', m => { if (m.type() === 'error') errs.push('CONSOLE ' + m.text()); });
 p.on('dialog', d => d.accept());
 let n = 0; const shot = async (name, full = false) => { await p.waitForTimeout(350); await p.screenshot({ path: `${out}/${String(++n).padStart(2, '0')}-${name}.png`, fullPage: full }); };
-const A = async (a, extra = '') => { const el = p.locator(`[data-a="${a}"]${extra}`).first(); await el.scrollIntoViewIfNeeded().catch(() => {}); await el.click(); await p.waitForTimeout(60); };
-const closeAll = async () => { while (await p.locator('#overlay-root .ov').count()) { await p.locator('[data-a="close-all"]').first().click(); await p.waitForTimeout(150); } };
+let BT = 0; const dismissBt = async () => { let k = 0; while (await p.locator('.bt').count() && k++ < 5) { BT++; if (BT <= 3) await shot('breakthrough-' + BT); await p.locator('.bt .btn[data-a="bt-close"]').click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(250); } };
+const A = async (a, extra = '') => { await dismissBt(); const el = p.locator(`[data-a="${a}"]${extra}`).first(); await el.scrollIntoViewIfNeeded().catch(() => {}); try { await el.click({ timeout: 4000 }); } catch (e) { await p.waitForTimeout(800); await dismissBt(); await el.scrollIntoViewIfNeeded().catch(() => {}); await el.click(); } await p.waitForTimeout(60); };
+const closeAll = async () => { await dismissBt(); if (await p.locator('#zoom').count()) { await p.locator('#zoom [data-a="close"]').click(); await p.waitForTimeout(200); console.log('zoom closed', !(await p.locator('#zoom').count())); } while (await p.locator('#overlay-root .ov').count()) { await p.locator('[data-a="close-all"]').first().click({ timeout: 4000 }).catch(() => {}); await p.waitForTimeout(150); await dismissBt(); } };
 const FROM = process.env.FROM_STATE;
 if (FROM) { await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(s => localStorage.setItem('slad.v2', s), fs.readFileSync(FROM, 'utf8')); await p.goto(URL + `#/gra/${CID}/akta`, { waitUntil: 'networkidle' }); await p.reload({ waitUntil: 'networkidle' }); }
 else { await p.goto(URL, { waitUntil: 'networkidle' }); await shot('home'); await shot('home-full', true); }
@@ -45,6 +46,11 @@ if (MODE === 'phones') {
 } else {
   await p.waitForTimeout(400); await shot('start-msg'); await closeAll(); await shot('files');
 }
+// zdolność roli + powiększenie zdjęcia
+await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="zespol"]'); await A('power'); await shot('power-armed'); console.log('armed', (await state()).armed, 'used', JSON.stringify((await state()).used));
+await A('tab', '[data-tab="akta"]'); await A('ev'); await p.waitForTimeout(200);
+if (await p.locator('[data-a="pzoom"]').count()) { await A('pzoom'); await p.waitForTimeout(300); await shot('zoom'); console.log('zoom open', await p.locator('#zoom').count()); }
+await closeAll();
 const solvePuzzle = async pz => {
   await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="zagadki"]');
   await A('puzzle', `[data-id="${pz.id}"]`);
@@ -97,7 +103,12 @@ await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="czas"]'); await
 await A('tab', '[data-tab="tablica"]'); await A('link-mode');
 await p.locator('.bitem').nth(0).click(); await p.locator('.bitem').nth(2).click(); await shot('board');
 // raport
-await A('tab', '[data-tab="analiza"]'); await A('tab', '[data-tab="raport"]'); await shot('report-1');
+await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="podejrzani"]'); await p.locator('[data-mx]').first().fill('motyw: zemsta'); await p.waitForTimeout(500); await shot('suspects');
+console.log('matrix saved', JSON.stringify((await state()).matrix).includes('zemsta'));
+await A('ana', '[data-t="zespol"]'); await shot('team');
+if (MODE === 'phones') { await A('to-report'); await shot('vote-ask'); await p.locator('#overlay-root [data-a="vote"]').click(); await p.waitForTimeout(200); await shot('vote-0'); await A('vote-go'); await p.waitForTimeout(3300); await shot('vote-2'); await A('vote-res', '[data-v="zgodni"]'); await p.waitForTimeout(500); }
+else await A('to-report');
+await p.waitForTimeout(300); await shot('report-1');
 for (const q of C.report.questions) {
   if (q.type === 'single') { await A('ropt', `[data-q="${q.id}"][data-k="${q.correct}"]`); if (q.proof) { for (const id of q.proof.valid.slice(0, q.proof.count)) await A('rproof', `[data-id="${id}"]`); await shot('report-proof'); } }
   else { const st = await state(); let order = st.draft.order.slice();
@@ -107,6 +118,9 @@ for (const q of C.report.questions) {
 }
 await shot('report-sign'); await A('submit'); await p.waitForTimeout(500); await shot('result');
 await A('decide', `[data-id="${C.endings.correct.decision.options[1].id}"]`); await shot('result-decided', true);
+if (await p.locator('.bt').count()) console.log('breakthrough left open');
+await A('chronicle'); await p.waitForTimeout(400); await shot('chronicle', true); console.log('chronicle entries', await p.locator('.chron-item').count());
 const fin = await state(); console.log(dev, 'SCORE', fin.report.total, fin.report.rank, JSON.stringify(fin.report.pen.filter(x => x[1])));
+console.log('breakthroughs seen', BT, '/', (C.breakthroughs || []).length);
 console.log('ERRORS', errs.length ? errs.join('\n') : 'none');
 await b.close();

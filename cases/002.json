@@ -144,7 +144,8 @@
      "id": "ro-l3",
      "text": "Na stacji Wrzos odprawiał pociąg z peronu przy lokomotywie.",
      "contradicts": [
-      "e19"
+      "e19",
+      "st:d-c2"
      ],
      "response": "Wyszedłem na peron z tyłu składu, sprawdzić drzwi. Padało, poślizgnąłem się, stąd to spóźnienie z sygnałem. Tak, dałem odjazd z końca. To jeszcze nie zbrodnia.",
      "gives": [
@@ -348,7 +349,8 @@
      "id": "k-l1",
      "text": "Podczas postoju przed Gajem kontrolował bilety w wagonach 1 i 2.",
      "contradicts": [
-      "e17"
+      "e17",
+      "st:d-c1"
      ],
      "response": "No dobrze, dobrze. Siedziałem w barze. Od jedenastej do kwadrans po, aż ruszyliśmy. Kawa, pogadałem z barmanem. Chłopak był cały czas za barem, mogę przysiąc. I jeszcze jedno: koło 23:03 kierownik przeszedł przez bar w stronę dwójki, z pękiem kluczy w ręku. Szybko szedł. Nie odezwał się.",
      "gives": [
@@ -1219,7 +1221,8 @@
      "note": "Brakuje środkowych stron. Jedna kartka ma oderwany róg."
     }
    ],
-   "img": "assets/evidence/002-papers.webp"
+   "img": "assets/evidence/002-papers.webp",
+   "mark": "A"
   },
   {
    "id": "e28",
@@ -3161,5 +3164,28 @@
     }
    }
   ]
- }
+ },
+ "breakthroughs": [
+  {
+   "id": "b-body",
+   "when": "e08",
+   "title": "Emil nie wysiadł",
+   "text": "W zaplombowanej toalecie wagonu 2 leży ciało Emila Sowy. Ktoś bardzo chciał, żebyście szukali go na stacji Wrzos.",
+   "img": "assets/evidence/002-seal.webp"
+  },
+  {
+   "id": "b-height",
+   "when": "p-height",
+   "title": "To nie był Emil",
+   "text": "Mężczyzna przy gablocie miał około 187 cm wzrostu. Emil miał 168. Na peronie w płaszczu Emila stał ktoś inny.",
+   "img": "assets/evidence/002-platform.webp"
+  },
+  {
+   "id": "b-pages",
+   "when": "e27",
+   "title": "Oświadczenie Emila",
+   "text": "Rozmokłe kartki przy torze mówią, kto w 2016 roku kazał dać sygnał pod Gajem. Emil zabrał tę wiedzę do pociągu — i nie dowiózł jej do sądu.",
+   "img": "assets/evidence/002-papers.webp"
+  }
+ ]
 }
