@@ -45,6 +45,36 @@ def ambience(dur=125, xf=5):
     loop=np.concatenate([head, st[X:-X]],0)
     return norm(loop,0.8)
 
+
+def train_ambience(dur=125, xf=5):
+    n=int(dur*SR); t=np.arange(n)/SR
+    rumble=lpf(np.cumsum(rng.standard_normal(n))*0.004,140,2); rumble-=lpf(rumble,10,1)
+    rumble*=0.9+0.1*np.sin(2*np.pi*t/7.3)
+    body=bp(rng.standard_normal(n),60,400,2)*0.18
+    hiss=bp(rng.standard_normal(n),800,3500,2)*0.05
+    # stukot na złączach szyn: para uderzeń (wózek przedni i tylny) co 1,5 s
+    clack=np.zeros(n)
+    def hit(at,a):
+        s0=int(at*SR); L=int(0.12*SR); tt=np.arange(L)/SR
+        if s0+L>=n: return
+        w=(np.sin(2*np.pi*95*tt)*0.7+bp(rng.standard_normal(L),300,2500,2)*0.6)*np.exp(-tt/0.03)
+        clack[s0:s0+L]+=w*a
+    for k,at in enumerate(np.arange(0.3,dur,1.5)):
+        j=rng.uniform(-0.01,0.01)
+        hit(at+j,0.55); hit(at+0.11+j,0.45); hit(at+0.62+j,0.5); hit(at+0.73+j,0.4)
+    rain=lpf(bp(rng.standard_normal(n),400,5000,2),3000,1)*0.07*(0.7+0.3*np.sin(2*np.pi*t/19))
+    horn=np.zeros(n)
+    for at in [37, 96]:
+        s0=int(at*SR); L=int(2.6*SR); tt=np.arange(L)/SR
+        e=np.clip(tt/0.25,0,1)*np.clip((2.6-tt)/0.8,0,1)
+        h=(np.sin(2*np.pi*311*tt)+0.6*np.sin(2*np.pi*370*tt)+0.3*np.sin(2*np.pi*622*tt))*e*0.10
+        horn[s0:s0+L]+=lpf(h,1200,2)
+    mono=rumble*1.1+body+hiss+clack*0.5+horn
+    st=np.stack([mono+rain, mono*0.98+np.roll(rain,4410)],1)
+    X=int(xf*SR); fade=np.sin(np.linspace(0,np.pi/2,X))[:,None]
+    head=st[:X]*fade+st[-X:]*np.cos(np.linspace(0,np.pi/2,X))[:,None]
+    return norm(np.concatenate([head,st[X:-X]],0),0.8)
+
 def sfx_paper():
     L=int(0.55*SR); t=np.arange(L)/SR; x=np.zeros(L)
     for s0,d in [(0,.18),(.12,.22),(.3,.2)]:
@@ -78,14 +108,18 @@ def sfx_reveal():  # przełom w przesłuchaniu: niski akcent + ciche „szszsz�
     return norm(x,0.75)
 
 def write(name,x,stereo=False,lufs=-20,br='96k'):
-    wav=f'/home/claude/audio/{name}.wav'
+    import tempfile; wav=os.path.join(tempfile.gettempdir(), f'{name}.wav')
     import wave
     data=(np.clip(x,-1,1)*32767).astype('<i2')
     with wave.open(wav,'wb') as w:
         w.setnchannels(2 if stereo else 1); w.setsampwidth(2); w.setframerate(SR); w.writeframes(data.tobytes())
-    out=f'/home/claude/slad/assets/audio/{name}.mp3'
+    out=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','assets','audio',f'{name}.mp3')
     subprocess.run(['ffmpeg','-v','error','-y','-i',wav,'-af',f'loudnorm=I={lufs}:TP=-2:LRA=11','-ar','44100','-b:a',br,out],check=True)
     print(name, os.path.getsize(out)//1024,'KB')
-write('case-001', ambience(), stereo=True, lufs=-24, br='112k')
-for n,f in [('sfx-paper',sfx_paper),('sfx-stamp',sfx_stamp),('sfx-unlock',sfx_unlock),('sfx-wrong',sfx_wrong),('sfx-break',sfx_reveal)]:
-    write(n,f(),lufs=-19,br='96k')
+import sys
+which=sys.argv[1] if len(sys.argv)>1 else 'all'
+if which in ('all','001'): write('case-001', ambience(), stereo=True, lufs=-24, br='112k')
+if which in ('all','002'): write('case-002', train_ambience(), stereo=True, lufs=-24, br='112k')
+if which in ('all','sfx'):
+    for n,f in [('sfx-paper',sfx_paper),('sfx-stamp',sfx_stamp),('sfx-unlock',sfx_unlock),('sfx-wrong',sfx_wrong),('sfx-break',sfx_reveal)]:
+        write(n,f(),lufs=-19,br='96k')

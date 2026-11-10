@@ -32,7 +32,7 @@ for (const [f, c] of runs) {
 
   // 1. Referencje
   for (const [id, s] of spots) { (s.gives || []).forEach(x => needEv(x, `punkt ${id}`)); if (s.requires && s.requires.puzzle && !pz.has(s.requires.puzzle)) E(`punkt ${id}: brak zagadki ${s.requires.puzzle}`); if (s.requires && !s.lockedText) E(`punkt ${id}: brak tekstu blokady`); }
-  for (const [id, q] of qs) { (q.requires || []).forEach(x => { if (!isTok(x)) E(`pytanie ${id}: nieznany wymóg ${x}`); }); (q.gives || []).forEach(x => needEv(x, `pytanie ${id}`)); (q.claims || []).forEach(x => { if (!st.has(x)) E(`pytanie ${id}: brak zeznania ${x}`); }); }
+  for (const [id, q] of qs) { (q.requiresAny || []).forEach(x => { if (!isTok(x)) E(`pytanie ${id}: nieznany wymóg ${x}`); }); (q.requires || []).forEach(x => { if (!isTok(x)) E(`pytanie ${id}: nieznany wymóg ${x}`); }); (q.gives || []).forEach(x => needEv(x, `pytanie ${id}`)); (q.claims || []).forEach(x => { if (!st.has(x)) E(`pytanie ${id}: brak zeznania ${x}`); }); }
   for (const [id, s] of st) {
     if (s.truth && s.contradicts && s.contradicts.length) E(`zeznanie ${id}: prawdziwe, a ma sprzeczne dowody`);
     if (!s.truth && !s.unbreakable && !(s.contradicts || []).length) E(`zeznanie ${id}: kłamstwo bez dowodu, który mu przeczy`);
@@ -48,9 +48,10 @@ for (const [f, c] of runs) {
     const text = [p.prompt, p.title].join(' ');
     p.answers.forEach(a => {
       if (p.input === 'text') { if (norm(text).includes(norm(a)) && norm(a).length > 3) E(`zagadka ${id}: odpowiedź „${a}” występuje w treści`); }
+      else if (p.input === 'number') { const [lo, hi] = String(a).split('-').map(Number); if (isNaN(lo) || (hi !== undefined && !isNaN(hi) && hi < lo)) E(`zagadka ${id}: zły przedział ${a}`); const nums = (text.match(/\d+/g) || []).map(Number); if (nums.some(n => n >= lo && n <= (isNaN(hi) ? lo : hi))) E(`zagadka ${id}: liczba z przedziału odpowiedzi występuje w treści`); }
       else { if (digits(text).includes(digits(a))) E(`zagadka ${id}: cyfry odpowiedzi ${a} występują w treści`); }
     });
-    if (p.input !== 'text') { const reqText = p.requires.map(r => JSON.stringify((ev.get(r) || {}).body || '')).join(' '); p.answers.forEach(a => { if (reqText.includes(a)) warns.push(`zagadka ${id}: odpowiedź ${a} dosłownie w wymaganym dowodzie — upewnij się, że wymaga przekształcenia`); }); }
+    if (p.input === 'digits4' || p.input === 'time') { const reqText = p.requires.map(r => JSON.stringify((ev.get(r) || {}).body || '')).join(' '); p.answers.forEach(a => { if (reqText.includes(a)) warns.push(`zagadka ${id}: odpowiedź ${a} dosłownie w wymaganym dowodzie — upewnij się, że wymaga przekształcenia`); }); }
   }
   (c.privateClues || []).forEach(x => { needEv(x, 'tajne akta'); if (ev.get(x) && !ev.get(x).private) E(`tajny dokument ${x} bez flagi private`); });
   c.evidence.filter(e => e.private).forEach(e => { if (!c.privateClues.includes(e.id)) E(`dowód ${e.id} oznaczony jako tajny, ale nie rozdawany`); });
@@ -76,7 +77,7 @@ for (const [f, c] of runs) {
   while (changed && rounds++ < 200) {
     changed = false;
     for (const [id, s] of spots) if (!done.has(id) && (!s.requires || solved.has(s.requires.puzzle))) { done.add(id); (s.gives || []).forEach(x => K.add(x)); changed = true; }
-    for (const [id, q] of qs) if (!done.has(id) && (q.requires || []).every(has)) { done.add(id); (q.gives || []).forEach(x => K.add(x)); (q.claims || []).forEach(x => claims.add(x)); changed = true; }
+    for (const [id, q] of qs) if (!done.has(id) && (q.requires || []).every(has) && (!q.requiresAny || q.requiresAny.some(has))) { done.add(id); (q.gives || []).forEach(x => K.add(x)); (q.claims || []).forEach(x => claims.add(x)); changed = true; }
     for (const [id, p] of pz) if (!solved.has(id) && p.requires.every(has)) { solved.add(id); if (p.reward && p.reward.search) (p.reward.spots || []).forEach(s => { done.add(s); (spots.get(s).gives || []).forEach(x => K.add(x)); }); changed = true; }
     for (const id of claims) { const s = st.get(id); if (!broken.has(id) && !s.truth && (s.contradicts || []).some(x => K.has(x))) { broken.add(id); (s.gives || []).forEach(x => K.add(x)); (s.reveals || []).forEach(x => claims.add(x)); changed = true; } }
   }

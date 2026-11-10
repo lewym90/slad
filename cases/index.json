@@ -15,14 +15,14 @@
   {
    "id": "002",
    "title": "Ostatni pociąg",
-   "tagline": "Zamknięty krąg w nocnym składzie",
+   "tagline": "Zniknięcie w nocnym składzie",
    "genre": "Kryminał",
-   "duration": "70–100 min",
+   "duration": "80–110 min",
    "players": "2–6",
    "difficulty": "Wymagająca",
    "cover": "assets/cases/002-cover.webp",
-   "ready": false,
-   "teaser": "Nocny skład Wierzbno–Karsk. Pasażer z wagonu 4 znika między stacjami."
+   "ready": true,
+   "teaser": "Świadek w sprawie katastrofy sprzed dziesięciu lat wsiada do nocnego pociągu. Do sądu nie dociera."
   },
   {
    "id": "003",

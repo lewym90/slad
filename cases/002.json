@@ -1,0 +1,2048 @@
+{
+ "id": "002",
+ "title": "Ostatni pociąg",
+ "subtitle": "Zniknięcie w nocnym składzie",
+ "genre": "Kryminał zamkniętego kręgu",
+ "duration": "80–110 min",
+ "players": "2–6",
+ "difficulty": "Wymagająca",
+ "cover": "assets/cases/002-cover.webp",
+ "art": "assets/cases/002-cover.webp",
+ "ambience": "assets/audio/case-002.mp3",
+ "par": 50,
+ "intro": {
+  "lead": "Piątek, 13 listopada, 10:30. Depot kolejowy w Karsku. Nocny pociąg z Wierzbna stoi na bocznicy, opieczętowany od świtu.",
+  "brief": [
+   "O 9:00 w Sądzie Okręgowym w Karsku miał zeznawać Emil Sowa (41 l.) — świadek we wznowionej sprawie katastrofy kolejowej pod Gajem z 2016 roku. Nie przyszedł. Nie odbiera telefonu.",
+   "Wczoraj o 21:40 wsiadł w Wierzbnie do nocnego pociągu do Karska. Miał wykupiony jednoosobowy przedział sypialny numer 10. Do Karska, według konduktora, nie dojechał — przedział był rano pusty.",
+   "Załoga pociągu śpi w hotelu przy depocie. Skład nie był jeszcze sprzątany. Prokurator chce wiedzieć jedno: czy kluczowy świadek uciekł przed sądem, czy ktoś mu w tym pomógł.",
+   "Wasz wydział ma dzień, zanim skład wróci do obsługi."
+  ],
+  "task": [
+   "Co stało się z Emilem Sową — gdzie i kiedy?",
+   "Kto za tym stoi, w jaki sposób i dlaczego?",
+   "Kto wysiadł z pociągu na stacji Wrzos w płaszczu Emila?",
+   "Co Emil chciał powiedzieć w sądzie?"
+  ],
+  "rules": [
+   "Każde przeszukanie miejsca i każde pytanie zadane świadkowi to jeden ruch. Ruchów nie brakuje, ale najlepsze zespoły zamykają sprawę oszczędnie.",
+   "Świadkowie kłamią — a czasem mówią nieprawdę, w którą sami wierzą. Gdy dowód przeczy zeznaniu, użyjcie konfrontacji. Nietrafiona konfrontacja kosztuje punkty.",
+   "Raport końcowy oceni wnioski i dowody, które na ich poparcie wskażecie."
+  ],
+  "modeRules": {
+   "table": "Wszystko widzicie razem. Część informacji zdobędziecie tylko w Centrali wydziału — zapytania do centrali też kosztują ruchy.",
+   "phones": "Każdy gracz ma w telefonie tajne akta, których nie widzi reszta. Od was zależy, kiedy i czy podzielicie się nimi z zespołem."
+  }
+ },
+ "people": [
+  {
+   "id": "roman",
+   "name": "Roman Kot",
+   "role": "Kierownik pociągu",
+   "age": 52,
+   "desc": "Wysoki, siwiejący, w granatowym mundurze. Ponad trzydzieści lat na kolei. Odpowiada spokojnie i krótko, jak ktoś, kto pisze raporty.",
+   "deflect": [
+    "Proszę mi nie mieszać w głowie dokumentami, których nie rozumiecie.",
+    "To niczego nie dowodzi. Na kolei wszystko jest w papierach.",
+    "Odpowiadam za ten skład od trzydziestu lat. Szukajcie gdzie indziej."
+   ],
+   "questions": [
+    {
+     "id": "ro-q1",
+     "q": "Proszę opisać przebieg nocy.",
+     "a": "Odjazd z Wierzbna planowo, 21:40. Przed Gajem semafor nie dawał sygnału — staliśmy od 22:58 do 23:15. Przez ten czas byłem w lokomotywie u maszynisty, tak się robi przy awarii. Na Wrzosie odprawiłem pociąg z peronu, przy lokomotywie. Do Karska bez zdarzeń, przyjazd 1:40.",
+     "claims": [
+      "ro-c1",
+      "ro-l2",
+      "ro-l3"
+     ],
+     "time": [
+      [
+       "2026-11-12 21:40",
+       "Odjazd z Wierzbna (punktualnie)",
+       "Roman Kot"
+      ],
+      [
+       "2026-11-13 01:40",
+       "Przyjazd do Karska (17 min opóźnienia)",
+       "Roman Kot"
+      ]
+     ]
+    },
+    {
+     "id": "ro-q2",
+     "q": "Znał pan Emila Sowę?",
+     "a": "Nie. Nazwisko nic mi nie mówi. Mam setki pasażerów w tygodniu — znam ich z rezerwacji, nie z twarzy.",
+     "claims": [
+      "ro-l1"
+     ]
+    },
+    {
+     "id": "ro-q3",
+     "q": "Dlaczego zaplombował pan toaletę T2B?",
+     "requires": [
+      "p-seal"
+     ],
+     "a": "Awaria spłuczki, zgłoszona w czasie postoju. Zaplombowałem zgodnie z instrukcją, żeby nikt nie zalał wagonu. Wpisałem to do dziennika.",
+     "claims": [
+      "ro-l4"
+     ]
+    },
+    {
+     "id": "ro-q4",
+     "q": "Według grafiku tej nocy miał jechać Marek Zając. Dlaczego zamienił się pan na służbę?",
+     "requires": [
+      "e16"
+     ],
+     "a": "Kolega miał chore dziecko, zamieniliśmy się. A ja i tak chciałem być w Karsku w weekend. Nic niezwykłego.",
+     "claims": [
+      "ro-l5"
+     ]
+    },
+    {
+     "id": "ro-q5",
+     "q": "Czy otwierał pan w nocy okno w przedziale służbowym?",
+     "requires": [
+      "e14"
+     ],
+     "a": "Może raz, żeby wywietrzyć. Nie pamiętam dokładnie. W tych wagonach jest duszno.",
+     "claims": []
+    }
+   ],
+   "statements": [
+    {
+     "id": "ro-c1",
+     "text": "Pociąg stał przed Gajem od 22:58 do 23:15 z powodu awarii semafora.",
+     "truth": true
+    },
+    {
+     "id": "ro-l1",
+     "text": "Nie znał wcześniej Emila Sowy.",
+     "contradicts": [
+      "x3",
+      "e27"
+     ],
+     "response": "Dobrze. Pracowaliśmy razem, dawno temu, na nastawni w Gaju. Byłem jego przełożonym przez dwa lata. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi przy tej katastrofie. Nie widziałem go od dziesięciu lat.",
+     "gives": [
+      "t5"
+     ]
+    },
+    {
+     "id": "ro-l2",
+     "text": "Podczas postoju przed Gajem był w lokomotywie u maszynisty.",
+     "contradicts": [
+      "e19",
+      "e20",
+      "t3"
+     ],
+     "response": "Może pomyliłem kolejność. Najpierw obszedłem skład — dwójkę, trójkę. Dzwoniłem do maszynisty z wagonu. To normalna procedura, niczego nie ukrywam.",
+     "gives": [
+      "t6"
+     ]
+    },
+    {
+     "id": "ro-l3",
+     "text": "Na stacji Wrzos odprawiał pociąg z peronu przy lokomotywie.",
+     "contradicts": [
+      "e19"
+     ],
+     "response": "Wyszedłem na peron z tyłu składu, sprawdzić drzwi. Padało, poślizgnąłem się, stąd to spóźnienie z sygnałem. Tak, dałem odjazd z końca. To jeszcze nie zbrodnia.",
+     "gives": [
+      "t7"
+     ]
+    },
+    {
+     "id": "ro-l4",
+     "text": "Toaleta T2B miała awarię spłuczki, dlatego ją zaplombował.",
+     "contradicts": [
+      "e12"
+     ],
+     "response": "(długo milczy) Nie będę z wami o tym rozmawiał. Żądam obecności adwokata. Od tej chwili nie odpowiadam na pytania.",
+     "gives": [
+      "t8"
+     ]
+    },
+    {
+     "id": "ro-l5",
+     "text": "Zamienił się na służbę, bo kolega miał chore dziecko.",
+     "contradicts": [
+      "e16"
+     ],
+     "response": "Dobrze, wpisałem inny powód. Zająca o nic nie prosiłem — sam mu zaproponowałem zamianę. Chciałem być w Karsku w ten weekend. Prywatne sprawy. Nie muszę się z nich tłumaczyć.",
+     "gives": [
+      "t9"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "iga",
+   "name": "Iga Malec",
+   "role": "Pasażerka z przedziału 9",
+   "age": 34,
+   "desc": "Szczupła, uważna, z notesem, którego nie wypuszcza z ręki. Przyjechała do depotu sama, zanim ktokolwiek ją wezwał.",
+   "deflect": [
+    "Nie wiem, co chcecie mi udowodnić.",
+    "To nie ma nic wspólnego ze mną.",
+    "Proszę mnie nie traktować jak podejrzanej."
+   ],
+   "questions": [
+    {
+     "id": "ig-q1",
+     "q": "Co panią łączy z pasażerem z przedziału 10?",
+     "a": "Nic. Siedzieliśmy obok siebie przypadkiem. Zamieniliśmy dwa zdania w korytarzu, o opóźnieniu.",
+     "claims": [
+      "ig-l1"
+     ]
+    },
+    {
+     "id": "ig-q2",
+     "q": "Co pani robiła w nocy?",
+     "a": "Pracowałam nad tekstem, potem próbowałam spać. Przed Gajem staliśmy długo, generator huczał. Raz za ścianą coś stuknęło, jakby ktoś zamknął drzwi. Spojrzałam na telefon — była 23:06. Nic więcej nie słyszałam.",
+     "claims": [
+      "ig-c1"
+     ],
+     "time": [
+      [
+       "2026-11-12 23:06",
+       "Iga słyszy za ścianą przedziału 10 stuknięcie",
+       "Iga Malec"
+      ]
+     ]
+    },
+    {
+     "id": "ig-q3",
+     "q": "Czy widziała pani, jak ktoś wysiada na Wrzosie?",
+     "a": "Tak. Wyjrzałam zza firanki. Mężczyzna w szarym płaszczu i kaszkiecie szedł w stronę kiosku. To był Emil… to znaczy pasażer obok. Wysiadł. Sam.",
+     "claims": [
+      "ig-l2"
+     ]
+    },
+    {
+     "id": "ig-q4",
+     "q": "Czym się pani zajmuje?",
+     "a": "Jestem dziennikarką. Od dwóch lat piszę o kolei — o tym, czego nie ma w oficjalnych raportach.",
+     "claims": []
+    },
+    {
+     "id": "ig-q5",
+     "q": "Czego bał się Emil?",
+     "requires": [
+      "lie:ig-l1"
+     ],
+     "a": "Że ktoś z dawnej pracy spróbuje go powstrzymać, zanim stanie przed sądem. Mówił, że w tamtej sprawie jest ktoś, kto ma do stracenia więcej niż on. Nazwiska nie chciał podać przez telefon.",
+     "claims": [
+      "ig-c2"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "ig-c1",
+     "text": "Około 23:06 słyszała za ścianą stuknięcie, jakby ktoś zamknął drzwi.",
+     "truth": true
+    },
+    {
+     "id": "ig-c2",
+     "text": "Emil bał się kogoś z dawnej pracy, kto miał więcej do stracenia niż on.",
+     "truth": true
+    },
+    {
+     "id": "ig-l1",
+     "text": "Nie znała Emila; siedzieli obok siebie przypadkiem.",
+     "contradicts": [
+      "e02"
+     ],
+     "response": "Dobrze. Znałam go. Od miesięcy namawiałam go, żeby zeznawał. Bał się. Ustaliliśmy plan: Emil wysiada na Wrzosie tylnymi drzwiami, przy kiosku czeka mój kolega Olek z niebieską torbą, zawozi go do bezpiecznego mieszkania, a rano Emil staje w sądzie. Bilet do Karska był dla zmyłki. Ja jechałam za ścianą, żeby go pilnować. Olek wszystko potwierdzi — proszę, tu są nasze wiadomości.",
+     "gives": [
+      "t1",
+      "e28",
+      "e29"
+     ],
+     "time": [
+      [
+       "2026-11-12 23:30",
+       "Olek Bem czeka przy kiosku na Wrzosie z niebieską torbą",
+       "Iga Malec"
+      ]
+     ]
+    },
+    {
+     "id": "ig-l2",
+     "text": "Na Wrzosie widziała, jak wysiada Emil.",
+     "contradicts": [
+      "e08",
+      "e26",
+      "e05",
+      "e23"
+     ],
+     "response": "(Iga długo patrzy na dowód) To nie był on. Boże… Widziałam tylko płaszcz i kaszkiet. Emil był niski, a tamten szedł wyprostowany, długim krokiem. Olek pisał, że ktoś go minął i nie stanął. Myślałam, że Emil spanikował i uciekł.",
+     "gives": [
+      "t2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wieslaw",
+   "name": "Wiesław Pająk",
+   "role": "Konduktor",
+   "age": 61,
+   "desc": "Niski, krępy, z siwym wąsem. Na kolei od czterdziestu lat, za półtora roku emerytura. Mówi dużo, ale o sobie niechętnie.",
+   "deflect": [
+    "Panie, ja tu jestem od biletów.",
+    "Nic takiego nie widziałem.",
+    "Ja już swoje powiedziałem."
+   ],
+   "questions": [
+    {
+     "id": "k-q1",
+     "q": "Gdzie był pan podczas postoju przed Gajem?",
+     "a": "Kontrolowałem bilety w jedynce i w dwójce. Jak zawsze. Przy postoju ludzie się budzą, pytają, trzeba być na miejscu.",
+     "claims": [
+      "k-l1"
+     ],
+     "requiresAny": [
+      "ro-q1",
+      "e13",
+      "e20"
+     ]
+    },
+    {
+     "id": "k-q2",
+     "q": "Kto wysiadł na Wrzosie?",
+     "a": "Mój pomocnik, Tomek Nowik. Zadzwonili do niego, że córka trafiła do szpitala, puściłem go — tylko proszę tego nie pisać w raporcie. Innych nie widziałem, byłem przy jedynce, z przodu.",
+     "claims": [
+      "k-c1"
+     ],
+     "time": [
+      [
+       "2026-11-12 23:27",
+       "Pomocnik konduktora Tomasz Nowik wysiada na Wrzosie przednimi drzwiami",
+       "Wiesław Pająk"
+      ]
+     ]
+    },
+    {
+     "id": "k-q3",
+     "q": "Czy pasażer z przedziału 10 miał z kimś zatarg?",
+     "a": "Nie wiem, czy zatarg. Koło wpół do jedenastej przechodziłem przez bar i widziałem, jak barman się na niego gapi. Powiedział mu coś w stylu: „Wiem, kim pan jest”. Więcej nie słyszałem, poszedłem dalej.",
+     "claims": []
+    },
+    {
+     "id": "k-q4",
+     "q": "Jak zachowywał się tej nocy kierownik pociągu?",
+     "a": "Nerwowo. Zwykle siedzi w swoim przedziale nad papierami, a tej nocy chodził po składzie. A na Wrzosie słyszałem w radiotelefonie, jak maszynista klnie, że kierownik spóźnia się z sygnałem odjazdu.",
+     "claims": []
+    }
+   ],
+   "statements": [
+    {
+     "id": "k-c1",
+     "text": "Na Wrzosie widział tylko, jak wysiada jego pomocnik, Tomasz Nowik.",
+     "truth": true
+    },
+    {
+     "id": "k-l1",
+     "text": "Podczas postoju przed Gajem kontrolował bilety w wagonach 1 i 2.",
+     "contradicts": [
+      "e17"
+     ],
+     "response": "No dobrze, dobrze. Siedziałem w barze. Od jedenastej do kwadrans po, aż ruszyliśmy. Kawa, pogadałem z barmanem. Chłopak był cały czas za barem, mogę przysiąc. I jeszcze jedno: koło 23:03 kierownik przeszedł przez bar w stronę dwójki, z pękiem kluczy w ręku. Szybko szedł. Nie odezwał się.",
+     "gives": [
+      "t3"
+     ],
+     "time": [
+      [
+       "2026-11-12 23:03",
+       "Kierownik pociągu przechodzi przez bar w stronę wagonu 2 z kluczami",
+       "Wiesław Pająk"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "damian",
+   "name": "Damian Lis",
+   "role": "Barman w wagonie restauracyjnym",
+   "age": 29,
+   "desc": "Wysoki, chudy, w białej marynarce barmańskiej. Pracuje u firmy cateringowej, nie u przewoźnika. Unika patrzenia w oczy.",
+   "deflect": [
+    "Ja tylko robię kawę.",
+    "Nie wiem, o co wam chodzi.",
+    "Szukacie winnego, bo jestem najmłodszy?"
+   ],
+   "questions": [
+    {
+     "id": "d-q1",
+     "q": "Czy obsługiwał pan pasażera z przedziału 10?",
+     "a": "Może. Dużo ludzi. Nie pamiętam twarzy.",
+     "claims": [
+      "d-l1"
+     ]
+    },
+    {
+     "id": "d-q2",
+     "q": "Gdzie był pan podczas postoju przed Gajem?",
+     "a": "Za barem. Konduktor pił u mnie kawę, gadaliśmy, aż ruszyliśmy.",
+     "claims": [
+      "d-c1"
+     ],
+     "requiresAny": [
+      "ro-q1",
+      "e13",
+      "e20"
+     ]
+    },
+    {
+     "id": "d-q3",
+     "q": "Gdzie był pan i co pan widział podczas postoju na stacji Wrzos?",
+     "a": "Za barem, ludzie kupowali wodę i kanapki, kasa wszystko pokaże. Tuż przed odjazdem kierownik wpadł tylnymi drzwiami baru, mokry od deszczu, i pobiegł do dwójki. Nawet nie spojrzał.",
+     "claims": [
+      "d-c2"
+     ],
+     "time": [
+      [
+       "2026-11-12 23:33",
+       "Kierownik wbiega do składu tylnymi drzwiami baru, mokry",
+       "Damian Lis"
+      ]
+     ]
+    },
+    {
+     "id": "d-q4",
+     "q": "Dlaczego trzyma pan w szafce wycinek o katastrofie pod Gajem?",
+     "requires": [
+      "e18"
+     ],
+     "a": "(cisza) Mój brat jechał tamtym pociągiem. Miał dwadzieścia dwa lata. Sąd uniewinnił wszystkich. Wszystkich.",
+     "claims": []
+    }
+   ],
+   "statements": [
+    {
+     "id": "d-c1",
+     "text": "Podczas postoju przed Gajem był za barem z konduktorem.",
+     "truth": true
+    },
+    {
+     "id": "d-c2",
+     "text": "Na Wrzosie obsługiwał klientów, a przed odjazdem widział mokrego kierownika wbiegającego do składu.",
+     "truth": true
+    },
+    {
+     "id": "d-l1",
+     "text": "Nie pamięta pasażera z przedziału 10 i nie rozmawiał z nim.",
+     "contradicts": [
+      "e17",
+      "e18",
+      "e28"
+     ],
+     "response": "Poznałem go od razu. Jego zdjęcie było we wszystkich gazetach w 2016 roku. Powiedziałem mu: „Wiem, kim pan jest”. A on spojrzał na mnie i powiedział cicho: „To nie ja kazałem dać ten sygnał. Ja tylko wykonałem polecenie. Jutro w sądzie powiem, kto kazał”. Zapłacił i wyszedł. Nic mu nie zrobiłem. Chciałem tylko usłyszeć prawdę.",
+     "gives": [
+      "t4"
+     ],
+     "time": [
+      [
+       "2026-11-12 22:30",
+       "Emil w barze: „Jutro w sądzie powiem, kto kazał”",
+       "Damian Lis"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "locations": [
+  {
+   "id": "compartment",
+   "name": "Przedział 10",
+   "kind": "Wagon 2, sypialny",
+   "desc": "Jednoosobowy przedział Emila, ostatni przed toaletą i przedziałem służbowym kierownika.",
+   "spots": [
+    {
+     "id": "sp-table",
+     "name": "Stolik i łóżko",
+     "text": "Łóżko zaścielone, nikt na nim nie spał. Na stoliku szklanka w metalowym koszyczku i okulary.",
+     "gives": [
+      "e05"
+     ]
+    },
+    {
+     "id": "sp-bag",
+     "name": "Torba Emila",
+     "text": "Skórzana torba na półce, zapięta.",
+     "gives": [
+      "e06"
+     ]
+    },
+    {
+     "id": "sp-hook",
+     "name": "Wieszak przy drzwiach",
+     "text": "Pusty wieszak. Na wykładzinie pod nim coś czerwonego.",
+     "gives": [
+      "e07"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "corridor",
+   "name": "Korytarz wagonu 2",
+   "kind": "Toalety i drzwi techniczne",
+   "desc": "Wąski korytarz sypialnego. Na końcu toaleta T2B, drzwi techniczne i przedział służbowy.",
+   "spots": [
+    {
+     "id": "sp-t2b",
+     "name": "Toaleta T2B",
+     "text": "Drzwi zaplombowane, na klamce kartka „NIECZYNNE”. Na wasze polecenie technik zrywa plombę.",
+     "gives": [
+      "e10",
+      "e08",
+      "e09"
+     ]
+    },
+    {
+     "id": "sp-door",
+     "name": "Drzwi techniczne",
+     "text": "Drzwi na końcu wagonu, otwierane kluczem służbowym. Nie są przeznaczone dla pasażerów.",
+     "gives": [
+      "e11"
+     ]
+    },
+    {
+     "id": "sp-tech",
+     "name": "Technik depotu",
+     "text": "Technik zmiany sprawdza instalację wagonu na wasze zlecenie.",
+     "gives": [
+      "e12"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "service",
+   "name": "Przedział służbowy",
+   "kind": "Biuro kierownika pociągu",
+   "desc": "Ciasny przedział z biurkiem, telefonem służbowym i szafką na plomby. Tu jeździ kierownik pociągu.",
+   "spots": [
+    {
+     "id": "sp-log",
+     "name": "Dziennik pociągu",
+     "text": "Elektroniczny dziennik na tablecie służbowym, wpisy kierownika z całej nocy.",
+     "gives": [
+      "e13"
+     ]
+    },
+    {
+     "id": "sp-window",
+     "name": "Okno",
+     "text": "Jedyne okno w wagonie z klamką do otwierania.",
+     "gives": [
+      "e14"
+     ]
+    },
+    {
+     "id": "sp-lanyard",
+     "name": "Smycz i klucze",
+     "text": "Na haczyku pęk kluczy służbowych na smyczy.",
+     "gives": [
+      "e15"
+     ]
+    },
+    {
+     "id": "sp-roster",
+     "name": "Szuflada biurka",
+     "text": "Wydruki grafików i zamian służby.",
+     "gives": [
+      "e16"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bar",
+   "name": "Wagon barowy",
+   "kind": "Wagon 3, ostatni w składzie",
+   "desc": "Lada, sześć stolików, ekspres do kawy. Tylne drzwi wagonu wychodzą wprost na peron.",
+   "spots": [
+    {
+     "id": "sp-till",
+     "name": "Kasa fiskalna",
+     "text": "Kasa zapisuje każdą transakcję z godziną i loginem sprzedawcy.",
+     "gives": [
+      "e17"
+     ]
+    },
+    {
+     "id": "sp-locker",
+     "name": "Szafka barmana",
+     "text": "Wąska szafka z ubraniem na zmianę. Barman zgadza się ją otworzyć.",
+     "gives": [
+      "e18"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "loco",
+   "name": "Lokomotywa",
+   "kind": "Kabina maszynisty",
+   "desc": "Maszynista Jan Wrona czeka w kabinie. Obok pulpitu rejestrator łączności.",
+   "spots": [
+    {
+     "id": "sp-driver",
+     "name": "Rozmowa z maszynistą",
+     "text": "Jan Wrona, 30 lat za sterami, odpowiada na wasze pytania o noc.",
+     "gives": [
+      "e19"
+     ]
+    },
+    {
+     "id": "sp-radio",
+     "name": "Rejestrator łączności",
+     "text": "Zapis połączeń radiowych i telefonicznych składu.",
+     "gives": [
+      "e20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wrzos",
+   "name": "Stacja Wrzos",
+   "kind": "Mała stacja, 27 km od Wierzbna",
+   "desc": "Jeden peron, kiosk, budynek dworca, postój taksówek przed wejściem. Dojeżdżacie radiowozem.",
+   "spots": [
+    {
+     "id": "sp-kiosk",
+     "name": "Kiosk",
+     "text": "Sprzedawczyni pamięta nocny ruch. Nad kasą wisi kamera.",
+     "gives": [
+      "e21",
+      "e22"
+     ]
+    },
+    {
+     "id": "sp-bin",
+     "name": "Kontener za budynkiem",
+     "text": "Kontener na odpady za dworcem, od strony torów. Coś szarego wystaje spod pokrywy.",
+     "gives": [
+      "e23"
+     ]
+    },
+    {
+     "id": "sp-taxi",
+     "name": "Postój taksówek",
+     "text": "Jedyna korporacja w Wrzosie prowadzi rejestr kursów.",
+     "gives": [
+      "e24",
+      "e25"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tracks",
+   "name": "Tory — Las Karski",
+   "kind": "Pobocze linii kolejowej",
+   "desc": "Szlak przez las między Olszynami a Karskiem. Bez wskazania kilometra przeszukiwanie kilkunastu kilometrów nasypu nie ma sensu.",
+   "spots": [
+    {
+     "id": "sp-ballast",
+     "name": "Pobocze toru",
+     "text": "Ekipa przeszukuje nasyp we wskazanym miejscu.",
+     "gives": [
+      "e26",
+      "e27"
+     ],
+     "requires": {
+      "puzzle": "p-km"
+     },
+     "lockedText": "Kilkanaście kilometrów lasu i nasypu. Wskażcie, na którym kilometrze szukać — inaczej ekipa będzie chodzić do zmroku."
+    }
+   ]
+  }
+ ],
+ "evidence": [
+  {
+   "id": "e01",
+   "type": "Zgłoszenie",
+   "title": "Zgłoszenie prokuratury",
+   "summary": "Świadek nie stawił się w sądzie.",
+   "start": true,
+   "body": [
+    {
+     "kv": [
+      [
+       "Zaginiony",
+       "Emil Sowa, 41 l., księgowy, b. dyżurny ruchu"
+      ],
+      [
+       "Rola w sprawie",
+       "świadek — wznowione postępowanie w sprawie katastrofy pod Gajem (2016)"
+      ],
+      [
+       "Termin rozprawy",
+       "piątek 13.11, 9:00, Sąd Okręgowy w Karsku"
+      ],
+      [
+       "Zgłoszenie",
+       "piątek 13.11, 9:40"
+      ]
+     ]
+    },
+    "Emil Sowa zapowiedział przez pełnomocnika, że „ujawni okoliczności, których nie było w aktach”. Nie stawił się, telefon niedostępny. Według przewoźnika jechał nocnym pociągiem z Wierzbna, przedział sypialny 10.",
+    "Skład stoi od 2:10 na bocznicy depotu w Karsku. Nie był sprzątany. Załoga nocuje w hotelu przy depocie. Pasażerów wagonów 1 i 3 przesłuchała już policja w Karsku — spali lub nic nie zauważyli.",
+    {
+     "note": "W katastrofie pod Gajem w 2016 r. zginęło 9 osób. W pierwszym procesie wszystkich oskarżonych uniewinniono."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-13 09:00",
+     "Emil Sowa nie stawia się w sądzie",
+     "Prokuratura"
+    ],
+    [
+     "2026-11-13 09:40",
+     "Zgłoszenie zaginięcia przez prokuraturę",
+     "Prokuratura"
+    ]
+   ]
+  },
+  {
+   "id": "e02",
+   "type": "Rezerwacje",
+   "title": "Rezerwacje wagonu sypialnego",
+   "summary": "Kto spał w wagonie 2.",
+   "start": true,
+   "body": [
+    {
+     "log": [
+      "przedz. 1–6   rodziny i pary, 11 osób (przesłuchani w Karsku)",
+      "przedz. 7–8   wolne",
+      "przedz. 9     Iga Malec        rez. 08.11, 14:22, karta **** 5521",
+      "przedz. 10    Emil Sowa        rez. 08.11, 14:22, karta **** 5521"
+     ]
+    },
+    {
+     "note": "Obie rezerwacje opłacono w tej samej minucie, tą samą kartą płatniczą."
+    }
+   ]
+  },
+  {
+   "id": "e03",
+   "type": "Plan",
+   "title": "Skład i rozkład jazdy",
+   "summary": "Lokomotywa i trzy wagony.",
+   "start": true,
+   "body": [
+    {
+     "h": "Skład"
+    },
+    "Lokomotywa — wagon 1 (miejsca siedzące) — wagon 2 (sypialny: przedziały 1–10, toaleta T2B, przedział służbowy kierownika, drzwi techniczne) — wagon 3 (barowy, ostatni; tylne drzwi wychodzą na peron).",
+    {
+     "h": "Rozkład planowy"
+    },
+    {
+     "log": [
+      "Wierzbno      odj. 21:40",
+      "Gaj           przelot ok. 22:55 (bez zatrzymania)",
+      "Wrzos         przyj. 23:10   odj. 23:16",
+      "Olszyny       przelot ok. 23:23",
+      "Karsk         przyj. 01:23"
+     ]
+    },
+    {
+     "note": "Pasażerowie wsiadają i wysiadają wyłącznie drzwiami przednimi wagonów 1 i 2."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-12 21:40",
+     "Odjazd pociągu z Wierzbna",
+     "Rozkład"
+    ]
+   ]
+  },
+  {
+   "id": "e04",
+   "type": "Dane operatora",
+   "title": "Logowania telefonu Emila",
+   "summary": "Nadajniki, przez które przechodził jego telefon.",
+   "start": true,
+   "body": [
+    {
+     "log": [
+      "21:38–22:20   BTS Wierzbno-Dworzec / Wierzbno-Wschód",
+      "22:58–23:15   BTS Gaj-Las",
+      "23:27–23:34   BTS Wrzos-Stacja",
+      "23:39–23:46   BTS Olszyny",
+      "23:47–23:52   BTS Las Karski",
+      "23:52         ostatnie logowanie — od tej chwili brak sygnału"
+     ]
+    },
+    {
+     "note": "Godziny w czasie lokalnym. Operator przypomina: telefon loguje się do najbliższego nadajnika, a nie do tego, przy którym stoi właściciel."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-12 23:27",
+     "Telefon Emila w zasięgu BTS Wrzos-Stacja (do 23:34)",
+     "Operator"
+    ],
+    [
+     "2026-11-12 23:52",
+     "Ostatnie logowanie telefonu Emila — BTS Las Karski",
+     "Operator"
+    ]
+   ]
+  },
+  {
+   "id": "e05",
+   "type": "Obserwacja",
+   "title": "Stolik w przedziale 10",
+   "summary": "Okulary zostały na stoliku.",
+   "body": [
+    "Łóżko zaścielone, pościel nietknięta. Na stoliku szklanka po herbacie w metalowym koszyczku i paragon z baru (22:30, herbata, karta E. Sowy).",
+    "Obok szklanki leżą okulary korekcyjne w cienkiej oprawce — szkła mocno pomniejszające.",
+    {
+     "note": "Kto wysiada z pociągu na zawsze, zwykle zabiera okulary."
+    }
+   ]
+  },
+  {
+   "id": "e06",
+   "type": "Obserwacja",
+   "title": "Torba Emila",
+   "summary": "Brakuje jednej teczki.",
+   "body": [
+    "W torbie: ubrania na jeden dzień, ładowarka, leki na nadciśnienie, dowód osobisty w bocznej kieszeni.",
+    "W przegródce na dokumenty — pusta przezroczysta koszulka z naklejką pisaną ręcznie: „DLA SĄDU — ORYGINAŁ”."
+   ]
+  },
+  {
+   "id": "e07",
+   "type": "Obserwacja",
+   "title": "Wieszak i czerwone włókno",
+   "summary": "Pusty wieszak, coś na wykładzinie.",
+   "body": [
+    "Wieszak przy drzwiach jest pusty. Z rezerwacji i relacji wynika, że Emil wsiadł w szarym płaszczu i kaszkiecie.",
+    "Na wykładzinie pod wieszakiem technik znajduje kilkucentymetrowy kawałek czerwonej taśmy poliestrowej, postrzępiony na końcu, jakby przetarty z dużą siłą.",
+    {
+     "note": "Wykładzinę odkurzano w Wierzbnie przed odjazdem."
+    }
+   ]
+  },
+  {
+   "id": "e08",
+   "type": "Oględziny",
+   "title": "Ciało w toalecie T2B",
+   "summary": "Emil Sowa nie wysiadł z pociągu.",
+   "body": [
+    "Po zerwaniu plomby w toalecie T2B technik znajduje ciało mężczyzny. Tożsamość potwierdzona: Emil Sowa. Ubrany w spodnie, koszulę i sweter, w butach. Bez płaszcza i bez kaszkietu.",
+    "Ciało posadzone na podłodze, oparte o ścianę. Kieszenie puste: brak telefonu i portfela.",
+    {
+     "note": "Toaleta T2B sąsiaduje z przedziałem 10 i z przedziałem służbowym kierownika."
+    }
+   ]
+  },
+  {
+   "id": "e09",
+   "type": "Opinia",
+   "title": "Wstępna opinia lekarza",
+   "summary": "Oględziny ciała w depocie, 11:20.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Przyczyna zgonu",
+       "uduszenie gardłowe pętlą"
+      ],
+      [
+       "Czas zgonu",
+       "czwartek 22:45 – 23:30 (wstępnie)"
+      ],
+      [
+       "Pętla",
+       "płaska taśma, szer. ok. 1,5 cm"
+      ]
+     ]
+    },
+    "Na szyi równa, pozioma bruzda. W bruździe wbite czerwone włókna syntetyczne. Na dłoniach ofiary otarcia od walki. Plamy opadowe świadczą, że ciało przeniesiono wkrótce po śmierci w pozycję siedzącą.",
+    {
+     "note": "Wzrost denata: 168 cm."
+    }
+   ]
+  },
+  {
+   "id": "e10",
+   "type": "Fotografia",
+   "title": "Plomba na drzwiach T2B",
+   "summary": "Numer plomby i kartka.",
+   "body": [
+    "Plomba kolejowa z drutem, numer seryjny 0412, zaciśnięta na klamce. Pod nią kartka: „NIECZYNNE — AWARIA”, napisana drukowanymi literami, bez polskich znaków (NIECZYNNE / AWARIA SPLUCZKI)."
+   ]
+  },
+  {
+   "id": "e11",
+   "type": "Obserwacja",
+   "title": "Drzwi techniczne wagonu 2",
+   "summary": "Ktoś tędy wychodził w deszczu.",
+   "body": [
+    "Drzwi na końcu wagonu, obok przedziału służbowego. Otwierane wyłącznie kluczem służbowym (klucz mają kierownik, konduktor i pomocnik).",
+    "Na stopniu zaschnięte błoto z peronu i przyklejony liść klonu. Na stacji Wrzos przy peronie rośnie rząd klonów; w Wierzbnie i Karsku perony są kryte, bez drzew."
+   ]
+  },
+  {
+   "id": "e12",
+   "type": "Raport",
+   "title": "Raport technika depotu",
+   "summary": "Instalacja wagonu 2 sprawdzona.",
+   "body": [
+    {
+     "log": [
+      "Toaleta T2B   — spłukiwanie sprawne, zbiornik pełny, brak wycieku",
+      "Toaleta T1A   — sprawna",
+      "Okna korytarzy wagonu 2 — zablokowane konstrukcyjnie, nie otwierają się",
+      "Okno przedziału służbowego — otwierane (uchylne i przesuwne)"
+     ]
+    },
+    {
+     "note": "Żadnej awarii spłuczki w T2B nie stwierdzono. Licznik spłukiwań: ostatnie użycie 22:51."
+    }
+   ]
+  },
+  {
+   "id": "e13",
+   "type": "Dziennik",
+   "title": "Dziennik pociągu",
+   "summary": "Wpisy kierownika z całej nocy.",
+   "body": [
+    {
+     "log": [
+      "21:40  Odjazd Wierzbno planowo. Sklad 3 wagony.",
+      "22:58  Postoj przed Gajem, semafor S2 nie daje sygnalu. Kierownik w lokomotywie.",
+      "23:10  T2B awaria splukiwania, zaplombowano (plomba 0412).",
+      "23:15  Odjazd, opoznienie 17 min.",
+      "23:27  Wrzos. Wysiadl pomocnik T. Nowik (sprawy rodzinne).",
+      "23:33  Odprawa z peronu przy lokomotywie.",
+      "01:40  Karsk. Bez zdarzen."
+     ]
+    },
+    {
+     "note": "Wszystkie wpisy kierownik pisze bez polskich znaków — tablet ma polską klawiaturę."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-12 22:58",
+     "Postój przed Gajem — awaria semafora (do 23:15)",
+     "Dziennik pociągu"
+    ],
+    [
+     "2026-11-12 23:10",
+     "Kierownik plombuje toaletę T2B (plomba 0412)",
+     "Dziennik pociągu"
+    ]
+   ]
+  },
+  {
+   "id": "e14",
+   "type": "Obserwacja",
+   "title": "Okno przedziału służbowego",
+   "summary": "Jedyne okno, które się otwiera.",
+   "body": [
+    "Okno otwiera się klamką do połowy wysokości. Na zewnętrznej krawędzi ramy świeże otarcie lakieru, a w szczelinie uszczelki zaklinowany narożnik kartki papieru, mokry i postrzępiony."
+   ]
+  },
+  {
+   "id": "e15",
+   "type": "Przedmiot",
+   "title": "Smycz kierownika pociągu",
+   "summary": "Czerwona taśma, pęk kluczy.",
+   "body": [
+    "Smycz z czerwonej taśmy poliestrowej szerokości 1,5 cm, z karabińczykiem i kluczami służbowymi (w tym klucz do drzwi technicznych i szafki z plombami).",
+    "Taśma na jednym odcinku jest wyraźnie przetarta i rozciągnięta, brakuje kawałka obszycia na krawędzi.",
+    {
+     "note": "Technik kryminalny zabezpiecza smycz do porównania z włóknami."
+    }
+   ]
+  },
+  {
+   "id": "e16",
+   "type": "Wydruk",
+   "title": "Grafik i zamiany służby",
+   "summary": "Kto miał jechać tym pociągiem.",
+   "body": [
+    {
+     "log": [
+      "10.11 (wt.)  ZAMIANA: R. Kot <-> M. Zając, służba 12/13.11, pociąg nocny Wierzbno–Karsk",
+      "             powód (wpis R. Kota): sprawy rodzinne w Karsku",
+      "15.11 (nd.)  06:00 — odbiór techniczny składu na bocznicy depotu Karsk: R. Kot"
+     ]
+    },
+    {
+     "note": "Do wtorku tym pociągiem miał jechać Marek Zając."
+    }
+   ]
+  },
+  {
+   "id": "e17",
+   "type": "Wydruk",
+   "title": "Raport z kasy fiskalnej baru",
+   "summary": "Każda transakcja z godziną.",
+   "body": [
+    {
+     "log": [
+      "22:24  herbata, ciastko        karta E. SOWA    login D.L.",
+      "22:30  herbata                 karta E. SOWA    login D.L.",
+      "23:01  kawa czarna             gotówka          login D.L.  (adnotacja: „kond.”)",
+      "23:11  kawa czarna             gotówka          login D.L.  (adnotacja: „kond.”)",
+      "23:28  woda x2                 karta            login D.L.",
+      "23:29  kanapka, woda           gotówka          login D.L.",
+      "23:31  piwo bezalk.            karta            login D.L.",
+      "23:32  herbata x2              gotówka          login D.L."
+     ]
+    },
+    {
+     "note": "Login D.L. — Damian Lis, jedyny sprzedawca tej nocy. Kasa nie pozwala sprzedawać bez fizycznej obecności przy terminalu."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-12 22:24",
+     "Emil Sowa płaci w barze (22:24 i 22:30)",
+     "Kasa baru"
+    ],
+    [
+     "2026-11-12 23:01",
+     "Kawa dla konduktora w barze (23:01 i 23:11)",
+     "Kasa baru"
+    ],
+    [
+     "2026-11-12 23:28",
+     "Barman obsługuje klientów na Wrzosie (23:28–23:32)",
+     "Kasa baru"
+    ]
+   ]
+  },
+  {
+   "id": "e18",
+   "type": "Przedmiot",
+   "title": "Szafka barmana",
+   "summary": "Stary wycinek z gazety.",
+   "body": [
+    "Pod koszulą na zmianę — złożony wycinek z gazety z 2016 roku o katastrofie pod Gajem. Zdjęcie dyżurnego ruchu zakreślone długopisem. Obok fotografia uśmiechniętego chłopaka w mundurze studenckim, na odwrocie: „Kuba, 2015”.",
+    "Na marginesie wycinka dopisane ręcznie: „Nazwiska tych, którzy kazali — nigdy nie padły”."
+   ]
+  },
+  {
+   "id": "e19",
+   "type": "Zeznanie",
+   "title": "Relacja maszynisty Jana Wrony",
+   "summary": "Lokomotywa, cała noc.",
+   "body": [
+    "„W czasie postoju przed Gajem byłem w kabinie sam. Kierownik do mnie nie przychodził. Zadzwonił z wagonu, z telefonu służbowego, gdzieś koło ósmej po jedenastej, że sprawdza skład i wszystko w porządku.",
+    "Na Wrzosie czekałem na sygnał odjazdu dwie minuty dłużej niż trzeba. Kierownik dał go z samego końca składu, od strony baru — nigdy tak nie robi, zawsze stoi przy lokomotywie. Klnąłem przez radio.”",
+    {
+     "note": "Jan Wrona, 175 cm, na służbie od 30 lat."
+    }
+   ]
+  },
+  {
+   "id": "e20",
+   "type": "Rejestr",
+   "title": "Rejestrator łączności",
+   "summary": "Połączenia z nocy.",
+   "body": [
+    {
+     "log": [
+      "22:58  maszynista -> dyżurny Gaj: semafor S2 bez sygnału",
+      "23:08  tel. służbowy WAGON 2 (przedz. służbowy) -> maszynista, 0:24 min",
+      "23:15  dyżurny Gaj -> maszynista: zgoda na jazdę",
+      "23:33  sygnał odjazdu nadany z pulpitu WAGONU 3 (tył składu)"
+     ]
+    }
+   ],
+   "time": [
+    [
+     "2026-11-12 23:08",
+     "Telefon z przedziału służbowego wagonu 2 do maszynisty",
+     "Rejestrator łączności"
+    ],
+    [
+     "2026-11-12 23:33",
+     "Sygnał odjazdu z Wrzosu nadany z końca składu (wagon 3)",
+     "Rejestrator łączności"
+    ]
+   ]
+  },
+  {
+   "id": "e21",
+   "type": "Paragon",
+   "title": "Paragon z kiosku na Wrzosie",
+   "summary": "Płatność kartą Emila.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Godzina",
+       "23:30"
+      ],
+      [
+       "Zakup",
+       "woda 0,5 l, bilet autobusowy Wrzos–Karsk (odj. 23:45)"
+      ],
+      [
+       "Płatność",
+       "zbliżeniowo, karta E. SOWA"
+      ]
+     ]
+    },
+    "Sprzedawczyni: „Pan w szarym płaszczu, kaszkiet na oczach. Nic nie mówił, pokazał palcem. Wysoki był, musiał się schylić do okienka.”"
+   ],
+   "time": [
+    [
+     "2026-11-12 23:30",
+     "Karta Emila użyta w kiosku na Wrzosie",
+     "Paragon"
+    ]
+   ]
+  },
+  {
+   "id": "e22",
+   "type": "Kadr z kamery",
+   "title": "Kamera nad kasą kiosku",
+   "summary": "23:30. Widać tylko rękę.",
+   "body": [
+    "Kamera obejmuje okienko z góry. Widać dłoń przykładającą kartę do terminala i rękaw szarego płaszcza.",
+    "Rękaw płaszcza jest za krótki: spod mankietu wystaje kilka centymetrów granatowego rękawa z poziomym, srebrnym paskiem odblaskowym."
+   ]
+  },
+  {
+   "id": "e23",
+   "type": "Przedmiot",
+   "title": "Płaszcz i kaszkiet w kontenerze",
+   "summary": "Ubranie Emila za dworcem.",
+   "body": [
+    "Szary wełniany płaszcz w rozmiarze 48 i kaszkiet w jodełkę. W kieszeni płaszcza portfel Emila: prawo jazdy, karta płatnicza, 120 zł. Obok bilet autobusowy Wrzos–Karsk na 23:45 — nieskasowany.",
+    "Płaszcz ma rozprute szwy pod obiema pachami i naderwany szew na plecach — jakby założył go ktoś wyraźnie większy od właściciela.",
+    {
+     "note": "Ktoś, kto ucieka, raczej nie wyrzuca portfela z dokumentami i kartą."
+    }
+   ]
+  },
+  {
+   "id": "e24",
+   "type": "Rejestr",
+   "title": "Rejestr taksówek Wrzos",
+   "summary": "Kurs z dworca.",
+   "body": [
+    {
+     "log": [
+      "23:20  zamówienie telefoniczne, nr: T. Nowik",
+      "23:29  odbiór: główne wejście dworca Wrzos",
+      "23:41  koniec kursu: Szpital Powiatowy, izba przyjęć"
+     ]
+    },
+    "Kierowca: „Facet w kolejowym mundurze, bez kurtki, przemoczony. Wsiadł od frontu, jak tylko podjechałem. Całą drogę dzwonił do żony.”"
+   ],
+   "time": [
+    [
+     "2026-11-12 23:29",
+     "Tomasz Nowik wsiada do taksówki przed dworcem Wrzos",
+     "Rejestr taksówek"
+    ]
+   ]
+  },
+  {
+   "id": "e25",
+   "type": "Zeznanie",
+   "title": "Relacja Tomasza Nowika",
+   "summary": "Pomocnik konduktora, telefonicznie ze szpitala.",
+   "body": [
+    "„Żona zadzwoniła koło dziewiątej, że małą zabrali do szpitala we Wrzosie. Wiesiek mnie puścił. Wyskoczyłem przednimi drzwiami jedynki, pobiegłem przez dworzec do taksówki. Byłem przy córce od za dwadzieścia dwunasta.”",
+    {
+     "note": "Izba przyjęć szpitala potwierdza: ojciec dziecka na miejscu od 23:42. Tomasz Nowik ma 186 cm wzrostu."
+    }
+   ]
+  },
+  {
+   "id": "e26",
+   "type": "Przedmiot",
+   "title": "Telefon Emila na nasypie",
+   "summary": "Znaleziony na 47. kilometrze.",
+   "body": [
+    "Rozbity smartfon w tłuczniu przy torze, kilometr 47,3 — ok. 4 metry od szyny, po stronie, po której jechał wagon 2. Karta SIM Emila Sowy. Po podłączeniu do zasilania: ostatnia wysłana wiadomość o 23:24 do „Iga”.",
+    {
+     "note": "Telefon spadł z jadącego pociągu. W wagonach 1–3 otwiera się tylko jedno okno."
+    }
+   ]
+  },
+  {
+   "id": "e27",
+   "type": "Dokument",
+   "title": "Kartki oświadczenia Emila",
+   "summary": "Rozmokłe strony przy torze.",
+   "body": [
+    "Kilka rozmokłych kartek A4 rozrzuconych w promieniu 30 metrów od telefonu. Nagłówek: „Oświadczenie dla Sądu Okręgowego w Karsku”. Czytelne fragmenty:",
+    {
+     "quote": "…sygnał zezwalający podałem na wyraźne polecenie zwierzchnika, kierownika zmiany R. K., mimo że tor był zajęty. … Następnego dnia R. K. przepisał dziennik nastawni i kazał mi podpisać nową wersję. … Milczałem dziesięć lat, bo…",
+     "by": "pismo maszynowe, podpis odręczny: E. Sowa"
+    },
+    {
+     "note": "Brakuje środkowych stron. Jedna kartka ma oderwany róg."
+    }
+   ]
+  },
+  {
+   "id": "e28",
+   "type": "Wiadomości",
+   "title": "Wiadomości Igi i Emila",
+   "summary": "Z telefonu Igi, za jej zgodą.",
+   "body": [
+    {
+     "log": [
+      "22:41  Emil: Wypiłem herbatę w barze. Barman mnie poznał. Patrzył tak, jak oni wszyscy wtedy.",
+      "23:02  Emil: Stoimy przed Gajem. Akurat tutaj. Nie mogę oddychać.",
+      "23:03  Iga:  Oddychaj. Jestem za ścianą. Za pół godziny będzie po wszystkim.",
+      "23:24  Emil: wychodze technicznymi drzwiami. nie podchodz do okna. nie czekaj",
+      "23:31  Olek: Minął mnie. Nie zatrzymał się. Poszedł za budynek."
+     ]
+    },
+    {
+     "note": "Wcześniejsza korespondencja Emila z Igą — kilkaset wiadomości — jest pisana starannie, z wielkimi literami i polskimi znakami."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-12 23:02",
+     "Ostatnia wiadomość od Emila pisana jego stylem",
+     "Wiadomości"
+    ],
+    [
+     "2026-11-12 23:24",
+     "Wiadomość z telefonu Emila: „wychodze technicznymi drzwiami”",
+     "Wiadomości"
+    ],
+    [
+     "2026-11-12 23:31",
+     "Olek: „Minął mnie. Nie zatrzymał się.”",
+     "Wiadomości"
+    ]
+   ]
+  },
+  {
+   "id": "e29",
+   "type": "Fotografia",
+   "title": "Zdjęcie Olka z peronu",
+   "summary": "23:30, mężczyzna w szarym płaszczu od tyłu.",
+   "body": [
+    "Olek Bem zrobił zdjęcie, gdy mężczyzna go mijał. Ujęcie od tyłu, z boku: mężczyzna w szarym płaszczu i kaszkiecie przechodzi tuż obok przeszklonej gabloty z rozkładem jazdy.",
+    "Czubek kaszkietu sięga mniej więcej czterech piątych wysokości gabloty, licząc od jej dolnej krawędzi.",
+    {
+     "quote": "Nie widziałem twarzy. Był wyższy, niż się spodziewałem, i szedł bardzo szybko.",
+     "by": "Olek Bem, telefonicznie"
+    }
+   ]
+  },
+  {
+   "id": "x1",
+   "type": "Kadry",
+   "title": "Personel pociągu",
+   "summary": "Wykaz z działu kadr przewoźnika.",
+   "private": true,
+   "body": [
+    {
+     "log": [
+      "Roman Kot      kierownik pociągu   nr 4471   189 cm   smycz czerwona",
+      "Wiesław Pająk  konduktor           nr 2290   170 cm   smycz granatowa",
+      "Tomasz Nowik   pomocnik konduktora nr 5108   186 cm   smycz granatowa",
+      "Jan Wrona      maszynista          nr 3305   175 cm   smycz granatowa",
+      "Damian Lis     barman (catering)   —         188 cm   smycz czarna"
+     ]
+    },
+    "Umundurowanie: kierownik, konduktor, pomocnik i maszynista — granatowe mundury z poziomymi srebrnymi paskami odblaskowymi na rękawach. Barman — biała marynarka firmy cateringowej.",
+    {
+     "note": "Plomby kolejowe nr 0401–0420 wydano 9.11 na nr służbowy 4471."
+    }
+   ]
+  },
+  {
+   "id": "x2",
+   "type": "Plan",
+   "title": "Plan peronu stacji Wrzos",
+   "summary": "Od zarządcy stacji.",
+   "private": true,
+   "body": [
+    "Peron jednokrawędziowy, długość 160 m. Kiosk w połowie peronu, ok. 40 m od miejsca, gdzie zatrzymuje się koniec wagonu 2. Za budynkiem dworca — kontenery na odpady. Postój taksówek przed głównym wejściem, po drugiej stronie budynku.",
+    {
+     "kv": [
+      [
+       "Gablota z rozkładem jazdy",
+       "przy kiosku"
+      ],
+      [
+       "Dolna krawędź gabloty",
+       "1,10 m nad peronem"
+      ],
+      [
+       "Górna krawędź gabloty",
+       "2,10 m nad peronem"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "x3",
+   "type": "Akta osobowe",
+   "title": "Akta Emila Sowy (2016)",
+   "summary": "Z archiwum przewoźnika.",
+   "private": true,
+   "body": [
+    {
+     "kv": [
+      [
+       "Stanowisko w 2016",
+       "dyżurny ruchu, nastawnia Gaj"
+      ],
+      [
+       "Bezpośredni przełożony",
+       "kierownik zmiany Roman Kot"
+      ],
+      [
+       "Wzrost (badania okresowe)",
+       "168 cm"
+      ],
+      [
+       "Wzrok",
+       "krótkowzroczność −4,5 D, okulary obowiązkowe"
+      ]
+     ]
+    },
+    {
+     "note": "Po katastrofie Emil Sowa odszedł z kolei. Roman Kot został przeniesiony do drużyn konduktorskich i awansował na kierownika pociągu."
+    }
+   ]
+  },
+  {
+   "id": "x4",
+   "type": "Mapa",
+   "title": "Zasięg nadajników wzdłuż linii",
+   "summary": "Od operatora sieci komórkowej.",
+   "private": true,
+   "body": [
+    {
+     "log": [
+      "BTS Wierzbno-Wschód   km 0–9",
+      "BTS Gaj-Las           km 10–21",
+      "BTS Wrzos-Stacja      km 22–31",
+      "BTS Olszyny           km 32–41",
+      "BTS Las Karski        km 42–49",
+      "BTS Karsk-Zachód      km 50–58"
+     ]
+    },
+    {
+     "note": "Kilometraż liczony od stacji Wierzbno."
+    }
+   ]
+  },
+  {
+   "id": "x5",
+   "type": "Wydruk",
+   "title": "Rejestrator prędkości lokomotywy",
+   "summary": "Gdzie był pociąg o której.",
+   "private": true,
+   "body": [
+    {
+     "log": [
+      "22:58–23:15   km 18,4   postój (semafor przed Gajem)",
+      "23:27–23:33   km 27,0   postój Wrzos",
+      "23:40         km 34,2   80 km/h",
+      "23:46         km 41,6   85 km/h",
+      "23:52         km 47,3   70 km/h",
+      "23:58         km 53,8   70 km/h",
+      "01:40         km 112,0  Karsk"
+     ]
+    },
+    {
+     "note": "Czas zgodny z czasem urzędowym."
+    }
+   ]
+  },
+  {
+   "id": "x6",
+   "type": "List",
+   "title": "List Emila do prokuratury",
+   "summary": "Napisany w październiku.",
+   "private": true,
+   "body": [
+    {
+     "quote": "Szanowny Panie Prokuratorze, po długim namyśle zdecydowałem się złożyć zeznania w sprawie wydarzeń z 14 marca 2016 roku. Proszę o zapewnienie mi możliwości stawienia się w sądzie bez wcześniejszego ujawniania mojego zamiaru. Z wyrazami szacunku, Emil Sowa",
+     "by": "list e-mail, 19 października"
+    },
+    {
+     "note": "Emil zawsze pisze starannie, z wielką literą i polskimi znakami — także w SMS-ach, co potwierdza jego siostra."
+    }
+   ]
+  },
+  {
+   "id": "t1",
+   "type": "Zeznanie",
+   "title": "Iga: plan ucieczki Emila",
+   "summary": "Wysiadka na Wrzosie miała być ustawiona.",
+   "testimony": true,
+   "body": [
+    "Iga przyznaje, że znała Emila i zorganizowała jego „zniknięcie”: wysiadka na Wrzosie tylnymi drzwiami, przy kiosku czeka Olek Bem z niebieską torbą, nocleg w bezpiecznym mieszkaniu, rano sąd. Bilet do Karska był zmyłką. Sama jechała w przedziale 9, żeby go pilnować."
+   ]
+  },
+  {
+   "id": "t2",
+   "type": "Zeznanie",
+   "title": "Iga: „To nie był on”",
+   "summary": "Na Wrzosie wysiadł ktoś inny.",
+   "testimony": true,
+   "body": [
+    "Iga uznaje, że mężczyzna w płaszczu i kaszkiecie na Wrzosie nie był Emilem: był wysoki, szedł wyprostowany, długim krokiem. Emil był niski. Przypomina wiadomość Olka: „Minął mnie. Nie zatrzymał się.”"
+   ]
+  },
+  {
+   "id": "t3",
+   "type": "Zeznanie",
+   "title": "Konduktor: kawa w barze",
+   "summary": "Gdzie naprawdę był przed Gajem.",
+   "testimony": true,
+   "body": [
+    "Wiesław Pająk przyznaje, że od 23:00 do 23:15 siedział w barze z barmanem, który cały czas był za ladą. Około 23:03 przez bar w stronę wagonu 2 przeszedł szybko kierownik pociągu z pękiem kluczy w ręku."
+   ]
+  },
+  {
+   "id": "t4",
+   "type": "Zeznanie",
+   "title": "Barman: rozmowa z Emilem",
+   "summary": "„Jutro w sądzie powiem, kto kazał”.",
+   "testimony": true,
+   "body": [
+    "Damian Lis rozpoznał Emila — jego brat zginął pod Gajem. Emil powiedział mu w barze: „To nie ja kazałem dać ten sygnał. Ja tylko wykonałem polecenie. Jutro w sądzie powiem, kto kazał.”"
+   ]
+  },
+  {
+   "id": "t5",
+   "type": "Zeznanie",
+   "title": "Kierownik: znał Emila",
+   "summary": "Był jego przełożonym w Gaju.",
+   "testimony": true,
+   "body": [
+    "Roman Kot przyznaje, że był bezpośrednim przełożonym Emila Sowy na nastawni w Gaju. Twierdzi, że nie widział go od dziesięciu lat i nie rozpoznał w pociągu."
+   ]
+  },
+  {
+   "id": "t6",
+   "type": "Zeznanie",
+   "title": "Kierownik: postój przed Gajem",
+   "summary": "Nie był w lokomotywie.",
+   "testimony": true,
+   "body": [
+    "Roman Kot przyznaje, że w czasie postoju przed Gajem obchodził wagony 2 i 3 i dzwonił do maszynisty z wagonu 2."
+   ]
+  },
+  {
+   "id": "t7",
+   "type": "Zeznanie",
+   "title": "Kierownik: koniec składu na Wrzosie",
+   "summary": "„Poślizgnąłem się”.",
+   "testimony": true,
+   "body": [
+    "Roman Kot przyznaje, że na Wrzosie wyszedł na peron od tyłu składu i dał sygnał odjazdu z końca. Spóźnienie tłumaczy poślizgnięciem na mokrym peronie."
+   ]
+  },
+  {
+   "id": "t8",
+   "type": "Zeznanie",
+   "title": "Kierownik odmawia odpowiedzi",
+   "summary": "Po pytaniu o toaletę T2B.",
+   "testimony": true,
+   "body": [
+    "Skonfrontowany z raportem technika (T2B sprawna), Roman Kot odmawia dalszych odpowiedzi i żąda adwokata."
+   ]
+  },
+  {
+   "id": "t9",
+   "type": "Zeznanie",
+   "title": "Kierownik: zamiana służby",
+   "summary": "Sam zaproponował zamianę.",
+   "testimony": true,
+   "body": [
+    "Roman Kot przyznaje, że to on zaproponował Markowi Zającowi zamianę służby na noc 12/13 listopada. Jako powód podaje „prywatne sprawy w Karsku” i odmawia szczegółów."
+   ]
+  }
+ ],
+ "privateClues": [
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5",
+  "x6"
+ ],
+ "puzzles": [
+  {
+   "id": "p-height",
+   "kind": "Analiza zdjęcia",
+   "title": "Mężczyzna na peronie",
+   "prompt": "Jakiego wzrostu był mężczyzna w szarym płaszczu ze zdjęcia z peronu? Podajcie wynik w centymetrach.",
+   "requires": [
+    "e29"
+   ],
+   "input": "number",
+   "answers": [
+    "182-196"
+   ],
+   "hints": [
+    "Zdjęcie pokazuje mężczyznę tuż przy gablocie z rozkładem. Ktoś z was ma plan peronu z jej wymiarami.",
+    "Gablota zaczyna się 1,10 m nad peronem, a kończy na 2,10 m. Ile to jest cztery piąte jej wysokości, licząc od dołu?",
+    "1,10 m + 0,8 × 1,00 m = 1,90 m do czubka kaszkietu. Bez nakrycia głowy: ok. 186–188 cm."
+   ],
+   "solution": "Czubek kaszkietu był ok. 1,90 m nad peronem, więc mężczyzna miał ok. 186–188 cm. Emil miał 168 cm — to nie był on.",
+   "reward": {
+    "time": [
+     [
+      "2026-11-12 23:30",
+      "Przy kiosku płaci mężczyzna ok. 187 cm wzrostu — to nie Emil (168 cm)",
+      "Analiza zdjęcia (ustalone)"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "p-km",
+   "kind": "Analiza danych",
+   "title": "Gdzie zamilkł telefon",
+   "prompt": "Na którym kilometrze trasy telefon Emila na dobre stracił zasięg? Podajcie numer kilometra — ekipa przeszuka tam nasyp.",
+   "requires": [
+    "e04"
+   ],
+   "input": "number",
+   "answers": [
+    "46-48"
+   ],
+   "hints": [
+    "Logowania telefonu mówią, kiedy zamilkł. Ale żeby wiedzieć gdzie, trzeba wiedzieć, gdzie wtedy był pociąg.",
+    "Ktoś z was ma wydruk z rejestratora prędkości lokomotywy, a ktoś mapę zasięgu nadajników. Telefon zamilkł o 23:52.",
+    "O 23:52 pociąg był na km 47,3 — w zasięgu BTS Las Karski (km 42–49). Szukajcie na 47. kilometrze."
+   ],
+   "solution": "Telefon zalogował się ostatni raz o 23:52 w BTS Las Karski. Rejestrator prędkości pokazuje, że o 23:52 pociąg był na km 47,3. Telefon jechał pociągiem dalej za Wrzos — Emil z nim nie wysiadł.",
+   "reward": {
+    "spots": [
+     "sp-ballast"
+    ],
+    "time": [
+     [
+      "2026-11-12 23:52",
+      "Telefon Emila wypada z pociągu na km 47,3 (pociąg jedzie 70 km/h)",
+      "Analiza danych (ustalone)"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "p-seal",
+   "kind": "Zamek szyfrowy",
+   "title": "Do kogo należy plomba",
+   "prompt": "Technik depotu otworzy rejestr wydanych plomb tylko po podaniu numeru służbowego osoby, której przydzielono plombę z drzwi toalety. Ustawcie ten numer.",
+   "requires": [
+    "e10"
+   ],
+   "input": "digits4",
+   "answers": [
+    "4471"
+   ],
+   "hints": [
+    "Numer plomby widać na zdjęciu drzwi T2B. Plomby wydaje się seriami konkretnym osobom.",
+    "Wykaz personelu z kadr mówi, komu wydano serię plomb 0401–0420.",
+    "Seria 0401–0420 należy do numeru służbowego 4471."
+   ],
+   "solution": "Plomba 0412 pochodzi z serii 0401–0420 wydanej na numer służbowy 4471 — kierownika pociągu Romana Kota.",
+   "reward": {
+    "time": [
+     [
+      "2026-11-12 23:10",
+      "Plombę 0412 na T2B założył właściciel numeru 4471",
+      "Rejestr plomb (ustalone)"
+     ]
+    ]
+   }
+  }
+ ],
+ "tableMode": {
+  "parBonus": 6,
+  "locations": [
+   {
+    "id": "hq",
+    "name": "Centrala wydziału",
+    "kind": "Zapytania z depotu",
+    "desc": "Laptop i telefon w pokoju dyżurnego depotu. Każde zapytanie to jeden ruch — odpowiedzi przychodzą od razu.",
+    "spots": [
+     {
+      "id": "sp-hq-staff",
+      "name": "Kadry przewoźnika",
+      "text": "Prosicie o wykaz personelu pociągu i wydanych plomb.",
+      "gives": [
+       "x1"
+      ]
+     },
+     {
+      "id": "sp-hq-station",
+      "name": "Zarządca stacji Wrzos",
+      "text": "Prosicie o plan peronu stacji Wrzos.",
+      "gives": [
+       "x2"
+      ]
+     },
+     {
+      "id": "sp-hq-archive",
+      "name": "Archiwum przewoźnika",
+      "text": "Prosicie o akta osobowe Emila Sowy z 2016 roku.",
+      "gives": [
+       "x3"
+      ]
+     },
+     {
+      "id": "sp-hq-bts",
+      "name": "Operator sieci",
+      "text": "Prosicie o mapę zasięgu nadajników wzdłuż linii.",
+      "gives": [
+       "x4"
+      ]
+     },
+     {
+      "id": "sp-hq-recorder",
+      "name": "Dział techniczny",
+      "text": "Prosicie o wydruk z rejestratora prędkości lokomotywy.",
+      "gives": [
+       "x5"
+      ]
+     },
+     {
+      "id": "sp-hq-prosecutor",
+      "name": "Prokuratura",
+      "text": "Prosicie o korespondencję Emila z prokuraturą.",
+      "gives": [
+       "x6"
+      ]
+     }
+    ]
+   }
+  ],
+  "questions": {}
+ },
+ "hintTrail": [
+  {
+   "unless": [
+    "sp-t2b"
+   ],
+   "text": "Przeszukajcie korytarz wagonu 2. Zaplombowane drzwi to też drzwi."
+  },
+  {
+   "unless": [
+    "lie:ig-l1"
+   ],
+   "when": [
+    "e02"
+   ],
+   "text": "Rezerwacje przedziałów 9 i 10 mają coś wspólnego. Zapytajcie sąsiadkę Emila, czy na pewno go nie znała."
+  },
+  {
+   "unless": [
+    "p-height"
+   ],
+   "when": [
+    "e29"
+   ],
+   "text": "Zdjęcie Olka pokazuje mężczyznę przy gablocie. Ktoś ma plan peronu z jej wymiarami — policzcie, jak wysoki był ten człowiek."
+  },
+  {
+   "unless": [
+    "p-km"
+   ],
+   "when": [
+    "e04"
+   ],
+   "text": "Telefon Emila zamilkł o 23:52. Gdzie był wtedy pociąg? Połączcie mapę nadajników z rejestratorem prędkości."
+  },
+  {
+   "unless": [
+    "p-seal"
+   ],
+   "when": [
+    "e10"
+   ],
+   "text": "Plomba na T2B ma numer. Kadry wiedzą, komu wydano tę serię."
+  },
+  {
+   "unless": [
+    "lie:k-l1"
+   ],
+   "when": [
+    "e17"
+   ],
+   "text": "Kasa baru pamięta, kto pił kawę podczas postoju. Konduktor mówi co innego."
+  },
+  {
+   "unless": [
+    "sp-kiosk",
+    "sp-bin"
+   ],
+   "text": "Jedźcie na stację Wrzos. Kiosk ma kamerę, a ktoś musiał gdzieś zostawić płaszcz."
+  },
+  {
+   "unless": [
+    "lie:ro-l2"
+   ],
+   "when": [
+    "e19"
+   ],
+   "text": "Maszynista mówi jasno, gdzie był kierownik podczas postoju. Skonfrontujcie to z jego wersją."
+  },
+  {
+   "unless": [
+    "sp-taxi"
+   ],
+   "text": "Pomocnik konduktora też wysiadł na Wrzosie — i też ma mundur. Sprawdźcie, gdzie był o 23:30."
+  },
+  {
+   "unless": [
+    "e28"
+   ],
+   "text": "Ktoś wysłał Idze wiadomość z telefonu Emila. Porównajcie ją z tym, jak Emil zwykle pisał."
+  },
+  {
+   "text": "Macie dość, by złożyć raport. Upewnijcie się, że każdy wniosek umiecie podeprzeć dowodem."
+  }
+ ],
+ "report": {
+  "questions": [
+   {
+    "id": "r-who",
+    "q": "Kto zabił Emila Sowę?",
+    "type": "single",
+    "points": 13,
+    "options": [
+     [
+      "roman",
+      "Roman Kot, kierownik pociągu"
+     ],
+     [
+      "damian",
+      "Damian Lis, barman"
+     ],
+     [
+      "iga",
+      "Iga Malec, dziennikarka"
+     ],
+     [
+      "wieslaw",
+      "Wiesław Pająk, konduktor"
+     ],
+     [
+      "tomasz",
+      "Tomasz Nowik, pomocnik konduktora"
+     ],
+     [
+      "escape",
+      "Nikt — Emil uciekł sam"
+     ]
+    ],
+    "correct": "roman",
+    "proof": {
+     "count": 3,
+     "each": 4,
+     "valid": [
+      "e22",
+      "e23",
+      "x1",
+      "e29",
+      "e13",
+      "e28",
+      "x6",
+      "e10",
+      "e14",
+      "e15",
+      "e09",
+      "e19",
+      "e20",
+      "t3",
+      "e16",
+      "e27",
+      "x3",
+      "e12",
+      "e26",
+      "t7",
+      "t6"
+     ],
+     "label": "Wskażcie trzy dowody, które najmocniej łączą sprawcę ze zbrodnią."
+    }
+   },
+   {
+    "id": "r-how",
+    "q": "Jak zginął Emil?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "lanyard",
+      "Uduszony smyczą kierownika pociągu"
+     ],
+     [
+      "blow",
+      "Uderzony w głowę ciężkim przedmiotem"
+     ],
+     [
+      "pushed",
+      "Wypchnięty z jadącego pociągu"
+     ],
+     [
+      "poison",
+      "Otruty herbatą z baru"
+     ]
+    ],
+    "correct": "lanyard"
+   },
+   {
+    "id": "r-when",
+    "q": "Kiedy zginął Emil?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "gaj",
+      "Podczas postoju przed Gajem, ok. 23:05"
+     ],
+     [
+      "bar",
+      "W barze, ok. 22:30"
+     ],
+     [
+      "wrzos",
+      "Na stacji Wrzos, ok. 23:30"
+     ],
+     [
+      "after",
+      "Po odjeździe z Wrzosu, ok. 23:50"
+     ]
+    ],
+    "correct": "gaj"
+   },
+   {
+    "id": "r-wrzos",
+    "q": "Kto wysiadł na Wrzosie w płaszczu Emila i zapłacił jego kartą?",
+    "type": "single",
+    "points": 15,
+    "options": [
+     [
+      "roman",
+      "Roman Kot"
+     ],
+     [
+      "emil",
+      "Emil Sowa"
+     ],
+     [
+      "tomasz",
+      "Tomasz Nowik"
+     ],
+     [
+      "damian",
+      "Damian Lis"
+     ]
+    ],
+    "correct": "roman"
+   },
+   {
+    "id": "r-motive",
+    "q": "Jaki był motyw?",
+    "type": "single",
+    "points": 15,
+    "options": [
+     [
+      "gaj",
+      "Zeznanie Emila obciążało sprawcę winą za katastrofę pod Gajem"
+     ],
+     [
+      "revenge",
+      "Zemsta za śmierć brata w katastrofie"
+     ],
+     [
+      "money",
+      "Rabunek"
+     ],
+     [
+      "story",
+      "Zdobycie materiału do reportażu"
+     ]
+    ],
+    "correct": "gaj"
+   },
+   {
+    "id": "r-body",
+    "q": "Gdzie ukryto ciało Emila?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "t2b",
+      "W zaplombowanej toalecie T2B"
+     ],
+     [
+      "bar",
+      "W chłodni wagonu barowego"
+     ],
+     [
+      "thrown",
+      "Wyrzucono je z pociągu za Wrzosem"
+     ],
+     [
+      "locker",
+      "W schowku na pościel w wagonie 2"
+     ]
+    ],
+    "correct": "t2b"
+   },
+   {
+    "id": "r-order",
+    "q": "Ułóżcie wydarzenia tej nocy we właściwej kolejności.",
+    "type": "order",
+    "points": 15,
+    "items": [
+     [
+      "bar",
+      "Barman rozpoznaje Emila"
+     ],
+     [
+      "murder",
+      "Zabójstwo w przedziale 10"
+     ],
+     [
+      "sms",
+      "Fałszywa wiadomość do Igi z telefonu Emila"
+     ],
+     [
+      "kiosk",
+      "Mężczyzna w płaszczu Emila płaci w kiosku"
+     ],
+     [
+      "phone",
+      "Telefon Emila wypada z pociągu"
+     ],
+     [
+      "karsk",
+      "Pociąg dociera do Karska"
+     ]
+    ],
+    "correct": [
+     "bar",
+     "murder",
+     "sms",
+     "kiosk",
+     "phone",
+     "karsk"
+    ]
+   }
+  ]
+ },
+ "solution": {
+  "summary": "Emila Sowę zabił kierownik pociągu Roman Kot — udusił go własną smyczą podczas postoju przed Gajem, ok. 23:05, a potem upozorował jego ucieczkę na stacji Wrzos.",
+  "steps": [
+   {
+    "h": "Emil nie wysiadł",
+    "p": "Ciało leżało w zaplombowanej toalecie T2B. Okulary krótkowidza zostały na stoliku, telefon jechał pociągiem dalej za Wrzos (ostatnie logowanie na km 47), a portfel z dokumentami ktoś wyrzucił razem z płaszczem."
+   },
+   {
+    "h": "Kiedy",
+    "p": "Ostatnia wiadomość pisana stylem Emila jest z 23:02. O 23:06 Iga słyszy stuknięcie za ścianą. O 23:10 kierownik plombuje T2B. Lekarz: zgon 22:45–23:30. Emil zginął podczas postoju przed Gajem."
+   },
+   {
+    "h": "Jak",
+    "p": "Uduszenie płaską taśmą szerokości 1,5 cm z czerwonymi włóknami w bruździe. Czerwone smycze nosi tylko kierownik pociągu; jego smycz jest przetarta, a jej kawałek leżał pod wieszakiem w przedziale 10."
+   },
+   {
+    "h": "Kto był w wagonie 2",
+    "p": "Konduktor i barman pili kawę w barze (kasa: 23:01 i 23:11) i widzieli, jak o 23:03 kierownik idzie do wagonu 2 z kluczami. O 23:08 dzwonił do maszynisty z wagonu 2 — a twierdził, że był w lokomotywie."
+   },
+   {
+    "h": "Mężczyzna na peronie",
+    "p": "Ze zdjęcia Olka: czubek kaszkietu ok. 1,90 m nad peronem, czyli człowiek ok. 187 cm — Emil miał 168. Płaszcz Emila ma rozprute szwy. Spod rękawa wystaje granatowy mundur z odblaskiem: nie barman. Konduktor ma 170 cm, maszynista był w lokomotywie, a pomocnik o 23:29 wsiadał do taksówki przed dworcem. Zostaje kierownik — który dał sygnał odjazdu z końca składu i wbiegł mokry tylnymi drzwiami baru."
+   },
+   {
+    "h": "Fałszywa wiadomość",
+    "p": "SMS z 23:24 napisano małymi literami i bez polskich znaków. Emil tak nigdy nie pisał. Tak pisze kierownik — cały dziennik pociągu i kartka „NIECZYNNE” są bez polskich znaków."
+   },
+   {
+    "h": "Telefon i kartki",
+    "p": "Telefon i strony oświadczenia wypadły z pociągu na km 47,3. W całym składzie otwiera się tylko okno przedziału służbowego — na jego ramie jest otarcie i zaklinowany róg kartki."
+   },
+   {
+    "h": "Motyw",
+    "p": "W 2016 r. Roman Kot był przełożonym Emila w Gaju. Oświadczenie Emila mówi wprost: sygnał podano na polecenie „kierownika zmiany R. K.”, który potem przepisał dziennik. Kot zamienił się na służbę, żeby jechać tym pociągiem, i zapisał się na niedzielny odbiór składu w depocie — wtedy zamierzał pozbyć się ciała."
+   },
+   {
+    "h": "Fałszywe tropy",
+    "p": "Barman miał motyw (brat zginął pod Gajem), ale kasa i konduktor dają mu alibi. Iga kłamała, bo chroniła plan ucieczki. Konduktor kłamał o kawie. Pomocnik wysiadł na Wrzosie naprawdę — do szpitala, do córki."
+   }
+  ]
+ },
+ "endings": {
+  "correct": {
+   "title": "Ostatni sygnał",
+   "text": "Roman Kot zostaje zatrzymany w hotelu przy depocie, w mundurze, z nową smyczą na szyi. Prokurator dołącza rozmokłe kartki oświadczenia Emila do akt sprawy Gaju. Dziesięć lat po katastrofie po raz pierwszy pada nazwisko człowieka, który kazał dać sygnał.",
+   "decision": {
+    "q": "Zostają kartki oświadczenia Emila i ludzie, którzy czekali na nie dziesięć lat. Co zrobicie z tym, co ustaliliście?",
+    "options": [
+     {
+      "id": "court",
+      "label": "Wszystko do prokuratury — niech mówi sąd",
+      "text": "Przekazujecie wszystko prokuraturze i milczycie. Proces trwa dwa lata. Kot dostaje dożywocie za zabójstwo, a sprawa Gaju zostaje wznowiona po raz drugi. Rodziny ofiar dowiadują się prawdy z sali sądowej — późno, ale z wyroku, którego nikt już nie podważy."
+     },
+     {
+      "id": "family",
+      "label": "Najpierw rodziny ofiar",
+      "text": "Zanim akta trafią do prasy, spotykacie się z rodzinami ofiar Gaju. Damian Lis słucha w milczeniu, potem prosi o jedno: żeby na procesie odczytano zdanie „To nie ja kazałem dać ten sygnał”. Sąd się zgadza. Rodziny pierwszy raz od dziesięciu lat nie wychodzą z sali z pustymi rękami."
+     },
+     {
+      "id": "press",
+      "label": "Pozwolić Idze opublikować reportaż",
+      "text": "Iga publikuje reportaż tydzień po zatrzymaniu. Kraj dowiaduje się, kto kazał dać sygnał pod Gajem. Obrona Kota wnosi o zmianę sądu, powołując się na nagonkę medialną, i proces się przeciąga. Ale nikt już nie może udawać, że tamtej nocy nie było winnego."
+     }
+    ]
+   }
+  },
+  "wrong": {
+   "damian": {
+    "title": "Wygodny motyw",
+    "text": "Zatrzymujecie barmana, bo jego brat zginął pod Gajem. Kasa fiskalna i konduktor dają mu alibi na każdą minutę, a obrońca rozbija akt oskarżenia w godzinę. Roman Kot w niedzielę o szóstej odbiera skład w depocie — sam."
+   },
+   "iga": {
+    "title": "Dziennikarka",
+    "text": "Oskarżacie kobietę, która próbowała uratować świadka. Wiadomości z jej telefonu i relacja Olka pokazują, że w chwili śmierci Emila pisała do niego za ścianą. Sprawa się sypie, a oświadczenie Emila zostaje w błocie przy torze."
+   },
+   "wieslaw": {
+    "title": "Konduktor na emeryturze",
+    "text": "Wiesław Pająk skłamał o kawie — i za to płaci. Ale ma 170 cm, a w czasie zbrodni siedział w barze na oczach barmana. Sąd go uniewinnia. Prawdziwy sprawca składa kondolencje rodzinie Emila."
+   },
+   "tomasz": {
+    "title": "Ojciec przy szpitalnym łóżku",
+    "text": "Oskarżacie pomocnika konduktora, bo wysiadł na Wrzosie w mundurze. Izba przyjęć i rejestr taksówek pokazują, że o 23:30 jechał do córki. Prokurator wycofuje akt oskarżenia, a wy tracicie sprawę."
+   },
+   "escape": {
+    "title": "Świadek, który uciekł",
+    "text": "Uznajecie, że Emil uciekł przed sądem. Sprawa Gaju zostaje umorzona po raz drugi z braku świadka. Gdyby ktoś zajrzał do zaplombowanej toalety w wagonie 2, wiedziałby więcej — ale w niedzielę o szóstej skład odbiera jego kierownik."
+   }
+  },
+  "partial": "Wskazaliście właściwą osobę, ale część waszych wniosków jest błędna lub niepoparta dowodami. Prokurator przyjmuje sprawę, choć obrona będzie miała o co walczyć."
+ }
+}

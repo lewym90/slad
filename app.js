@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.2.1';
+const VERSION = '2.3.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -465,7 +465,7 @@ function doSearch(c, g, sid) {
 /* --- OSOBY --- */
 function portrait(p, g, cls = '') { return `<div class="polaroid ${cls}" style="--rot:${rot(p.id)}"><div class="ph" ${p.img ? `style="background-image:url('${esc(p.img)}')"` : ''}>${p.img ? '' : `<span>${esc(initials(personName(g, p)))}</span>`}</div><div class="cap">${esc(personName(g, p))}</div></div>`; }
 const initials = n => n.replace(/[„”"]/g, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-function availableQs(c, g, p) { return p.questions.filter(q => !q.requires || q.requires.every(r => has(g, c, r))); }
+function availableQs(c, g, p) { return p.questions.filter(q => (!q.requires || q.requires.every(r => has(g, c, r))) && (!q.requiresAny || q.requiresAny.some(r => has(g, c, r)))); }
 function openStatements(g, p) { return p.statements.filter(s => g.claims.includes(s.id)); }
 function viewPeople(c, g) {
   return `<div class="page-head"><div><div class="eyebrow">Przesłuchania</div><h2>Osoby</h2><p>Każde pytanie to jeden ruch. Zeznania, które padną, trafiają do protokołu — możecie je podważyć dowodem. Nietrafiona konfrontacja kosztuje 2 punkty.</p></div></div>
@@ -558,7 +558,7 @@ function timeFacts(c, g) {
 }
 function timelineHTML(c, g) {
   const f = timeFacts(c, g); if (!f.length) return '<div class="empty">Oś czasu wypełni się godzinami z zebranych materiałów i zeznań.</div>';
-  let day = ''; let out = '<p class="muted">Godziny z dokumentów i zeznań, w kolejności. Zeznania to wersje świadków — nie fakty. Dane zapisane w innej strefie czasowej tu nie trafiają, dopóki ich nie przeliczycie.</p><div class="tl">';
+  let day = ''; let out = '<p class="muted">Godziny z dokumentów i zeznań, w kolejności. Zeznania to wersje świadków — nie fakty. Surowe dane techniczne trafią tu dopiero wtedy, gdy je przeanalizujecie.</p><div class="tl">';
   f.forEach(x => {
     const [d, t] = x.k.split(' '); const [y, m, dd] = d.split('-').map(Number);
     if (d !== day) { day = d; const dt = new Date(y, m - 1, dd); out += `<div class="tl-day">${DAYS[dt.getDay()]}, ${dd} ${MONTHS[m - 1]} ${y}</div>`; }
@@ -575,7 +575,8 @@ function ovPuzzle(c, g, id, msg) {
   let input = '';
   if (pz.input === 'digits4' || pz.input === 'time') {
     input = `<div class="dials">${dialVals[id].map((v, i) => `${pz.input === 'time' && i === 2 ? '<span class="dial-sep">:</span>' : ''}<div class="dial"><button data-a="dial" data-id="${id}" data-i="${i}" data-d="1" aria-label="W górę">▲</button><div class="num">${v}</div><button data-a="dial" data-id="${id}" data-i="${i}" data-d="-1" aria-label="W dół">▼</button></div>`).join('')}</div>`;
-  } else input = `<div class="field" style="margin:16px 0"><label for="pzin">Odpowiedź</label><input class="input" id="pzin" autocomplete="off" placeholder="Wpiszcie odpowiedź"></div>`;
+  } else if (pz.input === 'number') input = `<div class="field" style="margin:16px 0;max-width:260px"><label for="pzin">Liczba</label><input class="input" id="pzin" inputmode="decimal" autocomplete="off" placeholder="np. 123" style="font-family:var(--f-mono);font-size:1.6rem"></div>`;
+  else input = `<div class="field" style="margin:16px 0"><label for="pzin">Odpowiedź</label><input class="input" id="pzin" autocomplete="off" placeholder="Wpiszcie odpowiedź"></div>`;
   const hints = pz.hints.slice(0, st.hints || 0).map((h, i) => `<div class="hint-box"><span class="eyebrow">Podpowiedź ${i + 1}</span><br>${esc(h)}</div>`).join('');
   return { title: pz.title, kicker: pz.kind, body: st.solved ? `<div class="result-ok"><b>Rozwiązane.</b> ${esc(pz.solution)}</div>` :
    `<p style="font-family:var(--f-display);font-size:1.3rem;margin-top:0">${esc(pz.prompt)}</p>
@@ -589,9 +590,12 @@ function doSolve(c, g, id) {
   let val;
   if (pz.input === 'digits4' || pz.input === 'time') val = dialVals[id].join('');
   else val = ($('#pzin') || {}).value || '';
-  const ok = pz.input === 'text' ? pz.answers.some(a => norm(a) === norm(val)) : pz.answers.some(a => digits(a) === digits(val));
+  const num = parseFloat(String(val).replace(',', '.').replace(/[^0-9.\-]/g, ''));
+  const ok = pz.input === 'text' ? pz.answers.some(a => norm(a) === norm(val))
+    : pz.input === 'number' ? !isNaN(num) && pz.answers.some(a => { const [lo, hi] = String(a).split('-').map(Number); return num >= lo && num <= (isNaN(hi) ? lo : hi); })
+    : pz.answers.some(a => digits(a) === digits(val));
   st.attempts++;
-  if (!ok) { save(); sfx('wrong'); return pz.input === 'digits4' ? 'Zamek ani drgnie.' : pz.input === 'time' ? 'Ta godzina nie zgadza się z danymi. Sprawdźcie jeszcze raz.' : 'To nie pasuje do materiału. Spróbujcie inaczej.'; }
+  if (!ok) { save(); sfx('wrong'); return pz.input === 'digits4' ? 'Zamek ani drgnie.' : pz.input === 'number' ? 'Ta liczba nie zgadza się z materiałem. Policzcie jeszcze raz.' : pz.input === 'time' ? 'Ta godzina nie zgadza się z danymi. Sprawdźcie jeszcze raz.' : 'To nie pasuje do materiału. Spróbujcie inaczej.'; }
   st.solved = true;
   if (pz.reward && pz.reward.search) (pz.reward.spots || []).forEach(s => { if (!g.spots.includes(s)) { g.spots.push(s); gain(g, c, c.spot[s].gives); } });
   save(); toast(pz.title, 'Zagadka rozwiązana', 'Rozwiązane'); sfx('unlock');

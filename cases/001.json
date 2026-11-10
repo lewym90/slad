@@ -9,7 +9,7 @@
  "cover": "assets/cases/001-cover.webp",
  "keyart": "assets/art/001-keyart.webp",
  "ambience": "assets/audio/case-001.mp3",
- "par": 50,
+ "par": 52,
  "intro": {
   "lead": "Sobota, 7 listopada, 8:15. Willa Różyckich na skraju Brzezin. Woda w rzece Mrowie właśnie opadła.",
   "brief": [
@@ -50,7 +50,7 @@
     {
      "id": "h-q1",
      "q": "Proszę opowiedzieć o wczorajszym wieczorze.",
-     "a": "Kolacja była o ósmej, dla wszystkich. Pani Marta powiedziała przy stole coś przykrego doktorowi, wszyscy słyszeli. Koło wpół do jedenastej doktor kłócił się w gabinecie z… z tą panią. Krzyczał: „W moim domu nie będziesz stawiać mi warunków”. Potem było cicho.",
+     "a": "Kolacja była o ósmej, dla wszystkich. Pani Marta powiedziała przy stole coś przykrego doktorowi, wszyscy słyszeli. Koło wpół do jedenastej, kiedy zmywałam w kuchni, doktor kłócił się w gabinecie z… z tą panią. Krzyczał: „W moim domu nie będziesz stawiać mi warunków”. Potem było cicho.",
      "claims": [
       "h-c1"
      ],
@@ -94,18 +94,37 @@
      "requires": [
       "e07"
      ],
-     "a": "Nie powiedział. Pan Wiktor siedział wtedy w bibliotece, za ścianą. Doktor zawsze zamawiał dwie, jak spodziewał się rozmowy.",
+     "a": "Nie powiedział. Kazał przygotować dwie — tak robił zawsze, kiedy spodziewał się rozmowy.",
+     "claims": []
+    },
+    {
+     "id": "h-q7",
+     "q": "Gdzie byli pozostali domownicy, kiedy niosła pani herbatę do gabinetu?",
+     "a": "Pani Marta poszła na górę zaraz po jedenastej. W bibliotece paliło się światło, drzwi były uchylone — pan Wiktor siedział w fotelu z książką. Tej pani nie widziałam, jej pokój jest na piętrze.",
      "claims": []
     },
     {
      "id": "h-q4",
      "q": "Jak wyglądał gabinet, gdy znalazła pani ciało?",
-     "a": "Drzwi były przymknięte, nie na klucz. Drabina leżała. Doktor na plecach, głową przy kominku, oczy otwarte. Muzyki nie było, tylko taki szum z gramofonu. W kominku dogasało. Krzyknęłam, obudziłam cały dom i pobiegłam do oficyny zadzwonić — w willi przez burzę nikt nie miał zasięgu.",
+     "a": "Drzwi były przymknięte, nie na klucz. Drabina leżała na dywanie. Doktor na plecach, głową przy kominku, oczy otwarte. Muzyki nie było, tylko taki szum z gramofonu. W kominku dogasało.",
      "claims": [],
      "time": [
       [
        "2026-11-07 07:10",
        "Helena znajduje ciało w gabinecie",
+       "Helena"
+      ]
+     ]
+    },
+    {
+     "id": "h-q8",
+     "q": "Co pani zrobiła po znalezieniu ciała?",
+     "a": "Krzyknęłam. Pan Wiktor przybiegł pierwszy, potem pani Marta i ta pani. Pobiegłam do oficyny zadzwonić z mojego telefonu — w domu przez burzę nikt nie miał zasięgu. Zadzwoniłam na 112.",
+     "claims": [],
+     "time": [
+      [
+       "2026-11-07 07:24",
+       "Helena dzwoni na 112 z telefonu w oficynie",
        "Helena"
       ]
      ]
@@ -124,7 +143,16 @@
      "requires": [
       "e25"
      ],
-     "a": "W oficynie. Obudziły mnie syreny. Moja Kinga miała wtedy dziewiętnaście lat — przyjaźniła się z Anią jak siostra. Rano wyjechała do Irlandii, tak jak planowała. Od tamtej pory nie zadzwoniła ani razu. Ani razu przez trzynaście lat.",
+     "a": "W oficynie. Obudziły mnie syreny. Kiedy wybiegłam, skrzydło już się paliło.",
+     "claims": []
+    },
+    {
+     "id": "h-q9",
+     "q": "Kim jest dziewczynka ze zdjęcia na komodzie w pani pokoju?",
+     "requires": [
+      "e22"
+     ],
+     "a": "Moja córka. Kinga. Rano po pożarze wyjechała do Irlandii. (Helena odwraca ramkę zdjęciem do ściany.) Proszę jej w to nie mieszać.",
      "claims": [],
      "time": [
       [
@@ -216,7 +244,7 @@
     },
     {
      "id": "a-q2",
-     "q": "O co pokłóciła się pani z doktorem o 22:30?",
+     "q": "Helena słyszała, jak około 22:30 kłóciła się pani z doktorem w gabinecie. O co poszło?",
      "a": "Chciałam, żeby powiedział Marcie prawdę. Odmówił. Krzyczał, że nie będę stawiać mu warunków. Wyszłam po kwadransie — żył i był wściekły. Potem poszłam do swojego pokoju i już z niego nie wychodziłam.",
      "claims": [
       "a-c1",
@@ -330,7 +358,7 @@
     {
      "id": "w-q1",
      "q": "Co robił pan wieczorem?",
-     "a": "Po kolacji czytałem w bibliotece. Około jedenastej zasnąłem na kanapie. Spałem jak kamień — burza, deszcz, niczego nie słyszałem. Obudził mnie krzyk Heleny.",
+     "a": "Po kolacji czytałem w bibliotece. Około jedenastej zasnąłem na kanapie. Spałem jak kamień — niczego nie słyszałem. Obudził mnie krzyk Heleny.",
      "claims": [
       "w-l1"
      ]
@@ -468,10 +496,13 @@
     },
     {
      "id": "m-q3",
-     "q": "Co powiedziała pani mężowi przy kolacji?",
+     "q": "Helena mówi, że przy kolacji powiedziała pani mężowi coś przykrego. Co to było?",
      "a": "Że kiedyś zapłaci za tamtą noc. Wszyscy słyszeli. Nie żałuję. Nigdy nie uwierzyłam, że Ania zamknęła się sama.",
      "claims": [
       "m-c3"
+     ],
+     "requires": [
+      "h-q1"
      ]
     },
     {
@@ -507,6 +538,10 @@
        "Marta trafia do szpitala w Poznaniu (do 30.04.2019)",
        "Marta"
       ]
+     ],
+     "requiresAny": [
+      "e06",
+      "e08"
      ]
     },
     {
@@ -542,7 +577,7 @@
       "e27",
       "e14"
      ],
-     "response": "Zadzwonił w czwartek. Pierwszy raz od lat płakał do słuchawki. Powiedział: „Ania wróciła, przyjedź w piątek, Wiktor przygotuje papiery”. Przyjechałam. Powiedziałam przy kolacji, że wszystko, co moje, będzie jej. Wiktor zbladł, ale pomyślałam, że ze zdziwienia.",
+     "response": "Zadzwonił w czwartek. Pierwszy raz od lat płakał do słuchawki. Powiedział: „Ania wróciła, przyjedź w piątek, Wiktor przygotuje papiery”. Przyjechałam. Przy kolacji powiedziałam, że wszystko, co moje, będzie jej. Wiktor zbladł, ale pomyślałam, że ze zdziwienia. Skłamałam, bo wiem, jak to wygląda: kobieta, która nienawidzi męża, ma cały dzień, żeby tu przyjechać.",
      "gives": [
       "t9"
      ],
