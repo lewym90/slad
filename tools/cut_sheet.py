@@ -37,7 +37,7 @@ def bands(profile, n, thr):
     return [(edges[2 * k], edges[2 * k + 1]) for k in range(n)]
 
 
-def trim_dark(im, thr=18):
+def trim_dark(im, thr=7):
     a = np.asarray(im.convert('L'), dtype=float)
     rows = np.where(a.mean(axis=1) > thr)[0]
     cols = np.where(a.mean(axis=0) > thr)[0]

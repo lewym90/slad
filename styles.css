@@ -406,3 +406,9 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:22px 0}
 .score .rank{color:#e8695e;border-color:#e8695e;mix-blend-mode:normal;font-size:1.15rem;padding:.35em .9em;background:rgba(163,32,31,.12)}
 .ending .stamp,.brief .stamp,.doc .stamp{mix-blend-mode:multiply}
 .tabs button svg{width:15px;height:15px;vertical-align:-3px;margin-right:4px}
+
+.ev .thumb{display:block;margin:-4px -4px 2px;aspect-ratio:4/3;background-size:cover;background-position:center;border:5px solid #f3eee2;box-shadow:0 3px 8px rgba(0,0,0,.35);filter:contrast(1.05) saturate(.9)}
+.doc .photos{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:6px 0 18px}
+.doc .photo{margin:0;background:#f3eee2;padding:10px 10px 26px;box-shadow:0 12px 24px -10px rgba(0,0,0,.6);transform:rotate(var(--rot));max-width:min(100%,380px);flex:1 1 220px}
+.doc .photo img{width:100%;aspect-ratio:1;object-fit:cover;filter:contrast(1.05)}
+.loc .art,.scene{filter:none!important}

@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.0.0';
+const VERSION = '2.0.1';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './', './index.html', './styles.css', './app.js', './manifest.webmanifest',
@@ -9,7 +9,27 @@ const CORE = [
   './assets/art/001-keyart.webp', './assets/art/001-manor.webp',
   './assets/cases/001-cover.webp', './assets/cases/002-cover.webp', './assets/cases/003-cover.webp', './assets/cases/004-cover.webp', './assets/cases/005-cover.webp',
   './assets/cases/006-cover.webp', './assets/cases/007-cover.webp', './assets/cases/008-cover.webp', './assets/cases/009-cover.webp',
-  './assets/audio/reveal.mp3', './assets/audio/case-001.mp3'
+  './assets/audio/reveal.mp3', './assets/audio/case-001.mp3',
+  './assets/evidence/001-burnt.webp',
+  './assets/evidence/001-cups.webp',
+  './assets/evidence/001-gramophone.webp',
+  './assets/evidence/001-key.webp',
+  './assets/evidence/001-loafers.webp',
+  './assets/evidence/001-paperweight.webp',
+  './assets/evidence/001-pot.webp',
+  './assets/evidence/001-watch.webp',
+  './assets/evidence/001-x5-anna2013.webp',
+  './assets/people/001-helena.webp',
+  './assets/people/001-kinga.webp',
+  './assets/people/001-leon.webp',
+  './assets/people/001-marta.webp',
+  './assets/people/001-wiktor.webp',
+  './assets/places/001-guestrooms.webp',
+  './assets/places/001-library.webp',
+  './assets/places/001-orangery.webp',
+  './assets/places/001-outbuilding.webp',
+  './assets/places/001-study.webp',
+  './assets/places/001-westwing.webp'
 ];
 const FONTS = [
   './assets/fonts/caveat-latin-600-normal.woff2',

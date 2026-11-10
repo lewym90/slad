@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.0.0';
+const VERSION = '2.0.1';
 const STORE_KEY = 'slad.v2';
 
 /* ---------- narzędzia ---------- */
@@ -290,15 +290,17 @@ function blocksHTML(body) {
 function docHTML(c, e, compact) {
   const kind = e.private ? 'Tajne akta' : e.testimony ? 'Protokół' : 'Dowód';
   return `<article class="paper doc"><div class="dh"><div><small>Akta ${esc(c.id)} · ${kind} ${esc(e.id.toUpperCase())}</small><h3>${esc(e.title)}</h3></div><span class="stamp">${esc(e.type)}</span></div>
+   ${imgsOf(e).length ? `<div class="photos">${imgsOf(e).map((src, i) => `<figure class="photo" style="--rot:${i % 2 ? '1.6deg' : '-1.2deg'}"><img src="${esc(src)}" alt="${esc(e.title)}" loading="lazy"></figure>`).join('')}</div>` : ''}
    ${compact ? '' : `<p style="font-style:italic;color:var(--paperMuted);margin-top:0">${esc(e.summary)}</p>`}${blocksHTML(e.body)}</article>`;
 }
 
 /* --- AKTA --- */
 let filesFilter = 'all';
+const imgsOf = e => !e.img ? [] : Array.isArray(e.img) ? e.img : [e.img];
 function evCard(c, g, id) {
-  const e = c.ev[id]; const isNew = !g.read.includes(id);
+  const e = c.ev[id]; const isNew = !g.read.includes(id); const im = imgsOf(e)[0];
   return `<button class="ev ${e.testimony ? 'testimony' : ''} ${e.private ? 'private' : ''}" style="--rot:${rot(id)}" data-a="ev" data-id="${id}">
-   ${isNew ? '<span class="new">NOWE</span>' : ''}<span class="type">${esc(e.type)}</span><h4>${esc(e.title)}</h4><p>${esc(e.summary)}</p><span class="id">${esc(id.toUpperCase())}</span></button>`;
+   ${isNew ? '<span class="new">NOWE</span>' : ''}${im ? `<span class="thumb" style="background-image:url('${esc(im)}')"></span>` : ''}<span class="type">${esc(e.type)}</span><h4>${esc(e.title)}</h4><p>${esc(e.summary)}</p><span class="id">${esc(id.toUpperCase())}</span></button>`;
 }
 function viewFiles(c, g) {
   let ids = visibleEvidence(g, c).slice().reverse();

@@ -188,7 +188,8 @@
       ]
      ]
     }
-   ]
+   ],
+   "img": "assets/people/001-helena.webp"
   },
   {
    "id": "anna",
@@ -305,7 +306,8 @@
    "revealOn": [
     "a-l2",
     "h-l2"
-   ]
+   ],
+   "img": "assets/people/001-kinga.webp"
   },
   {
    "id": "wiktor",
@@ -427,7 +429,8 @@
       "t7"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/001-wiktor.webp"
   },
   {
    "id": "marta",
@@ -545,7 +548,8 @@
       ]
      ]
     }
-   ]
+   ],
+   "img": "assets/people/001-marta.webp"
   }
  ],
  "locations": [
@@ -619,7 +623,8 @@
      },
      "lockedText": "Zamek na cztery cyfry. Bez kodu nie otworzycie jej, nie niszcząc mebla — a to dowód."
     }
-   ]
+   ],
+   "img": "assets/places/001-study.webp"
   },
   {
    "id": "library",
@@ -630,7 +635,7 @@
     {
      "id": "sp-lamp",
      "name": "Kanapa i lampa",
-     "text": "Lampa do czytania wciąż się świeci. Na kanapie złożony koc.",
+     "text": "Lampa do czytania wciąż się świeci. Przez oparcie skórzanej kanapy przewieszony koc w kratę.",
      "gives": [
       "e15"
      ]
@@ -651,7 +656,8 @@
       "e17"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/001-library.webp"
   },
   {
    "id": "orangery",
@@ -687,7 +693,8 @@
       "e20"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/001-orangery.webp"
   },
   {
    "id": "outbuilding",
@@ -711,7 +718,8 @@
       "e22"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/001-outbuilding.webp"
   },
   {
    "id": "westwing",
@@ -735,7 +743,8 @@
       "e24"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/001-westwing.webp"
   },
   {
    "id": "guestrooms",
@@ -760,7 +769,8 @@
       "e27"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/001-guestrooms.webp"
   }
  ],
  "evidence": [
@@ -803,7 +813,8 @@
      "Most na Mrowie zalany — nikt nie wchodzi ani nie wychodzi do 06:05",
      "Raport"
     ]
-   ]
+   ],
+   "img": "assets/people/001-leon.webp"
   },
   {
    "id": "e02",
@@ -905,7 +916,8 @@
    "body": [
     "Taca z dwiema filiżankami i dzbankiem. Filiżanka po lewej wypita do połowy — na uszku odciski Leona. Druga pełna, zimna, nietknięta. Obie zaparzone tą samą herbatą.",
     "Krzesło naprzeciw fotela Leona odsunięte od stołu, poduszka wgnieciona: ktoś tu siedział."
-   ]
+   ],
+   "img": "assets/evidence/001-cups.webp"
   },
   {
    "id": "e08",
@@ -926,7 +938,8 @@
     {
      "note": "Plik spłonął słabo, bo był gruby i ciasno złożony. Ktoś wrzucił go do dogasającego ognia."
     }
-   ]
+   ],
+   "img": "assets/evidence/001-burnt.webp"
   },
   {
    "id": "e09",
@@ -946,12 +959,13 @@
       ],
       [
        "Mechanizm",
-       "bez automatycznego powrotu ramienia"
+       "elektryczny, w stylizowanej obudowie z tubą; bez automatycznego powrotu ramienia"
       ]
      ]
     },
     "Ramię zostało w rowku wybiegowym; talerz kręcił się do rana. Według Heleny Leon zawsze przewracał płytę na drugą stronę, gdy się kończyła."
-   ]
+   ],
+   "img": "assets/evidence/001-gramophone.webp"
   },
   {
    "id": "e10",
@@ -1058,7 +1072,8 @@
       "2026-11-07T06:00Z   --  brak odczytu"
      ]
     }
-   ]
+   ],
+   "img": "assets/evidence/001-watch.webp"
   },
   {
    "id": "e14",
@@ -1086,8 +1101,8 @@
    "title": "Biblioteka: lampa i koc",
    "summary": "Ktoś tu nie spał.",
    "body": [
-    "Lampa do czytania świeciła się całą noc. Koc na kanapie złożony w kostkę, poduszka nieugnieciona. Na stoliku otwarta książka — zakładka na stronie 12.",
-    "Helena: „Zawsze rano rozkładam koc gościom. Nikt go nie ruszał”."
+    "Lampa do czytania świeciła się całą noc. Koc wisi przewieszony przez oparcie kanapy dokładnie tak, jak wieczorem zostawiła go Helena — nikt go nie rozłożył. Poduszka nieugnieciona. Na stoliku otwarta książka, zakładka na stronie 12.",
+    "Helena: „Wieczorem zawsze przewieszam gościom koc przez oparcie. Rano wisiał tak samo”."
    ]
   },
   {
@@ -1098,7 +1113,8 @@
    "body": [
     "Mokasyny w rozmiarze 44. Na obcasach metalowe półksiężycowe podkówki — przy chodzeniu po kamiennej posadzce stukają.",
     "Buty świeżo wyczyszczone, szczotka obok jeszcze wilgotna. W szwie przy podeszwie lewego buta tkwi kilka drobnych białych granulek — technik rozpoznaje perlit, dodatek do ziemi doniczkowej."
-   ]
+   ],
+   "img": "assets/evidence/001-loafers.webp"
   },
   {
    "id": "e17",
@@ -1133,6 +1149,10 @@
     {
      "note": "Kształt kuli odpowiada ranie opisanej przez lekarza. Podstawa odpowiada kwadratowi na biurku."
     }
+   ],
+   "img": [
+    "assets/evidence/001-paperweight.webp",
+    "assets/evidence/001-pot.webp"
    ]
   },
   {
@@ -1192,7 +1212,8 @@
     {
      "note": "Ten pokój nie mógł zostać zamknięty od środka."
     }
-   ]
+   ],
+   "img": "assets/evidence/001-key.webp"
   },
   {
    "id": "e24",
@@ -1405,7 +1426,8 @@
     {
      "note": "Obie dziewczyny są podobnego wzrostu, obie ciemnowłose."
     }
-   ]
+   ],
+   "img": "assets/evidence/001-x5-anna2013.webp"
   },
   {
    "id": "x6",
