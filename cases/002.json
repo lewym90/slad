@@ -818,7 +818,7 @@
    "title": "Stolik w przedziale 10",
    "summary": "Okulary zostały na stoliku.",
    "body": [
-    "Łóżko zaścielone, pościel nietknięta. Na stoliku szklanka po herbacie w metalowym koszyczku i paragon z baru (22:30, herbata, karta E. Sowy).",
+    "Łóżko zaścielone, pościel nietknięta. Na stoliku szklanka niedopitej, zimnej herbaty w metalowym koszyczku i paragon z baru (22:30, herbata, karta E. Sowy).",
     "Obok szklanki leżą okulary korekcyjne w cienkiej oprawce — szkła mocno pomniejszające.",
     {
      "note": "Kto wysiada z pociągu na zawsze, zwykle zabiera okulary."
@@ -2067,5 +2067,1094 @@
    }
   },
   "partial": "Wskazaliście właściwą osobę, ale część waszych wniosków jest błędna lub niepoparta dowodami. Prokurator przyjmuje sprawę, choć obrona będzie miała o co walczyć."
+ },
+ "plan": {
+  "views": [
+   {
+    "id": "sklad",
+    "name": "Skład i wagon 2",
+    "w": 1000,
+    "h": 500,
+    "items": [
+     {
+      "t": "text",
+      "x": 500,
+      "y": 30,
+      "label": "SKŁAD · LOKOMOTYWA Z PRZODU",
+      "cls": "small"
+     },
+     {
+      "t": "room",
+      "x": 30,
+      "y": 46,
+      "w": 170,
+      "h": 84,
+      "label": "Lokomotywa",
+      "loc": "loco",
+      "ly": 108
+     },
+     {
+      "t": "room",
+      "x": 210,
+      "y": 46,
+      "w": 220,
+      "h": 84,
+      "label": "Wagon 1",
+      "cls": "plain",
+      "sub": "miejsca siedzące",
+      "ly": 88
+     },
+     {
+      "t": "room",
+      "x": 440,
+      "y": 46,
+      "w": 250,
+      "h": 84,
+      "label": "Wagon 2",
+      "cls": "hi",
+      "sub": "sypialny · szczegóły niżej",
+      "ly": 88
+     },
+     {
+      "t": "room",
+      "x": 700,
+      "y": 46,
+      "w": 240,
+      "h": 84,
+      "label": "Wagon 3 · bar",
+      "loc": "bar",
+      "sub": "ostatni",
+      "ly": 104
+     },
+     {
+      "t": "door",
+      "p": [
+       940,
+       72,
+       940,
+       104
+      ]
+     },
+     {
+      "t": "text",
+      "x": 944,
+      "y": 150,
+      "label": "tylne drzwi",
+      "cls": "small"
+     },
+     {
+      "t": "line",
+      "p": [
+       440,
+       134,
+       20,
+       196
+      ],
+      "cls": "dim"
+     },
+     {
+      "t": "line",
+      "p": [
+       690,
+       134,
+       980,
+       196
+      ],
+      "cls": "dim"
+     },
+     {
+      "t": "room",
+      "x": 20,
+      "y": 200,
+      "w": 80,
+      "h": 190,
+      "label": "",
+      "cls": "plain"
+     },
+     {
+      "t": "text",
+      "x": 60,
+      "y": 300,
+      "label": "wejście",
+      "cls": "small"
+     },
+     {
+      "t": "door",
+      "p": [
+       20,
+       270,
+       20,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       45,
+       390,
+       80,
+       390
+      ]
+     },
+     {
+      "t": "room",
+      "x": 100,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "1",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 155,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "2",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 210,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "3",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 265,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "4",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 320,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "5",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 375,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "6",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 430,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "7",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 485,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "8",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 540,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "9",
+      "cls": "plain",
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 595,
+      "y": 200,
+      "w": 55,
+      "h": 120,
+      "label": "10",
+      "loc": "compartment",
+      "lx": 636,
+      "ly": 226
+     },
+     {
+      "t": "room",
+      "x": 650,
+      "y": 200,
+      "w": 80,
+      "h": 120,
+      "label": "T2B",
+      "cls": "plain",
+      "ly": 224
+     },
+     {
+      "t": "room",
+      "x": 730,
+      "y": 200,
+      "w": 150,
+      "h": 120,
+      "label": "Służbowy",
+      "loc": "service",
+      "ly": 310
+     },
+     {
+      "t": "room",
+      "x": 100,
+      "y": 320,
+      "w": 780,
+      "h": 70,
+      "label": "korytarz",
+      "loc": "corridor",
+      "lx": 380,
+      "ly": 362
+     },
+     {
+      "t": "room",
+      "x": 880,
+      "y": 200,
+      "w": 100,
+      "h": 190,
+      "label": "",
+      "cls": "plain"
+     },
+     {
+      "t": "text",
+      "x": 930,
+      "y": 360,
+      "label": "przedsionek",
+      "cls": "small"
+     },
+     {
+      "t": "door",
+      "p": [
+       905,
+       200,
+       945,
+       200
+      ]
+     },
+     {
+      "t": "text",
+      "x": 930,
+      "y": 258,
+      "label": "drzwi",
+      "cls": "small"
+     },
+     {
+      "t": "text",
+      "x": 930,
+      "y": 272,
+      "label": "techniczne",
+      "cls": "small"
+     },
+     {
+      "t": "door",
+      "p": [
+       980,
+       270,
+       980,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       108,
+       320,
+       134,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       163,
+       320,
+       189,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       218,
+       320,
+       244,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       273,
+       320,
+       299,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       328,
+       320,
+       354,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       383,
+       320,
+       409,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       438,
+       320,
+       464,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       493,
+       320,
+       519,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       548,
+       320,
+       574,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       603,
+       320,
+       629,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       675,
+       320,
+       705,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       790,
+       320,
+       830,
+       320
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       880,
+       335,
+       880,
+       375
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       110,
+       200,
+       145,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       165,
+       200,
+       200,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       220,
+       200,
+       255,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       275,
+       200,
+       310,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       330,
+       200,
+       365,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       385,
+       200,
+       420,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       440,
+       200,
+       475,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       495,
+       200,
+       530,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       550,
+       200,
+       585,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       605,
+       200,
+       640,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       670,
+       200,
+       710,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       770,
+       200,
+       860,
+       200
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       130,
+       390,
+       180,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       205,
+       390,
+       255,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       280,
+       390,
+       330,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       355,
+       390,
+       405,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       430,
+       390,
+       480,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       505,
+       390,
+       555,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       580,
+       390,
+       630,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       655,
+       390,
+       705,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       730,
+       390,
+       780,
+       390
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       805,
+       390,
+       855,
+       390
+      ]
+     },
+     {
+      "t": "furn",
+      "x": 598,
+      "y": 272,
+      "w": 48,
+      "h": 24
+     },
+     {
+      "t": "furn",
+      "x": 598,
+      "y": 206,
+      "w": 20,
+      "h": 14
+     },
+     {
+      "t": "furn",
+      "x": 776,
+      "y": 206,
+      "w": 96,
+      "h": 28,
+      "label": "biurko",
+      "lx": 824,
+      "ly": 225
+     },
+     {
+      "t": "furn",
+      "x": 736,
+      "y": 206,
+      "w": 24,
+      "h": 74
+     },
+     {
+      "t": "text",
+      "x": 380,
+      "y": 420,
+      "label": "← do wagonu 1",
+      "cls": "small"
+     },
+     {
+      "t": "text",
+      "x": 930,
+      "y": 420,
+      "label": "do wagonu 3 →",
+      "cls": "small"
+     },
+     {
+      "t": "body",
+      "x": 676,
+      "y": 248,
+      "rot": -35,
+      "s": 0.6,
+      "req": "e08"
+     }
+    ],
+    "spots": {
+     "sp-driver": [
+      70,
+      68
+     ],
+     "sp-radio": [
+      170,
+      68
+     ],
+     "sp-till": [
+      740,
+      68
+     ],
+     "sp-locker": [
+      900,
+      68
+     ],
+     "sp-table": [
+      610,
+      240
+     ],
+     "sp-bag": [
+      636,
+      254
+     ],
+     "sp-hook": [
+      640,
+      306
+     ],
+     "sp-t2b": [
+      690,
+      340
+     ],
+     "sp-door": [
+      925,
+      222
+     ],
+     "sp-tech": [
+      220,
+      352
+     ],
+     "sp-log": [
+      800,
+      256
+     ],
+     "sp-window": [
+      856,
+      256
+     ],
+     "sp-lanyard": [
+      748,
+      296
+     ],
+     "sp-roster": [
+      840,
+      286
+     ]
+    }
+   },
+   {
+    "id": "wrzos",
+    "name": "Stacja Wrzos",
+    "w": 1000,
+    "h": 470,
+    "items": [
+     {
+      "t": "line",
+      "p": [
+       20,
+       50,
+       980,
+       50
+      ],
+      "cls": "rail"
+     },
+     {
+      "t": "line",
+      "p": [
+       20,
+       66,
+       980,
+       66
+      ],
+      "cls": "rail"
+     },
+     {
+      "t": "text",
+      "x": 500,
+      "y": 40,
+      "label": "tor",
+      "cls": "small"
+     },
+     {
+      "t": "room",
+      "x": 80,
+      "y": 80,
+      "w": 840,
+      "h": 70,
+      "label": "peron",
+      "loc": "wrzos",
+      "lx": 200,
+      "ly": 104
+     },
+     {
+      "t": "circ",
+      "x": 130,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 225,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 320,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 415,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 510,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 605,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 700,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 795,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "circ",
+      "x": 890,
+      "y": 140,
+      "r": 8,
+      "cls": "tree"
+     },
+     {
+      "t": "text",
+      "x": 860,
+      "y": 170,
+      "label": "rząd klonów",
+      "cls": "hand"
+     },
+     {
+      "t": "room",
+      "x": 470,
+      "y": 88,
+      "w": 60,
+      "h": 40,
+      "label": "kiosk",
+      "loc": "wrzos",
+      "ly": 114
+     },
+     {
+      "t": "furn",
+      "x": 536,
+      "y": 92,
+      "w": 12,
+      "h": 32
+     },
+     {
+      "t": "text",
+      "x": 556,
+      "y": 112,
+      "label": "gablota",
+      "cls": "small",
+      "anchor": "start"
+     },
+     {
+      "t": "room",
+      "x": 370,
+      "y": 180,
+      "w": 280,
+      "h": 110,
+      "label": "Budynek dworca",
+      "loc": "wrzos",
+      "ly": 242
+     },
+     {
+      "t": "door",
+      "p": [
+       490,
+       180,
+       530,
+       180
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       490,
+       290,
+       530,
+       290
+      ]
+     },
+     {
+      "t": "furn",
+      "x": 670,
+      "y": 250,
+      "w": 22,
+      "h": 30
+     },
+     {
+      "t": "furn",
+      "x": 696,
+      "y": 250,
+      "w": 22,
+      "h": 30
+     },
+     {
+      "t": "furn",
+      "x": 722,
+      "y": 250,
+      "w": 22,
+      "h": 30
+     },
+     {
+      "t": "text",
+      "x": 708,
+      "y": 300,
+      "label": "kontenery",
+      "cls": "small"
+     },
+     {
+      "t": "room",
+      "x": 80,
+      "y": 320,
+      "w": 840,
+      "h": 70,
+      "label": "droga dojazdowa",
+      "cls": "plain",
+      "lx": 200,
+      "ly": 370
+     },
+     {
+      "t": "furn",
+      "x": 420,
+      "y": 330,
+      "w": 120,
+      "h": 30,
+      "label": "postój taksówek"
+     },
+     {
+      "t": "text",
+      "x": 500,
+      "y": 430,
+      "label": "schemat · nie w skali",
+      "cls": "hand"
+     }
+    ],
+    "spots": {
+     "sp-kiosk": [
+      452,
+      108
+     ],
+     "sp-bin": [
+      745,
+      236
+     ],
+     "sp-taxi": [
+      560,
+      346
+     ]
+    }
+   },
+   {
+    "id": "trasa",
+    "name": "Trasa",
+    "w": 1000,
+    "h": 300,
+    "items": [
+     {
+      "t": "room",
+      "x": 640,
+      "y": 130,
+      "w": 260,
+      "h": 80,
+      "label": "Las Karski",
+      "loc": "tracks",
+      "cls": "forest",
+      "ly": 196
+     },
+     {
+      "t": "line",
+      "p": [
+       60,
+       170,
+       940,
+       170
+      ],
+      "cls": "track"
+     },
+     {
+      "t": "circ",
+      "x": 60,
+      "y": 170,
+      "r": 9,
+      "cls": "st"
+     },
+     {
+      "t": "text",
+      "x": 60,
+      "y": 120,
+      "label": "Wierzbno"
+     },
+     {
+      "t": "circ",
+      "x": 240,
+      "y": 170,
+      "r": 9,
+      "cls": "st"
+     },
+     {
+      "t": "text",
+      "x": 240,
+      "y": 236,
+      "label": "Gaj"
+     },
+     {
+      "t": "circ",
+      "x": 420,
+      "y": 170,
+      "r": 9,
+      "cls": "st"
+     },
+     {
+      "t": "text",
+      "x": 420,
+      "y": 120,
+      "label": "Wrzos"
+     },
+     {
+      "t": "circ",
+      "x": 600,
+      "y": 170,
+      "r": 9,
+      "cls": "st"
+     },
+     {
+      "t": "text",
+      "x": 600,
+      "y": 236,
+      "label": "Olszyny"
+     },
+     {
+      "t": "circ",
+      "x": 940,
+      "y": 170,
+      "r": 9,
+      "cls": "st"
+     },
+     {
+      "t": "text",
+      "x": 940,
+      "y": 120,
+      "label": "Karsk"
+     },
+     {
+      "t": "text",
+      "x": 500,
+      "y": 60,
+      "label": "KIERUNEK JAZDY →",
+      "cls": "small"
+     },
+     {
+      "t": "text",
+      "x": 500,
+      "y": 280,
+      "label": "schemat · nie w skali",
+      "cls": "hand"
+     }
+    ],
+    "spots": {
+     "sp-ballast": [
+      770,
+      150
+     ]
+    }
+   }
+  ]
  }
 }

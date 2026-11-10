@@ -97,7 +97,7 @@ for (const [name, w, h] of VPS) {
     const o = await p.evaluate(() => {
       const W = innerWidth; const out = [];
       if (document.documentElement.scrollWidth > W + 1) out.push('strona ' + document.documentElement.scrollWidth);
-      document.querySelectorAll('#app *').forEach(el => { if (el.closest('.tabs,.board-wrap,.log,.hero,.intro-hero,.hero-bg,.dials')) return; const rc = el.getBoundingClientRect(); if (rc.width && rc.right > W + 2 && getComputedStyle(el).position !== 'fixed') out.push((el.className || el.tagName) + ':' + Math.round(rc.right)); });
+      document.querySelectorAll('#app *').forEach(el => { if (el.closest('.tabs,.board-wrap,.log,.hero,.intro-hero,.hero-bg,.dials,.plan-scroll')) return; const rc = el.getBoundingClientRect(); if (rc.width && rc.right > W + 2 && getComputedStyle(el).position !== 'fixed') out.push((el.className || el.tagName) + ':' + Math.round(rc.right)); });
       return out.slice(0, 3);
     });
     if (o.length) bad.push(r + ' → ' + o.join(' | '));

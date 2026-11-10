@@ -622,7 +622,7 @@
     {
      "id": "sp-cups",
      "name": "Taca z herbatą",
-     "text": "Dwie filiżanki na stoliku przy oknie.",
+     "text": "Na rogu biurka taca: dzbanek i dwie filiżanki.",
      "gives": [
       "e07"
      ]
@@ -676,7 +676,7 @@
     {
      "id": "sp-lamp",
      "name": "Kanapa i lampa",
-     "text": "Lampa do czytania wciąż się świeci. Przez oparcie skórzanej kanapy przewieszony koc w kratę.",
+     "text": "Lampa do czytania wciąż się świeci. Przez oparcie skórzanej kanapy przewieszony gruby szary koc. Na stoliku karafka i jedna szklanka z resztką whisky.",
      "gives": [
       "e15"
      ]
@@ -956,7 +956,7 @@
    "summary": "Jedna wypita, druga pełna.",
    "body": [
     "Taca z dwiema filiżankami i dzbankiem. Filiżanka po lewej wypita do połowy — na uszku odciski Leona. Druga pełna, zimna, nietknięta. Obie zaparzone tą samą herbatą.",
-    "Krzesło naprzeciw fotela Leona odsunięte od stołu, poduszka wgnieciona: ktoś tu siedział."
+    "Krzesło po drugiej stronie biurka, naprzeciw fotela Leona, odsunięte, poduszka wgnieciona: ktoś tu siedział."
    ],
    "img": "assets/evidence/001-cups.webp"
   },
@@ -2152,5 +2152,785 @@
     }
    ]
   }
+ },
+ "plan": {
+  "views": [
+   {
+    "id": "parter",
+    "name": "Parter i podwórze",
+    "w": 960,
+    "h": 730,
+    "items": [
+     {
+      "t": "text",
+      "x": 480,
+      "y": 26,
+      "label": "OGRÓD",
+      "cls": "area"
+     },
+     {
+      "t": "room",
+      "x": 40,
+      "y": 60,
+      "w": 170,
+      "h": 325,
+      "label": "Zachodnie",
+      "loc": "westwing",
+      "cls": "closed",
+      "sub": "skrzydło · zamknięte",
+      "ly": 215
+     },
+     {
+      "t": "room",
+      "x": 210,
+      "y": 60,
+      "w": 190,
+      "h": 150,
+      "label": "Biblioteka",
+      "loc": "library",
+      "lx": 270,
+      "ly": 198
+     },
+     {
+      "t": "room",
+      "x": 400,
+      "y": 60,
+      "w": 300,
+      "h": 150,
+      "label": "Gabinet",
+      "loc": "study",
+      "lx": 560,
+      "ly": 198
+     },
+     {
+      "t": "room",
+      "x": 210,
+      "y": 210,
+      "w": 490,
+      "h": 45,
+      "label": "korytarz",
+      "cls": "plain",
+      "ly": 238
+     },
+     {
+      "t": "room",
+      "x": 700,
+      "y": 36,
+      "w": 180,
+      "h": 219,
+      "label": "Oranżeria",
+      "loc": "orangery",
+      "cls": "glass",
+      "ly": 236
+     },
+     {
+      "t": "room",
+      "x": 210,
+      "y": 255,
+      "w": 190,
+      "h": 130,
+      "label": "Hol",
+      "cls": "plain",
+      "lx": 270
+     },
+     {
+      "t": "room",
+      "x": 400,
+      "y": 255,
+      "w": 180,
+      "h": 130,
+      "label": "Jadalnia",
+      "cls": "plain"
+     },
+     {
+      "t": "room",
+      "x": 580,
+      "y": 255,
+      "w": 190,
+      "h": 130,
+      "label": "Kuchnia",
+      "cls": "plain"
+     },
+     {
+      "t": "door",
+      "p": [
+       240,
+       255,
+       300,
+       255
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       400,
+       300,
+       400,
+       340
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       580,
+       300,
+       580,
+       340
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       210,
+       305,
+       210,
+       345
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       352,
+       210,
+       386,
+       210
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       414,
+       210,
+       448,
+       210
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       700,
+       216,
+       700,
+       250
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       880,
+       70,
+       880,
+       110
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       250,
+       385,
+       300,
+       385
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       700,
+       385,
+       736,
+       385
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       240,
+       60,
+       330,
+       60
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       600,
+       60,
+       690,
+       60
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       440,
+       385,
+       540,
+       385
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       600,
+       385,
+       680,
+       385
+      ]
+     },
+     {
+      "t": "furn",
+      "x": 470,
+      "y": 62,
+      "w": 90,
+      "h": 14,
+      "label": "kominek",
+      "lx": 430,
+      "ly": 88
+     },
+     {
+      "t": "furn",
+      "x": 402,
+      "y": 64,
+      "w": 12,
+      "h": 140
+     },
+     {
+      "t": "furn",
+      "x": 420,
+      "y": 150,
+      "w": 36,
+      "h": 30,
+      "label": "gramofon",
+      "lx": 438,
+      "ly": 196
+     },
+     {
+      "t": "furn",
+      "x": 445,
+      "y": 118,
+      "w": 62,
+      "h": 10,
+      "label": "drabina",
+      "rot": -38,
+      "lx": 452,
+      "ly": 106
+     },
+     {
+      "t": "furn",
+      "x": 596,
+      "y": 108,
+      "w": 84,
+      "h": 48,
+      "label": "biurko",
+      "lx": 626,
+      "ly": 146
+     },
+     {
+      "t": "furn",
+      "x": 676,
+      "y": 64,
+      "w": 20,
+      "h": 18
+     },
+     {
+      "t": "furn",
+      "x": 226,
+      "y": 66,
+      "w": 120,
+      "h": 26,
+      "label": "kanapa",
+      "lx": 286,
+      "ly": 84
+     },
+     {
+      "t": "furn",
+      "x": 352,
+      "y": 112,
+      "w": 36,
+      "h": 36,
+      "label": "fotel",
+      "lx": 370,
+      "ly": 163
+     },
+     {
+      "t": "circ",
+      "x": 372,
+      "y": 90,
+      "r": 7,
+      "cls": ""
+     },
+     {
+      "t": "furn",
+      "x": 262,
+      "y": 118,
+      "w": 56,
+      "h": 26
+     },
+     {
+      "t": "circ",
+      "x": 740,
+      "y": 80,
+      "r": 14,
+      "cls": "pot"
+     },
+     {
+      "t": "circ",
+      "x": 820,
+      "y": 70,
+      "r": 16,
+      "cls": "pot"
+     },
+     {
+      "t": "circ",
+      "x": 760,
+      "y": 160,
+      "r": 13,
+      "cls": "pot"
+     },
+     {
+      "t": "circ",
+      "x": 845,
+      "y": 170,
+      "r": 13,
+      "cls": "pot"
+     },
+     {
+      "t": "furn",
+      "x": 352,
+      "y": 262,
+      "w": 40,
+      "h": 80,
+      "label": "schody",
+      "lx": 372,
+      "ly": 357
+     },
+     {
+      "t": "text",
+      "x": 275,
+      "y": 405,
+      "label": "wejście główne",
+      "cls": "small"
+     },
+     {
+      "t": "text",
+      "x": 380,
+      "y": 500,
+      "label": "podwórze · bruk",
+      "cls": "area"
+     },
+     {
+      "t": "line",
+      "p": [
+       718,
+       397,
+       718,
+       553
+      ],
+      "cls": "dim"
+     },
+     {
+      "t": "text",
+      "x": 740,
+      "y": 482,
+      "label": "ok. 30 m",
+      "cls": "hand",
+      "anchor": "start"
+     },
+     {
+      "t": "room",
+      "x": 560,
+      "y": 565,
+      "w": 300,
+      "h": 120,
+      "label": "Oficyna",
+      "loc": "outbuilding",
+      "lx": 780,
+      "ly": 675
+     },
+     {
+      "t": "line",
+      "p": [
+       700,
+       565,
+       700,
+       685
+      ],
+      "cls": ""
+     },
+     {
+      "t": "text",
+      "x": 630,
+      "y": 585,
+      "label": "pokój Heleny",
+      "cls": "small"
+     },
+     {
+      "t": "text",
+      "x": 780,
+      "y": 585,
+      "label": "sień",
+      "cls": "small"
+     },
+     {
+      "t": "door",
+      "p": [
+       706,
+       565,
+       740,
+       565
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       700,
+       630,
+       700,
+       660
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       580,
+       685,
+       660,
+       685
+      ]
+     },
+     {
+      "t": "furn",
+      "x": 570,
+      "y": 600,
+      "w": 28,
+      "h": 60
+     },
+     {
+      "t": "furn",
+      "x": 620,
+      "y": 640,
+      "w": 36,
+      "h": 28
+     },
+     {
+      "t": "furn",
+      "x": 812,
+      "y": 600,
+      "w": 24,
+      "h": 16,
+      "label": "telefon",
+      "lx": 824,
+      "ly": 630
+     },
+     {
+      "t": "body",
+      "x": 522,
+      "y": 80,
+      "rot": 0,
+      "s": 0.95,
+      "req": "sp-body"
+     }
+    ],
+    "spots": {
+     "sp-body": [
+      552,
+      120
+     ],
+     "sp-fire": [
+      584,
+      92
+     ],
+     "sp-gramo": [
+      474,
+      166
+     ],
+     "sp-desk": [
+      612,
+      172
+     ],
+     "sp-cups": [
+      662,
+      124
+     ],
+     "sp-drawer": [
+      648,
+      172
+     ],
+     "sp-printer": [
+      686,
+      98
+     ],
+     "sp-lamp": [
+      240,
+      128
+     ],
+     "sp-shoes": [
+      300,
+      168
+     ],
+     "sp-wall": [
+      388,
+      190
+     ],
+     "sp-floor": [
+      790,
+      190
+     ],
+     "sp-pots": [
+      826,
+      110
+     ],
+     "sp-gdoor": [
+      862,
+      90
+     ],
+     "sp-phone": [
+      790,
+      610
+     ],
+     "sp-hroom": [
+      640,
+      620
+     ]
+    }
+   },
+   {
+    "id": "pietro",
+    "name": "Piętro",
+    "w": 960,
+    "h": 470,
+    "items": [
+     {
+      "t": "text",
+      "x": 480,
+      "y": 26,
+      "label": "OGRÓD",
+      "cls": "area"
+     },
+     {
+      "t": "room",
+      "x": 40,
+      "y": 60,
+      "w": 840,
+      "h": 325,
+      "label": "",
+      "cls": "ghost"
+     },
+     {
+      "t": "text",
+      "x": 470,
+      "y": 420,
+      "label": "obrys parteru (linia przerywana)",
+      "cls": "small"
+     },
+     {
+      "t": "room",
+      "x": 40,
+      "y": 60,
+      "w": 170,
+      "h": 110,
+      "label": "Pokój Anny",
+      "loc": "westwing",
+      "cls": "closed",
+      "sub": "2013",
+      "ly": 110
+     },
+     {
+      "t": "room",
+      "x": 40,
+      "y": 170,
+      "w": 110,
+      "h": 215,
+      "label": "pokoje",
+      "cls": "closed",
+      "sub": "spalone",
+      "ly": 270
+     },
+     {
+      "t": "room",
+      "x": 150,
+      "y": 170,
+      "w": 60,
+      "h": 215,
+      "label": "",
+      "loc": "westwing",
+      "cls": "closed"
+     },
+     {
+      "t": "text",
+      "x": 186,
+      "y": 280,
+      "label": "korytarz",
+      "cls": "small",
+      "rot": -90
+     },
+     {
+      "t": "text",
+      "x": 40,
+      "y": 410,
+      "label": "ZACHODNIE SKRZYDŁO · ZAMKNIĘTE OD POŻARU",
+      "cls": "small",
+      "anchor": "start"
+     },
+     {
+      "t": "win",
+      "p": [
+       80,
+       60,
+       140,
+       60
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       160,
+       170,
+       200,
+       170
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       150,
+       210,
+       150,
+       240
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       150,
+       300,
+       150,
+       330
+      ]
+     },
+     {
+      "t": "text",
+      "x": 110,
+      "y": 50,
+      "label": "okno ok. 6 m nad tarasem",
+      "cls": "hand"
+     },
+     {
+      "t": "room",
+      "x": 400,
+      "y": 225,
+      "w": 370,
+      "h": 160,
+      "label": "",
+      "cls": "plain"
+     },
+     {
+      "t": "room",
+      "x": 520,
+      "y": 225,
+      "w": 140,
+      "h": 64,
+      "label": "Pokój „Anny”",
+      "loc": "guestrooms",
+      "ly": 268
+     },
+     {
+      "t": "room",
+      "x": 520,
+      "y": 321,
+      "w": 140,
+      "h": 64,
+      "label": "Pokój Marty",
+      "loc": "guestrooms",
+      "ly": 364
+     },
+     {
+      "t": "text",
+      "x": 720,
+      "y": 310,
+      "label": "korytarz",
+      "cls": "small"
+     },
+     {
+      "t": "furn",
+      "x": 406,
+      "y": 289,
+      "w": 44,
+      "h": 32,
+      "label": "schody",
+      "lx": 428,
+      "ly": 338
+     },
+     {
+      "t": "text",
+      "x": 428,
+      "y": 352,
+      "label": "do holu",
+      "cls": "small"
+     },
+     {
+      "t": "door",
+      "p": [
+       600,
+       289,
+       634,
+       289
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
+       600,
+       321,
+       634,
+       321
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       550,
+       225,
+       630,
+       225
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       550,
+       385,
+       630,
+       385
+      ]
+     },
+     {
+      "t": "text",
+      "x": 585,
+      "y": 215,
+      "label": "SKRZYDŁO WSCHODNIE",
+      "cls": "small"
+     }
+    ],
+    "spots": {
+     "sp-door13": [
+      180,
+      192
+     ],
+     "sp-window13": [
+      110,
+      80
+     ],
+     "sp-aroom": [
+      538,
+      244
+     ],
+     "sp-mroom": [
+      538,
+      340
+     ]
+    }
+   }
+  ]
  }
 }

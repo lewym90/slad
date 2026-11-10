@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.4.1';
+const VERSION = '2.5.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -425,11 +425,57 @@ function viewFiles(c, g) {
    ${ids.length ? `<div class="ev-grid">${ids.map(id => evCard(c, g, id)).join('')}</div>` : '<div class="empty">Brak materiałów w tej kategorii.</div>'}`;
 }
 
+
+/* --- PLAN MIEJSCA ZDARZENIA (szkic SVG z danych sprawy) --- */
+const planView = {};
+const BODY_PATH = 'M-5,13 L-14,18 L-22,30 L-19,33 L-10,24 L-8,36 L-9,62 L-3,62 L-1,40 L1,40 L3,62 L9,62 L8,36 L10,24 L19,33 L22,30 L14,18 L5,13 Z';
+function spotLoc(c, sid) { const l = c.locations.find(l => l.spots.some(s => s.id === sid)); return l ? l.id : null; }
+function spotNo(c, sid) { const l = c.locations.find(l => l.spots.some(s => s.id === sid)); return l ? l.spots.findIndex(s => s.id === sid) + 1 : 0; }
+function planSvg(c, g, v) {
+  const n = x => Math.round(x * 10) / 10;
+  const out = [];
+  const lbl = (x, y, t, cls, extra = '') => `<text class="${cls}" x="${n(x)}" y="${n(y)}" ${extra}>${esc(t)}</text>`;
+  v.items.forEach(it => {
+    if (it.t === 'room') {
+      const live = it.loc && c.loc[it.loc];
+      const lx = it.lx != null ? it.lx : it.x + it.w / 2, ly = it.ly != null ? it.ly : it.y + it.h / 2 + 5;
+      out.push(`<g class="pr ${it.cls || ''} ${live ? 'go' : ''}" ${live ? `data-a="loc" data-id="${it.loc}" role="button" tabindex="0" aria-label="${esc(c.loc[it.loc].name)}"` : ''}>
+        <rect x="${it.x}" y="${it.y}" width="${it.w}" height="${it.h}"/>${it.label ? lbl(lx, ly, it.label, 'pl') : ''}${it.sub ? lbl(lx, ly + 17, it.sub, 'ps') : ''}</g>`);
+    } else if (it.t === 'furn') {
+      const cx = it.x + it.w / 2, cy = it.y + it.h / 2;
+      out.push(`<g class="pf" ${it.rot ? `transform="rotate(${it.rot} ${cx} ${cy})"` : ''}><rect x="${it.x}" y="${it.y}" width="${it.w}" height="${it.h}" rx="2"/></g>${it.label ? lbl(it.lx != null ? it.lx : cx, it.ly != null ? it.ly : it.y + it.h + 13, it.label, 'pfl') : ''}`);
+    } else if (it.t === 'circ') out.push(`<circle class="pc ${it.cls || ''}" cx="${it.x}" cy="${it.y}" r="${it.r}"/>`);
+    else if (it.t === 'door') { const [a, b, x, y] = it.p; out.push(`<line class="pd" x1="${a}" y1="${b}" x2="${x}" y2="${y}"/>`); }
+    else if (it.t === 'win') { const [a, b, x, y] = it.p; out.push(`<line class="pwg" x1="${a}" y1="${b}" x2="${x}" y2="${y}"/><line class="pw" x1="${a}" y1="${b}" x2="${x}" y2="${y}"/>`); }
+    else if (it.t === 'line') { const [a, b, x, y] = it.p; out.push(`<line class="pln ${it.cls || ''}" x1="${a}" y1="${b}" x2="${x}" y2="${y}"/>`); }
+    else if (it.t === 'text') out.push(lbl(it.x, it.y, it.label, 'pn ' + (it.cls || ''), `text-anchor="${it.anchor || 'middle'}" ${it.rot ? `transform="rotate(${it.rot} ${it.x} ${it.y})"` : ''}`));
+    else if (it.t === 'body' && has(g, c, it.req)) out.push(`<g class="pbody" transform="translate(${it.x} ${it.y}) rotate(${it.rot || 0}) scale(${it.s || 1})"><circle cx="0" cy="6" r="6"/><path d="${BODY_PATH}"/></g>`);
+  });
+  Object.entries(v.spots || {}).forEach(([sid, [x, y]]) => {
+    if (!g.spots.includes(sid)) return;
+    const lid = spotLoc(c, sid); if (!lid) return;
+    out.push(`<g class="mk" data-a="loc" data-id="${lid}" role="button" aria-label="${esc(c.spot[sid] ? c.spot[sid].name : '')}" transform="translate(${x} ${y})"><path d="M-7,-11 H7 L11,9 H-11 Z"/><text y="5">${spotNo(c, sid)}</text></g>`);
+  });
+  return `<svg class="plan" viewBox="0 0 ${v.w} ${v.h}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Szkic: ${esc(v.name)}" style="--pw:${v.w}">
+    <defs><pattern id="ph" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="rgba(43,34,25,.35)" stroke-width="2"/></pattern>
+    <pattern id="pfo" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="3.2" fill="rgba(58,90,52,.38)"/><circle cx="13" cy="12" r="2.6" fill="rgba(58,90,52,.3)"/></pattern></defs>
+    ${out.join('')}</svg>`;
+}
+function planBlock(c, g) {
+  const views = c.plan.views; let i = planView[c.id] || 0; if (!views[i]) i = 0;
+  const marks = views.reduce((a, v) => a + Object.keys(v.spots || {}).filter(s => g.spots.includes(s)).length, 0);
+  return `<section class="plan-card">
+    <div class="plan-top"><div><div class="eyebrow">Szkic miejsca zdarzenia</div><small class="muted">Stuknijcie pomieszczenie, by do niego przejść. Żółte znaczniki — przeszukane punkty (${marks}).</small></div>
+    ${views.length > 1 ? `<div class="plan-tabs">${views.map((v, k) => `<button class="chip ${k === i ? 'on' : ''}" data-a="plan-view" data-i="${k}">${esc(v.name)}</button>`).join('')}</div>` : ''}</div>
+    <div class="plan-sheet"><div class="plan-hint">← przesuńcie szkic w bok →</div><div class="plan-scroll">${planSvg(c, g, views[i])}</div></div></section>`;
+}
+
 /* --- MIEJSCA --- */
 const ART_POS = ['30% 45%', '75% 35%', '50% 80%', '15% 70%', '90% 55%', '55% 20%'];
 function locArt(c, l, i) { const img = l.img || (i % 2 ? c.cover : (c.art || c.cover)); return `background-image:url('${esc(img)}');background-position:${l.img ? 'center' : ART_POS[i % ART_POS.length]};${l.img ? '' : 'filter:saturate(.6) brightness(.75)'}`; }
 function viewPlaces(c, g) {
   return `<div class="page-head"><div><div class="eyebrow">Plan miejsc</div><h2>Miejsca</h2><p>Każde przeszukanie punktu to jeden ruch. Niektóre punkty otworzycie dopiero, gdy będziecie wiedzieć, czego szukać.</p></div></div>
+  ${c.plan ? planBlock(c, g) : ''}
   <div class="loc-grid">${c.locations.map((l, i) => {
     const done = l.spots.filter(s => g.spots.includes(s.id)).length;
     return `<button class="loc" data-a="loc" data-id="${l.id}"><div class="art" style="${locArt(c, l, i)}"></div><div class="in"><div class="k">${String(i + 1).padStart(2, '0')} · ${esc(l.kind)}</div><h3>${esc(l.name)}</h3>
@@ -828,6 +874,7 @@ const handlers = {
   ana: el => { anaTab = el.dataset.t; render(); },
   ev: el => openOv({ type: 'ev', id: el.dataset.id }),
   loc: el => openOv({ type: 'loc', id: el.dataset.id }),
+  'plan-view': el => { planView[route().id] = +el.dataset.i; render(); },
   person: el => openOv({ type: 'person', id: el.dataset.id, mode: 'talk' }),
   pmode: el => { const o = topOv(); o.mode = el.dataset.m; renderOv(); },
   search: el => { const { c, g } = ctx(); doSearch(c, g, el.dataset.id); rerender(); },

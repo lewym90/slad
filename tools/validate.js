@@ -20,6 +20,16 @@ for (const f of files) { const raw = JSON.parse(fs.readFileSync(path.join(root, 
 for (const [f, c] of runs) {
   const errs = [], warns = [];
   const E = id => errs.push(id);
+  if (c.plan) {
+    const W = m => warns.push(m);
+    const locIds = new Set(c.locations.map(l => l.id)); const spotIds = new Set(c.locations.flatMap(l => l.spots.map(s => s.id)));
+    const placed = new Set();
+    c.plan.views.forEach(v => {
+      v.items.forEach(it => { if (it.loc && !locIds.has(it.loc)) E(`plan ${v.id}: nieznane miejsce ${it.loc}`); if (it.t === 'body' && !(spotIds.has(it.req) || c.evidence.some(e => e.id === it.req))) E(`plan ${v.id}: zły warunek ciała ${it.req}`); });
+      Object.keys(v.spots || {}).forEach(s => { if (!spotIds.has(s)) E(`plan ${v.id}: nieznany punkt ${s}`); placed.add(s); });
+    });
+    c.locations.filter(l => l.id !== 'hq').forEach(l => { if (!c.plan.views.some(v => v.items.some(it => it.loc === l.id))) W(`plan: miejsce ${l.id} nie ma pomieszczenia na szkicu`); l.spots.forEach(s => { if (!placed.has(s.id)) W(`plan: punkt ${s.id} bez znacznika`); }); });
+  }
   if (c.intro && (!c.intro.modeRules || !c.intro.modeRules.table || !c.intro.modeRules.phones)) E('brak zasad zależnych od trybu (intro.modeRules)');
   const ev = new Map(c.evidence.map(e => [e.id, e]));
   const spots = new Map(); c.locations.forEach(l => l.spots.forEach(s => { if (spots.has(s.id)) E(`duplikat punktu ${s.id}`); spots.set(s.id, s); }));
