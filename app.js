@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.0.3';
+const VERSION = '2.0.4';
 const STORE_KEY = 'slad.v2';
 
 /* ---------- narzędzia ---------- */
@@ -746,13 +746,27 @@ document.addEventListener('change', async e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && ovStack.length) closeOv(); });
 
-/* ---------- PWA ---------- */
+/* ---------- PWA: automatyczna aktualizacja ---------- */
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloading = false;
+  // Nowa wersja przejęła kontrolę → przeładuj raz (postęp jest zapisany, wracamy w to samo miejsce).
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || reloading) return; reloading = true;
+    try { sessionStorage.setItem('slad.updated', '1'); } catch (_) {}
+    location.reload();
+  });
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').then(reg => {
-      reg.addEventListener('updatefound', () => { const w = reg.installing; w && w.addEventListener('statechange', () => { if (w.state === 'installed' && navigator.serviceWorker.controller) toast('Nowa wersja gry', 'Zamknij i otwórz aplikację, aby ją wczytać', 'Aktualizacja'); }); });
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(reg => {
+      const check = () => { if (navigator.onLine !== false) reg.update().catch(() => {}); };
+      check();
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
+      window.addEventListener('focus', check);
+      window.addEventListener('online', check);
+      setInterval(check, 15 * 60 * 1000);
     }).catch(() => {});
   });
+  try { if (sessionStorage.getItem('slad.updated')) { sessionStorage.removeItem('slad.updated'); setTimeout(() => toast('Gra zaktualizowana', 'Wersja ' + VERSION, 'Aktualizacja'), 600); } } catch (_) {}
 }
 applySettings();
 render();
