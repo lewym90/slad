@@ -35,7 +35,7 @@ parter = {'id': 'parter', 'name': 'Parter i podwórze', 'w': 960, 'h': 730, 'nor
     T(480, 26, 'OGRÓD', 'area'),
     R(40, 60, 170, 325, 'Zachodnie', 'westwing', 'closed', 'skrzydło · zamknięte', ly=215),
     R(210, 60, 190, 150, 'Biblioteka', 'library', ly=198, lx=270),
-    R(400, 60, 300, 150, 'Gabinet', 'study', ly=198, lx=560),
+    R(400, 60, 300, 150, 'Gabinet', 'study', ly=200, lx=642),
     R(210, 210, 490, 45, 'korytarz', cls='plain', ly=238),
     R(700, 36, 180, 219, 'Oranżeria', 'orangery', 'glass', ly=236),
     R(210, 255, 190, 130, 'Hol', cls='plain', lx=270),
@@ -47,7 +47,7 @@ parter = {'id': 'parter', 'name': 'Parter i podwórze', 'w': 960, 'h': 730, 'nor
     W(240, 60, 330, 60), W(600, 60, 690, 60), W(440, 385, 540, 385), W(600, 385, 680, 385),
     # gabinet
     F(470, 62, 90, 14, 'kominek', lx=430, ly=88),
-    F(402, 64, 12, 140), F(420, 150, 36, 30, 'gramofon', lx=438, ly=196),
+    F(462, 196, 120, 12, 'regał', lx=522, ly=190), F(420, 150, 36, 30, 'gramofon', lx=438, ly=196),
     F(445, 118, 62, 10, 'drabina', -38, lx=452, ly=106),
     F(596, 108, 84, 48, 'biurko', lx=626, ly=146), F(676, 64, 20, 18),
     # biblioteka
@@ -76,13 +76,13 @@ pietro = {'id': 'pietro', 'name': 'Piętro', 'w': 960, 'h': 470, 'north': True, 
     T(480, 26, 'OGRÓD', 'area'),
     {'t': 'room', 'x': 40, 'y': 60, 'w': 840, 'h': 325, 'label': '', 'cls': 'ghost'},
     T(470, 420, 'obrys parteru (linia przerywana)', 'small'),
-    R(40, 60, 170, 110, 'Pokój Anny', 'westwing', 'closed', '2013', ly=110),
-    R(40, 170, 110, 215, 'pokoje', cls='closed', sub='spalone', ly=270),
-    R(150, 170, 60, 215, '', 'westwing', 'closed'),
-    T(186, 280, 'korytarz', 'small', rot=-90),
+    R(40, 60, 80, 140, 'Pokój', 'westwing', 'closed', 'Anny', ly=120),
+    R(120, 60, 90, 55, '', 'westwing', 'closed'), R(160, 115, 50, 270, '', 'westwing', 'closed'),
+    R(40, 200, 120, 185, 'pokoje', cls='closed', sub='spalone', ly=290), R(120, 115, 40, 85, '', cls='closed'),
+    T(185, 260, 'korytarz', 'small', rot=-90),
     T(40, 410, 'ZACHODNIE SKRZYDŁO · ZAMKNIĘTE OD POŻARU', 'small', 'start'),
-    W(80, 60, 140, 60), D(160, 170, 200, 170), D(150, 210, 150, 240), D(150, 300, 150, 330),
-    T(110, 50, 'okno ok. 6 m nad tarasem', 'hand'),
+    W(55, 60, 105, 60), W(135, 60, 195, 60), D(120, 72, 120, 104), D(160, 240, 160, 270),
+    T(44, 50, 'okno ok. 6 m nad tarasem', 'hand', 'start'),
     R(400, 225, 370, 160, '', cls='plain'),
     R(520, 225, 140, 64, 'Pokój „Anny”', 'guestrooms', ly=268),
     R(520, 321, 140, 64, 'Pokój Marty', 'guestrooms', ly=364),
@@ -91,7 +91,7 @@ pietro = {'id': 'pietro', 'name': 'Piętro', 'w': 960, 'h': 470, 'north': True, 
     D(600, 289, 634, 289), D(600, 321, 634, 321), W(550, 225, 630, 225), W(550, 385, 630, 385),
     T(585, 215, 'SKRZYDŁO WSCHODNIE', 'small'),
   ],
-  'spots': {'sp-door13': [180, 192], 'sp-window13': [110, 80], 'sp-aroom': [538, 244], 'sp-mroom': [538, 340]}}
+  'spots': {'sp-door13': [140, 92], 'sp-window13': [80, 82], 'sp-aroom': [538, 244], 'sp-mroom': [538, 340]}}
 
 # ---------------- 002 Ostatni pociąg ----------------
 CW = 55

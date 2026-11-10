@@ -55,7 +55,7 @@ const solvePuzzle = async pz => {
 for (let round = 0; round < 5; round++) {
   await A('tab', '[data-tab="miejsca"]'); if (round === 0) await shot('places');
   for (const l of (MODE === 'table' ? [...C.locations, ...C.tableMode.locations] : C.locations)) {
-    await A('loc', `[data-id="${l.id}"]`); if (round === 0 && l.id === 'study') await shot('location-study');
+    await A('loc', `.loc[data-id="${l.id}"]`); if (round === 0 && l.id === 'study') await shot('location-study');
     while (await p.locator('[data-a="search"]').count()) await A('search');
     if (round === 0 && l.id === 'study') await shot('location-study-searched');
     await closeAll();

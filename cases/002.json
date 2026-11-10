@@ -621,7 +621,7 @@
   {
    "id": "wrzos",
    "name": "Stacja Wrzos",
-   "kind": "Mała stacja, 27 km od Wierzbna",
+   "kind": "Mała stacja, 67 km od Wierzbna",
    "desc": "Jeden peron, kiosk, budynek dworca, postój taksówek przed wejściem. Dojeżdżacie radiowozem.",
    "spots": [
     {
@@ -705,7 +705,7 @@
      ]
     },
     "Emil Sowa zapowiedział przez pełnomocnika, że „ujawni okoliczności, których nie było w aktach”. Nie stawił się, telefon niedostępny. Według przewoźnika jechał nocnym pociągiem z Wierzbna, przedział sypialny 10.",
-    "Skład stoi od 2:10 na bocznicy depotu w Karsku. Nie był sprzątany. Załoga nocuje w hotelu przy depocie. Pasażerów wagonów 1 i 3 przesłuchała już policja w Karsku — spali lub nic nie zauważyli.",
+    "Skład stoi od 2:10 na bocznicy depotu w Karsku. Nie był sprzątany. Załoga nocuje w hotelu przy depocie. Pasażerów wagonu 1 oraz przedziałów 1–6 wagonu 2 przesłuchała już policja w Karsku — spali lub nic nie zauważyli.",
     {
      "note": "W katastrofie pod Gajem w 2016 r. zginęło 9 osób. W pierwszym procesie wszystkich oskarżonych uniewinniono."
     }
@@ -787,11 +787,13 @@
    "body": [
     {
      "log": [
-      "21:38–22:20   BTS Wierzbno-Dworzec / Wierzbno-Wschód",
-      "22:58–23:15   BTS Gaj-Las",
-      "23:27–23:34   BTS Wrzos-Stacja",
-      "23:39–23:46   BTS Olszyny",
-      "23:47–23:52   BTS Las Karski",
+      "21:38–22:00   BTS Wierzbno-Dworzec / Wierzbno-Wschód",
+      "22:00–22:25   BTS Borki",
+      "22:25–22:49   BTS Lipowa",
+      "22:49–23:20   BTS Gaj-Las",
+      "23:20–23:37   BTS Wrzos-Stacja",
+      "23:37–23:46   BTS Olszyny",
+      "23:46–23:52   BTS Las Karski",
       "23:52         ostatnie logowanie — od tej chwili brak sygnału"
      ]
     },
@@ -801,8 +803,8 @@
    ],
    "time": [
     [
-     "2026-11-12 23:27",
-     "Telefon Emila w zasięgu BTS Wrzos-Stacja (do 23:34)",
+     "2026-11-12 23:20",
+     "Telefon Emila w zasięgu BTS Wrzos-Stacja (do 23:37)",
      "Operator"
     ],
     [
@@ -1193,9 +1195,9 @@
    "id": "e26",
    "type": "Przedmiot",
    "title": "Telefon Emila na nasypie",
-   "summary": "Znaleziony na 47. kilometrze.",
+   "summary": "Znaleziony na 87. kilometrze.",
    "body": [
-    "Rozbity smartfon w tłuczniu przy torze, kilometr 47,3 — ok. 4 metry od szyny, po stronie, po której jechał wagon 2. Karta SIM Emila Sowy. Po podłączeniu do zasilania: ostatnia wysłana wiadomość o 23:24 do „Iga”.",
+    "Rozbity smartfon w tłuczniu przy torze, kilometr 87,3 — ok. 4 metry od szyny, po stronie, po której jechał wagon 2. Karta SIM Emila Sowy. Po podłączeniu do zasilania: ostatnia wysłana wiadomość o 23:24 do „Iga”.",
     {
      "note": "Telefon spadł z jadącego pociągu. W wagonach 1–3 otwiera się tylko jedno okno."
     }
@@ -1260,7 +1262,7 @@
    "id": "e29",
    "type": "Fotografia",
    "title": "Zdjęcie Olka z peronu",
-   "summary": "23:30, mężczyzna w szarym płaszczu od tyłu.",
+   "summary": "23:30, mężczyzna w szarym płaszczu przy gablocie.",
    "body": [
     "Olek Bem zrobił zdjęcie, gdy mężczyzna na sekundę przystanął przy przeszklonej gablocie z rozkładem jazdy — bokiem do obiektywu, twarz w cieniu daszka. Zaraz potem ruszył szybko w stronę kiosku.",
     "Czubek kaszkietu sięga mniej więcej czterech piątych wysokości gabloty, licząc od jej dolnej krawędzi.",
@@ -1361,12 +1363,14 @@
    "body": [
     {
      "log": [
-      "BTS Wierzbno-Wschód   km 0–9",
-      "BTS Gaj-Las           km 10–21",
-      "BTS Wrzos-Stacja      km 22–31",
-      "BTS Olszyny           km 32–41",
-      "BTS Las Karski        km 42–49",
-      "BTS Karsk-Zachód      km 50–58"
+      "BTS Wierzbno-Wschód   km 0–14",
+      "BTS Borki            km 15–33",
+      "BTS Lipowa           km 34–51",
+      "BTS Gaj-Las          km 52–62",
+      "BTS Wrzos-Stacja     km 63–71",
+      "BTS Olszyny          km 72–81",
+      "BTS Las Karski       km 82–89",
+      "BTS Karsk-Zachód     km 90–98"
      ]
     },
     {
@@ -1383,13 +1387,13 @@
    "body": [
     {
      "log": [
-      "22:58–23:15   km 18,4   postój (semafor przed Gajem)",
-      "23:27–23:33   km 27,0   postój Wrzos",
-      "23:40         km 34,2   80 km/h",
-      "23:46         km 41,6   85 km/h",
-      "23:52         km 47,3   70 km/h",
-      "23:58         km 53,8   70 km/h",
-      "01:40         km 112,0  Karsk"
+      "22:58–23:15   km 58,4   postój (semafor przed Gajem)",
+      "23:27–23:33   km 67,0   postój Wrzos",
+      "23:40         km 74,2   80 km/h",
+      "23:46         km 81,6   85 km/h",
+      "23:52         km 87,3   70 km/h",
+      "23:58         km 93,8   70 km/h",
+      "01:40         km 180,0  Karsk"
      ]
     },
     {
@@ -1551,14 +1555,14 @@
    ],
    "input": "number",
    "answers": [
-    "46-48"
+    "86-88"
    ],
    "hints": [
     "Logowania telefonu mówią, kiedy zamilkł. Ale żeby wiedzieć gdzie, trzeba wiedzieć, gdzie wtedy był pociąg.",
     "Ktoś z was ma wydruk z rejestratora prędkości lokomotywy, a ktoś mapę zasięgu nadajników. Telefon zamilkł o 23:52.",
-    "O 23:52 pociąg był na km 47,3 — w zasięgu BTS Las Karski (km 42–49). Szukajcie na 47. kilometrze."
+    "O 23:52 pociąg był na km 87,3 — w zasięgu BTS Las Karski (km 82–89). Szukajcie na 87. kilometrze."
    ],
-   "solution": "Telefon zalogował się ostatni raz o 23:52 w BTS Las Karski. Rejestrator prędkości pokazuje, że o 23:52 pociąg był na km 47,3. Telefon jechał pociągiem dalej za Wrzos — Emil z nim nie wysiadł.",
+   "solution": "Telefon zalogował się ostatni raz o 23:52 w BTS Las Karski. Rejestrator prędkości pokazuje, że o 23:52 pociąg był na km 87,3. Telefon jechał pociągiem dalej za Wrzos — Emil z nim nie wysiadł.",
    "reward": {
     "spots": [
      "sp-ballast"
@@ -1566,7 +1570,7 @@
     "time": [
      [
       "2026-11-12 23:52",
-      "Telefon Emila wypada z pociągu na km 47,3 (pociąg jedzie 70 km/h)",
+      "Telefon Emila wypada z pociągu na km 87,3 (pociąg jedzie 70 km/h)",
       "Analiza danych (ustalone)"
      ]
     ]
@@ -1607,8 +1611,8 @@
    {
     "id": "hq",
     "name": "Centrala wydziału",
-    "kind": "Zapytania z depotu",
-    "desc": "Laptop i telefon w pokoju dyżurnego depotu. Każde zapytanie to jeden ruch — odpowiedzi przychodzą od razu.",
+    "kind": "Zapytania przez radio",
+    "desc": "Wóz dowodzenia przed bramą depotu. Każde zapytanie to jeden ruch — odpowiedzi przychodzą od razu.",
     "spots": [
      {
       "id": "sp-hq-staff",
@@ -1983,7 +1987,7 @@
   "steps": [
    {
     "h": "Emil nie wysiadł",
-    "p": "Ciało leżało w zaplombowanej toalecie T2B. Okulary krótkowidza zostały na stoliku, telefon jechał pociągiem dalej za Wrzos (ostatnie logowanie na km 47), a portfel z dokumentami ktoś wyrzucił razem z płaszczem."
+    "p": "Ciało leżało w zaplombowanej toalecie T2B. Okulary krótkowidza zostały na stoliku, telefon jechał pociągiem dalej za Wrzos (ostatnie logowanie na km 87), a portfel z dokumentami ktoś wyrzucił razem z płaszczem."
    },
    {
     "h": "Kiedy",
@@ -2007,7 +2011,7 @@
    },
    {
     "h": "Telefon i kartki",
-    "p": "Telefon i strony oświadczenia wypadły z pociągu na km 47,3. W całym składzie otwiera się tylko okno przedziału służbowego — na jego ramie jest otarcie i zaklinowany róg kartki."
+    "p": "Telefon i strony oświadczenia wypadły z pociągu na km 87,3. W całym składzie otwiera się tylko okno przedziału służbowego — na jego ramie jest otarcie i zaklinowany róg kartki."
    },
    {
     "h": "Motyw",

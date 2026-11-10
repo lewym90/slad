@@ -319,7 +319,7 @@
       "t2",
       "e29"
      ],
-     "response": "Nazywam się Kinga Wolska. Ania była moją najlepszą przyjaciółką. Czternastego listopada mieliśmy razem wyjechać do Dublina. O dziewiątej wieczorem widziałam z ogrodu, jak Leon przekręca klucz w drzwiach jej pokoju. Czekałam pod oknem do wpół do dwunastej, aż on zaśnie. Wtedy zobaczyłam ogień. Okno było za wysoko. Leon wyszedł do mnie w ogród i powiedział, że to moje świece i że pójdę siedzieć za podpalenie, jeśli piśnę słowo. Rano wyjechałam. Chciałam, żeby wreszcie zapłacił. I tak — chciałam też tego, co Ania miała dostać.",
+     "response": "Nazywam się Kinga Wolska. Ania była moją najlepszą przyjaciółką. Piętnastego listopada rano miałyśmy razem wyjechać do Dublina. Czternastego, o dziewiątej wieczorem, widziałam z ogrodu, jak Leon przekręca klucz w drzwiach jej pokoju. Czekałam pod oknem do wpół do dwunastej, aż on zaśnie. Wtedy zobaczyłam ogień. Okno było za wysoko. Leon wyszedł do mnie w ogród i powiedział, że to moje świece i że pójdę siedzieć za podpalenie, jeśli piśnę słowo. Rano wyjechałam. Chciałam, żeby wreszcie zapłacił. I tak — chciałam też tego, co Ania miała dostać.",
      "gives": [
       "t4"
      ],
@@ -408,7 +408,7 @@
       "e07",
       "e15"
      ],
-     "response": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach ziemi Marty, nic ważnego. Wyszedłem przed za dwadzieścia dwunasta. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi.",
+     "response": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach ziemi Marty, nic ważnego. Wyszedłem przed 23:40. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi.",
      "gives": [
       "t5"
      ],
@@ -523,7 +523,7 @@
     },
     {
      "id": "m-q5",
-     "q": "W księdze wieczystej jest sprzedaż pani działki 214/3 z marca 2019 roku — na podstawie pani pełnomocnictwa. Podpisywała je pani?",
+     "q": "Według księgi wieczystej pani działkę 214/3 sprzedano w marcu 2019 roku, a według dokumentów — na podstawie pani pełnomocnictwa. Czy podpisywała pani takie pełnomocnictwo?",
      "requires": [
       "e10"
      ],
@@ -1341,7 +1341,7 @@
    "title": "Protokół oświadczenia",
    "summary": "Podpisany przez kobietę podającą się za Annę.",
    "body": [
-    "Oświadczenie przyjęto o 8:40. Kobieta podała dane: Anna Różycka, ur. 3 grudnia 1994 r. Dokumentów nie okazała.",
+    "Oświadczenie przyjęto o 8:40. Kobieta podała dane: Anna Różycka, ur. 3 grudnia 1993 r. Dokumentów nie okazała.",
     {
      "note": "Uwaga funkcjonariusza: podpisała szybko, pewnie, prawą ręką. Długopis trzymała jak osoba praworęczna od zawsze."
     }
@@ -1771,7 +1771,8 @@
     "e30"
    ],
    "when": [
-    "e10"
+    "e10",
+    "e06"
    ],
    "text": "Sprzedaż działki 214/3 opiera się na pełnomocnictwie Marty. Zapytajcie ją, gdzie była w marcu 2019 r."
   },
@@ -2200,8 +2201,8 @@
       "h": 150,
       "label": "Gabinet",
       "loc": "study",
-      "lx": 560,
-      "ly": 198
+      "lx": 642,
+      "ly": 200
      },
      {
       "t": "room",
@@ -2390,10 +2391,13 @@
      },
      {
       "t": "furn",
-      "x": 402,
-      "y": 64,
-      "w": 12,
-      "h": 140
+      "x": 462,
+      "y": 196,
+      "w": 120,
+      "h": 12,
+      "label": "regał",
+      "lx": 522,
+      "ly": 190
      },
      {
       "t": "furn",
@@ -2729,39 +2733,58 @@
       "t": "room",
       "x": 40,
       "y": 60,
-      "w": 170,
-      "h": 110,
-      "label": "Pokój Anny",
+      "w": 80,
+      "h": 140,
+      "label": "Pokój",
       "loc": "westwing",
       "cls": "closed",
-      "sub": "2013",
-      "ly": 110
+      "sub": "Anny",
+      "ly": 120
      },
      {
       "t": "room",
-      "x": 40,
-      "y": 170,
-      "w": 110,
-      "h": 215,
-      "label": "pokoje",
-      "cls": "closed",
-      "sub": "spalone",
-      "ly": 270
-     },
-     {
-      "t": "room",
-      "x": 150,
-      "y": 170,
-      "w": 60,
-      "h": 215,
+      "x": 120,
+      "y": 60,
+      "w": 90,
+      "h": 55,
       "label": "",
       "loc": "westwing",
       "cls": "closed"
      },
      {
+      "t": "room",
+      "x": 160,
+      "y": 115,
+      "w": 50,
+      "h": 270,
+      "label": "",
+      "loc": "westwing",
+      "cls": "closed"
+     },
+     {
+      "t": "room",
+      "x": 40,
+      "y": 200,
+      "w": 120,
+      "h": 185,
+      "label": "pokoje",
+      "cls": "closed",
+      "sub": "spalone",
+      "ly": 290
+     },
+     {
+      "t": "room",
+      "x": 120,
+      "y": 115,
+      "w": 40,
+      "h": 85,
+      "label": "",
+      "cls": "closed"
+     },
+     {
       "t": "text",
-      "x": 186,
-      "y": 280,
+      "x": 185,
+      "y": 260,
       "label": "korytarz",
       "cls": "small",
       "rot": -90
@@ -2777,45 +2800,46 @@
      {
       "t": "win",
       "p": [
-       80,
+       55,
        60,
-       140,
+       105,
+       60
+      ]
+     },
+     {
+      "t": "win",
+      "p": [
+       135,
+       60,
+       195,
        60
       ]
      },
      {
       "t": "door",
       "p": [
+       120,
+       72,
+       120,
+       104
+      ]
+     },
+     {
+      "t": "door",
+      "p": [
        160,
-       170,
-       200,
-       170
-      ]
-     },
-     {
-      "t": "door",
-      "p": [
-       150,
-       210,
-       150,
-       240
-      ]
-     },
-     {
-      "t": "door",
-      "p": [
-       150,
-       300,
-       150,
-       330
+       240,
+       160,
+       270
       ]
      },
      {
       "t": "text",
-      "x": 110,
+      "x": 44,
       "y": 50,
       "label": "okno ok. 6 m nad tarasem",
-      "cls": "hand"
+      "cls": "hand",
+      "anchor": "start"
      },
      {
       "t": "room",
@@ -2916,12 +2940,12 @@
     ],
     "spots": {
      "sp-door13": [
-      180,
-      192
+      140,
+      92
      ],
      "sp-window13": [
-      110,
-      80
+      80,
+      82
      ],
      "sp-aroom": [
       538,
