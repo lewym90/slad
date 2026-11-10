@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.9.0';
+const VERSION = '2.9.1';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -205,6 +205,8 @@ async function syncAudio() {
   n.start(0, ls); g.gain.linearRampToValueAtTime(vol('music') * 0.9, ctx.currentTime + 2.5);
   AU.amb = { n, g }; AU.ambSrc = src;
 }
+function duck(on) { if (!AU.amb || !AU.ctx) return; try { AU.amb.g.gain.setTargetAtTime(vol('music') * (on ? 0.22 : 0.9), AU.ctx.currentTime, 0.35); } catch (_) {} }
+function stopVoice() { const v = window.__voice; if (v) { try { v.pause(); } catch (_) {} window.__voice = null; } duck(false); }
 async function sfx(name = 'paper') {
   if (!S.settings.sound) return;
   try { const ctx = audioCtx(); const b = await loadBuf(`assets/audio/sfx-${name}.mp3`); if (!ctx || !b) return;
@@ -228,7 +230,7 @@ function route() {
   return { name: h[0] || 'home', id: h[1], sub: h[2] };
 }
 function go(path) { if (location.hash !== '#/' + path) location.hash = '#/' + path; else render(); }
-window.addEventListener('hashchange', () => { ovStack = []; renderOv(); render(); });
+window.addEventListener('hashchange', () => { stopVoice(); ovStack = []; renderOv(); render(); });
 
 /* ---------- nakładki (stos, z obsługą przycisku Wstecz) ---------- */
 let ovStack = [];
@@ -303,7 +305,7 @@ async function renderIntro(id) {
     <article class="paper brief"><span class="stamp">Ściśle tajne</span>
      <div class="eyebrow" style="color:var(--red)">Akta sprawy ${esc(c.id)} · ${esc(c.genre)}</div>
      <h1>${esc(c.title)}</h1><p class="lead tw">${esc(c.intro.lead)}</p>
-     ${c.voice && c.voice.brief ? `<button class="btn small ghost voice-btn" data-a="voice" data-src="${esc(c.voice.brief)}">${I.sound} Odsłuchaj briefing szefa wydziału</button>` : ''}
+     ${c.voice && c.voice.brief ? `<button class="btn small ghost voice-btn" data-a="voice" data-src="${esc(c.voice.brief)}">${I.sound} <span class="vl">Odsłuchaj briefing szefa wydziału</span></button>` : ''}
      ${c.intro.brief.map(p => `<p>${esc(p)}</p>`).join('')}
      <h4>Zadanie zespołu</h4><ol>${c.intro.task.map(t => `<li>${esc(t)}</li>`).join('')}</ol>
      <h4>Parametry</h4><p>${esc(c.duration)} · ${esc(c.players)} graczy · trudność: ${esc(c.difficulty)}</p>
@@ -1102,7 +1104,7 @@ const handlers = {
   pzoom: el => openOv({ type: 'zoom', src: el.dataset.src }),
   amark: el => { S.marks = S.marks || {}; if (!S.marks[el.dataset.c]) { S.marks[el.dataset.c] = el.dataset.l; save(); toast('Zabezpieczono obcą pieczęć', `Ślady Archiwisty: ${Object.keys(S.marks).length} z ${MARK_ORDER.length}`, 'Archiwum'); sfx('stamp'); } else toast('Ta pieczęć jest już w kronice', '', 'Archiwum'); renderOv(); },
   'print-report': () => { const { c, g } = ctx(); if (g && g.report) printReport(c, g); },
-  voice: el => { const src = el.dataset.src; if (window.__voice && !window.__voice.paused) { window.__voice.pause(); el.classList.remove('on'); return; } window.__voice = new Audio(src); window.__voice.play().catch(() => {}); el.classList.add('on'); window.__voice.onended = () => el.classList.remove('on'); },
+  voice: el => { if (window.__voice && !window.__voice.paused) { stopVoice(); return; } stopVoice(); const v = window.__voice = new Audio(el.dataset.src); duck(true); const L = el.querySelector('.vl'), T0 = L && L.textContent; el.classList.add('on'); if (L) L.textContent = 'Zatrzymaj briefing'; v.onended = v.onpause = () => { el.classList.remove('on'); if (L) L.textContent = T0; duck(false); }; v.play().catch(() => { el.classList.remove('on'); duck(false); }); },
   'show-guide': () => { const { g } = ctx(); ovStack.pop(); history.back(); setTimeout(() => openOv({ type: 'guide', mode: g.mode === 'table' ? 'table' : 'phones', diff: g.diff, i: 0 }), 60); },
   'guide-go': el => { const o = topOv(); if (o && o.type === 'guide') { o.i = +el.dataset.i; renderOv(); const b = $('.ov-body'); if (b) b.scrollTop = 0; } },
   'guide-off': () => { S.settings.guide = false; save(); handlers['guide-end'](); },

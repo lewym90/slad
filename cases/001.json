@@ -2990,5 +2990,8 @@
    "text": "Kobieta podaje swoje prawdziwe nazwisko: Kinga Wolska. Anna Różycka naprawdę zginęła trzynaście lat temu — a Kinga widziała, jak do tego doszło.",
    "img": "assets/evidence/001-x5-anna2013.webp"
   }
- ]
+ ],
+ "voice": {
+  "brief": "assets/voice/001-brief.mp3"
+ }
 }

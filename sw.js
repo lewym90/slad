@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.9.0';
+const VERSION = '2.9.1';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -13,6 +13,8 @@ const CORE = [
   './cases/003.json',
   './assets/audio/case-002.mp3',
   './assets/audio/case-003.mp3',
+  './assets/voice/001-brief.mp3',
+  './assets/voice/002-brief.mp3',
   './assets/icons/icon-32.png',
   './assets/icons/icon-180.png',
   './assets/icons/icon-192.png',

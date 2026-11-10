@@ -3187,5 +3187,8 @@
    "text": "Rozmokłe kartki przy torze mówią, kto w 2016 roku kazał dać sygnał pod Gajem. Emil zabrał tę wiedzę do pociągu — i nie dowiózł jej do sądu.",
    "img": "assets/evidence/002-papers.webp"
   }
- ]
+ ],
+ "voice": {
+  "brief": "assets/voice/002-brief.mp3"
+ }
 }

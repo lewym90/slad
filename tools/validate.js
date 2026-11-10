@@ -102,6 +102,10 @@ for (const [f, c] of runs) {
   c.evidence.forEach(e => { if (e.mark && !/^[A-ZĄĆĘŁŃÓŚŹŻ]$/.test(e.mark)) E(`dowód ${e.id}: zła pieczęć ${e.mark}`); });
   st.forEach((s, id) => (s.contradicts || []).forEach(x => { if (!isTok(x) && !ev.has(x)) E(`zeznanie ${id}: nieznana sprzeczność ${x}`); if (x.startsWith('st:') && !st.get(x.slice(3)).truth) E(`zeznanie ${id}: ${x} nie jest prawdą`); }));
 
+  // 5c. Pliki multimediów
+  const fsx = require('fs'), pathx = require('path');
+  [c.voice && c.voice.brief, c.introVideo, c.keyart, ...(c.breakthroughs || []).flatMap(b => [b.img, b.video])].filter(Boolean).forEach(f => { if (!fsx.existsSync(pathx.join(__dirname, '..', f))) E(`brak pliku ${f}`); });
+
   // 6. Raport
   let total = 0;
   c.report.questions.forEach(q => {
