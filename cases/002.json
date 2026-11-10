@@ -3178,8 +3178,9 @@
    "id": "b-height",
    "when": "p-height",
    "title": "To nie był Emil",
-   "text": "Mężczyzna przy gablocie miał około 187 cm wzrostu. Emil miał 168. Na peronie w płaszczu Emila stał ktoś inny.",
-   "img": "assets/evidence/002-platform.webp"
+   "text": "Mężczyzna, który na Wrzosie zapłacił w kiosku kartą Emila, miał około 187 cm wzrostu. Emil miał 168. Na peronie w płaszczu Emila stał ktoś inny.",
+   "img": "assets/evidence/002-platform.webp",
+   "video": "assets/video/002-bt-height.mp4"
   },
   {
    "id": "b-pages",
