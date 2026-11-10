@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.10.1';
+const VERSION = '2.10.2';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -231,13 +231,15 @@ function voiceFor(c, pid, m) {
   if (m.t === 'deflect') { const i = (p.deflect || []).indexOf(m.text); return i >= 0 ? `${c.voiceDir}/${pid}-deflect-${i}.mp3` : null; }
   return null;
 }
+const VO = typeof Audio !== 'undefined' ? new Audio() : null; let voTok = 0; // jeden odtwarzacz: iPhone odblokowuje go przy pierwszym dotknięciu
 function speak(src, btn) {
-  stopVoice(); if (!src || !mediaOK(src)) { if (btn && src) toast('Nagranie niedostępne bez internetu', 'Odsłuchacie je po połączeniu z siecią.', 'Głos'); return; } const v = window.__voice = new Audio(src); v.volume = vol('voice'); duck(true);
+  stopVoice(); if (!VO || !src || !mediaOK(src)) { if (btn && src) toast('Nagranie niedostępne bez internetu', 'Odsłuchacie je po połączeniu z siecią.', 'Głos'); return; }
+  const tok = ++voTok; VO.src = src; VO.volume = vol('voice'); window.__voice = VO; duck(true);
   document.querySelectorAll('.vplay.on').forEach(b => b.classList.remove('on')); if (btn) btn.classList.add('on');
-  const done = () => { if (window.__voice === v) { window.__voice = null; duck(false); } if (btn) btn.classList.remove('on'); };
-  v.onended = v.onpause = done; v.onerror = done; v.play().catch(done);
+  const done = () => { if (tok !== voTok) return; window.__voice = null; duck(false); if (btn) btn.classList.remove('on'); };
+  VO.onended = VO.onerror = done; VO.onpause = () => { if (!VO.ended) done(); }; VO.play().catch(done);
 }
-function stopVoice() { const v = window.__voice; if (v) { try { v.pause(); } catch (_) {} window.__voice = null; } duck(false); }
+function stopVoice() { voTok++; const v = window.__voice; if (v) { try { v.pause(); } catch (_) {} window.__voice = null; } document.querySelectorAll('.vplay.on').forEach(b => b.classList.remove('on')); duck(false); }
 async function sfx(name = 'paper') {
   if (!S.settings.sound) return;
   try { const ctx = audioCtx(); const b = await loadBuf(`assets/audio/sfx-${name}.mp3`); if (!ctx || !b) return;
@@ -1111,7 +1113,7 @@ const handlers = {
   search: el => { const { c, g } = ctx(); doSearch(c, g, el.dataset.id); rerender(); },
   ask: el => { const { c, g } = ctx(); if (g.asked.includes(el.dataset.id)) return; doAsk(c, g, el.dataset.id); topOv().scrollEnd = true; rerender(); if (voicesOn() && c.voiceDir) { const q = c.q[el.dataset.id]; const L = g.log[q.person]; speak(L[L.length - 1].v); } },
   confront: el => openOv({ type: 'confront', id: el.dataset.id }),
-  'confront-with': el => { const { c, g } = ctx(); doConfront(c, g, el.dataset.s, el.dataset.id); if (voicesOn() && c.voiceDir) { const L = g.log[c.stmt[el.dataset.s].person]; const last = L[L.length - 1]; setTimeout(() => speak(last.v), 700); } ovStack.pop(); history.back(); const o = topOv(); if (o && o.type === 'person') { o.mode = 'talk'; o.scrollEnd = true; } setTimeout(rerender, 30); },
+  'confront-with': el => { const { c, g } = ctx(); doConfront(c, g, el.dataset.s, el.dataset.id); if (voicesOn() && c.voiceDir) { const L = g.log[c.stmt[el.dataset.s].person]; speak(L[L.length - 1].v); } ovStack.pop(); history.back(); const o = topOv(); if (o && o.type === 'person') { o.mode = 'talk'; o.scrollEnd = true; } setTimeout(rerender, 30); },
   puzzle: el => openOv({ type: 'puzzle', id: el.dataset.id }),
   'puzzle-from-spot': el => { const { c, g } = ctx(); const pz = c.puzzle[el.dataset.id]; if (puzzleVisible(c, g, pz)) openOv({ type: 'puzzle', id: pz.id }); else openOv({ type: 'msg', title: pz.title, kicker: 'Za mało danych', body: '<p>Na razie nie macie materiałów, które pozwoliłyby się do tego zabrać. Szukajcie dalej.</p>' }); },
   dial: el => { const id = el.dataset.id, i = +el.dataset.i; const { c } = ctx(); const max = c.puzzle[id].input === 'time' && i === 0 ? 3 : c.puzzle[id].input === 'time' && i === 2 ? 6 : 10; dialVals[id][i] = (dialVals[id][i] + +el.dataset.d + max) % max; renderOv(); },
@@ -1163,7 +1165,7 @@ const handlers = {
   pzoom: el => openOv({ type: 'zoom', src: el.dataset.src }),
   amark: el => { S.marks = S.marks || {}; if (!S.marks[el.dataset.c]) { S.marks[el.dataset.c] = el.dataset.l; save(); toast('Zabezpieczono obcą pieczęć', `Ślady Archiwisty: ${Object.keys(S.marks).length} z ${MARK_ORDER.length}`, 'Archiwum'); sfx('stamp'); } else toast('Ta pieczęć jest już w kronice', '', 'Archiwum'); renderOv(); },
   'print-report': () => { const { c, g } = ctx(); if (g && g.report) printReport(c, g); },
-  voice: el => { if (window.__voice && !window.__voice.paused && el.classList.contains('on')) { stopVoice(); return; } const L = el.querySelector('.vl'), T0 = L && (L.dataset.t || (L.dataset.t = L.textContent)); speak(el.dataset.src); const v = window.__voice; if (!v) return; el.classList.add('on'); if (L) L.textContent = 'Zatrzymaj briefing'; const off = () => { el.classList.remove('on'); if (L) L.textContent = T0; }; v.addEventListener('ended', off); v.addEventListener('pause', off); v.addEventListener('error', off); },
+  voice: el => { if (window.__voice && !window.__voice.paused && el.classList.contains('on')) { stopVoice(); return; } const L = el.querySelector('.vl'), T0 = L && (L.dataset.t || (L.dataset.t = L.textContent)); speak(el.dataset.src); const v = window.__voice; if (!v) return; el.classList.add('on'); if (L) L.textContent = 'Zatrzymaj briefing'; const off = () => { el.classList.remove('on'); if (L) L.textContent = T0; }; const t0 = voTok; const chk = setInterval(() => { if (voTok !== t0 || !window.__voice || window.__voice.paused) { clearInterval(chk); off(); } }, 300); },
   'show-guide': () => { const { g } = ctx(); ovStack.pop(); history.back(); setTimeout(() => openOv({ type: 'guide', mode: g.mode === 'table' ? 'table' : 'phones', diff: g.diff, i: 0 }), 60); },
   'guide-go': el => { const o = topOv(); if (o && o.type === 'guide') { o.i = +el.dataset.i; renderOv(); const b = $('.ov-body'); if (b) b.scrollTop = 0; } },
   'guide-off': () => { S.settings.guide = false; save(); handlers['guide-end'](); },

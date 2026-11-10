@@ -702,3 +702,4 @@ input,textarea,select{font-size:max(16px,1em)}
 
 .bt-vid{object-fit:contain;object-position:center 35%;background:transparent}
 @media (max-aspect-ratio:4/5){.bt-vid{object-fit:contain;height:62%;top:4%}}
+@media (max-aspect-ratio:4/5){.bt-vid{top:6%;height:52%;object-position:center bottom}}
