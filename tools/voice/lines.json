@@ -1,0 +1,836 @@
+{
+ "001-helena": {
+  "name": "Helena Wolska",
+  "lines": [
+   {
+    "id": "h-q1",
+    "kind": "q",
+    "text": "Kolacja była o ósmej, dla wszystkich. Pani Marta powiedziała przy stole coś przykrego doktorowi, wszyscy słyszeli. Koło wpół do jedenastej, kiedy zmywałam w kuchni, doktor kłócił się w gabinecie z… z tą panią. Krzyczał: „W moim domu nie będziesz stawiać mi warunków”. Potem było cicho.",
+    "spoken": "Kolacja była o ósmej, dla wszystkich. Pani Marta powiedziała przy stole coś przykrego doktorowi, wszyscy słyszeli. Koło wpół do jedenastej, kiedy zmywałam w kuchni, doktor kłócił się w gabinecie z… z tą panią. Krzyczał: „W moim domu nie będziesz stawiać mi warunków”. Potem było cicho."
+   },
+   {
+    "id": "h-q2",
+    "kind": "q",
+    "text": "Kwadrans po jedenastej zadzwonił do kuchni po dwie herbaty. Zaniosłam tacę. Kiedy wychodziłam, nastawiał płytę — było może dwadzieścia po jedenastej. Potem przeszłam przez podwórze do oficyny i położyłam się spać. Sama.",
+    "spoken": "Kwadrans po jedenastej zadzwonił do kuchni po dwie herbaty. Zaniosłam tacę. Kiedy wychodziłam, nastawiał płytę — było może dwadzieścia po jedenastej. Potem przeszłam przez podwórze do oficyny i położyłam się spać. Sama."
+   },
+   {
+    "id": "h-q3",
+    "kind": "q",
+    "text": "Nie powiedział. Kazał przygotować dwie — tak robił zawsze, kiedy spodziewał się rozmowy.",
+    "spoken": "Nie powiedział. Kazał przygotować dwie — tak robił zawsze, kiedy spodziewał się rozmowy."
+   },
+   {
+    "id": "h-q7",
+    "kind": "q",
+    "text": "Pani Marta poszła na górę zaraz po jedenastej. W bibliotece paliło się światło, drzwi były uchylone — pan Wiktor siedział w fotelu z książką. Tej pani nie widziałam, jej pokój jest na piętrze.",
+    "spoken": "Pani Marta poszła na górę zaraz po jedenastej. W bibliotece paliło się światło, drzwi były uchylone — pan Wiktor siedział w fotelu z książką. Tej pani nie widziałam, jej pokój jest na piętrze."
+   },
+   {
+    "id": "h-q4",
+    "kind": "q",
+    "text": "Drzwi były przymknięte, nie na klucz. Drabina leżała na dywanie. Doktor na plecach, głową przy kominku, oczy otwarte. Muzyki nie było, tylko taki szum z gramofonu. W kominku dogasało.",
+    "spoken": "Drzwi były przymknięte, nie na klucz. Drabina leżała na dywanie. Doktor na plecach, głową przy kominku, oczy otwarte. Muzyki nie było, tylko taki szum z gramofonu. W kominku dogasało."
+   },
+   {
+    "id": "h-q8",
+    "kind": "q",
+    "text": "Krzyknęłam. Pan Wiktor przybiegł pierwszy, potem pani Marta i ta pani. Pobiegłam do oficyny zadzwonić z mojego telefonu — w domu przez burzę nikt nie miał zasięgu. Zadzwoniłam na 112.",
+    "spoken": "Krzyknęłam. Pan Wiktor przybiegł pierwszy, potem pani Marta i ta pani. Pobiegłam do oficyny zadzwonić z mojego telefonu — w domu przez burzę nikt nie miał zasięgu. Zadzwoniłam na sto dwanaście."
+   },
+   {
+    "id": "h-q5",
+    "kind": "q",
+    "text": "Pani Marta mówi, że tak. Zna dom, zna nasze zwyczaje… Nie mnie to oceniać. Ja tu tylko sprzątam.",
+    "spoken": "Pani Marta mówi, że tak. Zna dom, zna nasze zwyczaje… Nie mnie to oceniać. Ja tu tylko sprzątam."
+   },
+   {
+    "id": "h-q6",
+    "kind": "q",
+    "text": "W oficynie. Obudziły mnie syreny. Kiedy wybiegłam, skrzydło już się paliło.",
+    "spoken": "W oficynie. Obudziły mnie syreny. Kiedy wybiegłam, skrzydło już się paliło."
+   },
+   {
+    "id": "h-q9",
+    "kind": "q",
+    "text": "Moja córka. Kinga. Rano po pożarze wyjechała do Irlandii. (Helena odwraca ramkę zdjęciem do ściany.) Proszę jej w to nie mieszać.",
+    "spoken": "Moja córka. Kinga. Rano po pożarze wyjechała do Irlandii. Proszę jej w to nie mieszać."
+   },
+   {
+    "id": "h-l1",
+    "kind": "break",
+    "text": "…Dobrze. Nie spałam. Dzwoniłam do siostry, do Teresy. Burza, nerwy… Rozmawiałyśmy o burzy. Byłam sama, przysięgam. Możecie do niej zadzwonić.",
+    "spoken": "…Dobrze. Nie spałam. Dzwoniłam do siostry, do Teresy. Burza, nerwy… Rozmawiałyśmy o burzy. Byłam sama, przysięgam. Możecie do niej zadzwonić."
+   },
+   {
+    "id": "h-l2",
+    "kind": "break",
+    "text": "(długa cisza) To Kinga. Ta kobieta to moja Kinga. Poznałam ją pierwszego wieczoru, po tym, jak trzyma kubek. Wpół do dwunastej przyszła do mnie przez podwórze, cała mokra. Siedziała u mnie do północy. Dałam ją Teresie do telefonu. Ona nikogo nie zabiła — była ze mną.",
+    "spoken": "To Kinga. Ta kobieta to moja Kinga. Poznałam ją pierwszego wieczoru, po tym, jak trzyma kubek. Wpół do dwunastej przyszła do mnie przez podwórze, cała mokra. Siedziała u mnie do północy. Dałam ją Teresie do telefonu. Ona nikogo nie zabiła — była ze mną."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Nie rozumiem, co to ma do rzeczy.",
+    "spoken": "Nie rozumiem, co to ma do rzeczy."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Mówię, jak było. Nic więcej nie wiem.",
+    "spoken": "Mówię, jak było. Nic więcej nie wiem."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Proszę mnie nie łapać za słowa.",
+    "spoken": "Proszę mnie nie łapać za słowa."
+   }
+  ]
+ },
+ "001-anna": {
+  "name": "„Anna Różycka”",
+  "lines": [
+   {
+    "id": "a-q1",
+    "kind": "q",
+    "text": "Bo ojciec musiał wreszcie powiedzieć prawdę o tamtej nocy. Matce, mnie, wszystkim. Trzynaście lat to wystarczająco długo.",
+    "spoken": "Bo ojciec musiał wreszcie powiedzieć prawdę o tamtej nocy. Matce, mnie, wszystkim. Trzynaście lat to wystarczająco długo."
+   },
+   {
+    "id": "a-q2",
+    "kind": "q",
+    "text": "Chciałam, żeby powiedział Marcie prawdę. Odmówił. Krzyczał, że nie będę stawiać mu warunków. Wyszłam po kwadransie — żył i był wściekły. Potem poszłam do swojego pokoju i już z niego nie wychodziłam.",
+    "spoken": "Chciałam, żeby powiedział Marcie prawdę. Odmówił. Krzyczał, że nie będę stawiać mu warunków. Wyszłam po kwadransie — żył i był wściekły. Potem poszłam do swojego pokoju i już z niego nie wychodziłam."
+   },
+   {
+    "id": "a-q3",
+    "kind": "q",
+    "text": "Zgubiłam je w podróży. Wiem, jak to brzmi. Wyrobię nowe, jak tylko ktoś w tym domu przestanie patrzeć na mnie jak na złodziejkę.",
+    "spoken": "Zgubiłam je w podróży. Wiem, jak to brzmi. Wyrobię nowe, jak tylko ktoś w tym domu przestanie patrzeć na mnie jak na złodziejkę."
+   },
+   {
+    "id": "a-q4",
+    "kind": "q",
+    "text": "Gospodynią. Zawsze tu była. Robiła najlepsze racuchy w Brzezinach.",
+    "spoken": "Gospodynią. Zawsze tu była. Robiła najlepsze racuchy w Brzezinach."
+   },
+   {
+    "id": "a-q5",
+    "kind": "q",
+    "text": "Dym. Krzyk. Że nie mogłam otworzyć drzwi. (urywa) Nie chcę o tym mówić.",
+    "spoken": "Dym. Krzyk. Że nie mogłam otworzyć drzwi. Nie chcę o tym mówić."
+   },
+   {
+    "id": "a-l1",
+    "kind": "break",
+    "text": "Dobrze. Wyszłam. Wpół do dwunastej przebiegłam przez podwórze do oficyny — do Heleny. Wróciłam przez kuchnię kilka minut po północy i poszłam do gabinetu po list, który mu dałam. Pod drzwiami biblioteki paliło się światło i słychać było szuranie szczotki — jakby ktoś czyścił buty. Drzwi były uchylone. Leżał przy kominku. Gramofon tylko szumiał. Zamknęłam drzwi i uciekłam do pokoju. Wiedziałam, jak to wygląda — obca kobieta bez dokumentów przy trupie.",
+    "spoken": "Dobrze. Wyszłam. Wpół do dwunastej przebiegłam przez podwórze do oficyny — do Heleny. Wróciłam przez kuchnię kilka minut po północy i poszłam do gabinetu po list, który mu dałam. Pod drzwiami biblioteki paliło się światło i słychać było szuranie szczotki — jakby ktoś czyścił buty. Drzwi były uchylone. Leżał przy kominku. Gramofon tylko szumiał. Zamknęłam drzwi i uciekłam do pokoju. Wiedziałam, jak to wygląda — obca kobieta bez dokumentów przy trupie."
+   },
+   {
+    "id": "a-l2",
+    "kind": "break",
+    "text": "Nazywam się Kinga Wolska. Ania była moją najlepszą przyjaciółką. Piętnastego listopada rano miałyśmy razem wyjechać do Dublina. Czternastego, o dziewiątej wieczorem, widziałam z ogrodu, jak Leon przekręca klucz w drzwiach jej pokoju. Czekałam pod oknem do wpół do dwunastej, aż on zaśnie. Wtedy zobaczyłam ogień. Okno było za wysoko. Leon wyszedł do mnie w ogród i powiedział, że to moje świece i że pójdę siedzieć za podpalenie, jeśli piśnę słowo. Rano wyjechałam. Chciałam, żeby wreszcie zapłacił. I tak — chciałam też tego, co Ania miała dostać.",
+    "spoken": "Nazywam się Kinga Wolska. Ania była moją najlepszą przyjaciółką. Piętnastego listopada rano miałyśmy razem wyjechać do Dublina. Czternastego, o dziewiątej wieczorem, widziałam z ogrodu, jak Leon przekręca klucz w drzwiach jej pokoju. Czekałam pod oknem do wpół do dwunastej, aż on zaśnie. Wtedy zobaczyłam ogień. Okno było za wysoko. Leon wyszedł do mnie w ogród i powiedział, że to moje świece i że pójdę siedzieć za podpalenie, jeśli piśnę słowo. Rano wyjechałam. Chciałam, żeby wreszcie zapłacił. I tak — chciałam też tego, co Ania miała dostać."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Szukacie kozła ofiarnego. Wygodnie.",
+    "spoken": "Szukacie kozła ofiarnego. Wygodnie."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "To niczego nie dowodzi.",
+    "spoken": "To niczego nie dowodzi."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Pytajcie dalej. Ja się nie śpieszę.",
+    "spoken": "Pytajcie dalej. Ja się nie śpieszę."
+   }
+  ]
+ },
+ "001-wiktor": {
+  "name": "Wiktor Różycki",
+  "lines": [
+   {
+    "id": "w-q1",
+    "kind": "q",
+    "text": "Po kolacji czytałem w bibliotece. Około jedenastej zasnąłem na kanapie. Spałem jak kamień — niczego nie słyszałem. Obudził mnie krzyk Heleny.",
+    "spoken": "Po kolacji czytałem w bibliotece. Około jedenastej zasnąłem na kanapie. Spałem jak kamień — niczego nie słyszałem. Obudził mnie krzyk Heleny."
+   },
+   {
+    "id": "w-q2",
+    "kind": "q",
+    "text": "Nie. Leon był zajęty… tą osobą. Ja nie zamierzałem brać udziału w tym przedstawieniu.",
+    "spoken": "Nie. Leon był zajęty… tą osobą. Ja nie zamierzałem brać udziału w tym przedstawieniu."
+   },
+   {
+    "id": "w-q3",
+    "kind": "q",
+    "text": "Oszustka. Leon dał się omotać na stare lata. Ktoś, kto urządza takie przedstawienie, jest zdolny do wszystkiego. Nawet do tego, żeby uderzyć starego człowieka w tył głowy, kiedy się odwróci. Proszę ją dobrze sprawdzić. Ja wiem tylko tyle, co rano powiedzieliście nam w holu.",
+    "spoken": "Oszustka. Leon dał się omotać na stare lata. Ktoś, kto urządza takie przedstawienie, jest zdolny do wszystkiego. Nawet do tego, żeby uderzyć starego człowieka w tył głowy, kiedy się odwróci. Proszę ją dobrze sprawdzić. Ja wiem tylko tyle, co rano powiedzieliście nam w holu."
+   },
+   {
+    "id": "w-q4",
+    "kind": "q",
+    "text": "Wzorowo. Marta od lat nie chce o tej ziemi słyszeć, więc wszystkim zajmuje się moja kancelaria. Umowy, księgi, podatki — wszystko jest w porządku i udokumentowane.",
+    "spoken": "Wzorowo. Marta od lat nie chce o tej ziemi słyszeć, więc wszystkim zajmuje się moja kancelaria. Umowy, księgi, podatki — wszystko jest w porządku i udokumentowane."
+   },
+   {
+    "id": "w-q5",
+    "kind": "q",
+    "text": "Zawsze czyszczę buty wieczorem. Nawyk z wojska. I uprzedzając pytanie: w nocy nigdzie nie wychodziłem. Do oranżerii nie zaglądałem, odkąd tu przyjechałem.",
+    "spoken": "Zawsze czyszczę buty wieczorem. Nawyk z wojska. I uprzedzając pytanie: w nocy nigdzie nie wychodziłem. Do oranżerii nie zaglądałem, odkąd tu przyjechałem."
+   },
+   {
+    "id": "w-l1",
+    "kind": "break",
+    "text": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach ziemi Marty, nic ważnego. Wyszedłem przed 23:40. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi.",
+    "spoken": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach ziemi Marty, nic ważnego. Wyszedłem przed dwudziestą trzecią czterdzieści. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi."
+   },
+   {
+    "id": "w-l2",
+    "kind": "break",
+    "text": "(Wiktor długo milczy, potem poprawia mankiet) Każdy by się domyślił. Przy kominku… drabina… To była figura retoryczna. Na tym kończymy. Dalsze pytania proszę kierować przez mojego adwokata.",
+    "spoken": "Każdy by się domyślił. Przy kominku… drabina… To była figura retoryczna. Na tym kończymy. Dalsze pytania proszę kierować przez mojego adwokata."
+   },
+   {
+    "id": "w-l3",
+    "kind": "break",
+    "text": "Marta podpisała to pełnomocnictwo. Po prostu nie pamięta — była wtedy w złym stanie. Wszystko odbyło się zgodnie z prawem. Nic więcej nie powiem.",
+    "spoken": "Marta podpisała to pełnomocnictwo. Po prostu nie pamięta — była wtedy w złym stanie. Wszystko odbyło się zgodnie z prawem. Nic więcej nie powiem."
+   },
+   {
+    "id": "w-l4",
+    "kind": "break",
+    "text": "Wyszedłem… zaczerpnąć powietrza. W nocy. Do oranżerii, bo padało. Czy to przestępstwo? Proszę mi nie wmawiać rzeczy, których nie zrobiłem.",
+    "spoken": "Wyszedłem… zaczerpnąć powietrza. W nocy. Do oranżerii, bo padało. Czy to przestępstwo? Proszę mi nie wmawiać rzeczy, których nie zrobiłem."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Proszę nie sugerować rzeczy, których nie potraficie wykazać.",
+    "spoken": "Proszę nie sugerować rzeczy, których nie potraficie wykazać."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Jako prawnik zapewniam, że to nic nie znaczy.",
+    "spoken": "Jako prawnik zapewniam, że to nic nie znaczy."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Słucham uważnie. Nadal nie widzę związku.",
+    "spoken": "Słucham uważnie. Nadal nie widzę związku."
+   }
+  ]
+ },
+ "001-marta": {
+  "name": "Marta Różycka",
+  "lines": [
+   {
+    "id": "m-q1",
+    "kind": "q",
+    "text": "Zna kołysankę, którą śpiewałam Ani do snu. Zna nazwy wszystkich pokoi, wie, gdzie skrzypi podłoga. Chcę wierzyć. Czy to zbrodnia — chcieć odzyskać dziecko? Leon nic mi wcześniej nie mówił — dowiedziałam się dopiero tutaj, w piątek wieczorem.",
+    "spoken": "Zna kołysankę, którą śpiewałam Ani do snu. Zna nazwy wszystkich pokoi, wie, gdzie skrzypi podłoga. Chcę wierzyć. Czy to zbrodnia — chcieć odzyskać dziecko? Leon nic mi wcześniej nie mówił — dowiedziałam się dopiero tutaj, w piątek wieczorem."
+   },
+   {
+    "id": "m-q2",
+    "kind": "q",
+    "text": "O jedenastej wzięłam tabletkę nasenną, jak co noc od trzynastu lat. Spałam do krzyku Heleny.",
+    "spoken": "O jedenastej wzięłam tabletkę nasenną, jak co noc od trzynastu lat. Spałam do krzyku Heleny."
+   },
+   {
+    "id": "m-q3",
+    "kind": "q",
+    "text": "Że kiedyś zapłaci za tamtą noc. Wszyscy słyszeli. Nie żałuję. Nigdy nie uwierzyłam, że Ania zamknęła się sama.",
+    "spoken": "Że kiedyś zapłaci za tamtą noc. Wszyscy słyszeli. Nie żałuję. Nigdy nie uwierzyłam, że Ania zamknęła się sama."
+   },
+   {
+    "id": "m-q4",
+    "kind": "q",
+    "text": "Pożar w zachodnim skrzydle. Ania spłonęła w swoim pokoju. Leon rozpoznał ją po bransoletce i zegarku, mnie nie pozwolono nawet zobaczyć ciała. Mam kopię raportu straży — walczyłam o nią dwa lata. Proszę, przeczytajcie sami.",
+    "spoken": "Pożar w zachodnim skrzydle. Ania spłonęła w swoim pokoju. Leon rozpoznał ją po bransoletce i zegarku, mnie nie pozwolono nawet zobaczyć ciała. Mam kopię raportu straży — walczyłam o nią dwa lata. Proszę, przeczytajcie sami."
+   },
+   {
+    "id": "m-q5",
+    "kind": "q",
+    "text": "Co takiego? Nigdy. Nikomu. A w marcu 2019 roku na pewno nie — od lutego do końca kwietnia leżałam w szpitalu w Poznaniu, pierwsze tygodnie w śpiączce farmakologicznej. Mam kartę wypisu w telefonie, proszę. Kto sprzedał moją ziemię?",
+    "spoken": "Co takiego? Nigdy. Nikomu. A w marcu dwa tysiące dziewiętnastego roku na pewno nie — od lutego do końca kwietnia leżałam w szpitalu w Poznaniu, pierwsze tygodnie w śpiączce farmakologicznej. Mam kartę wypisu w telefonie, proszę. Kto sprzedał moją ziemię?"
+   },
+   {
+    "id": "m-q6",
+    "kind": "q",
+    "text": "Ania? Leworęczna. Nauczycielka chciała ją przestawiać, a ja poszłam do szkoły i zrobiłam awanturę. Dlaczego pytacie?",
+    "spoken": "Ania? Leworęczna. Nauczycielka chciała ją przestawiać, a ja poszłam do szkoły i zrobiłam awanturę. Dlaczego pytacie?"
+   },
+   {
+    "id": "m-q7",
+    "kind": "q",
+    "text": "Zawsze noszę jedno w portfelu. Lipiec 2013, taras. Ania i Kinia, córka Heleny — były wtedy nierozłączne. Proszę, tylko ostrożnie.",
+    "spoken": "Zawsze noszę jedno w portfelu. Lipiec dwa tysiące trzynaście, taras. Ania i Kinia, córka Heleny — były wtedy nierozłączne. Proszę, tylko ostrożnie."
+   },
+   {
+    "id": "m-l1",
+    "kind": "break",
+    "text": "Zadzwonił w czwartek. Pierwszy raz od lat płakał do słuchawki. Powiedział: „Ania wróciła, przyjedź w piątek, Wiktor przygotuje papiery”. Przyjechałam. Przy kolacji powiedziałam, że wszystko, co moje, będzie jej. Wiktor zbladł, ale pomyślałam, że ze zdziwienia. Skłamałam, bo wiem, jak to wygląda: kobieta, która nienawidzi męża, ma cały dzień, żeby tu przyjechać.",
+    "spoken": "Zadzwonił w czwartek. Pierwszy raz od lat płakał do słuchawki. Powiedział: „Ania wróciła, przyjedź w piątek, Wiktor przygotuje papiery”. Przyjechałam. Przy kolacji powiedziałam, że wszystko, co moje, będzie jej. Wiktor zbladł, ale pomyślałam, że ze zdziwienia. Skłamałam, bo wiem, jak to wygląda: kobieta, która nienawidzi męża, ma cały dzień, żeby tu przyjechać."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Myślicie, że to ja? Proszę bardzo, szukajcie.",
+    "spoken": "Myślicie, że to ja? Proszę bardzo, szukajcie."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Nie wiem, czego ode mnie chcecie.",
+    "spoken": "Nie wiem, czego ode mnie chcecie."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "To nie ma znaczenia. Ania wróciła — tylko to ma znaczenie.",
+    "spoken": "To nie ma znaczenia. Ania wróciła — tylko to ma znaczenie."
+   }
+  ]
+ },
+ "002-roman": {
+  "name": "Roman Kot",
+  "lines": [
+   {
+    "id": "ro-q1",
+    "kind": "q",
+    "text": "Odjazd z Wierzbna planowo, 21:40. Przed Gajem semafor nie dawał sygnału — staliśmy od 22:58 do 23:15. Przez ten czas byłem w lokomotywie u maszynisty, tak się robi przy awarii. Na Wrzosie odprawiłem pociąg z peronu, przy lokomotywie. Do Karska bez zdarzeń, przyjazd 1:40.",
+    "spoken": "Odjazd z Wierzbna planowo, dwudziesta pierwsza czterdzieści. Przed Gajem semafor nie dawał sygnału — staliśmy od dwudziestej drugiej pięćdziesiąt osiem do dwudziestej trzeciej piętnaście. Przez ten czas byłem w lokomotywie u maszynisty, tak się robi przy awarii. Na Wrzosie odprawiłem pociąg z peronu, przy lokomotywie. Do Karska bez zdarzeń, przyjazd pierwsza czterdzieści."
+   },
+   {
+    "id": "ro-q2",
+    "kind": "q",
+    "text": "Nie. Nazwisko nic mi nie mówi. Mam setki pasażerów w tygodniu — znam ich z rezerwacji, nie z twarzy.",
+    "spoken": "Nie. Nazwisko nic mi nie mówi. Mam setki pasażerów w tygodniu — znam ich z rezerwacji, nie z twarzy."
+   },
+   {
+    "id": "ro-q3",
+    "kind": "q",
+    "text": "Awaria spłuczki, zgłoszona w czasie postoju. Zaplombowałem zgodnie z instrukcją, żeby nikt nie zalał wagonu. Wpisałem to do dziennika.",
+    "spoken": "Awaria spłuczki, zgłoszona w czasie postoju. Zaplombowałem zgodnie z instrukcją, żeby nikt nie zalał wagonu. Wpisałem to do dziennika."
+   },
+   {
+    "id": "ro-q4",
+    "kind": "q",
+    "text": "Kolega miał chore dziecko, zamieniliśmy się. A ja i tak chciałem być w Karsku w weekend. Nic niezwykłego.",
+    "spoken": "Kolega miał chore dziecko, zamieniliśmy się. A ja i tak chciałem być w Karsku w weekend. Nic niezwykłego."
+   },
+   {
+    "id": "ro-q5",
+    "kind": "q",
+    "text": "Może raz, żeby wywietrzyć. Nie pamiętam dokładnie. W tych wagonach jest duszno.",
+    "spoken": "Może raz, żeby wywietrzyć. Nie pamiętam dokładnie. W tych wagonach jest duszno."
+   },
+   {
+    "id": "ro-l1",
+    "kind": "break",
+    "text": "Dobrze. Pracowaliśmy razem, dawno temu, na nastawni w Gaju. Byłem jego przełożonym przez dwa lata. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi przy tej katastrofie. Nie widziałem go od dziesięciu lat.",
+    "spoken": "Dobrze. Pracowaliśmy razem, dawno temu, na nastawni w Gaju. Byłem jego przełożonym przez dwa lata. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi przy tej katastrofie. Nie widziałem go od dziesięciu lat."
+   },
+   {
+    "id": "ro-l2",
+    "kind": "break",
+    "text": "Może pomyliłem kolejność. Najpierw obszedłem skład — dwójkę, trójkę. Dzwoniłem do maszynisty z wagonu. To normalna procedura, niczego nie ukrywam.",
+    "spoken": "Może pomyliłem kolejność. Najpierw obszedłem skład — dwójkę, trójkę. Dzwoniłem do maszynisty z wagonu. To normalna procedura, niczego nie ukrywam."
+   },
+   {
+    "id": "ro-l3",
+    "kind": "break",
+    "text": "Wyszedłem na peron z tyłu składu, sprawdzić drzwi. Padało, poślizgnąłem się, stąd to spóźnienie z sygnałem. Tak, dałem odjazd z końca. To jeszcze nie zbrodnia.",
+    "spoken": "Wyszedłem na peron z tyłu składu, sprawdzić drzwi. Padało, poślizgnąłem się, stąd to spóźnienie z sygnałem. Tak, dałem odjazd z końca. To jeszcze nie zbrodnia."
+   },
+   {
+    "id": "ro-l4",
+    "kind": "break",
+    "text": "(długo milczy) Nie będę z wami o tym rozmawiał. Żądam obecności adwokata. Od tej chwili nie odpowiadam na pytania.",
+    "spoken": "Nie będę z wami o tym rozmawiał. Żądam obecności adwokata. Od tej chwili nie odpowiadam na pytania."
+   },
+   {
+    "id": "ro-l5",
+    "kind": "break",
+    "text": "Dobrze, wpisałem inny powód. Zająca o nic nie prosiłem — sam mu zaproponowałem zamianę. Chciałem być w Karsku w ten weekend. Prywatne sprawy. Nie muszę się z nich tłumaczyć.",
+    "spoken": "Dobrze, wpisałem inny powód. Zająca o nic nie prosiłem — sam mu zaproponowałem zamianę. Chciałem być w Karsku w ten weekend. Prywatne sprawy. Nie muszę się z nich tłumaczyć."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Proszę mi nie mieszać w głowie dokumentami, których nie rozumiecie.",
+    "spoken": "Proszę mi nie mieszać w głowie dokumentami, których nie rozumiecie."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "To niczego nie dowodzi. Na kolei wszystko jest w papierach.",
+    "spoken": "To niczego nie dowodzi. Na kolei wszystko jest w papierach."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Odpowiadam za ten skład od trzydziestu lat. Szukajcie gdzie indziej.",
+    "spoken": "Odpowiadam za ten skład od trzydziestu lat. Szukajcie gdzie indziej."
+   }
+  ]
+ },
+ "002-iga": {
+  "name": "Iga Malec",
+  "lines": [
+   {
+    "id": "ig-q1",
+    "kind": "q",
+    "text": "Nic. Siedzieliśmy obok siebie przypadkiem. Zamieniliśmy dwa zdania w korytarzu, o opóźnieniu.",
+    "spoken": "Nic. Siedzieliśmy obok siebie przypadkiem. Zamieniliśmy dwa zdania w korytarzu, o opóźnieniu."
+   },
+   {
+    "id": "ig-q2",
+    "kind": "q",
+    "text": "Pracowałam nad tekstem, potem próbowałam spać. Przed Gajem staliśmy długo, generator huczał. Raz za ścianą coś stuknęło, jakby ktoś zamknął drzwi. Spojrzałam na telefon — była 23:06. Nic więcej nie słyszałam.",
+    "spoken": "Pracowałam nad tekstem, potem próbowałam spać. Przed Gajem staliśmy długo, generator huczał. Raz za ścianą coś stuknęło, jakby ktoś zamknął drzwi. Spojrzałam na telefon — była dwudziesta trzecia zero sześć. Nic więcej nie słyszałam."
+   },
+   {
+    "id": "ig-q3",
+    "kind": "q",
+    "text": "Tak. Wyjrzałam zza firanki. Mężczyzna w szarym płaszczu i kaszkiecie szedł w stronę kiosku. To był Emil… to znaczy pasażer obok. Wysiadł. Sam.",
+    "spoken": "Tak. Wyjrzałam zza firanki. Mężczyzna w szarym płaszczu i kaszkiecie szedł w stronę kiosku. To był Emil… to znaczy pasażer obok. Wysiadł. Sam."
+   },
+   {
+    "id": "ig-q4",
+    "kind": "q",
+    "text": "Jestem dziennikarką. Od dwóch lat piszę o kolei — o tym, czego nie ma w oficjalnych raportach.",
+    "spoken": "Jestem dziennikarką. Od dwóch lat piszę o kolei — o tym, czego nie ma w oficjalnych raportach."
+   },
+   {
+    "id": "ig-q5",
+    "kind": "q",
+    "text": "Że ktoś z dawnej pracy spróbuje go powstrzymać, zanim stanie przed sądem. Mówił, że w tamtej sprawie jest ktoś, kto ma do stracenia więcej niż on. Nazwiska nie chciał podać przez telefon.",
+    "spoken": "Że ktoś z dawnej pracy spróbuje go powstrzymać, zanim stanie przed sądem. Mówił, że w tamtej sprawie jest ktoś, kto ma do stracenia więcej niż on. Nazwiska nie chciał podać przez telefon."
+   },
+   {
+    "id": "ig-l1",
+    "kind": "break",
+    "text": "Dobrze. Znałam go. Od miesięcy namawiałam go, żeby zeznawał. Bał się. Ustaliliśmy plan: Emil wysiada na Wrzosie tylnymi drzwiami, przy kiosku czeka mój kolega Olek z niebieską torbą, zawozi go do bezpiecznego mieszkania, a rano Emil staje w sądzie. Bilet do Karska był dla zmyłki. Ja jechałam za ścianą, żeby go pilnować. Olek wszystko potwierdzi — proszę, tu są nasze wiadomości.",
+    "spoken": "Dobrze. Znałam go. Od miesięcy namawiałam go, żeby zeznawał. Bał się. Ustaliliśmy plan: Emil wysiada na Wrzosie tylnymi drzwiami, przy kiosku czeka mój kolega Olek z niebieską torbą, zawozi go do bezpiecznego mieszkania, a rano Emil staje w sądzie. Bilet do Karska był dla zmyłki. Ja jechałam za ścianą, żeby go pilnować. Olek wszystko potwierdzi — proszę, tu są nasze wiadomości."
+   },
+   {
+    "id": "ig-l2",
+    "kind": "break",
+    "text": "(Iga długo patrzy na dowód) To nie był on. Boże… Widziałam tylko płaszcz i kaszkiet. Emil był niski, a tamten szedł wyprostowany, długim krokiem. Olek pisał, że ktoś go minął i nie stanął. Myślałam, że Emil spanikował i uciekł.",
+    "spoken": "To nie był on. Boże… Widziałam tylko płaszcz i kaszkiet. Emil był niski, a tamten szedł wyprostowany, długim krokiem. Olek pisał, że ktoś go minął i nie stanął. Myślałam, że Emil spanikował i uciekł."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Nie wiem, co chcecie mi udowodnić.",
+    "spoken": "Nie wiem, co chcecie mi udowodnić."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "To nie ma nic wspólnego ze mną.",
+    "spoken": "To nie ma nic wspólnego ze mną."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Proszę mnie nie traktować jak podejrzanej.",
+    "spoken": "Proszę mnie nie traktować jak podejrzanej."
+   }
+  ]
+ },
+ "002-wieslaw": {
+  "name": "Wiesław Pająk",
+  "lines": [
+   {
+    "id": "k-q1",
+    "kind": "q",
+    "text": "Kontrolowałem bilety w jedynce i w dwójce. Jak zawsze. Przy postoju ludzie się budzą, pytają, trzeba być na miejscu.",
+    "spoken": "Kontrolowałem bilety w jedynce i w dwójce. Jak zawsze. Przy postoju ludzie się budzą, pytają, trzeba być na miejscu."
+   },
+   {
+    "id": "k-q2",
+    "kind": "q",
+    "text": "Mój pomocnik, Tomek Nowik. Zadzwonili do niego, że córka trafiła do szpitala, puściłem go — tylko proszę tego nie pisać w raporcie. Innych nie widziałem, byłem przy jedynce, z przodu.",
+    "spoken": "Mój pomocnik, Tomek Nowik. Zadzwonili do niego, że córka trafiła do szpitala, puściłem go — tylko proszę tego nie pisać w raporcie. Innych nie widziałem, byłem przy jedynce, z przodu."
+   },
+   {
+    "id": "k-q3",
+    "kind": "q",
+    "text": "Nie wiem, czy zatarg. Koło wpół do jedenastej przechodziłem przez bar i widziałem, jak barman się na niego gapi. Powiedział mu coś w stylu: „Wiem, kim pan jest”. Więcej nie słyszałem, poszedłem dalej.",
+    "spoken": "Nie wiem, czy zatarg. Koło wpół do jedenastej przechodziłem przez bar i widziałem, jak barman się na niego gapi. Powiedział mu coś w stylu: „Wiem, kim pan jest”. Więcej nie słyszałem, poszedłem dalej."
+   },
+   {
+    "id": "k-q4",
+    "kind": "q",
+    "text": "Nerwowo. Zwykle siedzi w swoim przedziale nad papierami, a tej nocy chodził po składzie. A na Wrzosie słyszałem w radiotelefonie, jak maszynista klnie, że kierownik spóźnia się z sygnałem odjazdu.",
+    "spoken": "Nerwowo. Zwykle siedzi w swoim przedziale nad papierami, a tej nocy chodził po składzie. A na Wrzosie słyszałem w radiotelefonie, jak maszynista klnie, że kierownik spóźnia się z sygnałem odjazdu."
+   },
+   {
+    "id": "k-l1",
+    "kind": "break",
+    "text": "No dobrze, dobrze. Siedziałem w barze. Od jedenastej do kwadrans po, aż ruszyliśmy. Kawa, pogadałem z barmanem. Chłopak był cały czas za barem, mogę przysiąc. I jeszcze jedno: koło 23:03 kierownik przeszedł przez bar w stronę dwójki, z pękiem kluczy w ręku. Szybko szedł. Nie odezwał się.",
+    "spoken": "No dobrze, dobrze. Siedziałem w barze. Od jedenastej do kwadrans po, aż ruszyliśmy. Kawa, pogadałem z barmanem. Chłopak był cały czas za barem, mogę przysiąc. I jeszcze jedno: koło dwudziestej trzeciej zero trzy kierownik przeszedł przez bar w stronę dwójki, z pękiem kluczy w ręku. Szybko szedł. Nie odezwał się."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Panie, ja tu jestem od biletów.",
+    "spoken": "Panie, ja tu jestem od biletów."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Nic takiego nie widziałem.",
+    "spoken": "Nic takiego nie widziałem."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Ja już swoje powiedziałem.",
+    "spoken": "Ja już swoje powiedziałem."
+   }
+  ]
+ },
+ "002-damian": {
+  "name": "Damian Lis",
+  "lines": [
+   {
+    "id": "d-q1",
+    "kind": "q",
+    "text": "Może. Dużo ludzi. Nie pamiętam twarzy.",
+    "spoken": "Może. Dużo ludzi. Nie pamiętam twarzy."
+   },
+   {
+    "id": "d-q2",
+    "kind": "q",
+    "text": "Za barem. Konduktor pił u mnie kawę, gadaliśmy, aż ruszyliśmy.",
+    "spoken": "Za barem. Konduktor pił u mnie kawę, gadaliśmy, aż ruszyliśmy."
+   },
+   {
+    "id": "d-q3",
+    "kind": "q",
+    "text": "Za barem, ludzie kupowali wodę i kanapki, kasa wszystko pokaże. Tuż przed odjazdem kierownik wpadł tylnymi drzwiami baru, mokry od deszczu, i pobiegł do dwójki. Nawet nie spojrzał.",
+    "spoken": "Za barem, ludzie kupowali wodę i kanapki, kasa wszystko pokaże. Tuż przed odjazdem kierownik wpadł tylnymi drzwiami baru, mokry od deszczu, i pobiegł do dwójki. Nawet nie spojrzał."
+   },
+   {
+    "id": "d-q4",
+    "kind": "q",
+    "text": "(cisza) Mój brat jechał tamtym pociągiem. Miał dwadzieścia dwa lata. Sąd uniewinnił wszystkich. Wszystkich.",
+    "spoken": "Mój brat jechał tamtym pociągiem. Miał dwadzieścia dwa lata. Sąd uniewinnił wszystkich. Wszystkich."
+   },
+   {
+    "id": "d-l1",
+    "kind": "break",
+    "text": "Poznałem go od razu. Jego zdjęcie było we wszystkich gazetach w 2016 roku. Powiedziałem mu: „Wiem, kim pan jest”. A on spojrzał na mnie i powiedział cicho: „To nie ja kazałem dać ten sygnał. Ja tylko wykonałem polecenie. Jutro w sądzie powiem, kto kazał”. Zapłacił i wyszedł. Nic mu nie zrobiłem. Chciałem tylko usłyszeć prawdę.",
+    "spoken": "Poznałem go od razu. Jego zdjęcie było we wszystkich gazetach w dwa tysiące szesnastym roku. Powiedziałem mu: „Wiem, kim pan jest”. A on spojrzał na mnie i powiedział cicho: „To nie ja kazałem dać ten sygnał. Ja tylko wykonałem polecenie. Jutro w sądzie powiem, kto kazał”. Zapłacił i wyszedł. Nic mu nie zrobiłem. Chciałem tylko usłyszeć prawdę."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja tylko robię kawę.",
+    "spoken": "Ja tylko robię kawę."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Nie wiem, o co wam chodzi.",
+    "spoken": "Nie wiem, o co wam chodzi."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Szukacie winnego, bo jestem najmłodszy?",
+    "spoken": "Szukacie winnego, bo jestem najmłodszy?"
+   }
+  ]
+ },
+ "003-zenon": {
+  "name": "Zenon Kubik",
+  "lines": [
+   {
+    "id": "z-q1",
+    "kind": "q",
+    "text": "O dziesiątej obszedłem teren, wszystko było zamknięte. Wróciłem do stróżówki, zjadłem, położyłem się. Rano o wpół do ósmej poszedłem na obchód. Boczne drzwi były uchylone, w środku leżał doktor.",
+    "spoken": "O dziesiątej obszedłem teren, wszystko było zamknięte. Wróciłem do stróżówki, zjadłem, położyłem się. Rano o wpół do ósmej poszedłem na obchód. Boczne drzwi były uchylone, w środku leżał doktor."
+   },
+   {
+    "id": "z-q2",
+    "kind": "q",
+    "text": "Nie. Budynek jest zamknięty, klucze mam ja i gmina.",
+    "spoken": "Nie. Budynek jest zamknięty, klucze mam ja i gmina."
+   },
+   {
+    "id": "z-q3",
+    "kind": "q",
+    "text": "Nie. Stróżówka stoi przy bramie, okna mam na drogę.",
+    "spoken": "Nie. Stróżówka stoi przy bramie, okna mam na drogę."
+   },
+   {
+    "id": "z-q4",
+    "kind": "q",
+    "text": "Pewnie po ten swój dziennik. Żeby go nikt nie zobaczył.",
+    "spoken": "Pewnie po ten swój dziennik. Żeby go nikt nie zobaczył."
+   },
+   {
+    "id": "z-q5",
+    "kind": "q",
+    "text": "Wyżej? Wyżej nic nie ma. Wejście na poddasze zamurowali, zanim tu przyszedłem.",
+    "spoken": "Wyżej? Wyżej nic nie ma. Wejście na poddasze zamurowali, zanim tu przyszedłem."
+   },
+   {
+    "id": "z-q6",
+    "kind": "q",
+    "text": "Nie. Słyszałem, że ktoś tu umarł przed zamknięciem. Ludzie gadali.",
+    "spoken": "Nie. Słyszałem, że ktoś tu umarł przed zamknięciem. Ludzie gadali."
+   },
+   {
+    "id": "z-l1",
+    "kind": "break",
+    "text": "Dobra. Koło wpół do dwunastej zobaczyłem, że w tym okienku na górze ktoś się rusza przy lampie. Chłopak wyszedł o dwadzieścia po dziesiątej, widziałem go przy bramie. Poszedłem. Drzwi były otwarte, w środku cicho. Nikogo nie widziałem. Postałem i wróciłem. Nie mówiłem, bo bym się musiał tłumaczyć, czemu nie zadzwoniłem.",
+    "spoken": "Dobra. Koło wpół do dwunastej zobaczyłem, że w tym okienku na górze ktoś się rusza przy lampie. Chłopak wyszedł o dwadzieścia po dziesiątej, widziałem go przy bramie. Poszedłem. Drzwi były otwarte, w środku cicho. Nikogo nie widziałem. Postałem i wróciłem. Nie mówiłem, bo bym się musiał tłumaczyć, czemu nie zadzwoniłem."
+   },
+   {
+    "id": "z-l2",
+    "kind": "break",
+    "text": "Chłopak chciał nagrywać. Dał półtora tysiąca, dałem mu drugi klucz do bocznych drzwi. Budynek i tak stoi pusty.",
+    "spoken": "Chłopak chciał nagrywać. Dał półtora tysiąca, dałem mu drugi klucz do bocznych drzwi. Budynek i tak stoi pusty."
+   },
+   {
+    "id": "z-l4",
+    "kind": "break",
+    "text": "Byłem. W czwartek, jak chłopak poszedł. Chciałem zobaczyć, co tam znalazł. Łóżka z pasami. I tę szafę.",
+    "spoken": "Byłem. W czwartek, jak chłopak poszedł. Chciałem zobaczyć, co tam znalazł. Łóżka z pasami. I tę szafę."
+   },
+   {
+    "id": "z-l5",
+    "kind": "break",
+    "text": "(długo milczy) Ewka była moją córką. Po rozwodzie zostawiła nazwisko męża. Przyjechała tu się leczyć z depresji, a wróciła w trumnie. Powiedzieli, że pielęgniarka pomyliła dawkę. Wziąłem tę robotę, żeby… żeby być blisko. Tylko tyle.",
+    "spoken": "Ewka była moją córką. Po rozwodzie zostawiła nazwisko męża. Przyjechała tu się leczyć z depresji, a wróciła w trumnie. Powiedzieli, że pielęgniarka pomyliła dawkę. Wziąłem tę robotę, żeby… żeby być blisko. Tylko tyle."
+   },
+   {
+    "id": "z-l6",
+    "kind": "break",
+    "text": "(patrzy na guzik, potem na swoje ręce) Był tam. Stał przy szafie z jej… z tym zeszytem. Powiedziałem mu, kim jestem. Resztę powiem przed sądem.",
+    "spoken": "Był tam. Stał przy szafie z jej… z tym zeszytem. Powiedziałem mu, kim jestem. Resztę powiem przed sądem."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja tu tylko pilnuję płotu.",
+    "spoken": "Ja tu tylko pilnuję płotu."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Pytajcie gminę, nie mnie.",
+    "spoken": "Pytajcie gminę, nie mnie."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Nie wiem, o co wam chodzi.",
+    "spoken": "Nie wiem, o co wam chodzi."
+   }
+  ]
+ },
+ "003-kamil": {
+  "name": "Kamil Duda",
+  "lines": [
+   {
+    "id": "k-q1",
+    "kind": "q",
+    "text": "Od niedzieli. Co noc po kilka godzin, do serii o opuszczonych szpitalach.",
+    "spoken": "Od niedzieli. Co noc po kilka godzin, do serii o opuszczonych szpitalach."
+   },
+   {
+    "id": "k-q2",
+    "kind": "q",
+    "text": "Boczne drzwi były otwarte. Ktoś musiał je kiedyś wyłamać.",
+    "spoken": "Boczne drzwi były otwarte. Ktoś musiał je kiedyś wyłamać."
+   },
+   {
+    "id": "k-q3",
+    "kind": "q",
+    "text": "Około 22:20. Kamerę i lampę zostawiłem na całą noc.",
+    "spoken": "Około dwudziestej drugiej dwadzieścia. Kamerę i lampę zostawiłem na całą noc."
+   },
+   {
+    "id": "k-q4",
+    "kind": "q",
+    "text": "Tak. Zawsze nagrywam sam.",
+    "spoken": "Tak. Zawsze nagrywam sam."
+   },
+   {
+    "id": "k-q5",
+    "kind": "q",
+    "text": "Gruby zeszyt w płóciennej oprawie. Na okładce: „Izolatorium — kuracja insulinowa 2016–2018”. W czwartek zrobiłem zdjęcia, w sobotę miałem go pokazać. Nie ma go tam?",
+    "spoken": "Gruby zeszyt w płóciennej oprawie. Na okładce: „Izolatorium — kuracja insulinowa dwa tysiące szesnaście — dwa tysiące osiemnaście”. W czwartek zrobiłem zdjęcia, w sobotę miałem go pokazać. Nie ma go tam?"
+   },
+   {
+    "id": "k-q6",
+    "kind": "q",
+    "text": "Nikomu. W zwiastunie napisałem tylko o szafie — specjalnie, żeby nikt nie uprzedził premiery. Stróż nie wiedział nawet, którędy wchodzę na górę.",
+    "spoken": "Nikomu. W zwiastunie napisałem tylko o szafie — specjalnie, żeby nikt nie uprzedził premiery. Stróż nie wiedział nawet, którędy wchodzę na górę."
+   },
+   {
+    "id": "k-q8",
+    "kind": "q",
+    "text": "Ja. W niedzielę wybiłem otwór łomem, a płytę pomalowałem i przykręciłem, żeby nikt mnie nie uprzedził przed premierą.",
+    "spoken": "Ja. W niedzielę wybiłem otwór łomem, a płytę pomalowałem i przykręciłem, żeby nikt mnie nie uprzedził przed premierą."
+   },
+   {
+    "id": "k-q7",
+    "kind": "q",
+    "text": "Tak. Zadzwonił w piątek koło siódmej wieczorem. Krzyczał, że mnie pozwie, jeśli pokażę choć jedną stronę. Rozłączyłem się.",
+    "spoken": "Tak. Zadzwonił w piątek koło siódmej wieczorem. Krzyczał, że mnie pozwie, jeśli pokażę choć jedną stronę. Rozłączyłem się."
+   },
+   {
+    "id": "k-l1",
+    "kind": "break",
+    "text": "Zapłaciłem stróżowi półtora tysiąca za klucz. Nie chciałem, żeby miał przeze mnie kłopoty.",
+    "spoken": "Zapłaciłem stróżowi półtora tysiąca za klucz. Nie chciałem, żeby miał przeze mnie kłopoty."
+   },
+   {
+    "id": "k-l2",
+    "kind": "break",
+    "text": "Była ze mną pani Krystyna Bober. To ona powiedziała mi o izolatorium i o szafie. Przyszła wpół do dziewiątej, wyszła przed dziesiątą, zanim zaczął padać śnieg. Nie chciałem jej w to mieszać — ona już raz przez nich straciła wszystko.",
+    "spoken": "Była ze mną pani Krystyna Bober. To ona powiedziała mi o izolatorium i o szafie. Przyszła wpół do dziewiątej, wyszła przed dziesiątą, zanim zaczął padać śnieg. Nie chciałem jej w to mieszać — ona już raz przez nich straciła wszystko."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja tylko nagrywam opuszczone miejsca.",
+    "spoken": "Ja tylko nagrywam opuszczone miejsca."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Mam to wszystko na nagraniach, sprawdźcie.",
+    "spoken": "Mam to wszystko na nagraniach, sprawdźcie."
+   }
+  ]
+ },
+ "003-krystyna": {
+  "name": "Krystyna Bober",
+  "lines": [
+   {
+    "id": "kb-q1",
+    "kind": "q",
+    "text": "Pracuję w aptece w Jaworzynie, na zapleczu. Do pacjentów nie mam prawa wrócić.",
+    "spoken": "Pracuję w aptece w Jaworzynie, na zapleczu. Do pacjentów nie mam prawa wrócić."
+   },
+   {
+    "id": "kb-q2",
+    "kind": "q",
+    "text": "W marcu 2018 roku. Tej nocy, kiedy umarła pani Ewa.",
+    "spoken": "W marcu dwa tysiące osiemnastego roku. Tej nocy, kiedy umarła pani Ewa."
+   },
+   {
+    "id": "kb-q3",
+    "kind": "q",
+    "text": "Umarła pani Ewa Rudnicka. Sąd uznał, że podałam jej trzydzieści jednostek insuliny zamiast trzech. Karta zleceń mówiła: trzy. Kartę wypisywał doktor Wilk.",
+    "spoken": "Umarła pani Ewa Rudnicka. Sąd uznał, że podałam jej trzydzieści jednostek insuliny zamiast trzech. Karta zleceń mówiła: trzy. Kartę wypisywał doktor Wilk."
+   },
+   {
+    "id": "kb-q4",
+    "kind": "q",
+    "text": "Według akt — na II piętrze, w sali 7. Znalazłam ją tam nad ranem, już nie żyła. O dziesiątej wieczorem, kiedy robiłam obchód, jej łóżko było puste.",
+    "spoken": "Według akt — na drugim piętrze, w sali siedem. Znalazłam ją tam nad ranem, już nie żyła. O dziesiątej wieczorem, kiedy robiłam obchód, jej łóżko było puste."
+   },
+   {
+    "id": "kb-q5",
+    "kind": "q",
+    "text": "Ojciec. Na każdą. Duży mężczyzna z siwą brodą, w zielonym płaszczu leśnika. Siedział z tyłu i nigdy się nie odezwał.",
+    "spoken": "Ojciec. Na każdą. Duży mężczyzna z siwą brodą, w zielonym płaszczu leśnika. Siedział z tyłu i nigdy się nie odezwał."
+   },
+   {
+    "id": "kb-q6",
+    "kind": "q",
+    "text": "W domu. Sama. Nikt tego nie potwierdzi.",
+    "spoken": "W domu. Sama. Nikt tego nie potwierdzi."
+   },
+   {
+    "id": "kb-l1",
+    "kind": "break",
+    "text": "Byłam. W piątek, od wpół do dziewiątej do dziesiątej. Zaprowadziłam chłopaka na poddasze i pokazałam szafę. Osiem lat czekałam, aż ktoś tam wejdzie. Wyszłam, zanim zaczął padać śnieg. Doktora nie widziałam.",
+    "spoken": "Byłam. W piątek, od wpół do dziewiątej do dziesiątej. Zaprowadziłam chłopaka na poddasze i pokazałam szafę. Osiem lat czekałam, aż ktoś tam wejdzie. Wyszłam, zanim zaczął padać śnieg. Doktora nie widziałam."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Osiem lat temu też nikt mnie nie słuchał.",
+    "spoken": "Osiem lat temu też nikt mnie nie słuchał."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Proszę mnie nie pytać o to, czego nie wiem.",
+    "spoken": "Proszę mnie nie pytać o to, czego nie wiem."
+   }
+  ]
+ },
+ "003-joanna": {
+  "name": "Joanna Wilk",
+  "lines": [
+   {
+    "id": "j-q1",
+    "kind": "q",
+    "text": "Po kolacji zamknął się w gabinecie. O dziesiątej powiedział dobranoc i poszedł do sypialni. Rano jego łóżko było nietknięte.",
+    "spoken": "Po kolacji zamknął się w gabinecie. O dziesiątej powiedział dobranoc i poszedł do sypialni. Rano jego łóżko było nietknięte."
+   },
+   {
+    "id": "j-q2",
+    "kind": "q",
+    "text": "Tak. Wieczorem, w gabinecie. Zrobił się szary na twarzy. Potem do kogoś dzwonił i krzyczał.",
+    "spoken": "Tak. Wieczorem, w gabinecie. Zrobił się szary na twarzy. Potem do kogoś dzwonił i krzyczał."
+   },
+   {
+    "id": "j-q3",
+    "kind": "q",
+    "text": "Na serce. Brał leki. W śnieg nie powinien wychodzić nawet do furtki.",
+    "spoken": "Na serce. Brał leki. W śnieg nie powinien wychodzić nawet do furtki."
+   },
+   {
+    "id": "j-q4",
+    "kind": "q",
+    "text": "Ja. Dom i kredyt pod jego hipotekę. Od lat żyliśmy na kredyt.",
+    "spoken": "Ja. Dom i kredyt pod jego hipotekę. Od lat żyliśmy na kredyt."
+   },
+   {
+    "id": "j-q5",
+    "kind": "q",
+    "text": "Byłam w swoim pokoju na piętrze. Czytałam do pierwszej.",
+    "spoken": "Byłam w swoim pokoju na piętrze. Czytałam do pierwszej."
+   },
+   {
+    "id": "j-l1",
+    "kind": "break",
+    "text": "Słyszałam, jak wychodził, za dziesięć jedenasta. Zapytałam z góry, dokąd idzie. Powiedział: „Muszę coś zabrać, zanim to pokażą”. Nie zeszłam. Byłam na niego zła — od wieczora nie chciał powiedzieć, co jest w tym filmie.",
+    "spoken": "Słyszałam, jak wychodził, za dziesięć jedenasta. Zapytałam z góry, dokąd idzie. Powiedział: „Muszę coś zabrać, zanim to pokażą”. Nie zeszłam. Byłam na niego zła — od wieczora nie chciał powiedzieć, co jest w tym filmie."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Mój ojciec nie żyje, a wy pytacie mnie o takie rzeczy?",
+    "spoken": "Mój ojciec nie żyje, a wy pytacie mnie o takie rzeczy?"
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Nie wiem. Nie rozmawialiśmy o pracy.",
+    "spoken": "Nie wiem. Nie rozmawialiśmy o pracy."
+   }
+  ]
+ }
+}
