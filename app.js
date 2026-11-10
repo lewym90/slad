@@ -1,6 +1,8 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.0.4';
+const VERSION = '2.0.5';
+const BUILD = '10.11.2026';
+let swReg = null;
 const STORE_KEY = 'slad.v2';
 
 /* ---------- narzędzia ---------- */
@@ -648,6 +650,7 @@ async function renderOv() {
 function ovSettings() {
   const s = S.settings;
   return { title: 'Ustawienia', kicker: 'ŚLAD ' + VERSION, body: `
+   <div class="settings-row"><div><b>Wersja gry: ${VERSION}</b><small>Wydanie z ${BUILD}. Gra aktualizuje się sama przy każdym otwarciu z internetem.</small></div><button class="btn small ghost" data-a="check-update">Sprawdź</button></div>
    <div class="settings-row"><div><b>Muzyka i efekty</b><small>Ambient sprawy i dźwięk nowych dowodów</small></div><button class="switch" aria-pressed="${s.sound}" data-a="sound" aria-label="Dźwięk"></button></div>
    <div class="settings-row"><div><b>Wielkość tekstu</b><small>Dla czytania przy stole</small></div><div class="seg">${[['m', 'A'], ['l', 'A+'], ['xl', 'A++']].map(([k, l]) => `<button aria-pressed="${s.text === k}" data-a="text" data-v="${k}">${l}</button>`).join('')}</div></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
@@ -659,7 +662,7 @@ function ovMenu(c, g) {
   return { title: 'Menu sprawy', kicker: c ? 'Akta ' + c.id : '', body: `<div class="qlist">
    <button class="q" data-a="show-brief">Briefing i zadania sprawy</button>
    <button class="q" data-a="sound">${S.settings.sound ? 'Wyłącz dźwięk' : 'Włącz dźwięk'}</button>
-   <button class="q" data-a="settings">Ustawienia</button>
+   <button class="q" data-a="settings">Ustawienia · wersja ${VERSION}</button>
    <button class="q" data-a="restart" data-id="${c ? c.id : ''}">Zacznij sprawę od nowa</button>
    <button class="q" data-a="home">Wróć do archiwum</button></div>` };
 }
@@ -718,6 +721,12 @@ const handlers = {
   text: el => { S.settings.text = el.dataset.v; save(); applySettings(); renderOv(); },
   motion: () => { S.settings.motion = S.settings.motion === 'on' ? 'off' : 'on'; save(); applySettings(); renderOv(); },
   settings: () => openOv({ type: 'settings' }),
+  'check-update': async () => {
+    if (!swReg || !navigator.onLine) { toast('Brak połączenia', 'Sprawdzę, gdy wróci internet', 'Aktualizacja'); return; }
+    toast('Sprawdzam aktualizację…', 'Wersja ' + VERSION, 'Aktualizacja');
+    try { await swReg.update(); } catch (_) {}
+    setTimeout(() => { if (swReg.installing || swReg.waiting) toast('Pobieram nową wersję', 'Gra za chwilę przeładuje się sama', 'Aktualizacja'); else toast('Masz najnowszą wersję', 'Wersja ' + VERSION, 'Aktualizacja'); }, 1200);
+  },
   'case-menu': () => openOv({ type: 'menu' }),
   'show-brief': () => { const { c } = ctx(); openOv({ type: 'msg', title: c.title, kicker: 'Briefing', body: `<article class="paper brief"><p class="lead">${esc(c.intro.lead)}</p>${c.intro.brief.map(p => `<p>${esc(p)}</p>`).join('')}<h4>Zadanie zespołu</h4><ol>${c.intro.task.map(t => `<li>${esc(t)}</li>`).join('')}</ol><h4>Zasady</h4><ul>${c.intro.rules.map(t => `<li>${esc(t)}</li>`).join('')}</ul></article>` }); },
   export: async () => { const name = `slad-zapis-${new Date().toISOString().slice(0, 10)}.json`; const blob = new Blob([JSON.stringify({ app: 'slad', version: VERSION, exported: new Date().toISOString(), data: S }, null, 1)], { type: 'application/json' });
@@ -758,6 +767,7 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   });
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(reg => {
+      swReg = reg;
       const check = () => { if (navigator.onLine !== false) reg.update().catch(() => {}); };
       check();
       document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });

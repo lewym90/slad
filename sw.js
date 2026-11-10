@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.0.4';
+const VERSION = '2.0.5';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
