@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.0.2';
+const VERSION = '2.0.3';
 const STORE_KEY = 'slad.v2';
 
 /* ---------- narzędzia ---------- */
@@ -126,6 +126,7 @@ function syncAudio() {
   } else if (amb) amb.pause();
 }
 function sfx() { if (!S.settings.sound) return; try { const a = new Audio('assets/audio/reveal.mp3'); a.volume = 0.5; a.play().catch(() => {}); } catch (_) {} }
+['pointerdown', 'keydown'].forEach(ev => document.addEventListener(ev, () => { if (S.settings.sound && amb && amb.paused) syncAudio(); }, { passive: true }));
 document.addEventListener('visibilitychange', () => { if (document.hidden && amb) amb.pause(); else syncAudio(); });
 
 /* ---------- toasty ---------- */
@@ -719,7 +720,9 @@ const handlers = {
   settings: () => openOv({ type: 'settings' }),
   'case-menu': () => openOv({ type: 'menu' }),
   'show-brief': () => { const { c } = ctx(); openOv({ type: 'msg', title: c.title, kicker: 'Briefing', body: `<article class="paper brief"><p class="lead">${esc(c.intro.lead)}</p>${c.intro.brief.map(p => `<p>${esc(p)}</p>`).join('')}<h4>Zadanie zespołu</h4><ol>${c.intro.task.map(t => `<li>${esc(t)}</li>`).join('')}</ol><h4>Zasady</h4><ul>${c.intro.rules.map(t => `<li>${esc(t)}</li>`).join('')}</ul></article>` }); },
-  export: () => { const blob = new Blob([JSON.stringify({ app: 'slad', version: VERSION, exported: new Date().toISOString(), data: S }, null, 1)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `slad-zapis-${new Date().toISOString().slice(0, 10)}.json`; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); },
+  export: async () => { const name = `slad-zapis-${new Date().toISOString().slice(0, 10)}.json`; const blob = new Blob([JSON.stringify({ app: 'slad', version: VERSION, exported: new Date().toISOString(), data: S }, null, 1)], { type: 'application/json' });
+    try { const file = new File([blob], name, { type: 'application/json' }); if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: 'Zapis ŚLAD' }); return; } } catch (err) { if (err && err.name === 'AbortError') return; }
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `slad-zapis-${new Date().toISOString().slice(0, 10)}.json`; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); },
   wipe: () => { if (!confirm('Usunąć wszystkie zapisy na tym urządzeniu?')) return; S = freshStore(); save(); ovStack = []; renderOv(); go(''); },
   close: () => closeOv(),
   'close-all': () => { const n = ovStack.length; if (history.state && history.state.ov) history.go(-n); else { ovStack = []; renderOv(); } },

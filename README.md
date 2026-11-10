@@ -35,6 +35,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - `assets/` — czcionki (wbudowane, offline), tekstury, ikony, okładki, grafiki, audio.
 - `tools/validate.js` — walidator logiki spraw (referencje, osiągalność każdego dowodu, łamliwość kłamstw, brak odpowiedzi w treści zagadek, suma punktów).
 - `tools/e2e.mjs` — pełne przejście sprawy przez interfejs w Chrome (Playwright) na telefonie, tablecie i komputerze.
+- `tools/audit.mjs` — audyt techniczny: pliki offline, tryb offline, przycisk Wstecz, prywatność tajnych akt, błędne raporty, przepełnienia na 7 rozmiarach ekranu.
 - `tools/cut_sheet.py` — cięcie plansz z grafikami na pojedyncze pliki.
 
 ## Testy

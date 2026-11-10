@@ -97,7 +97,7 @@
     {
      "id": "h-q4",
      "q": "Jak wyglądał gabinet, gdy znalazła pani ciało?",
-     "a": "Drzwi były przymknięte, nie na klucz. Drabina leżała. Doktor przy kominku, na boku. Muzyki nie było, tylko taki szum z gramofonu. W kominku dogasało. Krzyknęłam i obudziłam cały dom.",
+     "a": "Drzwi były przymknięte, nie na klucz. Drabina leżała. Doktor na plecach, głową przy kominku, oczy otwarte. Muzyki nie było, tylko taki szum z gramofonu. W kominku dogasało. Krzyknęłam, obudziłam cały dom i pobiegłam do oficyny zadzwonić — w willi przez burzę nikt nie miał zasięgu.",
      "claims": [],
      "time": [
       [
@@ -110,7 +110,7 @@
     {
      "id": "h-q5",
      "q": "Czy ta kobieta to Anna?",
-     "a": "Pani Marta mówi, że tak. Zna dom, zna nasze zwyczaje… Ja nie mnie to oceniać. Ja tu tylko sprzątam.",
+     "a": "Pani Marta mówi, że tak. Zna dom, zna nasze zwyczaje… Nie mnie to oceniać. Ja tu tylko sprzątam.",
      "claims": [
       "h-c3"
      ]
@@ -264,7 +264,7 @@
       "t2",
       "e29"
      ],
-     "response": "Dobrze. Wyszłam. Wpół do dwunastej przebiegłam przez podwórze do oficyny — do Heleny. Wróciłam przez kuchnię kilka minut po północy i poszłam do gabinetu po list, który mu dałam. Drzwi były uchylone. Leżał przy kominku. Gramofon tylko szumiał. Zamknęłam drzwi i uciekłam do pokoju. Wiedziałam, jak to wygląda — obca kobieta bez dokumentów przy trupie.",
+     "response": "Dobrze. Wyszłam. Wpół do dwunastej przebiegłam przez podwórze do oficyny — do Heleny. Wróciłam przez kuchnię kilka minut po północy i poszłam do gabinetu po list, który mu dałam. Pod drzwiami biblioteki paliło się światło i słychać było szuranie szczotki — jakby ktoś czyścił buty. Drzwi były uchylone. Leżał przy kominku. Gramofon tylko szumiał. Zamknęłam drzwi i uciekłam do pokoju. Wiedziałam, jak to wygląda — obca kobieta bez dokumentów przy trupie.",
      "gives": [
       "t3"
      ],
@@ -326,8 +326,7 @@
      "q": "Co robił pan wieczorem?",
      "a": "Po kolacji czytałem w bibliotece. Około jedenastej zasnąłem na kanapie. Spałem jak kamień — burza, deszcz, niczego nie słyszałem. Obudził mnie krzyk Heleny.",
      "claims": [
-      "w-l1",
-      "w-l4"
+      "w-l1"
      ]
     },
     {
@@ -349,7 +348,7 @@
     {
      "id": "w-q4",
      "q": "Jak się mają sprawy majątkowe rodziny?",
-     "a": "Wzorowo. Od lat prowadzę je osobiście. Ziemia Zawiszów, umowy, księgi — wszystko jest w porządku i udokumentowane.",
+     "a": "Wzorowo. Marta od lat nie chce o tej ziemi słyszeć, więc wszystkim zajmuje się moja kancelaria. Umowy, księgi, podatki — wszystko jest w porządku i udokumentowane.",
      "claims": [
       "w-l3"
      ]
@@ -360,7 +359,7 @@
      "requires": [
       "e16"
      ],
-     "a": "Zawsze czyszczę buty wieczorem. Nawyk z wojska. Nie wiem, czemu to kogoś interesuje.",
+     "a": "Zawsze czyszczę buty wieczorem. Nawyk z wojska. I uprzedzając pytanie: w nocy nigdzie nie wychodziłem. Do oranżerii nie zaglądałem, odkąd tu przyjechałem.",
      "claims": [
       "w-l4"
      ]
@@ -375,7 +374,7 @@
       "e07",
       "e15"
      ],
-     "response": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach fundacji, nic ważnego. Wyszedłem przed za dwadzieścia dwunasta. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi.",
+     "response": "No dobrze. Leon poprosił mnie o rozmowę wpół do dwunastej. Poszedłem. Rozmawialiśmy kilka minut o papierach ziemi Marty, nic ważnego. Wyszedłem przed za dwadzieścia dwunasta. Żył, pił herbatę. Nie mówiłem o tym, bo wiedziałem, jak to zabrzmi.",
      "gives": [
       "t5"
      ],
@@ -437,7 +436,7 @@
    "name": "Marta Różycka",
    "role": "Była żona Leona, matka Anny",
    "age": 60,
-   "desc": "Przyjechała w piątek wieczorem. Ziemia, na której stoi willa, to jej rodzinny majątek Zawiszów. Nie kryje, że nienawidziła męża.",
+   "desc": "Przyjechała w piątek wieczorem. Willa stoi na jej rodzinnej ziemi Zawiszów; po rozwodzie zostawiła ją Leonowi w użytkowanie, bo nie chciała tu wracać. Nie kryje, że nienawidziła męża.",
    "deflect": [
     "Myślicie, że to ja? Proszę bardzo, szukajcie.",
     "Nie wiem, czego ode mnie chcecie.",
@@ -472,7 +471,7 @@
     {
      "id": "m-q4",
      "q": "Co wydarzyło się trzynaście lat temu?",
-     "a": "Pożar w zachodnim skrzydle. Ania spłonęła w swoim pokoju. Leon rozpoznał ją po bransoletce i zegarku, ja nie dostałam nawet zobaczyć ciała. Mam kopię raportu straży — walczyłam o nią dwa lata. Proszę, przeczytajcie sami.",
+     "a": "Pożar w zachodnim skrzydle. Ania spłonęła w swoim pokoju. Leon rozpoznał ją po bransoletce i zegarku, mnie nie pozwolono nawet zobaczyć ciała. Mam kopię raportu straży — walczyłam o nią dwa lata. Proszę, przeczytajcie sami.",
      "gives": [
       "e25"
      ],
@@ -534,7 +533,8 @@
      "id": "m-l1",
      "text": "Nie wiedziała wcześniej, że Leon chce uznać tę kobietę za Annę.",
      "contradicts": [
-      "e27"
+      "e27",
+      "e14"
      ],
      "response": "Zadzwonił w czwartek. Pierwszy raz od lat płakał do słuchawki. Powiedział: „Ania wróciła, przyjedź w piątek, Wiktor przygotuje papiery”. Przyjechałam. Powiedziałam przy kolacji, że wszystko, co moje, będzie jej. Wiktor zbladł, ale pomyślałam, że ze zdziwienia.",
      "gives": [
@@ -562,7 +562,7 @@
     {
      "id": "sp-body",
      "name": "Ciało i drabina",
-     "text": "Leon w szlafroku i domowych pantoflach leży na boku przy kominku. Drabina biblioteczna przewrócona, obok gruby atlas anatomii. Na nadgarstku smartwatch.",
+     "text": "Leon w szlafroku i domowych pantoflach leży na wznak, głową przy kamiennym obramowaniu kominka. Drabina biblioteczna przewrócona, obok gruby atlas anatomii. Na nadgarstku smartwatch.",
      "gives": [
       "e04",
       "e13"
@@ -1084,7 +1084,7 @@
     {
      "log": [
       "śr 4.11 — K./A. przyszła. LIST. Nie mam wyjścia.",
-      "czw 5.11 — zadzwonić do Marty. Wiktor: przygotować papiery fundacji na piątek.",
+      "czw 5.11 — zadzwonić do Marty. Wiktor: przygotować papiery ziemi Marty na piątek.",
       "pt 6.11 — 9:00 sąd, wydział KW: akta działki 214/3 — kopia aktu i pełnomocnictwa!",
       "pt 6.11 — kolacja 20:00, wszyscy. Wydrukować KW!",
       "Szyfr szuflady zmieniam co roku. W tym roku: dzień i miesiąc, w którym przestałem być ojcem."
@@ -1366,7 +1366,7 @@
    "body": [
     "O 8:30 dyżurny przekazał domownikom zebranym w holu jedno zdanie: „Doktor prawdopodobnie spadł z drabiny w gabinecie, szczegóły po oględzinach”.",
     {
-     "note": "Opinii lekarza ani szczegółów obrażeń nikomu z rodziny nie ujawniono. Ciało leżało na boku twarzą do kominka — z progu gabinetu nie widać tyłu głowy."
+     "note": "Opinii lekarza ani szczegółów obrażeń nikomu z rodziny nie ujawniono. Ciało leżało na wznak, głową przy kamiennym obramowaniu — rana z tyłu głowy była niewidoczna, dopóki lekarz nie obrócił zwłok o 9:05. Rodzina była wtedy w jadalni."
     }
    ]
   },
@@ -1405,7 +1405,7 @@
    "body": [
     {
      "log": [
-      "Leon R.      — pantofle domowe, 43 (na nogach)",
+      "Leon R.      — pantofle domowe, 43 (na nogach); w garderobie trzy pary półbutów 43, bez podkówek",
       "Wiktor R.    — mokasyny, 44, metalowe podkówki na obcasach",
       "Marta R.     — botki na obcasie, 38",
       "„Anna”       — trampki, 39",
@@ -1413,7 +1413,7 @@
      ]
     },
     {
-     "note": "Innego męskiego obuwia w domu nie znaleziono."
+     "note": "Żadnego innego obuwia w rozmiarze 44 ani z metalowymi podkówkami w domu i oficynie nie znaleziono."
     }
    ]
   },
@@ -1484,7 +1484,7 @@
    "summary": "Była w gabinecie kilka minut po północy.",
    "testimony": true,
    "body": [
-    "Kinga przyznaje, że o 23:30 przeszła do oficyny, a po 00:02 wróciła przez kuchnię i poszła do gabinetu po swój list. Drzwi były uchylone, Leon leżał przy kominku, gramofon tylko szumiał. Zamknęła drzwi i uciekła do pokoju. Nikomu nie powiedziała."
+    "Kinga przyznaje, że o 23:30 przeszła do oficyny, a po 00:02 wróciła przez kuchnię i poszła do gabinetu po swój list. Mijając bibliotekę, widziała światło pod drzwiami i słyszała szuranie szczotki, jakby ktoś czyścił buty. Drzwi gabinetu były uchylone, Leon leżał przy kominku, gramofon tylko szumiał. Zamknęła drzwi i uciekła do pokoju. Nikomu nie powiedziała."
    ]
   },
   {
@@ -1504,7 +1504,7 @@
    "summary": "Przyznaje, że był w gabinecie.",
    "testimony": true,
    "body": [
-    "Wiktor przyznaje, że o 23:30 poszedł do gabinetu na rozmowę z Leonem „o papierach fundacji”. Twierdzi, że wyszedł przed 23:40, a Leon żył i pił herbatę."
+    "Wiktor przyznaje, że o 23:30 poszedł do gabinetu na rozmowę z Leonem „o papierach ziemi Marty”. Twierdzi, że wyszedł przed 23:40, a Leon żył i pił herbatę."
    ]
   },
   {
@@ -1783,8 +1783,7 @@
       "e07",
       "e15",
       "e17",
-      "t7",
-      "e20"
+      "t7"
      ],
      "label": "Wskażcie trzy dowody, które najmocniej łączą sprawcę z zabójstwem."
     }
@@ -1981,7 +1980,7 @@
    },
    {
     "h": "Wpadka",
-    "p": "Rodzinie powiedziano tylko o upadku z drabiny, a ciało leżało tyłem głowy do kominka. Wiktor sam z siebie mówił o „uderzeniu starego człowieka w tył głowy, kiedy się odwróci”."
+    "p": "Rodzinie powiedziano tylko o upadku z drabiny. Ciało leżało na wznak, więc rany z tyłu głowy nie widział nikt poza lekarzem i sprawcą. Wiktor sam z siebie mówił o „uderzeniu starego człowieka w tył głowy, kiedy się odwróci”."
    },
    {
     "h": "Motyw",
