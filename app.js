@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.9.3';
+const VERSION = '2.10.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -169,7 +169,7 @@ function gain(g, c, ids, silent) {
 /* ---------- dźwięk (Web Audio: pętla bez przerw, osobne głośności) ---------- */
 let currentCaseId = null;
 const AU = { ctx: null, bufs: {}, amb: null, ambSrc: null, token: 0 };
-const vol = k => Math.max(0, Math.min(1, S.settings[k] == null ? (k === 'music' ? 0.6 : 0.8) : S.settings[k]));
+const vol = k => Math.max(0, Math.min(1, S.settings[k] == null ? (k === 'music' ? 0.6 : k === 'voice' ? 1 : 0.8) : S.settings[k]));
 function audioCtx() {
   if (!AU.ctx) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; AU.ctx = new C(); try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {} }
   if (AU.ctx.state === 'suspended') AU.ctx.resume().catch(() => {});
@@ -208,6 +208,35 @@ async function syncAudio() {
   AU.amb = { n, g }; AU.ambSrc = src;
 }
 function duck(on) { if (!AU.amb || !AU.ctx) return; try { AU.amb.g.gain.setTargetAtTime(vol('music') * (on ? 0.22 : 0.9), AU.ctx.currentTime, 0.35); } catch (_) {} }
+/* głosy świadków: plik = <voiceDir>/<id pytania lub zeznania>.mp3, odmowy: <osoba>-deflect-<n>.mp3 */
+const voicesOn = () => S.settings.voices !== false;
+function caseMedia(c) { const L = []; if (!c) return L; if (c.voice && c.voice.brief) L.push(c.voice.brief); if (c.introVideo) L.push(c.introVideo, c.introVideo.replace(/\.mp4$/, '.webp'));
+  (c.breakthroughs || []).forEach(b => { if (b.video) L.push(b.video, b.video.replace(/\.mp4$/, '.webp')); });
+  if (c.voiceDir) c.people.forEach(p => { [...p.questions, ...((c.tableMode && c.tableMode.questions && c.tableMode.questions[p.id]) || [])].forEach(q => L.push(`${c.voiceDir}/${q.id}.mp3`)); p.statements.filter(x => x.response).forEach(x => L.push(`${c.voiceDir}/${x.id}.mp3`)); (p.deflect || []).forEach((_, i) => L.push(`${c.voiceDir}/${p.id}-deflect-${i}.mp3`)); });
+  return [...new Set(L)]; }
+const prefetched = new Set();
+const cachedMedia = new Set(); // ścieżki nagrań i filmów zapisanych w pamięci offline
+const mediaKey = u => { try { return new URL(u, location.href).pathname; } catch (_) { return u; } };
+const mediaOK = u => !!u && (navigator.onLine !== false || cachedMedia.has(mediaKey(u)));
+if ('caches' in window) caches.open('slad-' + VERSION).then(c => c.keys()).then(K => K.forEach(r => { const pth = new URL(r.url).pathname; if (/\.(mp3|mp4)$/.test(pth)) cachedMedia.add(pth); })).catch(() => {});
+async function prefetchMedia(c) { // zapis nagrań i filmów sprawy do pamięci offline, w tle i po kolei
+  if (!c || prefetched.has(c.id) || !('caches' in window) || (navigator.connection && navigator.connection.saveData)) return; prefetched.add(c.id);
+  try { const cache = await caches.open('slad-' + VERSION); for (const u of caseMedia(c)) { if (await cache.match(u)) { cachedMedia.add(mediaKey(u)); continue; } try { const r = await fetch(u); if (r.ok && r.status === 200) { await cache.put(u, r); cachedMedia.add(mediaKey(u)); } } catch (_) {} await new Promise(r => setTimeout(r, 40)); } } catch (_) {}
+}
+function voiceFor(c, pid, m) {
+  if (!c || !c.voiceDir || !m || m.t === 'q') return null; if (m.v) return m.v;
+  const p = c.person[pid]; if (!p) return null;
+  if (m.t === 'a') { const q = p.questions.find(x => x.a === m.text) || ((c.tableMode && c.tableMode.questions && c.tableMode.questions[pid]) || []).find(x => x.a === m.text); return q ? `${c.voiceDir}/${q.id}.mp3` : null; }
+  if (m.t === 'break') { const st = p.statements.find(x => x.response === m.text); return st ? `${c.voiceDir}/${st.id}.mp3` : null; }
+  if (m.t === 'deflect') { const i = (p.deflect || []).indexOf(m.text); return i >= 0 ? `${c.voiceDir}/${pid}-deflect-${i}.mp3` : null; }
+  return null;
+}
+function speak(src, btn) {
+  stopVoice(); if (!src || !mediaOK(src)) { if (btn && src) toast('Nagranie niedostępne bez internetu', 'Odsłuchacie je po połączeniu z siecią.', 'Głos'); return; } const v = window.__voice = new Audio(src); v.volume = vol('voice'); duck(true);
+  document.querySelectorAll('.vplay.on').forEach(b => b.classList.remove('on')); if (btn) btn.classList.add('on');
+  const done = () => { if (window.__voice === v) { window.__voice = null; duck(false); } if (btn) btn.classList.remove('on'); };
+  v.onended = v.onpause = done; v.onerror = done; v.play().catch(done);
+}
 function stopVoice() { const v = window.__voice; if (v) { try { v.pause(); } catch (_) {} window.__voice = null; } duck(false); }
 async function sfx(name = 'paper') {
   if (!S.settings.sound) return;
@@ -307,7 +336,7 @@ async function renderIntro(id) {
      <ul>${m.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul><span class="mode-pick">${setupMode === k ? 'Wybrano' : 'Wybierz ten tryb'}</span></button>`).join('');
   const inProgress = g && !['distribute', 'qr'].includes(g.phase);
   app().innerHTML = `<div class="intro">
-   <div class="intro-hero">${c.introVideo && S.settings.motion !== 'off' ? `<video src="${esc(c.introVideo)}" poster="${esc(c.keyart || c.art || c.cover)}" autoplay muted loop playsinline aria-label="${esc(c.title)}"></video>` : `<img src="${esc(c.keyart || c.art || c.cover)}" alt="${esc(c.title)} — plansza tytułowa">`}<button class="icon-btn back" data-a="home" aria-label="Archiwum">${I.back}</button></div>
+   <div class="intro-hero">${c.introVideo && S.settings.motion !== 'off' && mediaOK(c.introVideo) ? `<video src="${esc(c.introVideo)}" poster="${esc(c.introVideo.replace(/\.mp4$/, '.webp'))}" autoplay muted loop playsinline preload="auto" aria-label="${esc(c.title)}"></video>` : `<img src="${esc(c.keyart || c.art || c.cover)}" alt="${esc(c.title)} — plansza tytułowa">`}<button class="icon-btn back" data-a="home" aria-label="Archiwum">${I.back}</button></div>
    <div class="intro-wrap">
     <article class="paper brief"><span class="stamp">Ściśle tajne</span>
      <div class="eyebrow" style="color:var(--red)">Akta sprawy ${esc(c.id)} · ${esc(c.genre)}</div>
@@ -390,6 +419,7 @@ async function renderGame(id, tab) {
   if (tab === 'tablica') mountBoard(c, g);
 }
 function renderShell(c, g, tab, inner) {
+  if (!prefetched.has(c.id)) setTimeout(() => prefetchMedia(c), 4000);
   const n = unread(g, c);
   const tabs = [['akta', 'Akta', I.files], ['miejsca', 'Miejsca', I.map], ['osoby', 'Osoby', I.people], ['analiza', 'Analiza', I.brain], ['tablica', 'Tablica', I.board]];
   const keepScroll = app().querySelector('.main') && app().dataset.tab === tab ? app().querySelector('.main').scrollTop : 0;
@@ -574,8 +604,8 @@ function ovPerson(c, g, id, mode) {
     return { title: personName(g, p), kicker: 'Protokół zeznań', full: true, body: head + (stm.length ? `<p class="muted" style="font-size:.9rem">Wybierzcie zeznanie i wskażcie dowód, który mu przeczy. Prawdziwe zeznania też tu są — nie każde zdanie to kłamstwo.</p>
      <div class="stmts">${stm.map(s => { const b = g.broken.includes(s.id); return `<div class="stmt ${b ? 'broken' : ''}"><q>${esc(s.text)}</q><div class="row"><span class="eyebrow">${b ? 'Podważone' : 'Zeznanie'}</span>${b ? '' : `<button class="btn small red" data-a="confront" data-id="${s.id}">Konfrontuj</button>`}</div></div>`; }).join('')}</div>` : '<div class="empty">Ta osoba nie złożyła jeszcze żadnych twierdzeń. Zacznijcie od pytań.</div>') };
   }
-  const tr = log.map(m => m.t === 'q' ? `<div class="tq">${esc(m.text)}</div>` : `<div class="ta ${m.t === 'break' ? 'break' : m.t === 'deflect' ? 'deflect' : ''}"><span class="who">${esc(personName(g, p))}${m.t === 'break' ? ' · po konfrontacji' : ''}</span>${esc(m.text)}</div>`).join('');
-  return { title: personName(g, p), kicker: 'Przesłuchanie', full: true, body: head + `<div class="transcript" id="transcript">${tr || '<p class="muted">Rozmowa jeszcze się nie zaczęła.</p>'}</div>
+  const tr = log.map(m => { if (m.t === 'q') return `<div class="tq">${esc(m.text)}</div>`; const vs = voiceFor(c, p.id, m); return `<div class="ta ${m.t === 'break' ? 'break' : m.t === 'deflect' ? 'deflect' : ''}"><span class="who">${esc(personName(g, p))}${m.t === 'break' ? ' · po konfrontacji' : ''}${vs ? `<button class="vplay" data-a="vplay" data-src="${esc(vs)}" aria-label="Odsłuchaj wypowiedź">${I.sound}</button>` : ''}</span>${esc(m.text)}</div>`; }).join('');
+  return { title: personName(g, p), kicker: 'Przesłuchanie', full: true, body: head + `${c.voiceDir ? `<div class="vbar"><button class="btn small ghost" data-a="voices-toggle">${voicesOn() ? I.sound + ' Głosy świadków: włączone' : I.mute + ' Głosy świadków: wyłączone'}</button></div>` : ''}<div class="transcript" id="transcript">${tr || '<p class="muted">Rozmowa jeszcze się nie zaczęła.</p>'}</div>
    <div class="eyebrow" style="margin:18px 0 8px">Zadaj pytanie · 1 ruch</div>
    <div class="qlist">${qs.map(q => `<button class="q ${g.asked.includes(q.id) ? 'asked' : ''}" data-a="ask" data-id="${q.id}" ${g.asked.includes(q.id) ? 'disabled' : ''}>${esc(q.q)}</button>`).join('')}</div>
    ${qs.length < p.questions.length ? `<p class="muted" style="font-size:.85rem;margin-top:10px">Kolejne pytania pojawią się, gdy zdobędziecie odpowiednie materiały.</p>` : ''}` };
@@ -583,7 +613,7 @@ function ovPerson(c, g, id, mode) {
 function doAsk(c, g, qid) {
   const q = c.q[qid]; if (g.asked.includes(qid)) return;
   if (!usePower(g, 'ask')) g.actions++; g.asked.push(qid);
-  (g.log[q.person] = g.log[q.person] || []).push({ t: 'q', text: q.q }, { t: 'a', text: q.a });
+  (g.log[q.person] = g.log[q.person] || []).push({ t: 'q', text: q.q }, { t: 'a', text: q.a, v: c.voiceDir ? `${c.voiceDir}/${q.id}.mp3` : undefined });
   (q.claims || []).forEach(s => { if (!g.claims.includes(s)) g.claims.push(s); });
   gain(g, c, q.gives); save();
 }
@@ -603,14 +633,14 @@ function doConfront(c, g, sid, evid) {
   const free = usePower(g, 'confront'); if (!free) g.actions++;
   L.push({ t: 'q', text: evid.startsWith('st:') ? `Konfrontacja: „${s.text}” — zestawiamy z zeznaniem: ${personName(g, c.person[c.stmt[evid.slice(3)].person])} — „${c.stmt[evid.slice(3)].text}”.` : `Konfrontacja: „${s.text}” — okazujemy: ${c.ev[evid].title}.` });
   if (!s.truth && (s.contradicts || []).includes(evid)) {
-    g.broken.push(sid); L.push({ t: 'break', text: s.response });
+    g.broken.push(sid); L.push({ t: 'break', text: s.response, v: c.voiceDir ? `${c.voiceDir}/${sid}.mp3` : undefined });
     (s.reveals || []).forEach(r => { if (!g.claims.includes(r)) g.claims.push(r); });
     gain(g, c, s.gives); save();
     toast('Zeznanie podważone', personName(g, p), 'Konfrontacja'); sfx('break');
     return true;
   }
   if (!free) g.failed++; const d = p.deflect || ['To niczego nie dowodzi.'];
-  L.push({ t: 'deflect', text: d[(g.failed + L.length) % d.length] }); save();
+  const di = (g.failed + L.length) % d.length; L.push({ t: 'deflect', text: d[di], v: c.voiceDir && p.deflect ? `${c.voiceDir}/${p.id}-deflect-${di}.mp3` : undefined }); save();
   toast('Nietrafiona konfrontacja', free ? 'Zdolność „Sprawdzam” — bez kary' : `−${diffOf(g).wrong} pkt w raporcie`, 'Błąd'); sfx('wrong');
   return false;
 }
@@ -904,6 +934,8 @@ function ovSettings() {
    <div class="settings-row"><div><b>Dźwięk</b><small>Klimat sprawy (deszcz, burza, zegar) i efekty: dokumenty, pieczęcie, zamki, przełomy w przesłuchaniach.</small></div><button class="switch" aria-pressed="${s.sound}" data-a="sound" aria-label="Dźwięk"></button></div>
    <div class="settings-row ${s.sound ? '' : 'off'}"><div style="flex:1"><b>Głośność klimatu</b><input type="range" min="0" max="100" step="5" value="${Math.round(vol('music') * 100)}" data-vol="music" aria-label="Głośność klimatu" class="range"></div></div>
    <div class="settings-row ${s.sound ? '' : 'off'}"><div style="flex:1"><b>Głośność efektów</b><input type="range" min="0" max="100" step="5" value="${Math.round(vol('fx') * 100)}" data-vol="fx" aria-label="Głośność efektów" class="range"></div><button class="btn small ghost" data-a="test-fx">Test</button></div>
+   <div class="settings-row"><div><b>Głosy świadków</b><small>Odpowiedzi w przesłuchaniach czyta lektor — każda postać ma własny głos. Działa niezależnie od dźwięku klimatu. Każdą kwestię możecie odsłuchać ponownie.</small></div><button class="switch" aria-pressed="${s.voices !== false}" data-a="voices-toggle" aria-label="Głosy świadków"></button></div>
+   <div class="settings-row ${s.voices !== false ? '' : 'off'}"><div style="flex:1"><b>Głośność głosów</b><input type="range" min="0" max="100" step="5" value="${Math.round(vol('voice') * 100)}" data-vol="voice" aria-label="Głośność głosów" class="range"></div></div>
    <div class="settings-row"><div><b>Wielkość tekstu</b><small>Dla czytania przy stole</small></div><div class="seg">${[['m', 'A'], ['l', 'A+'], ['xl', 'A++']].map(([k, l]) => `<button aria-pressed="${s.text === k}" data-a="text" data-v="${k}">${l}</button>`).join('')}</div></div>
    <div class="settings-row"><div><b>Instruktaż przed sprawą</b><small>Krótki przewodnik po zasadach i ekranach gry, pokazywany po wybraniu trybu. W trakcie gry zawsze dostępny w menu.</small></div><button class="switch" aria-pressed="${s.guide !== false}" data-a="guide-toggle" aria-label="Instruktaż przed sprawą"></button></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
@@ -993,7 +1025,7 @@ function guideCards(mode, diff) {
    { k: 'Ekran gry', t: 'Pięć zakładek i górny pasek', b: `<ul class="g-list"><li><b>${I.files} Akta</b> — wszystkie zdobyte dokumenty. Nowe mają czerwony licznik. Każdy dokument można przypiąć na tablicę.</li><li><b>${I.map} Miejsca</b> — szkic miejsca zdarzenia i karty miejsc do przeszukania.</li><li><b>${I.people} Osoby</b> — przesłuchania świadków i podejrzanych.</li><li><b>${I.brain} Analiza</b> — zagadki, oś czasu, tabela podejrzanych${phones ? ', tajne akta' : ''}, zespół i zdolności ról, notatki i akt oskarżenia.</li><li><b>${I.board} Tablica</b> — korkowa tablica z czerwoną nitką.</li></ul><p>Na górze: <b>licznik ruchów</b>, <b>żarówka</b> (trop, gdy utkniecie), dźwięk i <b>menu</b> — tam jest briefing sprawy, ten instruktaż i ustawienia.</p>` },
    { k: 'Ruchy i punkty', t: 'Co kosztuje, a co jest za darmo', b: `<p><b>Jeden ruch</b> to: przeszukanie punktu w miejscu, jedno pytanie zadane świadkowi albo jedna konfrontacja.</p><p><b>Za darmo:</b> czytanie akt, szkic, zagadki, oś czasu, notatki i tablica.</p><p>Wybrany poziom: <b>${esc(D.name)}</b>.</p><table class="g-table"><tr><td>Ruchy ponad normę sprawy</td><td>−1 pkt za każde 2 ruchy (najwyżej −15)</td></tr><tr><td>Podpowiedź w zagadce</td><td>−${D.hint} pkt (najwyżej ${D.hints} na zagadkę)</td></tr><tr><td>Trop (żarówka)</td><td>${D.trop == null ? 'niedostępny (wyjątek: zdolność Koordynatora)' : '−' + D.trop + ' pkt'}</td></tr><tr><td>Nietrafiona konfrontacja</td><td>−${D.wrong} pkt</td></tr></table><p>Rangi: Stażysta, Aspirant (40), Inspektor (60), Komisarz (78), <b>Legenda archiwum (92+)</b>. Zanim wydacie ruch — porozmawiajcie, czy warto.</p>` },
    { k: 'Miejsca', t: 'Przeszukiwanie i szkic miejsca zdarzenia', b: `<p>Każde miejsce ma kilka <b>punktów</b>. Przeszukanie punktu to jeden ruch i zwykle daje nowe dowody.</p><p>Niektóre punkty są <b>zablokowane</b> ${I.lock}. Otwiera je rozwiązana zagadka albo postęp w śledztwie — na przykład nakaz prokuratora po podważeniu czyjegoś zeznania. Opis blokady podpowiada, czego brakuje.</p><p>Nad kartami jest <b>szkic</b>: stuknijcie pomieszczenie, by do niego przejść. Na przeszukanych punktach pojawiają się żółte tabliczki z numerami, a obrys ciała — dopiero po oględzinach. Szkic pokazuje tylko to, co widzielibyście na miejscu.</p><p>Każde zdjęcie — w aktach i w miejscach — możecie <b>powiększyć</b> dotknięciem. Przybliżajcie palcami albo kółkiem myszy: szczegóły mają znaczenie.</p>` },
-   { k: 'Przesłuchania', t: 'Pytania, protokół, konfrontacje', b: `<p>Wybierzcie osobę i zadawajcie pytania. <b>Nowe pytania pojawiają się</b>, gdy zdobędziecie dowody, które dają do nich podstawę.</p><p>Ważne zdania świadków trafiają do <b>protokołu</b>. Jeśli macie dowód, który przeczy zeznaniu — zróbcie <b>konfrontację</b>: wskażcie zdanie i dowód. Możecie też <b>zestawić dwa zeznania</b> — gdy jeden świadek mówi coś, co wyklucza wersję drugiego. Trafiona konfrontacja zmusza świadka do zmiany wersji i często daje nowe informacje. Nietrafiona kosztuje ${pkt(D.wrong)}.</p><p class="g-tip">Słuchajcie uważnie. Świadkowie odpowiadają dokładnie na to, o co pytacie. Jeśli ktoś powie za dużo albo wie coś, czego nie mógł wiedzieć — to nie przypadek. Na taką wpadkę nie ma przycisku: musicie ją wyłapać sami.</p>` },
+   { k: 'Przesłuchania', t: 'Pytania, protokół, konfrontacje', b: `<p>Wybierzcie osobę i zadawajcie pytania. <b>Nowe pytania pojawiają się</b>, gdy zdobędziecie dowody, które dają do nich podstawę.</p><p>Ważne zdania świadków trafiają do <b>protokołu</b>. Jeśli macie dowód, który przeczy zeznaniu — zróbcie <b>konfrontację</b>: wskażcie zdanie i dowód. Możecie też <b>zestawić dwa zeznania</b> — gdy jeden świadek mówi coś, co wyklucza wersję drugiego. Trafiona konfrontacja zmusza świadka do zmiany wersji i często daje nowe informacje. Nietrafiona kosztuje ${pkt(D.wrong)}.</p><p class="g-tip">Słuchajcie uważnie. Świadkowie odpowiadają dokładnie na to, o co pytacie. Jeśli ktoś powie za dużo albo wie coś, czego nie mógł wiedzieć — to nie przypadek. Na taką wpadkę nie ma przycisku: musicie ją wyłapać sami.</p><p><b>Każdy świadek ma swój głos</b> — odpowiedzi czyta lektor, a przycisk z głośnikiem przy wypowiedzi odtwarza ją ponownie. Głosy wyłączycie w oknie przesłuchania albo w ustawieniach.</p>` },
    { k: 'Analiza', t: 'Zagadki, oś czasu, tablica', b: `<p><b>Zagadki</b> pojawiają się, gdy macie potrzebne materiały. Odpowiedzi nie ma w żadnym dokumencie wprost — trzeba połączyć kilka faktów. Na tym poziomie każda ma ${D.hints === 1 ? `jedną podpowiedź (−${D.hint} pkt)` : `${podp(D.hints)} (po −${D.hint} pkt)`}.</p><p><b>Oś czasu</b> zbiera godziny z dokumentów i zeznań. Wpisy oznaczone „ustalone” pochodzą z rozwiązanych zagadek. Pamiętajcie: zeznanie to wersja świadka, nie fakt.</p><p><b>Podejrzani</b> to wspólna tabela: motyw, okazja, alibi — wypełniacie ją sami. <b>Notatki</b> są wspólne, a na <b>tablicy</b> przypinacie dowody i osoby i łączycie je nitką.</p><p>Gdy odkryjecie coś kluczowego, ekran zatrzyma się na chwilę — to <b>przełom</b> w śledztwie.</p>` },
    { k: 'Zespół', t: 'Role i ich zdolności', b: `<p>Każdy gracz dostaje <b>rolę</b>. Rola podpowiada, czym się zająć, i daje <b>jedną zdolność na całą sprawę</b> (Analiza → Zespół):</p><table class="g-table">${ROLES.map(r => `<tr><td>${esc(r.name)}</td><td>${esc(POWERS[r.id].name)}: ${esc(POWERS[r.id].desc)}</td></tr>`).join('')}</table><p>Zdolność uruchamiacie przyciskiem — zadziała przy następnej pasującej akcji. Uzgodnijcie, kiedy jej użyć: to wasze asy w rękawie.</p>` },
    phones
@@ -1022,10 +1054,13 @@ let btTimer = null, btShow = null;
 function renderBt() {
   let root = $('#bt-root'); if (!root) { root = document.createElement('div'); root.id = 'bt-root'; document.body.appendChild(root); }
   const r = route(); const c = btShow && r.id && CASES[r.id] && caseFor(r.id); const b = c && (c.breakthroughs || []).find(x => x.id === btShow);
-  if (!b) { root.innerHTML = ''; btShow = null; if (!ovStack.length) document.body.style.overflow = ''; return; }
-  const media = b.video ? `<video class="bt-media" src="${esc(b.video)}" autoplay muted loop playsinline poster="${esc(b.img || c.art || c.cover)}"></video>` : `<div class="bt-media"><div class="bt-bg" style="background-image:url('${esc(b.img || c.art || c.cover)}')"></div><img class="bt-fg kb" src="${esc(b.img || c.art || c.cover)}" alt=""></div>`;
+  if (!b) { const ov = root.querySelector('video'); if (ov) { ov.pause(); duck(false); } root.innerHTML = ''; btShow = null; if (!ovStack.length) document.body.style.overflow = ''; return; }
+  const vOK = b.video && mediaOK(b.video) && S.settings.motion !== 'off'; const pst = vOK ? b.video.replace(/\.mp4$/, '.webp') : (b.img || c.art || c.cover);
+  const media = vOK ? `<div class="bt-media"><div class="bt-bg" style="background-image:url('${esc(pst)}')"></div><video class="bt-fg bt-vid" src="${esc(b.video)}" poster="${esc(pst)}" autoplay muted playsinline preload="auto"></video></div>` : `<div class="bt-media"><div class="bt-bg" style="background-image:url('${esc(b.img || c.art || c.cover)}')"></div><img class="bt-fg kb" src="${esc(b.img || c.art || c.cover)}" alt=""></div>`;
   root.innerHTML = `<div class="bt" data-a="bt-close" role="dialog" aria-modal="true" aria-label="Przełom: ${esc(b.title)}"><div class="bt-in">${media}<div class="bt-shade"></div><div class="bt-text"><span class="bt-stamp">Przełom</span><h2>${esc(b.title)}</h2><p>${esc(b.text)}</p><button class="btn" data-a="bt-close">Dalej</button></div></div></div>`;
-  document.body.style.overflow = 'hidden'; const bt = root.querySelector('.btn'); if (bt) setTimeout(() => bt.focus({ preventScroll: true }), 900);
+  document.body.style.overflow = 'hidden'; const vid = root.querySelector('video');
+  if (vid) { vid.volume = vol('fx'); vid.onended = () => { vid.currentTime = Math.max(0, vid.duration - 0.05); vid.pause(); }; const go = () => vid.play().catch(() => {}); if (S.settings.sound) { vid.muted = false; duck(true); vid.play().catch(() => { vid.muted = true; go(); }); } else go(); }
+  const bt = root.querySelector('.btn'); if (bt) setTimeout(() => bt.focus({ preventScroll: true }), 900);
 }
 function checkLater(id) { const r = route(); const g = r.id && G(r.id); if (g) { g.bt = (g.bt || []).filter(x => x !== id); save(); } }
 function checkBreakthroughs() {
@@ -1074,9 +1109,9 @@ const handlers = {
   person: el => openOv({ type: 'person', id: el.dataset.id, mode: 'talk' }),
   pmode: el => { const o = topOv(); o.mode = el.dataset.m; renderOv(); },
   search: el => { const { c, g } = ctx(); doSearch(c, g, el.dataset.id); rerender(); },
-  ask: el => { const { c, g } = ctx(); doAsk(c, g, el.dataset.id); topOv().scrollEnd = true; rerender(); },
+  ask: el => { const { c, g } = ctx(); if (g.asked.includes(el.dataset.id)) return; doAsk(c, g, el.dataset.id); topOv().scrollEnd = true; rerender(); if (voicesOn() && c.voiceDir) { const q = c.q[el.dataset.id]; const L = g.log[q.person]; speak(L[L.length - 1].v); } },
   confront: el => openOv({ type: 'confront', id: el.dataset.id }),
-  'confront-with': el => { const { c, g } = ctx(); doConfront(c, g, el.dataset.s, el.dataset.id); ovStack.pop(); history.back(); const o = topOv(); if (o && o.type === 'person') { o.mode = 'talk'; o.scrollEnd = true; } setTimeout(rerender, 30); },
+  'confront-with': el => { const { c, g } = ctx(); doConfront(c, g, el.dataset.s, el.dataset.id); if (voicesOn() && c.voiceDir) { const L = g.log[c.stmt[el.dataset.s].person]; const last = L[L.length - 1]; setTimeout(() => speak(last.v), 700); } ovStack.pop(); history.back(); const o = topOv(); if (o && o.type === 'person') { o.mode = 'talk'; o.scrollEnd = true; } setTimeout(rerender, 30); },
   puzzle: el => openOv({ type: 'puzzle', id: el.dataset.id }),
   'puzzle-from-spot': el => { const { c, g } = ctx(); const pz = c.puzzle[el.dataset.id]; if (puzzleVisible(c, g, pz)) openOv({ type: 'puzzle', id: pz.id }); else openOv({ type: 'msg', title: pz.title, kicker: 'Za mało danych', body: '<p>Na razie nie macie materiałów, które pozwoliłyby się do tego zabrać. Szukajcie dalej.</p>' }); },
   dial: el => { const id = el.dataset.id, i = +el.dataset.i; const { c } = ctx(); const max = c.puzzle[id].input === 'time' && i === 0 ? 3 : c.puzzle[id].input === 'time' && i === 2 ? 6 : 10; dialVals[id][i] = (dialVals[id][i] + +el.dataset.d + max) % max; renderOv(); },
@@ -1114,6 +1149,8 @@ const handlers = {
   'guide-toggle': () => { S.settings.guide = S.settings.guide === false; save(); renderOv(); },
   chronicle: () => { ovStack = []; renderOv(); go('kronika'); },
   diff: el => { setupDiff = el.dataset.k; render(); },
+  vplay: el => { if (el.classList.contains('on')) { stopVoice(); el.classList.remove('on'); return; } speak(el.dataset.src, el); },
+  'voices-toggle': () => { S.settings.voices = !voicesOn(); save(); if (!voicesOn()) stopVoice(); renderOv(); },
   power: el => { const { g } = ctx(); const P = POWERS[el.dataset.role]; if (!P || (g.used || {})[el.dataset.role]) return; if (P.kind === 'par') { g.used[el.dataset.role] = true; g.parBonus = (g.parBonus || 0) + 3; toast(P.name, 'Norma ruchów +3', 'Rola'); } else { g.armed = P.kind; toast(P.name, 'Zadziała przy następnej pasującej akcji', 'Rola'); } save(); render(); },
   'power-off': () => { const { g } = ctx(); g.armed = null; save(); render(); },
   'to-report': () => { const { c, g } = ctx(); if (g.mode === 'phones' && !g.vote) openOv({ type: 'msg', title: 'Najpierw głosowanie?', kicker: 'Przed aktem oskarżenia', body: `<p>Zanim podpiszecie raport, sprawdźcie, czy cały zespół myśli to samo. Głosowanie zajmie minutę.</p><div class="row-actions"><button class="btn" data-a="vote">Głosujemy</button><button class="btn ghost" data-a="report-go">Pomiń — prosto do raportu</button></div>` }); else go(`gra/${c.id}/raport`); },
@@ -1126,7 +1163,7 @@ const handlers = {
   pzoom: el => openOv({ type: 'zoom', src: el.dataset.src }),
   amark: el => { S.marks = S.marks || {}; if (!S.marks[el.dataset.c]) { S.marks[el.dataset.c] = el.dataset.l; save(); toast('Zabezpieczono obcą pieczęć', `Ślady Archiwisty: ${Object.keys(S.marks).length} z ${MARK_ORDER.length}`, 'Archiwum'); sfx('stamp'); } else toast('Ta pieczęć jest już w kronice', '', 'Archiwum'); renderOv(); },
   'print-report': () => { const { c, g } = ctx(); if (g && g.report) printReport(c, g); },
-  voice: el => { if (window.__voice && !window.__voice.paused) { stopVoice(); return; } stopVoice(); const v = window.__voice = new Audio(el.dataset.src); duck(true); const L = el.querySelector('.vl'), T0 = L && L.textContent; el.classList.add('on'); if (L) L.textContent = 'Zatrzymaj briefing'; v.onended = v.onpause = () => { el.classList.remove('on'); if (L) L.textContent = T0; duck(false); }; v.play().catch(() => { el.classList.remove('on'); duck(false); }); },
+  voice: el => { if (window.__voice && !window.__voice.paused && el.classList.contains('on')) { stopVoice(); return; } const L = el.querySelector('.vl'), T0 = L && (L.dataset.t || (L.dataset.t = L.textContent)); speak(el.dataset.src); const v = window.__voice; if (!v) return; el.classList.add('on'); if (L) L.textContent = 'Zatrzymaj briefing'; const off = () => { el.classList.remove('on'); if (L) L.textContent = T0; }; v.addEventListener('ended', off); v.addEventListener('pause', off); v.addEventListener('error', off); },
   'show-guide': () => { const { g } = ctx(); ovStack.pop(); history.back(); setTimeout(() => openOv({ type: 'guide', mode: g.mode === 'table' ? 'table' : 'phones', diff: g.diff, i: 0 }), 60); },
   'guide-go': el => { const o = topOv(); if (o && o.type === 'guide') { o.i = +el.dataset.i; renderOv(); const b = $('.ov-body'); if (b) b.scrollTop = 0; } },
   'guide-off': () => { S.settings.guide = false; save(); handlers['guide-end'](); },

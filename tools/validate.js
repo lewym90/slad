@@ -104,6 +104,9 @@ for (const [f, c] of runs) {
 
   // 5c. Pliki multimediów
   const fsx = require('fs'), pathx = require('path');
+  if (c.voiceDir) c.people.forEach(p => { [...p.questions, ...((c.tableMode && c.tableMode.questions && c.tableMode.questions[p.id]) || [])].forEach(q => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${q.id}.mp3`))) E(`brak głosu ${q.id}`); });
+    p.statements.filter(x => x.response).forEach(x => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${x.id}.mp3`))) E(`brak głosu ${x.id}`); });
+    (p.deflect || []).forEach((_, i) => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${p.id}-deflect-${i}.mp3`))) E(`brak głosu ${p.id}-deflect-${i}`); }); });
   [c.voice && c.voice.brief, c.introVideo, c.keyart, ...(c.breakthroughs || []).flatMap(b => [b.img, b.video])].filter(Boolean).forEach(f => { if (!fsx.existsSync(pathx.join(__dirname, '..', f))) E(`brak pliku ${f}`); });
 
   // 6. Raport

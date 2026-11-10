@@ -1638,9 +1638,15 @@
   ],
   "questions": {}
  },
+ "voiceDir": "assets/voice/003",
+ "introVideo": "assets/video/003-intro.mp4",
+ "voice": {
+  "brief": "assets/voice/003-brief.mp3"
+ },
  "breakthroughs": [
   {
    "id": "b-floor",
+   "video": "assets/video/003-bt-floor.mp4",
    "when": "p-floor",
    "title": "Piętro, którego nie ma",
    "text": "Czwarty rząd okien to kondygnacja, której nie ma na żadnym planie budynku. A jednak ktoś co noc zapalał tam światło — i ktoś musiał tam wchodzić.",
@@ -1648,6 +1654,7 @@
   },
   {
    "id": "b-frame",
+   "video": "assets/video/003-bt-frame.mp4",
    "when": "e18",
    "title": "Klatka 0436",
    "text": "Kamera zarejestrowała szamotaninę przy szafie: rękaw ciemnego płaszcza z metalowymi guzikami i dłoń zaciśnięta na kurtce doktora.",
@@ -1655,6 +1662,7 @@
   },
   {
    "id": "b-father",
+   "video": "assets/video/003-bt-father.mp4",
    "when": "lie:z-l5",
    "title": "Ewka była moją córką",
    "text": "Stróż sanatorium jest ojcem pacjentki, która zmarła tu w 2018 roku. Od 2019 roku pilnował budynku, w którym straciła życie.",

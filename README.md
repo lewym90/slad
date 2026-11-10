@@ -25,7 +25,9 @@ Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 �
 - **Konfrontacje świadek kontra świadek:** kłamstwo można podważyć prawdziwym zeznaniem innej osoby (token `st:<id>`).
 - **Tabela podejrzanych** i **głosowanie zespołu** (głosowanie tylko w trybie telewizor + telefony).
 - **Powiększanie zdjęć** gestem lub kółkiem myszy — reszta interfejsu jest zablokowana przed przypadkowym powiększaniem.
-- **Lektor briefingu** (`voice.brief`) — muzyka cichnie, gdy szef mówi.
+- **Lektor briefingu** (`voice.brief`) i **głosy świadków** (`voiceDir`: `<id pytania/zeznania>.mp3`, odmowy `<osoba>-deflect-<n>.mp3`) — muzyka cichnie, gdy ktoś mówi; przełącznik w ustawieniach i w oknie przesłuchania.
+- **Filmy** — `introVideo` i `breakthroughs[].video` (`assets/video`, plakat `.webp` o tej samej nazwie). Nagrania i filmy sprawy zapisują się do pamięci offline po rozpoczęciu gry; Service Worker odpowiada na zapytania Range (wymóg iPhone'a).
+- Teksty lektorów: `tools/voice_scripts.py` → `tools/voice/lines.json`.
 - **Kronika wydziału** z odznakami, **akt oskarżenia do druku/PDF** i **pieczęcie Archiwisty** (litera w jednym dowodzie każdej sprawy).
 
 ## Aktualizacje

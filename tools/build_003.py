@@ -423,10 +423,13 @@ case = {
  'people': people, 'locations': locations, 'evidence': evidence,
  'privateClues': ['x1', 'x2', 'x3', 'x4', 'x5', 'x6'], 'puzzles': puzzles,
  'tableMode': {'parBonus': 6, 'locations': [hq], 'questions': {}},
+ 'voiceDir': 'assets/voice/003',
+ 'introVideo': 'assets/video/003-intro.mp4',
+ 'voice': {'brief': 'assets/voice/003-brief.mp3'},
  'breakthroughs': [
-  {'id': 'b-floor', 'when': 'p-floor', 'title': 'Piętro, którego nie ma', 'text': 'Czwarty rząd okien to kondygnacja, której nie ma na żadnym planie budynku. A jednak ktoś co noc zapalał tam światło — i ktoś musiał tam wchodzić.', 'img': 'assets/evidence/003-panel.webp'},
-  {'id': 'b-frame', 'when': 'e18', 'title': 'Klatka 0436', 'text': 'Kamera zarejestrowała szamotaninę przy szafie: rękaw ciemnego płaszcza z metalowymi guzikami i dłoń zaciśnięta na kurtce doktora.', 'img': 'assets/evidence/003-frames.webp'},
-  {'id': 'b-father', 'when': 'lie:z-l5', 'title': 'Ewka była moją córką', 'text': 'Stróż sanatorium jest ojcem pacjentki, która zmarła tu w 2018 roku. Od 2019 roku pilnował budynku, w którym straciła życie.', 'img': 'assets/people/003-zenon.webp'}],
+  {'id': 'b-floor', 'video': 'assets/video/003-bt-floor.mp4', 'when': 'p-floor', 'title': 'Piętro, którego nie ma', 'text': 'Czwarty rząd okien to kondygnacja, której nie ma na żadnym planie budynku. A jednak ktoś co noc zapalał tam światło — i ktoś musiał tam wchodzić.', 'img': 'assets/evidence/003-panel.webp'},
+  {'id': 'b-frame', 'video': 'assets/video/003-bt-frame.mp4', 'when': 'e18', 'title': 'Klatka 0436', 'text': 'Kamera zarejestrowała szamotaninę przy szafie: rękaw ciemnego płaszcza z metalowymi guzikami i dłoń zaciśnięta na kurtce doktora.', 'img': 'assets/evidence/003-frames.webp'},
+  {'id': 'b-father', 'video': 'assets/video/003-bt-father.mp4', 'when': 'lie:z-l5', 'title': 'Ewka była moją córką', 'text': 'Stróż sanatorium jest ojcem pacjentki, która zmarła tu w 2018 roku. Od 2019 roku pilnował budynku, w którym straciła życie.', 'img': 'assets/people/003-zenon.webp'}],
  'hintTrail': hintTrail, 'report': report, 'solution': solution, 'endings': endings,
 }
 MARKS = {'e26': 'M'}

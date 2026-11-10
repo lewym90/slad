@@ -2974,24 +2974,29 @@
    "when": "e19",
    "title": "Narzędzie zbrodni",
    "text": "Mosiężna kula na marmurowej podstawie, zakopana w donicy. W rowkach grawerunku — krew. To nie był upadek z drabiny.",
-   "img": "assets/evidence/001-paperweight.webp"
+   "img": "assets/evidence/001-paperweight.webp",
+   "video": "assets/video/001-bt-weapon.mp4"
   },
   {
    "id": "b-time",
    "when": "p-time",
    "title": "23:46, nie 22:46",
    "text": "Zegarek zapisywał czas uniwersalny. Atak nastąpił o 23:46 — godzinę później, niż pokazywały surowe dane.",
-   "img": "assets/evidence/001-watch.webp"
+   "img": "assets/evidence/001-watch.webp",
+   "video": "assets/video/001-bt-time.mp4"
   },
   {
    "id": "b-anna",
    "when": "lie:a-l2",
    "title": "To nie jest Anna",
    "text": "Kobieta podaje swoje prawdziwe nazwisko: Kinga Wolska. Anna Różycka naprawdę zginęła trzynaście lat temu — a Kinga widziała, jak do tego doszło.",
-   "img": "assets/evidence/001-x5-anna2013.webp"
+   "img": "assets/evidence/001-x5-anna2013.webp",
+   "video": "assets/video/001-bt-anna.mp4"
   }
  ],
  "voice": {
   "brief": "assets/voice/001-brief.mp3"
- }
+ },
+ "voiceDir": "assets/voice/001",
+ "introVideo": "assets/video/001-intro.mp4"
 }

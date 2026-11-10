@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.9.3';
+const VERSION = '2.10.0';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -15,6 +15,7 @@ const CORE = [
   './assets/audio/case-003.mp3',
   './assets/voice/001-brief.mp3',
   './assets/voice/002-brief.mp3',
+  './assets/voice/003-brief.mp3',
   './assets/icons/icon-32.png',
   './assets/icons/icon-180.png',
   './assets/icons/icon-192.png',
@@ -159,6 +160,13 @@ self.addEventListener('activate', event => {
   })());
 });
 
+async function rangeResponse(req, res) {
+  const range = req.headers.get('range'); if (!range) return res;
+  const buf = await res.arrayBuffer(); const n = buf.byteLength; const m = /bytes=(\d*)-(\d*)/.exec(range) || [];
+  let start = m[1] ? +m[1] : 0, end = m[2] ? +m[2] : n - 1; if (!m[1] && m[2]) { start = Math.max(0, n - +m[2]); end = n - 1; }
+  end = Math.min(end, n - 1); if (start > end) return new Response(null, { status: 416, headers: { 'Content-Range': `bytes */${n}` } });
+  return new Response(buf.slice(start, end + 1), { status: 206, headers: { 'Content-Type': res.headers.get('Content-Type') || (/\.mp4/.test(req.url) ? 'video/mp4' : 'audio/mpeg'), 'Content-Range': `bytes ${start}-${end}/${n}`, 'Content-Length': String(end - start + 1), 'Accept-Ranges': 'bytes' } });
+}
 async function putIfOk(req, res) {
   if (res && res.ok && res.type === 'basic') { const c = await caches.open(CACHE); await c.put(req, res.clone()); }
   return res;
@@ -186,7 +194,19 @@ self.addEventListener('fetch', event => {
     })());
     return;
   }
-  // Grafiki, czcionki, dźwięk: cache najpierw, potem sieć (i zapis do cache).
+  // Nagrania i filmy: iPhone (Safari) wymaga odpowiedzi 206 na zapytania Range — tniemy pełny plik z cache.
+  if (/\.(mp3|mp4)$/i.test(url.pathname)) {
+    event.respondWith((async () => {
+      let full = await caches.match(url.href, { ignoreSearch: true });
+      if (!full) {
+        try { const r = await fetch(url.href); if (r.status === 200) { await putIfOk(new Request(url.href), r.clone()); full = r; } else return r; }
+        catch (_) { return Response.error(); }
+      }
+      return rangeResponse(req, full);
+    })());
+    return;
+  }
+  // Grafiki, czcionki: cache najpierw, potem sieć (i zapis do cache).
   event.respondWith((async () => {
     const hit = await caches.match(req, { ignoreSearch: true });
     if (hit) return hit;

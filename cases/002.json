@@ -3171,7 +3171,8 @@
    "when": "e08",
    "title": "Emil nie wysiadł",
    "text": "W zaplombowanej toalecie wagonu 2 leży ciało Emila Sowy. Ktoś bardzo chciał, żebyście szukali go na stacji Wrzos.",
-   "img": "assets/evidence/002-seal.webp"
+   "img": "assets/evidence/002-seal.webp",
+   "video": "assets/video/002-bt-body.mp4"
   },
   {
    "id": "b-height",
@@ -3185,10 +3186,13 @@
    "when": "e27",
    "title": "Oświadczenie Emila",
    "text": "Rozmokłe kartki przy torze mówią, kto w 2016 roku kazał dać sygnał pod Gajem. Emil zabrał tę wiedzę do pociągu — i nie dowiózł jej do sądu.",
-   "img": "assets/evidence/002-papers.webp"
+   "img": "assets/evidence/002-papers.webp",
+   "video": "assets/video/002-bt-pages.mp4"
   }
  ],
  "voice": {
   "brief": "assets/voice/002-brief.mp3"
- }
+ },
+ "voiceDir": "assets/voice/002",
+ "introVideo": "assets/video/002-intro.mp4"
 }
