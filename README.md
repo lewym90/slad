@@ -18,6 +18,16 @@ Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 �
 5. **Tablica** (korkowa, z czerwoną nitką), **oś czasu** i **notatki** pomagają poukładać fakty.
 6. **Akt oskarżenia**: pytania o sprawcę, sposób, czas, motyw i tło sprawy, kolejność zdarzeń + wskazanie dowodów. Wynik 0–100, ranga, epilog i decyzja zespołu.
 
+## Funkcje dodatkowe (2.9)
+- **Poziomy trudności:** Rekrut, Śledczy, Weteran — zmieniają normę ruchów i koszty podpowiedzi, tropów i pomyłek.
+- **Role ze zdolnościami:** każda rola ma jedną zdolność na sprawę (Analiza → Zespół).
+- **Przełomy:** pełnoekranowe sceny po kluczowych odkryciach (`breakthroughs` w JSON: zdjęcie albo wideo).
+- **Konfrontacje świadek kontra świadek:** kłamstwo można podważyć prawdziwym zeznaniem innej osoby (token `st:<id>`).
+- **Tabela podejrzanych** i **głosowanie zespołu** (głosowanie tylko w trybie telewizor + telefony).
+- **Powiększanie zdjęć** gestem lub kółkiem myszy — reszta interfejsu jest zablokowana przed przypadkowym powiększaniem.
+- **Lektor briefingu** (`voice.brief`) — muzyka cichnie, gdy szef mówi.
+- **Kronika wydziału** z odznakami, **akt oskarżenia do druku/PDF** i **pieczęcie Archiwisty** (litera w jednym dowodzie każdej sprawy).
+
 ## Aktualizacje
 Gra sama sprawdza nową wersję przy każdym otwarciu, powrocie z tła i co 15 minut, po czym przeładowuje się w tym samym miejscu. Numer wersji: Ustawienia → „Wersja gry” (przycisk „Sprawdź”).
 

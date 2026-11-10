@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.9.1';
+const VERSION = '2.9.2';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -60,6 +60,8 @@ const DIFFS = {
   sledczy: { name: 'Śledczy', sub: 'Pełne zasady, tak jak zaprojektowano sprawę.', par: 0, hint: 2, hints: 3, trop: 3, wrong: 2 },
   weteran: { name: 'Weteran', sub: 'Bez tropów (poza zdolnością Koordynatora), jedna podpowiedź w zagadce, ostrzejsza norma i kary.', par: -4, hint: 3, hints: 1, trop: null, wrong: 3 }
 };
+const pkt = n => `${n} ${n === 1 ? 'punkt' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'punkty' : 'punktów'}`;
+const podp = n => `${n === 1 ? 'jedna podpowiedź' : n === 2 ? 'dwie podpowiedzi' : n === 3 ? 'trzy podpowiedzi' : n + ' podpowiedzi'}`;
 const diffOf = g => DIFFS[(g && g.diff) || 'sledczy'] || DIFFS.sledczy;
 const effPar = (c, g) => c.par + diffOf(g).par + (g.parBonus || 0);
 const MARK_ORDER = ['001', '002', '003', '004', '005', '006', '007', '008', '009'];
@@ -213,6 +215,11 @@ async function sfx(name = 'paper') {
     const n = ctx.createBufferSource(); n.buffer = b; const g = ctx.createGain(); g.gain.value = vol('fx'); n.connect(g).connect(ctx.destination); n.start(); } catch (_) {}
 }
 ['pointerdown', 'keydown'].forEach(ev => document.addEventListener(ev, () => { if (S.settings.sound && (!AU.amb || (AU.ctx && AU.ctx.state !== 'running'))) syncAudio(); }, { passive: true }));
+/* blokada powiększania strony gestem (iOS ignoruje user-scalable=no) — poza podglądem zdjęcia */
+const zoomOK = e => !!(e.target && e.target.closest && e.target.closest('.zoom'));
+['gesturestart', 'gesturechange', 'gestureend'].forEach(ev => document.addEventListener(ev, e => { if (!zoomOK(e)) e.preventDefault(); }, { passive: false }));
+document.addEventListener('touchmove', e => { if ((e.touches.length > 1 || (e.scale && e.scale !== 1)) && !zoomOK(e)) e.preventDefault(); }, { passive: false });
+document.addEventListener('wheel', e => { if (e.ctrlKey && !zoomOK(e)) e.preventDefault(); }, { passive: false });
 document.addEventListener('visibilitychange', () => { if (!AU.ctx) return; if (document.hidden) AU.ctx.suspend().catch(() => {}); else { AU.ctx.resume().catch(() => {}); syncAudio(); } });
 
 /* ---------- toasty ---------- */
@@ -550,7 +557,7 @@ const initials = n => n.replace(/[„”"]/g, '').split(/\s+/).map(w => w[0]).jo
 function availableQs(c, g, p) { return p.questions.filter(q => (!q.requires || q.requires.every(r => has(g, c, r))) && (!q.requiresAny || q.requiresAny.some(r => has(g, c, r)))); }
 function openStatements(g, p) { return p.statements.filter(s => g.claims.includes(s.id)); }
 function viewPeople(c, g) {
-  return `<div class="page-head"><div><div class="eyebrow">Przesłuchania</div><h2>Osoby</h2><p>Każde pytanie to jeden ruch. Zeznania, które padną, trafiają do protokołu — możecie je podważyć dowodem. Nietrafiona konfrontacja kosztuje 2 punkty.</p></div></div>
+  return `<div class="page-head"><div><div class="eyebrow">Przesłuchania</div><h2>Osoby</h2><p>Każde pytanie to jeden ruch. Zeznania, które padną, trafiają do protokołu — możecie je podważyć dowodem. Nietrafiona konfrontacja kosztuje ${pkt(diffOf(g).wrong)}.</p></div></div>
   <div class="ppl-grid">${c.people.map(p => {
     const qs = availableQs(c, g, p); const left = qs.filter(q => !g.asked.includes(q.id)).length;
     const br = p.statements.filter(s => g.broken.includes(s.id)).length;
@@ -590,17 +597,16 @@ function ovConfront(c, g, sid) {
    <div class="pick">${ids.map(id => `<button data-a="confront-with" data-s="${sid}" data-id="${id}"><small>${esc(c.ev[id].type)} · ${esc(id.toUpperCase())}</small>${esc(c.ev[id].title)}</button>`).join('')}</div>
    ${others.length ? `<div class="eyebrow" style="margin-top:16px">Zeznania innych osób</div><div class="pick">${others.map(x => `<button data-a="confront-with" data-s="${sid}" data-id="st:${x.id}"><small>${esc(personName(g, c.person[x.person]))}</small>„${esc(x.text)}”</button>`).join('')}</div>` : ''}` };
 }
-function confrontLabel(c, g, tok) { if (tok.startsWith('st:')) { const s = c.stmt[tok.slice(3)]; return `zeznanie: ${personName(g, c.person[s.person])} — „${s.text}”`; } return c.ev[tok].title; }
 function doConfront(c, g, sid, evid) {
   const s = c.stmt[sid]; const p = c.person[s.person];
   const L = (g.log[p.id] = g.log[p.id] || []);
   const free = usePower(g, 'confront'); if (!free) g.actions++;
-  L.push({ t: 'q', text: evid.startsWith('st:') ? `Konfrontacja: „${s.text}” — zestawiamy z ${confrontLabel(c, g, evid)}.` : `Konfrontacja: „${s.text}” — okazujemy: ${c.ev[evid].title}.` });
+  L.push({ t: 'q', text: evid.startsWith('st:') ? `Konfrontacja: „${s.text}” — zestawiamy z zeznaniem: ${personName(g, c.person[c.stmt[evid.slice(3)].person])} — „${c.stmt[evid.slice(3)].text}”.` : `Konfrontacja: „${s.text}” — okazujemy: ${c.ev[evid].title}.` });
   if (!s.truth && (s.contradicts || []).includes(evid)) {
     g.broken.push(sid); L.push({ t: 'break', text: s.response });
     (s.reveals || []).forEach(r => { if (!g.claims.includes(r)) g.claims.push(r); });
     gain(g, c, s.gives); save();
-    toast('Zeznanie podważone', personName(g, p), 'Przełom'); sfx('break');
+    toast('Zeznanie podważone', personName(g, p), 'Konfrontacja'); sfx('break');
     return true;
   }
   if (!free) g.failed++; const d = p.deflect || ['To niczego nie dowodzi.'];
@@ -853,7 +859,7 @@ async function renderOv() {
   if (o.type === 'settings') v = ovSettings();
   else if (o.type === 'menu') v = ovMenu(c, g);
   else if (o.type === 'guide') v = ovGuide(o);
-  else if (o.type === 'zoom') { root.innerHTML = `<div class="zoom" id="zoom"><img src="${esc(o.src)}" alt="" id="zoomimg" draggable="false"><div class="zoom-bar"><span>Szczypnij lub kółkiem myszy, by przybliżyć · przeciągnij, by przesunąć · dwuklik: 1:1</span><button class="icon-btn" data-a="close" aria-label="Zamknij">${I.close}</button></div></div>`; document.body.style.overflow = 'hidden'; mountZoom(); return; }
+  else if (o.type === 'zoom') { root.innerHTML = `<div class="zoom" id="zoom"><img src="${esc(o.src)}" alt="" id="zoomimg" draggable="false"><div class="zoom-bar"><span><span class="zh-touch">Rozsuń dwa palce, by przybliżyć · przeciągnij, by przesunąć · dwa stuknięcia: przybliż lub wróć</span><span class="zh-mouse">Kółko myszy przybliża · przeciągnij, by przesunąć · dwuklik: przybliż lub wróć</span></span><button class="icon-btn" data-a="close" aria-label="Zamknij">${I.close}</button></div></div>`; document.body.style.overflow = 'hidden'; mountZoom(); return; }
   else if (o.type === 'vote') v = ovVote(c, g, o);
   else if (o.type === 'msg') v = { title: o.title, kicker: o.kicker || '', body: o.body };
   else if (!c || !g) { ovStack = []; root.innerHTML = ''; return; }
@@ -954,7 +960,7 @@ function printReport(c, g) {
   const el = document.createElement('div'); el.id = 'printable';
   el.innerHTML = `<div class="pr-doc"><div class="pr-top"><div>WYDZIAŁ SPRAW NIEWYJAŚNIONYCH<br><small>Archiwum ŚLAD · dokument fikcyjny</small></div><div>Sygn. akt: ${esc(c.id)}/${new Date(R.at).getFullYear()}<br>${new Date(R.at).toLocaleDateString('pl-PL')}</div></div>
    <h1>AKT OSKARŻENIA</h1><h2>w sprawie: ${esc(c.title)}</h2>
-   <table class="pr-t">${Q.map(q => `<tr><th>${esc(q.q)}</th><td>${esc(ans(q))}</td></tr>`).join('')}<tr><th>Dowody wskazane przeciwko sprawcy</th><td>${(R.proofs || []).map(id => esc(c.ev[id] ? c.ev[id].title : id)).join('; ') || '—'}</td></tr></table>
+   <table class="pr-t">${Q.map(q => `<tr><th>${esc(q.type === 'order' ? 'Przebieg wydarzeń' : q.q)}</th><td>${esc(ans(q))}</td></tr>`).join('')}<tr><th>Dowody wskazane przeciwko sprawcy</th><td>${(R.proofs || []).map(id => esc(c.ev[id] ? c.ev[id].title : id)).join('; ') || '—'}</td></tr></table>
    <p class="pr-score">Ocena zespołu: <b>${R.total}/100</b> · ranga: <b>${esc(R.rank)}</b> · ruchy: ${g.actions}/${effPar(c, g)} · poziom: ${esc(diffOf(g).name)}</p>
    <div class="pr-sign">${g.players.map(p => `<div><span></span>${esc(p.name)}<small>${esc(role(p.role))}</small></div>`).join('')}</div>
    <p class="pr-foot">Wszystkie osoby, miejsca i zdarzenia są fikcyjne. Dokument wygenerowany przez grę ŚLAD.</p></div>`;
@@ -971,13 +977,13 @@ function guideCards(mode, diff) {
    { k: 'Ekran gry', t: 'Pięć zakładek i górny pasek', b: `<ul class="g-list"><li><b>${I.files} Akta</b> — wszystkie zdobyte dokumenty. Nowe mają czerwony licznik. Każdy dokument można przypiąć na tablicę.</li><li><b>${I.map} Miejsca</b> — szkic miejsca zdarzenia i karty miejsc do przeszukania.</li><li><b>${I.people} Osoby</b> — przesłuchania świadków i podejrzanych.</li><li><b>${I.brain} Analiza</b> — zagadki, oś czasu, tabela podejrzanych${phones ? ', tajne akta' : ''}, zespół i zdolności ról, notatki i akt oskarżenia.</li><li><b>${I.board} Tablica</b> — korkowa tablica z czerwoną nitką.</li></ul><p>Na górze: <b>licznik ruchów</b>, <b>żarówka</b> (trop, gdy utkniecie), dźwięk i <b>menu</b> — tam jest briefing sprawy, ten instruktaż i ustawienia.</p>` },
    { k: 'Ruchy i punkty', t: 'Co kosztuje, a co jest za darmo', b: `<p><b>Jeden ruch</b> to: przeszukanie punktu w miejscu, jedno pytanie zadane świadkowi albo jedna konfrontacja.</p><p><b>Za darmo:</b> czytanie akt, szkic, zagadki, oś czasu, notatki i tablica.</p><p>Wybrany poziom: <b>${esc(D.name)}</b>.</p><table class="g-table"><tr><td>Ruchy ponad normę sprawy</td><td>−1 pkt za każde 2 ruchy (najwyżej −15)</td></tr><tr><td>Podpowiedź w zagadce</td><td>−${D.hint} pkt (najwyżej ${D.hints} na zagadkę)</td></tr><tr><td>Trop (żarówka)</td><td>${D.trop == null ? 'niedostępny (wyjątek: zdolność Koordynatora)' : '−' + D.trop + ' pkt'}</td></tr><tr><td>Nietrafiona konfrontacja</td><td>−${D.wrong} pkt</td></tr></table><p>Rangi: Stażysta, Aspirant (40), Inspektor (60), Komisarz (78), <b>Legenda archiwum (92+)</b>. Zanim wydacie ruch — porozmawiajcie, czy warto.</p>` },
    { k: 'Miejsca', t: 'Przeszukiwanie i szkic miejsca zdarzenia', b: `<p>Każde miejsce ma kilka <b>punktów</b>. Przeszukanie punktu to jeden ruch i zwykle daje nowe dowody.</p><p>Niektóre punkty są <b>zablokowane</b> ${I.lock}. Otwiera je rozwiązana zagadka albo postęp w śledztwie — na przykład nakaz prokuratora po podważeniu czyjegoś zeznania. Opis blokady podpowiada, czego brakuje.</p><p>Nad kartami jest <b>szkic</b>: stuknijcie pomieszczenie, by do niego przejść. Na przeszukanych punktach pojawiają się żółte tabliczki z numerami, a obrys ciała — dopiero po oględzinach. Szkic pokazuje tylko to, co widzielibyście na miejscu.</p><p>Każde zdjęcie — w aktach i w miejscach — możecie <b>powiększyć</b> dotknięciem. Przybliżajcie palcami albo kółkiem myszy: szczegóły mają znaczenie.</p>` },
-   { k: 'Przesłuchania', t: 'Pytania, protokół, konfrontacje', b: `<p>Wybierzcie osobę i zadawajcie pytania. <b>Nowe pytania pojawiają się</b>, gdy zdobędziecie dowody, które dają do nich podstawę.</p><p>Ważne zdania świadków trafiają do <b>protokołu</b>. Jeśli macie dowód, który przeczy zeznaniu — zróbcie <b>konfrontację</b>: wskażcie zdanie i dowód. Możecie też <b>zestawić dwa zeznania</b> — gdy jeden świadek mówi coś, co wyklucza wersję drugiego. Trafiona konfrontacja zmusza świadka do zmiany wersji i często daje nowe informacje. Nietrafiona kosztuje 2 punkty.</p><p class="g-tip">Słuchajcie uważnie. Świadkowie odpowiadają dokładnie na to, o co pytacie. Jeśli ktoś powie za dużo albo wie coś, czego nie mógł wiedzieć — to nie przypadek. Na taką wpadkę nie ma przycisku: musicie ją wyłapać sami.</p>` },
-   { k: 'Analiza', t: 'Zagadki, oś czasu, tablica', b: `<p><b>Zagadki</b> pojawiają się, gdy macie potrzebne materiały. Odpowiedzi nie ma w żadnym dokumencie wprost — trzeba połączyć kilka faktów. Każda ma trzy podpowiedzi (po −2 pkt).</p><p><b>Oś czasu</b> zbiera godziny z dokumentów i zeznań. Wpisy oznaczone „ustalone” pochodzą z rozwiązanych zagadek. Pamiętajcie: zeznanie to wersja świadka, nie fakt.</p><p><b>Podejrzani</b> to wspólna tabela: motyw, okazja, alibi — wypełniacie ją sami. <b>Notatki</b> są wspólne, a na <b>tablicy</b> przypinacie dowody i osoby i łączycie je nitką.</p><p>Gdy odkryjecie coś kluczowego, ekran zatrzyma się na chwilę — to <b>przełom</b> w śledztwie.</p>` },
+   { k: 'Przesłuchania', t: 'Pytania, protokół, konfrontacje', b: `<p>Wybierzcie osobę i zadawajcie pytania. <b>Nowe pytania pojawiają się</b>, gdy zdobędziecie dowody, które dają do nich podstawę.</p><p>Ważne zdania świadków trafiają do <b>protokołu</b>. Jeśli macie dowód, który przeczy zeznaniu — zróbcie <b>konfrontację</b>: wskażcie zdanie i dowód. Możecie też <b>zestawić dwa zeznania</b> — gdy jeden świadek mówi coś, co wyklucza wersję drugiego. Trafiona konfrontacja zmusza świadka do zmiany wersji i często daje nowe informacje. Nietrafiona kosztuje ${pkt(D.wrong)}.</p><p class="g-tip">Słuchajcie uważnie. Świadkowie odpowiadają dokładnie na to, o co pytacie. Jeśli ktoś powie za dużo albo wie coś, czego nie mógł wiedzieć — to nie przypadek. Na taką wpadkę nie ma przycisku: musicie ją wyłapać sami.</p>` },
+   { k: 'Analiza', t: 'Zagadki, oś czasu, tablica', b: `<p><b>Zagadki</b> pojawiają się, gdy macie potrzebne materiały. Odpowiedzi nie ma w żadnym dokumencie wprost — trzeba połączyć kilka faktów. Na tym poziomie każda ma ${D.hints === 1 ? `jedną podpowiedź (−${D.hint} pkt)` : `${podp(D.hints)} (po −${D.hint} pkt)`}.</p><p><b>Oś czasu</b> zbiera godziny z dokumentów i zeznań. Wpisy oznaczone „ustalone” pochodzą z rozwiązanych zagadek. Pamiętajcie: zeznanie to wersja świadka, nie fakt.</p><p><b>Podejrzani</b> to wspólna tabela: motyw, okazja, alibi — wypełniacie ją sami. <b>Notatki</b> są wspólne, a na <b>tablicy</b> przypinacie dowody i osoby i łączycie je nitką.</p><p>Gdy odkryjecie coś kluczowego, ekran zatrzyma się na chwilę — to <b>przełom</b> w śledztwie.</p>` },
    { k: 'Zespół', t: 'Role i ich zdolności', b: `<p>Każdy gracz dostaje <b>rolę</b>. Rola podpowiada, czym się zająć, i daje <b>jedną zdolność na całą sprawę</b> (Analiza → Zespół):</p><table class="g-table">${ROLES.map(r => `<tr><td>${esc(r.name)}</td><td>${esc(POWERS[r.id].name)}: ${esc(POWERS[r.id].desc)}</td></tr>`).join('')}</table><p>Zdolność uruchamiacie przyciskiem — zadziała przy następnej pasującej akcji. Uzgodnijcie, kiedy jej użyć: to wasze asy w rękawie.</p>` },
    phones
    ? { k: 'Tryb: telewizor + telefony', t: 'Tajne akta w waszych telefonach', b: `<p>Każdy gracz skanuje <b>swój kod QR</b> i dostaje w telefonie teczkę z dokumentami, których <b>nie widzi reszta</b>. Niektóre z nich są niezbędne do rozwiązania zagadek.</p><p>Wy decydujecie, kiedy i czy się nimi dzielić. Możecie czytać na głos albo <b>ujawnić dokument</b> na wspólnym ekranie: Analiza → Tajne akta → wpiszcie 4-znakowy kod widoczny przy dokumencie w telefonie.</p><p>Gracz bez telefonu wybiera na ekranie kodów „Nie mam telefonu — pokaż tutaj”: teczka otworzy się na wspólnym ekranie pod pieczęcią — reszta niech wtedy odwróci wzrok.</p><p>Przed aktem oskarżenia zróbcie <b>głosowanie</b>: każdy w teczce w telefonie typuje sprawcę i motyw, a na sygnał wszyscy pokazujecie ekrany.</p><p class="g-tip">Najczęstszy błąd: ktoś siedzi na kluczowym dokumencie i o nim nie mówi. Co jakiś czas zróbcie rundę „co kto ma”.</p>` }
    : { k: 'Tryb: wspólny stół', t: 'Jeden ekran, wszystko razem', b: `<p>Wszyscy widzicie to samo. Nie ma tajnych akt — informacje, które w trybie z telefonami mają poszczególni gracze, zdobywacie sami.</p><p>Służy do tego <b>Centrala wydziału</b> — dodatkowe miejsce na liście. Jej punkty to zapytania: archiwa, laboratoria, urzędy, eksperci. <b>Każde zapytanie to ruch</b>, dlatego norma ruchów w tym trybie jest odpowiednio wyższa.</p><p class="g-tip">Zanim zapytacie centralę, ustalcie, czego właściwie szukacie. Dobre pytanie to połowa odpowiedzi.</p>` },
-   { k: 'Gdy utkniecie', t: 'Trop i podpowiedzi', b: `<p><b>Żarówka</b> na górnym pasku daje <b>trop</b> od szefa wydziału — kierunek, w którym warto pójść teraz (−3 pkt).</p><p>Przy zagadkach są <b>trzy podpowiedzi</b>, coraz bardziej konkretne (po −2 pkt). Trzecia praktycznie podaje rozwiązanie.</p><p>Briefing i zadania sprawy znajdziecie zawsze w menu. Postęp zapisuje się sam — możecie przerwać i wrócić innego dnia.</p>` },
+   { k: 'Gdy utkniecie', t: 'Trop i podpowiedzi', b: `<p><b>Żarówka</b> na górnym pasku daje <b>trop</b> od szefa wydziału — kierunek, w którym warto pójść teraz (${D.trop == null ? 'na poziomie Weteran tylko dzięki zdolności Koordynatora' : '−' + D.trop + ' pkt'}).</p><p>Przy zagadkach ${D.hints === 1 ? 'jest <b>jedna podpowiedź</b>' : `są <b>${podp(D.hints)}</b>, coraz bardziej konkretne`} (${D.hints === 1 ? '' : 'po '}−${D.hint} pkt).${D.hints >= 3 ? ' Trzecia praktycznie podaje rozwiązanie.' : ''}</p><p>Briefing i zadania sprawy znajdziecie zawsze w menu. Postęp zapisuje się sam — możecie przerwać i wrócić innego dnia.</p>` },
    { k: 'Finał', t: 'Akt oskarżenia', b: `<p>Gdy jesteście gotowi: <b>Analiza → Akt oskarżenia</b>. Odpowiadacie na pytania o sprawcę, sposób, czas, motyw i tło sprawy, układacie kolejność zdarzeń i wskazujecie <b>trzy dowody</b> przeciwko sprawcy.</p><p><b>Po podpisaniu raportu nie da się go zmienić.</b> Dostaniecie wynik 0–100, rangę, pełne rozwiązanie krok po kroku i epilog — a na końcu jedną decyzję, którą musicie podjąć jako zespół.</p><p>Wynik trafia do <b>Kroniki wydziału</b> razem z odznakami, a akt oskarżenia możecie wydrukować albo zapisać jako PDF.</p><p class="g-tip">Składajcie raport, gdy każdy wniosek umiecie podeprzeć dowodem — nie wtedy, gdy „pewnie tak było”.</p><p class="muted" style="font-size:.9em">I jeszcze jedno: w niektórych aktach ktoś zostawił obcą pieczęć z kluczem. Nie dotyczy sprawy. Zabezpieczajcie ją — Kronika podpowie, po co.</p>` },
   ];
 }
@@ -1008,7 +1014,7 @@ function renderBt() {
 function checkLater(id) { const r = route(); const g = r.id && G(r.id); if (g) { g.bt = (g.bt || []).filter(x => x !== id); save(); } }
 function checkBreakthroughs() {
   const r = route(); if (r.name !== 'gra' || !r.id) return; const g = G(r.id); const c = r.id && CASES[r.id] && caseFor(r.id); if (!c || !g || g.report || !c.breakthroughs) return;
-  g.bt = g.bt || [];
+  if (!g.bt) { g.bt = c.breakthroughs.filter(b => has(g, c, b.when)).map(b => b.id); save(); return; } // gra sprzed 2.9: bez zaległych przełomów
   const nb = c.breakthroughs.find(b => !g.bt.includes(b.id) && has(g, c, b.when));
   if (!nb) return; g.bt.push(nb.id); save();
   clearTimeout(btTimer); btTimer = setTimeout(() => { if (btShow) return checkLater(nb.id); btShow = nb.id; renderBt(); sfx('break'); }, 650);

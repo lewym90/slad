@@ -389,22 +389,22 @@ solution = {'summary': 'Adama Wilka zepchnął z podestu na poddaszu Zenon Kubik
  ]}
 
 endings = {
- 'correct': {'title': 'Ojciec', 'text': 'Zenon Kubik czeka w stróżówce, w swetrze, z kubkiem zimnej herbaty. Nie próbuje uciekać. Zanim wsiądzie do radiowozu, prosi tylko, żeby zgasić światło w piecu. Prokurator stawia mu zarzut zabójstwa, a do akt trafia płócienny zeszyt z napisem „Izolatorium”.',
+ 'correct': {'title': 'Ojciec', 'text': 'Zenon Kubik czeka w stróżówce, w swetrze, z kubkiem zimnej herbaty. Nie próbuje uciekać. Zanim wsiądzie do radiowozu, prosi tylko, żeby ktoś wygasił piec w stróżówce. Prokurator stawia mu zarzut zabójstwa, a do akt trafia płócienny zeszyt z napisem „Izolatorium”.',
    'decision': {'q': 'Zostaje dziennik Adama Wilka — dowód w sprawie Zenona i jedyny dowód niewinności Krystyny Bober. Co zrobicie?', 'options': [
-     {'id': 'law', 'label': 'Dziennik do prokuratury i wniosek o wznowienie sprawy Krystyny', 'text': 'Prokurator przyjmuje dziennik i składa wniosek o wznowienie postępowania z 2018 roku. Rok później sąd uniewinnia Krystynę Bober. Na rozprawie Zenona Kubika siada w ostatnim rzędzie, tam, gdzie on siadał przed laty. Sąd uznaje działanie w silnym wzburzeniu. Zenon dostaje osiem lat.'},
+     {'id': 'law', 'label': 'Dziennik do prokuratury i wniosek o wznowienie sprawy Krystyny', 'text': 'Prokurator przyjmuje dziennik i składa wniosek o wznowienie postępowania z 2018 roku. Rok później sąd uniewinnia Krystynę Bober. Na rozprawie Zenona Kubika Krystyna siada w ostatnim rzędzie — tam, gdzie on siadał przed laty. Sąd uznaje działanie w silnym wzburzeniu. Zenon dostaje osiem lat.'},
      {'id': 'show', 'label': 'Pozwolić Kamilowi pokazać dziennik w odcinku', 'text': 'Kamil publikuje odcinek z kadrami dziennika jeszcze przed aktem oskarżenia. Milion wyświetleń w dwa dni. Do prokuratury zgłaszają się rodziny trzech innych pacjentów izolatorium. Obrońca Zenona przez rok przekonuje sąd, że jego klient był ofiarą medialnej nagonki — i proces wlecze się bez końca.'},
      {'id': 'father', 'label': 'Pokazać Zenonowi wpis o córce, zanim go wywiozą', 'text': 'Kładziecie dziennik na stole w stróżówce i otwieracie na stronie z 2 marca 2018 roku. Zenon czyta długo, palcem pod linijką. Potem mówi: „Ona nie cierpiała. Śpiączka. Ona nie wiedziała”. I pierwszy raz od ośmiu lat płacze. Na przesłuchaniu u prokuratora mówi wszystko, od początku do końca.'},
    ]}},
  'wrong': {
-  'kamil': {'title': 'Autor kanału', 'text': 'Oskarżacie Kamila, bo wszedł do budynku nielegalnie i miał konflikt z Wilkiem. Właścicielka pensjonatu i ślady na śniegu dają mu alibi od 22:25. Sprawa się sypie, a dziennik izolatorium zostaje w szafie stróża.'},
-  'krystyna': {'title': 'Pielęgniarka po raz drugi', 'text': 'Krystyna Bober miała najsilniejszy motyw — i drugi raz w życiu słyszy zarzut, którego nie popełniła. Na śniegu nie ma jej śladów, a obrona rozbija akt oskarżenia na pierwszej rozprawie. Prawdziwy sprawca składa kondolencje Joannie Wilk.'},
+  'kamil': {'title': 'Autor kanału', 'text': 'Oskarżacie Kamila, bo wszedł do budynku nielegalnie i miał konflikt z Wilkiem. Ślady na śniegu pokazują, że o 22:25 opuścił teren, a właścicielka pensjonatu — że od 22:50 do północy siedział w jadalni. Sprawa się sypie, a dziennik izolatorium zostaje w szafie stróża.'},
+  'krystyna': {'title': 'Pielęgniarka po raz drugi', 'text': 'Krystyna Bober miała najsilniejszy motyw — i drugi raz w życiu słyszy zarzut czynu, którego nie popełniła. Na śniegu nie ma jej śladów, a obrona rozbija akt oskarżenia na pierwszej rozprawie. Prawdziwy sprawca składa kondolencje Joannie Wilk.'},
   'joanna': {'title': 'Córka', 'text': 'Joanna skłamała o nocnym wyjściu ojca — i za to płaci. Ale z willi prowadzą tylko jedne ślady, a ona nie ruszyła się z domu. Sąd ją uniewinnia. Szafa w stróżówce nigdy nie zostaje otwarta.'},
   'accident': {'title': 'Nieszczęśliwy wypadek', 'text': 'Stary człowiek z chorym sercem poszedł nocą do opuszczonego budynku i spadł w ciemnej klatce. Sprawa zostaje umorzona. Kamil publikuje odcinek o „klątwie sanatorium”, a zeszyt z napisem „Izolatorium” znika z historii po raz drugi.'},
  },
  'partial': 'Wskazaliście właściwą osobę, ale część waszych wniosków jest błędna lub niepoparta dowodami. Prokurator przyjmuje sprawę, choć obrona będzie miała o co walczyć.'}
 
 case = {
- 'id': '003', 'title': 'Cisza w sanatorium', 'subtitle': 'Światło na piętrze, którego nie ma', 'genre': 'Mroczne mystery',
+ 'id': '003', 'title': 'Cisza w sanatorium', 'subtitle': 'Światło na piętrze, którego nie ma', 'genre': 'Kryminał grozy',
  'duration': '80–110 min', 'players': '2–6', 'difficulty': 'Wymagająca',
  'cover': 'assets/cases/003-cover.webp', 'art': 'assets/art/003-keyart.webp', 'ambience': 'assets/audio/case-003.mp3',
  'par': 53,
@@ -424,9 +424,9 @@ case = {
  'privateClues': ['x1', 'x2', 'x3', 'x4', 'x5', 'x6'], 'puzzles': puzzles,
  'tableMode': {'parBonus': 6, 'locations': [hq], 'questions': {}},
  'breakthroughs': [
-  {'id': 'b-floor', 'when': 'p-floor', 'title': 'Piętro, którego nie ma', 'text': 'Czwarty rząd okien to poddasze, do którego według planu nie ma wejścia. A jednak ktoś tam co noc zapalał światło — i ktoś stamtąd spadł.', 'img': 'assets/evidence/003-panel.webp'},
+  {'id': 'b-floor', 'when': 'p-floor', 'title': 'Piętro, którego nie ma', 'text': 'Czwarty rząd okien to kondygnacja, której nie ma na żadnym planie budynku. A jednak ktoś co noc zapalał tam światło — i ktoś musiał tam wchodzić.', 'img': 'assets/evidence/003-panel.webp'},
   {'id': 'b-frame', 'when': 'e18', 'title': 'Klatka 0436', 'text': 'Kamera zarejestrowała szamotaninę przy szafie: rękaw ciemnego płaszcza z metalowymi guzikami i dłoń zaciśnięta na kurtce doktora.', 'img': 'assets/evidence/003-frames.webp'},
-  {'id': 'b-father', 'when': 'lie:z-l5', 'title': 'Ewka była moją córką', 'text': 'Stróż sanatorium jest ojcem pacjentki, która zmarła tu w 2018 roku. Osiem lat pilnował budynku, w którym straciła życie.', 'img': 'assets/people/003-zenon.webp'}],
+  {'id': 'b-father', 'when': 'lie:z-l5', 'title': 'Ewka była moją córką', 'text': 'Stróż sanatorium jest ojcem pacjentki, która zmarła tu w 2018 roku. Od 2019 roku pilnował budynku, w którym straciła życie.', 'img': 'assets/people/003-zenon.webp'}],
  'hintTrail': hintTrail, 'report': report, 'solution': solution, 'endings': endings,
 }
 MARKS = {'e26': 'M'}
