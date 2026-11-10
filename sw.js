@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.5.1';
+const VERSION = '2.6.0';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -21,6 +21,14 @@ const CORE = [
   './assets/tex/cork.webp',
   './assets/tex/grain.png',
   './assets/art/001-keyart.webp',
+  './assets/plan/paper.webp',
+  './assets/plan/marker.webp',
+  './assets/plan/body-lying.webp',
+  './assets/plan/body-seated.webp',
+  './assets/plan/compass.webp',
+  './assets/plan/tape1.webp',
+  './assets/plan/tape2.webp',
+  './assets/plan/clip.webp',
   './assets/evidence/002-cctv.webp',
   './assets/evidence/002-clipping.webp',
   './assets/evidence/002-coat.webp',

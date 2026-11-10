@@ -31,7 +31,7 @@ def T(x, y, label, cls='', anchor='middle', rot=0):
 def L(x1, y1, x2, y2, cls=''): return {'t': 'line', 'p': [x1, y1, x2, y2], 'cls': cls}
 
 # ---------------- 001 Dom, który pamięta ----------------
-parter = {'id': 'parter', 'name': 'Parter i podwórze', 'w': 960, 'h': 730, 'items': [
+parter = {'id': 'parter', 'name': 'Parter i podwórze', 'w': 960, 'h': 730, 'north': True, 'items': [
     T(480, 26, 'OGRÓD', 'area'),
     R(40, 60, 170, 325, 'Zachodnie', 'westwing', 'closed', 'skrzydło · zamknięte', ly=215),
     R(210, 60, 190, 150, 'Biblioteka', 'library', ly=198, lx=270),
@@ -64,7 +64,7 @@ parter = {'id': 'parter', 'name': 'Parter i podwórze', 'w': 960, 'h': 730, 'ite
     L(700, 565, 700, 685), T(630, 585, 'pokój Heleny', 'small'), T(780, 585, 'sień', 'small'),
     D(706, 565, 740, 565), D(700, 630, 700, 660), W(580, 685, 660, 685),
     F(570, 600, 28, 60), F(620, 640, 36, 28), F(812, 600, 24, 16, 'telefon', lx=824, ly=630),
-    {'t': 'body', 'x': 522, 'y': 80, 'rot': 0, 's': 0.95, 'req': 'sp-body'},
+    {'t': 'body', 'x': 522, 'y': 80, 'rot': 0, 's': 1.1, 'req': 'sp-body'},
   ],
   'spots': {'sp-body': [552, 120], 'sp-fire': [584, 92], 'sp-gramo': [474, 166], 'sp-desk': [612, 172],
             'sp-cups': [662, 124], 'sp-drawer': [648, 172], 'sp-printer': [686, 98],
@@ -72,7 +72,7 @@ parter = {'id': 'parter', 'name': 'Parter i podwórze', 'w': 960, 'h': 730, 'ite
             'sp-floor': [790, 190], 'sp-pots': [826, 110], 'sp-gdoor': [862, 90],
             'sp-phone': [790, 610], 'sp-hroom': [640, 620]}}
 
-pietro = {'id': 'pietro', 'name': 'Piętro', 'w': 960, 'h': 470, 'items': [
+pietro = {'id': 'pietro', 'name': 'Piętro', 'w': 960, 'h': 470, 'north': True, 'items': [
     T(480, 26, 'OGRÓD', 'area'),
     {'t': 'room', 'x': 40, 'y': 60, 'w': 840, 'h': 325, 'label': '', 'cls': 'ghost'},
     T(470, 420, 'obrys parteru (linia przerywana)', 'small'),
@@ -116,7 +116,7 @@ sk = {'id': 'sklad', 'name': 'Skład i wagon 2', 'w': 1000, 'h': 500, 'items': [
     F(598, 272, 48, 24), F(598, 206, 20, 14),
     F(776, 206, 96, 28, 'biurko', lx=824, ly=225), F(736, 206, 24, 74),
     T(380, 420, '← do wagonu 1', 'small'), T(930, 420, 'do wagonu 3 →', 'small'),
-    {'t': 'body', 'x': 676, 'y': 248, 'rot': -35, 's': 0.6, 'req': 'e08'},
+    {'t': 'body', 'x': 690, 'y': 266, 'rot': 0, 's': 0.9, 'pose': 'seated', 'req': 'e08'},
   ],
   'spots': {'sp-driver': [70, 68], 'sp-radio': [170, 68], 'sp-till': [740, 68], 'sp-locker': [900, 68],
             'sp-table': [610, 240], 'sp-bag': [636, 254], 'sp-hook': [640, 306],

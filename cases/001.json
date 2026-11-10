@@ -2160,6 +2160,7 @@
     "name": "Parter i podwórze",
     "w": 960,
     "h": 730,
+    "north": true,
     "items": [
      {
       "t": "text",
@@ -2627,7 +2628,7 @@
       "x": 522,
       "y": 80,
       "rot": 0,
-      "s": 0.95,
+      "s": 1.1,
       "req": "sp-body"
      }
     ],
@@ -2699,6 +2700,7 @@
     "name": "Piętro",
     "w": 960,
     "h": 470,
+    "north": true,
     "items": [
      {
       "t": "text",

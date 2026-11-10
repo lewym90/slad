@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.5.1';
+const VERSION = '2.6.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -428,7 +428,6 @@ function viewFiles(c, g) {
 
 /* --- PLAN MIEJSCA ZDARZENIA (szkic SVG z danych sprawy) --- */
 const planView = {};
-const BODY_PATH = 'M-5,13 L-14,18 L-22,30 L-19,33 L-10,24 L-8,36 L-9,62 L-3,62 L-1,40 L1,40 L3,62 L9,62 L8,36 L10,24 L19,33 L22,30 L14,18 L5,13 Z';
 function spotLoc(c, sid) { const l = c.locations.find(l => l.spots.some(s => s.id === sid)); return l ? l.id : null; }
 function spotNo(c, sid) { const l = c.locations.find(l => l.spots.some(s => s.id === sid)); return l ? l.spots.findIndex(s => s.id === sid) + 1 : 0; }
 function planSvg(c, g, v) {
@@ -449,17 +448,19 @@ function planSvg(c, g, v) {
     else if (it.t === 'win') { const [a, b, x, y] = it.p; out.push(`<line class="pwg" x1="${a}" y1="${b}" x2="${x}" y2="${y}"/><line class="pw" x1="${a}" y1="${b}" x2="${x}" y2="${y}"/>`); }
     else if (it.t === 'line') { const [a, b, x, y] = it.p; out.push(`<line class="pln ${it.cls || ''}" x1="${a}" y1="${b}" x2="${x}" y2="${y}"/>`); }
     else if (it.t === 'text') out.push(lbl(it.x, it.y, it.label, 'pn ' + (it.cls || ''), `text-anchor="${it.anchor || 'middle'}" ${it.rot ? `transform="rotate(${it.rot} ${it.x} ${it.y})"` : ''}`));
-    else if (it.t === 'body' && has(g, c, it.req)) out.push(`<g class="pbody" transform="translate(${it.x} ${it.y}) rotate(${it.rot || 0}) scale(${it.s || 1})"><circle cx="0" cy="6" r="6"/><path d="${BODY_PATH}"/></g>`);
+    else if (it.t === 'body' && has(g, c, it.req)) out.push(it.pose === 'seated'
+      ? `<g class="pbody" transform="translate(${it.x} ${it.y}) rotate(${it.rot || 0}) scale(${it.s || 1})"><image href="assets/plan/body-seated.webp" x="-35" y="-26" width="70" height="52"/></g>`
+      : `<g class="pbody" transform="translate(${it.x} ${it.y}) rotate(${it.rot || 0}) scale(${it.s || 1})"><image href="assets/plan/body-lying.webp" transform="rotate(90)" x="0" y="-16" width="64" height="32"/></g>`);
   });
   Object.entries(v.spots || {}).forEach(([sid, [x, y]]) => {
     if (!g.spots.includes(sid)) return;
     const lid = spotLoc(c, sid); if (!lid) return;
-    out.push(`<g class="mk" data-a="loc" data-id="${lid}" role="button" aria-label="${esc(c.spot[sid] ? c.spot[sid].name : '')}" transform="translate(${x} ${y})"><path d="M-7,-11 H7 L11,9 H-11 Z"/><text y="5">${spotNo(c, sid)}</text></g>`);
+    out.push(`<g class="mk" data-a="loc" data-id="${lid}" role="button" aria-label="${esc(c.spot[sid] ? c.spot[sid].name : '')}" transform="translate(${x} ${y})"><image href="assets/plan/marker.webp" x="-13" y="-15" width="26" height="28"/><text y="7">${spotNo(c, sid)}</text></g>`);
   });
   return `<svg class="plan" viewBox="0 0 ${v.w} ${v.h}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Szkic: ${esc(v.name)}" style="--pw:${v.w}">
     <defs><pattern id="ph" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="rgba(43,34,25,.35)" stroke-width="2"/></pattern>
     <pattern id="pfo" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="3.2" fill="rgba(58,90,52,.38)"/><circle cx="13" cy="12" r="2.6" fill="rgba(58,90,52,.3)"/></pattern></defs>
-    ${out.join('')}</svg>`;
+    ${out.join('')}${v.north ? `<image class="pnorth" href="assets/plan/compass.webp" x="${v.w - 80}" y="6" width="72" height="70"/><text class="pn small" x="${v.w - 44}" y="90" text-anchor="middle">N ↑</text>` : ''}</svg>`;
 }
 function planBlock(c, g) {
   const views = c.plan.views; let i = planView[c.id] || 0; if (!views[i]) i = 0;
@@ -467,7 +468,7 @@ function planBlock(c, g) {
   return `<section class="plan-card">
     <div class="plan-top"><div><div class="eyebrow">Szkic miejsca zdarzenia</div><small class="muted">Stuknijcie pomieszczenie, by do niego przejść. Żółte znaczniki — przeszukane punkty (${marks}).</small></div>
     ${views.length > 1 ? `<div class="plan-tabs">${views.map((v, k) => `<button class="chip ${k === i ? 'on' : ''}" data-a="plan-view" data-i="${k}">${esc(v.name)}</button>`).join('')}</div>` : ''}</div>
-    <div class="plan-sheet"><div class="plan-hint">← przesuńcie szkic w bok →</div><div class="plan-scroll">${planSvg(c, g, views[i])}</div></div></section>`;
+    <div class="plan-sheet"><img class="pdeco tape-a" src="assets/plan/tape1.webp" alt=""><img class="pdeco tape-b" src="assets/plan/tape2.webp" alt=""><img class="pdeco clip" src="assets/plan/clip.webp" alt=""><div class="plan-hint">← przesuńcie szkic w bok →</div><div class="plan-scroll">${planSvg(c, g, views[i])}</div></div></section>`;
 }
 
 /* --- MIEJSCA --- */
