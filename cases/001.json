@@ -2057,7 +2057,7 @@
     "name": "Centrala wydziału",
     "kind": "Zapytania przez radio",
     "desc": "Wóz dowodzenia przed bramą. Każde zapytanie do centrali to jeden ruch — odpowiedź przychodzi od razu.",
-    "img": "assets/art/001-manor.webp",
+    "img": "assets/places/001-hq.webp",
     "spots": [
      {
       "id": "sp-hq-duty",
