@@ -228,6 +228,9 @@
        "Koniec kłótni; kobieta wychodzi z gabinetu",
        "„Anna”"
       ]
+     ],
+     "requires": [
+      "h-q1"
      ]
     },
     {
@@ -489,11 +492,11 @@
     },
     {
      "id": "m-q5",
-     "q": "Czy podpisywała pani komuś pełnomocnictwo do swojej ziemi?",
+     "q": "W księdze wieczystej jest sprzedaż pani działki 214/3 z marca 2019 roku — na podstawie pani pełnomocnictwa. Podpisywała je pani?",
      "requires": [
       "e10"
      ],
-     "a": "Nigdy. Nikomu. A w 2019 roku na pewno nie — od lutego do końca kwietnia leżałam w szpitalu w Poznaniu, pierwsze tygodnie w śpiączce farmakologicznej. Mam kartę wypisu w telefonie, proszę.",
+     "a": "Co takiego? Nigdy. Nikomu. A w marcu 2019 roku na pewno nie — od lutego do końca kwietnia leżałam w szpitalu w Poznaniu, pierwsze tygodnie w śpiączce farmakologicznej. Mam kartę wypisu w telefonie, proszę. Kto sprzedał moją ziemię?",
      "gives": [
       "e30"
      ],
