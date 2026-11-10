@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.0.5';
+const VERSION = '2.1.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -33,6 +33,8 @@ const I = {
   plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>',
   minus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14"/></svg>',
   lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10" width="14" height="10" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>',
+  table: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg>',
+  phones: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="13" height="9" rx="1"/><path d="M6 17h5"/><rect x="16" y="8" width="6" height="12" rx="1.2"/><path d="M18.5 17.5h1"/></svg>',
   gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>'
 };
 
@@ -62,6 +64,7 @@ if (navigator.storage && navigator.storage.persist) navigator.storage.persist().
 function applySettings() {
   document.documentElement.dataset.text = S.settings.text;
   document.documentElement.dataset.motion = S.settings.motion;
+  document.documentElement.dataset.tv = S.settings.tv ? 'on' : 'off';
 }
 
 /* ---------- dane spraw ---------- */
@@ -69,9 +72,7 @@ let CATALOG = null;
 const CASES = {};
 async function fetchJSON(url) { const r = await fetch(url, { cache: 'no-cache' }); if (!r.ok) throw new Error(url + ' ' + r.status); return r.json(); }
 async function getCatalog() { if (!CATALOG) CATALOG = (await fetchJSON('cases/index.json')).cases; return CATALOG; }
-async function getCase(id) {
-  if (CASES[id]) return CASES[id];
-  const c = await fetchJSON(`cases/${id}.json`);
+function indexCase(c) {
   c.ev = Object.fromEntries(c.evidence.map(e => [e.id, e]));
   c.person = Object.fromEntries(c.people.map(p => [p.id, p]));
   c.loc = Object.fromEntries(c.locations.map(l => [l.id, l]));
@@ -79,18 +80,44 @@ async function getCase(id) {
   c.stmt = {}; c.q = {};
   c.people.forEach(p => { p.statements.forEach(s => { c.stmt[s.id] = { ...s, person: p.id }; }); p.questions.forEach(q => { c.q[q.id] = { ...q, person: p.id }; }); });
   c.puzzle = Object.fromEntries(c.puzzles.map(p => [p.id, p]));
-  CASES[id] = c; return c;
+  return c;
 }
+async function getCase(id) {
+  if (CASES[id]) return CASES[id];
+  CASES[id] = indexCase(await fetchJSON(`cases/${id}.json`)); return CASES[id];
+}
+/* Wariant sprawy dla trybu: „Wspólny stół” przenosi tajne akta do świata gry. */
+function variant(base, mode) {
+  if (!base || mode !== 'table') return base;
+  if (base._table) return base._table;
+  const t = base.tableMode || {};
+  const c = { ...base };
+  c.evidence = base.evidence.map(e => e.private ? { ...e, private: false, coop: true } : e);
+  c.locations = [...base.locations, ...(t.locations || [])];
+  c.people = base.people.map(p => (t.questions || {})[p.id] ? { ...p, questions: [...p.questions, ...t.questions[p.id]] } : p);
+  c.privateClues = []; c.par = base.par + (t.parBonus || 0); c.mode = 'table';
+  base._table = indexCase(c); return base._table;
+}
+const caseFor = (id) => { const g = G(id); return variant(CASES[id], g && g.mode); };
+const MODES = {
+  table: { name: 'Wspólny stół', sub: 'Jeden ekran: laptop, telewizor albo tablet', points: ['Wszyscy widzicie wszystko i gracie jak jeden zespół detektywów przy jednym stole.', 'Nie ma tajnych akt. Informacje, które w drugim trybie trafiają do kieszeni graczy, trzeba zdobyć w śledztwie — m.in. w miejscu „Centrala wydziału”.', 'Najlepszy we dwoje: jedna osoba czyta dokumenty na głos, druga prowadzi tablicę i oś czasu.'] },
+  phones: { name: 'Telewizor + telefony', sub: 'Wspólny ekran i prywatne teczki w telefonach', points: ['Gra toczy się na wspólnym ekranie. Na starcie każdy skanuje aparatem telefonu swój kod QR i widzi tylko swoje tajne akta.', 'Sami decydujecie, kiedy podzielić się wiedzą: możecie ją opowiedzieć albo ujawnić dokument na wspólnym ekranie, wpisując jego kod z telefonu.', 'Najlepszy dla 3–6 osób. Telefon potrzebuje internetu tylko przy pierwszym otwarciu kodu. Ktoś bez telefonu może zajrzeć do teczki na wspólnym ekranie.'] }
+};
+const codeFor = (g, id) => {
+  let h = 2166136261; for (const ch of g.created + ':' + id + ':slad') { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); }
+  h ^= h >>> 13; h = Math.imul(h, 0x5bd1e995); h ^= h >>> 15;
+  const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let o = ''; for (let i = 0; i < 4; i++) o += A[(h >>> (i * 5)) & 31]; return o;
+};
 
 /* ---------- stan rozgrywki ---------- */
 function shuffle(arr, seed) { const a = arr.slice(); let s = seed || 1; for (let i = a.length - 1; i > 0; i--) { s = (s * 9301 + 49297) % 233280; const j = Math.floor(s / 233280 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-function newGame(c, names) {
+function newGame(c, names, mode) {
   const seed = Date.now() % 100000;
   const priv = {}; names.forEach((_, i) => { priv[i] = []; });
-  shuffle(c.privateClues, seed).forEach((id, i) => priv[i % names.length].push(id));
+  if (mode !== 'table') shuffle(c.privateClues, seed).forEach((id, i) => priv[i % names.length].push(id));
   const roles = shuffle(ROLES.map(r => r.id), seed + 7);
   return {
-    v: 2, created: Date.now(), phase: 'distribute', distIdx: 0,
+    v: 2, created: Date.now(), mode, phase: mode === 'table' ? 'play' : mode === 'phones' ? 'qr' : 'distribute', distIdx: 0,
     players: names.map((n, i) => ({ name: n, role: roles[i % roles.length] })), priv, shared: [],
     found: c.evidence.filter(e => e.start).map(e => e.id), read: [], spots: [], asked: [], claims: [], broken: [],
     log: {}, failed: 0, actions: 0, puzzles: {}, trops: 0, notes: '', board: { items: [], links: [], zoom: 1 },
@@ -160,7 +187,8 @@ const app = () => $('#app');
 async function render() {
   const r = route(); applySettings();
   try {
-    if (r.name === 'sprawa' && r.id) { currentCaseId = r.id; await renderIntro(r.id); }
+    if (r.name === 'teczka' && r.id) { currentCaseId = null; await renderFolder(r.id); }
+    else if (r.name === 'sprawa' && r.id) { currentCaseId = r.id; await renderIntro(r.id); }
     else if (r.name === 'gra' && r.id) { currentCaseId = r.id; await renderGame(r.id, r.sub || 'akta'); }
     else { currentCaseId = null; await renderHome(); }
   } catch (err) {
@@ -194,7 +222,7 @@ async function renderHome() {
    <section class="section"><div class="section-head"><div><div class="eyebrow">Archiwum</div><h2>Akta spraw</h2></div></div><div class="cases">${cards}</div></section>
    <section class="section" id="how"><div class="section-head"><div><div class="eyebrow">Przy jednym stole</div><h2>Jak się gra</h2></div></div>
     <div class="how">
-     <div class="step"><span class="eyebrow">01</span><b>Tajne akta</b><p>Każdy gracz dostaje na start własne poufne dokumenty. Tylko on je widzi — zespół dowie się o nich, jeśli je ujawni albo opowie.</p></div>
+     <div class="step"><span class="eyebrow">01</span><b>Wybierzcie tryb</b><p><b style="display:inline;font-family:inherit;font-size:inherit">Wspólny stół</b> — wszystko na jednym ekranie, idealny we dwoje przy telewizorze. <b style="display:inline;font-family:inherit;font-size:inherit">Telewizor + telefony</b> — każdy ma w telefonie tajne akta, które widzi tylko on.</p></div>
      <div class="step"><span class="eyebrow">02</span><b>Śledztwo</b><p>Przeszukujcie miejsca, przesłuchujcie świadków, łamcie kłamstwa dowodami. Każdy ruch się liczy.</p></div>
      <div class="step"><span class="eyebrow">03</span><b>Dedukcja</b><p>Zagadki nie mają odpowiedzi w pytaniu. Trzeba połączyć dwa, trzy dokumenty — i nie dać się złapać w pułapki.</p></div>
      <div class="step"><span class="eyebrow">04</span><b>Akt oskarżenia</b><p>Wskażcie sprawcę, narzędzie, godzinę i motyw — i podeprzyjcie je dowodami. Raport oceni każdy wniosek.</p></div>
@@ -203,11 +231,16 @@ async function renderHome() {
 }
 
 /* ---------- wprowadzenie do sprawy ---------- */
-let setupCount = 2; let setupNames = [];
+let setupCount = 2; let setupNames = []; let setupMode = null;
 async function renderIntro(id) {
   const c = await getCase(id); const g = G(id);
   if (!setupNames.length) setupNames = ['', '', '', '', '', ''];
   const names = Array.from({ length: setupCount }, (_, i) => `<div class="field"><label for="pn${i}">Gracz ${i + 1}</label><input class="input" id="pn${i}" data-name="${i}" maxlength="18" placeholder="Imię gracza ${i + 1}" value="${esc(setupNames[i])}"></div>`).join('');
+  const rules = [...c.intro.rules, ...(setupMode && c.intro.modeRules ? [c.intro.modeRules[setupMode]] : [])];
+  const tiles = Object.entries(MODES).map(([k, m]) => `<button class="mode ${setupMode === k ? 'on' : ''}" aria-pressed="${setupMode === k}" data-a="mode" data-m="${k}">
+     <span class="mode-ic">${k === 'table' ? I.table : I.phones}</span><b>${esc(m.name)}</b><small>${esc(m.sub)}</small>
+     <ul>${m.points.map(p => `<li>${esc(p)}</li>`).join('')}</ul><span class="mode-pick">${setupMode === k ? 'Wybrano' : 'Wybierz ten tryb'}</span></button>`).join('');
+  const inProgress = g && !['distribute', 'qr'].includes(g.phase);
   app().innerHTML = `<div class="intro">
    <div class="intro-hero"><img src="${esc(c.keyart || c.cover)}" alt="${esc(c.title)} — plansza tytułowa"><button class="icon-btn back" data-a="home" aria-label="Archiwum">${I.back}</button></div>
    <div class="intro-wrap">
@@ -218,23 +251,63 @@ async function renderIntro(id) {
      <h4>Zadanie zespołu</h4><ol>${c.intro.task.map(t => `<li>${esc(t)}</li>`).join('')}</ol>
      <h4>Parametry</h4><p>${esc(c.duration)} · ${esc(c.players)} graczy · trudność: ${esc(c.difficulty)}</p>
     </article>
-    ${g && g.phase !== 'distribute' ? `<div class="setup"><div class="eyebrow">Śledztwo w toku</div><h3>${g.report ? 'Sprawa zamknięta' : 'Wróćcie do akt'}</h3>
+    ${inProgress ? `<div class="setup"><div class="eyebrow">Śledztwo w toku · ${esc((MODES[g.mode] || { name: 'przekazywanie urządzenia' }).name)}</div><h3>${g.report ? 'Sprawa zamknięta' : 'Wróćcie do akt'}</h3>
       <p class="muted">Zespół: ${g.players.map(p => esc(p.name)).join(', ')} · ruchy: ${g.actions}${g.report ? ` · wynik: ${g.report.total} pkt` : ''}</p>
       <div class="row-actions"><button class="btn" data-a="continue" data-id="${c.id}">${g.report ? 'Zobacz raport' : 'Kontynuuj śledztwo'}</button><button class="btn ghost" data-a="restart" data-id="${c.id}">Zacznij od nowa</button></div></div>` :
-    `<div class="setup"><div class="eyebrow">Skład zespołu</div><h3>Kto siada do stołu?</h3>
-      <p class="muted">Gracie na jednym urządzeniu. Za chwilę każdy po kolei dostanie do ręki telefon lub tablet i zobaczy swoje tajne akta.</p>
+    `<div class="setup"><div class="eyebrow">Krok 1 z 2</div><h3>Jak gracie?</h3>
+      <div class="modes">${tiles}</div>
+      <button class="tv-chip" data-a="tv" aria-pressed="${!!S.settings.tv}"><span class="switch" aria-hidden="true" aria-pressed="${!!S.settings.tv}"></span><span><b>Tryb telewizora</b> — większy tekst, czytelny z kanapy. ${S.settings.tv ? 'Włączony.' : 'Włącz, jeśli gracie na telewizorze.'} Zmienisz go też w ustawieniach (⚙).</span></button>
+    </div>
+    ${setupMode ? `<div class="setup"><div class="eyebrow">Krok 2 z 2</div><h3>Kto siada do stołu?</h3>
+      <p class="muted">${setupMode === 'table' ? 'Imiona przydadzą się do podziału ról w zespole. Każdy dostanie funkcję, która podpowiada, czym się zająć.' : 'Za chwilę na ekranie pojawi się kod QR dla każdego gracza. Każdy skanuje swój — i nie pokazuje telefonu reszcie.'}</p>
       <div class="count" role="group" aria-label="Liczba graczy">${[2, 3, 4, 5, 6].map(n => `<button aria-pressed="${n === setupCount}" data-a="count" data-n="${n}">${n}</button>`).join('')}</div>
       <div class="names">${names}</div>
-      <details class="rules"><summary>Zasady tej sprawy</summary><ul>${c.intro.rules.map(r => `<li>${esc(r)}</li>`).join('')}</ul></details>
-      <button class="btn block" data-a="begin" data-id="${c.id}">Rozdaj tajne akta</button></div>`}
+      <details class="rules"><summary>Zasady tej sprawy</summary><ul>${rules.map(r => `<li>${esc(r)}</li>`).join('')}</ul></details>
+      <button class="btn block" data-a="begin" data-id="${c.id}">${setupMode === 'table' ? 'Rozpocznij śledztwo' : 'Rozdaj tajne akta'}</button></div>` : ''}`}
    </div></div>`;
+}
+
+/* --- rozdanie kodów QR (Telewizor + telefony) --- */
+const b64u = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = s => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
+function folderURL(c, g, i) {
+  const pl = g.players[i];
+  const payload = b64u(JSON.stringify({ c: c.id, n: pl.name, r: pl.role, e: g.priv[i] || [], s: g.created }));
+  return location.href.split('#')[0] + '#/teczka/' + payload;
+}
+function qrSVG(text) {
+  if (typeof qrcode !== 'function') return '<p class="muted">Generator kodów QR niedostępny.</p>';
+  const q = qrcode(0, 'M'); q.addData(text); q.make();
+  return q.createSvgTag({ cellSize: 6, margin: 3, scalable: true });
+}
+function renderQR(c, g) {
+  app().innerHTML = `<div class="qr-screen"><div class="eyebrow">Telewizor + telefony · rozdanie tajnych akt</div>
+   <h2>Zeskanujcie swoje teczki</h2>
+   <p class="muted">Każdy otwiera aparat w telefonie, celuje w kod ze swoim imieniem i dotyka linku. Nie pokazujcie sobie telefonów. Kod działa też później — znajdziecie go w <b>Analiza → Tajne akta</b>.</p>
+   <div class="qr-grid">${g.players.map((pl, i) => `<div class="qr-card"><div class="qr">${qrSVG(folderURL(c, g, i))}</div><b>${esc(pl.name)}</b><small>${esc(ROLES.find(r => r.id === pl.role).name)}</small>
+     <button class="btn small ghost" data-a="priv" data-i="${i}">Nie mam telefonu — pokaż tutaj</button></div>`).join('')}</div>
+   <button class="btn" data-a="qr-done">Wszyscy mają swoje akta — zaczynamy</button></div>`;
+}
+
+/* --- teczka gracza na jego telefonie --- */
+async function renderFolder(payload) {
+  let d; try { d = JSON.parse(unb64u(payload)); } catch (_) { app().innerHTML = '<div class="section"><div class="empty"><h2>Nieprawidłowy kod</h2><p>Zeskanujcie kod jeszcze raz z głównego ekranu.</p></div></div>'; return; }
+  const c = await getCase(d.c); const role = ROLES.find(r => r.id === d.r) || ROLES[0];
+  const g = { created: d.s };
+  app().innerHTML = `<div class="folder"><div class="folder-top"><div class="logo">ŚLAD</div><span class="stamp" style="color:#e8695e;border-color:#e8695e">Tylko dla: ${esc(d.n)}</span></div>
+   <p class="muted">Sprawa ${esc(c.id)} · ${esc(c.title)}. Nie pokazuj tego ekranu innym graczom. Gra toczy się na wspólnym ekranie — tutaj masz tylko swoje tajne akta.</p>
+   <div class="role-card"><span class="eyebrow">Twoja funkcja w zespole</span><br><b>${esc(role.name)}</b><p class="muted" style="margin:.4em 0 0">${esc(role.tip)}</p></div>
+   <p style="margin-top:18px">Chcesz pokazać dokument wszystkim? Na wspólnym ekranie wybierz <b>Analiza → Tajne akta → Ujawnij dokument</b> i wpisz jego kod.</p>
+   ${(d.e || []).filter(id => c.ev[id]).map(id => `<div class="code-tag">Kod do ujawnienia: <b>${esc(codeFor(g, id))}</b></div>${docHTML(c, c.ev[id], true)}`).join('')}
+   <p class="muted" style="text-align:center;margin:30px 0 10px">Możesz zablokować telefon — ta strona zostanie w przeglądarce.</p></div>`;
 }
 
 /* ---------- gra ---------- */
 async function renderGame(id, tab) {
-  const c = await getCase(id); const g = G(id);
+  const g = G(id); const c = variant(await getCase(id), g && g.mode);
   if (!g) return go('sprawa/' + id);
   if (g.phase === 'distribute') return renderDistribute(c, g);
+  if (g.phase === 'qr') return renderQR(c, g);
   if (tab === 'raport' && !g.report) return renderShell(c, g, 'analiza', renderReport(c, g));
   if (tab === 'wynik' || (tab === 'raport' && g.report)) { if (!g.report) return go(`gra/${id}/analiza`); return renderShell(c, g, 'analiza', renderResult(c, g)); }
   const views = { akta: viewFiles, miejsca: viewPlaces, osoby: viewPeople, analiza: viewAnalysis, tablica: viewBoard };
@@ -312,8 +385,8 @@ function viewFiles(c, g) {
   if (filesFilter === 'test') ids = ids.filter(i => c.ev[i].testimony);
   if (filesFilter === 'priv') ids = ids.filter(i => c.ev[i].private);
   const total = c.evidence.length;
-  return `<div class="page-head"><div><div class="eyebrow">Materiał dowodowy</div><h2>Akta sprawy</h2><p>Zebrane dokumenty, fotografie, protokoły i ujawnione tajne akta. Zebrano ${visibleEvidence(g, c).length} z ${total} pozycji.</p></div></div>
-   <div class="tabs" role="group">${[['all', 'Wszystkie'], ['docs', 'Dowody'], ['test', 'Protokoły'], ['priv', 'Ujawnione tajne']].map(([k, l]) => `<button aria-pressed="${filesFilter === k}" data-a="filter" data-f="${k}">${l} · ${counts[k]}</button>`).join('')}</div>
+  return `<div class="page-head"><div><div class="eyebrow">Materiał dowodowy</div><h2>Akta sprawy</h2><p>Zebrane dokumenty, fotografie i protokoły${c.mode === 'table' ? '' : ' oraz ujawnione tajne akta'}. Zebrano ${visibleEvidence(g, c).length} z ${total} pozycji.</p></div></div>
+   <div class="tabs" role="group">${[['all', 'Wszystkie'], ['docs', 'Dowody'], ['test', 'Protokoły'], ...(c.mode === 'table' ? [] : [['priv', 'Ujawnione tajne']])].map(([k, l]) => `<button aria-pressed="${filesFilter === k}" data-a="filter" data-f="${k}">${l} · ${counts[k]}</button>`).join('')}</div>
    ${ids.length ? `<div class="ev-grid">${ids.map(id => evCard(c, g, id)).join('')}</div>` : '<div class="empty">Brak materiałów w tej kategorii.</div>'}`;
 }
 
@@ -419,7 +492,8 @@ function doConfront(c, g, sid, evid) {
 let anaTab = 'zagadki';
 function puzzleVisible(c, g, pz) { return pz.requires.every(r => has(g, c, r)); }
 function viewAnalysis(c, g) {
-  const tabs = [['zagadki', 'Zagadki'], ['czas', 'Oś czasu'], ['tajne', 'Tajne akta'], ['notatki', 'Notatki']];
+  const tabs = [['zagadki', 'Zagadki'], ['czas', 'Oś czasu'], ...(c.mode === 'table' ? [] : [['tajne', 'Tajne akta']]), ['notatki', 'Notatki']];
+  if (c.mode === 'table' && anaTab === 'tajne') anaTab = 'zagadki';
   let inner = '';
   if (anaTab === 'zagadki') {
     const vis = c.puzzles.filter(pz => puzzleVisible(c, g, pz));
@@ -428,7 +502,10 @@ function viewAnalysis(c, g) {
       ${vis.length < c.puzzles.length ? `<p class="muted" style="margin-top:14px">Pozostałe zagadki (${c.puzzles.length - vis.length}) pojawią się, gdy zdobędziecie potrzebne materiały.</p>` : ''}` : '<div class="empty">Na razie brak zagadek. Zbierajcie materiały — pojawią się same.</div>';
   }
   if (anaTab === 'czas') inner = timelineHTML(c, g);
-  if (anaTab === 'tajne') inner = `<p class="muted">Każdy gracz ma swoje tajne akta. Przekażcie urządzenie właścicielowi — tylko on może je przeczytać i zdecydować o ujawnieniu.</p>
+  if (anaTab === 'tajne' && g.mode === 'phones') inner = `<p class="muted">Każdy ma swoją teczkę w telefonie. Żeby ujawnić dokument na wspólnym ekranie, wpiszcie jego kod — widnieje przy dokumencie w telefonie.</p>
+    <button class="btn" data-a="reveal">Ujawnij dokument z teczki</button>
+    <div class="cards2" style="margin-top:16px">${g.players.map((pl, i) => { const all = g.priv[i] || []; const sh = all.filter(id => g.shared.includes(id)).length; return `<div class="panel"><div class="eyebrow">${esc(ROLES.find(r => r.id === pl.role).name)}</div><h3>${esc(pl.name)}</h3><p>Teczka: ${all.length} dokumenty · ujawnione: ${sh}</p><div class="row-actions"><button class="btn small ghost" data-a="qr" data-i="${i}">Pokaż kod QR</button><button class="btn small ghost" data-a="priv" data-i="${i}">${I.lock} Pokaż na tym ekranie</button></div></div>`; }).join('')}</div>`;
+  else if (anaTab === 'tajne') inner = `<p class="muted">Każdy gracz ma swoje tajne akta. Przekażcie urządzenie właścicielowi — tylko on może je przeczytać i zdecydować o ujawnieniu.</p>
     <div class="cards2">${g.players.map((pl, i) => { const all = g.priv[i] || []; const sh = all.filter(id => g.shared.includes(id)).length; return `<div class="panel"><div class="eyebrow">${esc(ROLES.find(r => r.id === pl.role).name)}</div><h3>${esc(pl.name)}</h3><p>Teczka: ${all.length} dokumenty · ujawnione: ${sh}</p><button class="btn small ghost" data-a="priv" data-i="${i}">${I.lock} Otwórz teczkę</button></div>`; }).join('')}</div>`;
   if (anaTab === 'notatki') inner = `<div class="field"><label for="notes">Wspólne notatki zespołu</label><textarea class="input" id="notes" data-notes placeholder="Hipotezy, podejrzenia, pytania do sprawdzenia…">${esc(g.notes)}</textarea></div>`;
   return `<div class="page-head"><div><div class="eyebrow">Warsztat dedukcji</div><h2>Analiza</h2><p>Zagadki, oś czasu, tajne akta i notatki. Gdy jesteście pewni — złóżcie akt oskarżenia.</p></div></div>
@@ -467,7 +544,7 @@ function ovPuzzle(c, g, id, msg) {
   const hints = pz.hints.slice(0, st.hints || 0).map((h, i) => `<div class="hint-box"><span class="eyebrow">Podpowiedź ${i + 1}</span><br>${esc(h)}</div>`).join('');
   return { title: pz.title, kicker: pz.kind, body: st.solved ? `<div class="result-ok"><b>Rozwiązane.</b> ${esc(pz.solution)}</div>` :
    `<p style="font-family:var(--f-display);font-size:1.3rem;margin-top:0">${esc(pz.prompt)}</p>
-   <p class="muted" style="font-size:.88rem">Potrzebne materiały: ${pz.requires.map(r => c.ev[r] ? `<button class="chip" data-a="ev" data-id="${r}">${esc(c.ev[r].title)}</button>` : '').join(' ')} — i może coś, co ma ktoś z was w tajnych aktach.</p>
+   <p class="muted" style="font-size:.88rem">Potrzebne materiały: ${pz.requires.map(r => c.ev[r] ? `<button class="chip" data-a="ev" data-id="${r}">${esc(c.ev[r].title)}</button>` : '').join(' ')} ${c.mode === 'table' ? '— i może coś, czego dowiecie się w centrali.' : '— i może coś, co ma ktoś z was w tajnych aktach.'}</p>
    ${input}${msg ? `<div class="result-bad">${esc(msg)}</div>` : ''}${hints}
    <div class="row-actions"><button class="btn" data-a="solve" data-id="${id}">Sprawdź</button>${(st.hints || 0) < pz.hints.length ? `<button class="btn ghost" data-a="phint" data-id="${id}">Podpowiedź (−2 pkt)</button>` : ''}</div>
    <p class="muted" style="font-size:.8rem;margin-top:12px">Próby: ${st.attempts || 0}. Błędne próby nie kosztują punktów.</p>` };
@@ -627,7 +704,7 @@ function renderResult(c, g) {
 async function renderOv() {
   const root = $('#overlay-root'); const o = topOv();
   if (!o) { root.innerHTML = ''; document.body.style.overflow = ''; return; }
-  const r = route(); const c = r.id && CASES[r.id]; const g = r.id && G(r.id);
+  const r = route(); const c = r.id && caseFor(r.id); const g = r.id && G(r.id);
   let v;
   if (o.type === 'settings') v = ovSettings();
   else if (o.type === 'menu') v = ovMenu(c, g);
@@ -639,6 +716,8 @@ async function renderOv() {
   else if (o.type === 'confront') v = ovConfront(c, g, o.id);
   else if (o.type === 'puzzle') v = ovPuzzle(c, g, o.id, o.msg);
   else if (o.type === 'priv') v = ovPrivate(c, g, o.i, o.opened);
+  else if (o.type === 'qr') v = { title: 'Kod teczki', kicker: g.players[o.i].name, body: `<div class="qr-card big"><div class="qr">${qrSVG(folderURL(c, g, o.i))}</div><b>${esc(g.players[o.i].name)}</b><small>Zeskanuj aparatem telefonu</small></div>` };
+  else if (o.type === 'reveal') v = { title: 'Ujawnij dokument', kicker: 'Tajne akta', body: `<p>Wpisz kod widoczny przy dokumencie w telefonie. Dokument trafi do wspólnych akt.</p><div class="field" style="margin:14px 0"><label for="revcode">Kod dokumentu</label><input class="input" id="revcode" maxlength="6" autocomplete="off" autocapitalize="characters" style="font-family:var(--f-mono);font-size:1.6rem;letter-spacing:.3em;text-transform:uppercase"></div>${o.msg ? `<div class="result-bad">${esc(o.msg)}</div>` : ''}<button class="btn" data-a="reveal-go">Ujawnij</button>` };
   else if (o.type === 'trop') v = o.text ? { title: 'Trop', kicker: 'Podpowiedź zespołu', body: `<div class="hint-box" style="font-size:1.05rem">${esc(o.text)}</div>` } : { title: 'Trop', kicker: 'Podpowiedź', body: `<p>Utknęliście? Szef wydziału podsunie kierunek. Każdy trop kosztuje <b>3 punkty</b> w raporcie końcowym. Wykorzystane tropy: ${g.trops}.</p><div class="row-actions"><button class="btn" data-a="trop-go">Pokaż trop (−3 pkt)</button><button class="btn ghost" data-a="close">Jeszcze nie</button></div>` };
   root.innerHTML = `<div class="ov" data-a="ov-bg"><div class="ov-panel ${v.full ? 'full' : ''}" role="dialog" aria-modal="true" aria-label="${esc(v.title)}">
    <div class="ov-head">${ovStack.length > 1 ? `<button class="icon-btn" data-a="close" aria-label="Wstecz">${I.back}</button>` : ''}<div class="t"><small>${esc(v.kicker)}</small><b>${esc(v.title)}</b></div><button class="icon-btn" data-a="close-all" aria-label="Zamknij">${I.close}</button></div>
@@ -646,11 +725,13 @@ async function renderOv() {
   document.body.style.overflow = 'hidden';
   const tr = $('#transcript'); if (tr && o.scrollEnd) { tr.lastElementChild && tr.lastElementChild.scrollIntoView({ block: 'center' }); o.scrollEnd = false; }
   const inp = $('#pzin'); if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') handlers.solve({ dataset: { id: o.id } }); });
+  const rc = $('#revcode'); if (rc) { rc.focus(); rc.addEventListener('keydown', e => { if (e.key === 'Enter') handlers['reveal-go'](); }); }
 }
 function ovSettings() {
   const s = S.settings;
   return { title: 'Ustawienia', kicker: 'ŚLAD ' + VERSION, body: `
    <div class="settings-row"><div><b>Wersja gry: ${VERSION}</b><small>Wydanie z ${BUILD}. Gra aktualizuje się sama przy każdym otwarciu z internetem.</small></div><button class="btn small ghost" data-a="check-update">Sprawdź</button></div>
+   <div class="settings-row"><div><b>Tryb telewizora</b><small>Większy tekst, karty i przyciski — czytelne z kanapy. Włącz, gdy gra jest wyświetlana na telewizorze.</small></div><button class="switch" aria-pressed="${!!s.tv}" data-a="tv" aria-label="Tryb telewizora"></button></div>
    <div class="settings-row"><div><b>Muzyka i efekty</b><small>Ambient sprawy i dźwięk nowych dowodów</small></div><button class="switch" aria-pressed="${s.sound}" data-a="sound" aria-label="Dźwięk"></button></div>
    <div class="settings-row"><div><b>Wielkość tekstu</b><small>Dla czytania przy stole</small></div><div class="seg">${[['m', 'A'], ['l', 'A+'], ['xl', 'A++']].map(([k, l]) => `<button aria-pressed="${s.text === k}" data-a="text" data-v="${k}">${l}</button>`).join('')}</div></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
@@ -667,8 +748,12 @@ function ovMenu(c, g) {
    <button class="q" data-a="home">Wróć do archiwum</button></div>` };
 }
 
+function startMsg(c, g) {
+  const roles = g.players.map(p => `<li><b>${esc(p.name)}</b> — ${esc(ROLES.find(r => r.id === p.role).name)}: <span class="muted">${esc(ROLES.find(r => r.id === p.role).tip)}</span></li>`).join('');
+  openOv({ type: 'msg', title: 'Śledztwo rozpoczęte', kicker: 'Akta ' + c.id, body: `<p>Macie przed sobą akta startowe — zacznijcie od nich. Potem przeszukujcie miejsca i przesłuchujcie świadków.</p>${c.mode === 'table' ? '<p class="muted">Gracie przy wspólnym stole: wszystko widzicie razem. Pamiętajcie o Centrali wydziału — niektóre informacje są tylko tam.</p>' : '<p class="muted">Pamiętajcie: każdy z was wie coś, czego nie wie reszta.</p>'}<h4 class="eyebrow" style="margin-top:18px">Podział ról</h4><ul class="roles">${roles}</ul>` });
+}
 /* ---------- akcje ---------- */
-const ctx = () => { const r = route(); return { c: CASES[r.id], g: G(r.id), r }; };
+const ctx = () => { const r = route(); return { c: caseFor(r.id), g: G(r.id), r }; };
 const rerender = () => { render(); renderOv(); };
 const handlers = {
   home: () => { ovStack = []; renderOv(); go(''); },
@@ -677,14 +762,26 @@ const handlers = {
   'open-case': el => go('sprawa/' + el.dataset.id),
   continue: el => go(`gra/${el.dataset.id}/${G(el.dataset.id).report ? 'wynik' : 'akta'}`),
   count: el => { setupCount = +el.dataset.n; render(); },
+  mode: el => { setupMode = el.dataset.m; render(); setTimeout(() => { const st = document.querySelectorAll('.setup')[1]; st && st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60); },
+  'qr-done': () => { const { g, c } = ctx(); g.phase = 'play'; save(); render(); startMsg(c, g); },
+  qr: el => openOv({ type: 'qr', i: +el.dataset.i }),
+  reveal: () => openOv({ type: 'reveal' }),
+  'reveal-go': () => { const { c, g } = ctx(); const v = (($('#revcode') || {}).value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+    let hit = null; Object.values(g.priv).flat().forEach(id => { if (codeFor(g, id) === v) hit = id; });
+    const o = topOv();
+    if (!hit) { o.msg = 'Nie ma dokumentu z takim kodem. Sprawdź kod w telefonie.'; renderOv(); return; }
+    if (!g.shared.includes(hit)) { g.shared.push(hit); save(); toast(c.ev[hit].title, 'Ujawniono zespołowi', 'Tajne akta'); }
+    ovStack.pop(); history.back(); setTimeout(() => { rerender(); openOv({ type: 'ev', id: hit }); }, 60); },
   begin: async el => {
     const c = await getCase(el.dataset.id);
     const names = Array.from({ length: setupCount }, (_, i) => (setupNames[i] || '').trim() || `Gracz ${i + 1}`);
-    S.games[c.id] = newGame(c, names); save(); distRevealed = false; go(`gra/${c.id}/akta`);
+    if (!setupMode) return;
+    S.games[c.id] = newGame(c, names, setupMode); save(); distRevealed = false; go(`gra/${c.id}/akta`);
+    if (setupMode === 'table') setTimeout(() => startMsg(variant(c, 'table'), S.games[c.id]), 250);
   },
   restart: el => { const id = el.dataset.id; if (!confirm('Zacząć sprawę od nowa? Obecny postęp zostanie usunięty.')) return; delete S.games[id]; save(); ovStack = []; renderOv(); go('sprawa/' + id); },
   'dist-open': () => { distRevealed = true; render(); },
-  'dist-next': () => { const { g, c } = ctx(); distRevealed = false; g.distIdx++; if (g.distIdx >= g.players.length) { g.phase = 'play'; save(); render(); setTimeout(() => openOv({ type: 'msg', title: 'Śledztwo rozpoczęte', kicker: 'Akta ' + c.id, body: `<p>Teczki zamknięte. Macie przed sobą akta startowe — zacznijcie od nich. Potem przeszukujcie miejsca i przesłuchujcie świadków.</p><p class="muted">Pamiętajcie: każdy z was wie coś, czego nie wie reszta.</p>` }), 200); } else { save(); render(); } },
+  'dist-next': () => { const { g, c } = ctx(); distRevealed = false; g.distIdx++; if (g.distIdx >= g.players.length) { g.phase = 'play'; save(); render(); setTimeout(() => startMsg(c, g), 200); } else { save(); render(); } },
   tab: el => go(`gra/${route().id}/${el.dataset.tab}`),
   filter: el => { filesFilter = el.dataset.f; render(); },
   ana: el => { anaTab = el.dataset.t; render(); },
@@ -719,6 +816,7 @@ const handlers = {
   decide: el => { const { g } = ctx(); g.report.decision = el.dataset.id; save(); render(); },
   sound: () => { S.settings.sound = !S.settings.sound; save(); syncAudio(); rerender(); },
   text: el => { S.settings.text = el.dataset.v; save(); applySettings(); renderOv(); },
+  tv: () => { S.settings.tv = !S.settings.tv; save(); applySettings(); rerender(); },
   motion: () => { S.settings.motion = S.settings.motion === 'on' ? 'off' : 'on'; save(); applySettings(); renderOv(); },
   settings: () => openOv({ type: 'settings' }),
   'check-update': async () => {

@@ -3,8 +3,9 @@ import { chromium } from '/opt/npm-tools/node_modules/playwright/index.mjs';
 import fs from 'fs';
 const URL = process.argv[2] || 'http://localhost:8800/';
 const dev = process.argv[3] || 'phone';
+const MODE = process.env.MODE || 'table';
 const VP = { phone: { width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 }, tablet: { width: 820, height: 1180, isMobile: true, hasTouch: true, deviceScaleFactor: 1 }, desktop: { width: 1440, height: 900, deviceScaleFactor: 1 } }[dev];
-const out = `/home/claude/audit/e2e-${dev}`; fs.mkdirSync(out, { recursive: true });
+const out = `/home/claude/audit/e2e-${dev}-${MODE}`; fs.mkdirSync(out, { recursive: true });
 const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 const ctx = await b.newContext({ viewport: { width: VP.width, height: VP.height }, isMobile: !!VP.isMobile, hasTouch: !!VP.hasTouch, deviceScaleFactor: VP.deviceScaleFactor });
 const p = await ctx.newPage(); const errs = [];
@@ -20,13 +21,26 @@ const C = await p.evaluate(() => fetch('cases/001.json').then(r => r.json()));
 const state = () => p.evaluate(() => JSON.parse(localStorage.getItem('slad.v2')).games['001']);
 if (!FROM) {
 await A('open-case', '[data-id="001"]'); await shot('intro'); await shot('intro-full', true);
+await A('mode', `[data-m="${MODE}"]`); await shot('modes'); await shot('modes-full', true);
 await A('count', '[data-n="3"]'); await p.fill('#pn0', 'Kasia'); await p.fill('#pn1', 'Tomek'); await p.fill('#pn2', 'Ola');
 await A('begin');
-for (let i = 0; i < 3; i++) { if (i === 0) await shot('pass'); await A('dist-open'); if (i === 0) await shot('private'); await A('dist-next'); }
-await p.waitForTimeout(400); await shot('start-msg'); await closeAll(); await shot('files');
-// ujawnij wszystkie tajne akta
-await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="tajne"]'); await shot('analysis-private');
-for (let i = 0; i < 3; i++) { await A('priv', `[data-i="${i}"]`); await A('priv-open'); if (i === 0) await shot('priv-open'); while (await p.locator('[data-a="share"]').count()) await A('share'); await closeAll(); }
+if (MODE === 'phones') {
+  await p.waitForTimeout(400); await shot('qr-screen'); await shot('qr-screen-full', true);
+  const nQR = await p.locator('.qr-card svg').count(); console.log('QR codes', nQR);
+  const urls = await p.evaluate(() => [0, 1, 2].map(i => folderURL(caseFor('001'), G('001'), i)));
+  const phone = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+  const codes = [];
+  for (const [i, u] of urls.entries()) { const pp = await phone.newPage(); pp.on('pageerror', e => errs.push('PHONE ' + e.message)); await pp.goto(u, { waitUntil: 'networkidle' }); await pp.waitForTimeout(400);
+    if (i === 0) await pp.screenshot({ path: `${out}/phone-folder.png`, fullPage: false });
+    codes.push(...await pp.$$eval('.code-tag b', els => els.map(e => e.textContent.trim()))); await pp.close(); }
+  console.log('folder codes', codes.join(','));
+  await A('qr-done'); await p.waitForTimeout(400); await closeAll();
+  await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="tajne"]'); await shot('analysis-private');
+  for (const [k, code] of codes.entries()) { await A('reveal'); await p.fill('#revcode', code); if (k === 0) await shot('reveal'); await A('reveal-go'); await p.waitForTimeout(300); await closeAll(); }
+  await A('reveal'); await p.fill('#revcode', 'ZZZZ'); await A('reveal-go'); const bad = await p.locator('.result-bad').count(); console.log('wrong code rejected', bad === 1); await closeAll();
+} else {
+  await p.waitForTimeout(400); await shot('start-msg'); await closeAll(); await shot('files');
+}
 const solvePuzzle = async pz => {
   await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="zagadki"]');
   await A('puzzle', `[data-id="${pz.id}"]`);
@@ -38,7 +52,7 @@ const solvePuzzle = async pz => {
 // pętla śledztwa
 for (let round = 0; round < 5; round++) {
   await A('tab', '[data-tab="miejsca"]'); if (round === 0) await shot('places');
-  for (const l of C.locations) {
+  for (const l of (MODE === 'table' ? [...C.locations, ...C.tableMode.locations] : C.locations)) {
     await A('loc', `[data-id="${l.id}"]`); if (round === 0 && l.id === 'study') await shot('location-study');
     while (await p.locator('[data-a="search"]').count()) await A('search');
     if (round === 0 && l.id === 'study') await shot('location-study-searched');

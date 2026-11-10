@@ -8,10 +8,19 @@ const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '
 const digits = s => String(s).replace(/\D/g, '');
 let failures = 0;
 
-for (const f of files) {
-  const c = JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
+function applyTable(raw) {
+  const t = raw.tableMode || {}; const c = JSON.parse(JSON.stringify(raw));
+  c.evidence = c.evidence.map(e => e.private ? { ...e, private: false } : e);
+  c.locations = [...c.locations, ...(t.locations || [])];
+  c.people = c.people.map(p => (t.questions || {})[p.id] ? { ...p, questions: [...p.questions, ...t.questions[p.id]] } : p);
+  c.privateClues = []; return c;
+}
+const runs = [];
+for (const f of files) { const raw = JSON.parse(fs.readFileSync(path.join(root, f), 'utf8')); runs.push([f + ' [Telewizor + telefony]', raw]); if (raw.tableMode) runs.push([f + ' [Wspólny stół]', applyTable(raw)]); else { console.log(f + ': BŁĄD brak wariantu tableMode'); failures++; } }
+for (const [f, c] of runs) {
   const errs = [], warns = [];
   const E = id => errs.push(id);
+  if (c.intro && (!c.intro.modeRules || !c.intro.modeRules.table || !c.intro.modeRules.phones)) E('brak zasad zależnych od trybu (intro.modeRules)');
   const ev = new Map(c.evidence.map(e => [e.id, e]));
   const spots = new Map(); c.locations.forEach(l => l.spots.forEach(s => { if (spots.has(s.id)) E(`duplikat punktu ${s.id}`); spots.set(s.id, s); }));
   const qs = new Map(), st = new Map();
@@ -91,7 +100,7 @@ for (const f of files) {
   if (!c.endings.correct || !c.endings.correct.decision) E('brak zakończenia poprawnego z decyzją');
 
   // 7. Zasoby
-  [c.cover, c.keyart, c.ambience].filter(Boolean).forEach(a => { if (!fs.existsSync(path.join(root, a))) E(`brak pliku ${a}`); });
+  [c.cover, c.keyart, c.ambience, c.art].filter(Boolean).forEach(a => { if (!fs.existsSync(path.join(root, a))) E(`brak pliku ${a}`); });
   c.people.forEach(p => { if (p.img && !fs.existsSync(path.join(root, p.img))) E(`brak portretu ${p.img}`); });
   c.locations.forEach(l => { if (l.img && !fs.existsSync(path.join(root, l.img))) E(`brak grafiki ${l.img}`); });
 

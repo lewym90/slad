@@ -41,12 +41,27 @@ const inject = async (p, hash, state = STATE) => { await p.goto(URL, { waitUntil
   ok('Wstecz z wyboru dowodu wraca do przesłuchania', !hasConf || stillPerson === 1);
   await ctx.close(); }
 
-// 4. Prywatność tajnych akt: przeładowanie w trakcie odczytu wraca do pieczęci
-{ const { ctx, p } = await page({ width: 390, height: 844 }); await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(() => localStorage.clear()); await p.reload();
-  await p.evaluate(() => { location.hash = '#/sprawa/001'; }); await p.waitForTimeout(500); await p.click('[data-a="begin"]'); await p.waitForTimeout(300);
-  await p.click('[data-a="dist-open"]'); const shown = await p.locator('.private-list .doc').count(); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(400);
-  const sealed = await p.locator('[data-a="dist-open"]').count(); const leak = await p.locator('.private-list').count();
-  ok('Tajne akta: po przeładowaniu znów zapieczętowane', shown >= 3 && sealed === 1 && leak === 0, `pokazane=${shown}`);
+// 4. Tryby: Telewizor + telefony (QR, prywatność) i Wspólny stół (bez tajnych akt, Centrala)
+{ const { ctx, p } = await page({ width: 1280, height: 800 }, false); await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(() => localStorage.clear()); await p.reload();
+  await p.evaluate(() => { location.hash = '#/sprawa/001'; }); await p.waitForTimeout(500);
+  const noModeBtn = await p.locator('[data-a="begin"]').count();
+  await p.click('[data-a="mode"][data-m="phones"]'); await p.waitForTimeout(200); await p.click('[data-a="begin"]'); await p.waitForTimeout(400);
+  const qrs = await p.locator('.qr-card svg').count(); const docsOnTV = await p.locator('.doc').count();
+  await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(400);
+  const qrs2 = await p.locator('.qr-card svg').count(); const docs2 = await p.locator('.doc').count();
+  await p.click('[data-a="priv"][data-i="0"]'); await p.waitForTimeout(200); const sealed = await p.locator('[data-a="priv-open"]').count(); const leak = await p.locator('.ov .doc').count();
+  ok('Start bez wybranego trybu jest niemożliwy', noModeBtn === 0);
+  ok('Telewizor + telefony: kody QR dla graczy, żadnych tajnych dokumentów na wspólnym ekranie', qrs === 2 && docsOnTV === 0 && qrs2 === 2 && docs2 === 0, `qr=${qrs}/${qrs2} doc=${docsOnTV}/${docs2}`);
+  ok('„Pokaż tutaj” zabezpieczone pieczęcią', sealed === 1 && leak === 0);
+  await ctx.close(); }
+{ const { ctx, p } = await page({ width: 1280, height: 800 }, false); await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(() => localStorage.clear()); await p.reload();
+  await p.evaluate(() => { location.hash = '#/sprawa/001'; }); await p.waitForTimeout(500);
+  await p.click('[data-a="mode"][data-m="table"]'); await p.waitForTimeout(200); await p.click('[data-a="begin"]'); await p.waitForTimeout(600);
+  const msg = await p.locator('.ov').count(); await p.click('[data-a="close-all"]');
+  await p.click('[data-a="tab"][data-tab="miejsca"]'); await p.waitForTimeout(200); const hq = await p.locator('[data-a="loc"][data-id="hq"]').count();
+  await p.click('[data-a="tab"][data-tab="analiza"]'); await p.waitForTimeout(200); const tajne = await p.locator('[data-a="ana"][data-t="tajne"]').count();
+  await p.click('[data-a="tab"][data-tab="osoby"]'); await p.click('[data-a="person"][data-id="marta"]'); await p.waitForTimeout(200); const photoQ = await p.locator('[data-a="ask"][data-id="m-q7"]').count();
+  ok('Wspólny stół: start bez rozdania, Centrala wydziału, brak tajnych akt, dodatkowe pytanie do Marty', msg === 1 && hq === 1 && tajne === 0 && photoQ === 1, `msg=${msg} hq=${hq} tajne=${tajne} q7=${photoQ}`);
   await ctx.close(); }
 
 // 5. Błędne raporty → właściwe epilogi i niska punktacja

@@ -1,12 +1,12 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.0.5';
+const VERSION = '2.1.0';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
   './index.html',
   './styles.css',
   './app.js',
-  './manifest.webmanifest',
+  './manifest.webmanifest', './assets/vendor/qrcode.js',
   './cases/index.json',
   './cases/001.json',
   './assets/icons/icon-32.png',

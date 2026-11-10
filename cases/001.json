@@ -27,9 +27,12 @@
   "rules": [
    "Każde przeszukanie miejsca i każde pytanie zadane świadkowi to jeden ruch. Ruchów nie brakuje, ale najlepsze zespoły zamykają sprawę oszczędnie.",
    "Świadkowie kłamią. Gdy znajdziecie dowód, który przeczy zeznaniu, użyjcie konfrontacji. Nietrafiona konfrontacja kosztuje punkty.",
-   "Każdy gracz dostaje tajne akta. Tylko on je widzi — od was zależy, kiedy i czy podzielicie się nimi z zespołem.",
    "Raport końcowy oceni wnioski i dowody, które na ich poparcie wskażecie."
-  ]
+  ],
+  "modeRules": {
+   "table": "Wszystko widzicie razem. Część informacji zdobędziecie tylko w Centrali wydziału — zapytania do centrali też kosztują ruchy.",
+   "phones": "Każdy gracz ma w telefonie tajne akta, których nie widzi reszta. Od was zależy, kiedy i czy podzielicie się nimi z zespołem."
+  }
  },
  "people": [
   {
@@ -1666,7 +1669,7 @@
    "when": [
     "e05"
    ],
-   "text": "Na biurku czegoś brakuje. Opis rany mówi, czego szukać. Czy ktoś z was ma w tajnych aktach opis tego biurka?"
+   "text": "Na biurku czegoś brakuje. Opis rany mówi, czego szukać. Ktoś kiedyś opisał to biurko — sprawdźcie tajne akta albo archiwum prasowe."
   },
   {
    "unless": [
@@ -2045,5 +2048,71 @@
   },
   "partial": "Wskazaliście właściwą osobę, ale część waszych wniosków jest błędna lub niepoparta dowodami. Prokurator przyjmuje sprawę, choć obrona będzie miała o co walczyć."
  },
- "art": "assets/art/001-manor.webp"
+ "art": "assets/art/001-manor.webp",
+ "tableMode": {
+  "parBonus": 6,
+  "locations": [
+   {
+    "id": "hq",
+    "name": "Centrala wydziału",
+    "kind": "Zapytania przez radio",
+    "desc": "Wóz dowodzenia przed bramą. Każde zapytanie do centrali to jeden ruch — odpowiedź przychodzi od razu.",
+    "img": "assets/art/001-manor.webp",
+    "spots": [
+     {
+      "id": "sp-hq-duty",
+      "name": "Dyżurny z holu",
+      "text": "Pytacie dyżurnego, co dokładnie usłyszała rano rodzina i kiedy.",
+      "gives": [
+       "x1"
+      ]
+     },
+     {
+      "id": "sp-hq-press",
+      "name": "Archiwum prasowe",
+      "text": "Prosicie o wycinki prasowe o willi Różyckich z ostatnich lat.",
+      "gives": [
+       "x2"
+      ]
+     },
+     {
+      "id": "sp-hq-it",
+      "name": "Dział techniczny",
+      "text": "Pytacie informatyka, jak czytać dane eksportowane z urządzeń.",
+      "gives": [
+       "x3"
+      ]
+     },
+     {
+      "id": "sp-hq-shoes",
+      "name": "Technicy w holu",
+      "text": "Prosicie techników o spis obuwia wszystkich domowników.",
+      "gives": [
+       "x4"
+      ]
+     },
+     {
+      "id": "sp-hq-weather",
+      "name": "Dane pogodowe",
+      "text": "Zamawiacie z IMGW przebieg pogody z ostatniej nocy.",
+      "gives": [
+       "x6"
+      ]
+     }
+    ]
+   }
+  ],
+  "questions": {
+   "marta": [
+    {
+     "id": "m-q7",
+     "q": "Czy ma pani zdjęcie Ani z ostatniego lata przed pożarem?",
+     "a": "Zawsze noszę jedno w portfelu. Lipiec 2013, taras. Ania i Kinia, córka Heleny — były wtedy nierozłączne. Proszę, tylko ostrożnie.",
+     "gives": [
+      "x5"
+     ]
+    }
+   ]
+  }
+ }
 }
