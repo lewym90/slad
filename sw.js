@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.3.1';
+const VERSION = '2.4.0';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -21,6 +21,28 @@ const CORE = [
   './assets/tex/cork.webp',
   './assets/tex/grain.png',
   './assets/art/001-keyart.webp',
+  './assets/evidence/002-cctv.webp',
+  './assets/evidence/002-clipping.webp',
+  './assets/evidence/002-coat.webp',
+  './assets/evidence/002-glasses.webp',
+  './assets/evidence/002-lanyard.webp',
+  './assets/evidence/002-papers.webp',
+  './assets/evidence/002-phone.webp',
+  './assets/evidence/002-platform.webp',
+  './assets/evidence/002-seal.webp',
+  './assets/people/002-damian.webp',
+  './assets/people/002-emil.webp',
+  './assets/people/002-iga.webp',
+  './assets/people/002-roman.webp',
+  './assets/people/002-wieslaw.webp',
+  './assets/people/002-wrona.webp',
+  './assets/places/002-bar.webp',
+  './assets/places/002-compartment.webp',
+  './assets/places/002-corridor.webp',
+  './assets/places/002-loco.webp',
+  './assets/places/002-service.webp',
+  './assets/places/002-tracks.webp',
+  './assets/places/002-wrzos.webp',
   './assets/art/001-manor.webp',
   './assets/cases/001-cover.webp',
   './assets/cases/002-cover.webp',

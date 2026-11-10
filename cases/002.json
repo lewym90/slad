@@ -173,7 +173,8 @@
       "t9"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/002-roman.webp"
   },
   {
    "id": "iga",
@@ -281,7 +282,8 @@
       "t2"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/002-iga.webp"
   },
   {
    "id": "wieslaw",
@@ -360,7 +362,8 @@
       ]
      ]
     }
-   ]
+   ],
+   "img": "assets/people/002-wieslaw.webp"
   },
   {
    "id": "damian",
@@ -451,7 +454,8 @@
       ]
      ]
     }
-   ]
+   ],
+   "img": "assets/people/002-damian.webp"
   }
  ],
  "locations": [
@@ -485,7 +489,8 @@
       "e07"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/002-compartment.webp"
   },
   {
    "id": "corridor",
@@ -519,7 +524,8 @@
       "e12"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/002-corridor.webp"
   },
   {
    "id": "service",
@@ -559,7 +565,8 @@
       "e16"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/002-service.webp"
   },
   {
    "id": "bar",
@@ -583,7 +590,8 @@
       "e18"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/002-bar.webp"
   },
   {
    "id": "loco",
@@ -607,7 +615,8 @@
       "e20"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/002-loco.webp"
   },
   {
    "id": "wrzos",
@@ -641,7 +650,8 @@
       "e25"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/002-wrzos.webp"
   },
   {
    "id": "tracks",
@@ -662,7 +672,8 @@
      },
      "lockedText": "Kilkanaście kilometrów lasu i nasypu. Wskażcie, na którym kilometrze szukać — inaczej ekipa będzie chodzić do zmroku."
     }
-   ]
+   ],
+   "img": "assets/places/002-tracks.webp"
   }
  ],
  "evidence": [
@@ -812,7 +823,8 @@
     {
      "note": "Kto wysiada z pociągu na zawsze, zwykle zabiera okulary."
     }
-   ]
+   ],
+   "img": "assets/evidence/002-glasses.webp"
   },
   {
    "id": "e06",
@@ -885,7 +897,8 @@
    "summary": "Numer plomby i kartka.",
    "body": [
     "Plomba kolejowa z drutem, numer seryjny 0412, zaciśnięta na klamce. Pod nią kartka: „NIECZYNNE — AWARIA”, napisana drukowanymi literami, bez polskich znaków (NIECZYNNE / AWARIA SPLUCZKI)."
-   ]
+   ],
+   "img": "assets/evidence/002-seal.webp"
   },
   {
    "id": "e11",
@@ -970,7 +983,8 @@
     {
      "note": "Technik kryminalny zabezpiecza smycz do porównania z włóknami."
     }
-   ]
+   ],
+   "img": "assets/evidence/002-lanyard.webp"
   },
   {
    "id": "e16",
@@ -1036,9 +1050,10 @@
    "title": "Szafka barmana",
    "summary": "Stary wycinek z gazety.",
    "body": [
-    "Pod koszulą na zmianę — złożony wycinek z gazety z 2016 roku o katastrofie pod Gajem. Zdjęcie dyżurnego ruchu zakreślone długopisem. Obok fotografia uśmiechniętego chłopaka w mundurze studenckim, na odwrocie: „Kuba, 2015”.",
+    "Pod koszulą na zmianę — złożony wycinek z gazety z 2016 roku o katastrofie pod Gajem. Na grupowym zdjęciu pracowników nastawni jeden człowiek — dyżurny ruchu — zakreślony czerwonym długopisem. Obok fotografia uśmiechniętego chłopaka w mundurze studenckim, na odwrocie: „Kuba, 2015”.",
     "Na marginesie wycinka dopisane ręcznie: „Nazwiska tych, którzy kazali — nigdy nie padły”."
-   ]
+   ],
+   "img": "assets/evidence/002-clipping.webp"
   },
   {
    "id": "e19",
@@ -1051,7 +1066,8 @@
     {
      "note": "Jan Wrona, 175 cm, na służbie od 30 lat."
     }
-   ]
+   ],
+   "img": "assets/people/002-wrona.webp"
   },
   {
    "id": "e20",
@@ -1119,9 +1135,10 @@
    "title": "Kamera nad kasą kiosku",
    "summary": "23:30. Widać tylko rękę.",
    "body": [
-    "Kamera obejmuje okienko z góry. Widać dłoń przykładającą kartę do terminala i rękaw szarego płaszcza.",
-    "Rękaw płaszcza jest za krótki: spod mankietu wystaje kilka centymetrów granatowego rękawa z poziomym, srebrnym paskiem odblaskowym."
-   ]
+    "Kamera czarno-biała, zawieszona nad okienkiem kiosku. Mężczyzna w płaszczu i kaszkiecie przykłada kartę do terminala; daszek zasłania twarz.",
+    "Rękaw płaszcza jest na niego za krótki: przy nadgarstku widać pas innego, ciemnego materiału z jasnym poziomym paskiem, który w świetle kamery błyszczy jak odblask."
+   ],
+   "img": "assets/evidence/002-cctv.webp"
   },
   {
    "id": "e23",
@@ -1134,7 +1151,8 @@
     {
      "note": "Ktoś, kto ucieka, raczej nie wyrzuca portfela z dokumentami i kartą."
     }
-   ]
+   ],
+   "img": "assets/evidence/002-coat.webp"
   },
   {
    "id": "e24",
@@ -1181,7 +1199,8 @@
     {
      "note": "Telefon spadł z jadącego pociągu. W wagonach 1–3 otwiera się tylko jedno okno."
     }
-   ]
+   ],
+   "img": "assets/evidence/002-phone.webp"
   },
   {
    "id": "e27",
@@ -1197,7 +1216,8 @@
     {
      "note": "Brakuje środkowych stron. Jedna kartka ma oderwany róg."
     }
-   ]
+   ],
+   "img": "assets/evidence/002-papers.webp"
   },
   {
    "id": "e28",
@@ -1242,13 +1262,14 @@
    "title": "Zdjęcie Olka z peronu",
    "summary": "23:30, mężczyzna w szarym płaszczu od tyłu.",
    "body": [
-    "Olek Bem zrobił zdjęcie, gdy mężczyzna go mijał. Ujęcie od tyłu, z boku: mężczyzna w szarym płaszczu i kaszkiecie przechodzi tuż obok przeszklonej gabloty z rozkładem jazdy.",
+    "Olek Bem zrobił zdjęcie, gdy mężczyzna na sekundę przystanął przy przeszklonej gablocie z rozkładem jazdy — bokiem do obiektywu, twarz w cieniu daszka. Zaraz potem ruszył szybko w stronę kiosku.",
     "Czubek kaszkietu sięga mniej więcej czterech piątych wysokości gabloty, licząc od jej dolnej krawędzi.",
     {
-     "quote": "Nie widziałem twarzy. Był wyższy, niż się spodziewałem, i szedł bardzo szybko.",
+     "quote": "Przystanął przy rozkładzie dosłownie na sekundę i poszedł dalej, szybko. Twarzy nie widziałem. Był wyższy, niż się spodziewałem.",
      "by": "Olek Bem, telefonicznie"
     }
-   ]
+   ],
+   "img": "assets/evidence/002-platform.webp"
   },
   {
    "id": "x1",
@@ -1328,7 +1349,8 @@
     {
      "note": "Po katastrofie Emil Sowa odszedł z kolei. Roman Kot został przeniesiony do drużyn konduktorskich i awansował na kierownika pociągu."
     }
-   ]
+   ],
+   "img": "assets/people/002-emil.webp"
   },
   {
    "id": "x4",
@@ -1977,7 +1999,7 @@
    },
    {
     "h": "Mężczyzna na peronie",
-    "p": "Ze zdjęcia Olka: czubek kaszkietu ok. 1,90 m nad peronem, czyli człowiek ok. 187 cm — Emil miał 168. Płaszcz Emila ma rozprute szwy. Spod rękawa wystaje granatowy mundur z odblaskiem: nie barman. Konduktor ma 170 cm, maszynista był w lokomotywie, a pomocnik o 23:29 wsiadał do taksówki przed dworcem. Zostaje kierownik — który dał sygnał odjazdu z końca składu i wbiegł mokry tylnymi drzwiami baru."
+    "p": "Ze zdjęcia Olka: czubek kaszkietu ok. 1,90 m nad peronem, czyli człowiek ok. 187 cm — Emil miał 168. Płaszcz Emila ma rozprute szwy. Spod rękawa wystaje ciemny rękaw munduru z odblaskiem — nie biała marynarka barmana. Konduktor ma 170 cm, maszynista był w lokomotywie, a pomocnik o 23:29 wsiadał do taksówki przed dworcem. Zostaje kierownik — który dał sygnał odjazdu z końca składu i wbiegł mokry tylnymi drzwiami baru."
    },
    {
     "h": "Fałszywa wiadomość",
