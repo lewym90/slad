@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.7.0';
+const VERSION = '2.7.1';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -23,6 +23,30 @@ const CORE = [
   './assets/tex/cork.webp',
   './assets/tex/grain.png',
   './assets/art/001-keyart.webp',
+  './assets/art/003-keyart.webp',
+  './assets/evidence/003-boots.webp',
+  './assets/evidence/003-button.webp',
+  './assets/evidence/003-camera.webp',
+  './assets/evidence/003-coat.webp',
+  './assets/evidence/003-floodlight.webp',
+  './assets/evidence/003-frames.webp',
+  './assets/evidence/003-journal.webp',
+  './assets/evidence/003-net.webp',
+  './assets/evidence/003-panel.webp',
+  './assets/evidence/003-snow.webp',
+  './assets/people/003-halina.webp',
+  './assets/people/003-joanna.webp',
+  './assets/people/003-kamil.webp',
+  './assets/people/003-krystyna.webp',
+  './assets/people/003-wilk.webp',
+  './assets/people/003-zenon.webp',
+  './assets/places/003-attic.webp',
+  './assets/places/003-flat.webp',
+  './assets/places/003-gatehouse.webp',
+  './assets/places/003-grounds.webp',
+  './assets/places/003-inn.webp',
+  './assets/places/003-stairwell.webp',
+  './assets/places/003-villa.webp',
   './assets/plan/paper.webp',
   './assets/plan/marker.webp',
   './assets/plan/body-lying.webp',

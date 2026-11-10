@@ -7,7 +7,7 @@
  "players": "2–6",
  "difficulty": "Wymagająca",
  "cover": "assets/cases/003-cover.webp",
- "art": "assets/cases/003-cover.webp",
+ "art": "assets/art/003-keyart.webp",
  "ambience": "assets/audio/case-003.mp3",
  "par": 53,
  "intro": {
@@ -177,7 +177,8 @@
       "t5"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/003-zenon.webp"
   },
   {
    "id": "kamil",
@@ -287,7 +288,8 @@
       "t7"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/003-kamil.webp"
   },
   {
    "id": "krystyna",
@@ -357,7 +359,8 @@
       "t8"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/003-krystyna.webp"
   },
   {
    "id": "joanna",
@@ -416,7 +419,8 @@
       "t9"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/003-joanna.webp"
   }
  ],
  "locations": [
@@ -425,6 +429,7 @@
    "name": "Klatka gospodarcza",
    "kind": "Miejsce znalezienia ciała",
    "desc": "Wąska klatka na końcu wschodniego skrzydła. Schody okrążają otwartą duszę. Od strony parku boczne drzwi.",
+   "img": "assets/places/003-stairwell.webp",
    "spots": [
     {
      "id": "sp-body",
@@ -478,6 +483,7 @@
    "name": "Poddasze",
    "kind": "Według planu nieużytkowe",
    "desc": "Przestrzeń pod dachem wschodniego skrzydła. Na planie z 2018 roku — bez dostępu.",
+   "img": "assets/places/003-attic.webp",
    "spots": [
     {
      "id": "sp-ward",
@@ -534,6 +540,7 @@
    "name": "Teren wokół budynku",
    "kind": "Park, śnieg, ślady",
    "desc": "Zaśnieżony park między bramą, stróżówką, wschodnim skrzydłem i parkanem willi Wilków.",
+   "img": "assets/places/003-grounds.webp",
    "spots": [
     {
      "id": "sp-tracks",
@@ -549,7 +556,8 @@
    "id": "gatehouse",
    "name": "Stróżówka",
    "kind": "Mieszkanie stróża",
-   "desc": "Mały domek przy bramie. Sień z tablicą kluczy, pokój z piecem, szafa.",
+   "desc": "Mały domek przy bramie. Sień z tablicą kluczy, pokój z piecem, łóżko, szafa. Na stole kubek i stary modlitewnik.",
+   "img": "assets/places/003-gatehouse.webp",
    "spots": [
     {
      "id": "sp-keys",
@@ -589,6 +597,7 @@
    "name": "Willa Wilków",
    "kind": "Dom ofiary",
    "desc": "Dom za parkanem sanatorium, od wschodu. Gabinet doktora na parterze, pokój córki na piętrze.",
+   "img": "assets/places/003-villa.webp",
    "spots": [
     {
      "id": "sp-wstudy",
@@ -613,6 +622,7 @@
    "name": "Pensjonat „Pod Jaworem”",
    "kind": "Pokój Kamila Dudy",
    "desc": "Drewniany pensjonat w centrum wsi. Kamil wynajmuje pokój na poddaszu od niedzieli.",
+   "img": "assets/places/003-inn.webp",
    "spots": [
     {
      "id": "sp-owner",
@@ -646,6 +656,7 @@
    "name": "Mieszkanie Krystyny Bober",
    "kind": "Blok przy aptece",
    "desc": "Dwa pokoje na parterze. Na stole segregator z dokumentami sprzed ośmiu lat.",
+   "img": "assets/places/003-flat.webp",
    "spots": [
     {
      "id": "sp-kpapers",
@@ -698,7 +709,8 @@
      "Zenon Kubik zgłasza znalezienie ciała",
      "Raport"
     ]
-   ]
+   ],
+   "img": "assets/people/003-wilk.webp"
   },
   {
    "id": "e02",
@@ -814,7 +826,8 @@
      "Światło w najwyższym okienku gaśnie nagle",
      "Halina Mrozek"
     ]
-   ]
+   ],
+   "img": "assets/people/003-halina.webp"
   },
   {
    "id": "e06",
@@ -836,7 +849,8 @@
     {
      "note": "Ubranie Adama Wilka nie ma takich guzików."
     }
-   ]
+   ],
+   "img": "assets/evidence/003-button.webp"
   },
   {
    "id": "e08",
@@ -855,9 +869,10 @@
      ]
     },
     {
-     "note": "Łata na lewej pięcie filcowych butów odciska się wyraźnie. Innych śladów na terenie nie ma."
+     "note": "Łata na prawej pięcie filcowych butów odciska się wyraźnie. Innych śladów na terenie nie ma."
     }
-   ]
+   ],
+   "img": "assets/evidence/003-snow.webp"
   },
   {
    "id": "e09",
@@ -870,7 +885,8 @@
     {
      "note": "Ktoś spadł na siatkę z góry i przerwał ją."
     }
-   ]
+   ],
+   "img": "assets/evidence/003-net.webp"
   },
   {
    "id": "e10",
@@ -908,12 +924,13 @@
    "title": "Filcowe buty stróża",
    "summary": "Pokazał je dobrowolnie.",
    "body": [
-    "Filcowe buty z gumową podeszwą, rozmiar 44. Na lewej pięcie naklejona łata z dętki. Podeszwy jeszcze wilgotne.",
+    "Filcowe buty z gumową podeszwą, rozmiar 44. Na prawej pięcie naklejona łata z dętki. Podeszwy jeszcze wilgotne.",
     {
      "quote": "Chodzę w nich od lat. Innych zimowych butów nie mam.",
      "by": "Zenon Kubik"
     }
-   ]
+   ],
+   "img": "assets/evidence/003-boots.webp"
   },
   {
    "id": "e14",
@@ -925,7 +942,8 @@
     {
      "note": "Na krawędziach cegieł ślady łomu."
     }
-   ]
+   ],
+   "img": "assets/evidence/003-panel.webp"
   },
   {
    "id": "e15",
@@ -936,7 +954,8 @@
     "Długa sala pod dachem: osiem żelaznych łóżek ze skórzanymi pasami, stojak na kroplówki, stalowa szafa lekarska. Małe okienko w szczycie budynku wychodzi na dolinę.",
     "Szafa otwarta. Na środkowej półce prostokąt bez kurzu, ok. 30 × 22 cm — niedawno coś stąd zabrano.",
     "Na podłodze przewrócona lampa LED na statywie, z rozbitym kloszem."
-   ]
+   ],
+   "img": "assets/evidence/003-floodlight.webp"
   },
   {
    "id": "e16",
@@ -968,7 +987,8 @@
     {
      "note": "Miniatury są zbyt małe, by rozpoznać twarze. Pełną rozdzielczość technik może wyciągnąć tylko dla kilku wskazanych klatek."
     }
-   ]
+   ],
+   "img": "assets/evidence/003-camera.webp"
   },
   {
    "id": "e17",
@@ -977,7 +997,7 @@
    "summary": "Stara balustrada, kurz i ślady.",
    "body": [
     "Podest przed salą: oryginalna balustrada z 1936 roku, wysokość 80 cm. Na poręczy świeże otarcie, kurz starty na odcinku pół metra. Pod podestem dusza klatki opada aż na parter.",
-    "W kurzu na podeście odciski: gładkie kalosze ok. 43 oraz filcowe buty ok. 44 z łatą na lewej pięcie. Ślady się przenikają, kurz rozmazany jak po szamotaninie."
+    "W kurzu na podeście odciski: gładkie kalosze ok. 43 oraz filcowe buty ok. 44 z łatą na prawej pięcie. Ślady się przenikają, kurz rozmazany jak po szamotaninie."
    ]
   },
   {
@@ -991,7 +1011,7 @@
       "0435  starszy mężczyzna w puchowej kurtce przy otwartej szafie, w ręku gruby zeszyt;",
       "      w drzwiach sali, na skraju kadru, ramię drugiej osoby",
       "0436  obraz rozmazany, lampa na statywie przechyla się; na pierwszym planie rękaw",
-      "      zielonego płaszcza z mosiężnymi guzikami, dłoń zaciśnięta na puchowej kurtce",
+      "      ciemnego płaszcza z okrągłymi metalowymi guzikami, dłoń zaciśnięta na puchowej kurtce",
       "0437  czarny kadr"
      ]
     }
@@ -1002,7 +1022,8 @@
      "Kamera: szamotanina przy szafie w izolatorium (klatki 0435–0436)",
      "Kamera (ustalone)"
     ]
-   ]
+   ],
+   "img": "assets/evidence/003-frames.webp"
   },
   {
    "id": "e19",
@@ -1010,8 +1031,9 @@
    "title": "Płaszcz z szafy stróża",
    "summary": "Zielona wełna, mosiężne guziki.",
    "body": [
-    "Zielony płaszcz leśnika z mosiężnymi guzikami z liściem dębu. Przy prawym mankiecie brakuje jednego guzika — zostały wyrwane nitki. Dół płaszcza wilgotny."
-   ]
+    "Zielony płaszcz leśnika z mosiężnymi guzikami z liściem dębu. Przy prawym mankiecie brakuje jednego guzika — wyrwano go razem z kawałkiem materiału, zostały postrzępione nitki. Dół płaszcza wilgotny."
+   ],
+   "img": "assets/evidence/003-coat.webp"
   },
   {
    "id": "e20",
@@ -1036,7 +1058,8 @@
     {
      "note": "Śpiączki insulinowe jako leczenie psychiatryczne porzucono w Polsce kilkadziesiąt lat temu."
     }
-   ]
+   ],
+   "img": "assets/evidence/003-journal.webp"
   },
   {
    "id": "e21",

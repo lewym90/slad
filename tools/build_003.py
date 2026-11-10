@@ -61,7 +61,7 @@ evidence = [
             'C  od stróżówki do drzwi                          filcowe buty ok. 44, łata   2 cm',
             'D  od drzwi do stróżówki                          te same filcowe buty        1 cm',
             'E  stróżówka → drzwi → stróżówka                  te same filcowe buty        0 cm (świeże)']},
-   {'note': 'Łata na lewej pięcie filcowych butów odciska się wyraźnie. Innych śladów na terenie nie ma.'}]),
+   {'note': 'Łata na prawej pięcie filcowych butów odciska się wyraźnie. Innych śladów na terenie nie ma.'}]),
  ev('e09', 'Obserwacja', 'Siatka w duszy klatki', 'Rozdarta od góry.', [
    'Patrząc z parteru w górę duszy klatki: na wysokości stropu II piętra rozpięta jest stalowa siatka zabezpieczająca. Pośrodku jest rozdarta, a druty wygięte w dół.',
    'Nad siatką światło latarki ginie w ciemności.',
@@ -74,7 +74,7 @@ evidence = [
  ev('e12', 'Obserwacja', 'Tablica z kluczami w stróżówce', 'Brakuje jednego klucza.', [
    'Na tablicy w sieni stróżówki brak drugiego klucza do bocznych drzwi klatki gospodarczej. Pierwszy Zenon Kubik nosi przy sobie.']),
  ev('e13', 'Przedmiot', 'Filcowe buty stróża', 'Pokazał je dobrowolnie.', [
-   'Filcowe buty z gumową podeszwą, rozmiar 44. Na lewej pięcie naklejona łata z dętki. Podeszwy jeszcze wilgotne.',
+   'Filcowe buty z gumową podeszwą, rozmiar 44. Na prawej pięcie naklejona łata z dętki. Podeszwy jeszcze wilgotne.',
    {'quote': 'Chodzę w nich od lat. Innych zimowych butów nie mam.', 'by': 'Zenon Kubik'}]),
  ev('e14', 'Obserwacja', 'Ściana na końcu podestu', 'To nie jest ściana.', [
    'Szara „ściana” na końcu podestu II piętra to płyta pilśniowa pomalowana na kolor tynku, przykręcona czterema wkrętami. Za nią — zamurowanie z cegieł z wybitym otworem i świeżym gruzem. Za otworem strome schody prowadzą w górę.',
@@ -89,16 +89,16 @@ evidence = [
    {'note': 'Miniatury są zbyt małe, by rozpoznać twarze. Pełną rozdzielczość technik może wyciągnąć tylko dla kilku wskazanych klatek.'}]),
  ev('e17', 'Oględziny', 'Podest pod izolatorium', 'Stara balustrada, kurz i ślady.', [
    'Podest przed salą: oryginalna balustrada z 1936 roku, wysokość 80 cm. Na poręczy świeże otarcie, kurz starty na odcinku pół metra. Pod podestem dusza klatki opada aż na parter.',
-   'W kurzu na podeście odciski: gładkie kalosze ok. 43 oraz filcowe buty ok. 44 z łatą na lewej pięcie. Ślady się przenikają, kurz rozmazany jak po szamotaninie.']),
+   'W kurzu na podeście odciski: gładkie kalosze ok. 43 oraz filcowe buty ok. 44 z łatą na prawej pięcie. Ślady się przenikają, kurz rozmazany jak po szamotaninie.']),
  ev('e18', 'Kadry', 'Klatki 0435–0437', 'Pełna rozdzielczość z karty kamery.', [
    {'log': ['0435  starszy mężczyzna w puchowej kurtce przy otwartej szafie, w ręku gruby zeszyt;',
             '      w drzwiach sali, na skraju kadru, ramię drugiej osoby',
             '0436  obraz rozmazany, lampa na statywie przechyla się; na pierwszym planie rękaw',
-            '      zielonego płaszcza z mosiężnymi guzikami, dłoń zaciśnięta na puchowej kurtce',
+            '      ciemnego płaszcza z okrągłymi metalowymi guzikami, dłoń zaciśnięta na puchowej kurtce',
             '0437  czarny kadr']}],
    time=[[f'{D} 23:51', 'Kamera: szamotanina przy szafie w izolatorium (klatki 0435–0436)', 'Kamera (ustalone)']]),
  ev('e19', 'Przedmiot', 'Płaszcz z szafy stróża', 'Zielona wełna, mosiężne guziki.', [
-   'Zielony płaszcz leśnika z mosiężnymi guzikami z liściem dębu. Przy prawym mankiecie brakuje jednego guzika — zostały wyrwane nitki. Dół płaszcza wilgotny.']),
+   'Zielony płaszcz leśnika z mosiężnymi guzikami z liściem dębu. Przy prawym mankiecie brakuje jednego guzika — wyrwano go razem z kawałkiem materiału, zostały postrzępione nitki. Dół płaszcza wilgotny.']),
  ev('e20', 'Dokument', 'Dziennik izolatorium', 'Zawinięty w ręcznik na dnie szafy stróża.', [
    'Gruby zeszyt w płóciennej oprawie. Na okładce: „Izolatorium — kuracja insulinowa 2016–2018. A.W.”. Wpisy pismem Adama Wilka: inicjały pacjentów, dawki insuliny, godziny śpiączki.',
    {'log': ['2.03.2018  E.R., 34 l., depresja lekooporna', '  22:00  insulina 30 j.', '  23:10  śpiączka', '  01:40  przerwanie glukozą — bez reakcji', '  04:10  zgon']},
@@ -275,7 +275,7 @@ locations = [
   'img': img('places', 'grounds'), 'spots': [
    SP('sp-tracks', 'Ślady przed bocznymi drzwiami', 'Technik pokazuje zabezpieczone ślady i miarkę.', ['e08']),
   ]},
- {'id': 'gatehouse', 'name': 'Stróżówka', 'kind': 'Mieszkanie stróża', 'desc': 'Mały domek przy bramie. Sień z tablicą kluczy, pokój z piecem, szafa.',
+ {'id': 'gatehouse', 'name': 'Stróżówka', 'kind': 'Mieszkanie stróża', 'desc': 'Mały domek przy bramie. Sień z tablicą kluczy, pokój z piecem, łóżko, szafa. Na stole kubek i stary modlitewnik.',
   'img': img('places', 'gatehouse'), 'spots': [
    SP('sp-keys', 'Tablica z kluczami', 'W sieni wiszą klucze do wszystkich drzwi sanatorium.', ['e12']),
    SP('sp-boots', 'Buty przy piecu', 'Zenon zgadza się pokazać buty, w których chodzi.', ['e13']),
@@ -407,7 +407,7 @@ endings = {
 case = {
  'id': '003', 'title': 'Cisza w sanatorium', 'subtitle': 'Światło na piętrze, którego nie ma', 'genre': 'Mroczne mystery',
  'duration': '80–110 min', 'players': '2–6', 'difficulty': 'Wymagająca',
- 'cover': 'assets/cases/003-cover.webp', 'art': img('art', 'keyart') or 'assets/cases/003-cover.webp', 'ambience': 'assets/audio/case-003.mp3',
+ 'cover': 'assets/cases/003-cover.webp', 'art': 'assets/art/003-keyart.webp', 'ambience': 'assets/audio/case-003.mp3',
  'par': 53,
  'intro': {
   'lead': 'Sobota, 21 listopada, 9:30. Sanatorium „Jodła” w Jaworzynie Zdroju. W nocy spadł pierwszy śnieg.',
@@ -426,6 +426,11 @@ case = {
  'tableMode': {'parBonus': 6, 'locations': [hq], 'questions': {}},
  'hintTrail': hintTrail, 'report': report, 'solution': solution, 'endings': endings,
 }
+EVIMG = {'e07': 'button', 'e13': 'boots', 'e19': 'coat', 'e08': 'snow', 'e15': 'floodlight', 'e16': 'camera', 'e20': 'journal', 'e14': 'panel', 'e09': 'net', 'e18': 'frames'}
+for e in evidence:
+    if e['id'] in EVIMG and img('evidence', EVIMG[e['id']]): e['img'] = img('evidence', EVIMG[e['id']])
+    if e['id'] == 'e01' and img('people', 'wilk'): e['img'] = img('people', 'wilk')
+    if e['id'] == 'e05' and img('people', 'halina'): e['img'] = img('people', 'halina')
 if 'plan' in old: case['plan'] = old['plan']
 json.dump(case, open(P, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print('zapisano', P)
