@@ -44,6 +44,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - `tools/validate.js` — walidator logiki spraw (referencje, osiągalność każdego dowodu, łamliwość kłamstw, brak odpowiedzi w treści zagadek, suma punktów).
 - `tools/e2e.mjs` — pełne przejście sprawy przez interfejs w Chrome (Playwright) na telefonie, tablecie i komputerze.
 - `tools/audit.mjs` — audyt techniczny: pliki offline, tryb offline, przycisk Wstecz, prywatność tajnych akt, błędne raporty, przepełnienia na 7 rozmiarach ekranu.
+- `tools/gen_audio.py` — generator ambientu (bezszwowa pętla) i efektów dźwiękowych, normalizacja głośności (LUFS).
 - `tools/cut_sheet.py` — cięcie plansz z grafikami na pojedyncze pliki.
 
 ## Testy

@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.1.1';
+const VERSION = '2.2.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -144,19 +144,54 @@ function gain(g, c, ids, silent) {
   return got;
 }
 
-/* ---------- dźwięk ---------- */
-let amb = null, ambSrc = null, currentCaseId = null;
-function syncAudio() {
-  const c = currentCaseId && CASES[currentCaseId];
-  const src = c && c.ambience;
-  if (S.settings.sound && src) {
-    if (!amb || ambSrc !== src) { if (amb) amb.pause(); amb = new Audio(src); amb.loop = true; amb.volume = 0.35; ambSrc = src; }
-    amb.play().catch(() => {});
-  } else if (amb) amb.pause();
+/* ---------- dźwięk (Web Audio: pętla bez przerw, osobne głośności) ---------- */
+let currentCaseId = null;
+const AU = { ctx: null, bufs: {}, amb: null, ambSrc: null, token: 0 };
+const vol = k => Math.max(0, Math.min(1, S.settings[k] == null ? (k === 'music' ? 0.6 : 0.8) : S.settings[k]));
+function audioCtx() {
+  if (!AU.ctx) { const C = window.AudioContext || window.webkitAudioContext; if (!C) return null; AU.ctx = new C(); try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (_) {} }
+  if (AU.ctx.state === 'suspended') AU.ctx.resume().catch(() => {});
+  return AU.ctx;
 }
-function sfx() { if (!S.settings.sound) return; try { const a = new Audio('assets/audio/reveal.mp3'); a.volume = 0.5; a.play().catch(() => {}); } catch (_) {} }
-['pointerdown', 'keydown'].forEach(ev => document.addEventListener(ev, () => { if (S.settings.sound && amb && amb.paused) syncAudio(); }, { passive: true }));
-document.addEventListener('visibilitychange', () => { if (document.hidden && amb) amb.pause(); else syncAudio(); });
+async function loadBuf(url) {
+  if (AU.bufs[url]) return AU.bufs[url];
+  const ctx = audioCtx(); if (!ctx) return null;
+  const data = await (await fetch(url)).arrayBuffer();
+  AU.bufs[url] = await new Promise((res, rej) => ctx.decodeAudioData(data, res, rej));
+  return AU.bufs[url];
+}
+function loopBounds(b) { // pomija ciszę dodaną przez koder MP3, żeby pętla była bez przerw
+  const d = b.getChannelData(0); let s = 0, e = d.length - 1;
+  while (s < d.length && Math.abs(d[s]) < 1e-4) s++; while (e > s && Math.abs(d[e]) < 1e-4) e--;
+  return [s / b.sampleRate, (e + 1) / b.sampleRate];
+}
+function stopAmb(fade = 0.8) {
+  const a = AU.amb; AU.amb = null; AU.ambSrc = null; if (!a || !AU.ctx) return;
+  const t = AU.ctx.currentTime; try { a.g.gain.cancelScheduledValues(t); a.g.gain.setValueAtTime(a.g.gain.value, t); a.g.gain.linearRampToValueAtTime(0, t + fade); a.n.stop(t + fade + 0.05); } catch (_) {}
+}
+async function syncAudio() {
+  const c = currentCaseId && CASES[currentCaseId]; const src = c && c.ambience;
+  const want = S.settings.sound && src && !document.hidden;
+  const my = ++AU.token;
+  if (!want) { stopAmb(); return; }
+  const ctx = audioCtx(); if (!ctx) return;
+  if (AU.amb && AU.ambSrc === src) { AU.amb.g.gain.setTargetAtTime(vol('music') * 0.9, ctx.currentTime, 0.2); return; }
+  stopAmb(0.6);
+  let buf; try { buf = await loadBuf(src); } catch (_) { return; }
+  if (my !== AU.token || !buf) return; // w międzyczasie zmieniono ustawienia lub sprawę
+  const n = ctx.createBufferSource(); n.buffer = buf; n.loop = true;
+  const [ls, le] = loopBounds(buf); n.loopStart = ls; n.loopEnd = le;
+  const g = ctx.createGain(); g.gain.value = 0; n.connect(g).connect(ctx.destination);
+  n.start(0, ls); g.gain.linearRampToValueAtTime(vol('music') * 0.9, ctx.currentTime + 2.5);
+  AU.amb = { n, g }; AU.ambSrc = src;
+}
+async function sfx(name = 'paper') {
+  if (!S.settings.sound) return;
+  try { const ctx = audioCtx(); const b = await loadBuf(`assets/audio/sfx-${name}.mp3`); if (!ctx || !b) return;
+    const n = ctx.createBufferSource(); n.buffer = b; const g = ctx.createGain(); g.gain.value = vol('fx'); n.connect(g).connect(ctx.destination); n.start(); } catch (_) {}
+}
+['pointerdown', 'keydown'].forEach(ev => document.addEventListener(ev, () => { if (S.settings.sound && (!AU.amb || (AU.ctx && AU.ctx.state !== 'running'))) syncAudio(); }, { passive: true }));
+document.addEventListener('visibilitychange', () => { if (!AU.ctx) return; if (document.hidden) AU.ctx.suspend().catch(() => {}); else { AU.ctx.resume().catch(() => {}); syncAudio(); } });
 
 /* ---------- toasty ---------- */
 function toast(title, sub, label = 'Akta', evId) {
@@ -479,12 +514,12 @@ function doConfront(c, g, sid, evid) {
     g.broken.push(sid); L.push({ t: 'break', text: s.response });
     (s.reveals || []).forEach(r => { if (!g.claims.includes(r)) g.claims.push(r); });
     gain(g, c, s.gives); save();
-    toast('Zeznanie podważone', personName(g, p), 'Przełom');
+    toast('Zeznanie podważone', personName(g, p), 'Przełom'); sfx('break');
     return true;
   }
   g.failed++; const d = p.deflect || ['To niczego nie dowodzi.'];
   L.push({ t: 'deflect', text: d[g.failed % d.length] }); save();
-  toast('Nietrafiona konfrontacja', '−2 punkty w raporcie', 'Błąd');
+  toast('Nietrafiona konfrontacja', '−2 punkty w raporcie', 'Błąd'); sfx('wrong');
   return false;
 }
 
@@ -556,10 +591,10 @@ function doSolve(c, g, id) {
   else val = ($('#pzin') || {}).value || '';
   const ok = pz.input === 'text' ? pz.answers.some(a => norm(a) === norm(val)) : pz.answers.some(a => digits(a) === digits(val));
   st.attempts++;
-  if (!ok) { save(); return pz.input === 'digits4' ? 'Zamek ani drgnie.' : pz.input === 'time' ? 'Ta godzina nie zgadza się z danymi. Sprawdźcie jeszcze raz.' : 'To nie pasuje do materiału. Spróbujcie inaczej.'; }
+  if (!ok) { save(); sfx('wrong'); return pz.input === 'digits4' ? 'Zamek ani drgnie.' : pz.input === 'time' ? 'Ta godzina nie zgadza się z danymi. Sprawdźcie jeszcze raz.' : 'To nie pasuje do materiału. Spróbujcie inaczej.'; }
   st.solved = true;
   if (pz.reward && pz.reward.search) (pz.reward.spots || []).forEach(s => { if (!g.spots.includes(s)) { g.spots.push(s); gain(g, c, c.spot[s].gives); } });
-  save(); toast(pz.title, 'Zagadka rozwiązana', 'Rozwiązane'); sfx();
+  save(); toast(pz.title, 'Zagadka rozwiązana', 'Rozwiązane'); sfx('unlock');
   return null;
 }
 
@@ -732,7 +767,9 @@ function ovSettings() {
   return { title: 'Ustawienia', kicker: 'ŚLAD ' + VERSION, body: `
    <div class="settings-row"><div><b>Wersja gry: ${VERSION}</b><small>Wydanie z ${BUILD}. Gra aktualizuje się sama przy każdym otwarciu z internetem.</small></div><button class="btn small ghost" data-a="check-update">Sprawdź</button></div>
    <div class="settings-row"><div><b>Tryb telewizora</b><small>Większy tekst, karty i przyciski — czytelne z kanapy. Włącz, gdy gra jest wyświetlana na telewizorze.</small></div><button class="switch" aria-pressed="${!!s.tv}" data-a="tv" aria-label="Tryb telewizora"></button></div>
-   <div class="settings-row"><div><b>Muzyka i efekty</b><small>Ambient sprawy i dźwięk nowych dowodów</small></div><button class="switch" aria-pressed="${s.sound}" data-a="sound" aria-label="Dźwięk"></button></div>
+   <div class="settings-row"><div><b>Dźwięk</b><small>Klimat sprawy (deszcz, burza, zegar) i efekty: dokumenty, pieczęcie, zamki, przełomy w przesłuchaniach.</small></div><button class="switch" aria-pressed="${s.sound}" data-a="sound" aria-label="Dźwięk"></button></div>
+   <div class="settings-row ${s.sound ? '' : 'off'}"><div style="flex:1"><b>Głośność klimatu</b><input type="range" min="0" max="100" step="5" value="${Math.round(vol('music') * 100)}" data-vol="music" aria-label="Głośność klimatu" class="range"></div></div>
+   <div class="settings-row ${s.sound ? '' : 'off'}"><div style="flex:1"><b>Głośność efektów</b><input type="range" min="0" max="100" step="5" value="${Math.round(vol('fx') * 100)}" data-vol="fx" aria-label="Głośność efektów" class="range"></div><button class="btn small ghost" data-a="test-fx">Test</button></div>
    <div class="settings-row"><div><b>Wielkość tekstu</b><small>Dla czytania przy stole</small></div><div class="seg">${[['m', 'A'], ['l', 'A+'], ['xl', 'A++']].map(([k, l]) => `<button aria-pressed="${s.text === k}" data-a="text" data-v="${k}">${l}</button>`).join('')}</div></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
    <div class="settings-row"><div><b>Kopia zapasowa</b><small>Postęp jest zapisywany na tym urządzeniu. Eksportuj, by przenieść go gdzie indziej.</small></div></div>
@@ -780,7 +817,7 @@ const handlers = {
     if (setupMode === 'table') setTimeout(() => startMsg(variant(c, 'table'), S.games[c.id]), 250);
   },
   restart: el => { const id = el.dataset.id; if (!confirm('Zacząć sprawę od nowa? Obecny postęp zostanie usunięty.')) return; delete S.games[id]; save(); ovStack = []; renderOv(); go('sprawa/' + id); },
-  'dist-open': () => { distRevealed = true; render(); },
+  'dist-open': () => { distRevealed = true; sfx('stamp'); render(); },
   'dist-next': () => { const { g, c } = ctx(); distRevealed = false; g.distIdx++; if (g.distIdx >= g.players.length) { g.phase = 'play'; save(); render(); setTimeout(() => startMsg(c, g), 200); } else { save(); render(); } },
   tab: el => go(`gra/${route().id}/${el.dataset.tab}`),
   filter: el => { filesFilter = el.dataset.f; render(); },
@@ -799,7 +836,7 @@ const handlers = {
   solve: el => { const { c, g } = ctx(); const msg = doSolve(c, g, el.dataset.id); const o = topOv(); o.msg = msg; rerender(); },
   phint: el => { const { g } = ctx(); const st = (g.puzzles[el.dataset.id] = g.puzzles[el.dataset.id] || { hints: 0, attempts: 0 }); st.hints = (st.hints || 0) + 1; save(); renderOv(); },
   priv: el => openOv({ type: 'priv', i: +el.dataset.i, opened: false }),
-  'priv-open': () => { topOv().opened = true; renderOv(); },
+  'priv-open': () => { topOv().opened = true; sfx('stamp'); renderOv(); },
   share: el => { const { c, g } = ctx(); if (!g.shared.includes(el.dataset.id)) { g.shared.push(el.dataset.id); save(); toast(c.ev[el.dataset.id].title, 'Ujawniono zespołowi', 'Tajne akta'); } rerender(); },
   pin: el => { const { g } = ctx(); pinToBoard(g, el.dataset.key); },
   'link-mode': () => { linkMode = !linkMode; if (!linkMode) boardSel = null; render(); if (linkMode) toast('Łączenie', 'Dotknij pierwszej, potem drugiej karty', 'Tablica'); },
@@ -812,10 +849,11 @@ const handlers = {
   ropt: el => { const { g } = ctx(); g.draft.answers[el.dataset.q] = el.dataset.k; save(); render(); },
   rproof: el => { const { g } = ctx(); const p = g.draft.proofs; const id = el.dataset.id; const i = p.indexOf(id); if (i >= 0) p.splice(i, 1); else if (p.length < +el.dataset.max) p.push(id); else toast('Limit dowodów', 'Odznacz jeden, by wybrać inny', 'Raport'); save(); render(); },
   rord: el => { const { g } = ctx(); const o = g.draft.order; const i = +el.dataset.i, j = i + +el.dataset.d; if (j < 0 || j >= o.length) return; [o[i], o[j]] = [o[j], o[i]]; save(); render(); },
-  submit: () => { const { c, g } = ctx(); if (!confirm('Złożyć raport? Nie będzie można go zmienić.')) return; g.report = score(c, g); g.phase = 'done'; save(); go(`gra/${c.id}/wynik`); },
+  submit: () => { const { c, g } = ctx(); if (!confirm('Złożyć raport? Nie będzie można go zmienić.')) return; g.report = score(c, g); g.phase = 'done'; save(); sfx('stamp'); go(`gra/${c.id}/wynik`); },
   decide: el => { const { g } = ctx(); g.report.decision = el.dataset.id; save(); render(); },
-  sound: () => { S.settings.sound = !S.settings.sound; save(); syncAudio(); rerender(); },
+  sound: () => { S.settings.sound = !S.settings.sound; save(); if (S.settings.sound) audioCtx(); syncAudio(); if (S.settings.sound) setTimeout(() => sfx('paper'), 150); rerender(); },
   text: el => { S.settings.text = el.dataset.v; save(); applySettings(); renderOv(); },
+  'test-fx': () => sfx('stamp'),
   tv: () => { S.settings.tv = !S.settings.tv; save(); applySettings(); rerender(); },
   motion: () => { S.settings.motion = S.settings.motion === 'on' ? 'off' : 'on'; save(); applySettings(); renderOv(); },
   settings: () => openOv({ type: 'settings' }),
@@ -842,6 +880,7 @@ document.addEventListener('click', e => {
   e.preventDefault(); h(el, e);
 });
 document.addEventListener('input', e => {
+  if (e.target.dataset.vol) { S.settings[e.target.dataset.vol] = +e.target.value / 100; clearTimeout(handlers._vt); handlers._vt = setTimeout(save, 300); if (e.target.dataset.vol === 'music' && AU.amb && AU.ctx) AU.amb.g.gain.setTargetAtTime(vol('music') * 0.9, AU.ctx.currentTime, 0.1); return; }
   if (e.target.dataset.name !== undefined) setupNames[+e.target.dataset.name] = e.target.value;
   if (e.target.dataset.notes !== undefined) { const { g } = ctx(); g.notes = e.target.value; clearTimeout(handlers._nt); handlers._nt = setTimeout(save, 400); }
 });

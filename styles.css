@@ -479,3 +479,5 @@ ul.roles{padding-left:1.1em}ul.roles li{margin:.5em 0}
 .ev .thumb{aspect-ratio:16/10}
 :root[data-tv="on"] .ev{min-height:9rem}
 :root[data-tv="on"] .ev-grid{grid-template-columns:repeat(auto-fill,minmax(13rem,1fr))}
+.range{width:100%;margin-top:10px;accent-color:var(--gold);height:28px}
+.settings-row.off{opacity:.45}

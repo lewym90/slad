@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.1.1';
+const VERSION = '2.2.0';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -29,7 +29,11 @@ const CORE = [
   './assets/cases/007-cover.webp',
   './assets/cases/008-cover.webp',
   './assets/cases/009-cover.webp',
-  './assets/audio/reveal.mp3',
+  './assets/audio/sfx-paper.mp3',
+  './assets/audio/sfx-stamp.mp3',
+  './assets/audio/sfx-unlock.mp3',
+  './assets/audio/sfx-wrong.mp3',
+  './assets/audio/sfx-break.mp3',
   './assets/audio/case-001.mp3',
   './assets/evidence/001-burnt.webp',
   './assets/evidence/001-cups.webp',
