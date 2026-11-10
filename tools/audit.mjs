@@ -45,7 +45,7 @@ const inject = async (p, hash, state = STATE) => { await p.goto(URL, { waitUntil
 { const { ctx, p } = await page({ width: 1280, height: 800 }, false); await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(() => localStorage.clear()); await p.reload();
   await p.evaluate(() => { location.hash = '#/sprawa/001'; }); await p.waitForTimeout(500);
   const noModeBtn = await p.locator('[data-a="begin"]').count();
-  await p.click('[data-a="mode"][data-m="phones"]'); await p.waitForTimeout(200); await p.click('[data-a="begin"]'); await p.waitForTimeout(400);
+  await p.click('[data-a="mode"][data-m="phones"]'); await p.waitForTimeout(200); await p.click('[data-a="begin"]'); await p.waitForTimeout(600); if (await p.locator('.g-nav [data-a="guide-end"], .g-skip [data-a="guide-end"]').count()) { await p.locator('.g-skip [data-a="guide-end"]').click(); await p.waitForTimeout(300); }
   const qrs = await p.locator('.qr-card svg').count(); const docsOnTV = await p.locator('.doc').count();
   await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(400);
   const qrs2 = await p.locator('.qr-card svg').count(); const docs2 = await p.locator('.doc').count();
@@ -56,7 +56,7 @@ const inject = async (p, hash, state = STATE) => { await p.goto(URL, { waitUntil
   await ctx.close(); }
 { const { ctx, p } = await page({ width: 1280, height: 800 }, false); await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(() => localStorage.clear()); await p.reload();
   await p.evaluate(() => { location.hash = '#/sprawa/001'; }); await p.waitForTimeout(500);
-  await p.click('[data-a="mode"][data-m="table"]'); await p.waitForTimeout(200); await p.click('[data-a="begin"]'); await p.waitForTimeout(600);
+  await p.click('[data-a="mode"][data-m="table"]'); await p.waitForTimeout(200); await p.click('[data-a="begin"]'); await p.waitForTimeout(600); if (await p.locator('.g-skip [data-a="guide-end"]').count()) { await p.locator('.g-skip [data-a="guide-end"]').click(); await p.waitForTimeout(300); }
   const msg = await p.locator('.ov').count(); await p.click('[data-a="close-all"]');
   await p.click('[data-a="tab"][data-tab="miejsca"]'); await p.waitForTimeout(200); const hq = await p.locator('[data-a="loc"][data-id="hq"]').count();
   await p.click('[data-a="tab"][data-tab="analiza"]'); await p.waitForTimeout(200); const tajne = await p.locator('[data-a="ana"][data-t="tajne"]').count();

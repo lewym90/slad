@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.7.2';
+const VERSION = '2.8.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -797,6 +797,7 @@ async function renderOv() {
   let v;
   if (o.type === 'settings') v = ovSettings();
   else if (o.type === 'menu') v = ovMenu(c, g);
+  else if (o.type === 'guide') v = ovGuide(o);
   else if (o.type === 'msg') v = { title: o.title, kicker: o.kicker || '', body: o.body };
   else if (!c || !g) { ovStack = []; root.innerHTML = ''; return; }
   else if (o.type === 'ev') { v = { title: c.ev[o.id].title, kicker: 'Akta ' + c.id, body: docHTML(c, c.ev[o.id]) + `<div class="doc-actions"><button class="btn small ghost" data-a="pin" data-key="ev:${o.id}">${I.pin} Na tablicę</button></div>` }; if (!g.read.includes(o.id)) { g.read.push(o.id); save(); setTimeout(render, 0); } }
@@ -825,6 +826,7 @@ function ovSettings() {
    <div class="settings-row ${s.sound ? '' : 'off'}"><div style="flex:1"><b>Głośność klimatu</b><input type="range" min="0" max="100" step="5" value="${Math.round(vol('music') * 100)}" data-vol="music" aria-label="Głośność klimatu" class="range"></div></div>
    <div class="settings-row ${s.sound ? '' : 'off'}"><div style="flex:1"><b>Głośność efektów</b><input type="range" min="0" max="100" step="5" value="${Math.round(vol('fx') * 100)}" data-vol="fx" aria-label="Głośność efektów" class="range"></div><button class="btn small ghost" data-a="test-fx">Test</button></div>
    <div class="settings-row"><div><b>Wielkość tekstu</b><small>Dla czytania przy stole</small></div><div class="seg">${[['m', 'A'], ['l', 'A+'], ['xl', 'A++']].map(([k, l]) => `<button aria-pressed="${s.text === k}" data-a="text" data-v="${k}">${l}</button>`).join('')}</div></div>
+   <div class="settings-row"><div><b>Instruktaż przed sprawą</b><small>Krótki przewodnik po zasadach i ekranach gry, pokazywany po wybraniu trybu. W trakcie gry zawsze dostępny w menu.</small></div><button class="switch" aria-pressed="${s.guide !== false}" data-a="guide-toggle" aria-label="Instruktaż przed sprawą"></button></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
    <div class="settings-row"><div><b>Kopia zapasowa</b><small>Postęp jest zapisywany na tym urządzeniu. Eksportuj, by przenieść go gdzie indziej.</small></div></div>
    <div class="row-actions"><button class="btn small ghost" data-a="export">Eksportuj zapis</button><label class="btn small ghost" style="cursor:pointer">Importuj zapis<input type="file" accept="application/json,.json" data-import hidden></label></div>
@@ -833,10 +835,37 @@ function ovSettings() {
 function ovMenu(c, g) {
   return { title: 'Menu sprawy', kicker: c ? 'Akta ' + c.id : '', body: `<div class="qlist">
    <button class="q" data-a="show-brief">Briefing i zadania sprawy</button>
+   <button class="q" data-a="show-guide">Jak grać — instruktaż</button>
    <button class="q" data-a="sound">${S.settings.sound ? 'Wyłącz dźwięk' : 'Włącz dźwięk'}</button>
    <button class="q" data-a="settings">Ustawienia · wersja ${VERSION}</button>
    <button class="q" data-a="restart" data-id="${c ? c.id : ''}">Zacznij sprawę od nowa</button>
    <button class="q" data-a="home">Wróć do archiwum</button></div>` };
+}
+
+/* ---------- instruktaż przed sprawą ---------- */
+function guideCards(mode) {
+  const phones = mode === 'phones';
+  return [
+   { k: 'Witajcie w wydziale', t: 'O co chodzi w tej grze', b: `<p>Jesteście zespołem śledczych. Dostajecie akta sprawy i macie ją rozwiązać: <b>kto, jak, kiedy i dlaczego</b>.</p><p>Na końcu składacie <b>akt oskarżenia</b> i każdy wniosek podpieracie dowodami. Nie ma limitu czasu ani losowości — wszystko, czego potrzebujecie, jest w aktach, miejscach i zeznaniach.</p><p class="g-tip">To planszówka do rozmowy. Ekran to tylko teczka z aktami — najważniejsze dzieje się między wami: czytajcie na głos, spierajcie się, notujcie, sprawdzajcie się nawzajem.</p>` },
+   { k: 'Ekran gry', t: 'Pięć zakładek i górny pasek', b: `<ul class="g-list"><li><b>${I.files} Akta</b> — wszystkie zdobyte dokumenty. Nowe mają czerwony licznik. Każdy dokument można przypiąć na tablicę.</li><li><b>${I.map} Miejsca</b> — szkic miejsca zdarzenia i karty miejsc do przeszukania.</li><li><b>${I.people} Osoby</b> — przesłuchania świadków i podejrzanych.</li><li><b>${I.brain} Analiza</b> — zagadki, oś czasu, notatki${phones ? ', tajne akta' : ''} i akt oskarżenia.</li><li><b>${I.board} Tablica</b> — korkowa tablica z czerwoną nitką.</li></ul><p>Na górze: <b>licznik ruchów</b>, <b>żarówka</b> (trop, gdy utkniecie), dźwięk i <b>menu</b> — tam jest briefing sprawy, ten instruktaż i ustawienia.</p>` },
+   { k: 'Ruchy i punkty', t: 'Co kosztuje, a co jest za darmo', b: `<p><b>Jeden ruch</b> to: przeszukanie punktu w miejscu, jedno pytanie zadane świadkowi albo jedna konfrontacja.</p><p><b>Za darmo:</b> czytanie akt, szkic, zagadki, oś czasu, notatki i tablica.</p><table class="g-table"><tr><td>Ruchy ponad normę sprawy</td><td>−1 pkt za każde 2 ruchy (najwyżej −15)</td></tr><tr><td>Podpowiedź w zagadce</td><td>−2 pkt</td></tr><tr><td>Trop (żarówka)</td><td>−3 pkt</td></tr><tr><td>Nietrafiona konfrontacja</td><td>−2 pkt</td></tr></table><p>Rangi: Stażysta, Aspirant (40), Inspektor (60), Komisarz (78), <b>Legenda archiwum (92+)</b>. Zanim wydacie ruch — porozmawiajcie, czy warto.</p>` },
+   { k: 'Miejsca', t: 'Przeszukiwanie i szkic miejsca zdarzenia', b: `<p>Każde miejsce ma kilka <b>punktów</b>. Przeszukanie punktu to jeden ruch i zwykle daje nowe dowody.</p><p>Niektóre punkty są <b>zablokowane</b> ${I.lock}. Otwiera je rozwiązana zagadka albo postęp w śledztwie — na przykład nakaz prokuratora po podważeniu czyjegoś zeznania. Opis blokady podpowiada, czego brakuje.</p><p>Nad kartami jest <b>szkic</b>: stuknijcie pomieszczenie, by do niego przejść. Na przeszukanych punktach pojawiają się żółte tabliczki z numerami, a obrys ciała — dopiero po oględzinach. Szkic pokazuje tylko to, co widzielibyście na miejscu.</p>` },
+   { k: 'Przesłuchania', t: 'Pytania, protokół, konfrontacje', b: `<p>Wybierzcie osobę i zadawajcie pytania. <b>Nowe pytania pojawiają się</b>, gdy zdobędziecie dowody, które dają do nich podstawę.</p><p>Ważne zdania świadków trafiają do <b>protokołu</b>. Jeśli macie dowód, który przeczy zeznaniu — zróbcie <b>konfrontację</b>: wskażcie zdanie i dowód. Trafiona konfrontacja zmusza świadka do zmiany wersji i często daje nowe informacje. Nietrafiona kosztuje 2 punkty.</p><p class="g-tip">Słuchajcie uważnie. Świadkowie odpowiadają dokładnie na to, o co pytacie. Jeśli ktoś powie za dużo albo wie coś, czego nie mógł wiedzieć — to nie przypadek. Na taką wpadkę nie ma przycisku: musicie ją wyłapać sami.</p>` },
+   { k: 'Analiza', t: 'Zagadki, oś czasu, tablica', b: `<p><b>Zagadki</b> pojawiają się, gdy macie potrzebne materiały. Odpowiedzi nie ma w żadnym dokumencie wprost — trzeba połączyć kilka faktów. Każda ma trzy podpowiedzi (po −2 pkt).</p><p><b>Oś czasu</b> zbiera godziny z dokumentów i zeznań. Wpisy oznaczone „ustalone” pochodzą z rozwiązanych zagadek. Pamiętajcie: zeznanie to wersja świadka, nie fakt.</p><p><b>Notatki</b> są wspólne dla zespołu, a na <b>tablicy</b> przypinacie dowody i osoby i łączycie je nitką — kto ma motyw, kto okazję, kto kłamał.</p>` },
+   phones
+   ? { k: 'Tryb: telewizor + telefony', t: 'Tajne akta w waszych telefonach', b: `<p>Każdy gracz skanuje <b>swój kod QR</b> i dostaje w telefonie teczkę z dokumentami, których <b>nie widzi reszta</b>. Niektóre z nich są niezbędne do rozwiązania zagadek.</p><p>Wy decydujecie, kiedy i czy się nimi dzielić. Możecie czytać na głos albo <b>ujawnić dokument</b> na wspólnym ekranie: Analiza → Tajne akta → wpiszcie 4-znakowy kod widoczny przy dokumencie w telefonie.</p><p>Gracz bez telefonu wybiera na ekranie kodów „Nie mam telefonu — pokaż tutaj”: teczka otworzy się na wspólnym ekranie pod pieczęcią — reszta niech wtedy odwróci wzrok.</p><p class="g-tip">Najczęstszy błąd: ktoś siedzi na kluczowym dokumencie i o nim nie mówi. Co jakiś czas zróbcie rundę „co kto ma”.</p>` }
+   : { k: 'Tryb: wspólny stół', t: 'Jeden ekran, wszystko razem', b: `<p>Wszyscy widzicie to samo. Nie ma tajnych akt — informacje, które w trybie z telefonami mają poszczególni gracze, zdobywacie sami.</p><p>Służy do tego <b>Centrala wydziału</b> — dodatkowe miejsce na liście. Jej punkty to zapytania: archiwa, laboratoria, urzędy, eksperci. <b>Każde zapytanie to ruch</b>, dlatego norma ruchów w tym trybie jest odpowiednio wyższa.</p><p class="g-tip">Zanim zapytacie centralę, ustalcie, czego właściwie szukacie. Dobre pytanie to połowa odpowiedzi.</p>` },
+   { k: 'Gdy utkniecie', t: 'Trop i podpowiedzi', b: `<p><b>Żarówka</b> na górnym pasku daje <b>trop</b> od szefa wydziału — kierunek, w którym warto pójść teraz (−3 pkt).</p><p>Przy zagadkach są <b>trzy podpowiedzi</b>, coraz bardziej konkretne (po −2 pkt). Trzecia praktycznie podaje rozwiązanie.</p><p>Briefing i zadania sprawy znajdziecie zawsze w menu. Postęp zapisuje się sam — możecie przerwać i wrócić innego dnia.</p>` },
+   { k: 'Finał', t: 'Akt oskarżenia', b: `<p>Gdy jesteście gotowi: <b>Analiza → Akt oskarżenia</b>. Odpowiadacie na pytania o sprawcę, sposób, czas, motyw i tło sprawy, układacie kolejność zdarzeń i wskazujecie <b>trzy dowody</b> przeciwko sprawcy.</p><p><b>Po podpisaniu raportu nie da się go zmienić.</b> Dostaniecie wynik 0–100, rangę, pełne rozwiązanie krok po kroku i epilog — a na końcu jedną decyzję, którą musicie podjąć jako zespół.</p><p class="g-tip">Składajcie raport, gdy każdy wniosek umiecie podeprzeć dowodem — nie wtedy, gdy „pewnie tak było”.</p>` },
+  ];
+}
+function ovGuide(o) {
+  const cards = guideCards(o.mode); const i = Math.max(0, Math.min(cards.length - 1, o.i || 0)); const cd = cards[i]; const last = i === cards.length - 1;
+  return { title: 'Jak grać', kicker: `Instruktaż · ${o.mode === 'phones' ? 'Telewizor + telefony' : 'Wspólny stół'}`, body: `
+   <div class="g-dots">${cards.map((_, k) => `<button class="${k === i ? 'on' : ''}" data-a="guide-go" data-i="${k}" aria-label="Karta ${k + 1}"></button>`).join('')}</div>
+   <article class="paper g-card"><div class="eyebrow">${String(i + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')} · ${esc(cd.k)}</div><h2>${esc(cd.t)}</h2>${cd.b}</article>
+   <div class="g-nav">${i > 0 ? `<button class="btn ghost" data-a="guide-go" data-i="${i - 1}">Wstecz</button>` : '<span></span>'}${last ? `<button class="btn" data-a="guide-end">Zaczynamy</button>` : `<button class="btn" data-a="guide-go" data-i="${i + 1}">Dalej</button>`}</div>
+   ${o.after ? `<div class="g-skip"><button class="linkish" data-a="guide-end">Pomiń instruktaż</button><button class="linkish" data-a="guide-off">Nie pokazuj go przed kolejnymi sprawami</button></div>` : ''}` };
 }
 
 function startMsg(c, g) {
@@ -868,7 +897,9 @@ const handlers = {
     const names = Array.from({ length: setupCount }, (_, i) => (setupNames[i] || '').trim() || `Gracz ${i + 1}`);
     if (!setupMode) return;
     S.games[c.id] = newGame(c, names, setupMode); save(); distRevealed = false; go(`gra/${c.id}/akta`);
-    if (setupMode === 'table') setTimeout(() => startMsg(variant(c, 'table'), S.games[c.id]), 250);
+    const mode = setupMode;
+    if (S.settings.guide !== false) setTimeout(() => openOv({ type: 'guide', mode, i: 0, after: true }), 250);
+    else if (mode === 'table') setTimeout(() => startMsg(variant(c, 'table'), S.games[c.id]), 250);
   },
   restart: el => { const id = el.dataset.id; if (!confirm('Zacząć sprawę od nowa? Obecny postęp zostanie usunięty.')) return; delete S.games[id]; save(); ovStack = []; renderOv(); go('sprawa/' + id); },
   'dist-open': () => { distRevealed = true; sfx('stamp'); render(); },
@@ -919,6 +950,11 @@ const handlers = {
     setTimeout(() => { if (swReg.installing || swReg.waiting) toast('Pobieram nową wersję', 'Gra za chwilę przeładuje się sama', 'Aktualizacja'); else toast('Masz najnowszą wersję', 'Wersja ' + VERSION, 'Aktualizacja'); }, 1200);
   },
   'case-menu': () => openOv({ type: 'menu' }),
+  'guide-toggle': () => { S.settings.guide = S.settings.guide === false; save(); renderOv(); },
+  'show-guide': () => { const { g } = ctx(); ovStack.pop(); history.back(); setTimeout(() => openOv({ type: 'guide', mode: g.mode === 'table' ? 'table' : 'phones', i: 0 }), 60); },
+  'guide-go': el => { const o = topOv(); if (o && o.type === 'guide') { o.i = +el.dataset.i; renderOv(); const b = $('.ov-body'); if (b) b.scrollTop = 0; } },
+  'guide-off': () => { S.settings.guide = false; save(); handlers['guide-end'](); },
+  'guide-end': () => { const o = topOv(); ovStack.pop(); history.back(); setTimeout(renderOv, 0); if (o && o.after) { const { c, g } = ctx(); if (c && g && g.mode === 'table' && g.phase === 'play') setTimeout(() => startMsg(c, g), 120); } },
   'show-brief': () => { const { c } = ctx(); openOv({ type: 'msg', title: c.title, kicker: 'Briefing', body: `<article class="paper brief"><p class="lead">${esc(c.intro.lead)}</p>${c.intro.brief.map(p => `<p>${esc(p)}</p>`).join('')}<h4>Zadanie zespołu</h4><ol>${c.intro.task.map(t => `<li>${esc(t)}</li>`).join('')}</ol><h4>Zasady</h4><ul>${c.intro.rules.map(t => `<li>${esc(t)}</li>`).join('')}</ul></article>` }); },
   export: async () => { const name = `slad-zapis-${new Date().toISOString().slice(0, 10)}.json`; const blob = new Blob([JSON.stringify({ app: 'slad', version: VERSION, exported: new Date().toISOString(), data: S }, null, 1)], { type: 'application/json' });
     try { const file = new File([blob], name, { type: 'application/json' }); if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: 'Zapis ŚLAD' }); return; } } catch (err) { if (err && err.name === 'AbortError') return; }
@@ -945,7 +981,7 @@ document.addEventListener('change', async e => {
   try { const j = JSON.parse(await f.text()); const d = j && j.app === 'slad' ? j.data : null; if (!d || d.v !== 2 || !d.games || !d.settings) throw new Error('To nie jest plik zapisu ŚLAD 2.'); if (!confirm('Zastąpić obecny postęp danymi z pliku?')) return; S = d; save(); ovStack = []; renderOv(); toast('Zapis wczytany', '', 'Kopia'); go(''); }
   catch (err) { toast('Nie wczytano pliku', err.message, 'Błąd'); }
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && ovStack.length) closeOv(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && ovStack.length) closeOv(); const o = topOv(); if (o && o.type === 'guide' && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { const n = (o.i || 0) + (e.key === 'ArrowRight' ? 1 : -1); if (n >= 0 && n < guideCards(o.mode).length) handlers['guide-go']({ dataset: { i: n } }); } });
 
 /* ---------- PWA: automatyczna aktualizacja ---------- */
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {

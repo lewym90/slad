@@ -541,3 +541,25 @@ svg.plan .pln.tear{stroke:#7a2a1c;stroke-width:2.5}
 .doc .log .ln{display:block}
 .doc .log .lc{display:none}
 @media (max-width:700px){.doc .log{white-space:normal}.doc .log .lw{display:none}.doc .log .lc{display:block;padding-left:1.4em;text-indent:-1.4em}.doc .log .ln+.ln .lc{margin-top:.35em}}
+
+/* instruktaż */
+.g-dots{display:flex;gap:8px;justify-content:center;margin:2px 0 14px}
+.g-dots button{width:10px;height:10px;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer}
+.g-dots button.on{background:var(--gold)}
+.g-card{padding:22px 22px 18px;font-size:1rem;line-height:1.6}
+.g-card h2{font-size:clamp(1.6rem,5vw,2.2rem);margin:6px 0 12px;color:var(--paperInk)}
+.g-card .eyebrow{color:#7a2a1c}
+.g-card p{margin:.55em 0}
+.g-list{list-style:none;padding:0;margin:.4em 0}
+.g-list li{display:block;margin:.5em 0}
+.g-list li b{white-space:nowrap}
+.g-list svg,.g-card svg{width:1.05em;height:1.05em;vertical-align:-.15em}
+.g-table{width:100%;border-collapse:collapse;margin:.6em 0;font-size:.95em}
+.g-table td{border-bottom:1px dashed rgba(43,34,25,.3);padding:.35em .2em;vertical-align:top}
+.g-table td:last-child{text-align:right;font-weight:600;white-space:nowrap}
+.g-tip{border-left:3px solid #7a2a1c;padding:.35em .8em;background:rgba(122,42,28,.07);font-style:italic}
+.g-nav{display:flex;justify-content:space-between;gap:12px;margin:16px 0 4px}
+.g-skip{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:12px}
+.linkish{background:none;border:0;color:var(--dim);text-decoration:underline;font-family:var(--f-ui);font-size:.85rem;cursor:pointer;padding:4px}
+:root[data-tv="on"] .g-card{font-size:1.15rem}
+@media (max-width:520px){.g-table td:last-child{white-space:normal}}

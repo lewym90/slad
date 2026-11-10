@@ -25,6 +25,9 @@ await A('open-case', `[data-id="${CID}"]`); await shot('intro'); await shot('int
 await A('mode', `[data-m="${MODE}"]`); await shot('modes'); await shot('modes-full', true);
 await A('count', '[data-n="3"]'); await p.fill('#pn0', 'Kasia'); await p.fill('#pn1', 'Tomek'); await p.fill('#pn2', 'Ola');
 await A('begin');
+await p.waitForTimeout(500);
+{ let k = 0; while (await p.locator('.g-nav .btn:not(.ghost)[data-a="guide-go"]').count() && k < 15) { await shot(`guide-${k}`); await p.locator('.g-nav .btn:not(.ghost)[data-a="guide-go"]').click(); await p.waitForTimeout(120); k++; }
+  await shot(`guide-${k}`); console.log('guide cards', k + 1); await p.locator('.g-nav [data-a="guide-end"]').click(); await p.waitForTimeout(300); }
 if (MODE === 'phones') {
   await p.waitForTimeout(400); await shot('qr-screen'); await shot('qr-screen-full', true);
   const nQR = await p.locator('.qr-card svg').count(); console.log('QR codes', nQR);
