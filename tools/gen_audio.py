@@ -107,6 +107,48 @@ def sfx_reveal():  # przełom w przesłuchaniu: niski akcent + ciche „szszsz�
     x+=bp(rng.standard_normal(L),2000,8000,2)*np.exp(-t/0.25)*0.25
     return norm(x,0.75)
 
+
+def sanatorium_ambience(dur=125, xf=5):
+    """Zimowa noc w pustym budynku: wiatr w wybitych oknach, pogłos korytarza, krople, skrzypienie."""
+    n=int(dur*SR); t=np.arange(n)/SR
+    ir_len=int(2.2*SR); irt=np.arange(ir_len)/SR
+    ir=rng.standard_normal(ir_len)*np.exp(-irt/0.55); ir=lpf(ir,3000,1); ir/=np.sqrt(np.sum(ir**2))
+    def verb(x,wet=0.6):
+        from scipy.signal import fftconvolve
+        return x*(1-wet)+fftconvolve(x,ir)[:n]*wet
+    ch=[]
+    gust=0.55+0.45*np.clip(lpf(rng.standard_normal(n),0.06,1)*45,-1,1)
+    for c in range(2):
+        base=bp(rng.standard_normal(n),120,700,2)*0.10*gust
+        # gwizd wiatru: wąskie pasmo, wolno przesuwane
+        whistle=np.zeros(n)
+        for f0,ph in [(520,0.0),(780,1.7)]:
+            seg=int(SR*0.5)
+            for k in range(0,n,seg):
+                fc=f0*(1+0.18*np.sin(2*np.pi*(k/SR)/17+ph+c))
+                part=bp(rng.standard_normal(min(seg+2000,n-k)),fc*0.97,fc*1.03,2)
+                L=min(seg,len(part)); whistle[k:k+L]+=part[:L]
+        whistle*=0.05*np.clip(gust-0.55,0,1)*2
+        ch.append(base+whistle)
+    room=lpf(np.cumsum(rng.standard_normal(n))*0.002,90,2); room-=lpf(room,8,1)
+    drips=np.zeros(n)
+    for at in np.cumsum(rng.uniform(1.6,4.5,int(dur/2.5))):
+        if at>=dur-1: break
+        s0=int(at*SR); L=int(0.05*SR); tt=np.arange(L)/SR
+        f=rng.uniform(1400,2600)
+        drips[s0:s0+L]+=np.sin(2*np.pi*f*tt*(1-tt*3))*np.exp(-tt/0.008)*rng.uniform(0.04,0.09)
+    creak=np.zeros(n)
+    for at in [21, 58, 101]:
+        s0=int(at*SR); L=int(1.4*SR); tt=np.arange(L)/SR
+        f=110+60*np.sin(2*np.pi*tt/2.8)+rng.uniform(-8,8)
+        saw=2*((np.cumsum(f)/SR)%1)-1
+        e=np.clip(tt/0.15,0,1)*np.clip((1.4-tt)/0.5,0,1)
+        creak[s0:s0+L]+=lpf(saw*e*0.06,1800,2)*(1+0.5*np.sign(np.sin(2*np.pi*23*tt)))
+    common=verb(drips+creak,0.7)+room*0.9
+    st=np.stack([ch[0]+common, ch[1]+common*0.96],1)
+    X=int(xf*SR); fade=np.sin(np.linspace(0,np.pi/2,X))[:,None]
+    head=st[:X]*fade+st[-X:]*np.cos(np.linspace(0,np.pi/2,X))[:,None]
+    return norm(np.concatenate([head,st[X:-X]],0),0.8)
 def write(name,x,stereo=False,lufs=-20,br='96k'):
     import tempfile; wav=os.path.join(tempfile.gettempdir(), f'{name}.wav')
     import wave
@@ -120,6 +162,7 @@ import sys
 which=sys.argv[1] if len(sys.argv)>1 else 'all'
 if which in ('all','001'): write('case-001', ambience(), stereo=True, lufs=-24, br='112k')
 if which in ('all','002'): write('case-002', train_ambience(), stereo=True, lufs=-24, br='112k')
+if which in ('all','003'): write('case-003', sanatorium_ambience(), stereo=True, lufs=-24, br='112k')
 if which in ('all','sfx'):
     for n,f in [('sfx-paper',sfx_paper),('sfx-stamp',sfx_stamp),('sfx-unlock',sfx_unlock),('sfx-wrong',sfx_wrong),('sfx-break',sfx_reveal)]:
         write(n,f(),lufs=-19,br='96k')

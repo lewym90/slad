@@ -531,3 +531,7 @@ svg.plan .mk image{filter:drop-shadow(0 2px 2px rgba(0,0,0,.45))}
 svg.plan .mk text{font-family:var(--f-ui);font-weight:700;font-size:14px;fill:#1b1404;text-anchor:middle;pointer-events:none}
 .plan-hint{display:none;font-family:var(--f-hand);color:#7a2a1c;font-size:1.05rem;text-align:center;margin:-2px 0 2px}
 @media (max-width:760px){.plan-hint{display:block}}
+svg.plan .pln.trk{stroke:#1f4e79;stroke-width:2;stroke-dasharray:3 5}
+svg.plan .pln.stair{stroke-width:2.5;stroke-dasharray:10 4}
+svg.plan .pln.net{stroke:#5a4a38;stroke-width:3;stroke-dasharray:2 3}
+svg.plan .pln.tear{stroke:#7a2a1c;stroke-width:2.5}

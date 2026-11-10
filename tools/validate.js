@@ -41,7 +41,7 @@ for (const [f, c] of runs) {
   const needEv = (id, where) => { if (!ev.has(id)) E(`${where}: brak dowodu ${id}`); };
 
   // 1. Referencje
-  for (const [id, s] of spots) { (s.gives || []).forEach(x => needEv(x, `punkt ${id}`)); if (s.requires && s.requires.puzzle && !pz.has(s.requires.puzzle)) E(`punkt ${id}: brak zagadki ${s.requires.puzzle}`); if (s.requires && !s.lockedText) E(`punkt ${id}: brak tekstu blokady`); }
+  for (const [id, s] of spots) { (s.gives || []).forEach(x => needEv(x, `punkt ${id}`)); if (s.requires && s.requires.puzzle && !pz.has(s.requires.puzzle)) E(`punkt ${id}: brak zagadki ${s.requires.puzzle}`); if (s.requires && s.requires.all) s.requires.all.forEach(t => { if (!isTok(t)) E(`punkt ${id}: nieznany wymóg ${t}`); }); if (s.requires && !s.lockedText) E(`punkt ${id}: brak tekstu blokady`); }
   for (const [id, q] of qs) { (q.requiresAny || []).forEach(x => { if (!isTok(x)) E(`pytanie ${id}: nieznany wymóg ${x}`); }); (q.requires || []).forEach(x => { if (!isTok(x)) E(`pytanie ${id}: nieznany wymóg ${x}`); }); (q.gives || []).forEach(x => needEv(x, `pytanie ${id}`)); (q.claims || []).forEach(x => { if (!st.has(x)) E(`pytanie ${id}: brak zeznania ${x}`); }); }
   for (const [id, s] of st) {
     if (s.truth && s.contradicts && s.contradicts.length) E(`zeznanie ${id}: prawdziwe, a ma sprzeczne dowody`);
@@ -86,7 +86,7 @@ for (const [f, c] of runs) {
   let changed = true, rounds = 0;
   while (changed && rounds++ < 200) {
     changed = false;
-    for (const [id, s] of spots) if (!done.has(id) && (!s.requires || solved.has(s.requires.puzzle))) { done.add(id); (s.gives || []).forEach(x => K.add(x)); changed = true; }
+    for (const [id, s] of spots) if (!done.has(id) && (!s.requires || ((!s.requires.puzzle || solved.has(s.requires.puzzle)) && (!s.requires.all || s.requires.all.every(has))))) { done.add(id); (s.gives || []).forEach(x => K.add(x)); changed = true; }
     for (const [id, q] of qs) if (!done.has(id) && (q.requires || []).every(has) && (!q.requiresAny || q.requiresAny.some(has))) { done.add(id); (q.gives || []).forEach(x => K.add(x)); (q.claims || []).forEach(x => claims.add(x)); changed = true; }
     for (const [id, p] of pz) if (!solved.has(id) && p.requires.every(has)) { solved.add(id); if (p.reward && p.reward.search) (p.reward.spots || []).forEach(s => { done.add(s); (spots.get(s).gives || []).forEach(x => K.add(x)); }); changed = true; }
     for (const id of claims) { const s = st.get(id); if (!broken.has(id) && !s.truth && (s.contradicts || []).some(x => K.has(x))) { broken.add(id); (s.gives || []).forEach(x => K.add(x)); (s.reveals || []).forEach(x => claims.add(x)); changed = true; } }

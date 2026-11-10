@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.6.1';
+const VERSION = '2.7.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -136,7 +136,7 @@ function has(g, c, tok) {
 const visibleEvidence = (g, c) => [...g.found, ...g.shared].filter((id, i, a) => a.indexOf(id) === i && c.ev[id]);
 const unread = (g, c) => visibleEvidence(g, c).filter(id => !g.read.includes(id)).length;
 function personName(g, p) { return p.revealName && (p.revealOn || []).some(b => g.broken.includes(b)) ? p.revealName : p.name; }
-function personRole(g, p) { return p.revealName && personName(g, p) === p.revealName ? (p.revealRole || p.role) : p.role; }
+function personRole(g, p) { return p.revealRole && (p.revealOn || []).some(b => g.broken.includes(b)) ? p.revealRole : p.role; }
 function gain(g, c, ids, silent) {
   const got = [];
   (ids || []).forEach(id => { if (c.ev[id] && !known(g, id)) { g.found.push(id); got.push(id); } });
@@ -435,6 +435,8 @@ function planSvg(c, g, v) {
   const out = [];
   const lbl = (x, y, t, cls, extra = '') => `<text class="${cls}" x="${n(x)}" y="${n(y)}" ${extra}>${esc(t)}</text>`;
   v.items.forEach(it => {
+    if (it.req && it.t !== 'body' && !has(g, c, it.req)) return;
+    if (it.unless && has(g, c, it.unless)) return;
     if (it.t === 'room') {
       const live = it.loc && c.loc[it.loc];
       const lx = it.lx != null ? it.lx : it.x + it.w / 2, ly = it.ly != null ? it.ly : it.y + it.h / 2 + 5;
@@ -463,7 +465,7 @@ function planSvg(c, g, v) {
     ${out.join('')}${v.north ? `<image class="pnorth" href="assets/plan/compass.webp" x="${v.w - 80}" y="6" width="72" height="70"/><text class="pn small" x="${v.w - 44}" y="90" text-anchor="middle">N ↑</text>` : ''}</svg>`;
 }
 function planBlock(c, g) {
-  const views = c.plan.views; let i = planView[c.id] || 0; if (!views[i]) i = 0;
+  const views = c.plan.views.filter(v => !v.req || has(g, c, v.req)); let i = planView[c.id] || 0; if (!views[i]) i = 0;
   const marks = views.reduce((a, v) => a + Object.keys(v.spots || {}).filter(s => g.spots.includes(s)).length, 0);
   return `<section class="plan-card">
     <div class="plan-top"><div><div class="eyebrow">Szkic miejsca zdarzenia</div><small class="muted">Stuknijcie pomieszczenie, by do niego przejść. Żółte znaczniki — przeszukane punkty (${marks}).</small></div>
@@ -487,6 +489,7 @@ function viewPlaces(c, g) {
 function spotState(c, g, s) {
   if (g.spots.includes(s.id)) return 'done';
   if (s.requires && s.requires.puzzle && !has(g, c, s.requires.puzzle)) return 'locked';
+  if (s.requires && s.requires.all && !s.requires.all.every(t => has(g, c, t))) return 'locked';
   return 'open';
 }
 function ovLocation(c, g, id) {

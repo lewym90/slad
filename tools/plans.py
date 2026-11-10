@@ -146,7 +146,68 @@ trasa = {'id': 'trasa', 'name': 'Trasa', 'w': 1000, 'h': 300, 'items': [
   ],
   'spots': {'sp-ballast': [770, 150]}}
 
-for cid, views in [('001', [parter, pietro]), ('002', [sk, wrzos, trasa])]:
+
+# ---------------- 003 Cisza w sanatorium ----------------
+teren = {'id': 'teren', 'name': 'Teren sanatorium', 'w': 1000, 'h': 730, 'north': True, 'items': [
+    R(50, 290, 830, 300, '', 'grounds', 'plain'), T(300, 440, 'park · śnieg', 'area'),
+    R(100, 110, 440, 160, 'Budynek główny', cls='plain'),
+    R(540, 110, 300, 160, 'Skrzydło wschodnie', cls='plain', ly=160, lx=640),
+    R(700, 190, 80, 80, 'Klatka', 'stairwell', sub='gosp.', ly=226),
+    D(725, 270, 755, 270), T(740, 290, 'boczne drzwi', 'small'),
+    W(840, 150, 840, 240), T(850, 105, 'szczyt od doliny', 'small', 'start'),
+    L(880, 40, 880, 600), D(880, 355, 880, 390), T(872, 380, 'furtka', 'small', 'end'),
+    R(895, 300, 95, 120, 'Willa', 'villa', sub='Wilków', ly=350),
+    L(40, 600, 300, 600), L(380, 600, 880, 600), T(340, 625, 'brama', 'small'),
+    R(395, 535, 120, 65, 'Stróżówka', 'gatehouse', ly=592),
+    T(930, 470, 'dolina →', 'hand'), T(930, 495, 'dom H. Mrozek', 'small'), T(930, 510, 'na przeciwnym', 'small'), T(930, 525, 'zboczu', 'small'),
+    R(40, 630, 150, 70, 'Pensjonat', 'inn', ly=652), R(200, 630, 160, 70, 'Mieszk. K. Bober', 'flat', ly=652),
+    T(600, 690, 'wieś Jaworzyn — ok. 25 min pieszo (nie w skali)', 'hand'),
+    # ślady (po oględzinach)
+    {**L(880, 372, 742, 274, 'trk'), 'req': 'sp-tracks'}, {**T(820, 340, 'A', 'hand'), 'req': 'sp-tracks'},
+    {**L(738, 274, 380, 598, 'trk'), 'req': 'sp-tracks'}, {**T(540, 450, 'B', 'hand'), 'req': 'sp-tracks'},
+    {**L(470, 535, 735, 276, 'trk'), 'req': 'sp-tracks'}, {**T(620, 380, 'C', 'hand'), 'req': 'sp-tracks'},
+    {**L(482, 537, 748, 278, 'trk'), 'req': 'sp-tracks'}, {**T(668, 382, 'D', 'hand'), 'req': 'sp-tracks'},
+  ],
+  'spots': {'sp-tracks': [760, 318], 'sp-keys': [415, 552], 'sp-boots': [455, 556], 'sp-wardrobe': [495, 552],
+            'sp-wstudy': [915, 318], 'sp-hall': [968, 318], 'sp-owner': [70, 683], 'sp-klaptop': [160, 683], 'sp-kjacket': [115, 683],
+            'sp-kpapers': [280, 683]}}
+
+przekroj = {'id': 'przekroj', 'name': 'Klatka — przekrój', 'w': 1000, 'h': 640, 'items': [
+    R(300, 211, 400, 369, '', 'stairwell', 'plain'), T(500, 618, 'KLATKA GOSPODARCZA — PRZEKRÓJ', 'small'),
+    {**R(300, 70, 400, 141, 'poddasze', cls='closed', sub='nieużytkowe, bez dostępu (plan 2018)', ly=140), 'unless': 'p-floor'},
+    {**R(300, 70, 400, 141, 'Izolatorium', 'attic', ly=130), 'req': 'p-floor'},
+    L(260, 580, 740, 580), L(300, 211, 300, 580), L(700, 211, 700, 580),
+    L(300, 457, 400, 457), L(300, 334, 400, 334), L(600, 457, 700, 457), L(600, 334, 700, 334),
+    L(400, 580, 600, 457, 'stair'), L(400, 457, 600, 334, 'stair'),
+    {**L(400, 334, 600, 211, 'stair'), 'req': 'p-floor'}, {**L(300, 211, 400, 211), 'req': 'p-floor'},
+    L(400, 334, 400, 300), T(408, 318, 'balustrada 110 cm', 'small', 'start'),
+    {**L(400, 211, 400, 187), 'req': 'p-floor'}, {**T(408, 200, 'balustrada 80 cm (1936)', 'small', 'start'), 'req': 'p-floor'},
+    {**L(310, 334, 310, 300, 'dim'), 'req': 'p-floor'}, {**T(294, 304, 'płyta', 'hand', 'end'), 'req': 'p-floor'},
+    L(400, 211, 600, 211, 'net'), T(610, 232, 'siatka (2018)', 'small', 'start'),
+    {**L(470, 211, 500, 236, 'tear'), 'req': 'sp-well'}, {**L(500, 236, 530, 211, 'tear'), 'req': 'sp-well'},
+    D(700, 525, 700, 572), T(712, 552, 'boczne drzwi', 'small', 'start'),
+    T(290, 585, '±0,00 parter', 'small', 'end'), T(290, 462, '+4,10 I piętro', 'small', 'end'),
+    T(290, 339, '+8,20 II piętro', 'small', 'end'), T(290, 216, '+12,30 poddasze', 'small', 'end'),
+    T(830, 470, 'dusza klatki:', 'small', 'start'), T(830, 486, 'otwarta od parteru', 'small', 'start'), T(830, 502, 'do siatki', 'small', 'start'),
+    {'t': 'body', 'x': 440, 'y': 566, 'rot': -90, 's': 1.1, 'req': 'sp-body'},
+  ],
+  'spots': {'sp-body': [540, 548], 'sp-well': [560, 240], 'sp-door': [672, 540], 'sp-landing2': [372, 318], 'sp-panel': [330, 318]}}
+
+izol = {'id': 'izolatorium', 'name': 'Izolatorium', 'req': 'p-floor', 'w': 1000, 'h': 520, 'north': True, 'items': [
+    R(100, 80, 800, 300, 'Izolatorium', 'attic', ly=240, lx=360), T(500, 60, 'PODDASZE WSCHODNIEGO SKRZYDŁA', 'small'),
+    *[F(130 + i * 80, 90, 40, 70) for i in range(6)], *[F(130 + i * 80, 300, 40, 70) for i in range(2)],
+    T(330, 182, '8 łóżek z pasami', 'small'),
+    F(800, 96, 80, 30, 'szafa', lx=840, ly=142), F(770, 210, 44, 14, 'lampa', 28, lx=792, ly=244),
+    C(660, 190, 7), T(660, 214, 'kamera', 'small'),
+    W(900, 190, 900, 250), T(912, 225, 'okienko', 'small', 'start'), T(912, 240, 'w szczycie', 'small', 'start'),
+    R(600, 380, 140, 100, 'podest', 'attic', ly=440, lx=650), D(630, 380, 680, 380),
+    R(740, 380, 90, 100, '', cls='ghost'), T(785, 425, 'dusza', 'small'), T(785, 440, 'klatki', 'small'),
+    L(740, 380, 740, 480), T(785, 500, 'balustrada 80 cm', 'small'),
+    L(600, 480, 640, 500, 'stair'), T(590, 505, 'schody w dół', 'small', 'end'),
+  ],
+  'spots': {'sp-ward': [470, 290], 'sp-camera': [640, 170], 'sp-sd': [688, 172], 'sp-landing4': [700, 420]}}
+
+for cid, views in [('001', [parter, pietro]), ('002', [sk, wrzos, trasa]), ('003', [teren, przekroj, izol])]:
     p = f'cases/{cid}.json'
     c = json.load(open(p, encoding='utf-8'))
     c['plan'] = {'views': views}
