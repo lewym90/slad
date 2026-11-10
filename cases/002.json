@@ -7,7 +7,7 @@
  "players": "2–6",
  "difficulty": "Wymagająca",
  "cover": "assets/cases/002-cover.webp",
- "art": "assets/cases/002-cover.webp",
+ "art": "assets/art/002-keyart.webp",
  "ambience": "assets/audio/case-002.mp3",
  "par": 50,
  "intro": {

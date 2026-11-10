@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.4.0';
+const VERSION = '2.4.1';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -44,6 +44,7 @@ const CORE = [
   './assets/places/002-tracks.webp',
   './assets/places/002-wrzos.webp',
   './assets/art/001-manor.webp',
+  './assets/art/002-keyart.webp',
   './assets/cases/001-cover.webp',
   './assets/cases/002-cover.webp',
   './assets/cases/003-cover.webp',
