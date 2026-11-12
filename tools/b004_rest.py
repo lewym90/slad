@@ -35,7 +35,7 @@ locations = [
    spot('sp-office', 'Gabinet prezesa', 'Komputer prezesa z otwartym plikiem.', ['e24']),
   ], 'img': None},
  {'id': 'hospital', 'name': 'Szpital Miejski', 'kind': 'SOR i oddział toksykologii',
-  'desc': 'Izba przyjęć pełna nocnych pacjentów. Lekarz dyżurny ma kwadrans.',
+  'desc': 'Korytarz izby przyjęć po nocnym szczycie. Lekarz dyżurny ma kwadrans.',
   'spots': [
    spot('sp-sor', 'Rejestr przyjęć SOR', 'Rejestr nocnych przyjęć.', ['e25']),
    spot('sp-tox', 'Lekarz toksykolog', 'Krótka rozmowa na korytarzu.', ['e26']),
