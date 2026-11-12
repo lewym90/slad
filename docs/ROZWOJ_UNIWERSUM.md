@@ -27,7 +27,7 @@ Legenda: ✅ robimy · 🔶 robimy, ale wymaga doprecyzowania · ⏸ na późnie
 | 6 | Telefon ofiary (odblokowanie kodem, SMS, galeria, lokalizacje, połączenia) | ✅ | |
 | 7 | Komputer i poczta podejrzanego | ✅ | |
 | 8 | Media społecznościowe i OSINT (geolokalizacja zdjęć, godziny postów) | ✅ | |
-| 9 | Analiza monitoringu | 🔶 | Ograniczenia generatorów wideo (artefakty, ~15 s) — patrz §4 |
+| 9 | Analiza monitoringu | 🔶 | Autor: serie klatek z generatora są nierealne — zamiast tego monitoring jako dane i schemat generowany kodem (§4) |
 | 10 | Billingi i analiza powiązań | ✅ | |
 | 11 | Oględziny w powiększeniu (szukanie szczegółów na dużym zdjęciu) | ✅ | Bardzo szczegółowe prompty, by błędy generowania nic nie zepsuły — §4 |
 | 12 | Mapa miasta z czasem dojazdu | ✅ | |
@@ -72,20 +72,28 @@ Wymagania autora (dosłownie w duchu):
 - Każdy identyfikator (rejestracja, KRS, NIP, PESEL, nr księgi wieczystej, telefon, adres) występuje w całej grze **w jednej, identycznej formie**. Jeśli w aktach jest „124-15”, to wszędzie jest „124-15” i tylko ta forma działa w bazie. Ewentualna inna forma jest wyłącznie celowym zabiegiem fabularnym.
 - Literówka lub błędna forma (np. „ul.” zamiast „al.”) = brak wyników, jak w rzeczywistości.
 
-Ustalenia projektowe (do potwierdzenia):
+Ustalenia projektowe (POTWIERDZONE przez autora 12.11.2026):
 - Formularze z osobnymi polami jak w prawdziwych systemach (np. Nazwisko / Imię / Data urodzenia; Nr rejestracyjny; KRS/NIP/nazwa). Puste pole = dowolna wartość.
 - Normalizacja wyłącznie techniczna: wielkość liter i zbędne spacje na początku/końcu nie mają znaczenia. Wszystko inne (polskie znaki, myślniki, ukośniki, kolejność) — dokładnie.
 - Rekordy „szumu” (inne osoby o tym samym nazwisku itd.) spójne z realiami sprawy.
 - Walidator sprawdza, że każdy identyfikator ma w całej sprawie dokładnie jedną formę zapisu, i że każdy rekord bazy zgadza się z aktami.
 - Zapytania kosztują ruch/czas; część baz wymaga nakazu (#3).
 
-## 3. Własne pytania (#2) — do omówienia
-Tematy wpisywane przez graczy, dopasowywane deterministycznie (odmiana, synonimy) do tematów znanych danej osobie; nieznane tematy → naturalna odmowa. Bez modelu AI w grze (ryzyko zmyślonych faktów, potrzeba internetu). Szczegóły w rozmowie z 12.11.2026.
+## 3. Własne pytania (#2) — ZAAKCEPTOWANE
+- Pole „Zapytaj o…”: gracz wpisuje temat (słowo, nazwisko, miejsce, godzinę). Dopasowanie deterministyczne: odmiana, synonimy, warianty. Bez modelu AI w grze.
+- Nieznany temat → naturalna odpowiedź postaci; **nie kosztuje ruchu ani czasu** (wymóg autora). Kosztuje tylko trafione pytanie, tak jak zwykłe pytanie.
+- Ochrona przed „wstrzeliwaniem się”: podpowiadanie (autouzupełnianie) z rzeczy, które gracze już znają — nazwiska, miejsca, dowody z akt. Bogate listy synonimów dla każdego tematu.
+- Ochrona przed zgadywaniem na ślepo: temat działa dopiero wtedy, gdy gracze faktycznie o nim wiedzą (odblokowany dowodem/zeznaniem), więc wpisywanie wszystkich nazw z listy nic nie da.
+- Lista tematów już poruszonych z każdą osobą.
 
 ## 4. Monitoring (#9) i oględziny w powiększeniu (#11)
-- Kluczowe informacje nie mogą zależeć od generatora wideo. Monitoring jako sekwencja klatek/zdjęć; znacznik czasu, numer kamery i napisy nakłada aplikacja (kod), nigdy generator.
-- Krótkie wideo tylko jako klimat, nie jako nośnik dowodu.
-- Oględziny: szczegóły-dowody muszą być jednoznacznie widoczne i sprawdzone po wygenerowaniu; strefy (hotspoty) definiuje plik sprawy.
+Autor odrzucił serie klatek z generatora (niewykonalne: generator nie trzyma spójności nawet przy naklejce na aucie).
+Rozwiązanie — monitoring bez generowanych serii:
+- **Odtwarzacz zdarzeń rysowany przez aplikację**: plan budynku/ulicy (SVG), na którym kamery, czujniki, czytniki kart i ANPR zapalają się na osi czasu; gracz przewija, zatrzymuje, porównuje. Wszystko generowane kodem z danych sprawy — idealnie spójne.
+- **Dzienniki**: ANPR (rozpoznawanie tablic), czujniki ruchu, kontrola dostępu, licznik wejść; protokół oględzin zapisu monitoringu (opis policjanta z godzinami).
+- **Najwyżej 1–2 pojedyncze kadry na sprawę**, każdy niezależny (bez wymogu ciągłości z innymi), audytowany jak każda grafika; informacja kluczowa zawsze także w tekście protokołu.
+- Wideo z generatora tylko jako klimat (przełomy), nigdy nośnik dowodu.
+Oględziny w powiększeniu: na istniejących dużych grafikach lokacji gracz sam szuka miejsc; po trafieniu widzi zbliżenie i opis technika (opis jest wiążący). Kluczowe szczegóły duże i jednoznaczne; każdy obraz audytowany pod kątem fałszywych tropów; strefy definiuje plik sprawy.
 
 ## 5. Zegar w grze (#20)
 Czas gry płynie wyłącznie za akcje graczy (przeszukanie, dojazd, przesłuchanie), nigdy w czasie rzeczywistym. Pauza/odejście od gry nie zmienia niczego.
