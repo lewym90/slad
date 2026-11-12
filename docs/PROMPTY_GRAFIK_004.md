@@ -17,19 +17,47 @@ Row 2, panel 2: a 33-year-old Polish woman, a local newspaper reporter, short da
 Row 2, panel 3: a 60-year-old Polish chairman of a chemical plant, heavy-set, grey crew cut, deep nasolabial folds, bloodshot eyes, an impatient hard stare, dark wool overcoat over a white shirt without a tie, blurred industrial pipes and a red warning lamp glowing behind him.
 ```
 
-## Plansza B — miejsca (format 3:2, np. 1536×1024)
-Kolejność kafli: wiersz 1: stacja nadawcza, Centrum Zarządzania Kryzysowego; wiersz 2: zakład Chemrud, szpital; wiersz 3: Urząd Miasta, parking leśny; wiersz 4: redakcja, garaż Syreon.
+## Miejsca — osobne obrazy (format 3:2, 1536×1024 każdy)
+Każde miejsce to osobny prompt (osobny obraz), bo na dużym ekranie plansza zbiorcza byłaby rozmyta.
 
+### Miejsce: plik docelowy `assets/places/004-station.webp`
 ```
-A single photorealistic sheet of exactly 8 separate wide cinematic panels arranged in a strict grid of 2 columns and 4 rows, all panels identical in size and in a wide landscape shape, separated by uniform solid pure black gutters about 2% of the image width, black outer margin of the same width. Every panel is a moody cinematic still of a place at night or in early grey morning, muted desaturated colour grade with cold blue-teal tones and small warm accents, subtle film grain, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders inside the panels.
-Row 1, left: the inside of a small brick radio transmitter station at night, a tall grey equipment cabinet with its door open, an exposed bank of copper busbars behind a transparent safety panel, a key switch on the cabinet front, a heavy steel door with a card reader beside it, cold fluorescent light, a thin layer of dust on the concrete floor.
-Row 1, right: a crisis-management dispatch room at night, a long console with three large monitors and a headset on the desk, a wall of dark screens with a few red status lights, an office chair pushed back, a bin under the desk, fog-grey light from a window.
-Row 2, left: the night view of a chemical plant: tall pipe racks and a chlorine production hall with a cloud of pale greenish vapour drifting between lit floodlights, a closed control-room window with warning lights, wet asphalt, the outline of a cooling tower in the haze.
-Row 2, right: a hospital emergency-department corridor at night, empty gurneys lined up along the wall, a single doctor's coat on a hook, cold green-white lighting, a dim triage desk with a computer monitor turned away from camera.
-Row 3, left: a municipal office corridor with a blue carpet and a row of closed office doors, a half-open door at the end showing a desk with a lamp and a stack of binders, a small grey safe visible behind a cabinet, early grey morning light through a window.
-Row 3, right: a forest gravel car park at night in thick fog, two cars parked at the far edge, a trail camera strapped to a pine trunk in the foreground with a tiny red LED, a wooden bollard, cold mist between the trees.
-Row 4, left: a small local-newspaper office open space over a print shop, two desks under a rainy window, stacks of old newspapers, a cork board with printed photographs pinned to it, a desk lamp switched on, night.
-Row 4, right: a service company garage in the early morning, a white panel van with a roof rack carrying an aluminium ladder, shelves of cable drums and plastic crates behind it, an open toolbox on the floor, harsh fluorescent light.
+The interior of a small brick radio transmitter station at night: a tall grey equipment cabinet in the centre-left with its door open, behind a transparent safety panel a bank of copper busbars and insulators, a two-position key switch with a key in it on the cabinet front, rows of small status LEDs, a thick bundle of cables running to a cable duct, on the right a heavy steel door with a card reader beside it, bare red-brick walls, a single cold fluorescent tube overhead, concrete floor with a thin layer of dust and a few faint footprints, a narrow dark gap between the cabinet and the wall. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+### Miejsce: plik docelowy `assets/places/004-czk.webp`
+```
+A crisis-management dispatch room at night: a long console desk with three large monitors showing abstract city map shapes, a desk phone, a headset on the desk, a lamp, a paper cup, an office chair slightly pushed back, a bin under the desk, behind the desk a wall of dark screens with a few red status lights, a tall rain-streaked window with fog-grey light and the lights of a town far away, a small camera in the ceiling corner. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+### Miejsce: plik docelowy `assets/places/004-chemrud.webp`
+```
+The night view of a chemical plant: tall pipe racks and steel stairways, a chlorine production hall with lit windows, a cloud of pale greenish vapour drifting out of a pipe between bright floodlights, a closed control-room window with orange warning lights, yellow safety railings, wet asphalt reflecting the lights, a chain-link fence with a hazard sign shape (no readable text) in the foreground, the outline of a cooling tower in the mist. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+### Miejsce: plik docelowy `assets/places/004-hospital.webp`
+```
+A hospital emergency-department corridor at night: a long perspective down a glossy floor, empty gurneys parked along the left wall, an IV stand, a single white doctor's coat on a hook, a dim triage desk on the right with a computer monitor turned away from the camera, cold green-white fluorescent lights, a closed double door at the far end with a small green exit light, the floor reflecting the lights, quiet and empty. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+### Miejsce: plik docelowy `assets/places/004-city.webp`
+```
+A municipal office corridor at early grey morning: a blue carpet with a patterned border leading down the corridor, a row of closed wooden office doors with blank nameplate shapes, at the end a half-open door showing a desk with a lit lamp and shelves of binders, a small grey safe visible behind a wooden cabinet in that office, a window with blinds at the end letting in cold dawn light, a potted plant by the wall, a state-eagle plaque on the wall without readable text. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+### Miejsce: plik docelowy `assets/places/004-parking.webp`
+```
+A forest gravel car park at night in thick fog: wide shot, wet gravel with puddles, two dark cars parked at the far edge near the trees, in the foreground a trail camera strapped to a pine trunk with a tiny red LED glowing, a wooden bollard, a single distant lamp glowing through the mist, tall dark pines fading into fog, cold mist between the trunks. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+### Miejsce: plik docelowy `assets/places/004-newsroom.webp`
+```
+A small local-newspaper office open space above a print shop at night: two cluttered desks under a large rainy window, stacks of old newspapers, an old typewriter shape on a shelf, a cork board covered with pinned printed photographs and papers (no readable text), a desk lamp switched on casting a warm pool of light on one desk with a computer monitor, binders on shelves, an office chair, rain running down the glass with orange streetlights outside. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+### Miejsce: plik docelowy `assets/places/004-syreon.webp`
+```
+A service company's garage and workshop in the early morning: a white panel van with a roof rack carrying an aluminium ladder parked in the centre, mud on its lower body, behind it shelves with cable drums, plastic crates and spare parts, a wall board with tools, an open red tool trolley in front, harsh fluorescent light with cold daylight coming through a half-open roller door, oil-stained concrete floor, no readable text or logos on the van. Photorealistic cinematic wide still, 3:2 landscape, 1536×1024, shot on a full-frame camera with a 24mm lens, deep focus, moody low-key lighting, muted desaturated colour grade with cold blue-teal tones and small warm sodium-orange accents, fine 35mm film grain, rich realistic textures and sharp detail across the whole frame, no people visible. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
 ```
 
 ## Plansza C — dowody i rekwizyty (format 1:1, np. 1024×1024)
