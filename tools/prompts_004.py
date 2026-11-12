@@ -13,12 +13,13 @@ SPOKEN = [
  ('o 0:41', 'o zero czterdzieści jeden'), ('o 0:12', 'o zero dwanaście'), ('od 1:03', 'od pierwszej zero trzy'),
  ('o 23:30', 'o dwudziestej trzeciej trzydzieści'), ('o 3:12', 'o trzeciej dwanaście'), ('od 1:52', 'od pierwszej pięćdziesiąt dwa'),
  ('25 watów', 'dwadzieścia pięć watów'), ('MW-2611', 'em wu dwadzieścia sześć jedenaście'),
- ('NIK', 'Nik'), ('SERWIS', 'serwis'), ('PRACA', 'praca'), ('K3', 'ka trzy'), ('PIN', 'pin'),
+ ('do PRACA', 'do pracy'), ('NIK', 'Nik'), ('SERWIS', 'serwis'), ('PRACA', 'praca'), ('K3', 'ka trzy'), ('PIN', 'pin'),
 ]
 def clean(t):
     t = re.sub(r'\s*\([^)]*\)\s*', ' ', t).strip()
     for a, b in SPOKEN: t = t.replace(a, b)
-    return re.sub(r'\s{2,}', ' ', t)
+    t = re.sub(r'\s{2,}', ' ', t)
+    return re.sub(r'(^|[.?!] )([a-ząćęłńóśźż])', lambda m: m.group(1) + m.group(2).upper(), t)
 
 # ---------- głosy ----------
 VOICE = {

@@ -68,11 +68,11 @@ Jestem inżynierem Syreon Polska. W dwa tysiące dwudziestym czwartym wdrażałe
 
 Wiceprezydent Szczerba. Szybciej niż czekać na pana Lasotę. Zatwierdzenie miałem w systemie jeszcze wieczorem.
 
-Wymieniałem moduł ka trzy. Tryb serwis włączyłem tylko na jakieś dwadzieścia minut, żeby podłączyć kabel, potem wróciłem do praca.
+Wymieniałem moduł ka trzy. Tryb serwis włączyłem tylko na jakieś dwadzieścia minut, żeby podłączyć kabel, potem wróciłem do pracy.
 
 Nikt. Telefon miałem wyciszony, bo pracowałem przy antenie.
 
-ka trzy to skomplikowana konfiguracja i nie wszystko zależy od mnie. Nie widzę tu niczego dziwnego.
+Ka trzy to skomplikowana konfiguracja i nie wszystko zależy od mnie. Nie widzę tu niczego dziwnego.
 
 To była tymczasowa atrapa na czas wymiany modułu. Tak się robi w serwisie, żeby nie uszkodzić nadajnika.
 
@@ -90,7 +90,7 @@ Dobrze, trwał dłużej. Nie chciałem wychodzić z trybu, dopóki nie skończę
 
 Dzwoniła operatorka, potem wiceprezydent. Obojgu powiedziałem, że to fałszywy alarm z Chemrudu.
 
-Nie było czego wymieniać. ka trzy wykreślono z dostawy, żeby zmieścić się w budżecie. Odbiór podpisał wiceprezydent.
+Nie było czego wymieniać. Ka trzy wykreślono z dostawy, żeby zmieścić się w budżecie. Odbiór podpisał wiceprezydent.
 
 To pytanie do działu prawnego.
 
