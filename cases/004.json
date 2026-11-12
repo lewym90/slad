@@ -1,0 +1,3239 @@
+{
+ "id": "004",
+ "title": "Martwy kanał",
+ "subtitle": "Syreny milczały. Ktoś skasował dowód.",
+ "genre": "Thriller techniczny",
+ "duration": "110–150 min",
+ "players": "2–6",
+ "difficulty": "Wymagająca",
+ "cover": "assets/cases/004-cover.webp",
+ "par": 73,
+ "intro": {
+  "lead": "Piątek, 27 listopada, 10:00. Centrum Zarządzania Kryzysowego w Rudzie. Za oknem mgła, na ścianie monitorów żadnego alarmu.",
+  "brief": [
+   "O 6:10 konserwator znalazł w stacji nadawczej „Kolonia” ciało Bogdana Lasoty, miejskiego administratora systemu ostrzegania. Wygląda na porażenie prądem przy rozdzielni.",
+   "W nocy o 1:47 czujniki chloru w zakładzie Chemrud zażądały alarmu. Syreny w mieście nie zawyły. Do rana 23 osoby trafiły do szpitala z podrażnieniem dróg oddechowych, a z archiwum Centrum zniknął zapis tego alarmu.",
+   "O 9:00 w urzędzie miała się zacząć kontrola NIK. Lasota figurował w kalendarzu jako uczestnik tego spotkania.",
+   "Burmistrz wydał dwa polecenia: ustalić, co się stało na wzgórzu, i wyjaśnić, dlaczego system, za który miasto zapłaciło miliony, milczał. Pięć osób ma coś do ukrycia."
+  ],
+  "task": [
+   "Kto zabił Bogdana Lasotę, jak i kiedy?",
+   "Dlaczego syreny nie zawyły o 1:47?",
+   "Kto jeszcze był w to zamieszany?",
+   "Co jest nie tak z kanałem K3 i dlaczego zniknął zapis alarmu?"
+  ],
+  "rules": [
+   "Każde przeszukanie miejsca i każde pytanie zadane świadkowi to jeden ruch. Ruchów nie brakuje, ale najlepsze zespoły zamykają sprawę oszczędnie.",
+   "Świadkowie kłamią, a w tej sprawie część z nich jest ze sobą powiązana. Gdy dowód przeczy zeznaniu, użyjcie konfrontacji. Nietrafiona konfrontacja kosztuje punkty.",
+   "W tej sprawie oprócz sprawcy działali pomocnicy. Raport zapyta o to osobno i oceni każdy wniosek.",
+   "Część miejsc jest zamknięta, dopóki nie wykażecie, że ktoś skłamał, albo nie otworzycie sejfu. Nie wszystko da się obejrzeć od razu."
+  ],
+  "modeRules": {
+   "table": "Wszystko widzicie razem. Część informacji zdobędziecie tylko w Centrali wydziału — zapytania do centrali też kosztują ruchy.",
+   "phones": "Każdy gracz ma w telefonie tajne akta, których nie widzi reszta. Od was zależy, kiedy i czy podzielicie się nimi z zespołem."
+  }
+ },
+ "people": [
+  {
+   "id": "kopec",
+   "name": "Dariusz Kopeć",
+   "role": "Inżynier serwisowy, Syreon Polska",
+   "age": 49,
+   "desc": "Szczupły, w granatowej kurtce firmowej, spokojny. Mówi technicznie i rzeczowo, a gdy pytania stają się osobiste, patrzy w bok.",
+   "deflect": [
+    "To pytanie do działu prawnego.",
+    "Proszę nie mylić serwisu z winą.",
+    "Mam dokumentację. Dla mnie sprawa jest jasna."
+   ],
+   "questions": [
+    {
+     "id": "k-q1",
+     "q": "Gdzie pan spędził noc z czwartku na piątek?",
+     "a": "W domu, w Zabrzu. Skończyłem pracę o szesnastej, położyłem się przed północą. Żona to potwierdzi.",
+     "claims": [
+      "k-l1"
+     ]
+    },
+    {
+     "id": "k-q2",
+     "q": "Jaka jest pana rola w systemie SYRION-4?",
+     "a": "Jestem inżynierem Syreon Polska. W 2024 wdrażałem ten system i podpisałem odbiór za wykonawcę. Dziś prowadzę serwis i gwarancję.",
+     "claims": [
+      "k-c1"
+     ]
+    },
+    {
+     "id": "k-q3",
+     "q": "Zgłoszenie MW-2611 jest na pana. Kto zatwierdził to okno serwisowe?",
+     "a": "Wiceprezydent Szczerba. Szybciej niż czekać na pana Lasotę. Zatwierdzenie miałem w systemie jeszcze wieczorem.",
+     "claims": [
+      "k-c2"
+     ],
+     "requires": [
+      "e32"
+     ]
+    },
+    {
+     "id": "k-q4",
+     "q": "Co pan robił na stacji od 0:41?",
+     "a": "Wymieniałem moduł K3. Tryb SERWIS włączyłem tylko na jakieś dwadzieścia minut, żeby podłączyć kabel, potem wróciłem do PRACA.",
+     "claims": [
+      "k-l4"
+     ],
+     "requires": [
+      "lie:k-l1"
+     ]
+    },
+    {
+     "id": "k-q5",
+     "q": "Czy ktoś do pana dzwonił tej nocy?",
+     "a": "Nikt. Telefon miałem wyciszony, bo pracowałem przy antenie.",
+     "claims": [
+      "k-l7"
+     ],
+     "requiresAny": [
+      "x1",
+      "e17"
+     ]
+    },
+    {
+     "id": "k-q6",
+     "q": "Okno miało trwać do trzeciej, a tryb SERWIS trwał prawie dwie godziny. Dlaczego tak długo?",
+     "a": "K3 to skomplikowana konfiguracja i nie wszystko zależy od mnie. Nie widzę tu niczego dziwnego.",
+     "requires": [
+      "p-service"
+     ]
+    },
+    {
+     "id": "k-q7",
+     "q": "W szafie do złącza K3 podłączono sztuczne obciążenie zamiast anteny. Dlaczego?",
+     "a": "To była tymczasowa atrapa na czas wymiany modułu. Tak się robi w serwisie, żeby nie uszkodzić nadajnika.",
+     "claims": [
+      "k-l8"
+     ],
+     "requires": [
+      "e11"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "k-l1",
+     "text": "Całą noc spędził w domu w Zabrzu.",
+     "contradicts": [
+      "e12",
+      "x2",
+      "x3"
+     ],
+     "response": "Dobrze. Byłem na Kolonii. Zgłoszenie było moje, wymieniałem moduł K3. Wszedłem o 0:41, wyszedłem koło drugiej. Lasoty nie widziałem na oczy.",
+     "gives": [
+      "t01"
+     ],
+     "reveals": [
+      "k-l2",
+      "k-l3"
+     ]
+    },
+    {
+     "id": "k-c1",
+     "text": "W 2024 roku wdrażał SYRION-4 i podpisał protokół odbioru za wykonawcę.",
+     "truth": true
+    },
+    {
+     "id": "k-c2",
+     "text": "Okno serwisowe MW-2611 zatwierdził wiceprezydent Szczerba.",
+     "truth": true
+    },
+    {
+     "id": "k-l2",
+     "text": "Wyszedł ze stacji około drugiej w nocy.",
+     "contradicts": [
+      "e12",
+      "e09",
+      "x3"
+     ],
+     "response": "Dobrze, przeciągnęło się do trzeciej. Antena, konfiguracja. Ale Lasoty tam nie było, przysięgam.",
+     "gives": [
+      "t02"
+     ]
+    },
+    {
+     "id": "k-l3",
+     "text": "Lasoty tej nocy nie widział.",
+     "contradicts": [
+      "e12",
+      "e44"
+     ],
+     "response": "Zjawił się koło wpół do trzeciej. Pokłóciliśmy się o K3. Wyszedł na dwór zadzwonić, a ja zostałem przy szafie.",
+     "gives": [
+      "t03"
+     ],
+     "reveals": [
+      "k-l5"
+     ]
+    },
+    {
+     "id": "k-l5",
+     "text": "Lasota wyszedł ze stacji żywy.",
+     "contradicts": [
+      "e12",
+      "x4"
+     ],
+     "response": "Doszło do szarpaniny. Złapał za szyny i rąbnęło go. To był wypadek, nieszczęśliwy wypadek.",
+     "reveals": [
+      "k-l6"
+     ]
+    },
+    {
+     "id": "k-l6",
+     "text": "Lasota zginął w nieszczęśliwym wypadku, dotknąwszy szyn rozdzielni.",
+     "contradicts": [
+      "x4",
+      "e13",
+      "e42"
+     ],
+     "response": "Chciał to zgłosić rano. Wszystko, K3, aneks. Złapałem klucz. Jedno uderzenie. Potem ułożyłem go przy szynach.",
+     "gives": [
+      "t05"
+     ]
+    },
+    {
+     "id": "k-l4",
+     "text": "Tryb SERWIS trwał około dwudziestu minut.",
+     "contradicts": [
+      "e09",
+      "e16"
+     ],
+     "response": "Dobrze, trwał dłużej. Nie chciałem wychodzić z trybu, dopóki nie skończę konfiguracji."
+    },
+    {
+     "id": "k-l7",
+     "text": "Nikt nie dzwonił do niego tej nocy.",
+     "contradicts": [
+      "x1",
+      "st:b-c1"
+     ],
+     "response": "Dzwoniła operatorka, potem wiceprezydent. Obojgu powiedziałem, że to fałszywy alarm z Chemrudu.",
+     "gives": [
+      "t04"
+     ]
+    },
+    {
+     "id": "k-l8",
+     "text": "Sztuczne obciążenie przy K3 było tylko tymczasowe, na czas wymiany modułu.",
+     "contradicts": [
+      "e31",
+      "e43",
+      "e30"
+     ],
+     "response": "Nie było czego wymieniać. K3 wykreślono z dostawy, żeby zmieścić się w budżecie. Odbiór podpisał wiceprezydent.",
+     "gives": [
+      "t14"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "burda",
+   "name": "Agnieszka Burda",
+   "role": "Operatorka dyżurna CZK",
+   "age": 38,
+   "desc": "Drobna, w służbowym polarze, z opuchniętymi oczami po nocnej zmianie. Mówi szybko i nerwowo skubie rękaw.",
+   "deflect": [
+    "Jestem tylko operatorem, nie administratorem.",
+    "Robiłam to, co mówi procedura.",
+    "Proszę mnie nie przesłuchiwać na korytarzu."
+   ],
+   "questions": [
+    {
+     "id": "b-q1",
+     "q": "Proszę opisać swoją zmianę.",
+     "a": "Dyżur od osiemnastej. W nocy cisza, test łącza o 0:12 w porządku. Żądanie alarmu z Chemrud do mnie nie dotarło, system niczego nie pokazał.",
+     "claims": [
+      "b-l1"
+     ]
+    },
+    {
+     "id": "b-q2",
+     "q": "Czy w nocy było otwarte okno serwisowe na nadajniku?",
+     "a": "Tak, MW-2611, od północy. Widziałam na konsoli status SERWIS od 1:03.",
+     "claims": [
+      "b-c2"
+     ]
+    },
+    {
+     "id": "b-q3",
+     "q": "Czy kasowała pani coś z archiwum alarmów?",
+     "a": "Nie. Mogę usuwać tylko zapisy testowe, a testowych tej nocy nie było. Niczego nie usuwałam.",
+     "claims": [
+      "b-l2"
+     ],
+     "requires": [
+      "x5"
+     ]
+    },
+    {
+     "id": "b-q4",
+     "q": "Dlaczego nie zgłosiła pani żądania do 112, tylko zadzwoniła do serwisanta?",
+     "a": "Procedura mówi: najpierw serwis. Kopeć powiedział, że to test. Nie chciałam fałszywego alarmu na własną rękę.",
+     "requires": [
+      "lie:b-l1"
+     ]
+    },
+    {
+     "id": "b-q5",
+     "q": "O czym rozmawiała pani z wiceprezydentem o 3:35?",
+     "a": "O tym, żeby usunąć zapis. Powiedział, że to błąd czujnika i że rano zgłosimy usterkę. Nie wiedziałam, że ludzie trafili do szpitala.",
+     "claims": [
+      "b-c3"
+     ],
+     "requiresAny": [
+      "x1",
+      "lie:b-l2"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "b-l1",
+     "text": "Żądanie alarmu nie dotarło do centrum, system niczego nie pokazał.",
+     "contradicts": [
+      "e17",
+      "e18",
+      "x1"
+     ],
+     "response": "Widziałam czerwony pasek „brak potwierdzenia”. Zadzwoniłam do serwisu. Kopeć powiedział, że to ich test czujnika, żebym niczego nie ruszała.",
+     "gives": [
+      "t06"
+     ],
+     "reveals": [
+      "b-c1"
+     ]
+    },
+    {
+     "id": "b-c1",
+     "text": "Kopeć powiedział jej przez telefon, że to test czujnika i żeby niczego nie ruszała.",
+     "truth": true
+    },
+    {
+     "id": "b-c2",
+     "text": "Konsola pokazywała SN-1 w trybie SERWIS od 1:03.",
+     "truth": true
+    },
+    {
+     "id": "b-l2",
+     "text": "Niczego nie usuwała z archiwum alarmów.",
+     "contradicts": [
+      "x5"
+     ],
+     "response": "Wiceprezydent kazał skasować zapis jako testowy, żeby nie robić paniki w mediach. Wpisałam swój PIN. Nie wiedziałam, że ktoś zginął.",
+     "gives": [
+      "t07"
+     ]
+    },
+    {
+     "id": "b-c3",
+     "text": "O 3:35 wiceprezydent Szczerba polecił jej usunąć zapis alarmu.",
+     "truth": true
+    }
+   ]
+  },
+  {
+   "id": "szczerba",
+   "name": "Piotr Szczerba",
+   "role": "Wiceprezydent miasta",
+   "age": 51,
+   "desc": "Gładko ogolony, w drogim płaszczu, uprzejmy i zdystansowany. Zaczyna zdania od słów „jak państwo wiedzą”.",
+   "deflect": [
+    "Proszę kierować pytania do biura prasowego.",
+    "Jestem do dyspozycji, ale nie będę zgadywał.",
+    "To sprawa operacyjna, nie polityczna."
+   ],
+   "questions": [
+    {
+     "id": "s-q1",
+     "q": "Co pan robił w nocy z czwartku na piątek?",
+     "a": "Spałem. Położyłem się o 23:30, o niczym nie wiedziałem do rana. O wycieku dowiedziałem się z radia.",
+     "claims": [
+      "s-l1"
+     ]
+    },
+    {
+     "id": "s-q2",
+     "q": "Okno MW-2611 zatwierdzone jest pana nazwiskiem. Dlaczego nie administrator?",
+     "a": "Okno zatwierdził pan Lasota. Wpis przy moim nazwisku to błąd systemu.",
+     "claims": [
+      "s-l2"
+     ],
+     "requires": [
+      "e32"
+     ]
+    },
+    {
+     "id": "s-q3",
+     "q": "Podpisał pan protokół odbioru SYRION-4. Czy kanał K3 był przetestowany?",
+     "a": "Oczywiście. Protokół jest jednoznaczny: test pozytywny, 25 watów. Nie mam powodu wątpić.",
+     "claims": [
+      "s-l3"
+     ],
+     "requires": [
+      "e28"
+     ]
+    },
+    {
+     "id": "s-q4",
+     "q": "Faktura Alfa-Doradztwo wystawiona została dla Syreon. Kim jest prezes tej spółki?",
+     "a": "Nie znam tej firmy ani jej prezesa. Syreon ma wielu doradców.",
+     "claims": [
+      "s-l4"
+     ],
+     "requires": [
+      "e33"
+     ]
+    },
+    {
+     "id": "s-q5",
+     "q": "Kto zdecydował o wykreśleniu K3 z dostaw w 2024 roku?",
+     "a": "Kopeć zaproponował oszczędność. Podpisałem aneks, bo wyglądał rozsądnie. Resztę załatwiał serwis.",
+     "claims": [
+      "s-c2"
+     ],
+     "requires": [
+      "lie:s-l3"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "s-l1",
+     "text": "Spał od 23:30 do rana i o niczym nie wiedział.",
+     "contradicts": [
+      "x1"
+     ],
+     "response": "Pyka dzwonił koło drugiej, pytał, czy syreny wyły. Zadzwoniłem do Kopecia, potem nad ranem do operatorki. Chciałem uniknąć paniki.",
+     "gives": [
+      "t08"
+     ],
+     "reveals": [
+      "s-c1"
+     ]
+    },
+    {
+     "id": "s-c1",
+     "text": "Pyka zadzwonił do niego około drugiej z pytaniem, czy syreny wyły.",
+     "truth": true
+    },
+    {
+     "id": "s-l2",
+     "text": "Okno MW-2611 zatwierdził Lasota; wpis z jego nazwiskiem to błąd systemu.",
+     "contradicts": [
+      "e32",
+      "st:k-c2"
+     ],
+     "response": "Zatwierdziłem sam. Kopeć prosił, a Lasota zawsze się certolił. Uznałem, że to formalność."
+    },
+    {
+     "id": "s-l3",
+     "text": "Kanał K3 został poprawnie przetestowany przy odbiorze.",
+     "contradicts": [
+      "e30",
+      "e31",
+      "e11"
+     ],
+     "response": "Podpisałem, co dał serwis. Do dziś nie sprawdzałem, czy K3 działa. Serwis mówił, że działa.",
+     "gives": [
+      "t09"
+     ]
+    },
+    {
+     "id": "s-c2",
+     "text": "K3 wykreślono z dostaw z inicjatywy Kopecia, a Szczerba podpisał aneks.",
+     "truth": true
+    },
+    {
+     "id": "s-l4",
+     "text": "Nie zna firmy Alfa-Doradztwo ani jej prezesa.",
+     "contradicts": [
+      "e33"
+     ],
+     "response": "To firma mojej żony. Usługa doradcza była legalna. Nie widzę związku ze sprawą."
+    }
+   ]
+  },
+  {
+   "id": "hajduk",
+   "name": "Lena Hajduk",
+   "role": "Dziennikarka „Głosu Rudy”",
+   "age": 33,
+   "desc": "Szczupła, w skórzanej kurtce, z notatnikiem w kieszeni. Odpowiada uprzejmie, ale z dystansem, jak ktoś przyzwyczajony do pytań z drugiej strony.",
+   "deflect": [
+    "Chronię źródła informacji.",
+    "Tajemnica dziennikarska nie podlega negocjacjom.",
+    "Nie jestem podejrzana."
+   ],
+   "questions": [
+    {
+     "id": "h-q1",
+     "q": "Czy rozmawiała pani w nocy z Lasotą albo widziała się z nim?",
+     "a": "Nie. Ani w czwartek, ani w piątek. Znam go zawodowo, to wszystko.",
+     "claims": [
+      "h-l1"
+     ]
+    },
+    {
+     "id": "h-q2",
+     "q": "Gdzie pani była po północy?",
+     "a": "W domu, na osiedlu Parkowe. Pracowałam nad tekstem. Nigdzie nie jeździłam.",
+     "claims": [
+      "h-l2"
+     ]
+    },
+    {
+     "id": "h-q3",
+     "q": "Co pani widziała pod stacją nadawczą?",
+     "a": "Biały bus z drabiną na dachu wyjechał z bramy o 3:12. Kierowcy nie widziałam, było ciemno.",
+     "claims": [
+      "h-c2"
+     ],
+     "requires": [
+      "lie:h-l2"
+     ]
+    },
+    {
+     "id": "h-q4",
+     "q": "Co dostała pani od Lasoty o północy?",
+     "a": "Pendrive z telemetrią K3 i kopię protokołu odbioru. Mówił, że kanał rezerwowy to atrapa i że rano NIK dostanie to samo.",
+     "claims": [
+      "h-c1"
+     ],
+     "requires": [
+      "lie:h-l1"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "h-l1",
+     "text": "Tej nocy nie rozmawiała z Lasotą ani się z nim nie widziała.",
+     "contradicts": [
+      "e34",
+      "e37",
+      "x1"
+     ],
+     "response": "Spotkałam się z nim o północy. Dał mi pendrive z telemetrią K3 i protokół. Powiedział, że rano wszystko wyjdzie. Nie mówiłam, bo chronię źródło.",
+     "gives": [
+      "t10"
+     ]
+    },
+    {
+     "id": "h-c1",
+     "text": "Lasota dał jej pendrive z telemetrią K3 i powiedział, że kanał rezerwowy to atrapa.",
+     "truth": true
+    },
+    {
+     "id": "h-l2",
+     "text": "Po północy była w domu i nie jeździła na Kolonię.",
+     "contradicts": [
+      "e34",
+      "x2"
+     ],
+     "response": "Zadzwonił o drugiej trzydzieści cztery: „Przyjedź, to pilne”. Wjechałam w las o trzeciej pięć, pod bramą byłam kilka minut później. Brama zamknięta, w stacji światło.",
+     "gives": [
+      "t11",
+      "e38"
+     ]
+    },
+    {
+     "id": "h-c2",
+     "text": "O 3:12 z bramy stacji wyjechał biały bus z drabiną na dachu.",
+     "truth": true
+    }
+   ]
+  },
+  {
+   "id": "pyka",
+   "name": "Witold Pyka",
+   "role": "Prezes Chemrud S.A.",
+   "age": 60,
+   "desc": "Potężny, w kamizelce i szytej na miarę koszuli, głos jak z mównicy. Odpowiada, jakby wygłaszał oświadczenie.",
+   "deflect": [
+    "Moi prawnicy zajmą się wszystkimi pytaniami.",
+    "Zakład działał zgodnie z procedurami.",
+    "To nie jest miejsce na takie insynuacje."
+   ],
+   "questions": [
+    {
+     "id": "y-q1",
+     "q": "Kiedy dowiedział się pan o wycieku?",
+     "a": "Rano, z telefonu od zastępcy. Noc spędziłem w domu, spałem.",
+     "claims": [
+      "y-l1"
+     ]
+    },
+    {
+     "id": "y-q2",
+     "q": "Czy wyciek był groźny dla mieszkańców?",
+     "a": "Nie. To była niewielka nieszczelność. Alarm syren nie był potrzebny.",
+     "claims": [
+      "y-l2"
+     ]
+    },
+    {
+     "id": "y-q3",
+     "q": "Czy rozmawiał pan tej nocy z kimś z urzędu miasta?",
+     "a": "Nie. Z nikim.",
+     "claims": [
+      "y-l3"
+     ],
+     "requires": [
+      "x1"
+     ]
+    },
+    {
+     "id": "y-q4",
+     "q": "Dlaczego wymienił pan zawór Cl-3 na tańszy zamiennik?",
+     "a": "To decyzja ekonomiczna, zgodna z normami. Nie będę jej tłumaczył w tonie śledztwa.",
+     "requires": [
+      "e23"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "y-l1",
+     "text": "O wycieku dowiedział się dopiero rano.",
+     "contradicts": [
+      "e22",
+      "x1"
+     ],
+     "response": "Wiedziałem od 1:52. Orlik zadzwonił, uznałem, że zakład opanuje to sam. Nie wezwałem straży, bo nie chciałem kolejnej kontroli.",
+     "gives": [
+      "t12"
+     ]
+    },
+    {
+     "id": "y-l2",
+     "text": "Wyciek był niewielki i alarm syren nie był potrzebny.",
+     "contradicts": [
+      "e21",
+      "e25",
+      "e26"
+     ],
+     "response": "Czujniki dawały u nas fałszywe alarmy. Byłem przekonany, że sytuacja jest pod kontrolą."
+    },
+    {
+     "id": "y-l3",
+     "text": "Tej nocy z nikim z urzędu miasta nie rozmawiał.",
+     "contradicts": [
+      "x1",
+      "st:s-c1"
+     ],
+     "response": "Dzwoniłem do wiceprezydenta, bo zobaczyłem, że miasto milczy. Zapytałem, czy syreny wyły. Powiedział: „Zajmę się tym”.",
+     "gives": [
+      "t13"
+     ]
+    }
+   ]
+  }
+ ],
+ "locations": [
+  {
+   "id": "station",
+   "name": "Stacja nadawcza „Kolonia”",
+   "kind": "Miejsce znalezienia ciała",
+   "desc": "Niski budynek z cegły pod kratownicowym masztem na wzgórzu. W środku pomieszczenie nadajnika SN-1, szafa z rozdzielnią i drzwi D1 z czytnikami po obu stronach.",
+   "spots": [
+    {
+     "id": "sp-body",
+     "name": "Ciało przy szafie",
+     "text": "Lasota leży przy otwartej szafie SN-1. Przy ciele zegarek, w kieszeni kurtki telefon.",
+     "gives": [
+      "e07",
+      "e08",
+      "e44"
+     ]
+    },
+    {
+     "id": "sp-cabinet",
+     "name": "Szafa nadajnika SN-1",
+     "text": "Panel dziennika zdarzeń z zabezpieczoną pamięcią. Wydruk jest jeden.",
+     "gives": [
+      "e09"
+     ]
+    },
+    {
+     "id": "sp-switch",
+     "name": "Przełącznik SERWIS/PRACA",
+     "text": "Przełącznik kluczykowy na panelu szafy.",
+     "gives": [
+      "e10"
+     ]
+    },
+    {
+     "id": "sp-k3",
+     "name": "Złącze anteny K3",
+     "text": "Skrzynka na dole szafy, za osłoną.",
+     "gives": [
+      "e11"
+     ]
+    },
+    {
+     "id": "sp-door",
+     "name": "Drzwi D1 i czytniki",
+     "text": "Czytniki kart po obu stronach drzwi, z pamięcią zdarzeń.",
+     "gives": [
+      "e12"
+     ]
+    },
+    {
+     "id": "sp-tools",
+     "name": "Kanał kablowy za szafą",
+     "text": "Wąska szczelina między szafą a ścianą, ciemna.",
+     "gives": [
+      "e13"
+     ]
+    },
+    {
+     "id": "sp-gate",
+     "name": "Brama i dojazd",
+     "text": "Żwirowy dojazd i brama zamykana na kłódkę, nad nią kamera.",
+     "gives": [
+      "e14"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "czk",
+   "name": "Centrum Zarządzania Kryzysowego",
+   "kind": "Sala dyżurna, ul. Hutnicza",
+   "desc": "Sala z konsolą, ścianą monitorów i jednym biurkiem. Nocą pracuje tu jedna osoba. Serwerownia jest za drzwiami z kodem.",
+   "spots": [
+    {
+     "id": "sp-console",
+     "name": "Konsola dyżurna",
+     "text": "Pasek zdarzeń z nocy, wydruk z konsoli.",
+     "gives": [
+      "e16"
+     ]
+    },
+    {
+     "id": "sp-trash",
+     "name": "Kosz przy biurku",
+     "text": "Kosz na odpady, nieopróżniany od nocy.",
+     "gives": [
+      "e17"
+     ]
+    },
+    {
+     "id": "sp-camera",
+     "name": "Kamera nad konsolą",
+     "text": "Zapis z kamery sali dyżurnej.",
+     "gives": [
+      "e18"
+     ]
+    },
+    {
+     "id": "sp-roster",
+     "name": "Grafik i procedury",
+     "text": "Teczka z grafikiem i instrukcjami zmiany.",
+     "gives": [
+      "e19",
+      "e20"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chemrud",
+   "name": "Zakład Chemrud",
+   "kind": "Wydział chloru, osiedle Zielone",
+   "desc": "Hale produkcyjne i biurowiec za płotem. Linia Cl-3 jest odcięta, teren zabezpieczony przez straż.",
+   "spots": [
+    {
+     "id": "sp-gasnet",
+     "name": "Dziennik czujników GasNet",
+     "text": "Terminal w nastawni wydziału chloru.",
+     "gives": [
+      "e21"
+     ]
+    },
+    {
+     "id": "sp-shift",
+     "name": "Dziennik zmiany",
+     "text": "Zeszyt nocnej zmiany na biurku kierownika.",
+     "gives": [
+      "e22"
+     ]
+    },
+    {
+     "id": "sp-valve",
+     "name": "Zawór Cl-3",
+     "text": "Pęknięty zawór, protokół awarii obok.",
+     "gives": [
+      "e23"
+     ]
+    },
+    {
+     "id": "sp-office",
+     "name": "Gabinet prezesa",
+     "text": "Komputer prezesa z otwartym plikiem.",
+     "gives": [
+      "e24"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hospital",
+   "name": "Szpital Miejski",
+   "kind": "SOR i oddział toksykologii",
+   "desc": "Izba przyjęć pełna nocnych pacjentów. Lekarz dyżurny ma kwadrans.",
+   "spots": [
+    {
+     "id": "sp-sor",
+     "name": "Rejestr przyjęć SOR",
+     "text": "Rejestr nocnych przyjęć.",
+     "gives": [
+      "e25"
+     ]
+    },
+    {
+     "id": "sp-tox",
+     "name": "Lekarz toksykolog",
+     "text": "Krótka rozmowa na korytarzu.",
+     "gives": [
+      "e26"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "city",
+   "name": "Urząd Miasta",
+   "kind": "Referat Zarządzania Kryzysowego i gabinety",
+   "desc": "Korytarz z wykładziną i biura z tabliczkami. Gabinet Lasoty jest zaplombowany przez policję, ale pozwolenie macie.",
+   "spots": [
+    {
+     "id": "sp-desk",
+     "name": "Gabinet Lasoty",
+     "text": "Biurko, kalendarz i karteczka na monitorze.",
+     "gives": [
+      "e27"
+     ]
+    },
+    {
+     "id": "sp-safe",
+     "name": "Sejf w gabinecie",
+     "text": "Mały sejf za szafą, zamek czterocyfrowy.",
+     "gives": [
+      "e29",
+      "e30"
+     ],
+     "requires": {
+      "puzzle": "p-pin"
+     },
+     "lockedText": "Zamknięty sejf z czterocyfrowym zamkiem. Bez kodu go nie otworzycie, a rozwiercenie zniszczyłoby zawartość."
+    },
+    {
+     "id": "sp-archive",
+     "name": "Archiwum zamówień",
+     "text": "Segregatory z umową i aneksami SYRION-4.",
+     "gives": [
+      "e28",
+      "e31"
+     ]
+    },
+    {
+     "id": "sp-mw",
+     "name": "System wniosków serwisowych",
+     "text": "Komputer referatu z systemem MW.",
+     "gives": [
+      "e32"
+     ]
+    },
+    {
+     "id": "sp-vice",
+     "name": "Gabinet wiceprezydenta",
+     "text": "Biurko wiceprezydenta, szuflada z dokumentami.",
+     "gives": [
+      "e33"
+     ],
+     "requires": {
+      "all": [
+       "lie:s-l2"
+      ]
+     },
+     "lockedText": "Bez podstaw nikt wam gabinetu wiceprezydenta nie otworzy. Najpierw musicie wykazać, że jego zeznania nie trzymają się dokumentów."
+    }
+   ]
+  },
+  {
+   "id": "parking",
+   "name": "Parking leśny pod Kolonią",
+   "kind": "Dojazd do wzgórza",
+   "desc": "Żwirowy plac w lesie, półtora kilometra od stacji. Na drzewie fotopułapka leśnictwa.",
+   "spots": [
+    {
+     "id": "sp-trap",
+     "name": "Fotopułapka leśnictwa",
+     "text": "Karta pamięci z zapisem zdjęć.",
+     "gives": [
+      "e34"
+     ]
+    },
+    {
+     "id": "sp-ground",
+     "name": "Plac i słupek",
+     "text": "Ślady butów i śmieci po nocy.",
+     "gives": [
+      "e35"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "newsroom",
+   "name": "Redakcja „Głosu Rudy”",
+   "kind": "Biurko reporterki",
+   "desc": "Open space nad drukarnią. Biurko Leny Hajduk jest pod oknem.",
+   "spots": [
+    {
+     "id": "sp-notes",
+     "name": "Notatnik reporterki",
+     "text": "Notatnik w górnej szufladzie.",
+     "gives": [
+      "e36"
+     ],
+     "requires": {
+      "all": [
+       "lie:h-l1"
+      ]
+     },
+     "lockedText": "Bez nakazu redakcja nie wyda notatek reporterki, a tajemnica dziennikarska to nie wymysł. Potrzebujecie podstawy."
+    },
+    {
+     "id": "sp-mail",
+     "name": "Skrzynka pocztowa reporterki",
+     "text": "Korespondencja z czwartku.",
+     "gives": [
+      "e37"
+     ],
+     "requires": {
+      "all": [
+       "lie:h-l1"
+      ]
+     },
+     "lockedText": "Bez nakazu nikt wam skrzynki nie otworzy. Najpierw wykażcie, że reporterka mówi nieprawdę."
+    }
+   ]
+  },
+  {
+   "id": "syreon",
+   "name": "Syreon Polska, Gliwice",
+   "kind": "Siedziba i garaż firmy serwisowej",
+   "desc": "Hala z garażem, magazynem i niewielkim biurem. Szef firmy zgodził się na oględziny dopiero po telefonie z prokuratury.",
+   "spots": [
+    {
+     "id": "sp-reg",
+     "name": "Rejestr kart i kluczy",
+     "text": "Zeszyt wydań i grafik serwisantów.",
+     "gives": [
+      "e39",
+      "e40"
+     ],
+     "requires": {
+      "all": [
+       "lie:k-l1"
+      ]
+     },
+     "lockedText": "Bez podstawy firma nie pokaże wam rejestrów. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+    },
+    {
+     "id": "sp-van",
+     "name": "Bus Ducato",
+     "text": "Furgon zaparkowany w garażu.",
+     "gives": [
+      "e41"
+     ],
+     "requires": {
+      "all": [
+       "lie:k-l1"
+      ]
+     },
+     "lockedText": "Bez podstawy nie przeszukacie samochodu firmowego. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+    },
+    {
+     "id": "sp-tw",
+     "name": "Wykaz narzędzi",
+     "text": "Segregator z przydziałami narzędzi.",
+     "gives": [
+      "e42"
+     ],
+     "requires": {
+      "all": [
+       "lie:k-l1"
+      ]
+     },
+     "lockedText": "Bez podstawy firma nie wyda wykazów. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+    },
+    {
+     "id": "sp-orders",
+     "name": "Archiwum zamówień",
+     "text": "Szafa z teczkami zamówień z 2024 roku.",
+     "gives": [
+      "e43"
+     ],
+     "requires": {
+      "all": [
+       "lie:k-l1"
+      ]
+     },
+     "lockedText": "Bez podstawy firma nie otworzy archiwum zamówień. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+    }
+   ]
+  }
+ ],
+ "evidence": [
+  {
+   "id": "e01",
+   "type": "Raport",
+   "title": "Raport z miejsca zdarzenia",
+   "summary": "Piątek, 6:25. Pierwsze ustalenia patrolu.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Miejsce",
+       "Stacja nadawcza „Kolonia”, wzgórze Kolonia, Ruda — pomieszczenie nadajnika SN-1"
+      ],
+      [
+       "Zgłoszenie",
+       "piątek 27.11, 6:14, Henryk Mazur (konserwator stacji, Urząd Miasta), 112"
+      ],
+      [
+       "Przyjazd patrolu",
+       "6:25"
+      ],
+      [
+       "Zmarły",
+       "Bogdan Lasota, 56 l., kierownik Referatu Zarządzania Kryzysowego UM"
+      ]
+     ]
+    },
+    "Ciało leżało przy otwartej szafie nadajnika SN-1, obok rozdzielni zasilania 400 V. Drzwi stacji (D1) były zamknięte — konserwator wszedł własną kartą o 6:07. Stacja jest bez stałej obsady; nocą nikt tu nie pracuje.",
+    "Pierwsza robocza hipoteza patrolu: porażenie prądem przy pracach przy zasilaniu. Technik odciął zasilanie szafy o 6:30, zanim ktokolwiek zbliżył się do ciała.",
+    {
+     "note": "Lasota był administratorem systemu ostrzegania mieszkańców SYRION-4. Nic nie wskazuje, by miał tej nocy zaplanowane prace przy nadajniku."
+    }
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-11-27 06:14",
+     "Henryk Mazur zgłasza znalezienie ciała Lasoty",
+     "Raport"
+    ]
+   ]
+  },
+  {
+   "id": "e02",
+   "type": "Opinia",
+   "title": "Wstępna opinia lekarza",
+   "summary": "Oględziny o 7:20, przed przewiezieniem ciała.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Obrażenia",
+       "oparzenia prawej dłoni i przedramienia (ślady przepływu prądu); krwiak potyliczny"
+      ],
+      [
+       "Przyczyna zgonu",
+       "do ustalenia po sekcji"
+      ],
+      [
+       "Czas zgonu",
+       "piątek między 1:30 a 4:30 (wstępnie; w pomieszczeniu ok. 4°C)"
+      ]
+     ]
+    },
+    "Krwiak potyliczny lekarz opisuje jako „do wyjaśnienia — możliwy uraz przy upadku po porażeniu”. Prosi o sekcję i o szczegółową analizę oparzeń."
+   ],
+   "start": true
+  },
+  {
+   "id": "e03",
+   "type": "Raport",
+   "title": "Raport Państwowej Straży Pożarnej",
+   "summary": "Wyciek chloru w zakładzie Chemrud, noc 26/27.11.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Zdarzenie",
+       "wyciek chloru, Chemrud S.A., wydział chloru, linia Cl-3"
+      ],
+      [
+       "Pierwsze zgłoszenie 112",
+       "piątek 2:09, mieszkaniec osiedla Zielone (duszący zapach)"
+      ],
+      [
+       "Straż na miejscu",
+       "2:26"
+      ],
+      [
+       "Wyciek opanowany",
+       "2:50"
+      ],
+      [
+       "Poszkodowani",
+       "23 osoby przewiezione do Szpitala Miejskiego, nikt nie zmarł"
+      ]
+     ]
+    },
+    "Syreny alarmowe SYRION-4 nie zawyły ani razu. Mieszkańcy dowiedzieli się z zapachu i z telefonów od sąsiadów.",
+    {
+     "note": "Zgodnie z instrukcją zakładu, przekroczenie 3 ppm powinno automatycznie uruchamiać alarm syren w całym mieście."
+    }
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-11-27 02:09",
+     "Pierwsze zgłoszenie 112 o zapachu chloru na osiedlu Zielone",
+     "Raport PSP"
+    ],
+    [
+     "2026-11-27 02:50",
+     "Wyciek opanowany przez straż",
+     "Raport PSP"
+    ]
+   ]
+  },
+  {
+   "id": "e04",
+   "type": "Zlecenie",
+   "title": "Zlecenie prezydenta miasta",
+   "summary": "Dlaczego syreny milczały?",
+   "body": [
+    {
+     "quote": "Syreny nie zawyły, a w nocy ktoś zginął na stacji, która je obsługuje. Producent czujników z Chemrud potwierdza, że żądanie alarmu wysłano o 1:47. W archiwum Centrum Zarządzania Kryzysowego nie ma po nim śladu. Chcę wiedzieć, co się stało — z alarmem i z Lasotą.",
+     "by": "prezydent miasta Ruda"
+    },
+    {
+     "kv": [
+      [
+       "Zakres",
+       "przyczyna ciszy syren; zgon B. Lasoty; zniknięcie zapisu alarmu AL-2611-0147"
+      ],
+      [
+       "Termin",
+       "raport do poniedziałku"
+      ]
+     ]
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e05",
+   "type": "Dokument",
+   "title": "Schemat systemu SYRION-4",
+   "summary": "Jak polecenie alarmu trafia do syren.",
+   "body": [
+    {
+     "h": "Tor alarmowy"
+    },
+    "Czujniki zakładów (np. Chemrud) wysyłają żądanie alarmu do serwera Centrum Zarządzania Kryzysowego (CZK, ul. Hutnicza). Serwer przekazuje polecenie kanałem K1 do nadajnika SN-1 na maszcie Kolonia, a nadajnik uruchamia 14 syren (S01–S14).",
+    {
+     "h": "Kanał rezerwowy K3"
+    },
+    "Gdy K1 nie odpowiada, SN-1 automatycznie przełącza się na kanał rezerwowy K3 (osobna antena i osobny moduł nadawczy) i wysyła polecenie z lokalnego sterownika.",
+    {
+     "h": "Tryb SERWIS"
+    },
+    "Szafa SN-1 ma przełącznik kluczykowy SERWIS/PRACA. W trybie SERWIS nadajnik ignoruje polecenia z K1 i z K3 (ochrona osób pracujących na maszcie). Każde przełączenie zapisuje się w dzienniku zdarzeń SN-1 razem z oznaczeniem klucza."
+   ],
+   "start": true
+  },
+  {
+   "id": "e06",
+   "type": "Dokument",
+   "title": "Regulamin serwisowy SYRION-4",
+   "summary": "Zasady okien serwisowych i kluczy.",
+   "body": [
+    {
+     "log": [
+      "§2   Prace przy SN-1 wymagają zgłoszenia okna serwisowego w systemie MW.",
+      "§4   Okno zatwierdza administrator systemu (kierownik Referatu Zarządzania Kryzysowego).",
+      "§4.3 Zastępca może zatwierdzić okno tylko wtedy, gdy administrator jest nieobecny dłużej niż 72 godziny.",
+      "§5   Klucz SERWIS i kartę serwisową otrzymuje wyłącznie serwisant z wykazu.",
+      "§6   W trybie SERWIS blokowane są polecenia K1 i K3.",
+      "§7   Po wyjściu z trybu SERWIS nadajnik wysyła zaległe polecenia z kolejki (do 6 godzin wstecz)."
+     ]
+    },
+    {
+     "note": "Klucze SERWIS: UM-1 (miasto, w sejfie na stacji) oraz SYR-1 (pula serwisowa firmy Syreon Polska)."
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e07",
+   "type": "Oględziny",
+   "title": "Ciało przy szafie SN-1",
+   "summary": "Bogdan Lasota, pomieszczenie nadajnika.",
+   "body": [
+    "Lasota leży na boku przy otwartej szafie SN-1, głową ku podłodze, prawa dłoń przy szynach rozdzielni 400 V. Rękaw prawej ręki przepalony przy nadgarstku, skóra dłoni z oparzeniami. Pod potylicą niewielka kałuża zaschniętej krwi.",
+    "Na podłodze, kilkadziesiąt centymetrów od ciała, brak krwi poza kałużą pod głową. Kurtka zapięta, rękawiczki w kieszeni. Karta LAS-01 w portfelu.",
+    {
+     "note": "Oparzenia są ostre, ale okolica oparzeń jest sucha i blada. Technik zaznacza, że wygląda to „na czyste, bez reakcji skóry” — do oceny lekarza."
+    }
+   ]
+  },
+  {
+   "id": "e08",
+   "type": "Przedmiot",
+   "title": "Zegarek Lasoty",
+   "summary": "Smartwatch z urwanym paskiem, pod szafą.",
+   "body": [
+    "Zegarek leżał pod szafą, około 30 cm od ciała. Pasek urwany przy zapięciu, ekran pęknięty, urządzenie nie reaguje. Technik nie włączał go ani nie ustawiał godziny.",
+    {
+     "note": "Dane z zegarka można odzyskać tylko przez producenta (zapytanie służbowe)."
+    }
+   ]
+  },
+  {
+   "id": "e09",
+   "type": "Dziennik",
+   "title": "Dziennik zdarzeń SN-1",
+   "summary": "Wydruk lokalnego dziennika nadajnika, pamięć zabezpieczona przed zapisem.",
+   "body": [
+    {
+     "log": [
+      "27.11 01:03:22   MODE SERWIS ON            key=SYR-1",
+      "27.11 01:03:23   K1 LINK SUSPENDED",
+      "27.11 01:03:25   K3 FAILOVER BLOCKED       (SERWIS)",
+      "27.11 01:47:09   K1 CMD AL-2611-0147 IGN   (SERWIS)",
+      "27.11 01:47:09   QUEUE ADD AL-2611-0147    pending",
+      "27.11 03:01:50   QUEUE CLEAR (MANUAL)      key=SYR-1",
+      "27.11 03:02:11   MODE PRACA                key=SYR-1",
+      "27.11 03:02:12   K1 LINK RESTORED"
+     ]
+    },
+    {
+     "note": "Dziennik zapisuje się w pamięci, do której nie ma dostępu z poziomu panelu serwisowego. Jego zegar synchronizuje GPS."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-27 01:03",
+     "SN-1 przechodzi w tryb SERWIS (klucz SYR-1)",
+     "Dziennik SN-1"
+    ],
+    [
+     "2026-11-27 01:47",
+     "SN-1 ignoruje polecenie alarmu AL-2611-0147 (tryb SERWIS)",
+     "Dziennik SN-1"
+    ],
+    [
+     "2026-11-27 03:02",
+     "SN-1 wraca do trybu PRACA (klucz SYR-1)",
+     "Dziennik SN-1"
+    ]
+   ]
+  },
+  {
+   "id": "e10",
+   "type": "Oględziny",
+   "title": "Przełącznik SERWIS/PRACA",
+   "summary": "Szafa SN-1, panel przełącznika.",
+   "body": [
+    "Przełącznik w pozycji PRACA, kluczyka brak. Obudowa wytarta do czysta, w szczelinie tarcia kilka drobin talku z lateksowych rękawiczek. Daktyloskopii nie udało się zabezpieczyć.",
+    {
+     "note": "Kluczyk UM-1 leży w sejfie stacji, plomba nienaruszona."
+    }
+   ]
+  },
+  {
+   "id": "e11",
+   "type": "Oględziny",
+   "title": "Skrzynka kablowa K3",
+   "summary": "Złącze anteny rezerwowej na SN-1.",
+   "body": [
+    "Do złącza K3 w szafie podłączono sztuczne obciążenie 50 Ω (obudowa z napisem ATR-50, nalepka serwisowa: „Syreon — czerwiec 2024”). Kabel prowadzący na maszt do anteny rezerwowej jest zaślepiony i zwinięty za szafą, bez śladów użycia.",
+    {
+     "note": "Kanał K3 według schematu ma być autonomicznym torem rezerwowym. Przy takim podłączeniu nie wypromieniowałby żadnego sygnału."
+    }
+   ]
+  },
+  {
+   "id": "e12",
+   "type": "Wydruk",
+   "title": "Wydruk z czytnika kart (drzwi D1)",
+   "summary": "Wejścia i wyjścia, 26–27.11.",
+   "body": [
+    {
+     "log": [
+      "26.11 14:05:18   IN   MAZ-03   konserwator",
+      "26.11 14:49:02   OUT  MAZ-03",
+      "27.11 00:41:10   IN   SRV-07   pula serwisowa Syreon",
+      "27.11 02:31:40   IN   LAS-01   administrator systemu",
+      "27.11 03:09:50   OUT  SRV-07",
+      "27.11 06:07:30   IN   MAZ-03"
+     ]
+    },
+    "Obowiązują czytniki z obu stron drzwi: wyjście wymaga odbicia karty. Drzwi D1 zatrzaskują się samoczynnie.",
+    {
+     "note": "Brak zapisu wyjścia karty LAS-01. Karta SRV-07 nie należy do konkretnej osoby, tylko do puli serwisowej firmy Syreon."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-27 00:41",
+     "Karta SRV-07 (pula serwisowa Syreon) wchodzi na stację",
+     "Czytnik D1"
+    ],
+    [
+     "2026-11-27 02:31",
+     "Karta LAS-01 (Lasota) wchodzi na stację",
+     "Czytnik D1"
+    ],
+    [
+     "2026-11-27 03:09",
+     "Karta SRV-07 wychodzi ze stacji",
+     "Czytnik D1"
+    ]
+   ]
+  },
+  {
+   "id": "e13",
+   "type": "Przedmiot",
+   "title": "Klucz dynamometryczny SY-TW-17",
+   "summary": "Znaleziony w kanale kablowym za szafą.",
+   "body": [
+    "Klucz dynamometryczny 40–200 Nm, wytarty, z nalepką inwentarzową „SY-TW-17”. W rowku rękojeści zaschnięta rdzawa substancja. Klucz leżał w kanale kablowym tuż za szafą, poza zasięgiem wzroku od drzwi.",
+    {
+     "note": "Nalepki SY- noszą narzędzia firmy Syreon Polska. Stacja nie ma własnych narzędzi tej klasy."
+    }
+   ]
+  },
+  {
+   "id": "e14",
+   "type": "Oględziny",
+   "title": "Brama i droga dojazdowa",
+   "summary": "Żwirowy dojazd i kamera przy bramie.",
+   "body": [
+    "Przy bramie na żwirze ślady opon dostawczego pojazdu (rozstaw kół typowy dla furgonu typu Ducato) oraz ślady dwóch samochodów osobowych, wyraźnie starsze.",
+    "Kamera nad bramą nie rejestruje od wtorku. Zgłoszenie usterki wisi w systemie od 24.11, naprawa „odroczona”.",
+    {
+     "note": "Brama zamykana na kłódkę, klucze mają miasto i serwisant."
+    }
+   ]
+  },
+  {
+   "id": "e44",
+   "type": "Przedmiot",
+   "title": "Telefon Lasoty",
+   "summary": "Znaleziony w wewnętrznej kieszeni kurtki.",
+   "body": [
+    "Telefon bez blokady ekranu (tryb pracy), 38% baterii. Na ekranie powiadomienia aplikacji SYRION-Mobile (dla administratora).",
+    {
+     "log": [
+      "27.11 02:12   push SYRION-Mobile   SN-1 w trybie SERWIS od 01:03 (MW-2611). Alarm AL-2611-0147: brak potwierdzenia z syren.",
+      "27.11 02:14   odczytano powiadomienie",
+      "27.11 02:34   połączenie wychodzące   L. Hajduk   0:22"
+     ]
+    },
+    {
+     "note": "Lasota został powiadomiony o trybie SERWIS i o niewysłanym alarmie dopiero o 2:12. Wcześniej żadne powiadomienie do niego nie dotarło."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-27 02:12",
+     "Lasota dostaje powiadomienie: SN-1 w trybie SERWIS, alarm niewysłany",
+     "Telefon Lasoty"
+    ],
+    [
+     "2026-11-27 02:34",
+     "Lasota dzwoni do L. Hajduk (22 s)",
+     "Telefon Lasoty"
+    ]
+   ]
+  },
+  {
+   "id": "e45",
+   "type": "Zeznanie",
+   "title": "Protokół zeznań Henryka Mazura",
+   "summary": "Konserwator stacji, piątek 7:30.",
+   "body": [
+    {
+     "quote": "O szóstej siedem odbiłem kartę i zobaczyłem pana Lasotę na podłodze przy szafie. Drzwi były zamknięte, zatrzaskują się same. Na stację jeżdżę dwa razy w tygodniu, nigdy nie widziałem tu nocą nikogo.",
+     "by": "Henryk Mazur"
+    },
+    {
+     "quote": "Klucz UM-1 jest w sejfie na ścianie i nikt go nie ruszał, plomba cała. Drugi klucz, SYR-1, mają tylko ludzie z Syreon.",
+     "by": "Henryk Mazur"
+    }
+   ],
+   "testimony": true,
+   "start": true
+  },
+  {
+   "id": "e16",
+   "type": "Wydruk",
+   "title": "Historia zdarzeń konsoli CZK (noc)",
+   "summary": "Pasek zdarzeń z konsoli dyżurnej, 0:00–4:00.",
+   "body": [
+    {
+     "log": [
+      "27.11 00:12:04   TEST LINK SN-1                OK",
+      "27.11 00:41:20   MW-2611 WINDOW OPEN SN-1       Syreon Polska",
+      "27.11 01:03:30   STATUS SN-1                   SERWIS (MW-2611)",
+      "27.11 03:02:20   STATUS SN-1                   PRACA",
+      "27.11 03:02:21   TEST LINK SN-1                OK"
+     ]
+    },
+    {
+     "note": "Konsola zapisuje tylko zmiany statusu łączy, a zdarzenia alarmowe trzyma archiwum alarmów. Między 1:03:30 a 3:02:20 historia konsoli jest pusta. Czerwony pasek „brak potwierdzenia” widać wyłącznie na żywo i nie jest archiwizowany."
+    }
+   ]
+  },
+  {
+   "id": "e17",
+   "type": "Notatka",
+   "title": "Notatka z kosza w sali dyżurnej",
+   "summary": "Połowa żółtej karteczki, wyrzucona do kosza.",
+   "body": [
+    {
+     "quote": "01:49 — Kopeć (Syreon): serwis, to ich test czujnika?? „Nie ruszaj”. 112? — przekreślone",
+     "by": "pismo operatorki, ołówek"
+    },
+    "Karteczka została przedarta na pół. Druga połowa, z napisem „Chemrud?”, leży obok."
+   ]
+  },
+  {
+   "id": "e18",
+   "type": "Nagranie",
+   "title": "Zapis z kamery sali dyżurnej",
+   "summary": "CZK, kamera nad konsolą, 1:30–3:00.",
+   "body": [
+    {
+     "log": [
+      "01:30–01:47   operatorka (plakietka: BURDA A.) przy konsoli, sama w sali",
+      "01:47:40       operatorka zwraca się do ekranu, wstaje",
+      "01:49:10       rozmowa telefoniczna, ok. 40 s, rozmówczyni stoi tyłem do kamery",
+      "01:52:00       zapisuje coś na karteczce, siada",
+      "02:00–03:00    operatorka cały czas w sali, sama"
+     ]
+    },
+    {
+     "note": "Od 2023 roku w sali dyżurnej CZK pracuje jedna osoba na nocną zmianę."
+    }
+   ]
+  },
+  {
+   "id": "e19",
+   "type": "Dokument",
+   "title": "Grafik dyżurów CZK",
+   "summary": "Noc z czwartku na piątek.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Zmiana nocna",
+       "18:00–6:00"
+      ],
+      [
+       "Operator",
+       "A. Burda (jedyna osoba w sali)"
+      ],
+      [
+       "Nadzór zdalny",
+       "B. Lasota — telefon, powiadomienia aplikacji"
+      ]
+     ]
+    },
+    "Przy alarmie operator uruchamia procedurę „A”: wysyła polecenie z konsoli i zgłasza zdarzenie do 112."
+   ]
+  },
+  {
+   "id": "e20",
+   "type": "Dokument",
+   "title": "Procedura archiwum CZK",
+   "summary": "Usuwanie zapisów z archiwum alarmów.",
+   "body": [
+    "Usunięcie zapisu z archiwum wymaga PIN-u operatora zmiany albo administratora. Operator może usuwać wyłącznie zapisy oznaczone jako testowe.",
+    {
+     "note": "Każde usunięcie zostawia wpis w dzienniku audytu (tylko do odczytu, dostęp ma informatyk CZK)."
+    }
+   ]
+  },
+  {
+   "id": "e21",
+   "type": "Dziennik",
+   "title": "Dziennik czujników GasNet",
+   "summary": "Wydruk wydziału chloru, linia Cl-3.",
+   "body": [
+    {
+     "log": [
+      "27.11 01:41:20   Cl-3   spadek ciśnienia",
+      "27.11 01:46:40   Cl-3   1,2 ppm     OSTRZEŻENIE",
+      "27.11 01:47:00   Cl-3   3,4 ppm     ALARM",
+      "27.11 01:47:05   ALARM REQ AL-2611-0147 -> CZK   przyjęto przez serwer CZK 01:47:06",
+      "27.11 02:05:00   Cl-3   38 ppm      MAX",
+      "27.11 02:50:00   Cl-3   0,8 ppm"
+     ]
+    },
+    {
+     "note": "Brak potwierdzenia z syren. Żądanie alarmu zostało przyjęte przez serwer CZK jedną sekundę po wysłaniu."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-27 01:47",
+     "Czujniki Chemrud wysyłają żądanie alarmu AL-2611-0147, serwer CZK je przyjmuje",
+     "Dziennik GasNet"
+    ]
+   ]
+  },
+  {
+   "id": "e22",
+   "type": "Dziennik",
+   "title": "Dziennik zmiany wydziału chloru",
+   "summary": "Nocna zmiana, kierownik zmiany J. Orlik.",
+   "body": [
+    {
+     "log": [
+      "01:41   awaria zaworu Cl-3, wyciek",
+      "01:47   czujniki: alarm",
+      "01:52   kierownik zmiany dzwoni do prezesa W. Pyki; polecenie: bez zgłoszeń na zewnątrz, opanować własnymi siłami",
+      "02:20   prezes Pyka na zakładzie, do 03:30",
+      "02:26   straż pożarna (wezwana przez mieszkańców, nie przez zakład)"
+     ]
+    }
+   ],
+   "time": [
+    [
+     "2026-11-27 01:52",
+     "Kierownik zmiany Chemrud informuje prezesa Pykę o wycieku",
+     "Dziennik zmiany"
+    ],
+    [
+     "2026-11-27 02:20",
+     "Prezes Pyka przyjeżdża do zakładu",
+     "Dziennik zmiany"
+    ]
+   ]
+  },
+  {
+   "id": "e23",
+   "type": "Raport",
+   "title": "Raport z awarii zaworu Cl-3",
+   "summary": "Przyczyna wycieku.",
+   "body": [
+    "Zawór Cl-3 wymieniono w 2025 roku na tańszy zamiennik, na polecenie prezesa (cena niższa o 40%). Zawór pękł na uszczelce w czwartek wieczorem.",
+    {
+     "note": "W 2025 roku czujniki GasNet wysłały cztery fałszywe alarmy, zakład uznał je za usterki oprogramowania."
+    }
+   ]
+  },
+  {
+   "id": "e24",
+   "type": "Dokument",
+   "title": "Szkic oświadczenia prezesa Chemrud",
+   "summary": "Plik z gabinetu prezesa, zapis 2:40.",
+   "body": [
+    {
+     "quote": "W nocy doszło do niewielkiej nieszczelności, bez zagrożenia dla mieszkańców. Zakład działał zgodnie z procedurami.",
+     "by": "szkic oświadczenia, zapisany 27.11 o 2:40"
+    }
+   ]
+  },
+  {
+   "id": "e25",
+   "type": "Rejestr",
+   "title": "Rejestr przyjęć SOR",
+   "summary": "Noc 26/27.11, Szpital Miejski.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Pierwszy pacjent",
+       "2:19"
+      ],
+      [
+       "Łącznie",
+       "23 osoby, w tym 3 w stanie ciężkim"
+      ],
+      [
+       "Powód",
+       "ekspozycja na chlor, mieszkańcy osiedla Zielone"
+      ]
+     ]
+    },
+    {
+     "note": "Pierwszy telefon do szpitala od mieszkańców: 2:11."
+    }
+   ]
+  },
+  {
+   "id": "e26",
+   "type": "Opinia",
+   "title": "Opinia toksykologa",
+   "summary": "Szpital Miejski, piątek 9:00.",
+   "body": [
+    "Stężenie chloru w rejonie osiedla Zielone przekroczyło dawkę niebezpieczną po 8–12 minutach od 1:47. Ostrzeżenie syrenami w ciągu kilku minut pozwoliłoby zamknąć okna i wyjść na wzgórze. Zdecydowana większość poszkodowanych przebywała w tym czasie w łóżkach."
+   ]
+  },
+  {
+   "id": "e27",
+   "type": "Notatka",
+   "title": "Kalendarz i notatki Lasoty",
+   "summary": "Gabinet kierownika referatu.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Pt 27.11, 9:00",
+       "NIK — spotkanie otwierające kontrolę SYRION-4"
+      ],
+      [
+       "Cz 26.11, 24:00",
+       "Kolonia, parking — L.H."
+      ]
+     ]
+    },
+    {
+     "quote": "PIN do sejfu: dzień i miesiąc odbioru systemu. Tego nie zapomnę.",
+     "by": "karteczka na monitorze, pismo B. Lasoty"
+    },
+    "Na marginesie kalendarza: „K3 — porównać telemetrię z protokołem. Jeśli się zgadza, ktoś nas oszukał.”"
+   ]
+  },
+  {
+   "id": "e28",
+   "type": "Dokument",
+   "title": "Protokół odbioru SYRION-4 (2024)",
+   "summary": "Odbiór systemu przez miasto, czerwiec 2024.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Data odbioru",
+       "14.06.2024"
+      ],
+      [
+       "Wykonawca",
+       "Syreon Polska Sp. z o.o."
+      ],
+      [
+       "Wartość",
+       "4 800 000 zł"
+      ]
+     ]
+    },
+    {
+     "log": [
+      "K1  test łączności               pozytywny",
+      "K3  test nadawania, moc 25 W      pozytywny (wymagane ≥ 20 W)",
+      "Syreny S01–S14  test akustyczny   pozytywny"
+     ]
+    },
+    {
+     "kv": [
+      [
+       "Za wykonawcę",
+       "D. Kopeć, inżynier wdrożenia"
+      ],
+      [
+       "Za zamawiającego",
+       "P. Szczerba, wiceprezydent"
+      ],
+      [
+       "Administrator systemu",
+       "pole puste (urlop B. Lasoty)"
+      ]
+     ]
+    }
+   ],
+   "mark": "I"
+  },
+  {
+   "id": "e29",
+   "type": "Notatka",
+   "title": "Teczka „K3” Lasoty",
+   "summary": "Sejf w gabinecie, robocze notatki do kontroli NIK.",
+   "body": [
+    "Roboczy konspekt wystąpienia dla NIK: protokół odbioru twierdzi, że kanał K3 przeszedł test mocy. Telemetria z nadajnika mówi co innego. Do wyjaśnienia: kto zlecił zmianę zakresu w 2024 i kto podpisał odbiór pod nieobecność administratora.",
+    {
+     "quote": "Dostanie to dziennikarka. NIK dostanie to samo o 9:00. Jeśli komuś zależy, żeby tego nie było, ma czas do rana.",
+     "by": "B. Lasota, dopisek odręczny"
+    }
+   ]
+  },
+  {
+   "id": "e30",
+   "type": "Dane",
+   "title": "Telemetria K3 (eksport z SN-1)",
+   "summary": "Pamięć zdarzeń nadajnika, wpisy z 2024 roku.",
+   "body": [
+    {
+     "log": [
+      "14.06.2024 11:20   TEST K3   FWD 0,3 W   REFL 0,0 W   WYNIK: NEG (brak mocy)",
+      "14.06.2024 11:26   TEST K3   FWD 0,2 W   REFL 0,0 W   WYNIK: NEG (brak mocy)",
+      "14.06.2024 11:41   K3 TEST PASS   wpis ręczny, panel serwisowy, key=SYR-1"
+     ]
+    },
+    {
+     "note": "Wpis „PASS” dodano ręcznie z panelu serwisowego. Oba pomiary urządzenia dały wynik negatywny."
+    }
+   ]
+  },
+  {
+   "id": "e31",
+   "type": "Dokument",
+   "title": "Zamówienie i aneks nr 2",
+   "summary": "Archiwum zamówień publicznych.",
+   "body": [
+    {
+     "log": [
+      "Moduł nadajnika rezerwowego K3 (kpl.)        wykreślony aneksem nr 2",
+      "Antena rezerwowa K3 z osprzętem              wykreślona aneksem nr 2",
+      "Oszczędność wg aneksu nr 2 (28.05.2024)      612 000 zł"
+     ]
+    },
+    {
+     "kv": [
+      [
+       "Aneks podpisali",
+       "Syreon Polska (D. Kopeć) i Urząd Miasta (P. Szczerba)"
+      ],
+      [
+       "Uzasadnienie",
+       "zmiana sprzętu na równoważny"
+      ]
+     ]
+    },
+    {
+     "note": "Aneks z maja 2024 usuwa K3 z zakresu dostawy. Protokół odbioru z czerwca 2024 podaje K3 jako przetestowany."
+    }
+   ]
+  },
+  {
+   "id": "e32",
+   "type": "Rejestr",
+   "title": "Zgłoszenie serwisowe MW-2611",
+   "summary": "System wniosków serwisowych.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Wnioskodawca",
+       "Syreon Polska — D. Kopeć"
+      ],
+      [
+       "Zakres",
+       "wymiana modułu K3 na SN-1"
+      ],
+      [
+       "Okno",
+       "27.11, 0:30–3:00"
+      ],
+      [
+       "Zatwierdził",
+       "P. Szczerba, 26.11, 22:05, „w zastępstwie administratora”"
+      ],
+      [
+       "Powiadomienie do administratora",
+       "wstrzymane (zatwierdzenie w zastępstwie)"
+      ]
+     ]
+    },
+    {
+     "note": "Administrator systemu, Lasota, był w pracy w czwartek do 18:30 i nie był nieobecny dłużej niż 72 godziny."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-26 22:05",
+     "Szczerba zatwierdza okno serwisowe MW-2611 „w zastępstwie” Lasoty",
+     "System MW"
+    ]
+   ]
+  },
+  {
+   "id": "e33",
+   "type": "Dokument",
+   "title": "Faktura Alfa-Doradztwo",
+   "summary": "Kopia z szuflady wiceprezydenta.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Wystawca",
+       "Alfa-Doradztwo Sp. z o.o.; prezes zarządu: Karolina Szczerba"
+      ],
+      [
+       "Płatnik",
+       "Syreon Polska Sp. z o.o."
+      ],
+      [
+       "Kwota",
+       "310 000 zł netto"
+      ],
+      [
+       "Tytuł",
+       "doradztwo strategiczne"
+      ],
+      [
+       "Data",
+       "15.07.2024"
+      ]
+     ]
+    },
+    {
+     "note": "Płatnikiem nie jest miasto. Wystawcą jest firma żony wiceprezydenta."
+    }
+   ]
+  },
+  {
+   "id": "e34",
+   "type": "Nagranie",
+   "title": "Fotopułapka leśnictwa",
+   "summary": "Zdjęcia z parkingu pod wzgórzem Kolonia.",
+   "body": [
+    {
+     "log": [
+      "27.11 00:03   Skoda Octavia  SRS 4RX11   wjazd",
+      "27.11 00:07   VW Golf        SRS 55K2   wjazd",
+      "27.11 00:44   VW Golf        SRS 55K2   wyjazd",
+      "27.11 00:46   Skoda Octavia  SRS 4RX11   wyjazd",
+      "27.11 02:20   Skoda Octavia  SRS 4RX11   wjazd",
+      "27.11 03:05   VW Golf        SRS 55K2   wjazd",
+      "27.11 03:19   VW Golf        SRS 55K2   wyjazd"
+     ]
+    },
+    {
+     "note": "Zegar fotopułapki synchronizowany z GPS. Octavia, która wjechała o 2:20, nie wyjechała do rana. Skoda Octavia SRS 4RX11 to samochód służbowy referatu Lasoty; VW Golf SRS 55K2 jest zarejestrowany na Lenę Hajduk."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-27 00:07",
+     "Golf L. Hajduk wjeżdża na parking pod Kolonią, 4 minuty po aucie Lasoty",
+     "Fotopułapka"
+    ],
+    [
+     "2026-11-27 03:05",
+     "Golf L. Hajduk ponownie na parkingu pod Kolonią",
+     "Fotopułapka"
+    ]
+   ]
+  },
+  {
+   "id": "e35",
+   "type": "Oględziny",
+   "title": "Ślady przy parkingu",
+   "summary": "Parking leśny, piątek 9:30.",
+   "body": [
+    "Wokół miejsca postoju dwóch aut ślady butów w rozmiarach około 43 i 38. Na słupku dwa kubki po kawie z jednej stacji paliw i pusta koperta z logo „Głos Rudy”."
+   ]
+  },
+  {
+   "id": "e36",
+   "type": "Notatka",
+   "title": "Notatki Leny Hajduk",
+   "summary": "Plan artykułu „Syreny na papierze”.",
+   "body": [
+    "Notatnik reporterki. Hasło „Syreny na papierze”: źródło B.L. zapewnia, że kanał rezerwowy K3 jest atrapą, a protokół odbioru podrobiony. Dowód: telemetria z nadajnika, kopia na pendrive.",
+    {
+     "quote": "Spotkanie 00:05 pod Kolonią. Ma przynieść kopię telemetrii. Nie wiem, kto jeszcze wie.",
+     "by": "L. Hajduk, notatnik"
+    }
+   ]
+  },
+  {
+   "id": "e37",
+   "type": "Korespondencja",
+   "title": "E-mail Lasota — Hajduk",
+   "summary": "Czwartek 21:15.",
+   "body": [
+    {
+     "quote": "Spotkajmy się o północy na parkingu pod Kolonią. Dam Pani, co trzeba. Jutro o dziewiątej NIK. Niech Pani niczego nie publikuje przed południem.",
+     "by": "B. Lasota do L. Hajduk, 26.11 21:15"
+    }
+   ],
+   "time": [
+    [
+     "2026-11-26 21:15",
+     "Lasota umawia się z Leną Hajduk na północ pod Kolonią",
+     "E-mail"
+    ]
+   ]
+  },
+  {
+   "id": "e39",
+   "type": "Rejestr",
+   "title": "Rejestr kart i kluczy serwisowych Syreon",
+   "summary": "Gliwice, wydania z 26.11.",
+   "body": [
+    {
+     "log": [
+      "26.11 16:10   karta SRV-07 + klucz SYR-1   pobrał: D. Kopeć   zwrot: jutro rano   uwagi: MW-2611"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e40",
+   "type": "Dokument",
+   "title": "Grafik serwisantów Syreon",
+   "summary": "Dostępność w tygodniu 23–29.11.",
+   "body": [
+    {
+     "log": [
+      "J. Wolak    urlop (Chorwacja) 24.11–07.12",
+      "T. Tarka    zwolnienie lekarskie od 20.11",
+      "D. Kopeć    dyżur nocny serwisowy 26/27.11"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e41",
+   "type": "Oględziny",
+   "title": "Bus Syreon (Ducato) — wnętrze",
+   "summary": "Garaż firmy, piątek 13:00.",
+   "body": [
+    "W skrzyni narzędziowej puste gniazdo w pianie z etykietą „SY-TW-17”. W kabinie zwitek rękawic lateksowych i trzy zaślepki oporowe 50 Ω."
+   ]
+  },
+  {
+   "id": "e42",
+   "type": "Wykaz",
+   "title": "Wykaz narzędzi Syreon z przypisaniem",
+   "summary": "Narzędzia z przydziałem do osób.",
+   "body": [
+    {
+     "log": [
+      "SY-TW-17   klucz dynamometryczny 40–200 Nm   przypisany: D. Kopeć   wydano 02.01.2025"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e43",
+   "type": "Dokument",
+   "title": "Anulowanie zamówienia modułu K3",
+   "summary": "Archiwum zamówień Syreon.",
+   "body": [
+    "Zamówienie modułu nadajnika rezerwowego K3 u producenta nadajników anulowano 03.06.2024 na polecenie D. Kopecia, przed odbiorem systemu."
+   ]
+  },
+  {
+   "id": "t01",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań D. Kopecia (obecność na stacji)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Dobrze. Byłem na Kolonii. Okno serwisowe było moje, wymieniałem moduł K3. Wszedłem o 00:41, wyszedłem około drugiej. Lasoty nie widziałem na oczy.",
+     "by": "Dariusz Kopeć"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t02",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań D. Kopecia (godzina wyjścia)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Dobrze, przeciągnęło się do trzeciej. Antena, konfiguracja. Ale Lasoty tam nie było, przysięgam.",
+     "by": "Dariusz Kopeć"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t03",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań D. Kopecia (Lasota)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Zjawił się koło wpół do trzeciej. Pokłóciliśmy się o K3. Wyszedł na dwór zadzwonić, a ja zostałem przy szafie. Więcej go nie widziałem.",
+     "by": "Dariusz Kopeć"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t04",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań D. Kopecia (telefony)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Dzwoniła operatorka, potem wiceprezydent. Obojgu powiedziałem, że to fałszywy alarm z Chemrudu i że za chwilę wyjdę z serwisu. Nie wyszedłem.",
+     "by": "Dariusz Kopeć"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t05",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań D. Kopecia (koniec)",
+   "summary": "Po konfrontacji z sekcją i narzędziem.",
+   "body": [
+    {
+     "quote": "Chciał to zgłosić, rano, wszystko. Złapałem klucz, jedno uderzenie. Potem ułożyłem go przy szynach. Alarm wisiał w kolejce — skasowałem go, zanim wyszedłem z serwisu, bo wyszłoby, że spóźniony.",
+     "by": "Dariusz Kopeć"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t06",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań A. Burdy (alarm)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Widziałam czerwony pasek „brak potwierdzenia”. Zadzwoniłam do serwisu. Kopeć powiedział, że to ich test czujnika, żebym niczego nie ruszała. Uwierzyłam mu.",
+     "by": "Agnieszka Burda"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t07",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań A. Burdy (archiwum)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Pan Szczerba kazał skasować zapis jako testowy, żeby nie robić paniki w mediach. Wpisałam swój PIN. Nie wiedziałam, że ktoś zginął.",
+     "by": "Agnieszka Burda"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t08",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań P. Szczerby (telefony)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Pyka dzwonił koło drugiej, pytał, czy syreny wyły. Zadzwoniłem do Kopecia, potem nad ranem do operatorki. Chciałem tylko uniknąć paniki.",
+     "by": "Piotr Szczerba"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t09",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań P. Szczerby (zatwierdzenie okna)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Zatwierdziłem okno sam, bo Kopeć prosił, a Lasota zawsze się certolił. Do dziś nie sprawdzałem, czy K3 działa. Podpisałem odbiór, bo serwis mówił, że działa.",
+     "by": "Piotr Szczerba"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t10",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań L. Hajduk (parking)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Spotkałam się z nim o północy. Dał mi pendrive z telemetrią K3 i protokół. Powiedział, że rano wszystko wyjdzie. Nie powiedziałam, bo chronię źródło.",
+     "by": "Lena Hajduk"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t11",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań L. Hajduk (druga wizyta)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Zadzwonił o drugiej trzydzieści cztery: „Przyjedź, to pilne”. Wjechałam w las o trzeciej pięć, pod bramą byłam kilka minut później. Brama zamknięta, w stacji światło. O dwunastej po trzeciej wyjechał stamtąd biały bus z drabiną na dachu i naklejką, widać było „SYREO…”.",
+     "by": "Lena Hajduk"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t12",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań W. Pyki (wiedza o wycieku)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Wiedziałem od 1:52. Orlik zadzwonił, uznałem, że zakład opanuje to sam. Nie wezwałem straży, bo nie chciałem kolejnej kontroli.",
+     "by": "Witold Pyka"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "e38",
+   "type": "Nagranie",
+   "title": "Zapis z kamerki w samochodzie (Golf)",
+   "summary": "Rejestrator jazdy Leny Hajduk, 3:05–3:20.",
+   "body": [
+    {
+     "log": [
+      "03:05:10   wjazd na leśną drogę pod Kolonię",
+      "03:09:20   pod bramą stacji: brama zamknięta, w oknie światło",
+      "03:12:08   przy bramie od strony stacji mija biały furgon z drabiną na dachu, naklejka „SYREO…”, tablica częściowo: SGL 4…",
+      "03:13:40   furgon znika za zakrętem w stronę drogi, bez świateł"
+     ]
+    },
+    {
+     "note": "Nagranie otrzymaliście od Leny Hajduk dopiero po jej konfrontacji. Czas rejestratora zsynchronizowany z GPS."
+    }
+   ],
+   "time": [
+    [
+     "2026-11-27 03:12",
+     "Biały furgon z drabiną i naklejką „SYREO…” opuszcza stację",
+     "Rejestrator Hajduk"
+    ]
+   ]
+  },
+  {
+   "id": "t13",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań W. Pyki (rozmowa z urzędem)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "Dzwoniłem do wiceprezydenta, bo zobaczyłem, że miasto milczy. Zapytałem, czy syreny wyły. Powiedział: „Zajmę się tym”.",
+     "by": "Witold Pyka"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t14",
+   "type": "Zeznanie",
+   "title": "Uzupełnienie zeznań D. Kopecia (K3)",
+   "summary": "Po konfrontacji.",
+   "body": [
+    {
+     "quote": "K3 nie było w dostawie. Aneks wykreślił je z umowy, a Szczerba go podpisał. Nic więcej nie powiem bez adwokata.",
+     "by": "Dariusz Kopeć"
+    }
+   ],
+   "testimony": true
+  },
+  {
+   "id": "x1",
+   "type": "Wydruk",
+   "title": "Billing połączeń (wyciąg operatora)",
+   "summary": "Telefony osób związanych ze sprawą, noc 26/27.11.",
+   "body": [
+    {
+     "log": [
+      "27.11 01:49:12   A. Burda        ->  D. Kopeć       38 s",
+      "27.11 01:52:30   Chemrud (zmiana) ->  W. Pyka        71 s",
+      "27.11 01:58:40   W. Pyka         ->  P. Szczerba    112 s",
+      "27.11 02:03:40   P. Szczerba     ->  D. Kopeć       57 s",
+      "27.11 02:34:10   B. Lasota       ->  L. Hajduk      22 s",
+      "27.11 03:35:20   P. Szczerba     ->  A. Burda       66 s"
+     ]
+    },
+    {
+     "note": "Czas wg centrali operatora, zsynchronizowany. Wyciąg nie zawiera treści rozmów."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-11-27 01:49",
+     "Burda dzwoni do Kopecia",
+     "Billing"
+    ],
+    [
+     "2026-11-27 01:58",
+     "Pyka dzwoni do Szczerby",
+     "Billing"
+    ],
+    [
+     "2026-11-27 02:03",
+     "Szczerba dzwoni do Kopecia",
+     "Billing"
+    ],
+    [
+     "2026-11-27 03:35",
+     "Szczerba dzwoni do Burdy",
+     "Billing"
+    ]
+   ]
+  },
+  {
+   "id": "x2",
+   "type": "Dane",
+   "title": "Dane lokalizacyjne operatora (BTS)",
+   "summary": "Rejestracje telefonów w komórkach, wybrane chwile.",
+   "body": [
+    {
+     "h": "Pokrycie komórek"
+    },
+    {
+     "log": [
+      "Kolonia-1    stacja nadawcza i parking pod wzgórzem",
+      "Droga-5      droga Ruda–Kolonia, bez zabudowy",
+      "Centrum-2    śródmieście (CZK, urząd, redakcja i część mieszkań)",
+      "Parkowe-7    osiedle Parkowe (domy jednorodzinne)",
+      "Zielone-4    osiedle Zielone oraz zakład Chemrud"
+     ]
+    },
+    {
+     "h": "Rejestracje"
+    },
+    {
+     "log": [
+      "              01:47        02:41",
+      "D. Kopeć      Kolonia-1    Kolonia-1",
+      "A. Burda      Centrum-2    Centrum-2",
+      "P. Szczerba   Parkowe-7    Parkowe-7",
+      "L. Hajduk     Parkowe-7    Droga-5",
+      "W. Pyka       Zielone-4    Zielone-4"
+     ]
+    }
+   ],
+   "private": true
+  },
+  {
+   "id": "x3",
+   "type": "Dane",
+   "title": "Telematyka busa Syreon",
+   "summary": "Wyciąg z GPS floty, pojazd Ducato.",
+   "body": [
+    {
+     "log": [
+      "26.11 16:34   garaż Gliwice            wyjazd",
+      "27.11 00:38   stacja Kolonia, brama    postój",
+      "27.11 03:11   stacja Kolonia, brama    ruch",
+      "27.11 04:20   garaż Gliwice            postój"
+     ]
+    },
+    {
+     "note": "Pojazd w dyspozycji pracownika, który pobrał kartę SRV-07. Kierowca nie jest zapisywany przez system."
+    }
+   ],
+   "private": true
+  },
+  {
+   "id": "x4",
+   "type": "Opinia",
+   "title": "Sekcja zwłok B. Lasoty — wnioski",
+   "summary": "Zakład medycyny sądowej, piątek 14:00.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Przyczyna zgonu",
+       "uraz czaszkowo-mózgowy po uderzeniu ciężkim narzędziem w potylicę"
+      ],
+      [
+       "Oparzenia",
+       "pośmiertne — brak odczynu żywotnego w skórze"
+      ],
+      [
+       "Ślad na kości",
+       "wgłębienie okrągłe o średnicy ok. 38 mm, zgodne z głowicą dużego klucza"
+      ]
+     ]
+    },
+    "Śmierć nastąpiła w ciągu kilku minut od uderzenia. Do porażenia prądem doszło po śmierci."
+   ],
+   "private": true
+  },
+  {
+   "id": "x5",
+   "type": "Wydruk",
+   "title": "Dziennik audytu archiwum CZK",
+   "summary": "Odczyt informatyka CZK.",
+   "body": [
+    {
+     "log": [
+      "27.11 03:41:07   DEL AL-2611-0147   user=abur   reason=ZAPIS TESTOWY   PIN ok"
+     ]
+    },
+    {
+     "note": "Zapis alarmu został usunięty z poziomu stanowiska operatora, własnym PIN-em. Wpis audytu nie podlega usunięciu."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-11-27 03:41",
+     "Z archiwum CZK usunięto zapis AL-2611-0147 (użytkownik abur)",
+     "Dziennik audytu"
+    ]
+   ]
+  },
+  {
+   "id": "x6",
+   "type": "Dane",
+   "title": "Eksport danych zegarka Lasoty",
+   "summary": "Dane odzyskane od producenta zegarka.",
+   "body": [
+    {
+     "log": [
+      "zegarek   02:27   połączenie wychodzące   L. Hajduk   0:22",
+      "zegarek   02:34   tętno 134   gwałtowne przyspieszenie",
+      "zegarek   02:34   zdjęto z nadgarstka (urwany pasek)",
+      "zegarek   02:34   koniec zapisu"
+     ]
+    },
+    {
+     "note": "Zegar zegarka nie był synchronizowany z siecią od kilku tygodni."
+    }
+   ],
+   "private": true
+  }
+ ],
+ "privateClues": [
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5",
+  "x6"
+ ],
+ "puzzles": [
+  {
+   "id": "p-pin",
+   "kind": "Zamek szyfrowy",
+   "title": "Sejf w gabinecie Lasoty",
+   "prompt": "Sejf w gabinecie ma czterocyfrowy zamek. Jaki kod ustawił Lasota? Wskazówkę zostawił sam, na biurku.",
+   "requires": [
+    "e27",
+    "e28"
+   ],
+   "input": "digits4",
+   "answers": [
+    "1406"
+   ],
+   "hints": [
+    "Karteczka na monitorze mówi, z czym związany jest PIN. Szukajcie dokumentu, w którym ta data występuje.",
+    "Chodzi o odbiór systemu. Protokół odbioru podaje datę. Potrzebujecie dnia i miesiąca, bez roku.",
+    "Odbiór nastąpił 14.06.2024. Dzień 14, miesiąc 06 — kod 1406."
+   ],
+   "solution": "Kod to dzień i miesiąc odbioru systemu: 14.06 — 1406. Lasota zapisał go sobie w ten sposób, bo odbiór SYRION-4 miał dla niego znaczenie, a on sam wtedy nie podpisał protokołu.",
+   "reward": {
+    "spots": [
+     "sp-safe"
+    ]
+   }
+  },
+  {
+   "id": "p-service",
+   "kind": "Analiza danych",
+   "title": "Jak długo trwał tryb SERWIS",
+   "prompt": "Ile minut nadajnik SN-1 pozostawał w trybie SERWIS, licząc od włączenia do powrotu do trybu PRACA? Podajcie liczbę minut, zaokrągloną do pełnej minuty.",
+   "requires": [
+    "e09"
+   ],
+   "input": "number",
+   "answers": [
+    "118-119"
+   ],
+   "hints": [
+    "Dziennik nadajnika zapisuje włączenie SERWIS i powrót do PRACA z dokładnością do sekundy. Szukajcie dwóch wpisów z oznaczeniem klucza.",
+    "Włączenie: 1:03:22. Powrót do PRACA: 3:02:11. Policzcie różnicę.",
+    "Od 1:03:22 do 3:02:11 mija 1 godzina 58 minut i 49 sekund, czyli po zaokrągleniu 119 minut."
+   ],
+   "solution": "Tryb SERWIS trwał 1 godzinę 58 minut 49 sekund, czyli około 119 minut. Okno miało trwać dwie i pół godziny, ale w tym czasie system nie mógł wysłać żadnego alarmu.",
+   "reward": {
+    "time": [
+     [
+      "2026-11-27 01:03",
+      "SN-1 głuchy na polecenia alarmowe przez 119 minut (1:03–3:02)",
+      "Analiza dziennika SN-1"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "p-time",
+   "kind": "Analiza danych",
+   "title": "Godzina na zegarku",
+   "prompt": "Zegarek Lasoty zapisał ostatnią chwilę, w której został zdjęty z nadgarstka. O której godzinie czasu prawdziwego to nastąpiło? Zegarek nie był synchronizowany z siecią.",
+   "requires": [
+    "x6",
+    "x1"
+   ],
+   "input": "time",
+   "answers": [
+    "0241"
+   ],
+   "hints": [
+    "Zegarek zapisał połączenie wychodzące do L. Hajduk. Billing operatora pokazuje to samo połączenie.",
+    "Porównajcie godzinę połączenia na zegarku i w billingu. O ile minut zegarek się spóźnia?",
+    "Zegarek: 02:27, billing: 02:34. Spóźnia się o 7 minut. Ostatni zapis zegarka, 02:34, to w czasie prawdziwym 02:41."
+   ],
+   "solution": "Zegarek spóźniał się o 7 minut (połączenie do Hajduk: 02:27 na zegarku, 02:34 w billingu). Zdjęcie z nadgarstka o 02:34 na zegarku to prawdziwe 02:41. Wtedy właśnie doszło do ataku.",
+   "reward": {
+    "time": [
+     [
+      "2026-11-27 02:41",
+      "Atak na Lasotę, zegarek zdjęty z nadgarstka (czas prawdziwy)",
+      "Analiza zegarka i billingu"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "p-alibi",
+   "kind": "Macierz alibi",
+   "title": "Gdzie kto był",
+   "prompt": "Uzupełnijcie tabelę: gdzie była każda z pięciu osób o 1:47, gdy czujniki wysłały żądanie alarmu, i o 2:41, w chwili ataku na Lasotę? Wybierzcie miejsce dla każdej osoby w obu kolumnach.",
+   "requires": [
+    "p-time",
+    "e12",
+    "e18",
+    "e22",
+    "e39",
+    "e40",
+    "x2"
+   ],
+   "input": "grid",
+   "grid": {
+    "rows": [
+     {
+      "id": "kopec",
+      "label": "Dariusz Kopeć"
+     },
+     {
+      "id": "burda",
+      "label": "Agnieszka Burda"
+     },
+     {
+      "id": "szczerba",
+      "label": "Piotr Szczerba"
+     },
+     {
+      "id": "hajduk",
+      "label": "Lena Hajduk"
+     },
+     {
+      "id": "pyka",
+      "label": "Witold Pyka"
+     }
+    ],
+    "cols": [
+     {
+      "id": "t1",
+      "label": "1:47 — żądanie alarmu"
+     },
+     {
+      "id": "t2",
+      "label": "2:41 — atak na Lasotę"
+     }
+    ],
+    "options": [
+     {
+      "id": "kol",
+      "label": "Wzgórze Kolonia (stacja lub parking)"
+     },
+     {
+      "id": "czk",
+      "label": "Centrum Zarządzania Kryzysowego"
+     },
+     {
+      "id": "che",
+      "label": "Zakład Chemrud"
+     },
+     {
+      "id": "dom",
+      "label": "Dom"
+     },
+     {
+      "id": "dro",
+      "label": "W drodze (samochód)"
+     }
+    ],
+    "constraints": [
+     {
+      "t": "is",
+      "r": "kopec",
+      "c": "t1",
+      "v": "kol",
+      "src": [
+       "e12",
+       "e39",
+       "e40"
+      ],
+      "why": "Karta SRV-07 weszła na stację o 0:41 i wyszła o 3:09. Pobrał ją Kopeć, a pozostali serwisanci byli na urlopie i zwolnieniu."
+     },
+     {
+      "t": "is",
+      "r": "kopec",
+      "c": "t2",
+      "v": "kol",
+      "src": [
+       "e12",
+       "e39",
+       "e40"
+      ],
+      "why": "Ta sama karta była na stacji nieprzerwanie od 0:41 do 3:09."
+     },
+     {
+      "t": "in",
+      "r": "burda",
+      "c": "t1",
+      "vs": [
+       "czk",
+       "dom"
+      ],
+      "src": [
+       "x2"
+      ],
+      "why": "Telefon Burdy w komórce Centrum-2, która obejmuje CZK i część mieszkań."
+     },
+     {
+      "t": "is",
+      "r": "burda",
+      "c": "t1",
+      "v": "czk",
+      "src": [
+       "e18"
+      ],
+      "why": "Kamera sali dyżurnej pokazuje ją przy konsoli o 1:47."
+     },
+     {
+      "t": "is",
+      "r": "burda",
+      "c": "t2",
+      "v": "czk",
+      "src": [
+       "e18"
+      ],
+      "why": "Kamera: operatorka cały czas w sali, sama, do 3:00."
+     },
+     {
+      "t": "is",
+      "r": "szczerba",
+      "c": "t1",
+      "v": "dom",
+      "src": [
+       "x2"
+      ],
+      "why": "Komórka Parkowe-7 to osiedle domów jednorodzinnych."
+     },
+     {
+      "t": "is",
+      "r": "szczerba",
+      "c": "t2",
+      "v": "dom",
+      "src": [
+       "x2"
+      ],
+      "why": "Komórka Parkowe-7 to osiedle domów jednorodzinnych."
+     },
+     {
+      "t": "is",
+      "r": "hajduk",
+      "c": "t1",
+      "v": "dom",
+      "src": [
+       "x2"
+      ],
+      "why": "Komórka Parkowe-7 to osiedle domów jednorodzinnych."
+     },
+     {
+      "t": "is",
+      "r": "hajduk",
+      "c": "t2",
+      "v": "dro",
+      "src": [
+       "x2"
+      ],
+      "why": "Komórka Droga-5 to droga bez zabudowy, więc telefon jest w samochodzie."
+     },
+     {
+      "t": "in",
+      "r": "pyka",
+      "c": "t1",
+      "vs": [
+       "dom",
+       "che"
+      ],
+      "src": [
+       "x2"
+      ],
+      "why": "Komórka Zielone-4 obejmuje osiedle i zakład Chemrud."
+     },
+     {
+      "t": "not",
+      "r": "pyka",
+      "c": "t1",
+      "v": "che",
+      "src": [
+       "e22"
+      ],
+      "why": "Prezes przyjechał na zakład dopiero o 2:20."
+     },
+     {
+      "t": "in",
+      "r": "pyka",
+      "c": "t2",
+      "vs": [
+       "dom",
+       "che"
+      ],
+      "src": [
+       "x2"
+      ],
+      "why": "Komórka Zielone-4 obejmuje osiedle i zakład Chemrud."
+     },
+     {
+      "t": "not",
+      "r": "pyka",
+      "c": "t2",
+      "v": "dom",
+      "src": [
+       "e22"
+      ],
+      "why": "Prezes był na zakładzie od 2:20 do 3:30."
+     },
+     {
+      "t": "exactly",
+      "c": "t1",
+      "v": "czk",
+      "n": 1,
+      "src": [
+       "e18"
+      ],
+      "why": "W sali dyżurnej jest jedna osoba."
+     },
+     {
+      "t": "exactly",
+      "c": "t2",
+      "v": "kol",
+      "n": 1,
+      "src": [
+       "e12"
+      ],
+      "why": "Wśród podejrzanych jedna karta serwisowa na stacji (LAS-01 należy do ofiary)."
+     }
+    ]
+   },
+   "answers": [
+    {
+     "kopec": {
+      "t1": "kol",
+      "t2": "kol"
+     },
+     "burda": {
+      "t1": "czk",
+      "t2": "czk"
+     },
+     "szczerba": {
+      "t1": "dom",
+      "t2": "dom"
+     },
+     "hajduk": {
+      "t1": "dom",
+      "t2": "dro"
+     },
+     "pyka": {
+      "t1": "dom",
+      "t2": "che"
+     }
+    }
+   ],
+   "hints": [
+    "Zacznijcie od tych, o których macie twarde dane: karta serwisowa na stacji, kamera w sali dyżurnej i dziennik zmiany w zakładzie.",
+    "Dane lokalizacyjne podają tylko komórki, nie miejsca. Rozstrzygnijcie, które komórki dają się odczytać jednoznacznie, a w których jest dwóch kandydatów.",
+    "Kopeć: stacja o obu porach. Burda: CZK. Szczerba: dom. Hajduk: dom o 1:47 i w drodze o 2:41. Pyka: dom o 1:47, zakład o 2:41."
+   ],
+   "solution": "O 1:47 Kopeć był na stacji, Burda w CZK, Szczerba, Hajduk i Pyka w domach. O 2:41 Kopeć wciąż na stacji, Burda w CZK, Szczerba w domu, Hajduk w drodze na Kolonię, Pyka na zakładzie. Na stacji nie było nikogo innego niż Kopeć i Lasota.",
+   "reward": {
+    "time": [
+     [
+      "2026-11-27 02:41",
+      "Na stacji tylko Kopeć (i ofiara). Burda w CZK, Szczerba w domu, Hajduk w drodze, Pyka na zakładzie",
+      "Macierz alibi"
+     ]
+    ]
+   }
+  }
+ ],
+ "tableMode": {
+  "parBonus": 6,
+  "locations": [
+   {
+    "id": "hq",
+    "name": "Centrala wydziału",
+    "kind": "Zapytania przez radio",
+    "desc": "Wóz dowodzenia przed bramą stacji. Każde zapytanie to jeden ruch, odpowiedzi przychodzą od razu.",
+    "img": "assets/places/001-hq.webp",
+    "spots": [
+     {
+      "id": "sp-hq-tel",
+      "name": "Operator telekomunikacyjny",
+      "text": "Prosicie o billing połączeń osób związanych ze sprawą.",
+      "gives": [
+       "x1"
+      ]
+     },
+     {
+      "id": "sp-hq-bts",
+      "name": "Dane lokalizacyjne",
+      "text": "Prosicie operatora o rejestracje telefonów w komórkach.",
+      "gives": [
+       "x2"
+      ]
+     },
+     {
+      "id": "sp-hq-flota",
+      "name": "Telematyka Syreon",
+      "text": "Prosicie firmę o wyciąg z GPS pojazdów floty.",
+      "gives": [
+       "x3"
+      ]
+     },
+     {
+      "id": "sp-hq-med",
+      "name": "Zakład medycyny sądowej",
+      "text": "Prosicie o wnioski z sekcji zwłok.",
+      "gives": [
+       "x4"
+      ]
+     },
+     {
+      "id": "sp-hq-cz",
+      "name": "Informatyk CZK",
+      "text": "Prosicie o odczyt dziennika audytu archiwum alarmów.",
+      "gives": [
+       "x5"
+      ]
+     },
+     {
+      "id": "sp-hq-zeg",
+      "name": "Producent zegarka",
+      "text": "Prosicie o odzyskanie danych z zegarka Lasoty.",
+      "gives": [
+       "x6"
+      ]
+     }
+    ]
+   }
+  ],
+  "questions": {}
+ },
+ "breakthroughs": [
+  {
+   "id": "b-service",
+   "when": "p-service",
+   "title": "Głucha stacja",
+   "text": "Przez 119 minut nadajnik SN-1 ignorował każde polecenie. Syreny milczały nie dlatego, że system się zepsuł, ale dlatego, że ktoś go wyłączył kluczem."
+  },
+  {
+   "id": "b-k3",
+   "when": "e30",
+   "title": "Martwy kanał",
+   "text": "Telemetria z nadajnika mówi, że kanał rezerwowy K3 od dwóch lat nie nadaje. W protokole odbioru ktoś wpisał, że działa."
+  },
+  {
+   "id": "b-time",
+   "when": "p-time",
+   "title": "Siedem minut",
+   "text": "Zegarek Lasoty spóźniał się o siedem minut. Cała noc przesuwa się o tyle, a wraz z nią to, kto mógł być gdzie."
+  },
+  {
+   "id": "b-blow",
+   "when": "lie:k-l6",
+   "title": "Jedno uderzenie",
+   "text": "Kopeć przyznaje: Lasota nie dotknął szyn. Został uderzony, a dopiero potem ułożony przy rozdzielni. Wypadek był wymyślony."
+  }
+ ],
+ "hintTrail": [
+  {
+   "unless": [
+    "sp-body"
+   ],
+   "text": "Zacznijcie od stacji nadawczej: ciało przy szafie nadajnika i to, co ofiara miała przy sobie."
+  },
+  {
+   "unless": [
+    "sp-cabinet"
+   ],
+   "when": [
+    "sp-body"
+   ],
+   "text": "Szafa SN-1 ma własny dziennik zdarzeń. Sprawdźcie, co nadajnik robił tej nocy."
+  },
+  {
+   "unless": [
+    "sp-door"
+   ],
+   "when": [
+    "sp-cabinet"
+   ],
+   "text": "Kto wchodził na stację? Drzwi mają czytniki kart po obu stronach."
+  },
+  {
+   "unless": [
+    "sp-console"
+   ],
+   "when": [
+    "sp-door"
+   ],
+   "text": "Z archiwum Centrum zniknął zapis alarmu. Sprawdźcie, co mówi konsola operatorki."
+  },
+  {
+   "unless": [
+    "sp-gasnet"
+   ],
+   "when": [
+    "sp-console"
+   ],
+   "text": "Czujniki Chemrud wysłały żądanie alarmu. Zobaczcie ich dziennik."
+  },
+  {
+   "unless": [
+    "p-service"
+   ],
+   "when": [
+    "e09"
+   ],
+   "text": "Dziennik SN-1 ma dwa wpisy o trybie SERWIS. Ile trwał ten stan?"
+  },
+  {
+   "unless": [
+    "lie:k-l1"
+   ],
+   "when": [
+    "e12"
+   ],
+   "text": "Karta SRV-07 należy do puli firmy Syreon. Kopeć twierdzi, że spał w domu. Czy dokumenty to potwierdzają?"
+  },
+  {
+   "unless": [
+    "p-pin"
+   ],
+   "when": [
+    "e27",
+    "e28"
+   ],
+   "text": "Karteczka Lasoty podpowiada, z czym związany jest PIN do sejfu. Protokół odbioru zna datę."
+  },
+  {
+   "unless": [
+    "p-time"
+   ],
+   "when": [
+    "x6",
+    "x1"
+   ],
+   "text": "Zegarek Lasoty nie był synchronizowany z siecią. Porównajcie jego wpis o telefonie z billingiem."
+  },
+  {
+   "unless": [
+    "lie:b-l2"
+   ],
+   "when": [
+    "x5"
+   ],
+   "text": "Dziennik audytu pokazuje, kto i kiedy usunął zapis alarmu. Operatorka twierdzi, że niczego nie kasowała."
+  },
+  {
+   "unless": [
+    "p-alibi"
+   ],
+   "when": [
+    "p-time",
+    "e39"
+   ],
+   "text": "Zbierzcie, gdzie kto był o 1:47 i o 2:41. Potrzebujecie kamery, czytnika, rejestru Syreon i danych lokalizacyjnych."
+  },
+  {
+   "unless": [
+    "lie:k-l6"
+   ],
+   "when": [
+    "x4",
+    "e13"
+   ],
+   "text": "Sekcja i klucz dynamometryczny rozstrzygną, czy to był wypadek. Porównajcie je z przydziałem narzędzi w Syreon."
+  },
+  {
+   "text": "Macie dość, by złożyć raport. Upewnijcie się, że każdy wniosek umiecie podeprzeć dowodem."
+  }
+ ],
+ "report": {
+  "questions": [
+   {
+    "id": "r-who",
+    "q": "Kto zabił Bogdana Lasotę?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "kopec",
+      "Dariusz Kopeć, inżynier serwisowy"
+     ],
+     [
+      "burda",
+      "Agnieszka Burda, operatorka dyżurna"
+     ],
+     [
+      "szczerba",
+      "Piotr Szczerba, wiceprezydent"
+     ],
+     [
+      "hajduk",
+      "Lena Hajduk, dziennikarka"
+     ],
+     [
+      "pyka",
+      "Witold Pyka, prezes Chemrud"
+     ],
+     [
+      "accident",
+      "Nikt — to był nieszczęśliwy wypadek przy rozdzielni"
+     ]
+    ],
+    "correct": "kopec",
+    "proof": {
+     "count": 3,
+     "each": 4,
+     "valid": [
+      "e09",
+      "e12",
+      "e13",
+      "e39",
+      "e42",
+      "e41",
+      "x3",
+      "x4",
+      "t05"
+     ],
+     "label": "Wskażcie trzy dowody, które najmocniej łączą sprawcę z zabójstwem."
+    }
+   },
+   {
+    "id": "r-help",
+    "q": "Kto — oprócz sprawcy — bezpośrednio przyczynił się do ciszy syren lub zniknięcia zapisu: zatwierdził okno serwisowe albo usunął zapis alarmu z archiwum?",
+    "type": "multi",
+    "points": 12,
+    "hint": "Zaznaczcie wszystkie właściwe osoby. Każda błędna odpowiedź odejmuje punkty za trafną.",
+    "options": [
+     [
+      "burda",
+      "Agnieszka Burda"
+     ],
+     [
+      "szczerba",
+      "Piotr Szczerba"
+     ],
+     [
+      "hajduk",
+      "Lena Hajduk"
+     ],
+     [
+      "pyka",
+      "Witold Pyka"
+     ]
+    ],
+    "correct": [
+     "burda",
+     "szczerba"
+    ]
+   },
+   {
+    "id": "r-how",
+    "q": "Dlaczego syreny nie zawyły o 1:47?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "service",
+      "Nadajnik SN-1 był w trybie SERWIS i ignorował polecenia"
+     ],
+     [
+      "sensor",
+      "Czujniki Chemrud nie wysłały żądania alarmu"
+     ],
+     [
+      "operator",
+      "Operatorka nie wcisnęła przycisku alarmu"
+     ],
+     [
+      "link",
+      "Awaria łącza K1 w mieście"
+     ],
+     [
+      "hack",
+      "Atak na serwer CZK przez łącze serwisowe"
+     ]
+    ],
+    "correct": "service"
+   },
+   {
+    "id": "r-when",
+    "q": "Kiedy doszło do ataku na Lasotę?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "0147",
+      "Ok. 1:47"
+     ],
+     [
+      "0231",
+      "Ok. 2:31"
+     ],
+     [
+      "0234",
+      "Ok. 2:34"
+     ],
+     [
+      "0241",
+      "Ok. 2:41"
+     ],
+     [
+      "0309",
+      "Ok. 3:09"
+     ]
+    ],
+    "correct": "0241"
+   },
+   {
+    "id": "r-motive",
+    "q": "Jaki był motyw?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "cover",
+      "Lasota miał rano ujawnić NIK i prasie, że kanału K3 nie ma, a odbiór systemu sfałszowano"
+     ],
+     [
+      "dispute",
+      "Spór o wynagrodzenie za wymianę modułu K3"
+     ],
+     [
+      "chlorine",
+      "Lasota chciał zgłosić wyciek w Chemrud"
+     ],
+     [
+      "audit",
+      "Lasota przyłapał sprawcę na kradzieży części z magazynu Syreon"
+     ]
+    ],
+    "correct": "cover"
+   },
+   {
+    "id": "r-k3",
+    "q": "Co naprawdę stało się z kanałem rezerwowym K3 w 2024 roku?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "dummy",
+      "Wykreślono go aneksem, zamontowano atrapę, a w protokole wpisano pozytywny test"
+     ],
+     [
+      "failed",
+      "Zamontowano go, ale uległ awarii po odbiorze"
+     ],
+     [
+      "removed",
+      "Zdemontowano go w nocy zdarzenia podczas okna serwisowego"
+     ],
+     [
+      "works",
+      "K3 działał, tylko tej nocy zablokował go tryb SERWIS"
+     ]
+    ],
+    "correct": "dummy"
+   },
+   {
+    "id": "r-log",
+    "q": "Jak zniknął zapis alarmu z archiwum?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "burda",
+      "Operatorka usunęła go na stanowisku CZK z polecenia wiceprezydenta"
+     ],
+     [
+      "kopec",
+      "Kopeć usunął go zdalnie przez łącze serwisowe"
+     ],
+     [
+      "lasota",
+      "Skasował go Lasota, zanim zginął"
+     ],
+     [
+      "crash",
+      "Zniknął w awarii serwera"
+     ]
+    ],
+    "correct": "burda"
+   },
+   {
+    "id": "r-order",
+    "q": "Ułóżcie wydarzenia tej nocy we właściwej kolejności.",
+    "type": "order",
+    "points": 12,
+    "items": [
+     [
+      "park",
+      "Lasota zaczyna spotkanie z Leną Hajduk na parkingu pod Kolonią (ok. północy)"
+     ],
+     [
+      "enter",
+      "Kopeć wchodzi na stację kartą SRV-07"
+     ],
+     [
+      "service",
+      "Kopeć przełącza SN-1 w tryb SERWIS"
+     ],
+     [
+      "alarm",
+      "Czujniki Chemrud wysyłają alarm, SN-1 go ignoruje"
+     ],
+     [
+      "lasota",
+      "Lasota wchodzi na stację"
+     ],
+     [
+      "attack",
+      "Kopeć zabija Lasotę"
+     ],
+     [
+      "clear",
+      "Kopeć kasuje kolejkę alarmów i wychodzi z trybu SERWIS"
+     ],
+     [
+      "delete",
+      "Operatorka usuwa zapis alarmu z archiwum"
+     ]
+    ],
+    "correct": [
+     "park",
+     "enter",
+     "service",
+     "alarm",
+     "lasota",
+     "attack",
+     "clear",
+     "delete"
+    ]
+   }
+  ]
+ },
+ "solution": {
+  "summary": "Bogdana Lasotę zabił Dariusz Kopeć, inżynier serwisowy firmy Syreon, o 2:41 w stacji nadawczej „Kolonia”. Tego samego wieczora, pod pozorem okna serwisowego zatwierdzonego przez wiceprezydenta Szczerbę, wyłączył nadajnik kluczem SERWIS, więc o 1:47 alarm z Chemrud nie poszedł do syren. Zapis alarmu usunęła potem operatorka Burda na polecenie Szczerby.",
+  "steps": [
+   {
+    "h": "Głuchy nadajnik",
+    "p": "Dziennik SN-1 pokazuje tryb SERWIS od 1:03:22 do 3:02:11 (119 minut) i polecenie alarmu zignorowane o 1:47:09. Syreny nie zawyły dlatego, że ktoś wyłączył nadajnik kluczem, a nie z awarii łącza."
+   },
+   {
+    "h": "Kto miał klucz",
+    "p": "Klucz SYR-1 i kartę SRV-07 wydano 26.11 o 16:10 Dariuszowi Kopeciowi. Wolak był na urlopie, Tarka na zwolnieniu. Czytnik D1 pokazuje SRV-07 na stacji od 0:41 do 3:09, a GPS busa zgadza się z tym w granicach kilku minut."
+   },
+   {
+    "h": "Okno bez administratora",
+    "p": "Okno MW-2611 zatwierdził Szczerba, choć regulamin pozwalał na to tylko przy nieobecności administratora powyżej 72 godzin. Lasota był w pracy i o oknie nie wiedział."
+   },
+   {
+    "h": "Kanał, którego nie ma",
+    "p": "Aneks nr 2 z maja 2024 usunął K3 z dostawy (oszczędność 612 000 zł), a protokół odbioru z czerwca podał K3 jako przetestowany na 25 W. Telemetria z nadajnika zapisała dwa negatywne testy i ręczny wpis „PASS” z klucza SYR-1. Do złącza K3 wpięto atrapę 50 Ω. Faktura Alfa-Doradztwo (310 000 zł, firma żony Szczerby, płatnik Syreon) pokazuje, kto zyskał."
+   },
+   {
+    "h": "Motyw",
+    "p": "Lasota porównał telemetrię z protokołem, przekazał kopię dziennikarce i miał o 9:00 powiedzieć wszystko NIK. Kopeć i Szczerba mieli czas do rana."
+   },
+   {
+    "h": "Zegarek",
+    "p": "Zegarek Lasoty spóźniał się o 7 minut: połączenie do Hajduk o 2:34 widnieje na nim jako 2:27. Zdjęcie z nadgarstka o 2:34 na zegarku to prawdziwe 2:41, moment ataku."
+   },
+   {
+    "h": "Wypadek, który nim nie był",
+    "p": "Sekcja: uderzenie okrągłym przedmiotem o średnicy 38 mm w potylicę i pośmiertne oparzenia. Klucz dynamometryczny SY-TW-17 przypisany Kopeciowi leżał w kanale za szafą, a jego gniazdo w busie było puste."
+   },
+   {
+    "h": "Zacieranie śladów",
+    "p": "Kopeć skasował kolejkę alarmów o 3:01:50 i wyszedł z SERWIS, żeby alarm nie poszedł spóźniony. O 3:35 Szczerba kazał Burdzie usunąć zapis, a ta o 3:41:07 skasowała go własnym PIN-em jako „testowy”."
+   },
+   {
+    "h": "Fałszywe tropy",
+    "p": "Hajduk skłamała, bo chroniła źródło, i wjechała pod Kolonię dopiero o 3:05, kiedy Lasota już nie żył. Pyka skłamał o wycieku, bo nie chciał kolejnej kontroli. Był winny zaniedbania, ale nie tej nocy na stacji. Burda uwierzyła w „test czujnika”, a potem wykonała polecenie przełożonego."
+   }
+  ]
+ },
+ "endings": {
+  "correct": {
+   "title": "Martwy kanał",
+   "text": "Dariusz Kopeć zostaje zatrzymany w garażu Syreon, w kurtce z logo firmy. Nie próbuje uciekać. W prokuraturze przyznaje wszystko, a Szczerba i Burda stają przed zarzutami zatajenia i niedopełnienia obowiązków. Kontrola NIK zaczyna się o 9:00, jak zaplanowano, tylko bez człowieka, który miał ją otworzyć. Syreny w Rudzie dostają prawdziwy kanał rezerwowy po trzech miesiącach.",
+   "decision": {
+    "q": "Zostaje pendrive od Lasoty, teczka K3 i komplet dokumentów z umowy. Co zrobicie?",
+    "options": [
+     {
+      "id": "law",
+      "label": "Wszystko do prokuratury i NIK — pełne rozliczenie umowy z 2024",
+      "text": "Prokuratura i NIK dostają komplet i prowadzą wspólne postępowanie. Po roku Szczerba traci stanowisko, a Syreon płaci karę i wymienia K3 na własny koszt. Ruda dostaje rzetelny audyt systemu."
+     },
+     {
+      "id": "press",
+      "label": "Przekazać dokumenty Lenie Hajduk przed południem",
+      "text": "Artykuł „Syreny na papierze” ukazuje się jeszcze w piątek. Burmistrz dymisjonuje Szczerbę w tydzień. Prokuratura zarzuca wam wyciek, ale postępowanie przeciw Syreon nabiera tempa dzięki presji opinii publicznej."
+     },
+     {
+      "id": "fix",
+      "label": "Zażądać u prezydenta natychmiastowej wymiany K3, zanim zacznie się proces",
+      "text": "Prezydent zarządza awaryjną instalację kanału rezerwowego w dwa tygodnie. Ruda bezpiecznie przechodzi zimę, ale dokumentacja trafia do prokuratury później i dwóch urzędników zdąży usunąć część śladów."
+     }
+    ]
+   }
+  },
+  "wrong": {
+   "burda": {
+    "title": "Operatorka",
+    "text": "Oskarżacie Agnieszkę Burdę, bo skasowała zapis alarmu i skłamała o tej nocy. Dziennik audytu potwierdza usunięcie, ale kamera pokazuje, że o 2:41 siedziała w sali dyżurnej, a Lasotę zabił ktoś na wzgórzu. Burda dostaje zarzut za zatajenie, a sprawca czeka na kolejną okazję."
+   },
+   "szczerba": {
+    "title": "Wiceprezydent",
+    "text": "Szczerba zatwierdził okno i skłamał w kilku sprawach, więc oskarżacie go o zabójstwo. W nocy był jednak w domu, a telefon pokazuje go na osiedlu Parkowe. Prokurator przyjmie zarzuty o korupcję i poświadczenie nieprawdy, ale nie zabójstwo."
+   },
+   "hajduk": {
+    "title": "Dziennikarka",
+    "text": "Lena Hajduk skłamała, że nie widziała się z Lasotą, i dwa razy była pod Kolonią. Ale wjechała tam o 3:05, kiedy Lasota nie żył od ponad pół godziny, a jej samochód nie ma nic wspólnego z busem Syreon. Redakcja dostaje pozew, a prawdziwy sprawca czyta o tym w gazecie."
+   },
+   "pyka": {
+    "title": "Prezes",
+    "text": "Witold Pyka ukrył wyciek i skłamał o telefonie do wiceprezydenta. Naprawdę jest odpowiedzialny za zaniedbanie, ale o 2:41 był już na zakładzie, kilkanaście kilometrów od stacji. Prokurator wnosi zarzut narażenia ludzi na utratę zdrowia, a sprawca pozostaje na wolności."
+   },
+   "accident": {
+    "title": "Nieszczęśliwy wypadek",
+    "text": "Porażenie prądem przy szafie nadajnika. Sprawa zostaje zamknięta po sekcji, w której zapisano oparzenia, ale pominięto pośmiertny charakter obrażeń. Po tygodniu NIK i tak znajduje atrapę kanału K3, a ktoś pyta, dlaczego administrator systemu był na stacji o 2:30 w nocy."
+   }
+  },
+  "partial": "Wskazaliście właściwą osobę, ale część waszych wniosków jest błędna lub niepoparta dowodami. Prokurator przyjmuje sprawę, choć obrona będzie miała o co walczyć."
+ }
+}

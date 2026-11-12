@@ -56,12 +56,51 @@ for (const [f, c] of runs) {
     if (!p.hints || p.hints.length !== 3) E(`zagadka ${id}: wymagane 3 stopnie podpowiedzi`);
     // 5. Brak przecieku odpowiedzi
     const text = [p.prompt, p.title].join(' ');
-    p.answers.forEach(a => {
+    if (p.input !== 'grid') p.answers.forEach(a => {
       if (p.input === 'text') { if (norm(text).includes(norm(a)) && norm(a).length > 3) E(`zagadka ${id}: odpowiedź „${a}” występuje w treści`); }
       else if (p.input === 'number') { const [lo, hi] = String(a).split('-').map(Number); if (isNaN(lo) || (hi !== undefined && !isNaN(hi) && hi < lo)) E(`zagadka ${id}: zły przedział ${a}`); const nums = (text.match(/\d+/g) || []).map(Number); if (nums.some(n => n >= lo && n <= (isNaN(hi) ? lo : hi))) E(`zagadka ${id}: liczba z przedziału odpowiedzi występuje w treści`); }
       else { if (digits(text).includes(digits(a))) E(`zagadka ${id}: cyfry odpowiedzi ${a} występują w treści`); }
     });
     if (p.input === 'digits4' || p.input === 'time') { const reqText = p.requires.map(r => JSON.stringify((ev.get(r) || {}).body || '')).join(' '); p.answers.forEach(a => { if (reqText.includes(a)) warns.push(`zagadka ${id}: odpowiedź ${a} dosłownie w wymaganym dowodzie — upewnij się, że wymaga przekształcenia`); }); }
+  }
+  for (const [id, p] of pz) if (p.input === 'grid') {
+    const gd = p.grid || {}; const W = m => E(`zagadka ${id}: ${m}`);
+    const rows = (gd.rows || []).map(r => r.id), cols = (gd.cols || []).map(r => r.id), opts = (gd.options || []).map(o => o.id);
+    if (!rows.length || !cols.length || opts.length < 2) { W('macierz wymaga wierszy, kolumn i co najmniej 2 opcji'); continue; }
+    [rows, cols, opts].forEach(a => { if (new Set(a).size !== a.length) W('powtórzone identyfikatory w macierzy'); });
+    const sol = p.answers[0] || {};
+    rows.forEach(r => cols.forEach(cl => { if (!opts.includes((sol[r] || {})[cl])) W(`odpowiedź nie wypełnia komórki ${r}/${cl}`); }));
+    if (p.answers.length !== 1) W('macierz musi mieć dokładnie jedno rozwiązanie wzorcowe');
+    const cons = gd.constraints || []; if (cons.length < rows.length) W('za mało warunków logicznych');
+    const cells = []; rows.forEach(r => cols.forEach(cl => cells.push([r, cl])));
+    const refs = k => ({ is: [[k.r, k.c]], not: [[k.r, k.c]], same: [[k.r1, k.c], [k.r2, k.c]], diff: [[k.r1, k.c], [k.r2, k.c]], forbid: [[k.r, k.c1], [k.r, k.c2]], exactly: rows.map(r => [r, k.c]), in: [[k.r, k.c]] }[k.t]);
+    cons.forEach((k, i) => {
+      const R = refs(k); if (!R) { W(`warunek ${i}: nieznany typ ${k.t}`); return; }
+      R.forEach(([r, cl]) => { if (!rows.includes(r) || !cols.includes(cl)) W(`warunek ${i}: nieznana komórka ${r}/${cl}`); });
+      [k.v, k.v1, k.v2, ...(k.vs || [])].filter(v => v !== undefined).forEach(v => { if (!opts.includes(v)) W(`warunek ${i}: nieznane miejsce ${v}`); });
+      if (!k.src || !k.src.length) W(`warunek ${i}: brak dokumentu źródłowego`); else k.src.forEach(x => { if (!ev.has(x)) W(`warunek ${i}: brak dowodu ${x}`); else if (!p.requires.includes(x)) W(`warunek ${i}: dowód ${x} nie jest na liście wymaganych materiałów zagadki`); });
+      if (!k.why) W(`warunek ${i}: brak opisu (pole why)`);
+    });
+    p.requires.forEach(x => { if (ev.has(x) && !cons.some(k => (k.src || []).includes(x))) warns.push(`zagadka ${id}: wymagany dowód ${x} nie jest źródłem żadnego warunku`); });
+    const okCons = (A, k) => { const g = (r, cl) => A[r + '|' + cl];
+      if (k.t === 'is') return g(k.r, k.c) === k.v; if (k.t === 'not') return g(k.r, k.c) !== k.v;
+      if (k.t === 'same') return g(k.r1, k.c) === g(k.r2, k.c); if (k.t === 'diff') return g(k.r1, k.c) !== g(k.r2, k.c);
+      if (k.t === 'forbid') return !(g(k.r, k.c1) === k.v1 && g(k.r, k.c2) === k.v2);
+      if (k.t === 'in') return (k.vs || []).includes(g(k.r, k.c));
+      if (k.t === 'exactly') return rows.filter(r => g(r, k.c) === k.v).length === k.n; return false; };
+    const A = {}; let nsol = 0, firstSol = null;
+    const ready = k => (refs(k) || []).every(([r, cl]) => A[r + '|' + cl] !== undefined);
+    const dfs = i => {
+      if (nsol > 1) return;
+      if (i === cells.length) { nsol++; if (!firstSol) firstSol = { ...A }; return; }
+      const [r, cl] = cells[i];
+      for (const v of opts) { A[r + '|' + cl] = v; if (cons.every(k => !ready(k) || okCons(A, k))) dfs(i + 1); }
+      delete A[r + '|' + cl];
+    };
+    dfs(0);
+    if (nsol === 0) W('warunki logiczne nie mają żadnego rozwiązania');
+    else if (nsol > 1) W('warunki logiczne dopuszczają więcej niż jedno rozwiązanie — macierz nie jest jednoznaczna');
+    else rows.forEach(r => cols.forEach(cl => { if (firstSol[r + '|' + cl] !== (sol[r] || {})[cl]) W(`rozwiązanie z warunków różni się od odpowiedzi w komórce ${r}/${cl}`); }));
   }
   (c.privateClues || []).forEach(x => { needEv(x, 'tajne akta'); if (ev.get(x) && !ev.get(x).private) E(`tajny dokument ${x} bez flagi private`); });
   c.evidence.filter(e => e.private).forEach(e => { if (!c.privateClues.includes(e.id)) E(`dowód ${e.id} oznaczony jako tajny, ale nie rozdawany`); });
@@ -118,6 +157,7 @@ for (const [f, c] of runs) {
   c.report.questions.forEach(q => {
     total += q.points + (q.proof ? q.proof.count * q.proof.each : 0);
     if (q.type === 'single') { if (!q.options.some(o => o[0] === q.correct)) E(`raport ${q.id}: brak poprawnej opcji`); if (new Set(q.options.map(o => o[0])).size !== q.options.length) E(`raport ${q.id}: duplikat opcji`); }
+    if (q.type === 'multi') { const ks = q.options.map(o => o[0]); if (new Set(ks).size !== ks.length) E(`raport ${q.id}: duplikat opcji`); if (!Array.isArray(q.correct) || !q.correct.length || q.correct.length >= ks.length) E(`raport ${q.id}: poprawny zbiór musi być niepusty i mniejszy niż liczba opcji`); else q.correct.forEach(k => { if (!ks.includes(k)) E(`raport ${q.id}: poprawna opcja ${k} nie istnieje`); }); }
     if (q.type === 'order') { const a = q.items.map(i => i[0]).sort().join(), b = q.correct.slice().sort().join(); if (a !== b) E(`raport ${q.id}: kolejność nie jest permutacją`); }
     if (q.proof) { q.proof.valid.forEach(x => { needEv(x, `raport ${q.id}`); if (!K.has(x)) E(`raport ${q.id}: dowód ${x} nieosiągalny`); }); if (q.proof.valid.filter(x => K.has(x)).length < q.proof.count) E(`raport ${q.id}: za mało osiągalnych dowodów`); }
   });

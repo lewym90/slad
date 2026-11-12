@@ -54,7 +54,8 @@ await closeAll();
 const solvePuzzle = async pz => {
   await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="zagadki"]');
   await A('puzzle', `[data-id="${pz.id}"]`);
-  if (pz.input === 'text') { await p.fill('#pzin', pz.answers[0]); }
+  if (pz.input === 'grid') { const sol = pz.answers[0]; for (const r of pz.grid.rows) for (const cl of pz.grid.cols) await p.selectOption(`[data-gc="${pz.id}|${r.id}|${cl.id}"]`, sol[r.id][cl.id]); }
+  else if (pz.input === 'text') { await p.fill('#pzin', pz.answers[0]); }
   else if (pz.input === 'number') { const [lo, hi] = pz.answers[0].split('-').map(Number); await p.fill('#pzin', String(Math.round((lo + (hi || lo)) / 2))); }
   else { const d = pz.answers[0].replace(/\D/g, ''); for (let i = 0; i < 4; i++) { for (let k = 0; k < +d[i]; k++) await p.locator(`[data-a="dial"][data-id="${pz.id}"][data-i="${i}"][data-d="1"]`).click(); } }
   await shot('puzzle-input-' + pz.id);
@@ -86,8 +87,8 @@ for (let round = 0; round < 5; round++) {
     }
     await closeAll();
   }
-  const g = await state();
-  for (const pz of C.puzzles) { if (g.puzzles[pz.id]?.solved) continue; if (pz.requires.every(r => g.found.includes(r) || g.shared.includes(r))) await solvePuzzle(pz); }
+  for (let rep = 0; rep < 2; rep++) { const g = await state();
+  for (const pz of C.puzzles) { if ((await state()).puzzles[pz.id]?.solved) continue; if (pz.requires.every(r => g.found.includes(r) || g.shared.includes(r) || (g.puzzles[r] && g.puzzles[r].solved))) await solvePuzzle(pz); } }
 }
 fs.writeFileSync(`/tmp/state-${CID}-${dev}-${MODE}.json`, await p.evaluate(() => localStorage.getItem('slad.v2')));
 }
@@ -111,6 +112,7 @@ else await A('to-report');
 await p.waitForTimeout(300); await shot('report-1');
 for (const q of C.report.questions) {
   if (q.type === 'single') { await A('ropt', `[data-q="${q.id}"][data-k="${q.correct}"]`); if (q.proof) { for (const id of q.proof.valid.slice(0, q.proof.count)) await A('rproof', `[data-id="${id}"]`); await shot('report-proof'); } }
+  else if (q.type === 'multi') { for (const k of q.correct) await A('rmulti', `[data-q="${q.id}"][data-k="${k}"]`); }
   else { const st = await state(); let order = st.draft.order.slice();
     for (let target = 0; target < q.correct.length; target++) { let i = order.indexOf(q.correct[target]); while (i > target) { await p.locator(`[data-a="rord"][data-i="${i}"][data-d="-1"]`).click(); order = (await state()).draft.order; i--; } }
     await shot('report-order'); }

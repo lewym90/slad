@@ -55,6 +55,12 @@ python3 -m http.server 8000   # potem http://localhost:8000
 ```
 Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 
+## Nowe mechaniki (2.12)
+- **Macierz alibi (`input: "grid"` w zagadce):** tabela osoba × chwila, w każdej komórce lista miejsc. Walidator rozwiązuje ją wyczerpująco: warunki logiczne (`is`, `not`, `in`, `same`, `diff`, `forbid`, `exactly`) muszą dawać dokładnie jedno rozwiązanie zgodne z `answers[0]`, każdy ma `src` (dowód z listy `requires`) i `why`.
+- **Pytanie wielokrotnego wyboru w raporcie (`type: "multi"`):** zaznaczacie wszystkie właściwe osoby; błędny wybór odejmuje punkty za trafny (`points × max(0, trafione − błędne) / liczba poprawnych`).
+- **Dwa akty przez bramkowanie:** miejsca i pytania zależne od wykazanych kłamstw (`requires: {all: ["lie:…"]}`) otwierają się dopiero po przełomach, więc sprawa 004 rozkręca się w drugiej połowie.
+- Sprawa 004 „Martwy kanał” jest w katalogu zapieczętowana (`ready: false`) do czasu dodania grafik, głosów i filmów. Prompty: `docs/PROMPTY_GRAFIK_004.md`, `docs/PROMPTY_GLOSY_004.md`, `docs/PROMPTY_FILMY_DZWIEK_004.md` (generuje je `tools/prompts_004.py`).
+
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).
 - `sw.js`, `manifest.webmanifest` — PWA i tryb offline. Przy każdej zmianie podnieś `VERSION` w `sw.js` i `app.js`.
@@ -68,11 +74,12 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - `tools/cut_sheet.py` — cięcie plansz z grafikami na pojedyncze pliki.
 - `tools/plans.py` — szkice miejsc zdarzenia (sekcja `plan` w plikach spraw).
 - `tools/build_003.py` — źródło danych sprawy 003 (generuje `cases/003.json`).
+- `tools/build_004.py` (+ `b004_evidence.py`, `b004_people.py`, `b004_rest.py`) — źródło danych sprawy 004; `tools/prompts_004.py` — generator promptów medialnych.
 
 ## Testy
 ```bash
 node tools/validate.js
-CASE=001 MODE=table node tools/e2e.mjs http://localhost:8000/ phone    # CASE: 001|002|003; MODE: table | phones; urządzenie: phone | tablet | desktop
+CASE=001 MODE=table node tools/e2e.mjs http://localhost:8000/ phone    # CASE: 001|002|003|004 (004 wymaga ready:true); MODE: table | phones; urządzenie: phone | tablet | desktop
 node tools/audit.mjs http://localhost:8000/ /tmp/state.json
 CASE=001 MODE=table node tools/board_test.mjs http://localhost:8000/ phone
 ```

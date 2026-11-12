@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.11.0';
+const VERSION = '2.12.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -712,13 +712,16 @@ function timelineHTML(c, g) {
 }
 
 /* zagadka */
-let dialVals = {};
+let dialVals = {}, gridVals = {};
 function ovPuzzle(c, g, id, msg) {
   const pz = c.puzzle[id]; const st = g.puzzles[id] || { hints: 0, attempts: 0 };
   if (!dialVals[id]) dialVals[id] = [0, 0, 0, 0];
   let input = '';
   if (pz.input === 'digits4' || pz.input === 'time') {
     input = `<div class="dials">${dialVals[id].map((v, i) => `${pz.input === 'time' && i === 2 ? '<span class="dial-sep">:</span>' : ''}<div class="dial"><button data-a="dial" data-id="${id}" data-i="${i}" data-d="1" aria-label="W górę">▲</button><div class="num">${v}</div><button data-a="dial" data-id="${id}" data-i="${i}" data-d="-1" aria-label="W dół">▼</button></div>`).join('')}</div>`;
+  } else if (pz.input === 'grid') {
+    const Gd = pz.grid, gv = gridVals[id] = gridVals[id] || {};
+    input = `<div class="gridp" role="group" aria-label="${esc(pz.title)}">${Gd.rows.map(r => `<div class="gp-row"><b>${esc(r.label)}</b><div class="gp-cells">${Gd.cols.map(cl => `<label class="gp-cell"><span>${esc(cl.label)}</span><select data-gc="${esc(id)}|${esc(r.id)}|${esc(cl.id)}" aria-label="${esc(r.label)}, ${esc(cl.label)}"><option value="">—</option>${Gd.options.map(o => `<option value="${esc(o.id)}"${(gv[r.id] || {})[cl.id] === o.id ? ' selected' : ''}>${esc(o.label)}</option>`).join('')}</select></label>`).join('')}</div></div>`).join('')}</div>`;
   } else if (pz.input === 'number') input = `<div class="field" style="margin:16px 0;max-width:260px"><label for="pzin">Liczba</label><input class="input" id="pzin" inputmode="decimal" autocomplete="off" placeholder="np. 123" style="font-family:var(--f-mono);font-size:1.6rem"></div>`;
   else input = `<div class="field" style="margin:16px 0"><label for="pzin">Odpowiedź</label><input class="input" id="pzin" autocomplete="off" placeholder="Wpiszcie odpowiedź"></div>`;
   const hints = pz.hints.slice(0, st.hints || 0).map((h, i) => `<div class="hint-box"><span class="eyebrow">Podpowiedź ${i + 1}</span><br>${esc(h)}</div>`).join('');
@@ -735,11 +738,13 @@ function doSolve(c, g, id) {
   if (pz.input === 'digits4' || pz.input === 'time') val = dialVals[id].join('');
   else val = ($('#pzin') || {}).value || '';
   const num = parseFloat(String(val).replace(',', '.').replace(/[^0-9.\-]/g, ''));
-  const ok = pz.input === 'text' ? pz.answers.some(a => norm(a) === norm(val))
+  const gv = gridVals[id] || {};
+  const ok = pz.input === 'grid' ? pz.answers.some(a => pz.grid.rows.every(r => pz.grid.cols.every(cl => (gv[r.id] || {})[cl.id] === (a[r.id] || {})[cl.id])))
+    : pz.input === 'text' ? pz.answers.some(a => norm(a) === norm(val))
     : pz.input === 'number' ? !isNaN(num) && pz.answers.some(a => { const [lo, hi] = String(a).split('-').map(Number); return num >= lo && num <= (isNaN(hi) ? lo : hi); })
     : pz.answers.some(a => digits(a) === digits(val));
   st.attempts++;
-  if (!ok) { save(); sfx('wrong'); return pz.input === 'digits4' ? 'Zamek ani drgnie.' : pz.input === 'number' ? 'Ta liczba nie zgadza się z materiałem. Policzcie jeszcze raz.' : pz.input === 'time' ? 'Ta godzina nie zgadza się z danymi. Sprawdźcie jeszcze raz.' : 'To nie pasuje do materiału. Spróbujcie inaczej.'; }
+  if (!ok) { save(); sfx('wrong'); return pz.input === 'digits4' ? 'Zamek ani drgnie.' : pz.input === 'grid' ? 'Ta tabela nie zgadza się z materiałem. Sprawdźcie jeszcze raz każdą osobę.' : pz.input === 'number' ? 'Ta liczba nie zgadza się z materiałem. Policzcie jeszcze raz.' : pz.input === 'time' ? 'Ta godzina nie zgadza się z danymi. Sprawdźcie jeszcze raz.' : 'To nie pasuje do materiału. Spróbujcie inaczej.'; }
   st.solved = true;
   if (pz.reward && pz.reward.search) (pz.reward.spots || []).forEach(s => { if (!g.spots.includes(s)) { g.spots.push(s); gain(g, c, c.spot[s].gives); } });
   save(); toast(pz.title, 'Zagadka rozwiązana', 'Rozwiązane'); sfx('unlock');
@@ -892,9 +897,9 @@ function renderReport(c, g) {
   const Q = c.report.questions; const d = g.draft; const step = Math.min(d.step, Q.length);
   const prog = `<div class="rep-progress">${Q.map((_, i) => `<i class="${i <= step ? 'on' : ''}"></i>`).join('')}<i class="${step >= Q.length ? 'on' : ''}"></i></div>`;
   if (step >= Q.length) {
-    const missing = Q.filter(q => q.type === 'order' ? !d.order : !d.answers[q.id]).length;
+    const missing = Q.filter(q => q.type === 'order' ? !d.order : q.type === 'multi' ? !(d.answers[q.id] && d.answers[q.id].length) : !d.answers[q.id]).length;
     return `<div class="rep-step">${prog}<div class="eyebrow">Ostatni krok</div><h2 style="font-size:2.2rem;margin:.2em 0 .4em">Podpis i złożenie raportu</h2>
-     <div class="panel">${Q.map(q => `<p style="margin:.6em 0"><span class="eyebrow">${esc(q.q)}</span><br>${q.type === 'order' ? (d.order ? d.order.map(k => esc(q.items.find(x => x[0] === k)[1])).join(' → ') : '<i>brak</i>') : esc((q.options.find(o => o[0] === d.answers[q.id]) || [, '— brak odpowiedzi —'])[1])}</p>`).join('')}
+     <div class="panel">${Q.map(q => `<p style="margin:.6em 0"><span class="eyebrow">${esc(q.q)}</span><br>${q.type === 'order' ? (d.order ? d.order.map(k => esc(q.items.find(x => x[0] === k)[1])).join(' → ') : '<i>brak</i>') : q.type === 'multi' ? ((d.answers[q.id] || []).length ? (d.answers[q.id] || []).map(k => esc((q.options.find(o => o[0] === k) || [, k])[1])).join(' · ') : '<i>— brak odpowiedzi —</i>') : esc((q.options.find(o => o[0] === d.answers[q.id]) || [, '— brak odpowiedzi —'])[1])}</p>`).join('')}
      <p><span class="eyebrow">Wskazane dowody</span><br>${d.proofs.length ? d.proofs.map(id => esc(c.ev[id].title)).join(' · ') : '<i>brak</i>'}</p></div>
      ${missing ? `<div class="result-bad">Brakuje odpowiedzi na ${missing} pytań. Możecie złożyć raport, ale stracicie te punkty.</div>` : ''}
      <div class="row-actions"><button class="btn ghost" data-a="rstep" data-d="-1">Wstecz</button><button class="btn red" data-a="submit">Podpisz i złóż raport</button></div>
@@ -905,6 +910,9 @@ function renderReport(c, g) {
     body = q.options.map(([k, l]) => `<button class="opt" aria-pressed="${d.answers[q.id] === k}" data-a="ropt" data-q="${q.id}" data-k="${k}">${esc(l)}</button>`).join('');
     if (q.proof) body += `<div class="eyebrow" style="margin-top:22px">${esc(q.proof.label)} (${d.proofs.length}/${q.proof.count})</div>
       <div class="pick">${visibleEvidence(g, c).map(id => `<button aria-pressed="${d.proofs.includes(id)}" data-a="rproof" data-id="${id}" data-max="${q.proof.count}"><small>${esc(c.ev[id].type)}</small>${esc(c.ev[id].title)}</button>`).join('')}</div>`;
+  } else if (q.type === 'multi') {
+    const cur = d.answers[q.id] || [];
+    body = `<p class="muted">${esc(q.hint || 'Zaznaczcie wszystkie właściwe osoby. Każda błędna odpowiedź odejmuje punkty za trafną.')}</p>` + q.options.map(([k, l]) => `<button class="opt multi" aria-pressed="${cur.includes(k)}" data-a="rmulti" data-q="${q.id}" data-k="${k}">${esc(l)}</button>`).join('');
   } else {
     if (!d.order) { d.order = shuffle(q.items.map(x => x[0]), g.created % 997 + 3); save(); }
     body = `<p class="muted">Przestawiajcie strzałkami. Pierwsze wydarzenie na górze.</p><ol class="order">${d.order.map((k, i) => `<li><span>${esc(q.items.find(x => x[0] === k)[1])}</span><button data-a="rord" data-i="${i}" data-d="-1" aria-label="W górę" ${i ? '' : 'disabled'}>▲</button><button data-a="rord" data-i="${i}" data-d="1" aria-label="W dół" ${i < d.order.length - 1 ? '' : 'disabled'}>▼</button></li>`).join('')}</ol>`;
@@ -919,6 +927,9 @@ function score(c, g) {
     if (q.type === 'single') {
       const ok = d.answers[q.id] === q.correct; pts += ok ? q.points : 0; lines.push([q.q, ok ? q.points : 0, q.points, ok]);
       if (q.proof) { const v = d.proofs.filter(id => q.proof.valid.includes(id)).length; const p = Math.min(v, q.proof.count) * q.proof.each; pts += p; lines.push(['Dowody wskazujące sprawcę', p, q.proof.count * q.proof.each, v >= q.proof.count]); }
+    } else if (q.type === 'multi') {
+      const cur = d.answers[q.id] || []; const hit = cur.filter(k => q.correct.includes(k)).length, bad = cur.length - hit; const p = Math.round(q.points * Math.max(0, hit - bad) / q.correct.length);
+      pts += p; lines.push([q.q, p, q.points, hit === q.correct.length && bad === 0]);
     } else {
       const ok = (d.order || []).filter((k, i) => q.correct[i] === k).length; const p = Math.round(q.points * ok / q.correct.length); pts += p; lines.push([q.q, p, q.points, ok === q.correct.length]);
     }
@@ -1058,7 +1069,7 @@ async function renderChronicle() {
 /* ---------- akt oskarżenia do druku ---------- */
 function printReport(c, g) {
   const R = g.report; const Q = c.report.questions;
-  const ans = q => q.type === 'order' ? (R.order || []).map(k => (q.items.find(x => x[0] === k) || [, k])[1]).join(' → ') : ((q.options.find(o => o[0] === R.answers[q.id]) || [, '—'])[1]);
+  const ans = q => q.type === 'order' ? (R.order || []).map(k => (q.items.find(x => x[0] === k) || [, k])[1]).join(' → ') : q.type === 'multi' ? ((R.answers[q.id] || []).map(k => (q.options.find(o => o[0] === k) || [, k])[1]).join(', ') || '—') : ((q.options.find(o => o[0] === R.answers[q.id]) || [, '—'])[1]);
   const role = id => (ROLES.find(r => r.id === id) || { name: '' }).name;
   const el = document.createElement('div'); el.id = 'printable';
   el.innerHTML = `<div class="pr-doc"><div class="pr-top"><div>WYDZIAŁ SPRAW NIEWYJAŚNIONYCH<br><small>Archiwum ŚLAD · dokument fikcyjny</small></div><div>Sygn. akt: ${esc(c.id)}/${new Date(R.at).getFullYear()}<br>${new Date(R.at).toLocaleDateString('pl-PL')}</div></div>
@@ -1187,6 +1198,7 @@ const handlers = {
   trop: () => openOv({ type: 'trop' }),
   'trop-go': () => { const { c, g } = ctx(); const rule = c.hintTrail.find(h => (!h.when || h.when.every(t => has(g, c, t))) && !(h.unless && h.unless.every(t => has(g, c, t)))); if (usePower(g, 'trop')) g.freeTrops = (g.freeTrops || 0) + 1; else g.trops++; save(); topOv().text = rule ? rule.text : 'Macie wszystko, czego potrzeba.'; rerender(); },
   rstep: el => { const { g, c } = ctx(); g.draft.step = Math.max(0, Math.min(c.report.questions.length, g.draft.step + +el.dataset.d)); save(); render(); $('#main') && ($('#main').scrollTop = 0); },
+  rmulti: el => { const { g } = ctx(); const a = g.draft.answers[el.dataset.q] = g.draft.answers[el.dataset.q] || []; const i = a.indexOf(el.dataset.k); if (i >= 0) a.splice(i, 1); else a.push(el.dataset.k); save(); render(); },
   ropt: el => { const { g } = ctx(); g.draft.answers[el.dataset.q] = el.dataset.k; save(); render(); },
   rproof: el => { const { g } = ctx(); const p = g.draft.proofs; const id = el.dataset.id; const i = p.indexOf(id); if (i >= 0) p.splice(i, 1); else if (p.length < +el.dataset.max) p.push(id); else toast('Limit dowodów', 'Odznacz jeden, by wybrać inny', 'Raport'); save(); render(); },
   rord: el => { const { g } = ctx(); const o = g.draft.order; const i = +el.dataset.i, j = i + +el.dataset.d; if (j < 0 || j >= o.length) return; [o[i], o[j]] = [o[j], o[i]]; save(); render(); },
@@ -1246,6 +1258,7 @@ document.addEventListener('input', e => {
   if (e.target.dataset.vol) { S.settings[e.target.dataset.vol] = +e.target.value / 100; clearTimeout(handlers._vt); handlers._vt = setTimeout(save, 300); if (e.target.dataset.vol === 'music' && AU.amb && AU.ctx) AU.amb.g.gain.setTargetAtTime(vol('music') * 0.9, AU.ctx.currentTime, 0.1); return; }
   if (e.target.dataset.name !== undefined) setupNames[+e.target.dataset.name] = e.target.value;
   if (e.target.dataset.mx) { const { g } = ctx(); const [pid, col] = e.target.dataset.mx.split('|'); g.matrix = g.matrix || {}; (g.matrix[pid] = g.matrix[pid] || {})[col] = e.target.value; clearTimeout(handlers._mt); handlers._mt = setTimeout(save, 400); }
+  if (e.target.dataset.gc) { const [pid, r, cl] = e.target.dataset.gc.split('|'); gridVals[pid] = gridVals[pid] || {}; (gridVals[pid][r] = gridVals[pid][r] || {})[cl] = e.target.value; }
   if (e.target.dataset.notes !== undefined) { const { g } = ctx(); g.notes = e.target.value; clearTimeout(handlers._nt); handlers._nt = setTimeout(save, 400); }
 });
 document.addEventListener('change', async e => {

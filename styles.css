@@ -305,6 +305,14 @@ details.rules li{color:var(--muted);margin:.4em 0;font-size:.93rem}
 .big-cta{display:flex;align-items:center;gap:18px;padding:22px;border:1px solid rgba(210,58,50,.5);background:linear-gradient(120deg,rgba(163,32,31,.25),rgba(18,18,22,.9));border-radius:4px;margin-top:18px;text-align:left;width:100%;color:var(--txt)}
 .big-cta .seal{flex:0 0 auto}
 .big-cta b{font-family:var(--f-display);font-size:1.7rem;display:block}
+.gridp{display:grid;gap:10px;margin:16px 0}
+.gp-row{border:1px solid var(--line);background:rgba(18,18,22,.7);padding:10px 12px;border-radius:3px}
+.gp-row>b{display:block;font-family:var(--f-display);font-size:1.15rem;margin-bottom:8px;color:var(--txt)}
+.gp-cells{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.gp-cell{display:flex;flex-direction:column;gap:4px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#9a9486)}
+.gp-cell select{min-height:44px;padding:8px 10px;background:#121216;color:var(--txt);border:1px solid var(--line2);border-radius:3px;font-size:.95rem;letter-spacing:0;text-transform:none}
+.opt.multi::before{border-radius:3px}
+.opt.multi[aria-pressed="true"]::before{background:linear-gradient(var(--gold2),var(--gold2)) center/10px 10px no-repeat;border-color:var(--gold)}
 .dials{display:flex;gap:10px;justify-content:center;margin:22px 0}
 .dial{display:flex;flex-direction:column;align-items:center;gap:6px}
 .dial button{width:56px;height:38px;border:1px solid var(--line2);background:#121216;color:var(--gold2);border-radius:3px;font-size:1rem}
