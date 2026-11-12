@@ -30,6 +30,12 @@ Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 �
 - Teksty lektorów: `tools/voice_scripts.py` → `tools/voice/lines.json`.
 - **Kronika wydziału** z odznakami, **akt oskarżenia do druku/PDF** i **pieczęcie Archiwisty** (litera w jednym dowodzie każdej sprawy).
 
+## Tablica śledcza (2.11)
+- **Karty z treścią:** przypięty dowód pokazuje zdjęcie i początek treści (tabele, logi, cytaty, adnotacje), przycisk „Rozwiń” otwiera go w całości, „Akta” otwiera dokument. „Rozwiń wszystko / Zwiń wszystko” działa na całej tablicy.
+- **Fragmenty:** w otwartym dokumencie przy każdym akapicie, wierszu tabeli, linii logu, cytacie i adnotacji jest pinezka — przypina tylko ten fragment jako karteczkę z podanym źródłem. Pinezek nie ma w teczce tajnych akt na wspólnym ekranie.
+- **Porządek:** nowe karty trafiają w wolne miejsce, „Uporządkuj” układa całą tablicę bez nakładania, notatki można edytować, nitki łączą pinezki. Stare zapisy są jednorazowo porządkowane, jeśli karty by się nakładały.
+- Działa automatycznie w każdej sprawie — treść bierze z pola `body` dowodu, więc nowe sprawy nie wymagają żadnych dodatkowych danych.
+
 ## Aktualizacje
 Gra sama sprawdza nową wersję przy każdym otwarciu, powrocie z tła i co 15 minut, po czym przeładowuje się w tym samym miejscu. Numer wersji: Ustawienia → „Wersja gry” (przycisk „Sprawdź”).
 
@@ -56,6 +62,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - `assets/` — czcionki (wbudowane, offline), tekstury, ikony, okładki, grafiki, audio.
 - `tools/validate.js` — walidator logiki spraw (referencje, osiągalność każdego dowodu, łamliwość kłamstw, brak odpowiedzi w treści zagadek, suma punktów).
 - `tools/e2e.mjs` — pełne przejście sprawy przez interfejs w Chrome (Playwright) na telefonie, tablecie i komputerze.
+- `tools/board_test.mjs` — test tablicy: karty z treścią, fragmenty, rozwijanie, układanie bez nakładania, migracja starego zapisu, prywatność tajnych akt (CASE, MODE, urządzenie jak w e2e).
 - `tools/audit.mjs` — audyt techniczny: pliki offline, tryb offline, przycisk Wstecz, prywatność tajnych akt, błędne raporty, przepełnienia na 7 rozmiarach ekranu.
 - `tools/gen_audio.py` — generator ambientu (bezszwowa pętla) i efektów dźwiękowych, normalizacja głośności (LUFS).
 - `tools/cut_sheet.py` — cięcie plansz z grafikami na pojedyncze pliki.
@@ -67,6 +74,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 node tools/validate.js
 CASE=001 MODE=table node tools/e2e.mjs http://localhost:8000/ phone    # CASE: 001|002|003; MODE: table | phones; urządzenie: phone | tablet | desktop
 node tools/audit.mjs http://localhost:8000/ /tmp/state.json
+CASE=001 MODE=table node tools/board_test.mjs http://localhost:8000/ phone
 ```
 
 ## Zapis

@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.10.2';
+const VERSION = '2.11.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -139,7 +139,7 @@ function newGame(c, names, mode, diff) {
     v: 2, created: Date.now(), mode, phase: mode === 'table' ? 'play' : mode === 'phones' ? 'qr' : 'distribute', distIdx: 0,
     players: names.map((n, i) => ({ name: n, role: roles[i % roles.length] })), priv, shared: [],
     found: c.evidence.filter(e => e.start).map(e => e.id), read: [], spots: [], asked: [], claims: [], broken: [],
-    log: {}, failed: 0, actions: 0, puzzles: {}, trops: 0, notes: '', board: { items: [], links: [], zoom: 1 },
+    log: {}, failed: 0, actions: 0, puzzles: {}, trops: 0, notes: '', board: { items: [], links: [], zoom: 1, v: 2 },
     draft: { step: 0, answers: {}, proofs: [], order: null }, report: null,
     diff: diff || 'sledczy', used: {}, armed: null, parBonus: 0, freeTrops: 0, bt: [], matrix: {}, vote: null
   };
@@ -458,14 +458,16 @@ function renderDistribute(c, g) {
 }
 
 /* --- dokument --- */
-function blocksHTML(body) {
-  return (body || []).map(b => {
-    if (typeof b === 'string') return `<p>${esc(b)}</p>`;
+function blocksHTML(body, pin) { // pin = id dowodu → przy każdym fragmencie jest pinezka „Przypnij na tablicę”
+  const fp = (b, sub) => pin ? `<button class="fpin" data-a="pin-frag" data-id="${esc(pin)}" data-b="${b}" data-s="${sub}" aria-label="Przypnij ten fragment na tablicę" title="Przypnij fragment na tablicę">${I.pin}</button>` : '';
+  const pc = pin ? ' pinnable' : '';
+  return (body || []).map((b, i) => {
+    if (typeof b === 'string') return `<p class="${pc.trim()}">${esc(b)}${fp(i, -1)}</p>`;
     if (b.h) return `<h5>${esc(b.h)}</h5>`;
-    if (b.kv) return `<dl class="kv">${b.kv.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`;
-    if (b.log) return `<div class="log">${b.log.map(l => `<span class="ln"><span class="lw">${esc(l)}</span><span class="lc">${esc(l.trim().replace(/\s{2,}/g, ' · '))}</span></span>`).join('')}</div>`;
-    if (b.quote) return `<blockquote class="quote">${esc(b.quote)}${b.by ? `<cite>— ${esc(b.by)}</cite>` : ''}</blockquote>`;
-    if (b.note) return `<div class="note">${esc(b.note)}</div>`;
+    if (b.kv) return `<dl class="kv">${b.kv.map(([k, v], j) => `<dt>${esc(k)}</dt><dd class="${pc.trim()}">${esc(v)}${fp(i, j)}</dd>`).join('')}</dl>`;
+    if (b.log) return `<div class="log">${b.log.map((l, j) => `<span class="ln${pc}"><span class="lw">${esc(l)}</span><span class="lc">${esc(l.trim().replace(/\s{2,}/g, ' · '))}</span>${fp(i, j)}</span>`).join('')}</div>`;
+    if (b.quote) return `<blockquote class="quote${pc}">${esc(b.quote)}${b.by ? `<cite>— ${esc(b.by)}</cite>` : ''}${fp(i, -1)}</blockquote>`;
+    if (b.note) return `<div class="note${pc}">${esc(b.note)}${fp(i, -1)}</div>`;
     return '';
   }).join('');
 }
@@ -473,7 +475,7 @@ function docHTML(c, e, compact) {
   const kind = e.private ? 'Tajne akta' : e.testimony ? 'Protokół' : 'Dowód';
   return `<article class="paper doc"><div class="dh"><div><small>Akta ${esc(c.id)} · ${kind} ${esc(e.id.toUpperCase())}</small><h3>${esc(e.title)}</h3></div><span class="stamp">${esc(e.type)}</span></div>
    ${imgsOf(e).length ? `<div class="photos">${imgsOf(e).map((src, i) => `<figure class="photo${e.wide ? ' wide' : ''}" style="--rot:${i % 2 ? '1.6deg' : '-1.2deg'}"><button class="zoomable" data-a="pzoom" data-src="${esc(src)}" aria-label="Powiększ zdjęcie"><img src="${esc(src)}" alt="${esc(e.title)}" loading="lazy"><span class="zoom-ic">⤢</span></button></figure>`).join('')}</div>` : ''}
-   ${compact ? '' : `<p style="font-style:italic;color:var(--paperMuted);margin-top:0">${esc(e.summary)}</p>`}${blocksHTML(e.body)}${e.mark && !compact ? `<button class="amark ${(S.marks || {})[c.id] ? 'got' : ''}" data-a="amark" data-c="${esc(c.id)}" data-l="${esc(e.mark)}" title="Ta pieczęć nie należy do sprawy."><span class="amark-ic">${I.key || '⚿'}</span><span>ARCH.</span><b>${esc(e.mark)}</b></button>` : ''}</article>`;
+   ${compact ? '' : `<p style="font-style:italic;color:var(--paperMuted);margin-top:0">${esc(e.summary)}</p>`}${blocksHTML(e.body, compact ? null : e.id)}${e.mark && !compact ? `<button class="amark ${(S.marks || {})[c.id] ? 'got' : ''}" data-a="amark" data-c="${esc(c.id)}" data-l="${esc(e.mark)}" title="Ta pieczęć nie należy do sprawy."><span class="amark-ic">${I.key || '⚿'}</span><span>ARCH.</span><b>${esc(e.mark)}</b></button>` : ''}</article>`;
 }
 
 /* --- AKTA --- */
@@ -752,27 +754,33 @@ function ovPrivate(c, g, i, opened) {
 }
 
 /* --- TABLICA --- */
+const BW = 2400, BH = 1700; // rozmiar tablicy w pikselach (przy zoomie 1)
+const boardItem = (g, key) => g.board.items.find(x => x.key === key);
 function boardLabel(c, g, key) {
-  const [t, id] = key.split(':');
-  if (t === 'ev') return { kind: 'ev', title: c.ev[id] ? c.ev[id].title : '?', sub: c.ev[id] ? c.ev[id].type : '' };
+  const [t, id] = key.split(':'); const it = boardItem(g, key) || {};
+  if (t === 'ev') { const e = c.ev[id]; return { kind: 'ev', id, title: e ? e.title : '?', sub: e ? e.type : '', e: e && visibleEvidence(g, c).includes(id) ? e : null }; }
   if (t === 'p') { const p = c.person[id]; return { kind: 'person', title: p ? personName(g, p) : '?', p }; }
-  return { kind: 'note', title: (g.board.items.find(x => x.key === key) || {}).text || '' };
+  if (t === 'f') { const e = c.ev[it.src]; return { kind: 'frag', text: it.text || '', fmt: it.fmt || 'p', by: it.by || '', src: it.src, srcTitle: e ? e.title : '' }; }
+  return { kind: 'note', title: it.text || '' };
 }
 let boardSel = null, linkMode = false;
 function viewBoard(c, g) {
-  return `<div class="page-head"><div><div class="eyebrow">Tablica śledcza</div><h2>Tablica</h2><p>Przypinajcie dowody i osoby z akt i przesłuchań. Przeciągajcie karty, łączcie je czerwoną nitką. Dotknij nitki, by ją usunąć. Tablicę przybliżacie dwoma palcami, przyciskami + i − albo Ctrl + kółkiem myszy.</p></div></div>
+  return `<div class="page-head"><div><div class="eyebrow">Tablica śledcza</div><h2>Tablica</h2><p>Przypinajcie dowody, osoby i pojedyncze fragmenty dokumentów (pinezka przy fragmencie). Dowód pokazuje treść, „Rozwiń” otwiera go w całości. Przeciągajcie karty i łączcie je nitką — dotknięcie nitki ją usuwa. Przybliżanie: dwa palce, + i − albo Ctrl + kółko.</p></div></div>
    <div class="board-tools"><button class="btn small ${linkMode ? 'red' : 'ghost'}" data-a="link-mode">${I.link} ${linkMode ? 'Wybierz dwie karty' : 'Połącz'}</button>
     <button class="btn small ghost" data-a="note-add">${I.plus} Notatka</button>
+    <button class="btn small ghost" data-a="note-edit" ${boardSel && boardSel.startsWith('n:') ? '' : 'disabled'}>Edytuj</button>
     <button class="btn small ghost" data-a="board-del" ${boardSel ? '' : 'disabled'}>${I.trash} Usuń kartę</button>
+    <button class="btn small ghost" data-a="board-arrange">Uporządkuj</button>
+    ${g.board.items.some(x => x.key.startsWith('ev:')) ? `<button class="btn small ghost" data-a="board-fold">${g.board.items.some(x => x.key.startsWith('ev:') && !x.open) ? 'Rozwiń wszystko' : 'Zwiń wszystko'}</button>` : ''}
     <span style="flex:1"></span><button class="icon-btn" data-a="zoom" data-d="-1" aria-label="Pomniejsz">${I.minus}</button><button class="icon-btn" data-a="zoom" data-d="1" aria-label="Powiększ">${I.plus}</button></div>
-   <div class="board-wrap" id="bwrap"><div style="position:relative;width:${1700 * (g.board.zoom || 1)}px;height:${1150 * (g.board.zoom || 1)}px"><div class="board" id="board" style="transform:scale(${g.board.zoom || 1})"></div></div></div>
-   ${g.board.items.length ? '' : '<p class="muted" style="margin-top:10px">Tablica jest pusta. Otwórzcie dowód lub osobę i użyjcie przycisku „Na tablicę”.</p>'}`;
+   <div class="board-wrap" id="bwrap"><div style="position:relative;width:${BW * (g.board.zoom || 1)}px;height:${BH * (g.board.zoom || 1)}px"><div class="board" id="board" style="transform:scale(${g.board.zoom || 1})"></div></div></div>
+   ${g.board.items.length ? '' : '<p class="muted" style="margin-top:10px">Tablica jest pusta. Otwórzcie dowód lub osobę i użyjcie przycisku „Na tablicę”. W dokumencie możecie też przypiąć pojedynczy fragment pinezką przy nim.</p>'}`;
 }
 let boardPinch = false;
 function boardZoomTo(g, nz, fx, fy) { // fx, fy — punkt w oknie tablicy, który ma zostać pod palcami
   const w = $('#bwrap'), b = $('#board'); if (!w || !b) return; const z0 = g.board.zoom || 1; nz = Math.max(0.4, Math.min(1.6, nz)); if (Math.abs(nz - z0) < 0.001) return;
   const bx = (w.scrollLeft + fx) / z0, by = (w.scrollTop + fy) / z0; g.board.zoom = nz;
-  b.style.transform = `scale(${nz})`; b.parentElement.style.width = 1700 * nz + 'px'; b.parentElement.style.height = 1150 * nz + 'px'; b.parentElement.style.setProperty('--z', nz);
+  b.style.transform = `scale(${nz})`; b.parentElement.style.width = BW * nz + 'px'; b.parentElement.style.height = BH * nz + 'px'; b.parentElement.style.setProperty('--z', nz);
   w.scrollLeft = bx * nz - fx; w.scrollTop = by * nz - fy;
 }
 function mountBoardGestures(g) {
@@ -789,36 +797,49 @@ function mountBoard(c, g) {
   const z = g.board.zoom || 1;
   b.parentElement.style.setProperty('--z', z);
   const items = g.board.items.map(it => {
-    const L = boardLabel(c, g, it.key);
-    const inner = L.kind === 'person' ? `<div class="bcard person" style="--rot:${rot(it.key)}"><div class="ph" ${L.p.img ? `style="background-image:url('${esc(L.p.img)}')"` : ''}>${L.p.img ? '' : `<span>${esc(initials(L.title))}</span>`}</div>${esc(L.title)}</div>`
-      : L.kind === 'note' ? `<div class="bcard note" style="--rot:${rot(it.key)}">${esc(L.title)}</div>`
-      : `<div class="bcard" style="--rot:${rot(it.key)}"><small>${esc(L.sub)}</small>${esc(L.title)}</div>`;
-    return `<div class="bitem ${boardSel === it.key ? 'sel' : ''}" data-key="${esc(it.key)}" style="left:${it.x}px;top:${it.y}px"><span class="pin"></span>${inner}</div>`;
+    const L = boardLabel(c, g, it.key); const R = `style="--rot:${rot(it.key)}"`;
+    let cls = '', inner;
+    if (L.kind === 'person') inner = `<div class="bcard person" ${R}><div class="ph" ${L.p.img ? `style="background-image:url('${esc(L.p.img)}')"` : ''}>${L.p.img ? '' : `<span>${esc(initials(L.title))}</span>`}</div>${esc(L.title)}</div>`;
+    else if (L.kind === 'note') inner = `<div class="bcard note" ${R}>${esc(L.title)}</div>`;
+    else if (L.kind === 'frag') { cls = 'frag'; inner = `<div class="bcard frag f-${esc(L.fmt)}" ${R}><small>Z: ${esc(L.srcTitle)} · ${esc(String(L.src || '').toUpperCase())}</small><div class="ft">${esc(L.text)}</div>${L.by ? `<cite>— ${esc(L.by)}</cite>` : ''}</div>`; }
+    else {
+      const open = !!it.open, e = L.e; cls = open ? 'open' : 'prev';
+      const ph = e ? imgsOf(e) : [];
+      inner = `<div class="bcard bdoc ${open ? 'open' : ''}" ${R}><small>${esc(L.sub)} · ${esc(L.id.toUpperCase())}</small><b class="btitle">${esc(L.title)}</b>
+       ${ph.length ? `<div class="bph">${(open ? ph : ph.slice(0, 1)).map(src => `<img src="${esc(src)}" alt="" loading="lazy" draggable="false">`).join('')}</div>` : ''}
+       ${e ? `<div class="bbody doc">${blocksHTML(e.body)}</div>` : ''}
+       <div class="btools"><button class="bbtn" data-bx="toggle" aria-label="${open ? 'Zwiń' : 'Rozwiń'} kartę">${open ? 'Zwiń' : 'Rozwiń'}</button><button class="bbtn" data-bx="open" aria-label="Otwórz w aktach">Akta</button></div></div>`;
+    }
+    return `<div class="bitem ${cls} ${boardSel === it.key ? 'sel' : ''}" data-key="${esc(it.key)}" style="left:${it.x}px;top:${it.y}px"><span class="pin"></span>${inner}</div>`;
   }).join('');
   b.innerHTML = `<svg id="strings"></svg>${items}`;
   drawStrings(g);
   b.querySelectorAll('.bitem').forEach(el => attachDrag(el, c, g));
+  if (g.board.v !== 2) { g.board.v = 2; if (boardOverlaps(b)) { arrangeBoard(g); save(); setTimeout(render, 0); toast('Tablica uporządkowana', 'Karty są teraz większe, więc układ poprawiono jeden raz.', 'Tablica'); } else save(); }
 }
-function center(g, key) { const el = document.querySelector(`.bitem[data-key="${CSS.escape(key)}"]`); const it = g.board.items.find(x => x.key === key); if (!it) return null; return { x: it.x + 85, y: it.y + (el ? Math.min(el.offsetHeight / 2, 60) : 50) }; }
+function center(g, key) { const el = document.querySelector(`.bitem[data-key="${CSS.escape(key)}"]`); const it = boardItem(g, key); if (!it) return null; return { x: it.x + (el ? el.offsetWidth : 170) / 2, y: it.y + 1 }; }
 function drawStrings(g) {
   const svg = $('#strings'); if (!svg) return;
-  svg.innerHTML = g.board.links.map((l, i) => { const a = center(g, l.a), b = center(g, l.b); if (!a || !b) return ''; const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2 + Math.min(80, Math.hypot(a.x - b.x, a.y - b.y) * 0.12); return `<path d="M${a.x},${a.y - 40} Q${mx},${my} ${b.x},${b.y - 40}" data-link="${i}"/>`; }).join('');
+  svg.innerHTML = g.board.links.map((l, i) => { const a = center(g, l.a), b = center(g, l.b); if (!a || !b) return ''; const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2 + Math.min(80, Math.hypot(a.x - b.x, a.y - b.y) * 0.12); return `<path d="M${a.x},${a.y} Q${mx},${my} ${b.x},${b.y}" data-link="${i}"/>`; }).join('');
   svg.querySelectorAll('path').forEach(p => p.addEventListener('click', e => { e.stopPropagation(); if (confirm('Usunąć to połączenie?')) { g.board.links.splice(+p.dataset.link, 1); save(); drawStrings(g); } }));
 }
 function attachDrag(el, c, g) {
-  let sx, sy, ox, oy, moved = false, pid = null;
+  let sx, sy, ox, oy, moved = false, pid = null, dt = null;
   const it = () => g.board.items.find(x => x.key === el.dataset.key);
-  el.addEventListener('pointerdown', e => { pid = e.pointerId; el.setPointerCapture(pid); const i = it(); sx = e.clientX; sy = e.clientY; ox = i.x; oy = i.y; moved = false; el.classList.add('drag'); });
+  el.addEventListener('pointerdown', e => { dt = e.target; pid = e.pointerId; el.setPointerCapture(pid); const i = it(); sx = e.clientX; sy = e.clientY; ox = i.x; oy = i.y; moved = false; el.classList.add('drag'); });
   el.addEventListener('pointermove', e => {
     if (pid !== e.pointerId) return; if (boardPinch) { moved = true; return; } const z = g.board.zoom || 1;
     const dx = (e.clientX - sx) / z, dy = (e.clientY - sy) / z; if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
-    if (!moved) return; const i = it(); i.x = Math.max(0, Math.min(1530, ox + dx)); i.y = Math.max(10, Math.min(1000, oy + dy));
+    if (!moved) return; const i = it(); i.x = Math.max(0, Math.min(BW - el.offsetWidth, ox + dx)); i.y = Math.max(10, Math.min(BH - 80, oy + dy));
     el.style.left = i.x + 'px'; el.style.top = i.y + 'px'; drawStrings(g);
   });
   const end = e => {
     if (pid !== e.pointerId) return; pid = null; el.classList.remove('drag');
     if (moved) { save(); return; }
+    if (e.type === 'pointercancel') return;
     const key = el.dataset.key;
+    const bx = dt && dt.closest ? dt.closest('[data-bx]') : null;
+    if (bx) { if (bx.dataset.bx === 'toggle') { const i = it(); i.open = !i.open; save(); render(); } else if (bx.dataset.bx === 'open') openOv({ type: 'ev', id: key.split(':')[1] }); return; }
     if (linkMode && boardSel && boardSel !== key) {
       if (!g.board.links.some(l => (l.a === boardSel && l.b === key) || (l.b === boardSel && l.a === key))) g.board.links.push({ a: boardSel, b: key });
       boardSel = null; linkMode = false; save(); render(); return;
@@ -827,11 +848,43 @@ function attachDrag(el, c, g) {
   };
   el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end);
 }
-function pinToBoard(g, key, text) {
-  if (key.startsWith('n:')) { g.board.items.push({ key, text, x: 80 + Math.random() * 600, y: 60 + Math.random() * 400 }); }
-  else if (!g.board.items.some(x => x.key === key)) { const n = g.board.items.length; g.board.items.push({ key, x: 40 + (n % 7) * 220, y: 40 + Math.floor(n / 7) * 230 }); }
-  else { toast('Już na tablicy', '', 'Tablica'); return; }
-  save(); toast('Przypięto do tablicy', '', 'Tablica');
+function itemDim(it) {
+  const el = document.querySelector(`.bitem[data-key="${CSS.escape(it.key)}"]`); if (el && el.offsetWidth) return [el.offsetWidth, el.offsetHeight];
+  const t = it.key.split(':')[0]; // wymiary szacunkowe, gdy tablica nie jest na ekranie
+  return t === 'ev' ? (it.open ? [360, 520] : [220, 300]) : t === 'f' ? [240, 150] : t === 'p' ? [170, 220] : [170, 120];
+}
+function freeSpot(g, w, h) {
+  const R = g.board.items.map(it => { const [iw, ih] = itemDim(it); return [it.x, it.y, iw, ih]; });
+  for (let y = 40; y + h < BH - 40; y += 30) for (let x = 40; x + w < BW - 40; x += 30)
+    if (!R.some(([rx, ry, rw, rh]) => x < rx + rw + 24 && x + w + 24 > rx && y < ry + rh + 24 && y + h + 24 > ry)) return [x, y];
+  return [40 + Math.random() * 500, 40 + Math.random() * 400];
+}
+function boardOverlaps(b) {
+  const r = [...b.querySelectorAll('.bitem')].map(el => [parseFloat(el.style.left), parseFloat(el.style.top), el.offsetWidth, el.offsetHeight]);
+  return r.some((a, i) => r.some((c, j) => j > i && a[0] < c[0] + c[2] - 6 && a[0] + a[2] > c[0] + 6 && a[1] < c[1] + c[3] - 6 && a[1] + a[3] > c[1] + 6));
+}
+function arrangeBoard(g) { // układ półkami: kolejność przypinania, rzeczywiste wymiary kart
+  const W = 1560; let x = 40, y = 40, rowH = 0;
+  g.board.items.forEach(it => {
+    const [w, h] = itemDim(it); if (x + w > W && x > 40) { x = 40; y += rowH + 40; rowH = 0; }
+    it.x = x; it.y = y; x += w + 30; rowH = Math.max(rowH, h);
+  });
+}
+function pinToBoard(g, key, text, extra) {
+  if (g.board.items.some(x => x.key === key)) { toast('Już na tablicy', '', 'Tablica'); return; }
+  const it = { key, ...(text != null ? { text } : {}), ...(extra || {}) };
+  const t = key.split(':')[0]; const [w, h] = t === 'ev' ? [220, 300] : t === 'f' ? [240, 150] : t === 'p' ? [170, 220] : [170, 120];
+  [it.x, it.y] = freeSpot(g, w, h); g.board.items.push(it);
+  save(); toast(t === 'f' ? 'Fragment przypięty do tablicy' : 'Przypięto do tablicy', '', 'Tablica');
+}
+function fragOf(c, id, bi, si) {
+  const b = ((c.ev[id] || {}).body || [])[bi]; if (b == null) return null;
+  if (typeof b === 'string') return { fmt: 'p', text: b };
+  if (b.kv && b.kv[si]) return { fmt: 'kv', text: b.kv[si][0] + ': ' + b.kv[si][1] };
+  if (b.log && b.log[si] != null) return { fmt: 'log', text: b.log[si].trim().replace(/\s{2,}/g, ' · ') };
+  if (b.quote) return { fmt: 'quote', text: b.quote, by: b.by || '' };
+  if (b.note) return { fmt: 'note', text: b.note };
+  return null;
 }
 
 /* --- RAPORT --- */
@@ -1024,7 +1077,7 @@ function guideCards(mode, diff) {
   const phones = mode === 'phones'; const D = DIFFS[diff || 'sledczy'] || DIFFS.sledczy;
   return [
    { k: 'Witajcie w wydziale', t: 'O co chodzi w tej grze', b: `<p>Jesteście zespołem śledczych. Dostajecie akta sprawy i macie ją rozwiązać: <b>kto, jak, kiedy i dlaczego</b>.</p><p>Na końcu składacie <b>akt oskarżenia</b> i każdy wniosek podpieracie dowodami. Nie ma limitu czasu ani losowości — wszystko, czego potrzebujecie, jest w aktach, miejscach i zeznaniach.</p><p class="g-tip">To planszówka do rozmowy. Ekran to tylko teczka z aktami — najważniejsze dzieje się między wami: czytajcie na głos, spierajcie się, notujcie, sprawdzajcie się nawzajem.</p>` },
-   { k: 'Ekran gry', t: 'Pięć zakładek i górny pasek', b: `<ul class="g-list"><li><b>${I.files} Akta</b> — wszystkie zdobyte dokumenty. Nowe mają czerwony licznik. Każdy dokument można przypiąć na tablicę.</li><li><b>${I.map} Miejsca</b> — szkic miejsca zdarzenia i karty miejsc do przeszukania.</li><li><b>${I.people} Osoby</b> — przesłuchania świadków i podejrzanych.</li><li><b>${I.brain} Analiza</b> — zagadki, oś czasu, tabela podejrzanych${phones ? ', tajne akta' : ''}, zespół i zdolności ról, notatki i akt oskarżenia.</li><li><b>${I.board} Tablica</b> — korkowa tablica z czerwoną nitką.</li></ul><p>Na górze: <b>licznik ruchów</b>, <b>żarówka</b> (trop, gdy utkniecie), dźwięk i <b>menu</b> — tam jest briefing sprawy, ten instruktaż i ustawienia.</p>` },
+   { k: 'Ekran gry', t: 'Pięć zakładek i górny pasek', b: `<ul class="g-list"><li><b>${I.files} Akta</b> — wszystkie zdobyte dokumenty. Nowe mają czerwony licznik. Każdy dokument można przypiąć na tablicę, a w otwartym dokumencie pinezką — także pojedynczy fragment.</li><li><b>${I.map} Miejsca</b> — szkic miejsca zdarzenia i karty miejsc do przeszukania.</li><li><b>${I.people} Osoby</b> — przesłuchania świadków i podejrzanych.</li><li><b>${I.brain} Analiza</b> — zagadki, oś czasu, tabela podejrzanych${phones ? ', tajne akta' : ''}, zespół i zdolności ról, notatki i akt oskarżenia.</li><li><b>${I.board} Tablica</b> — korkowa tablica z czerwoną nitką. Przypięty dowód pokazuje treść, „Rozwiń” otwiera go w całości.</li></ul><p>Na górze: <b>licznik ruchów</b>, <b>żarówka</b> (trop, gdy utkniecie), dźwięk i <b>menu</b> — tam jest briefing sprawy, ten instruktaż i ustawienia.</p>` },
    { k: 'Ruchy i punkty', t: 'Co kosztuje, a co jest za darmo', b: `<p><b>Jeden ruch</b> to: przeszukanie punktu w miejscu, jedno pytanie zadane świadkowi albo jedna konfrontacja.</p><p><b>Za darmo:</b> czytanie akt, szkic, zagadki, oś czasu, notatki i tablica.</p><p>Wybrany poziom: <b>${esc(D.name)}</b>.</p><table class="g-table"><tr><td>Ruchy ponad normę sprawy</td><td>−1 pkt za każde 2 ruchy (najwyżej −15)</td></tr><tr><td>Podpowiedź w zagadce</td><td>−${D.hint} pkt (najwyżej ${D.hints} na zagadkę)</td></tr><tr><td>Trop (żarówka)</td><td>${D.trop == null ? 'niedostępny (wyjątek: zdolność Koordynatora)' : '−' + D.trop + ' pkt'}</td></tr><tr><td>Nietrafiona konfrontacja</td><td>−${D.wrong} pkt</td></tr></table><p>Rangi: Stażysta, Aspirant (40), Inspektor (60), Komisarz (78), <b>Legenda archiwum (92+)</b>. Zanim wydacie ruch — porozmawiajcie, czy warto.</p>` },
    { k: 'Miejsca', t: 'Przeszukiwanie i szkic miejsca zdarzenia', b: `<p>Każde miejsce ma kilka <b>punktów</b>. Przeszukanie punktu to jeden ruch i zwykle daje nowe dowody.</p><p>Niektóre punkty są <b>zablokowane</b> ${I.lock}. Otwiera je rozwiązana zagadka albo postęp w śledztwie — na przykład nakaz prokuratora po podważeniu czyjegoś zeznania. Opis blokady podpowiada, czego brakuje.</p><p>Nad kartami jest <b>szkic</b>: stuknijcie pomieszczenie, by do niego przejść. Na przeszukanych punktach pojawiają się żółte tabliczki z numerami, a obrys ciała — dopiero po oględzinach. Szkic pokazuje tylko to, co widzielibyście na miejscu.</p><p>Każde zdjęcie — w aktach i w miejscach — możecie <b>powiększyć</b> dotknięciem. Przybliżajcie palcami albo kółkiem myszy: szczegóły mają znaczenie.</p>` },
    { k: 'Przesłuchania', t: 'Pytania, protokół, konfrontacje', b: `<p>Wybierzcie osobę i zadawajcie pytania. <b>Nowe pytania pojawiają się</b>, gdy zdobędziecie dowody, które dają do nich podstawę.</p><p>Ważne zdania świadków trafiają do <b>protokołu</b>. Jeśli macie dowód, który przeczy zeznaniu — zróbcie <b>konfrontację</b>: wskażcie zdanie i dowód. Możecie też <b>zestawić dwa zeznania</b> — gdy jeden świadek mówi coś, co wyklucza wersję drugiego. Trafiona konfrontacja zmusza świadka do zmiany wersji i często daje nowe informacje. Nietrafiona kosztuje ${pkt(D.wrong)}.</p><p class="g-tip">Słuchajcie uważnie. Świadkowie odpowiadają dokładnie na to, o co pytacie. Jeśli ktoś powie za dużo albo wie coś, czego nie mógł wiedzieć — to nie przypadek. Na taką wpadkę nie ma przycisku: musicie ją wyłapać sami.</p><p><b>Każdy świadek ma swój głos</b> — odpowiedzi czyta lektor, a przycisk z głośnikiem przy wypowiedzi odtwarza ją ponownie. Głosy wyłączycie w oknie przesłuchania albo w ustawieniach.</p>` },
@@ -1123,8 +1176,12 @@ const handlers = {
   'priv-open': () => { topOv().opened = true; sfx('stamp'); renderOv(); },
   share: el => { const { c, g } = ctx(); if (!g.shared.includes(el.dataset.id)) { g.shared.push(el.dataset.id); save(); toast(c.ev[el.dataset.id].title, 'Ujawniono zespołowi', 'Tajne akta'); } rerender(); },
   pin: el => { const { g } = ctx(); pinToBoard(g, el.dataset.key); },
+  'pin-frag': el => { const { c, g } = ctx(); const id = el.dataset.id, bi = +el.dataset.b, si = +el.dataset.s; if (!visibleEvidence(g, c).includes(id)) return; const f = fragOf(c, id, bi, si); if (!f) return; pinToBoard(g, `f:${id}:${bi}:${si}`, f.text.slice(0, 700), { src: id, fmt: f.fmt, by: f.by || '' }); },
+  'note-edit': () => { const { g } = ctx(); const it = boardSel && boardItem(g, boardSel); if (!it || !boardSel.startsWith('n:')) return; const t = prompt('Treść notatki:', it.text || ''); if (t != null && t.trim()) { it.text = t.trim().slice(0, 300); save(); render(); } },
+  'board-arrange': () => { const { g } = ctx(); arrangeBoard(g); save(); render(); toast('Tablica uporządkowana', '', 'Tablica'); },
+  'board-fold': () => { const { g } = ctx(); const evs = g.board.items.filter(x => x.key.startsWith('ev:')); const openAll = evs.some(x => !x.open); evs.forEach(x => { x.open = openAll; }); save(); render(); },
   'link-mode': () => { linkMode = !linkMode; if (!linkMode) boardSel = null; render(); if (linkMode) toast('Łączenie', 'Dotknij pierwszej, potem drugiej karty', 'Tablica'); },
-  'note-add': () => { const t = prompt('Treść notatki na tablicy:'); if (t && t.trim()) { const { g } = ctx(); pinToBoard(g, 'n:' + Date.now(), t.trim().slice(0, 140)); render(); } },
+  'note-add': () => { const t = prompt('Treść notatki na tablicy:'); if (t && t.trim()) { const { g } = ctx(); pinToBoard(g, 'n:' + Date.now(), t.trim().slice(0, 300)); render(); } },
   'board-del': () => { const { g } = ctx(); if (!boardSel) return; g.board.items = g.board.items.filter(x => x.key !== boardSel); g.board.links = g.board.links.filter(l => l.a !== boardSel && l.b !== boardSel); boardSel = null; save(); render(); },
   zoom: el => { const { g } = ctx(); const w = $('#bwrap'); boardZoomTo(g, Math.round(((g.board.zoom || 1) + 0.2 * +el.dataset.d) * 10) / 10, w ? w.clientWidth / 2 : 0, w ? w.clientHeight / 2 : 0); save(); },
   trop: () => openOv({ type: 'trop' }),
