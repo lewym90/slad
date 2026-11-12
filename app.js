@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.13.1';
+const VERSION = '2.14.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -16,6 +16,7 @@ const MONTHS = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'l
 const DAYS = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
 
 const I = {
+  eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
   files: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 10h18"/></svg>',
   map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
   people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M16 14.6c2.6-.3 4.8 1.2 5.5 4.4"/></svg>',
@@ -99,6 +100,13 @@ function indexCase(c) {
   c.stmt = {}; c.q = {};
   c.people.forEach(p => { p.statements.forEach(s => { c.stmt[s.id] = { ...s, person: p.id }; }); p.questions.forEach(q => { c.q[q.id] = { ...q, person: p.id }; }); });
   c.puzzle = Object.fromEntries(c.puzzles.map(p => [p.id, p]));
+  // skąd pochodzi dowód (do grupowania w konfrontacji)
+  c.evSrc = {}; const setSrc = (ids, k) => (ids || []).forEach(id => { if (!c.evSrc[id]) c.evSrc[id] = k; });
+  c.evidence.forEach(e => { if (e.start) c.evSrc[e.id] = 'start'; else if (e.private) c.evSrc[e.id] = 'team'; });
+  c.locations.forEach(l => l.spots.forEach(sp => setSrc(sp.gives, 'loc:' + l.id)));
+  ((c.tableMode && c.tableMode.locations) || []).forEach(l => l.spots.forEach(sp => setSrc(sp.gives, 'team')));
+  c.people.forEach(p => { p.questions.forEach(q => setSrc(q.gives, 'talk')); p.statements.forEach(st => setSrc(st.gives, 'talk')); });
+  c.evidence.forEach(e => { if (!c.evSrc[e.id]) c.evSrc[e.id] = 'other'; });
   return c;
 }
 async function getCase(id) {
@@ -621,15 +629,31 @@ function doAsk(c, g, qid) {
   (q.claims || []).forEach(s => { if (!g.claims.includes(s)) g.claims.push(s); });
   gain(g, c, q.gives); save();
 }
-function ovConfront(c, g, sid) {
+const EV_THING = /^(Przedmiot|Oględziny|Obserwacja|Fotografia|Kadry|Kadr|Nagranie|Eksperyment|Ślad|Dowód)/i;
+function evCat(c, id) { const e = c.ev[id]; if (c.evSrc[id] === 'team') return 'team'; if (e.testimony || /^Zeznanie/i.test(e.type)) return 'talk'; return EV_THING.test(e.type) ? 'thing' : 'doc'; }
+const CONF_TABS = [['all', 'Wszystko'], ['thing', 'Rzeczy i oględziny'], ['doc', 'Dokumenty i wykazy'], ['team', 'Notatki zespołu'], ['talk', 'Zeznania']];
+function ovConfront(c, g, sid, o) {
   const s = c.stmt[sid]; const p = c.person[s.person];
   const ids = visibleEvidence(g, c);
   const others = g.claims.map(id => c.stmt[id]).filter(x => x && x.person !== s.person);
-  return { title: 'Konfrontacja', kicker: personName(g, p), body: `<div class="stmt"><q>${esc(s.text)}</q></div>
-   <p class="muted" style="margin:14px 0 4px">Co przeczy temu zeznaniu? Możecie okazać dowód albo zestawić je z zeznaniem innej osoby. Konfrontacja kosztuje 1 ruch; nietrafiona dodatkowo ${diffOf(g).wrong} pkt.${g.armed === 'confront' ? ' <b>Aktywna zdolność „Sprawdzam”: bez ruchu i bez kary.</b>' : ''}</p>
-   <div class="eyebrow" style="margin-top:12px">Dowody</div>
-   <div class="pick">${ids.map(id => `<button data-a="confront-with" data-s="${sid}" data-id="${id}"><small>${esc(c.ev[id].type)} · ${esc(id.toUpperCase())}</small>${esc(c.ev[id].title)}</button>`).join('')}</div>
-   ${others.length ? `<div class="eyebrow" style="margin-top:16px">Zeznania innych osób</div><div class="pick">${others.map(x => `<button data-a="confront-with" data-s="${sid}" data-id="st:${x.id}"><small>${esc(personName(g, c.person[x.person]))}</small>„${esc(x.text)}”</button>`).join('')}</div>` : ''}` };
+  const tried = (g.tried && g.tried[sid]) || [];
+  const tab = (o && o.cat) || 'all';
+  const btn = (key, cat, small, title, sub, text, prevId) => { const bad = tried.includes(key);
+    return `<div class="cf-item${bad ? ' tried' : ''}" data-cat="${cat}" data-text="${esc((small + ' ' + title + ' ' + (sub || '') + ' ' + text).toLowerCase())}"><button class="cf-main" data-a="confront-with" data-s="${sid}" data-id="${key}"><small>${esc(small)}${bad ? ' · ✗ już okazane' : ''}</small><b>${esc(title)}</b>${sub ? `<span>${esc(sub)}</span>` : ''}</button>${prevId ? `<button class="cf-prev" data-a="cf-preview" data-id="${prevId}" data-s="${sid}" aria-label="Podgląd">${I.eye}</button>` : ''}</div>`; };
+  const groups = []; const order = ['start', ...c.locations.map(l => 'loc:' + l.id), 'talk', 'team', 'other'];
+  const label = k => k === 'start' ? 'Akta początkowe' : k === 'talk' ? 'Z przesłuchań' : k === 'team' ? 'Notatki zespołu' : k === 'other' ? 'Inne' : c.loc[k.slice(4)].name;
+  order.forEach(k => { const list = ids.filter(id => c.evSrc[id] === k); if (list.length) groups.push(`<details class="cf-group" open><summary>${esc(label(k))} <i>${list.length}</i></summary><div class="cf-list">${list.map(id => btn(id, evCat(c, id), `${c.ev[id].type} · ${id.toUpperCase()}`, c.ev[id].title, c.ev[id].summary, '', id)).join('')}</div></details>`); });
+  const byP = {}; others.forEach(x => (byP[x.person] = byP[x.person] || []).push(x));
+  Object.keys(byP).forEach(pid => { const pp = c.person[pid]; groups.push(`<details class="cf-group" open><summary>${pp.img ? `<img src="${esc(pp.img)}" alt="">` : ''}Zeznania: ${esc(personName(g, pp))} <i>${byP[pid].length}</i></summary><div class="cf-list">${byP[pid].map(x => btn('st:' + x.id, 'talk', 'Zeznanie', '„' + x.text + '”', '', personName(g, pp), null)).join('')}</div></details>`); });
+  return { title: 'Konfrontacja', kicker: personName(g, p), body: `<div class="cf-sticky"><div class="stmt"><q>${esc(s.text)}</q></div>
+   <div class="cf-tools"><input type="search" id="cf-q" placeholder="Szukaj: słowo, nazwisko, E12…" value="${esc((o && o.q) || '')}" autocomplete="off"><div class="cf-tabs">${CONF_TABS.map(([k, n]) => `<button data-a="cf-tab" data-k="${k}" aria-pressed="${k === tab}">${n}</button>`).join('')}</div></div></div>
+   <p class="muted" style="margin:12px 0 4px;font-size:.85rem">Co przeczy temu zeznaniu? Okażcie dowód albo zestawcie je z zeznaniem innej osoby. Konfrontacja kosztuje 1 ruch; nietrafiona dodatkowo ${diffOf(g).wrong} pkt.${g.armed === 'confront' ? ' <b>Aktywna zdolność „Sprawdzam”: bez ruchu i bez kary.</b>' : ''}</p>
+   <div id="cf-groups">${groups.join('')}</div><div class="empty" id="cf-none" hidden>Nic nie pasuje do wyszukiwania.</div>` };
+}
+function cfFilter() {
+  const o = topOv(); if (!o || o.type !== 'confront') return; const q = (o.q || '').trim().toLowerCase(); const cat = o.cat || 'all'; let any = false;
+  document.querySelectorAll('#cf-groups .cf-group').forEach(gr => { let n = 0; gr.querySelectorAll('.cf-item').forEach(it => { const ok = (cat === 'all' || it.dataset.cat === cat) && (!q || it.dataset.text.includes(q)); it.hidden = !ok; if (ok) n++; }); gr.hidden = !n; if (n) any = true; });
+  const none = document.getElementById('cf-none'); if (none) none.hidden = any;
 }
 function doConfront(c, g, sid, evid) {
   const s = c.stmt[sid]; const p = c.person[s.person];
@@ -643,6 +667,7 @@ function doConfront(c, g, sid, evid) {
     toast('Zeznanie podważone', personName(g, p), 'Konfrontacja'); sfx('break');
     return true;
   }
+  g.tried = g.tried || {}; (g.tried[sid] = g.tried[sid] || []).includes(evid) || g.tried[sid].push(evid);
   if (!free) g.failed++; const d = p.deflect || ['To niczego nie dowodzi.'];
   const di = (g.failed + L.length) % d.length; L.push({ t: 'deflect', text: d[di], v: c.voiceDir && p.deflect ? `${c.voiceDir}/${p.id}-deflect-${di}.mp3` : undefined }); save();
   toast('Nietrafiona konfrontacja', free ? 'Zdolność „Sprawdzam” — bez kary' : `−${diffOf(g).wrong} pkt w raporcie`, 'Błąd'); sfx('wrong');
@@ -975,10 +1000,10 @@ async function renderOv() {
   else if (o.type === 'vote') v = ovVote(c, g, o);
   else if (o.type === 'msg') v = { title: o.title, kicker: o.kicker || '', body: o.body };
   else if (!c || !g) { ovStack = []; root.innerHTML = ''; return; }
-  else if (o.type === 'ev') { v = { title: c.ev[o.id].title, kicker: 'Akta ' + c.id, body: docHTML(c, c.ev[o.id]) + `<div class="doc-actions"><button class="btn small ghost" data-a="pin" data-key="ev:${o.id}">${I.pin} Na tablicę</button></div>` }; if (!g.read.includes(o.id)) { g.read.push(o.id); save(); setTimeout(render, 0); } }
+  else if (o.type === 'ev') { v = { title: c.ev[o.id].title, kicker: 'Akta ' + c.id, body: docHTML(c, c.ev[o.id]) + `<div class="doc-actions">${o.from && c.stmt[o.from] ? `<button class="btn small" data-a="confront-with" data-s="${o.from}" data-id="${o.id}">Okaż ten dowód</button>` : ''}<button class="btn small ghost" data-a="pin" data-key="ev:${o.id}">${I.pin} Na tablicę</button></div>` }; if (!g.read.includes(o.id)) { g.read.push(o.id); save(); setTimeout(render, 0); } }
   else if (o.type === 'loc') v = ovLocation(c, g, o.id);
   else if (o.type === 'person') v = ovPerson(c, g, o.id, o.mode);
-  else if (o.type === 'confront') v = ovConfront(c, g, o.id);
+  else if (o.type === 'confront') v = ovConfront(c, g, o.id, o);
   else if (o.type === 'puzzle') v = ovPuzzle(c, g, o.id, o.msg);
   else if (o.type === 'priv') v = ovPrivate(c, g, o.i, o.opened);
   else if (o.type === 'qr') v = { title: 'Kod teczki', kicker: g.players[o.i].name, body: `<div class="qr-card big"><div class="qr">${qrSVG(folderURL(c, g, o.i))}</div><b>${esc(g.players[o.i].name)}</b><small>Zeskanuj aparatem telefonu</small></div>` };
@@ -988,6 +1013,7 @@ async function renderOv() {
    <div class="ov-head">${ovStack.length > 1 ? `<button class="icon-btn" data-a="close" aria-label="Wstecz">${I.back}</button>` : ''}<div class="t"><small>${esc(v.kicker)}</small><b>${esc(v.title)}</b></div><button class="icon-btn" data-a="close-all" aria-label="Zamknij">${I.close}</button></div>
    <div class="ov-body">${v.body}</div></div></div>`;
   document.body.style.overflow = 'hidden';
+  if (o.type === 'confront') { const hd = root.querySelector('.ov-head'), st = root.querySelector('.cf-sticky'); if (hd && st) st.style.top = hd.offsetHeight + 'px'; const qi = $('#cf-q'); if (qi) qi.addEventListener('input', () => { o.q = qi.value; cfFilter(); }); cfFilter(); }
   const tr = $('#transcript'); if (tr && o.scrollEnd) { tr.lastElementChild && tr.lastElementChild.scrollIntoView({ block: 'center' }); o.scrollEnd = false; }
   const inp = $('#pzin'); if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') handlers.solve({ dataset: { id: o.id } }); });
   const rc = $('#revcode'); if (rc) { rc.focus(); rc.addEventListener('keydown', e => { if (e.key === 'Enter') handlers['reveal-go'](); }); }
@@ -1177,7 +1203,9 @@ const handlers = {
   search: el => { const { c, g } = ctx(); doSearch(c, g, el.dataset.id); rerender(); },
   ask: el => { const { c, g } = ctx(); if (g.asked.includes(el.dataset.id)) return; doAsk(c, g, el.dataset.id); topOv().scrollEnd = true; rerender(); if (voicesOn() && c.voiceDir) { const q = c.q[el.dataset.id]; const L = g.log[q.person]; speak(L[L.length - 1].v); } },
   confront: el => openOv({ type: 'confront', id: el.dataset.id }),
-  'confront-with': el => { const { c, g } = ctx(); doConfront(c, g, el.dataset.s, el.dataset.id); if (voicesOn() && c.voiceDir) { const L = g.log[c.stmt[el.dataset.s].person]; speak(L[L.length - 1].v); } ovStack.pop(); history.back(); const o = topOv(); if (o && o.type === 'person') { o.mode = 'talk'; o.scrollEnd = true; } setTimeout(rerender, 30); },
+  'confront-with': el => { const { c, g } = ctx(); doConfront(c, g, el.dataset.s, el.dataset.id); if (voicesOn() && c.voiceDir) { const L = g.log[c.stmt[el.dataset.s].person]; speak(L[L.length - 1].v); } let idx = ovStack.length - 1; while (idx > 0 && ovStack[idx].type !== 'confront') idx--; const n = ovStack.length - idx; ovStack = ovStack.slice(0, idx); history.go(-n); const o = topOv(); if (o && o.type === 'person') { o.mode = 'talk'; o.scrollEnd = true; } setTimeout(rerender, 30); },
+  'cf-tab': el => { const o = topOv(); if (!o || o.type !== 'confront') return; o.cat = el.dataset.k; document.querySelectorAll('.cf-tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === o.cat)); cfFilter(); },
+  'cf-preview': el => openOv({ type: 'ev', id: el.dataset.id, from: el.dataset.s }),
   puzzle: el => openOv({ type: 'puzzle', id: el.dataset.id }),
   'puzzle-from-spot': el => { const { c, g } = ctx(); const pz = c.puzzle[el.dataset.id]; if (puzzleVisible(c, g, pz)) openOv({ type: 'puzzle', id: pz.id }); else openOv({ type: 'msg', title: pz.title, kicker: 'Za mało danych', body: '<p>Na razie nie macie materiałów, które pozwoliłyby się do tego zabrać. Szukajcie dalej.</p>' }); },
   dial: el => { const id = el.dataset.id, i = +el.dataset.i; const { c } = ctx(); const max = c.puzzle[id].input === 'time' && i === 0 ? 3 : c.puzzle[id].input === 'time' && i === 2 ? 6 : 10; dialVals[id][i] = (dialVals[id][i] + +el.dataset.d + max) % max; renderOv(); },

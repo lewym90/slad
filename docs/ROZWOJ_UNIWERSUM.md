@@ -106,7 +106,7 @@ Wiadomość w aplikacji (styl SMS), kierowana do roli/gracza, nie do numeru tele
 ## 8. Tempo wprowadzania
 Mieszanka: sprawy krótkie i duże, 1–3 nowości na sprawę, co jakiś czas sprawa bez nowości mechanicznych, za to z nowym formatem (#29–36). Szczegółowy przydział do spraw ustala Claude bez zdradzania fabuły autorowi.
 
-## 9. Poprawka UI: ekran konfrontacji (zgłoszona 12.11.2026, do wdrożenia)
+## 9. Poprawka UI: ekran konfrontacji (zgłoszona 12.11.2026) — WDROŻONE w 2.14.0: punkty 1, 3, 4, 6, 8 (wszystkie sprawy). Punkty 2 (wyszukiwarka — też wdrożona), 5 i 7 — nie wybrane.
 Problem: płaska lista kafelków (dowody w kolejności znalezienia, notatki X, potem zeznania w innej formie); trzeba za każdym razem czytać wszystko.
 Propozycja (do potwierdzenia przez autora):
 1. Podważane zeznanie przypięte u góry (nie ucieka przy przewijaniu).

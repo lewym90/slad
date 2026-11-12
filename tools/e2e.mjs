@@ -81,7 +81,13 @@ for (let round = 0; round < 5; round++) {
       if (s.truth || !g.claims.includes(s.id) || g.broken.includes(s.id)) continue;
       const evid = s.contradicts.find(x => g.found.includes(x) || g.shared.includes(x)); if (!evid) continue;
       await A('confront', `[data-id="${s.id}"]`); if (s.id === 'w-l2') await shot('confront-pick');
-      await A('confront-with', `[data-s="${s.id}"][data-id="${evid}"]`); await p.waitForTimeout(250);
+      if (!globalThis.cfChecked && !evid.startsWith('st:')) { globalThis.cfChecked = true;
+        const vis = () => p.evaluate(() => [...document.querySelectorAll('.cf-item')].filter(x => !x.hidden && x.offsetParent).length);
+        const all = await vis(); await p.fill('#cf-q', evid.toLowerCase()); await p.waitForTimeout(150); const q = await vis();
+        await p.fill('#cf-q', ''); await A('cf-tab', '[data-k="talk"]'); const t = await vis(); await A('cf-tab', '[data-k="all"]');
+        console.log('confront ui: all', all, 'search', q, 'talk', t, 'sticky', await p.locator('.cf-sticky').count()); if (!(q >= 1 && q < all)) errs.push('confront search filter');
+        await A('cf-preview', `[data-id="${evid}"]`); await shot('confront-preview'); await A('confront-with', `[data-s="${s.id}"][data-id="${evid}"]`); await p.waitForTimeout(250);
+      } else await A('confront-with', `[data-s="${s.id}"][data-id="${evid}"]`); await p.waitForTimeout(250);
       if (s.id === 'h-l2') await shot('confront-break');
       await A('pmode', `[data-m="stmt"]`);
     }
