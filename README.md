@@ -60,6 +60,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - **Pytanie wielokrotnego wyboru w raporcie (`type: "multi"`):** zaznaczacie wszystkie właściwe osoby; błędny wybór odejmuje punkty za trafny (`points × max(0, trafione − błędne) / liczba poprawnych`).
 - **Dwa akty przez bramkowanie:** miejsca i pytania zależne od wykazanych kłamstw (`requires: {all: ["lie:…"]}`) otwierają się dopiero po przełomach, więc sprawa 004 rozkręca się w drugiej połowie.
 - Sprawa 004 „Martwy kanał” jest gotowa (grafiki, głosy, filmy i ambient dodane). Prompty użyte do mediów: `docs/PROMPTY_GRAFIK_004.md`, `docs/PROMPTY_GLOSY_004.md`, `docs/PROMPTY_FILMY_DZWIEK_004.md` (generuje je `tools/prompts_004.py`).
+- Plan rozwoju uniwersum, decyzje autora i zasady: `docs/ROZWOJ_UNIWERSUM.md` (czytać przed pracą nad kolejnymi sprawami).
 
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).
