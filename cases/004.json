@@ -21,7 +21,7 @@
    "O 6:10 konserwator znalazł w stacji nadawczej „Kolonia” ciało Bogdana Lasoty, miejskiego administratora systemu ostrzegania. Wygląda na porażenie prądem przy rozdzielni.",
    "W nocy o 1:47 czujniki chloru w zakładzie Chemrud zażądały alarmu. Syreny w mieście nie zawyły. Do rana 23 osoby trafiły do szpitala z podrażnieniem dróg oddechowych, a z archiwum Centrum zniknął zapis tego alarmu.",
    "O 9:00 w urzędzie miała się zacząć kontrola NIK. Lasota figurował w kalendarzu jako uczestnik tego spotkania.",
-   "Burmistrz wydał dwa polecenia: ustalić, co się stało na wzgórzu, i wyjaśnić, dlaczego system, za który miasto zapłaciło miliony, milczał. Pięć osób ma coś do ukrycia."
+   "Prezydent miasta wydał dwa polecenia: ustalić, co się stało na wzgórzu, i wyjaśnić, dlaczego system, za który miasto zapłaciło miliony, milczał. Pięć osób ma coś do ukrycia."
   ],
   "task": [
    "Kto zabił Bogdana Lasotę, jak i kiedy?",
@@ -901,7 +901,7 @@
     },
     {
      "id": "sp-ground",
-     "name": "Plac i słupek",
+     "name": "Plac i pniak",
      "text": "Ślady butów i śmieci po nocy.",
      "gives": [
       "e35"
@@ -1206,7 +1206,7 @@
    "title": "Ciało przy szafie SN-1",
    "summary": "Bogdan Lasota, pomieszczenie nadajnika.",
    "body": [
-    "Lasota leży na boku przy otwartej szafie SN-1, głową ku podłodze, prawa dłoń przy szynach rozdzielni 400 V. Rękaw prawej ręki przepalony przy nadgarstku, skóra dłoni z oparzeniami. Pod potylicą niewielka kałuża zaschniętej krwi.",
+    "Lasota leży na plecach przy otwartej szafie SN-1, głową ku ścianie, prawa ręka wyciągnięta, dłoń na szynach rozdzielni 400 V. Rękaw prawej ręki przepalony przy nadgarstku, skóra dłoni z oparzeniami. Pod potylicą niewielka kałuża zaschniętej krwi.",
     "Na podłodze, kilkadziesiąt centymetrów od ciała, brak krwi poza kałużą pod głową. Kurtka zapięta, lekko wilgotna od deszczu, rękawiczki w kieszeni. Karta LAS-01 w portfelu.",
     {
      "note": "Oparzenia są ostre, ale okolica oparzeń jest sucha i blada. Technik zaznacza, że wygląda to „na czyste, bez reakcji skóry” — do oceny lekarza."
@@ -1235,13 +1235,13 @@
     {
      "log": [
       "27.11 01:03:22   MODE SERWIS ON            key=SYR-1",
-      "27.11 01:03:23   K1 LINK SUSPENDED",
+      "27.11 01:03:23   K1 EXEC SUSPENDED",
       "27.11 01:03:25   K3 FAILOVER BLOCKED       (SERWIS)",
       "27.11 01:47:09   K1 CMD AL-2611-0147 IGN   (SERWIS)",
       "27.11 01:47:09   QUEUE ADD AL-2611-0147    pending",
       "27.11 03:01:50   QUEUE CLEAR (MANUAL)      key=SYR-1",
       "27.11 03:02:11   MODE PRACA                key=SYR-1",
-      "27.11 03:02:12   K1 LINK RESTORED"
+      "27.11 03:02:12   K1 EXEC RESTORED"
      ]
     },
     {
@@ -1372,7 +1372,7 @@
      ]
     },
     {
-     "note": "Lasota został powiadomiony o trybie SERWIS i o niewysłanym alarmie dopiero o 2:12. Wcześniej żadne powiadomienie do niego nie dotarło."
+     "note": "Lasota został powiadomiony o trybie SERWIS i o niewysłanym alarmie dopiero o 2:12, bo aplikacja zgłasza brak potwierdzenia z syren po 25 minutach od żądania alarmu. Wcześniej żadne powiadomienie do niego nie dotarło."
     }
    ],
    "time": [
@@ -1561,7 +1561,7 @@
    "title": "Raport z awarii zaworu Cl-3",
    "summary": "Przyczyna wycieku.",
    "body": [
-    "Zawór Cl-3 wymieniono w 2025 roku na tańszy zamiennik, na polecenie prezesa (cena niższa o 40%). Zawór pękł na uszczelce w czwartek wieczorem.",
+    "Zawór Cl-3 wymieniono w 2025 roku na tańszy zamiennik, na polecenie prezesa (cena niższa o 40%). Zawór pękł na uszczelce w nocy z czwartku na piątek, około 1:41.",
     {
      "note": "W 2025 roku czujniki GasNet wysłały cztery fałszywe alarmy, zakład uznał je za usterki oprogramowania."
     }
@@ -1637,7 +1637,7 @@
      "quote": "PIN do sejfu: dzień i miesiąc odbioru systemu. Tego nie zapomnę.",
      "by": "karteczka na monitorze, pismo B. Lasoty"
     },
-    "Na marginesie kalendarza: „K3 — porównać telemetrię z protokołem. Jeśli się zgadza, ktoś nas oszukał.”"
+    "Na marginesie kalendarza: „K3 — porównać telemetrię z protokołem. Jeśli się nie zgadza, ktoś nas oszukał.”"
    ]
   },
   {
@@ -1769,7 +1769,7 @@
       ],
       [
        "Okno",
-       "27.11, 0:30–3:00"
+       "27.11, 0:00–3:00"
       ],
       [
        "Zatwierdził",
@@ -1846,7 +1846,7 @@
      ]
     },
     {
-     "note": "Zegar fotopułapki synchronizowany z GPS. Octavia, która wjechała o 2:20, nie wyjechała do rana. Skoda Octavia SRS 4RX11 to samochód służbowy referatu Lasoty; VW Golf SRS 55K2 jest zarejestrowany na Lenę Hajduk."
+     "note": "Zegar fotopułapki synchronizowany z GPS. Octavia, która wjechała o 2:20, nie wyjechała do rana. Lasota mieszkał przy drodze na Kolonię, około sześciu minut jazdy od parkingu. Skoda Octavia SRS 4RX11 to samochód służbowy referatu Lasoty; VW Golf SRS 55K2 jest zarejestrowany na Lenę Hajduk."
     }
    ],
    "time": [
@@ -1868,7 +1868,7 @@
    "title": "Ślady przy parkingu",
    "summary": "Parking leśny, piątek 9:30.",
    "body": [
-    "Wokół miejsca postoju dwóch aut ślady butów w rozmiarach około 43 i 38. Na słupku dwa kubki po kawie z jednej stacji paliw i pusta koperta z logo „Głos Rudy”."
+    "Wokół miejsca postoju dwóch aut ślady butów w rozmiarach około 43 i 38. Na pniaku dwa kubki po kawie z jednej stacji paliw i pusta koperta z logo „Głos Rudy”."
    ]
   },
   {
@@ -1937,7 +1937,7 @@
    "title": "Bus Syreon (Ducato) — wnętrze",
    "summary": "Garaż firmy, piątek 13:00.",
    "body": [
-    "W skrzyni narzędziowej puste gniazdo w pianie z etykietą „SY-TW-17”. W kabinie zwitek rękawic lateksowych i trzy zaślepki oporowe 50 Ω."
+    "W skrzyni narzędziowej puste gniazdo w pianie z etykietą „SY-TW-17”, a obok zwitek niebieskich rękawic lateksowych. W kabinie trzy zaślepki oporowe 50 Ω."
    ],
    "img": "assets/evidence/004-toolcase.webp"
   },
@@ -2482,11 +2482,11 @@
     "options": [
      {
       "id": "kol",
-      "label": "Wzgórze Kolonia (stacja lub parking)"
+      "label": "Wzgórze Kolonia"
      },
      {
       "id": "czk",
-      "label": "Centrum Zarządzania Kryzysowego"
+      "label": "Centrum (CZK)"
      },
      {
       "id": "che",
@@ -2498,7 +2498,7 @@
      },
      {
       "id": "dro",
-      "label": "W drodze (samochód)"
+      "label": "W drodze"
      }
     ],
     "constraints": [
@@ -3240,7 +3240,7 @@
      {
       "id": "press",
       "label": "Przekazać dokumenty Lenie Hajduk przed południem",
-      "text": "Artykuł „Syreny na papierze” ukazuje się jeszcze w piątek. Burmistrz dymisjonuje Szczerbę w tydzień. Prokuratura zarzuca wam wyciek, ale postępowanie przeciw Syreon nabiera tempa dzięki presji opinii publicznej."
+      "text": "Artykuł „Syreny na papierze” ukazuje się jeszcze w piątek. Prezydent miasta dymisjonuje Szczerbę w tydzień. Prokuratura zarzuca wam wyciek, ale postępowanie przeciw Syreon nabiera tempa dzięki presji opinii publicznej."
      },
      {
       "id": "fix",
@@ -3261,7 +3261,7 @@
    },
    "hajduk": {
     "title": "Dziennikarka",
-    "text": "Lena Hajduk skłamała, że nie widziała się z Lasotą, i dwa razy była pod Kolonią. Ale wjechała tam o 3:05, kiedy Lasota nie żył od ponad pół godziny, a jej samochód nie ma nic wspólnego z busem Syreon. Redakcja dostaje pozew, a prawdziwy sprawca czyta o tym w gazecie."
+    "text": "Lena Hajduk skłamała, że nie widziała się z Lasotą, i dwa razy była pod Kolonią. Ale wjechała tam o 3:05, kiedy Lasota nie żył od ponad dwudziestu minut, a jej samochód nie ma nic wspólnego z busem Syreon. Redakcja dostaje pozew, a prawdziwy sprawca czyta o tym w gazecie."
    },
    "pyka": {
     "title": "Prezes",

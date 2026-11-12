@@ -53,7 +53,7 @@ locations = [
   'desc': 'Żwirowy plac w lesie, półtora kilometra od stacji. Na drzewie fotopułapka leśnictwa.',
   'spots': [
    spot('sp-trap', 'Fotopułapka leśnictwa', 'Karta pamięci z zapisem zdjęć.', ['e34']),
-   spot('sp-ground', 'Plac i słupek', 'Ślady butów i śmieci po nocy.', ['e35']),
+   spot('sp-ground', 'Plac i pniak', 'Ślady butów i śmieci po nocy.', ['e35']),
   ], 'img': None},
  {'id': 'newsroom', 'name': 'Redakcja „Głosu Rudy”', 'kind': 'Biurko reporterki',
   'desc': 'Open space nad drukarnią. Biurko Leny Hajduk jest pod oknem.',
@@ -104,7 +104,7 @@ puzzles = [
   'grid': {
    'rows': [{'id': 'kopec', 'label': 'Dariusz Kopeć'}, {'id': 'burda', 'label': 'Agnieszka Burda'}, {'id': 'szczerba', 'label': 'Piotr Szczerba'}, {'id': 'hajduk', 'label': 'Lena Hajduk'}, {'id': 'pyka', 'label': 'Witold Pyka'}],
    'cols': [{'id': 't1', 'label': '1:47 — żądanie alarmu'}, {'id': 't2', 'label': '2:41 — atak na Lasotę'}],
-   'options': [{'id': 'kol', 'label': 'Wzgórze Kolonia (stacja lub parking)'}, {'id': 'czk', 'label': 'Centrum Zarządzania Kryzysowego'}, {'id': 'che', 'label': 'Zakład Chemrud'}, {'id': 'dom', 'label': 'Dom'}, {'id': 'dro', 'label': 'W drodze (samochód)'}],
+   'options': [{'id': 'kol', 'label': 'Wzgórze Kolonia'}, {'id': 'czk', 'label': 'Centrum (CZK)'}, {'id': 'che', 'label': 'Zakład Chemrud'}, {'id': 'dom', 'label': 'Dom'}, {'id': 'dro', 'label': 'W drodze'}],
    'constraints': [
     {'t': 'is', 'r': 'kopec', 'c': 't1', 'v': 'kol', 'src': ['e12', 'e39', 'e40'], 'why': 'Karta SRV-07 weszła na stację o 0:41 i wyszła o 3:09. Pobrał ją Kopeć, a pozostali serwisanci byli na urlopie i zwolnieniu.'},
     {'t': 'is', 'r': 'kopec', 'c': 't2', 'v': 'kol', 'src': ['e12', 'e39', 'e40'], 'why': 'Ta sama karta była na stacji nieprzerwanie od 0:41 do 3:09.'},
@@ -188,13 +188,13 @@ endings = {
  'correct': {'title': 'Martwy kanał', 'text': 'Dariusz Kopeć zostaje zatrzymany w garażu Syreon, w kurtce z logo firmy. Nie próbuje uciekać. W prokuraturze przyznaje wszystko, a Szczerba i Burda stają przed zarzutami zatajenia i niedopełnienia obowiązków. Kontrola NIK zaczyna się o 9:00, jak zaplanowano, tylko bez człowieka, który miał ją otworzyć. Syreny w Rudzie dostają prawdziwy kanał rezerwowy po trzech miesiącach.',
   'decision': {'q': 'Zostaje pendrive od Lasoty, teczka K3 i komplet dokumentów z umowy. Co zrobicie?', 'options': [
    {'id': 'law', 'label': 'Wszystko do prokuratury i NIK — pełne rozliczenie umowy z 2024', 'text': 'Prokuratura i NIK dostają komplet i prowadzą wspólne postępowanie. Po roku Szczerba traci stanowisko, a Syreon płaci karę i wymienia K3 na własny koszt. Ruda dostaje rzetelny audyt systemu.'},
-   {'id': 'press', 'label': 'Przekazać dokumenty Lenie Hajduk przed południem', 'text': 'Artykuł „Syreny na papierze” ukazuje się jeszcze w piątek. Burmistrz dymisjonuje Szczerbę w tydzień. Prokuratura zarzuca wam wyciek, ale postępowanie przeciw Syreon nabiera tempa dzięki presji opinii publicznej.'},
+   {'id': 'press', 'label': 'Przekazać dokumenty Lenie Hajduk przed południem', 'text': 'Artykuł „Syreny na papierze” ukazuje się jeszcze w piątek. Prezydent miasta dymisjonuje Szczerbę w tydzień. Prokuratura zarzuca wam wyciek, ale postępowanie przeciw Syreon nabiera tempa dzięki presji opinii publicznej.'},
    {'id': 'fix', 'label': 'Zażądać u prezydenta natychmiastowej wymiany K3, zanim zacznie się proces', 'text': 'Prezydent zarządza awaryjną instalację kanału rezerwowego w dwa tygodnie. Ruda bezpiecznie przechodzi zimę, ale dokumentacja trafia do prokuratury później i dwóch urzędników zdąży usunąć część śladów.'},
   ]}},
  'wrong': {
   'burda': {'title': 'Operatorka', 'text': 'Oskarżacie Agnieszkę Burdę, bo skasowała zapis alarmu i skłamała o tej nocy. Dziennik audytu potwierdza usunięcie, ale kamera pokazuje, że o 2:41 siedziała w sali dyżurnej, a Lasotę zabił ktoś na wzgórzu. Burda dostaje zarzut za zatajenie, a sprawca czeka na kolejną okazję.'},
   'szczerba': {'title': 'Wiceprezydent', 'text': 'Szczerba zatwierdził okno i skłamał w kilku sprawach, więc oskarżacie go o zabójstwo. W nocy był jednak w domu, a telefon pokazuje go na osiedlu Parkowe. Prokurator przyjmie zarzuty o korupcję i poświadczenie nieprawdy, ale nie zabójstwo.'},
-  'hajduk': {'title': 'Dziennikarka', 'text': 'Lena Hajduk skłamała, że nie widziała się z Lasotą, i dwa razy była pod Kolonią. Ale wjechała tam o 3:05, kiedy Lasota nie żył od ponad pół godziny, a jej samochód nie ma nic wspólnego z busem Syreon. Redakcja dostaje pozew, a prawdziwy sprawca czyta o tym w gazecie.'},
+  'hajduk': {'title': 'Dziennikarka', 'text': 'Lena Hajduk skłamała, że nie widziała się z Lasotą, i dwa razy była pod Kolonią. Ale wjechała tam o 3:05, kiedy Lasota nie żył od ponad dwudziestu minut, a jej samochód nie ma nic wspólnego z busem Syreon. Redakcja dostaje pozew, a prawdziwy sprawca czyta o tym w gazecie.'},
   'pyka': {'title': 'Prezes', 'text': 'Witold Pyka ukrył wyciek i skłamał o telefonie do wiceprezydenta. Naprawdę jest odpowiedzialny za zaniedbanie, ale o 2:41 był już na zakładzie, kilkanaście kilometrów od stacji. Prokurator wnosi zarzut narażenia ludzi na utratę zdrowia, a sprawca pozostaje na wolności.'},
   'accident': {'title': 'Nieszczęśliwy wypadek', 'text': 'Porażenie prądem przy szafie nadajnika. Sprawa zostaje zamknięta po sekcji, w której zapisano oparzenia, ale pominięto pośmiertny charakter obrażeń. Po tygodniu NIK i tak znajduje atrapę kanału K3, a ktoś pyta, dlaczego administrator systemu był na stacji o 2:30 w nocy.'},
  },

@@ -57,7 +57,7 @@ evidence = [
 
  # ---------- STACJA NADAWCZA KOLONIA ----------
  ev('e07', 'Oględziny', 'Ciało przy szafie SN-1', 'Bogdan Lasota, pomieszczenie nadajnika.', [
-   'Lasota leży na boku przy otwartej szafie SN-1, głową ku podłodze, prawa dłoń przy szynach rozdzielni 400 V. Rękaw prawej ręki przepalony przy nadgarstku, skóra dłoni z oparzeniami. Pod potylicą niewielka kałuża zaschniętej krwi.',
+   'Lasota leży na plecach przy otwartej szafie SN-1, głową ku ścianie, prawa ręka wyciągnięta, dłoń na szynach rozdzielni 400 V. Rękaw prawej ręki przepalony przy nadgarstku, skóra dłoni z oparzeniami. Pod potylicą niewielka kałuża zaschniętej krwi.',
    'Na podłodze, kilkadziesiąt centymetrów od ciała, brak krwi poza kałużą pod głową. Kurtka zapięta, lekko wilgotna od deszczu, rękawiczki w kieszeni. Karta LAS-01 w portfelu.',
    {'note': 'Oparzenia są ostre, ale okolica oparzeń jest sucha i blada. Technik zaznacza, że wygląda to „na czyste, bez reakcji skóry” — do oceny lekarza.'}]),
  ev('e08', 'Przedmiot', 'Zegarek Lasoty', 'Smartwatch z urwanym paskiem, pod szafą.', [
@@ -65,13 +65,13 @@ evidence = [
    {'note': 'Dane z zegarka można odzyskać tylko przez producenta (zapytanie służbowe).'}]),
  ev('e09', 'Dziennik', 'Dziennik zdarzeń SN-1', 'Wydruk lokalnego dziennika nadajnika, pamięć zabezpieczona przed zapisem.', [
    {'log': ['27.11 01:03:22   MODE SERWIS ON            key=SYR-1',
-            '27.11 01:03:23   K1 LINK SUSPENDED',
+            '27.11 01:03:23   K1 EXEC SUSPENDED',
             '27.11 01:03:25   K3 FAILOVER BLOCKED       (SERWIS)',
             '27.11 01:47:09   K1 CMD AL-2611-0147 IGN   (SERWIS)',
             '27.11 01:47:09   QUEUE ADD AL-2611-0147    pending',
             '27.11 03:01:50   QUEUE CLEAR (MANUAL)      key=SYR-1',
             '27.11 03:02:11   MODE PRACA                key=SYR-1',
-            '27.11 03:02:12   K1 LINK RESTORED']},
+            '27.11 03:02:12   K1 EXEC RESTORED']},
    {'note': 'Dziennik zapisuje się w pamięci, do której nie ma dostępu z poziomu panelu serwisowego. Jego zegar synchronizuje GPS.'}],
    time=[T(1, 3, 'SN-1 przechodzi w tryb SERWIS (klucz SYR-1)', 'Dziennik SN-1'), T(1, 47, 'SN-1 ignoruje polecenie alarmu AL-2611-0147 (tryb SERWIS)', 'Dziennik SN-1'), T(3, 2, 'SN-1 wraca do trybu PRACA (klucz SYR-1)', 'Dziennik SN-1')]),
  ev('e10', 'Oględziny', 'Przełącznik SERWIS/PRACA', 'Szafa SN-1, panel przełącznika.', [
@@ -102,7 +102,7 @@ evidence = [
    {'log': ['27.11 02:12   push SYRION-Mobile   SN-1 w trybie SERWIS od 01:03 (MW-2611). Alarm AL-2611-0147: brak potwierdzenia z syren.',
             '27.11 02:14   odczytano powiadomienie',
             '27.11 02:34   połączenie wychodzące   L. Hajduk   0:22']},
-   {'note': 'Lasota został powiadomiony o trybie SERWIS i o niewysłanym alarmie dopiero o 2:12. Wcześniej żadne powiadomienie do niego nie dotarło.'}],
+   {'note': 'Lasota został powiadomiony o trybie SERWIS i o niewysłanym alarmie dopiero o 2:12, bo aplikacja zgłasza brak potwierdzenia z syren po 25 minutach od żądania alarmu. Wcześniej żadne powiadomienie do niego nie dotarło.'}],
    time=[T(2, 12, 'Lasota dostaje powiadomienie: SN-1 w trybie SERWIS, alarm niewysłany', 'Telefon Lasoty'), T(2, 34, 'Lasota dzwoni do L. Hajduk (22 s)', 'Telefon Lasoty')]),
  ev('e45', 'Zeznanie', 'Protokół zeznań Henryka Mazura', 'Konserwator stacji, piątek 7:30.', [
    {'quote': 'O szóstej siedem odbiłem kartę i zobaczyłem pana Lasotę na podłodze przy szafie. Drzwi były zamknięte, zatrzaskują się same. Na stację jeżdżę dwa razy w tygodniu, nigdy nie widziałem tu nocą nikogo.', 'by': 'Henryk Mazur'},
@@ -152,7 +152,7 @@ evidence = [
             '02:26   straż pożarna (wezwana przez mieszkańców, nie przez zakład)']}],
    time=[T(1, 52, 'Kierownik zmiany Chemrud informuje prezesa Pykę o wycieku', 'Dziennik zmiany'), T(2, 20, 'Prezes Pyka przyjeżdża do zakładu', 'Dziennik zmiany')]),
  ev('e23', 'Raport', 'Raport z awarii zaworu Cl-3', 'Przyczyna wycieku.', [
-   'Zawór Cl-3 wymieniono w 2025 roku na tańszy zamiennik, na polecenie prezesa (cena niższa o 40%). Zawór pękł na uszczelce w czwartek wieczorem.',
+   'Zawór Cl-3 wymieniono w 2025 roku na tańszy zamiennik, na polecenie prezesa (cena niższa o 40%). Zawór pękł na uszczelce w nocy z czwartku na piątek, około 1:41.',
    {'note': 'W 2025 roku czujniki GasNet wysłały cztery fałszywe alarmy, zakład uznał je za usterki oprogramowania.'}]),
  ev('e24', 'Dokument', 'Szkic oświadczenia prezesa Chemrud', 'Plik z gabinetu prezesa, zapis 2:40.', [
    {'quote': 'W nocy doszło do niewielkiej nieszczelności, bez zagrożenia dla mieszkańców. Zakład działał zgodnie z procedurami.', 'by': 'szkic oświadczenia, zapisany 27.11 o 2:40'}]),
@@ -168,7 +168,7 @@ evidence = [
  ev('e27', 'Notatka', 'Kalendarz i notatki Lasoty', 'Gabinet kierownika referatu.', [
    {'kv': [['Pt 27.11, 9:00', 'NIK — spotkanie otwierające kontrolę SYRION-4'], ['Cz 26.11, 24:00', 'Kolonia, parking — L.H.']]},
    {'quote': 'PIN do sejfu: dzień i miesiąc odbioru systemu. Tego nie zapomnę.', 'by': 'karteczka na monitorze, pismo B. Lasoty'},
-   'Na marginesie kalendarza: „K3 — porównać telemetrię z protokołem. Jeśli się zgadza, ktoś nas oszukał.”']),
+   'Na marginesie kalendarza: „K3 — porównać telemetrię z protokołem. Jeśli się nie zgadza, ktoś nas oszukał.”']),
  ev('e28', 'Dokument', 'Protokół odbioru SYRION-4 (2024)', 'Odbiór systemu przez miasto, czerwiec 2024.', [
    {'kv': [['Data odbioru', '14.06.2024'], ['Wykonawca', 'Syreon Polska Sp. z o.o.'], ['Wartość', '4 800 000 zł']]},
    {'log': ['K1  test łączności               pozytywny',
@@ -191,7 +191,7 @@ evidence = [
    {'kv': [['Aneks podpisali', 'Syreon Polska (D. Kopeć) i Urząd Miasta (P. Szczerba)'], ['Uzasadnienie', 'zmiana sprzętu na równoważny']]},
    {'note': 'Aneks z maja 2024 usuwa K3 z zakresu dostawy. Protokół odbioru z czerwca 2024 podaje K3 jako przetestowany.'}]),
  ev('e32', 'Rejestr', 'Zgłoszenie serwisowe MW-2611', 'System wniosków serwisowych.', [
-   {'kv': [['Wnioskodawca', 'Syreon Polska — D. Kopeć'], ['Zakres', 'wymiana modułu K3 na SN-1'], ['Okno', '27.11, 0:30–3:00'],
+   {'kv': [['Wnioskodawca', 'Syreon Polska — D. Kopeć'], ['Zakres', 'wymiana modułu K3 na SN-1'], ['Okno', '27.11, 0:00–3:00'],
            ['Zatwierdził', 'P. Szczerba, 26.11, 22:05, „w zastępstwie administratora”'], ['Powiadomienie do administratora', 'wstrzymane (zatwierdzenie w zastępstwie)']]},
    {'note': 'Administrator systemu, Lasota, był w pracy w czwartek do 18:30 i nie był nieobecny dłużej niż 72 godziny.'}],
    time=[T(22, 5, 'Szczerba zatwierdza okno serwisowe MW-2611 „w zastępstwie” Lasoty', 'System MW', day=D)]),
@@ -209,10 +209,10 @@ evidence = [
             '27.11 02:20   Skoda Octavia  SRS 4RX11   wjazd',
             '27.11 03:05   VW Golf        SRS 55K2   wjazd',
             '27.11 03:19   VW Golf        SRS 55K2   wyjazd']},
-   {'note': 'Zegar fotopułapki synchronizowany z GPS. Octavia, która wjechała o 2:20, nie wyjechała do rana. Skoda Octavia SRS 4RX11 to samochód służbowy referatu Lasoty; VW Golf SRS 55K2 jest zarejestrowany na Lenę Hajduk.'}],
+   {'note': 'Zegar fotopułapki synchronizowany z GPS. Octavia, która wjechała o 2:20, nie wyjechała do rana. Lasota mieszkał przy drodze na Kolonię, około sześciu minut jazdy od parkingu. Skoda Octavia SRS 4RX11 to samochód służbowy referatu Lasoty; VW Golf SRS 55K2 jest zarejestrowany na Lenę Hajduk.'}],
    time=[T(0, 7, 'Golf L. Hajduk wjeżdża na parking pod Kolonią, 4 minuty po aucie Lasoty', 'Fotopułapka'), T(3, 5, 'Golf L. Hajduk ponownie na parkingu pod Kolonią', 'Fotopułapka')]),
  ev('e35', 'Oględziny', 'Ślady przy parkingu', 'Parking leśny, piątek 9:30.', [
-   'Wokół miejsca postoju dwóch aut ślady butów w rozmiarach około 43 i 38. Na słupku dwa kubki po kawie z jednej stacji paliw i pusta koperta z logo „Głos Rudy”.']),
+   'Wokół miejsca postoju dwóch aut ślady butów w rozmiarach około 43 i 38. Na pniaku dwa kubki po kawie z jednej stacji paliw i pusta koperta z logo „Głos Rudy”.']),
 
  # ---------- REDAKCJA „GŁOS RUDY” ----------
  ev('e36', 'Notatka', 'Notatki Leny Hajduk', 'Plan artykułu „Syreny na papierze”.', [
@@ -230,7 +230,7 @@ evidence = [
             'T. Tarka    zwolnienie lekarskie od 20.11',
             'D. Kopeć    dyżur nocny serwisowy 26/27.11']}]),
  ev('e41', 'Oględziny', 'Bus Syreon (Ducato) — wnętrze', 'Garaż firmy, piątek 13:00.', [
-   'W skrzyni narzędziowej puste gniazdo w pianie z etykietą „SY-TW-17”. W kabinie zwitek rękawic lateksowych i trzy zaślepki oporowe 50 Ω.']),
+   'W skrzyni narzędziowej puste gniazdo w pianie z etykietą „SY-TW-17”, a obok zwitek niebieskich rękawic lateksowych. W kabinie trzy zaślepki oporowe 50 Ω.']),
  ev('e42', 'Wykaz', 'Wykaz narzędzi Syreon z przypisaniem', 'Narzędzia z przydziałem do osób.', [
    {'log': ['SY-TW-17   klucz dynamometryczny 40–200 Nm   przypisany: D. Kopeć   wydano 02.01.2025']}]),
  ev('e43', 'Dokument', 'Anulowanie zamówienia modułu K3', 'Archiwum zamówień Syreon.', [

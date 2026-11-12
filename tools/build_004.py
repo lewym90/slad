@@ -17,7 +17,7 @@ case = {
    'O 6:10 konserwator znalazł w stacji nadawczej „Kolonia” ciało Bogdana Lasoty, miejskiego administratora systemu ostrzegania. Wygląda na porażenie prądem przy rozdzielni.',
    'W nocy o 1:47 czujniki chloru w zakładzie Chemrud zażądały alarmu. Syreny w mieście nie zawyły. Do rana 23 osoby trafiły do szpitala z podrażnieniem dróg oddechowych, a z archiwum Centrum zniknął zapis tego alarmu.',
    'O 9:00 w urzędzie miała się zacząć kontrola NIK. Lasota figurował w kalendarzu jako uczestnik tego spotkania.',
-   'Burmistrz wydał dwa polecenia: ustalić, co się stało na wzgórzu, i wyjaśnić, dlaczego system, za który miasto zapłaciło miliony, milczał. Pięć osób ma coś do ukrycia.'],
+   'Prezydent miasta wydał dwa polecenia: ustalić, co się stało na wzgórzu, i wyjaśnić, dlaczego system, za który miasto zapłaciło miliony, milczał. Pięć osób ma coś do ukrycia.'],
   'task': [
    'Kto zabił Bogdana Lasotę, jak i kiedy?',
    'Dlaczego syreny nie zawyły o 1:47?',
