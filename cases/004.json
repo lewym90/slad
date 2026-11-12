@@ -7,7 +7,14 @@
  "players": "2–6",
  "difficulty": "Wymagająca",
  "cover": "assets/cases/004-cover.webp",
+ "art": "assets/art/004-keyart.webp",
+ "ambience": "assets/audio/case-004.mp3",
  "par": 73,
+ "voiceDir": "assets/voice/004",
+ "introVideo": "assets/video/004-intro.mp4",
+ "voice": {
+  "brief": "assets/voice/004-brief.mp3"
+ },
  "intro": {
   "lead": "Piątek, 27 listopada, 10:00. Centrum Zarządzania Kryzysowego w Rudzie. Za oknem mgła, na ścianie monitorów żadnego alarmu.",
   "brief": [
@@ -231,7 +238,8 @@
       "t14"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/004-kopec.webp"
   },
   {
    "id": "burda",
@@ -336,7 +344,8 @@
      "text": "O 3:35 wiceprezydent Szczerba polecił jej usunąć zapis alarmu.",
      "truth": true
     }
-   ]
+   ],
+   "img": "assets/people/004-burda.webp"
   },
   {
    "id": "szczerba",
@@ -458,7 +467,8 @@
      ],
      "response": "To firma mojej żony. Usługa doradcza była legalna. Nie widzę związku ze sprawą."
     }
-   ]
+   ],
+   "img": "assets/people/004-szczerba.webp"
   },
   {
    "id": "hajduk",
@@ -548,7 +558,8 @@
      "text": "O 3:12 z bramy stacji wyjechał biały bus z drabiną na dachu.",
      "truth": true
     }
-   ]
+   ],
+   "img": "assets/people/004-hajduk.webp"
   },
   {
    "id": "pyka",
@@ -633,7 +644,8 @@
       "t13"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/004-pyka.webp"
   }
  ],
  "locations": [
@@ -701,7 +713,8 @@
       "e14"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/004-station.webp"
   },
   {
    "id": "czk",
@@ -742,7 +755,8 @@
       "e20"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/004-czk.webp"
   },
   {
    "id": "chemrud",
@@ -782,7 +796,8 @@
       "e24"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/004-chemrud.webp"
   },
   {
    "id": "hospital",
@@ -806,7 +821,8 @@
       "e26"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/004-hospital.webp"
   },
   {
    "id": "city",
@@ -866,7 +882,8 @@
      },
      "lockedText": "Bez podstaw nikt wam gabinetu wiceprezydenta nie otworzy. Najpierw musicie wykazać, że jego zeznania nie trzymają się dokumentów."
     }
-   ]
+   ],
+   "img": "assets/places/004-city.webp"
   },
   {
    "id": "parking",
@@ -890,7 +907,8 @@
       "e35"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/004-parking.webp"
   },
   {
    "id": "newsroom",
@@ -926,7 +944,8 @@
      },
      "lockedText": "Bez nakazu nikt wam skrzynki nie otworzy. Najpierw wykażcie, że reporterka mówi nieprawdę."
     }
-   ]
+   ],
+   "img": "assets/places/004-newsroom.webp"
   },
   {
    "id": "syreon",
@@ -991,7 +1010,8 @@
      },
      "lockedText": "Bez podstawy firma nie otworzy archiwum zamówień. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
     }
-   ]
+   ],
+   "img": "assets/places/004-syreon.webp"
   }
  ],
  "evidence": [
@@ -1021,7 +1041,7 @@
       ]
      ]
     },
-    "Ciało leżało przy otwartej szafie nadajnika SN-1, obok rozdzielni zasilania 400 V. Drzwi stacji (D1) były zamknięte — konserwator wszedł własną kartą o 6:07. Stacja jest bez stałej obsady; nocą nikt tu nie pracuje. Noc była pochmurna, z mgłą i mżawką do rana.",
+    "Ciało leżało przy otwartej szafie nadajnika SN-1, obok rozdzielni zasilania 400 V. Drzwi stacji (D1) były zamknięte — konserwator wszedł własną kartą o 6:07. Stacja jest bez stałej obsady; nocą nikt tu nie pracuje. Noc była pochmurna, z mgłą i drobnym deszczem do rana.",
     "Pierwsza robocza hipoteza patrolu: porażenie prądem przy pracach przy zasilaniu. Technik odciął zasilanie szafy o 6:30, zanim ktokolwiek zbliżył się do ciała.",
     {
      "note": "Lasota był administratorem systemu ostrzegania mieszkańców SYRION-4. Nic nie wskazuje, by miał tej nocy zaplanowane prace przy nadajniku."
@@ -1034,7 +1054,8 @@
      "Henryk Mazur zgłasza znalezienie ciała Lasoty",
      "Raport"
     ]
-   ]
+   ],
+   "img": "assets/people/004-lasota.webp"
   },
   {
    "id": "e02",
@@ -1186,7 +1207,7 @@
    "summary": "Bogdan Lasota, pomieszczenie nadajnika.",
    "body": [
     "Lasota leży na boku przy otwartej szafie SN-1, głową ku podłodze, prawa dłoń przy szynach rozdzielni 400 V. Rękaw prawej ręki przepalony przy nadgarstku, skóra dłoni z oparzeniami. Pod potylicą niewielka kałuża zaschniętej krwi.",
-    "Na podłodze, kilkadziesiąt centymetrów od ciała, brak krwi poza kałużą pod głową. Kurtka zapięta, lekko wilgotna od mżawki, rękawiczki w kieszeni. Karta LAS-01 w portfelu.",
+    "Na podłodze, kilkadziesiąt centymetrów od ciała, brak krwi poza kałużą pod głową. Kurtka zapięta, lekko wilgotna od deszczu, rękawiczki w kieszeni. Karta LAS-01 w portfelu.",
     {
      "note": "Oparzenia są ostre, ale okolica oparzeń jest sucha i blada. Technik zaznacza, że wygląda to „na czyste, bez reakcji skóry” — do oceny lekarza."
     }
@@ -1202,7 +1223,8 @@
     {
      "note": "Dane z zegarka można odzyskać tylko przez producenta (zapytanie służbowe)."
     }
-   ]
+   ],
+   "img": "assets/evidence/004-watch.webp"
   },
   {
    "id": "e09",
@@ -1254,7 +1276,8 @@
     {
      "note": "Kluczyk UM-1 leży w sejfie stacji, plomba nienaruszona."
     }
-   ]
+   ],
+   "img": "assets/evidence/004-keyswitch.webp"
   },
   {
    "id": "e11",
@@ -1266,7 +1289,8 @@
     {
      "note": "Kanał K3 według schematu ma być autonomicznym torem rezerwowym. Przy takim podłączeniu nie wypromieniowałby żadnego sygnału."
     }
-   ]
+   ],
+   "img": "assets/evidence/004-dummy.webp"
   },
   {
    "id": "e12",
@@ -1317,7 +1341,8 @@
     {
      "note": "Nalepki SY- noszą narzędzia firmy Syreon Polska. Stacja nie ma własnych narzędzi tej klasy."
     }
-   ]
+   ],
+   "img": "assets/evidence/004-wrench.webp"
   },
   {
    "id": "e14",
@@ -1361,7 +1386,8 @@
      "Lasota dzwoni do L. Hajduk (22 s)",
      "Telefon Lasoty"
     ]
-   ]
+   ],
+   "img": "assets/evidence/004-phone.webp"
   },
   {
    "id": "e45",
@@ -1412,7 +1438,8 @@
      "by": "pismo operatorki, ołówek"
     },
     "Karteczka została przedarta na pół. Druga połowa, z napisem „Chemrud?”, leży obok."
-   ]
+   ],
+   "img": "assets/evidence/004-sticky.webp"
   },
   {
    "id": "e18",
@@ -1672,7 +1699,8 @@
      "quote": "Dostanie to dziennikarka. NIK dostanie to samo o 9:00. Jeśli komuś zależy, żeby tego nie było, ma czas do rana.",
      "by": "B. Lasota, dopisek odręczny"
     }
-   ]
+   ],
+   "img": "assets/evidence/004-safe.webp"
   },
   {
    "id": "e30",
@@ -1690,7 +1718,8 @@
     {
      "note": "Wpis „PASS” dodano ręcznie z panelu serwisowego. Oba pomiary urządzenia dały wynik negatywny."
     }
-   ]
+   ],
+   "img": "assets/evidence/004-pendrive.webp"
   },
   {
    "id": "e31",
@@ -1909,7 +1938,8 @@
    "summary": "Garaż firmy, piątek 13:00.",
    "body": [
     "W skrzyni narzędziowej puste gniazdo w pianie z etykietą „SY-TW-17”. W kabinie zwitek rękawic lateksowych i trzy zaślepki oporowe 50 Ω."
-   ]
+   ],
+   "img": "assets/evidence/004-toolcase.webp"
   },
   {
    "id": "e42",
@@ -2746,25 +2776,33 @@
    "id": "b-service",
    "when": "p-service",
    "title": "Głucha stacja",
-   "text": "Przez 119 minut nadajnik SN-1 ignorował każde polecenie. Syreny milczały nie dlatego, że system się zepsuł, ale dlatego, że ktoś go wyłączył kluczem."
+   "text": "Przez 119 minut nadajnik SN-1 ignorował każde polecenie. Syreny milczały nie dlatego, że system się zepsuł, ale dlatego, że ktoś go wyłączył kluczem.",
+   "video": "assets/video/004-bt-service.mp4",
+   "img": "assets/evidence/004-keyswitch.webp"
   },
   {
    "id": "b-k3",
    "when": "e30",
    "title": "Martwy kanał",
-   "text": "Telemetria z nadajnika mówi, że kanał rezerwowy K3 od dwóch lat nie nadaje. W protokole odbioru ktoś wpisał, że działa."
+   "text": "Telemetria z nadajnika mówi, że kanał rezerwowy K3 od dwóch lat nie nadaje. W protokole odbioru ktoś wpisał, że działa.",
+   "video": "assets/video/004-bt-k3.mp4",
+   "img": "assets/evidence/004-dummy.webp"
   },
   {
    "id": "b-time",
    "when": "p-time",
    "title": "Siedem minut",
-   "text": "Zegarek Lasoty spóźniał się o siedem minut. Cała noc przesuwa się o tyle, a wraz z nią to, kto mógł być gdzie."
+   "text": "Zegarek Lasoty spóźniał się o siedem minut. Cała noc przesuwa się o tyle, a wraz z nią to, kto mógł być gdzie.",
+   "video": "assets/video/004-bt-time.mp4",
+   "img": "assets/evidence/004-watch.webp"
   },
   {
    "id": "b-blow",
    "when": "lie:k-l6",
    "title": "Jedno uderzenie",
-   "text": "Kopeć przyznaje: Lasota nie dotknął szyn. Został uderzony, a dopiero potem ułożony przy rozdzielni. Wypadek był wymyślony."
+   "text": "Kopeć przyznaje: Lasota nie dotknął szyn. Został uderzony, a dopiero potem ułożony przy rozdzielni. Wypadek był wymyślony.",
+   "video": "assets/video/004-bt-blow.mp4",
+   "img": "assets/people/004-kopec.webp"
   }
  ],
  "hintTrail": [

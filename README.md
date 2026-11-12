@@ -2,7 +2,7 @@
 
 Kooperacyjna gra detektywistyczna dla 2–6 osób przy jednym ekranie (telefon, tablet, komputer). Instaluje się jak aplikacja (PWA) i po pierwszym uruchomieniu działa offline.
 
-Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”. Sprawy 004–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
+Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”, 004 „Martwy kanał”. Sprawy 005–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
 
 ## Tryby gry (wybór po otwarciu sprawy)
 - **Wspólny stół** — jeden ekran (laptop, telewizor, tablet). Wszyscy widzą wszystko. Informacje, które w drugim trybie są tajnymi aktami, trzeba zdobyć w śledztwie (m.in. w miejscu „Centrala wydziału”). Najlepszy we dwoje.
@@ -59,7 +59,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - **Macierz alibi (`input: "grid"` w zagadce):** tabela osoba × chwila, w każdej komórce lista miejsc. Walidator rozwiązuje ją wyczerpująco: warunki logiczne (`is`, `not`, `in`, `same`, `diff`, `forbid`, `exactly`) muszą dawać dokładnie jedno rozwiązanie zgodne z `answers[0]`, każdy ma `src` (dowód z listy `requires`) i `why`.
 - **Pytanie wielokrotnego wyboru w raporcie (`type: "multi"`):** zaznaczacie wszystkie właściwe osoby; błędny wybór odejmuje punkty za trafny (`points × max(0, trafione − błędne) / liczba poprawnych`).
 - **Dwa akty przez bramkowanie:** miejsca i pytania zależne od wykazanych kłamstw (`requires: {all: ["lie:…"]}`) otwierają się dopiero po przełomach, więc sprawa 004 rozkręca się w drugiej połowie.
-- Sprawa 004 „Martwy kanał” jest w katalogu zapieczętowana (`ready: false`) do czasu dodania grafik, głosów i filmów. Prompty: `docs/PROMPTY_GRAFIK_004.md`, `docs/PROMPTY_GLOSY_004.md`, `docs/PROMPTY_FILMY_DZWIEK_004.md` (generuje je `tools/prompts_004.py`).
+- Sprawa 004 „Martwy kanał” jest gotowa (grafiki, głosy, filmy i ambient dodane). Prompty użyte do mediów: `docs/PROMPTY_GRAFIK_004.md`, `docs/PROMPTY_GLOSY_004.md`, `docs/PROMPTY_FILMY_DZWIEK_004.md` (generuje je `tools/prompts_004.py`).
 
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).

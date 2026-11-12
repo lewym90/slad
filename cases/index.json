@@ -45,7 +45,7 @@
    "players": "2–6",
    "difficulty": "Wymagająca",
    "cover": "assets/cases/004-cover.webp",
-   "ready": false,
+   "ready": true,
    "teaser": "Ruda. Noc awarii systemu ostrzegania i zapis alarmowy, który zniknął z archiwum."
   },
   {

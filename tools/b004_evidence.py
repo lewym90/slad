@@ -15,7 +15,7 @@ evidence = [
    {'kv': [['Miejsce', 'Stacja nadawcza „Kolonia”, wzgórze Kolonia, Ruda — pomieszczenie nadajnika SN-1'],
            ['Zgłoszenie', 'piątek 27.11, 6:14, Henryk Mazur (konserwator stacji, Urząd Miasta), 112'],
            ['Przyjazd patrolu', '6:25'], ['Zmarły', 'Bogdan Lasota, 56 l., kierownik Referatu Zarządzania Kryzysowego UM']]},
-   'Ciało leżało przy otwartej szafie nadajnika SN-1, obok rozdzielni zasilania 400 V. Drzwi stacji (D1) były zamknięte — konserwator wszedł własną kartą o 6:07. Stacja jest bez stałej obsady; nocą nikt tu nie pracuje. Noc była pochmurna, z mgłą i mżawką do rana.',
+   'Ciało leżało przy otwartej szafie nadajnika SN-1, obok rozdzielni zasilania 400 V. Drzwi stacji (D1) były zamknięte — konserwator wszedł własną kartą o 6:07. Stacja jest bez stałej obsady; nocą nikt tu nie pracuje. Noc była pochmurna, z mgłą i drobnym deszczem do rana.',
    'Pierwsza robocza hipoteza patrolu: porażenie prądem przy pracach przy zasilaniu. Technik odciął zasilanie szafy o 6:30, zanim ktokolwiek zbliżył się do ciała.',
    {'note': 'Lasota był administratorem systemu ostrzegania mieszkańców SYRION-4. Nic nie wskazuje, by miał tej nocy zaplanowane prace przy nadajniku.'}],
    start=True, time=[T(6, 14, 'Henryk Mazur zgłasza znalezienie ciała Lasoty', 'Raport')]),
@@ -58,7 +58,7 @@ evidence = [
  # ---------- STACJA NADAWCZA KOLONIA ----------
  ev('e07', 'Oględziny', 'Ciało przy szafie SN-1', 'Bogdan Lasota, pomieszczenie nadajnika.', [
    'Lasota leży na boku przy otwartej szafie SN-1, głową ku podłodze, prawa dłoń przy szynach rozdzielni 400 V. Rękaw prawej ręki przepalony przy nadgarstku, skóra dłoni z oparzeniami. Pod potylicą niewielka kałuża zaschniętej krwi.',
-   'Na podłodze, kilkadziesiąt centymetrów od ciała, brak krwi poza kałużą pod głową. Kurtka zapięta, lekko wilgotna od mżawki, rękawiczki w kieszeni. Karta LAS-01 w portfelu.',
+   'Na podłodze, kilkadziesiąt centymetrów od ciała, brak krwi poza kałużą pod głową. Kurtka zapięta, lekko wilgotna od deszczu, rękawiczki w kieszeni. Karta LAS-01 w portfelu.',
    {'note': 'Oparzenia są ostre, ale okolica oparzeń jest sucha i blada. Technik zaznacza, że wygląda to „na czyste, bez reakcji skóry” — do oceny lekarza.'}]),
  ev('e08', 'Przedmiot', 'Zegarek Lasoty', 'Smartwatch z urwanym paskiem, pod szafą.', [
    'Zegarek leżał pod szafą, około 30 cm od ciała. Pasek urwany przy zapięciu, ekran pęknięty, urządzenie nie reaguje. Technik nie włączał go ani nie ustawiał godziny.',

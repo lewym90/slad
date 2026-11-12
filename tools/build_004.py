@@ -9,7 +9,8 @@ import b004_rest as R
 case = {
  'id': '004', 'title': 'Martwy kanał', 'subtitle': 'Syreny milczały. Ktoś skasował dowód.',
  'genre': 'Thriller techniczny', 'duration': '110–150 min', 'players': '2–6', 'difficulty': 'Wymagająca',
- 'cover': 'assets/cases/004-cover.webp', 'par': 73,
+ 'cover': 'assets/cases/004-cover.webp', 'art': 'assets/art/004-keyart.webp', 'ambience': 'assets/audio/case-004.mp3', 'par': 73,
+ 'voiceDir': 'assets/voice/004', 'introVideo': 'assets/video/004-intro.mp4', 'voice': {'brief': 'assets/voice/004-brief.mp3'},
  'intro': {
   'lead': 'Piątek, 27 listopada, 10:00. Centrum Zarządzania Kryzysowego w Rudzie. Za oknem mgła, na ścianie monitorów żadnego alarmu.',
   'brief': [
@@ -35,6 +36,24 @@ case = {
  'puzzles': R.puzzles, 'tableMode': R.tableMode, 'breakthroughs': R.breakthroughs,
  'hintTrail': R.hintTrail, 'report': R.report, 'solution': R.solution, 'endings': R.endings,
 }
+# --- media ---
+EVIMG = {'e01': 'assets/people/004-lasota.webp', 'e13': 'assets/evidence/004-wrench.webp', 'e08': 'assets/evidence/004-watch.webp',
+         'e10': 'assets/evidence/004-keyswitch.webp', 'e11': 'assets/evidence/004-dummy.webp', 'e17': 'assets/evidence/004-sticky.webp',
+         'e41': 'assets/evidence/004-toolcase.webp', 'e29': 'assets/evidence/004-safe.webp', 'e44': 'assets/evidence/004-phone.webp',
+         'e30': 'assets/evidence/004-pendrive.webp'}
+for e in evidence:
+    if e['id'] in EVIMG: e['img'] = EVIMG[e['id']]
+for pr in people: pr['img'] = f"assets/people/004-{pr['id']}.webp"
+for l in R.locations: l['img'] = f"assets/places/004-{l['id']}.webp"
+BT = {'b-service': ('service', EVIMG['e10']), 'b-k3': ('k3', EVIMG['e11']), 'b-time': ('time', EVIMG['e08']), 'b-blow': ('blow', 'assets/people/004-kopec.webp')}
+for b in R.breakthroughs:
+    n, im = BT[b['id']]; b['video'] = f'assets/video/004-bt-{n}.mp4'; b['img'] = im
+# --- lines.json (głosy) ---
+vl = os.path.join(os.path.dirname(__file__), 'voice', 'lines.json')
+VL = json.load(open(vl)); NL = json.load(open(os.path.join(os.path.dirname(__file__), 'voice', '004-lines.json')))
+for k, v in NL.items():
+    VL[k] = {'name': v['name'], 'lines': [{x: y for x, y in l.items() if x != 'n'} for l in v['lines']]}
+json.dump(VL, open(vl, 'w'), ensure_ascii=False, indent=1)
 out = os.path.join(os.path.dirname(__file__), '..', 'cases', '004.json')
 json.dump(case, open(out, 'w'), ensure_ascii=False, indent=1)
 print('zapisano', out, len(evidence), 'dowodów')

@@ -832,5 +832,384 @@
     "spoken": "Nie wiem. Nie rozmawialiśmy o pracy."
    }
   ]
+ },
+ "004-kopec": {
+  "name": "Dariusz Kopeć",
+  "lines": [
+   {
+    "id": "k-q1",
+    "kind": "q",
+    "text": "W domu, w Zabrzu. Skończyłem pracę o szesnastej, położyłem się przed północą. Żona to potwierdzi.",
+    "spoken": "W domu, w Zabrzu. Skończyłem pracę o szesnastej, położyłem się przed północą. Żona to potwierdzi."
+   },
+   {
+    "id": "k-q2",
+    "kind": "q",
+    "text": "Jestem inżynierem Syreon Polska. W 2024 wdrażałem ten system i podpisałem odbiór za wykonawcę. Dziś prowadzę serwis i gwarancję.",
+    "spoken": "Jestem inżynierem Syreon Polska. W dwa tysiące dwudziestym czwartym wdrażałem ten system i podpisałem odbiór za wykonawcę. Dziś prowadzę serwis i gwarancję."
+   },
+   {
+    "id": "k-q3",
+    "kind": "q",
+    "text": "Wiceprezydent Szczerba. Szybciej niż czekać na pana Lasotę. Zatwierdzenie miałem w systemie jeszcze wieczorem.",
+    "spoken": "Wiceprezydent Szczerba. Szybciej niż czekać na pana Lasotę. Zatwierdzenie miałem w systemie jeszcze wieczorem."
+   },
+   {
+    "id": "k-q4",
+    "kind": "q",
+    "text": "Wymieniałem moduł K3. Tryb SERWIS włączyłem tylko na jakieś dwadzieścia minut, żeby podłączyć kabel, potem wróciłem do PRACA.",
+    "spoken": "Wymieniałem moduł ka trzy. Tryb serwis włączyłem tylko na jakieś dwadzieścia minut, żeby podłączyć kabel, potem wróciłem do pracy."
+   },
+   {
+    "id": "k-q5",
+    "kind": "q",
+    "text": "Nikt. Telefon miałem wyciszony, bo pracowałem przy antenie.",
+    "spoken": "Nikt. Telefon miałem wyciszony, bo pracowałem przy antenie."
+   },
+   {
+    "id": "k-q6",
+    "kind": "q",
+    "text": "K3 to skomplikowana konfiguracja i nie wszystko zależy od mnie. Nie widzę tu niczego dziwnego.",
+    "spoken": "Ka trzy to skomplikowana konfiguracja i nie wszystko zależy od mnie. Nie widzę tu niczego dziwnego."
+   },
+   {
+    "id": "k-q7",
+    "kind": "q",
+    "text": "To była tymczasowa atrapa na czas wymiany modułu. Tak się robi w serwisie, żeby nie uszkodzić nadajnika.",
+    "spoken": "To była tymczasowa atrapa na czas wymiany modułu. Tak się robi w serwisie, żeby nie uszkodzić nadajnika."
+   },
+   {
+    "id": "k-l1",
+    "kind": "break",
+    "text": "Dobrze. Byłem na Kolonii. Zgłoszenie było moje, wymieniałem moduł K3. Wszedłem o 0:41, wyszedłem koło drugiej. Lasoty nie widziałem na oczy.",
+    "spoken": "Dobrze. Byłem na Kolonii. Zgłoszenie było moje, wymieniałem moduł ka trzy. Wszedłem o zero czterdzieści jeden, wyszedłem koło drugiej. Lasoty nie widziałem na oczy."
+   },
+   {
+    "id": "k-l2",
+    "kind": "break",
+    "text": "Dobrze, przeciągnęło się do trzeciej. Antena, konfiguracja. Ale Lasoty tam nie było, przysięgam.",
+    "spoken": "Dobrze, przeciągnęło się do trzeciej. Antena, konfiguracja. Ale Lasoty tam nie było, przysięgam."
+   },
+   {
+    "id": "k-l3",
+    "kind": "break",
+    "text": "Zjawił się koło wpół do trzeciej. Pokłóciliśmy się o K3. Wyszedł na dwór zadzwonić, a ja zostałem przy szafie.",
+    "spoken": "Zjawił się koło wpół do trzeciej. Pokłóciliśmy się o ka trzy. Wyszedł na dwór zadzwonić, a ja zostałem przy szafie."
+   },
+   {
+    "id": "k-l5",
+    "kind": "break",
+    "text": "Doszło do szarpaniny. Złapał za szyny i rąbnęło go. To był wypadek, nieszczęśliwy wypadek.",
+    "spoken": "Doszło do szarpaniny. Złapał za szyny i rąbnęło go. To był wypadek, nieszczęśliwy wypadek."
+   },
+   {
+    "id": "k-l6",
+    "kind": "break",
+    "text": "Chciał to zgłosić rano. Wszystko, K3, aneks. Złapałem klucz. Jedno uderzenie. Potem ułożyłem go przy szynach.",
+    "spoken": "Chciał to zgłosić rano. Wszystko, ka trzy, aneks. Złapałem klucz. Jedno uderzenie. Potem ułożyłem go przy szynach."
+   },
+   {
+    "id": "k-l4",
+    "kind": "break",
+    "text": "Dobrze, trwał dłużej. Nie chciałem wychodzić z trybu, dopóki nie skończę konfiguracji.",
+    "spoken": "Dobrze, trwał dłużej. Nie chciałem wychodzić z trybu, dopóki nie skończę konfiguracji."
+   },
+   {
+    "id": "k-l7",
+    "kind": "break",
+    "text": "Dzwoniła operatorka, potem wiceprezydent. Obojgu powiedziałem, że to fałszywy alarm z Chemrudu.",
+    "spoken": "Dzwoniła operatorka, potem wiceprezydent. Obojgu powiedziałem, że to fałszywy alarm z Chemrudu."
+   },
+   {
+    "id": "k-l8",
+    "kind": "break",
+    "text": "Nie było czego wymieniać. K3 wykreślono z dostawy, żeby zmieścić się w budżecie. Odbiór podpisał wiceprezydent.",
+    "spoken": "Nie było czego wymieniać. Ka trzy wykreślono z dostawy, żeby zmieścić się w budżecie. Odbiór podpisał wiceprezydent."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "To pytanie do działu prawnego.",
+    "spoken": "To pytanie do działu prawnego."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Proszę nie mylić serwisu z winą.",
+    "spoken": "Proszę nie mylić serwisu z winą."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Mam dokumentację. Dla mnie sprawa jest jasna.",
+    "spoken": "Mam dokumentację. Dla mnie sprawa jest jasna."
+   }
+  ]
+ },
+ "004-burda": {
+  "name": "Agnieszka Burda",
+  "lines": [
+   {
+    "id": "b-q1",
+    "kind": "q",
+    "text": "Dyżur od osiemnastej. W nocy cisza, test łącza o 0:12 w porządku. Żądanie alarmu z Chemrud do mnie nie dotarło, system niczego nie pokazał.",
+    "spoken": "Dyżur od osiemnastej. W nocy cisza, test łącza o zero dwanaście w porządku. Żądanie alarmu z Chemrud do mnie nie dotarło, system niczego nie pokazał."
+   },
+   {
+    "id": "b-q2",
+    "kind": "q",
+    "text": "Tak, MW-2611, od północy. Widziałam na konsoli status SERWIS od 1:03.",
+    "spoken": "Tak, em wu dwadzieścia sześć jedenaście, od północy. Widziałam na konsoli status serwis od pierwszej zero trzy."
+   },
+   {
+    "id": "b-q3",
+    "kind": "q",
+    "text": "Nie. Mogę usuwać tylko zapisy testowe, a testowych tej nocy nie było. Niczego nie usuwałam.",
+    "spoken": "Nie. Mogę usuwać tylko zapisy testowe, a testowych tej nocy nie było. Niczego nie usuwałam."
+   },
+   {
+    "id": "b-q4",
+    "kind": "q",
+    "text": "Procedura mówi: najpierw serwis. Kopeć powiedział, że to test. Nie chciałam fałszywego alarmu na własną rękę.",
+    "spoken": "Procedura mówi: najpierw serwis. Kopeć powiedział, że to test. Nie chciałam fałszywego alarmu na własną rękę."
+   },
+   {
+    "id": "b-q5",
+    "kind": "q",
+    "text": "O tym, żeby usunąć zapis. Powiedział, że to błąd czujnika i że rano zgłosimy usterkę. Nie wiedziałam, że ludzie trafili do szpitala.",
+    "spoken": "O tym, żeby usunąć zapis. Powiedział, że to błąd czujnika i że rano zgłosimy usterkę. Nie wiedziałam, że ludzie trafili do szpitala."
+   },
+   {
+    "id": "b-l1",
+    "kind": "break",
+    "text": "Widziałam czerwony pasek „brak potwierdzenia”. Zadzwoniłam do serwisu. Kopeć powiedział, że to ich test czujnika, żebym niczego nie ruszała.",
+    "spoken": "Widziałam czerwony pasek „brak potwierdzenia”. Zadzwoniłam do serwisu. Kopeć powiedział, że to ich test czujnika, żebym niczego nie ruszała."
+   },
+   {
+    "id": "b-l2",
+    "kind": "break",
+    "text": "Wiceprezydent kazał skasować zapis jako testowy, żeby nie robić paniki w mediach. Wpisałam swój PIN. Nie wiedziałam, że ktoś zginął.",
+    "spoken": "Wiceprezydent kazał skasować zapis jako testowy, żeby nie robić paniki w mediach. Wpisałam swój pin. Nie wiedziałam, że ktoś zginął."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Jestem tylko operatorem, nie administratorem.",
+    "spoken": "Jestem tylko operatorem, nie administratorem."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Robiłam to, co mówi procedura.",
+    "spoken": "Robiłam to, co mówi procedura."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Proszę mnie nie przesłuchiwać na korytarzu.",
+    "spoken": "Proszę mnie nie przesłuchiwać na korytarzu."
+   }
+  ]
+ },
+ "004-szczerba": {
+  "name": "Piotr Szczerba",
+  "lines": [
+   {
+    "id": "s-q1",
+    "kind": "q",
+    "text": "Spałem. Położyłem się o 23:30, o niczym nie wiedziałem do rana. O wycieku dowiedziałem się z radia.",
+    "spoken": "Spałem. Położyłem się o dwudziestej trzeciej trzydzieści, o niczym nie wiedziałem do rana. O wycieku dowiedziałem się z radia."
+   },
+   {
+    "id": "s-q2",
+    "kind": "q",
+    "text": "Okno zatwierdził pan Lasota. Wpis przy moim nazwisku to błąd systemu.",
+    "spoken": "Okno zatwierdził pan Lasota. Wpis przy moim nazwisku to błąd systemu."
+   },
+   {
+    "id": "s-q3",
+    "kind": "q",
+    "text": "Oczywiście. Protokół jest jednoznaczny: test pozytywny, 25 watów. Nie mam powodu wątpić.",
+    "spoken": "Oczywiście. Protokół jest jednoznaczny: test pozytywny, dwadzieścia pięć watów. Nie mam powodu wątpić."
+   },
+   {
+    "id": "s-q4",
+    "kind": "q",
+    "text": "Nie znam tej firmy ani jej prezesa. Syreon ma wielu doradców.",
+    "spoken": "Nie znam tej firmy ani jej prezesa. Syreon ma wielu doradców."
+   },
+   {
+    "id": "s-q5",
+    "kind": "q",
+    "text": "Kopeć zaproponował oszczędność. Podpisałem aneks, bo wyglądał rozsądnie. Resztę załatwiał serwis.",
+    "spoken": "Kopeć zaproponował oszczędność. Podpisałem aneks, bo wyglądał rozsądnie. Resztę załatwiał serwis."
+   },
+   {
+    "id": "s-l1",
+    "kind": "break",
+    "text": "Pyka dzwonił koło drugiej, pytał, czy syreny wyły. Zadzwoniłem do Kopecia, potem nad ranem do operatorki. Chciałem uniknąć paniki.",
+    "spoken": "Pyka dzwonił koło drugiej, pytał, czy syreny wyły. Zadzwoniłem do Kopecia, potem nad ranem do operatorki. Chciałem uniknąć paniki."
+   },
+   {
+    "id": "s-l2",
+    "kind": "break",
+    "text": "Zatwierdziłem sam. Kopeć prosił, a Lasota zawsze się certolił. Uznałem, że to formalność.",
+    "spoken": "Zatwierdziłem sam. Kopeć prosił, a Lasota zawsze się certolił. Uznałem, że to formalność."
+   },
+   {
+    "id": "s-l3",
+    "kind": "break",
+    "text": "Podpisałem, co dał serwis. Do dziś nie sprawdzałem, czy K3 działa. Serwis mówił, że działa.",
+    "spoken": "Podpisałem, co dał serwis. Do dziś nie sprawdzałem, czy ka trzy działa. Serwis mówił, że działa."
+   },
+   {
+    "id": "s-l4",
+    "kind": "break",
+    "text": "To firma mojej żony. Usługa doradcza była legalna. Nie widzę związku ze sprawą.",
+    "spoken": "To firma mojej żony. Usługa doradcza była legalna. Nie widzę związku ze sprawą."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Proszę kierować pytania do biura prasowego.",
+    "spoken": "Proszę kierować pytania do biura prasowego."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Jestem do dyspozycji, ale nie będę zgadywał.",
+    "spoken": "Jestem do dyspozycji, ale nie będę zgadywał."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "To sprawa operacyjna, nie polityczna.",
+    "spoken": "To sprawa operacyjna, nie polityczna."
+   }
+  ]
+ },
+ "004-hajduk": {
+  "name": "Lena Hajduk",
+  "lines": [
+   {
+    "id": "h-q1",
+    "kind": "q",
+    "text": "Nie. Ani w czwartek, ani w piątek. Znam go zawodowo, to wszystko.",
+    "spoken": "Nie. Ani w czwartek, ani w piątek. Znam go zawodowo, to wszystko."
+   },
+   {
+    "id": "h-q2",
+    "kind": "q",
+    "text": "W domu, na osiedlu Parkowe. Pracowałam nad tekstem. Nigdzie nie jeździłam.",
+    "spoken": "W domu, na osiedlu Parkowe. Pracowałam nad tekstem. Nigdzie nie jeździłam."
+   },
+   {
+    "id": "h-q3",
+    "kind": "q",
+    "text": "Biały bus z drabiną na dachu wyjechał z bramy o 3:12. Kierowcy nie widziałam, było ciemno.",
+    "spoken": "Biały bus z drabiną na dachu wyjechał z bramy o trzeciej dwanaście. Kierowcy nie widziałam, było ciemno."
+   },
+   {
+    "id": "h-q4",
+    "kind": "q",
+    "text": "Pendrive z telemetrią K3 i kopię protokołu odbioru. Mówił, że kanał rezerwowy to atrapa i że rano NIK dostanie to samo.",
+    "spoken": "Pendrive z telemetrią ka trzy i kopię protokołu odbioru. Mówił, że kanał rezerwowy to atrapa i że rano Nik dostanie to samo."
+   },
+   {
+    "id": "h-l1",
+    "kind": "break",
+    "text": "Spotkałam się z nim o północy. Dał mi pendrive z telemetrią K3 i protokół. Powiedział, że rano wszystko wyjdzie. Nie mówiłam, bo chronię źródło.",
+    "spoken": "Spotkałam się z nim o północy. Dał mi pendrive z telemetrią ka trzy i protokół. Powiedział, że rano wszystko wyjdzie. Nie mówiłam, bo chronię źródło."
+   },
+   {
+    "id": "h-l2",
+    "kind": "break",
+    "text": "Zadzwonił o drugiej trzydzieści cztery: „Przyjedź, to pilne”. Wjechałam w las o trzeciej pięć, pod bramą byłam kilka minut później. Brama zamknięta, w stacji światło.",
+    "spoken": "Zadzwonił o drugiej trzydzieści cztery: „Przyjedź, to pilne”. Wjechałam w las o trzeciej pięć, pod bramą byłam kilka minut później. Brama zamknięta, w stacji światło."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Chronię źródła informacji.",
+    "spoken": "Chronię źródła informacji."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Tajemnica dziennikarska nie podlega negocjacjom.",
+    "spoken": "Tajemnica dziennikarska nie podlega negocjacjom."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Nie jestem podejrzana.",
+    "spoken": "Nie jestem podejrzana."
+   }
+  ]
+ },
+ "004-pyka": {
+  "name": "Witold Pyka",
+  "lines": [
+   {
+    "id": "y-q1",
+    "kind": "q",
+    "text": "Rano, z telefonu od zastępcy. Noc spędziłem w domu, spałem.",
+    "spoken": "Rano, z telefonu od zastępcy. Noc spędziłem w domu, spałem."
+   },
+   {
+    "id": "y-q2",
+    "kind": "q",
+    "text": "Nie. To była niewielka nieszczelność. Alarm syren nie był potrzebny.",
+    "spoken": "Nie. To była niewielka nieszczelność. Alarm syren nie był potrzebny."
+   },
+   {
+    "id": "y-q3",
+    "kind": "q",
+    "text": "Nie. Z nikim.",
+    "spoken": "Nie. Z nikim."
+   },
+   {
+    "id": "y-q4",
+    "kind": "q",
+    "text": "To decyzja ekonomiczna, zgodna z normami. Nie będę jej tłumaczył w tonie śledztwa.",
+    "spoken": "To decyzja ekonomiczna, zgodna z normami. Nie będę jej tłumaczył w tonie śledztwa."
+   },
+   {
+    "id": "y-l1",
+    "kind": "break",
+    "text": "Wiedziałem od 1:52. Orlik zadzwonił, uznałem, że zakład opanuje to sam. Nie wezwałem straży, bo nie chciałem kolejnej kontroli.",
+    "spoken": "Wiedziałem od pierwszej pięćdziesiąt dwa. Orlik zadzwonił, uznałem, że zakład opanuje to sam. Nie wezwałem straży, bo nie chciałem kolejnej kontroli."
+   },
+   {
+    "id": "y-l2",
+    "kind": "break",
+    "text": "Czujniki dawały u nas fałszywe alarmy. Byłem przekonany, że sytuacja jest pod kontrolą.",
+    "spoken": "Czujniki dawały u nas fałszywe alarmy. Byłem przekonany, że sytuacja jest pod kontrolą."
+   },
+   {
+    "id": "y-l3",
+    "kind": "break",
+    "text": "Dzwoniłem do wiceprezydenta, bo zobaczyłem, że miasto milczy. Zapytałem, czy syreny wyły. Powiedział: „Zajmę się tym”.",
+    "spoken": "Dzwoniłem do wiceprezydenta, bo zobaczyłem, że miasto milczy. Zapytałem, czy syreny wyły. Powiedział: „Zajmę się tym”."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Moi prawnicy zajmą się wszystkimi pytaniami.",
+    "spoken": "Moi prawnicy zajmą się wszystkimi pytaniami."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Zakład działał zgodnie z procedurami.",
+    "spoken": "Zakład działał zgodnie z procedurami."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "To nie jest miejsce na takie insynuacje.",
+    "spoken": "To nie jest miejsce na takie insynuacje."
+   }
+  ]
  }
 }
