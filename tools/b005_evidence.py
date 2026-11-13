@@ -17,9 +17,9 @@ evidence = [
            ['Zaginiony', 'dr Edward Szulc, 63 l., kierownik Oddziału Zbiorów Notarialnych Archiwum Państwowego w Koszalinie'],
            ['Ostatni ślad', 'zameldowanie w recepcji, czwartek 12.03, 23:05']]},
    'Dr Szulc przyjechał do Szczecina jako biegły na zamknięte posiedzenie Komisji Ugodowej ds. Roszczeń Reprywatyzacyjnych, wyznaczone na piątek 9:00 w sali „Bursztynowej” hotelu. Na posiedzenie nie przyszedł. Pokój 214 był zamknięty od środka na zasuwę, a po jej przecięciu okazał się pusty.',
-   'Rozpytanie gości II piętra: Marek Banaś (pokój 216, obok 214) około 23:20 słyszał za ścianą metaliczne trzaśnięcie, „jak drzwi przeciwpożarowe”. Pozostali goście niczego nie zauważyli.',
+   'Rozpytanie gości II piętra: Marek Banaś (pokój 216, po drugiej stronie korytarza, ukosem od 214) około 23:20 słyszał z głębi budynku metaliczne trzaśnięcie, „jak drzwi przeciwpożarowe”. Pozostali goście niczego nie zauważyli.',
    {'note': 'Pokój 214 nie ma okien. Jedyne wejście z korytarza to drzwi z zamkiem na kartę.'}],
-   start=True, time=[T(10, 5, 'Mec. Dąbrowska zgłasza zaginięcie dr. Szulca', 'Zgłoszenie', F), T(23, 20, 'Gość z 216 słyszy za ścianą metaliczne trzaśnięcie', 'Zgłoszenie')]),
+   start=True, time=[T(10, 5, 'Mec. Dąbrowska zgłasza zaginięcie dr. Szulca', 'Zgłoszenie', F), T(23, 20, 'Gość z 216 słyszy w głębi budynku metaliczne trzaśnięcie', 'Zgłoszenie')]),
  ev('e02', 'Zlecenie', 'Polecenie prokuratora', 'Szukać człowieka, nie tylko sprawcy.', [
    {'quote': 'Sześćdziesięciotrzyletni biegły znika z zamkniętego pokoju w noc przed posiedzeniem, na którym ważą się miliony. Nie interesuje mnie, czy uciekł, czy go porwano — chcę wiedzieć, gdzie jest. Macie dostęp do baz danych i do hotelu. Raport do wieczora.', 'by': 'prok. Anna Wilk, Prokuratura Rejonowa Szczecin-Śródmieście'},
    {'kv': [['Zakres', 'miejsce pobytu dr. Szulca; sprawcy i pomocnicy; sposób opuszczenia pokoju 214; usunięcie biegłego z listy uczestników'], ['Dostęp', 'rejestry PESEL, CEPiK, KRS, EKW']]}],
@@ -138,7 +138,7 @@ evidence = [
 
  # ---------- DZIAŁ TECHNICZNY ----------
  ev('e23', 'Plan', 'Plan II piętra z 1974 roku', 'Archiwum techniczne hotelu.', [
-   'Skrzydło B, II piętro. Pokoje 210–213 i 215–216 od strony ulicy. Między 213 a 215 pomieszczenie bez okien opisane jako „magazyn bielizny”. Magazyn ma dwoje drzwi: od korytarza gościnnego i drugie, oznaczone M2, do korytarza gospodarczego biegnącego za pokojami do klatki schodowej B.',
+   'Skrzydło B, II piętro. Pokoje gościnne po stronie ulicy. Po drugiej stronie korytarza gościnnego, naprzeciw pokoi 213 i 215, wąskie pomieszczenie bez okien opisane jako „magazyn bielizny”. Magazyn ma dwoje drzwi: od korytarza gościnnego i drugie, oznaczone M2, w tylnej ścianie — do korytarza gospodarczego, który biegnie wzdłuż ściany od podwórza aż do klatki schodowej B.',
    {'note': 'Klatka B to schody personelu. Na parterze kończy się wyjściem służbowym na tył budynku.'}]),
  ev('e24', 'Dokument', 'Dokumentacja adaptacji z 2019 roku', 'Opis powykonawczy: magazyn → pokój 214.', [
    {'quote': 'Adaptacja magazynu bielizny na pokój hotelowy nr 214 (bez okien, wentylacja mechaniczna). Drzwi M2 do korytarza gospodarczego pozostawiono jako drzwi rewizyjne (dostęp do pionów wod.-kan.), zakryte tylną ścianą szafy wnękowej, demontowaną bez narzędzi. Drzwi zamykane na klucz od strony korytarza. Klucz R-2 w szafce technicznej.', 'by': 'opis powykonawczy, wrzesień 2019'},
@@ -156,7 +156,7 @@ evidence = [
 
  # ---------- KORYTARZ GOSPODARCZY I KLATKA B ----------
  ev('e29', 'Oględziny', 'Drzwi M2 od strony korytarza', 'Korytarz gospodarczy za pokojami 210–216.', [
-   'Korytarz jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. Drzwi zamknięte na klucz.',
+   'Korytarz biegnie wzdłuż ściany od podwórza, za pokojem 214. Jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. Drzwi zamknięte na klucz.',
    'Od M2 do klatki B jest dwanaście metrów.']),
  ev('e31', 'Przedmiot', 'Karta hotelowa na klatce B', 'Podest między I a II piętrem, pod kaloryferem.', [
    'Biała karta z nadrukiem „Hotel Gryf · 214”. Recepcja odczytała ją czytnikiem: karta 214-A, zakodowana w czwartek o 23:05:31, użyta raz — o 23:09:14 przy drzwiach 214.']),

@@ -41,9 +41,9 @@ locations = [
    spot('sp-keys', 'Szafka z kluczami', 'Klucze techniczne i zeszyt wydań.', ['e28']),
   ]},
  {'id': 'service', 'name': 'Korytarz gospodarczy i klatka B', 'kind': 'Zaplecze hotelu',
-  'desc': 'Wąski korytarz za pokojami, rury pod sufitem, stare drzwi rewizyjne. Na końcu klatka schodowa personelu, a na dole palarnia przy wyjściu służbowym.',
+  'desc': 'Wąski korytarz wzdłuż ściany od podwórza, za pokojem 214: rury pod sufitem, stare drzwi rewizyjne. Na końcu klatka schodowa personelu, a na dole palarnia przy wyjściu służbowym.',
   'spots': [
-   spot('sp-m2', 'Drzwi M2 od korytarza', 'Stalowe drzwi w ścianie korytarza, za pokojem 214.', ['e29']),
+   spot('sp-m2', 'Drzwi M2 od korytarza', 'Stalowe drzwi w ścianie korytarza, dokładnie za pokojem 214.', ['e29']),
    spot('sp-stairs', 'Klatka schodowa B', 'Betonowe schody, kaloryfery na podestach.', ['e31']),
    spot('sp-smoke', 'Palarnia personelu', 'Mała wiata przy wyjściu B.', ['e30']),
   ]},

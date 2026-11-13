@@ -856,12 +856,12 @@
    "id": "service",
    "name": "Korytarz gospodarczy i klatka B",
    "kind": "Zaplecze hotelu",
-   "desc": "Wąski korytarz za pokojami, rury pod sufitem, stare drzwi rewizyjne. Na końcu klatka schodowa personelu, a na dole palarnia przy wyjściu służbowym.",
+   "desc": "Wąski korytarz wzdłuż ściany od podwórza, za pokojem 214: rury pod sufitem, stare drzwi rewizyjne. Na końcu klatka schodowa personelu, a na dole palarnia przy wyjściu służbowym.",
    "spots": [
     {
      "id": "sp-m2",
      "name": "Drzwi M2 od korytarza",
-     "text": "Stalowe drzwi w ścianie korytarza, za pokojem 214.",
+     "text": "Stalowe drzwi w ścianie korytarza, dokładnie za pokojem 214.",
      "gives": [
       "e29"
      ]
@@ -1036,7 +1036,7 @@
      ]
     },
     "Dr Szulc przyjechał do Szczecina jako biegły na zamknięte posiedzenie Komisji Ugodowej ds. Roszczeń Reprywatyzacyjnych, wyznaczone na piątek 9:00 w sali „Bursztynowej” hotelu. Na posiedzenie nie przyszedł. Pokój 214 był zamknięty od środka na zasuwę, a po jej przecięciu okazał się pusty.",
-    "Rozpytanie gości II piętra: Marek Banaś (pokój 216, obok 214) około 23:20 słyszał za ścianą metaliczne trzaśnięcie, „jak drzwi przeciwpożarowe”. Pozostali goście niczego nie zauważyli.",
+    "Rozpytanie gości II piętra: Marek Banaś (pokój 216, po drugiej stronie korytarza, ukosem od 214) około 23:20 słyszał z głębi budynku metaliczne trzaśnięcie, „jak drzwi przeciwpożarowe”. Pozostali goście niczego nie zauważyli.",
     {
      "note": "Pokój 214 nie ma okien. Jedyne wejście z korytarza to drzwi z zamkiem na kartę."
     }
@@ -1050,7 +1050,7 @@
     ],
     [
      "2026-03-12 23:20",
-     "Gość z 216 słyszy za ścianą metaliczne trzaśnięcie",
+     "Gość z 216 słyszy w głębi budynku metaliczne trzaśnięcie",
      "Zgłoszenie"
     ]
    ]
@@ -1662,7 +1662,7 @@
    "title": "Plan II piętra z 1974 roku",
    "summary": "Archiwum techniczne hotelu.",
    "body": [
-    "Skrzydło B, II piętro. Pokoje 210–213 i 215–216 od strony ulicy. Między 213 a 215 pomieszczenie bez okien opisane jako „magazyn bielizny”. Magazyn ma dwoje drzwi: od korytarza gościnnego i drugie, oznaczone M2, do korytarza gospodarczego biegnącego za pokojami do klatki schodowej B.",
+    "Skrzydło B, II piętro. Pokoje gościnne po stronie ulicy. Po drugiej stronie korytarza gościnnego, naprzeciw pokoi 213 i 215, wąskie pomieszczenie bez okien opisane jako „magazyn bielizny”. Magazyn ma dwoje drzwi: od korytarza gościnnego i drugie, oznaczone M2, w tylnej ścianie — do korytarza gospodarczego, który biegnie wzdłuż ściany od podwórza aż do klatki schodowej B.",
     {
      "note": "Klatka B to schody personelu. Na parterze kończy się wyjściem służbowym na tył budynku."
     }
@@ -1774,7 +1774,7 @@
    "title": "Drzwi M2 od strony korytarza",
    "summary": "Korytarz gospodarczy za pokojami 210–216.",
    "body": [
-    "Korytarz jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. Drzwi zamknięte na klucz.",
+    "Korytarz biegnie wzdłuż ściany od podwórza, za pokojem 214. Jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. Drzwi zamknięte na klucz.",
     "Od M2 do klatki B jest dwanaście metrów."
    ]
   },
