@@ -33,7 +33,7 @@ Legenda: ✅ robimy · 🔶 robimy, ale wymaga doprecyzowania · ⏸ na późnie
 | 12 | Mapa miasta z czasem dojazdu | ✅ | |
 | 13 | Dokumenty do odtworzenia (podarty list, szyfr, nadpalona kartka, pismo) | ✅ | |
 | 14 | Dowody dźwiękowe (tło nagrania zdradza miejsce/czas) | ✅ | |
-| 15 | Obserwacja (kogo śledzić w nocy) | ⏸ | Autor się zastanowi |
+| 15 | Obserwacja (kogo śledzić w nocy) | ⏸ | Na razie nie (13.11.2026) |
 | 16 | Presja i adwokat w przesłuchaniu | ✅ | |
 | 17 | Ponowne przesłuchanie po nowym dowodzie | ✅ | |
 | 18 | Konfrontacja dwóch osób naraz | ✅ | |
@@ -44,7 +44,7 @@ Legenda: ✅ robimy · 🔶 robimy, ale wymaga doprecyzowania · ⏸ na późnie
 | 23 | Wydarzenia na żywo / powiadomienie „SMS” do konkretnego gracza | 🔶 | Jeśli technicznie możliwe; ustalić, który telefon dostaje wiadomość (gra w parze i u innych osób) — §7 |
 | 24 | Role z asymetryczną wiedzą (technik, analityk, profiler, prokurator) | ✅ | |
 | 25 | Wspólne wnioski w trakcie gry (łączenie faktów) | ✅ | |
-| 26 | Tryb rywalizacji drużyn | ⏸ | |
+| 26 | Tryb rywalizacji drużyn | ⏸ | Na razie nie (13.11.2026) |
 | 27 | Rozprawa w sądzie jako finał | ✅ | |
 | 28 | Kilka poziomów prawdy (np. zleceniodawca) | ✅ | |
 | 29 | Odwrócony kryminał (Columbo) | ✅ | |
@@ -61,7 +61,7 @@ Legenda: ✅ robimy · 🔶 robimy, ale wymaga doprecyzowania · ⏸ na późnie
 | 40 | Powrót do zamkniętej sprawy (nowy dowód podważa wyrok) | ✅ | |
 | 41 | Archiwum dawnych spraw jako baza | ✅ | |
 | 42 | Kronika miasta i odznaki | ❌ | |
-| 43 | Teczka do druku (PDF, koperty, QR) | ✅ | |
+| 43 | Materiały do druku | ✅ | Zawsze opcjonalne — patrz §10 |
 | 44 | Edytor spraw | ❌ | Autor znałby fabułę przed grą |
 
 ## 2. Terminal śledczy (#1) — wymagania autora i ustalenia
@@ -106,7 +106,7 @@ Wiadomość w aplikacji (styl SMS), kierowana do roli/gracza, nie do numeru tele
 ## 8. Tempo wprowadzania
 Mieszanka: sprawy krótkie i duże, 1–3 nowości na sprawę, co jakiś czas sprawa bez nowości mechanicznych, za to z nowym formatem (#29–36). Szczegółowy przydział do spraw ustala Claude bez zdradzania fabuły autorowi.
 
-## 9. Poprawka UI: ekran konfrontacji (zgłoszona 12.11.2026) — WDROŻONE w 2.14.0: punkty 1, 3, 4, 6, 8 (wszystkie sprawy). Punkty 2 (wyszukiwarka — też wdrożona), 5 i 7 — nie wybrane.
+## 9. Poprawka UI: ekran konfrontacji (zgłoszona 12.11.2026) — WDROŻONE w 2.14.0: punkty 1, 3, 4, 6, 8 (wszystkie sprawy). Wyszukiwarka usunięta na życzenie autora w 2.14.1 („małe utrudnienia nie zaszkodzą”); punkty 5 i 7 nie wybrane.
 Problem: płaska lista kafelków (dowody w kolejności znalezienia, notatki X, potem zeznania w innej formie); trzeba za każdym razem czytać wszystko.
 Propozycja (do potwierdzenia przez autora):
 1. Podważane zeznanie przypięte u góry (nie ucieka przy przewijaniu).
@@ -118,3 +118,14 @@ Propozycja (do potwierdzenia przez autora):
 7. Gwiazdka „przypnij” w Aktach — przypięte zawsze na górze listy w konfrontacji.
 8. Dowody już nietrafione przeciw temu zeznaniu wyszarzone ze znakiem ✗.
 Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wyróżniania właściwego dowodu).
+
+## 10. Decyzje autora z 13.11.2026
+1. **Liczba graczy i urządzenia — uniwersalnie.** Gra nie jest tylko dla autora (gra we dwoje z partnerką, czasem więcej osób, znajomi grają po swojemu). Każda mechanika musi działać przy 1–6 graczach, na jednym urządzeniu, na TV + telefonach i na samych telefonach.
+2. **Role (#24): jedna osoba = jedna rola.** Zestaw ról skaluje się z liczbą graczy: przy małej liczbie graczy role łączą funkcje (np. przy 2 graczach dwie role „połączone”), przy większej dzielą się na węższe. Kluczowe informacje zawsze rozłożone tak, by każda liczba graczy miała pełny dostęp.
+3. **Postęp kampanii (#37)** zapisywany na urządzeniu (bez przenoszenia kodem).
+4. **Ukryty wątek nadrzędny (#39)** zaczyna się od sprawy 005. Sprawy 001–004 bez zmian (mogą wrócić jako cold case, #40).
+5. **Sprawy dzieją się w całej Polsce.** Baza danych (#1) jest **jedna, ogólnopolska i wspólna dla wszystkich spraw** — z każdego miejsca widać osoby z całego kraju.
+   Ustalenia do bazy: rekordy z datą obowiązywania (sprawa widzi bazę z dnia zdarzenia); rekordy zdradzające rozwiązanie widoczne dopiero po rozwiązaniu danej sprawy; kilka tysięcy stałych, fikcyjnych rekordów „tła” wygenerowanych raz i zapisanych (bez losowania w grze), walidowanych pod kątem kolizji; każda sprawa decyduje, które bazy są dostępne; w 001–004 terminal wyłączony lub tylko archiwum (nie były projektowane pod bazę).
+6. **Druk (#43):** w Ustawieniach rozwijana sekcja „Do wydruku” z jednym linkiem (PDF) na każdą sprawę — można wydrukować z wyprzedzeniem na wiele spraw. Gdy sprawa ma materiały do druku, informacja jest na jej starcie, a szef wydziału wspomina o tym w odprawie. Druk **nigdy nie jest wymagany**: wszystko jest też w aplikacji (np. podarty list układany palcem).
+7. Wyszukiwarka w konfrontacji — usunięta.
+8. Obserwacja (#15) i rywalizacja (#26) — na razie nie.

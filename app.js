@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.14.0';
+const VERSION = '2.14.1';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -639,21 +639,20 @@ function ovConfront(c, g, sid, o) {
   const tried = (g.tried && g.tried[sid]) || [];
   const tab = (o && o.cat) || 'all';
   const btn = (key, cat, small, title, sub, text, prevId) => { const bad = tried.includes(key);
-    return `<div class="cf-item${bad ? ' tried' : ''}" data-cat="${cat}" data-text="${esc((small + ' ' + title + ' ' + (sub || '') + ' ' + text).toLowerCase())}"><button class="cf-main" data-a="confront-with" data-s="${sid}" data-id="${key}"><small>${esc(small)}${bad ? ' · ✗ już okazane' : ''}</small><b>${esc(title)}</b>${sub ? `<span>${esc(sub)}</span>` : ''}</button>${prevId ? `<button class="cf-prev" data-a="cf-preview" data-id="${prevId}" data-s="${sid}" aria-label="Podgląd">${I.eye}</button>` : ''}</div>`; };
+    return `<div class="cf-item${bad ? ' tried' : ''}" data-cat="${cat}"><button class="cf-main" data-a="confront-with" data-s="${sid}" data-id="${key}"><small>${esc(small)}${bad ? ' · ✗ już okazane' : ''}</small><b>${esc(title)}</b>${sub ? `<span>${esc(sub)}</span>` : ''}</button>${prevId ? `<button class="cf-prev" data-a="cf-preview" data-id="${prevId}" data-s="${sid}" aria-label="Podgląd">${I.eye}</button>` : ''}</div>`; };
   const groups = []; const order = ['start', ...c.locations.map(l => 'loc:' + l.id), 'talk', 'team', 'other'];
   const label = k => k === 'start' ? 'Akta początkowe' : k === 'talk' ? 'Z przesłuchań' : k === 'team' ? 'Notatki zespołu' : k === 'other' ? 'Inne' : c.loc[k.slice(4)].name;
   order.forEach(k => { const list = ids.filter(id => c.evSrc[id] === k); if (list.length) groups.push(`<details class="cf-group" open><summary>${esc(label(k))} <i>${list.length}</i></summary><div class="cf-list">${list.map(id => btn(id, evCat(c, id), `${c.ev[id].type} · ${id.toUpperCase()}`, c.ev[id].title, c.ev[id].summary, '', id)).join('')}</div></details>`); });
   const byP = {}; others.forEach(x => (byP[x.person] = byP[x.person] || []).push(x));
   Object.keys(byP).forEach(pid => { const pp = c.person[pid]; groups.push(`<details class="cf-group" open><summary>${pp.img ? `<img src="${esc(pp.img)}" alt="">` : ''}Zeznania: ${esc(personName(g, pp))} <i>${byP[pid].length}</i></summary><div class="cf-list">${byP[pid].map(x => btn('st:' + x.id, 'talk', 'Zeznanie', '„' + x.text + '”', '', personName(g, pp), null)).join('')}</div></details>`); });
   return { title: 'Konfrontacja', kicker: personName(g, p), body: `<div class="cf-sticky"><div class="stmt"><q>${esc(s.text)}</q></div>
-   <div class="cf-tools"><input type="search" id="cf-q" placeholder="Szukaj: słowo, nazwisko, E12…" value="${esc((o && o.q) || '')}" autocomplete="off"><div class="cf-tabs">${CONF_TABS.map(([k, n]) => `<button data-a="cf-tab" data-k="${k}" aria-pressed="${k === tab}">${n}</button>`).join('')}</div></div></div>
+   <div class="cf-tools"><div class="cf-tabs">${CONF_TABS.map(([k, n]) => `<button data-a="cf-tab" data-k="${k}" aria-pressed="${k === tab}">${n}</button>`).join('')}</div></div></div>
    <p class="muted" style="margin:12px 0 4px;font-size:.85rem">Co przeczy temu zeznaniu? Okażcie dowód albo zestawcie je z zeznaniem innej osoby. Konfrontacja kosztuje 1 ruch; nietrafiona dodatkowo ${diffOf(g).wrong} pkt.${g.armed === 'confront' ? ' <b>Aktywna zdolność „Sprawdzam”: bez ruchu i bez kary.</b>' : ''}</p>
-   <div id="cf-groups">${groups.join('')}</div><div class="empty" id="cf-none" hidden>Nic nie pasuje do wyszukiwania.</div>` };
+   <div id="cf-groups">${groups.join('')}</div>` };
 }
 function cfFilter() {
-  const o = topOv(); if (!o || o.type !== 'confront') return; const q = (o.q || '').trim().toLowerCase(); const cat = o.cat || 'all'; let any = false;
-  document.querySelectorAll('#cf-groups .cf-group').forEach(gr => { let n = 0; gr.querySelectorAll('.cf-item').forEach(it => { const ok = (cat === 'all' || it.dataset.cat === cat) && (!q || it.dataset.text.includes(q)); it.hidden = !ok; if (ok) n++; }); gr.hidden = !n; if (n) any = true; });
-  const none = document.getElementById('cf-none'); if (none) none.hidden = any;
+  const o = topOv(); if (!o || o.type !== 'confront') return; const cat = o.cat || 'all'; let any = false;
+  document.querySelectorAll('#cf-groups .cf-group').forEach(gr => { let n = 0; gr.querySelectorAll('.cf-item').forEach(it => { const ok = (cat === 'all' || it.dataset.cat === cat) ; it.hidden = !ok; if (ok) n++; }); gr.hidden = !n; if (n) any = true; });
 }
 function doConfront(c, g, sid, evid) {
   const s = c.stmt[sid]; const p = c.person[s.person];
@@ -1013,7 +1012,7 @@ async function renderOv() {
    <div class="ov-head">${ovStack.length > 1 ? `<button class="icon-btn" data-a="close" aria-label="Wstecz">${I.back}</button>` : ''}<div class="t"><small>${esc(v.kicker)}</small><b>${esc(v.title)}</b></div><button class="icon-btn" data-a="close-all" aria-label="Zamknij">${I.close}</button></div>
    <div class="ov-body">${v.body}</div></div></div>`;
   document.body.style.overflow = 'hidden';
-  if (o.type === 'confront') { const hd = root.querySelector('.ov-head'), st = root.querySelector('.cf-sticky'); if (hd && st) st.style.top = hd.offsetHeight + 'px'; const qi = $('#cf-q'); if (qi) qi.addEventListener('input', () => { o.q = qi.value; cfFilter(); }); cfFilter(); }
+  if (o.type === 'confront') { const hd = root.querySelector('.ov-head'), st = root.querySelector('.cf-sticky'); if (hd && st) st.style.top = hd.offsetHeight + 'px'; cfFilter(); }
   const tr = $('#transcript'); if (tr && o.scrollEnd) { tr.lastElementChild && tr.lastElementChild.scrollIntoView({ block: 'center' }); o.scrollEnd = false; }
   const inp = $('#pzin'); if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') handlers.solve({ dataset: { id: o.id } }); });
   const rc = $('#revcode'); if (rc) { rc.focus(); rc.addEventListener('keydown', e => { if (e.key === 'Enter') handlers['reveal-go'](); }); }
