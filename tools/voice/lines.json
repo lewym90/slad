@@ -1211,5 +1211,515 @@
     "spoken": "To nie jest miejsce na takie insynuacje."
    }
   ]
+ },
+ "005-kraska": {
+  "name": "Iwona Kraska",
+  "lines": [
+   {
+    "id": "k-q1",
+    "kind": "q",
+    "text": "Od ósmej siedziałam w centrum biznesowym nad materiałami na piątek, potem poszłam do siebie. Z hotelu nie wychodziłam, padało.",
+    "spoken": "Od ósmej siedziałam w centrum biznesowym nad materiałami na piątek, potem poszłam do siebie. Z hotelu nie wychodziłam, padało."
+   },
+   {
+    "id": "k-q2",
+    "kind": "q",
+    "text": "Proponowałam mu to SMS-em. Odpisał, że weźmie taksówkę, więc zostałam w hotelu.",
+    "spoken": "Proponowałam mu to esemesem. Odpisał, że weźmie taksówkę, więc zostałam w hotelu."
+   },
+   {
+    "id": "k-q3",
+    "kind": "q",
+    "text": "Rano, kwadrans po siódmej, kiedy otworzyłam pocztę. Od razu poprawiłam listę i wydrukowałam ją przed posiedzeniem.",
+    "spoken": "Rano, kwadrans po siódmej, kiedy otworzyłam pocztę. Od razu poprawiłam listę i wydrukowałam ją przed posiedzeniem."
+   },
+   {
+    "id": "k-q4",
+    "kind": "q",
+    "text": "Zadzwoniłam do niego rano, zaraz po przeczytaniu maila. Regulamin na to pozwala, a doktor akurat był w Szczecinie.",
+    "spoken": "Zadzwoniłam do niego rano, zaraz po przeczytaniu maila. Regulamin na to pozwala, a doktor akurat był w Szczecinie."
+   },
+   {
+    "id": "k-q5",
+    "kind": "q",
+    "text": "Hotel. Ja tylko zarezerwowałam pokój dla biegłego, numer przydziela recepcja.",
+    "spoken": "Hotel. Ja tylko zarezerwowałam pokój dla biegłego, numer przydziela recepcja."
+   },
+   {
+    "id": "k-q6",
+    "kind": "q",
+    "text": "Projekt dostałam w środę, zaszyfrowany. Hasło doktor podał mi przez telefon, żebym przygotowała kopie dla komisji. Tak, znałam wnioski.",
+    "spoken": "Projekt dostałam w środę, zaszyfrowany. Hasło doktor podał mi przez telefon, żebym przygotowała kopie dla komisji. Tak, znałam wnioski."
+   },
+   {
+    "id": "k-q7",
+    "kind": "q",
+    "text": "Nic. Spółkę znam z akt sprawy. Pana Pietrasa nigdy nie spotkałam.",
+    "spoken": "Nic. Spółkę znam z akt sprawy. Pana Pietrasa nigdy nie spotkałam."
+   },
+   {
+    "id": "k-l9",
+    "kind": "break",
+    "text": "Może nie odpisał. Może mi się pomyliło. Miałam tyle wiadomości tego wieczoru.",
+    "spoken": "Może nie odpisał. Może mi się pomyliło. Miałam tyle wiadomości tego wieczoru."
+   },
+   {
+    "id": "k-l1",
+    "kind": "break",
+    "text": "Dobrze. Pojechałam na dworzec, na wszelki wypadek. Doktora nie było, czekałam kwadrans i wróciłam. Nie mówiłam o tym, bo nie chciałam wyjść na kogoś, kto go zgubił.",
+    "spoken": "Dobrze. Pojechałam na dworzec, na wszelki wypadek. Doktora nie było, czekałam kwadrans i wróciłam. Nie mówiłam o tym, bo nie chciałam wyjść na kogoś, kto go zgubił."
+   },
+   {
+    "id": "k-l2",
+    "kind": "break",
+    "text": "Wsiadł. Pojechaliśmy do biura komisji w urzędzie, po akta, które miał przejrzeć przed posiedzeniem. Potem podwiozłam go pod hotel i tyle go widziałam.",
+    "spoken": "Wsiadł. Pojechaliśmy do biura komisji w urzędzie, po akta, które miał przejrzeć przed posiedzeniem. Potem podwiozłam go pod hotel i tyle go widziałam."
+   },
+   {
+    "id": "k-l3",
+    "kind": "break",
+    "text": "Więcej nic nie powiem. Doktor wysiadł pod hotelem. Co było dalej, nie wiem.",
+    "spoken": "Więcej nic nie powiem. Doktor wysiadł pod hotelem. Co było dalej, nie wiem."
+   },
+   {
+    "id": "k-l4",
+    "kind": "break",
+    "text": "Widziałam tego maila w nocy. Nie chciałam nikogo budzić. Poprawiłam listę od razu, żeby rano było mniej zamieszania.",
+    "spoken": "Widziałam tego maila w nocy. Nie chciałam nikogo budzić. Poprawiłam listę od razu, żeby rano było mniej zamieszania."
+   },
+   {
+    "id": "k-l5",
+    "kind": "break",
+    "text": "Biegły zawsze powinien mieć zastępcę. Zadzwoniłam w czwartek, bo to zwykła ostrożność. Nic więcej w tym nie ma.",
+    "spoken": "Biegły zawsze powinien mieć zastępcę. Zadzwoniłam w czwartek, bo to zwykła ostrożność. Nic więcej w tym nie ma."
+   },
+   {
+    "id": "k-l7",
+    "kind": "break",
+    "text": "Prosiłam o 214, bo doktor chciał spokojnego pokoju. Tak mi powiedział przez telefon.",
+    "spoken": "Prosiłam o dwieście czternaście, bo doktor chciał spokojnego pokoju. Tak mi powiedział przez telefon."
+   },
+   {
+    "id": "k-l8",
+    "kind": "break",
+    "text": "Może źle zrozumiałam. Proszę już o to nie pytać.",
+    "spoken": "Może źle zrozumiałam. Proszę już o to nie pytać."
+   },
+   {
+    "id": "k-l6",
+    "kind": "break",
+    "text": "To mój mąż. Mamy różne nazwiska, bo nie chciałam, żeby ktoś łączył moją pracę z jego interesami. Z tą sprawą nie ma to nic wspólnego.",
+    "spoken": "To mój mąż. Mamy różne nazwiska, bo nie chciałam, żeby ktoś łączył moją pracę z jego interesami. Z tą sprawą nie ma to nic wspólnego."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Proszę pytać o fakty, a nie o domysły.",
+    "spoken": "Proszę pytać o fakty, a nie o domysły."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Ja tylko organizuję posiedzenia. Nic więcej.",
+    "spoken": "Ja tylko organizuję posiedzenia. Nic więcej."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Na to pytanie odpowie przewodniczący komisji.",
+    "spoken": "Na to pytanie odpowie przewodniczący komisji."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem, co miałabym o tym powiedzieć.",
+    "spoken": "Nie wiem, co miałabym o tym powiedzieć."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "To nie ma związku z moją pracą w komisji.",
+    "spoken": "To nie ma związku z moją pracą w komisji."
+   }
+  ]
+ },
+ "005-kosowski": {
+  "name": "mec. Adrian Kosowski",
+  "lines": [
+   {
+    "id": "a-q1",
+    "kind": "q",
+    "text": "W barze na dole, od dziewiątej do zamknięcia. Ugoda nie załatwia się sama, miałem sporo telefonów.",
+    "spoken": "W barze na dole, od dziewiątej do zamknięcia. Ugoda nie załatwia się sama, miałem sporo telefonów."
+   },
+   {
+    "id": "a-q2",
+    "kind": "q",
+    "text": "Nigdy. Biegły jest niezależny. Pełnomocnikowi nie wolno się z nim kontaktować i nie robiłem tego.",
+    "spoken": "Nigdy. Biegły jest niezależny. Pełnomocnikowi nie wolno się z nim kontaktować i nie robiłem tego."
+   },
+   {
+    "id": "a-q3",
+    "kind": "q",
+    "text": "Restytucja Pomorska. W 2022 roku kupiła roszczenie od mojej klientki. Pani Rudnicka-Lange ma prawie osiemdziesiąt lat, nie chciała procesu na lata.",
+    "spoken": "Restytucja Pomorska. W dwa tysiące dwudziestym drugim roku kupiła roszczenie od mojej klientki. Pani Rudnicka-Lange ma prawie osiemdziesiąt lat, nie chciała procesu na lata."
+   },
+   {
+    "id": "a-q4",
+    "kind": "q",
+    "text": "Nic. Słyszę to pierwszy raz. Jeśli to prawda, ktoś oszukał moją klientkę, i to dawno przed mną.",
+    "spoken": "Nic. Słyszę to pierwszy raz. Jeśli to prawda, ktoś oszukał moją klientkę, i to dawno przed mną."
+   },
+   {
+    "id": "a-l1",
+    "kind": "break",
+    "text": "Napisałem do niego raz. Propozycja konsultacji, wszystko legalne. Odmówił. Na tym sprawa się skończyła i więcej się nie odzywałem.",
+    "spoken": "Napisałem do niego raz. Propozycja konsultacji, wszystko legalne. Odmówił. Na tym sprawa się skończyła i więcej się nie odzywałem."
+   },
+   {
+    "id": "a-s1",
+    "kind": "show",
+    "text": "Restytucja płaci moje faktury jako cesjonariusz. Prezesa, Pietrasa, znam z dwóch spotkań. Żona? Nie mam pojęcia, kim jest jego żona.",
+    "spoken": "Restytucja płaci moje faktury jako cesjonariusz. Prezesa, Pietrasa, znam z dwóch spotkań. Żona? Nie mam pojęcia, kim jest jego żona."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Bez komentarza. Tajemnica adwokacka.",
+    "spoken": "Bez komentarza. Tajemnica adwokacka."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Proszę skierować to pytanie na piśmie.",
+    "spoken": "Proszę skierować to pytanie na piśmie."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Moja klientka ma prawo do ugody. Reszta to państwa problem.",
+    "spoken": "Moja klientka ma prawo do ugody. Reszta to państwa problem."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "I co mam z tym zrobić?",
+    "spoken": "I co mam z tym zrobić?"
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Nie widzę tu niczego, co dotyczyłoby mojej klientki.",
+    "spoken": "Nie widzę tu niczego, co dotyczyłoby mojej klientki."
+   }
+  ]
+ },
+ "005-dabrowska": {
+  "name": "mec. Ewa Dąbrowska",
+  "lines": [
+   {
+    "id": "d-q1",
+    "kind": "q",
+    "text": "W piątek, za dwadzieścia dziewiąta. Posiedzenie było o dziewiątej.",
+    "spoken": "W piątek, za dwadzieścia dziewiąta. Posiedzenie było o dziewiątej."
+   },
+   {
+    "id": "d-q2",
+    "kind": "q",
+    "text": "Bo doktor Szulc nie jest człowiekiem, który rezygnuje mailem o północy. We wtorek napisał do mnie, że czuje presję.",
+    "spoken": "Bo doktor Szulc nie jest człowiekiem, który rezygnuje mailem o północy. We wtorek napisał do mnie, że czuje presję."
+   },
+   {
+    "id": "d-q3",
+    "kind": "q",
+    "text": "Tyle, że miała być niekorzystna dla wnioskodawczyni. Szczegółów mi nie podał. Projekt miała tylko sekretarz komisji.",
+    "spoken": "Tyle, że miała być niekorzystna dla wnioskodawczyni. Szczegółów mi nie podał. Projekt miała tylko sekretarz komisji."
+   },
+   {
+    "id": "d-l1",
+    "kind": "break",
+    "text": "Przyjechałam w czwartek, około dziesiątej wieczorem. Chciałam porozmawiać z doktorem przed posiedzeniem, sam o to prosił. Czekałam w holu prawie do jedenastej i nie przyszedł. Widziałam za to Iwonę. Za kwadrans jedenasta, może kilka minut wcześniej, weszła od strony parkingu, mokra, z kluczykami w ręku.",
+    "spoken": "Przyjechałam w czwartek, około dziesiątej wieczorem. Chciałam porozmawiać z doktorem przed posiedzeniem, sam o to prosił. Czekałam w holu prawie do jedenastej i nie przyszedł. Widziałam za to Iwonę. Za kwadrans jedenasta, może kilka minut wcześniej, weszła od strony parkingu, mokra, z kluczykami w ręku."
+   },
+   {
+    "id": "d-s1",
+    "kind": "show",
+    "text": "Pietras… Damian. Iwona mówiła kiedyś „mój Damian”, na wigilii w urzędzie. Nie wiedziałam, że to ten Pietras. Ona prowadzi protokoły tej komisji od trzech lat.",
+    "spoken": "Pietras… Damian. Iwona mówiła kiedyś „mój Damian”, na wigilii w urzędzie. Nie wiedziałam, że to ten Pietras. Ona prowadzi protokoły tej komisji od trzech lat."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Reprezentuję Gminę. Nie mogę o tym mówić.",
+    "spoken": "Reprezentuję Gminę. Nie mogę o tym mówić."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Proszę zapytać sekretariat komisji.",
+    "spoken": "Proszę zapytać sekretariat komisji."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Nie będę spekulować.",
+    "spoken": "Nie będę spekulować."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem, co to ma wspólnego z doktorem.",
+    "spoken": "Nie wiem, co to ma wspólnego z doktorem."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Tego wcześniej nie widziałam.",
+    "spoken": "Tego wcześniej nie widziałam."
+   }
+  ]
+ },
+ "005-lis": {
+  "name": "Bartosz Lis",
+  "lines": [
+   {
+    "id": "l-q1",
+    "kind": "q",
+    "text": "Doktor Szulc, o 23:05. Przyszedł pieszo od strony parkingu, z walizką. Starszy pan, z brodą, w okularach, w szarym płaszczu i kapeluszu. Mówił mało, pokasływał. Dowód się zgadzał, zeskanowałem go.",
+    "spoken": "Doktor Szulc, o dwudziestej trzeciej zero pięć. Przyszedł pieszo od strony parkingu, z walizką. Starszy pan, z brodą, w okularach, w szarym płaszczu i kapeluszu. Mówił mało, pokasływał. Dowód się zgadzał, zeskanowałem go."
+   },
+   {
+    "id": "l-q2",
+    "kind": "q",
+    "text": "Pani mecenas Dąbrowska, znam ją z posiedzeń komisji. Siedziała od kwadransa po dziesiątej prawie do jedenastej i pytała, czy doktor Szulc już jest.",
+    "spoken": "Pani mecenas Dąbrowska, znam ją z posiedzeń komisji. Siedziała od kwadransa po dziesiątej prawie do jedenastej i pytała, czy doktor Szulc już jest."
+   },
+   {
+    "id": "l-q3",
+    "kind": "q",
+    "text": "Ani na chwilę. Do siódmej rano siedziałem przy ladzie.",
+    "spoken": "Ani na chwilę. Do siódmej rano siedziałem przy ladzie."
+   },
+   {
+    "id": "l-q4",
+    "kind": "q",
+    "text": "Dwie. 214-A gość wziął do ręki, 214-B włożyłem do koperty z mapką hotelu. Tak robimy zawsze.",
+    "spoken": "Dwie. Dwieście czternaście A gość wziął do ręki, dwieście czternaście B włożyłem do koperty z mapką hotelu. Tak robimy zawsze."
+   },
+   {
+    "id": "l-l1",
+    "kind": "break",
+    "text": "Wyszedłem na papierosa. Od kwadransa po jedenastej do mniej więcej za dwadzieścia pięć dwunasta byłem w palarni z tyłu. Koło dwudziestej trzeciej dwadzieścia pięć z wyjścia służbowego wyszedł facet w kapeluszu, z parasolem. Poszedł szybko na parking i chwilę później odjechał srebrnym autem. Myślałem, że to ktoś z obsługi.",
+    "spoken": "Wyszedłem na papierosa. Od kwadransa po jedenastej do mniej więcej za dwadzieścia pięć dwunasta byłem w palarni z tyłu. Koło dwudziestej trzeciej dwadzieścia pięć z wyjścia służbowego wyszedł facet w kapeluszu, z parasolem. Poszedł szybko na parking i chwilę później odjechał srebrnym autem. Myślałem, że to ktoś z obsługi."
+   },
+   {
+    "id": "l-s1",
+    "kind": "show",
+    "text": "To jest doktor Szulc? Ten pan nie ma brody. Nasz gość miał brodę, siwą, przyciętą. Taką jak na zdjęciu w dowodzie, dlatego się zgadzało. To… to nie był ten człowiek.",
+    "spoken": "To jest doktor Szulc? Ten pan nie ma brody. Nasz gość miał brodę, siwą, przyciętą. Taką jak na zdjęciu w dowodzie, dlatego się zgadzało. To… to nie był ten człowiek."
+   },
+   {
+    "id": "l-s2",
+    "kind": "show",
+    "text": "Srebrna skoda… Tak, to mogła być ona. Duża, ciemne szyby z tyłu. Stała na końcu parkingu, przy alejce.",
+    "spoken": "Srebrna skoda… Tak, to mogła być ona. Duża, ciemne szyby z tyłu. Stała na końcu parkingu, przy alejce."
+   },
+   {
+    "id": "l-s3",
+    "kind": "show",
+    "text": "To karta 214-A, ta, którą dałem gościowi do ręki. Skąd ona na klatce B? Tamtędy chodzi tylko personel.",
+    "spoken": "To karta dwieście czternaście A, ta, którą dałem gościowi do ręki. Skąd ona na klatce B? Tamtędy chodzi tylko personel."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Nie pamiętam.",
+    "spoken": "Nie pamiętam."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "To trzeba sprawdzić w systemie.",
+    "spoken": "To trzeba sprawdzić w systemie."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Ja tylko meldowałem gości.",
+    "spoken": "Ja tylko meldowałem gości."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie kojarzę.",
+    "spoken": "Nie kojarzę."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Tego nie widziałem, przysięgam.",
+    "spoken": "Tego nie widziałem, przysięgam."
+   }
+  ]
+ },
+ "005-morawiec": {
+  "name": "dr Lech Morawiec",
+  "lines": [
+   {
+    "id": "o-q1",
+    "kind": "q",
+    "text": "W piątek rano, za dwadzieścia ósma. Pani Kraska zadzwoniła, a ja przyjechałem prosto z dworca.",
+    "spoken": "W piątek rano, za dwadzieścia ósma. Pani Kraska zadzwoniła, a ja przyjechałem prosto z dworca."
+   },
+   {
+    "id": "o-q2",
+    "kind": "q",
+    "text": "Nie, tylko kopię z akt komisji. Na kopii nie ocenię papieru, mogę mówić o piśmie i pieczęci.",
+    "spoken": "Nie, tylko kopię z akt komisji. Na kopii nie ocenię papieru, mogę mówić o piśmie i pieczęci."
+   },
+   {
+    "id": "o-q3",
+    "kind": "q",
+    "text": "Zjadłem kolację w pokoju i oglądałem telewizję. Koło dwudziestej trzeciej dwadzieścia dzwoniłem do recepcji po dodatkową poduszkę. Nikt nie odebrał, więc dałem spokój.",
+    "spoken": "Zjadłem kolację w pokoju i oglądałem telewizję. Koło dwudziestej trzeciej dwadzieścia dzwoniłem do recepcji po dodatkową poduszkę. Nikt nie odebrał, więc dałem spokój."
+   },
+   {
+    "id": "o-l1",
+    "kind": "break",
+    "text": "Dobrze, powiem prawdę. W czwartek miałem rozprawę w sądzie okręgowym. O 19:32 zadzwoniła pani Kraska: proszę zostać w Szczecinie, ekspert może jutro nie dojechać. Zarezerwowałem pokój. Wtedy nie wydało mi się to dziwne.",
+    "spoken": "Dobrze, powiem prawdę. W czwartek miałem rozprawę w sądzie okręgowym. O dziewiętnastej trzydzieści dwa zadzwoniła pani Kraska: proszę zostać w Szczecinie, ekspert może jutro nie dojechać. Zarezerwowałem pokój. Wtedy nie wydało mi się to dziwne."
+   },
+   {
+    "id": "o-s1",
+    "kind": "show",
+    "text": "Porównałem z wzorami z archiwum. To nie jest ręka doktora Szulca: inny nacisk, inne połączenia liter, zupełnie inaczej stawiane „z”. Doktor zawsze pisze pełne imię. Ktoś naśladował podpis, i to naprędce.",
+    "spoken": "Porównałem z wzorami z archiwum. To nie jest ręka doktora Szulca: inny nacisk, inne połączenia liter, zupełnie inaczej stawiane „z”. Doktor zawsze pisze pełne imię. Ktoś naśladował podpis, i to naprędce."
+   },
+   {
+    "id": "o-s2",
+    "kind": "show",
+    "text": "Znak „Wieprza” na papierze z 1946 roku? Papiernia ruszyła w pięćdziesiątym pierwszym. To przesądza sprawę. Gdybym to wiedział rano, nie usiadłbym przy tym stole.",
+    "spoken": "Znak „Wieprza” na papierze z tysiąc dziewięćset czterdziestego szóstego roku? Papiernia ruszyła w pięćdziesiątym pierwszym. To przesądza sprawę. Gdybym to wiedział rano, nie usiadłbym przy tym stole."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "To pytanie wykracza poza moją specjalność.",
+    "spoken": "To pytanie wykracza poza moją specjalność."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Opiniuję dokumenty, nie ludzi.",
+    "spoken": "Opiniuję dokumenty, nie ludzi."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Proszę mnie w to nie mieszać.",
+    "spoken": "Proszę mnie w to nie mieszać."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Mogę na to spojrzeć, ale nic mi to nie mówi.",
+    "spoken": "Mogę na to spojrzeć, ale nic mi to nie mówi."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Bez oryginału nie powiem nic pewnego.",
+    "spoken": "Bez oryginału nie powiem nic pewnego."
+   }
+  ]
+ },
+ "005-marta": {
+  "name": "Marta Szulc",
+  "lines": [
+   {
+    "id": "m-q1",
+    "kind": "q",
+    "text": "O 21:49 dostałam SMS-a: „Jestem. Pani Kraska już czeka przed dworcem, mam z nią jechać. Zadzwonię z hotelu.” Nie zadzwonił. Proszę, tu jest zrzut ekranu.",
+    "spoken": "O dwudziestej pierwszej czterdzieści dziewięć dostałam esemesa: „Jestem. Pani Kraska już czeka przed dworcem, mam z nią jechać. Zadzwonię z hotelu.” Nie zadzwonił. Proszę, tu jest zrzut ekranu."
+   },
+   {
+    "id": "m-q2",
+    "kind": "q",
+    "text": "Od trzech lat nie nosi brody, goli się codziennie. To zdjęcie z jego urodzin, z lutego.",
+    "spoken": "Od trzech lat nie nosi brody, goli się codziennie. To zdjęcie z jego urodzin, z lutego."
+   },
+   {
+    "id": "m-q3",
+    "kind": "q",
+    "text": "Bierze ją rano i wieczorem. Jeden wstrzykiwacz zawsze ma w teczce, zapasowe w kosmetyczce. Bez insuliny do wieczora może stracić przytomność. A jeśli ktoś dał mu coś na sen…",
+    "spoken": "Bierze ją rano i wieczorem. Jeden wstrzykiwacz zawsze ma w teczce, zapasowe w kosmetyczce. Bez insuliny do wieczora może stracić przytomność. A jeśli ktoś dał mu coś na sen…"
+   },
+   {
+    "id": "m-q4",
+    "kind": "q",
+    "text": "Przyszedł list od adwokata, z propozycją pieniędzy. Edward był wściekły. Zrobiłam zdjęcie, zanim go schował.",
+    "spoken": "Przyszedł list od adwokata, z propozycją pieniędzy. Edward był wściekły. Zrobiłam zdjęcie, zanim go schował."
+   },
+   {
+    "id": "m-q5",
+    "kind": "q",
+    "text": "W październiku 2024 roku, na poprzednim posiedzeniu tej samej komisji. Narzekał na śniadania.",
+    "spoken": "W październiku dwa tysiące dwudziestego czwartego roku, na poprzednim posiedzeniu tej samej komisji. Narzekał na śniadania."
+   },
+   {
+    "id": "m-q6",
+    "kind": "q",
+    "text": "Nigdy w życiu. Edward ma klaustrofobię, w windzie jeździ z zamkniętymi oczami. Pokój bez okien to dla niego koszmar.",
+    "spoken": "Nigdy w życiu. Edward ma klaustrofobię, w windzie jeździ z zamkniętymi oczami. Pokój bez okien to dla niego koszmar."
+   },
+   {
+    "id": "m-s1",
+    "kind": "show",
+    "text": "To nie jest jego podpis. Edward zawsze podpisuje się pełnym imieniem i nazwiskiem, od czterdziestu lat tak samo.",
+    "spoken": "To nie jest jego podpis. Edward zawsze podpisuje się pełnym imieniem i nazwiskiem, od czterdziestu lat tak samo."
+   },
+   {
+    "id": "m-s2",
+    "kind": "show",
+    "text": "Gryf-Guest… W 2024 roku telefon sam się łączył z tą siecią, Edward się dziwił. Ale tu jest trzecie piętro. Edward miał pokój na drugim. To kto trzymał jego telefon?",
+    "spoken": "Gryf Gest… W dwa tysiące dwudziestym czwartym roku telefon sam się łączył z tą siecią, Edward się dziwił. Ale tu jest trzecie piętro. Edward miał pokój na drugim. To kto trzymał jego telefon?"
+   },
+   {
+    "id": "m-s3",
+    "kind": "show",
+    "text": "To zdjęcie z dowodu z 2018 roku. Wtedy jeszcze nosił brodę. Ogolił się na sześćdziesiąte urodziny i już nie zapuścił.",
+    "spoken": "To zdjęcie z dowodu z dwa tysiące osiemnastego roku. Wtedy jeszcze nosił brodę. Ogolił się na sześćdziesiąte urodziny i już nie zapuścił."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Nie wiem. Edward nie opowiadał mi o szczegółach pracy.",
+    "spoken": "Nie wiem. Edward nie opowiadał mi o szczegółach pracy."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Proszę go znaleźć. Tylko tyle.",
+    "spoken": "Proszę go znaleźć. Tylko tyle."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Nie umiem na to odpowiedzieć.",
+    "spoken": "Nie umiem na to odpowiedzieć."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem, co to jest.",
+    "spoken": "Nie wiem, co to jest."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Nigdy tego nie widziałam.",
+    "spoken": "Nigdy tego nie widziałam."
+   }
+  ]
  }
 }

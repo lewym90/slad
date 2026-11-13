@@ -9,7 +9,8 @@ import b005_rest as R
 case = {
  'id': '005', 'title': 'Pokój bez okien', 'subtitle': 'Zamknięty od środka. Pusty od rana.',
  'genre': 'Zagadka psychologiczna', 'duration': '100–140 min', 'players': '2–6', 'difficulty': 'Trudna',
- 'cover': 'assets/cases/005-cover.webp', 'par': 86,
+ 'cover': 'assets/cases/005-cover.webp', 'art': 'assets/art/005-keyart.webp', 'ambience': 'assets/audio/case-005.mp3', 'par': 86,
+ 'voiceDir': 'assets/voice/005', 'introVideo': 'assets/video/005-intro.mp4', 'voice': {'brief': 'assets/voice/005-brief.mp3'},
  'intro': {
   'lead': 'Piątek, 13 marca, 10:40. Hotel „Gryf” w Szczecinie, II piętro. Drzwi pokoju 214 stoją otworem, zasuwa jest przecięta. Pokój nie ma okien.',
   'brief': [
@@ -35,6 +36,22 @@ case = {
  'puzzles': R.puzzles, 'tableMode': R.tableMode, 'breakthroughs': R.breakthroughs,
  'hintTrail': R.hintTrail, 'report': R.report, 'solution': R.solution, 'endings': R.endings, 'db': R.db,
 }
+# --- media ---
+EVIMG = {'e14': 'assets/evidence/005-szulc-id.webp', 'e42': 'assets/evidence/005-szulc-feb.webp', 'e09': 'assets/evidence/005-suitcase.webp', 'e11': 'assets/evidence/005-wardrobe.webp',
+         'e29': 'assets/evidence/005-m2.webp', 'e40': 'assets/evidence/005-ticket.webp', 'e12': 'assets/evidence/005-desk.webp', 'e22': 'assets/evidence/005-act.webp',
+         'e35': 'assets/evidence/005-note.webp', 'e28': 'assets/evidence/005-keys.webp', 'e31': 'assets/evidence/005-card.webp'}
+for e in evidence:
+    if e['id'] in EVIMG: e['img'] = EVIMG[e['id']]
+for pr in people: pr['img'] = f"assets/people/005-{pr['id']}.webp"
+for l in R.locations: l['img'] = f"assets/places/005-{l['id']}.webp"
+BT = {'b-beard': ('beard', EVIMG['e14']), 'b-door': ('door', EVIMG['e11']), 'b-pass': ('pass', EVIMG['e40']), 'b-ring': ('ring', 'assets/people/005-kraska.webp')}
+for b in R.breakthroughs:
+    n, im = BT[b['id']]; b['video'] = f'assets/video/005-bt-{n}.mp4'; b['img'] = im
+vl = os.path.join(os.path.dirname(__file__), 'voice', 'lines.json')
+VL = json.load(open(vl)); NL = json.load(open(os.path.join(os.path.dirname(__file__), 'voice', '005-lines.json')))
+for k, v in NL.items():
+    VL[k] = {'name': v['name'], 'lines': [{x: y for x, y in l.items() if x != 'n'} for l in v['lines']]}
+json.dump(VL, open(vl, 'w'), ensure_ascii=False, indent=1)
 out = os.path.join(os.path.dirname(__file__), '..', 'cases', '005.json')
 json.dump(case, open(out, 'w'), ensure_ascii=False, indent=1)
 print('005:', len(evidence), 'dowodów,', len(people), 'osób,', len(R.locations), 'miejsc')

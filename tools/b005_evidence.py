@@ -47,7 +47,7 @@ evidence = [
  ev('e07', 'Protokół', 'Protokół otwarcia pokoju 214', 'Piątek, 9:47, w obecności dyrektora hotelu.', [
    {'kv': [['Obecni', 'Krzysztof Sowa (dyrektor hotelu), Zbigniew Wrona (kierownik techniczny), mec. Ewa Dąbrowska'],
            ['9:41', 'karta MASTER-02 — zamek odmawia otwarcia (zasunięta zasuwa wewnętrzna)'],
-           ['9:47', 'Wrona przecina zasuwę od strony korytarza i otwiera drzwi']]},
+           ['9:47', 'Wrona przecina od strony korytarza zasuwę i łańcuch zabezpieczający, oba założone od środka, i otwiera drzwi']]},
    'Pokój pusty. Łóżko zasłane, walizka na stojaku. W pokoju nie ma okien, jest tylko kratka wentylacji mechanicznej 20 × 20 cm pod sufitem, przykręcona czterema śrubami, nienaruszona. Nikt nie ukrywał się w łazience ani w szafie.'],
    start=True, time=[T(9, 47, 'Technik przecina zasuwę 214 — pokój pusty', 'Protokół otwarcia', F)]),
 
@@ -58,11 +58,11 @@ evidence = [
    {'note': 'Wstrzykiwacze leżą w kosmetyczce, której nikt nie otwierał — suwak zapięty, w środku metka z apteki.'}]),
  ev('e10', 'Oględziny', 'Łóżko i łazienka', 'Pokój wygląda, jakby nikt w nim nie spał.', [
    'Narzuta zasłana, poduszki nietknięte. Ręczniki w łazience suche i złożone. Mydełka i szampony hotelowe zamknięte. Czajnik pusty i zimny, kubki czyste.',
-   'Na podłodze przy drzwiach wilgotne smugi po butach, już prawie wyschnięte. W czwartek od 21:00 w Szczecinie padał deszcz.']),
+   'Na wykładzinie od drzwi w głąb pokoju ciemne ślady butów z błotem, już prawie suche. W czwartek od 21:00 w Szczecinie padał deszcz.']),
  ev('e11', 'Oględziny', 'Szafa wnękowa — tylna ściana', 'Za szafą są drugie drzwi.', [
-   'Tylna ściana szafy to płyta na czterech zatrzaskach. Zdejmuje się ją ręką, bez narzędzi. Za nią są stalowe drzwi z wkładką na klucz, zamknięte. Klamki od strony pokoju brak — jest tylko pokrętło zamka.',
-   'Na dnie szafy drobny pył gipsowy, a przy jednym z zatrzasków świeże zarysowanie. Wieszaki zsunięte na jedną stronę drążka.',
-   {'note': 'Pokrętłem od strony pokoju drzwi da się otworzyć, ale zamknąć od zewnątrz można je tylko kluczem.'}]),
+   'Tylna ściana szafy to płyta na czterech zatrzaskach. Zdejmuje się ją ręką, bez narzędzi. Za nią są stalowe drzwi z klamką i wkładką na klucz, zamknięte na klucz.',
+   'Na dnie szafy pył i okruchy gipsu z obrzeża otworu, a przy jednym z zatrzasków świeże zarysowanie. Wieszaki zsunięte na jedną stronę drążka.',
+   {'note': 'Zamek jest zwykły, wkładkowy: otworzyć i zamknąć te drzwi można tylko kluczem, z każdej strony. Sama klamka nic nie da.'}]),
  ev('e12', 'Oględziny', 'Biurko w pokoju 214', 'Koperta z recepcji i hotelowy notes.', [
    'Na biurku koperta recepcji z drugą kartą do pokoju: „214-B”. Karta nieużywana. Notes hotelowy czysty, bez odcisków pisma na pierwszej kartce. Długopis w etui.']),
 
@@ -70,7 +70,8 @@ evidence = [
  ev('e13', 'Dokument', 'Karta meldunkowa — pokój 214', 'Wypełniona w czwartek o 23:05.', [
    {'kv': [['Gość', 'Edward Szulc'], ['Dokument tożsamości', 'dowód osobisty CGB 741827'], ['Przyjazd', '12.03.2026, 23:05, pieszo'], ['Pojazd', '— (brak)'],
            ['Rezerwacja', 'Komisja Ugodowa (płatnik: Urząd Miasta), zamówiła I. Kraska'], ['Przyjął', 'B. Lis'], ['Podpis gościa', '„E. Szulc”']]},
-   'Podpis nakreślony szybko, pochylonym pismem: duże „E”, kropka i nazwisko. Wydano dwie karty: 214-A (gość) i 214-B (w kopercie do pokoju).'],
+   'Podpis nakreślony szybko, pochylonym pismem: duże „E”, kropka i nazwisko. Wydano dwie karty: 214-A (gość) i 214-B (w kopercie do pokoju).',
+   {'note': 'Kamera w holu obejmuje drzwi wejściowe z góry. Nagranie z 23:04 pokazuje mężczyznę w kapeluszu z szerokim rondem i z walizką na kółkach. Twarzy nie widać ani przez chwilę.'}],
    time=[T(23, 5, '„Edward Szulc” melduje się w recepcji, przyjął B. Lis', 'Karta meldunkowa')]),
  ev('e14', 'Dokument', 'Skan dowodu osobistego gościa', 'Skaner w recepcji, 23:05.', [
    {'kv': [['Nazwisko i imię', 'SZULC EDWARD'], ['Seria i numer', 'CGB 741827'], ['Data wydania', '10.04.2018'], ['Data ważności', '10.04.2028']]},
@@ -141,7 +142,7 @@ evidence = [
    'Skrzydło B, II piętro. Pokoje gościnne po stronie ulicy. Po drugiej stronie korytarza gościnnego, naprzeciw pokoi 213 i 215, wąskie pomieszczenie bez okien opisane jako „magazyn bielizny”. Magazyn ma dwoje drzwi: od korytarza gościnnego i drugie, oznaczone M2, w tylnej ścianie — do korytarza gospodarczego, który biegnie wzdłuż ściany od podwórza aż do klatki schodowej B.',
    {'note': 'Klatka B to schody personelu. Na parterze kończy się wyjściem służbowym na tył budynku.'}]),
  ev('e24', 'Dokument', 'Dokumentacja adaptacji z 2019 roku', 'Opis powykonawczy: magazyn → pokój 214.', [
-   {'quote': 'Adaptacja magazynu bielizny na pokój hotelowy nr 214 (bez okien, wentylacja mechaniczna). Drzwi M2 do korytarza gospodarczego pozostawiono jako drzwi rewizyjne (dostęp do pionów wod.-kan.), zakryte tylną ścianą szafy wnękowej, demontowaną bez narzędzi. Drzwi zamykane na klucz od strony korytarza. Klucz R-2 w szafce technicznej.', 'by': 'opis powykonawczy, wrzesień 2019'},
+   {'quote': 'Adaptacja magazynu bielizny na pokój hotelowy nr 214 (bez okien, wentylacja mechaniczna). Drzwi M2 do korytarza gospodarczego pozostawiono jako drzwi rewizyjne (dostęp do pionów wod.-kan.), zakryte tylną ścianą szafy wnękowej, demontowaną bez narzędzi. Drzwi zamykane na klucz (zamek wkładkowy). Klucz R-2 w szafce technicznej.', 'by': 'opis powykonawczy, wrzesień 2019'},
    {'kv': [['Wykonawca', 'PB Pietras Budownictwo sp. z o.o., Police'], ['Kierownik robót', 'D. Pietras'], ['Odbiór', 'Zbigniew Wrona, kierownik techniczny hotelu']]}]),
  ev('e25', 'Dokument', 'Faktura za adaptację pokoju 214', 'Archiwum księgowe hotelu, 2019.', [
    {'kv': [['Faktura', 'VAT nr 47/2019 z 30.09.2019'], ['Sprzedawca', 'PB Pietras Budownictwo sp. z o.o., ul. Fabryczna 3, 72-010 Police'], ['NIP sprzedawcy', '8512047718'],
@@ -156,7 +157,7 @@ evidence = [
 
  # ---------- KORYTARZ GOSPODARCZY I KLATKA B ----------
  ev('e29', 'Oględziny', 'Drzwi M2 od strony korytarza', 'Korytarz gospodarczy za pokojami 210–216.', [
-   'Korytarz biegnie wzdłuż ściany od podwórza, za pokojem 214. Jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. Drzwi zamknięte na klucz.',
+   'Korytarz biegnie wzdłuż ściany od podwórza, za pokojem 214. Jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. W kurzu widać też niewyraźne odciski podeszew, prowadzące od M2 w stronę klatki B. Drzwi zamknięte na klucz.',
    'Od M2 do klatki B jest dwanaście metrów.']),
  ev('e31', 'Przedmiot', 'Karta hotelowa na klatce B', 'Podest między I a II piętrem, pod kaloryferem.', [
    'Biała karta z nadrukiem „Hotel Gryf · 214”. Recepcja odczytała ją czytnikiem: karta 214-A, zakodowana w czwartek o 23:05:31, użyta raz — o 23:09:14 przy drzwiach 214.']),

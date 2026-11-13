@@ -7,7 +7,14 @@
  "players": "2–6",
  "difficulty": "Trudna",
  "cover": "assets/cases/005-cover.webp",
+ "art": "assets/art/005-keyart.webp",
+ "ambience": "assets/audio/case-005.mp3",
  "par": 86,
+ "voiceDir": "assets/voice/005",
+ "introVideo": "assets/video/005-intro.mp4",
+ "voice": {
+  "brief": "assets/voice/005-brief.mp3"
+ },
  "intro": {
   "lead": "Piątek, 13 marca, 10:40. Hotel „Gryf” w Szczecinie, II piętro. Drzwi pokoju 214 stoją otworem, zasuwa jest przecięta. Pokój nie ma okien.",
   "brief": [
@@ -209,7 +216,8 @@
      "truth": true
     }
    ],
-   "shows": []
+   "shows": [],
+   "img": "assets/people/005-kraska.webp"
   },
   {
    "id": "kosowski",
@@ -286,7 +294,8 @@
      "ev": "d02",
      "a": "Restytucja płaci moje faktury jako cesjonariusz. Prezesa, Pietrasa, znam z dwóch spotkań. Żona? Nie mam pojęcia, kim jest jego żona."
     }
-   ]
+   ],
+   "img": "assets/people/005-kosowski.webp"
   },
   {
    "id": "dabrowska",
@@ -356,7 +365,8 @@
      "ev": "d03",
      "a": "Pietras… Damian. Iwona mówiła kiedyś „mój Damian”, na wigilii w urzędzie. Nie wiedziałam, że to ten Pietras. Ona prowadzi protokoły tej komisji od trzech lat."
     }
-   ]
+   ],
+   "img": "assets/people/005-dabrowska.webp"
   },
   {
    "id": "lis",
@@ -463,7 +473,8 @@
      "ev": "e31",
      "a": "To karta 214-A, ta, którą dałem gościowi do ręki. Skąd ona na klatce B? Tamtędy chodzi tylko personel."
     }
-   ]
+   ],
+   "img": "assets/people/005-lis.webp"
   },
   {
    "id": "morawiec",
@@ -560,7 +571,8 @@
      "ev": "e39",
      "a": "Znak „Wieprza” na papierze z 1946 roku? Papiernia ruszyła w pięćdziesiątym pierwszym. To przesądza sprawę. Gdybym to wiedział rano, nie usiadłbym przy tym stole."
     }
-   ]
+   ],
+   "img": "assets/people/005-morawiec.webp"
   },
   {
    "id": "marta",
@@ -679,7 +691,8 @@
      "ev": "e14",
      "a": "To zdjęcie z dowodu z 2018 roku. Wtedy jeszcze nosił brodę. Ogolił się na sześćdziesiąte urodziny i już nie zapuścił."
     }
-   ]
+   ],
+   "img": "assets/people/005-marta.webp"
   }
  ],
  "locations": [
@@ -727,7 +740,8 @@
      },
      "lockedText": "Zwykła hotelowa szafa: wieszaki, półka, sejf bez zawartości. Bez konkretnego powodu nie będziecie rozbierać mebli."
     }
-   ]
+   ],
+   "img": "assets/places/005-room.webp"
   },
   {
    "id": "reception",
@@ -776,7 +790,8 @@
       "e27"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/005-reception.webp"
   },
   {
    "id": "hall",
@@ -809,7 +824,8 @@
       "e21"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/005-hall.webp"
   },
   {
    "id": "tech",
@@ -850,7 +866,8 @@
       "e28"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/005-tech.webp"
   },
   {
    "id": "service",
@@ -882,7 +899,8 @@
       "e30"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/005-service.webp"
   },
   {
    "id": "bar",
@@ -914,7 +932,8 @@
       "e34"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/005-bar.webp"
   },
   {
    "id": "archive",
@@ -967,7 +986,8 @@
      },
      "lockedText": "Plik jest zaszyfrowany. Bez czterocyfrowego hasła go nie otworzycie."
     }
-   ]
+   ],
+   "img": "assets/places/005-archive.webp"
   },
   {
    "id": "parking",
@@ -1005,7 +1025,8 @@
      },
      "lockedText": "Samochód sekretarz komisji. Bez podstaw prokurator nie zgodzi się na przeszukanie. Najpierw wykażcie, że jego właścicielka kłamie o czwartkowym wieczorze."
     }
-   ]
+   ],
+   "img": "assets/places/005-parking.webp"
   }
  ],
  "evidence": [
@@ -1231,7 +1252,7 @@
       ],
       [
        "9:47",
-       "Wrona przecina zasuwę od strony korytarza i otwiera drzwi"
+       "Wrona przecina od strony korytarza zasuwę i łańcuch zabezpieczający, oba założone od środka, i otwiera drzwi"
       ]
      ]
     },
@@ -1257,7 +1278,8 @@
     {
      "note": "Wstrzykiwacze leżą w kosmetyczce, której nikt nie otwierał — suwak zapięty, w środku metka z apteki."
     }
-   ]
+   ],
+   "img": "assets/evidence/005-suitcase.webp"
   },
   {
    "id": "e10",
@@ -1266,7 +1288,7 @@
    "summary": "Pokój wygląda, jakby nikt w nim nie spał.",
    "body": [
     "Narzuta zasłana, poduszki nietknięte. Ręczniki w łazience suche i złożone. Mydełka i szampony hotelowe zamknięte. Czajnik pusty i zimny, kubki czyste.",
-    "Na podłodze przy drzwiach wilgotne smugi po butach, już prawie wyschnięte. W czwartek od 21:00 w Szczecinie padał deszcz."
+    "Na wykładzinie od drzwi w głąb pokoju ciemne ślady butów z błotem, już prawie suche. W czwartek od 21:00 w Szczecinie padał deszcz."
    ]
   },
   {
@@ -1275,12 +1297,13 @@
    "title": "Szafa wnękowa — tylna ściana",
    "summary": "Za szafą są drugie drzwi.",
    "body": [
-    "Tylna ściana szafy to płyta na czterech zatrzaskach. Zdejmuje się ją ręką, bez narzędzi. Za nią są stalowe drzwi z wkładką na klucz, zamknięte. Klamki od strony pokoju brak — jest tylko pokrętło zamka.",
-    "Na dnie szafy drobny pył gipsowy, a przy jednym z zatrzasków świeże zarysowanie. Wieszaki zsunięte na jedną stronę drążka.",
+    "Tylna ściana szafy to płyta na czterech zatrzaskach. Zdejmuje się ją ręką, bez narzędzi. Za nią są stalowe drzwi z klamką i wkładką na klucz, zamknięte na klucz.",
+    "Na dnie szafy pył i okruchy gipsu z obrzeża otworu, a przy jednym z zatrzasków świeże zarysowanie. Wieszaki zsunięte na jedną stronę drążka.",
     {
-     "note": "Pokrętłem od strony pokoju drzwi da się otworzyć, ale zamknąć od zewnątrz można je tylko kluczem."
+     "note": "Zamek jest zwykły, wkładkowy: otworzyć i zamknąć te drzwi można tylko kluczem, z każdej strony. Sama klamka nic nie da."
     }
-   ]
+   ],
+   "img": "assets/evidence/005-wardrobe.webp"
   },
   {
    "id": "e12",
@@ -1289,7 +1312,8 @@
    "summary": "Koperta z recepcji i hotelowy notes.",
    "body": [
     "Na biurku koperta recepcji z drugą kartą do pokoju: „214-B”. Karta nieużywana. Notes hotelowy czysty, bez odcisków pisma na pierwszej kartce. Długopis w etui."
-   ]
+   ],
+   "img": "assets/evidence/005-desk.webp"
   },
   {
    "id": "e13",
@@ -1329,7 +1353,10 @@
       ]
      ]
     },
-    "Podpis nakreślony szybko, pochylonym pismem: duże „E”, kropka i nazwisko. Wydano dwie karty: 214-A (gość) i 214-B (w kopercie do pokoju)."
+    "Podpis nakreślony szybko, pochylonym pismem: duże „E”, kropka i nazwisko. Wydano dwie karty: 214-A (gość) i 214-B (w kopercie do pokoju).",
+    {
+     "note": "Kamera w holu obejmuje drzwi wejściowe z góry. Nagranie z 23:04 pokazuje mężczyznę w kapeluszu z szerokim rondem i z walizką na kółkach. Twarzy nie widać ani przez chwilę."
+    }
    ],
    "time": [
     [
@@ -1366,7 +1393,8 @@
      ]
     },
     "Zdjęcie na dowodzie przedstawia mężczyznę około pięćdziesięciu pięciu lat, w okularach, z krótką, siwiejącą brodą."
-   ]
+   ],
+   "img": "assets/evidence/005-szulc-id.webp"
   },
   {
    "id": "e15",
@@ -1572,7 +1600,8 @@
    "body": [
     "Pod fotelem pasażera, wciśnięty między szyny: bilet kolejowy PKP Intercity, IC 38170 „Parsęta”, Koszalin 19:27 → Szczecin Główny 21:47, 12.03.2026, wagon 6, miejsce 45. Bilet imienny: Edward Szulc.",
     "Na dywaniku po stronie pasażera zaschnięte ślady błota. W bagażniku parasol i torba z wydrukami materiałów komisji."
-   ]
+   ],
+   "img": "assets/evidence/005-ticket.webp"
   },
   {
    "id": "e19",
@@ -1654,7 +1683,8 @@
     {
      "note": "Na kopii widać tylko zarys znaku wodnego w rogu karty — kilka liter, nieczytelne. Ocena papieru wymaga oryginału."
     }
-   ]
+   ],
+   "img": "assets/evidence/005-act.webp"
   },
   {
    "id": "e23",
@@ -1675,7 +1705,7 @@
    "summary": "Opis powykonawczy: magazyn → pokój 214.",
    "body": [
     {
-     "quote": "Adaptacja magazynu bielizny na pokój hotelowy nr 214 (bez okien, wentylacja mechaniczna). Drzwi M2 do korytarza gospodarczego pozostawiono jako drzwi rewizyjne (dostęp do pionów wod.-kan.), zakryte tylną ścianą szafy wnękowej, demontowaną bez narzędzi. Drzwi zamykane na klucz od strony korytarza. Klucz R-2 w szafce technicznej.",
+     "quote": "Adaptacja magazynu bielizny na pokój hotelowy nr 214 (bez okien, wentylacja mechaniczna). Drzwi M2 do korytarza gospodarczego pozostawiono jako drzwi rewizyjne (dostęp do pionów wod.-kan.), zakryte tylną ścianą szafy wnękowej, demontowaną bez narzędzi. Drzwi zamykane na klucz (zamek wkładkowy). Klucz R-2 w szafce technicznej.",
      "by": "opis powykonawczy, wrzesień 2019"
     },
     {
@@ -1766,7 +1796,8 @@
    "body": [
     "Klucz R-2 wisi na swoim haczyku. W zeszycie wydań ostatni wpis przy R-2: 14.01.2025, hydraulik, zwrot tego samego dnia.",
     "Kierownik techniczny Wrona: „Zamek w M2 to zwykła wkładka. Dorobienie klucza zajmuje ślusarzowi pięć minut. Kopie mógł mieć każdy, kto przy tym robił.”"
-   ]
+   ],
+   "img": "assets/evidence/005-keys.webp"
   },
   {
    "id": "e29",
@@ -1774,9 +1805,10 @@
    "title": "Drzwi M2 od strony korytarza",
    "summary": "Korytarz gospodarczy za pokojami 210–216.",
    "body": [
-    "Korytarz biegnie wzdłuż ściany od podwórza, za pokojem 214. Jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. Drzwi zamknięte na klucz.",
+    "Korytarz biegnie wzdłuż ściany od podwórza, za pokojem 214. Jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. W kurzu widać też niewyraźne odciski podeszew, prowadzące od M2 w stronę klatki B. Drzwi zamknięte na klucz.",
     "Od M2 do klatki B jest dwanaście metrów."
-   ]
+   ],
+   "img": "assets/evidence/005-m2.webp"
   },
   {
    "id": "e31",
@@ -1785,7 +1817,8 @@
    "summary": "Podest między I a II piętrem, pod kaloryferem.",
    "body": [
     "Biała karta z nadrukiem „Hotel Gryf · 214”. Recepcja odczytała ją czytnikiem: karta 214-A, zakodowana w czwartek o 23:05:31, użyta raz — o 23:09:14 przy drzwiach 214."
-   ]
+   ],
+   "img": "assets/evidence/005-card.webp"
   },
   {
    "id": "e30",
@@ -1884,7 +1917,8 @@
      "by": "pismo dr. Szulca"
     },
     "Zastępczyni dr. Szulca, Joanna Kurek, potwierdza, że kartkę napisał on, w poniedziałek 9.03."
-   ]
+   ],
+   "img": "assets/evidence/005-note.webp"
   },
   {
    "id": "e45",
@@ -1982,7 +2016,8 @@
    "summary": "Urodziny w domu, 21 lutego.",
    "body": [
     "Dr Edward Szulc przy stole, w swetrze, uśmiechnięty. Gładko ogolony, w okularach w cienkiej oprawie. Siwe, krótko obcięte włosy."
-   ]
+   ],
+   "img": "assets/evidence/005-szulc-feb.webp"
   },
   {
    "id": "e43",
@@ -2640,25 +2675,33 @@
    "id": "b-beard",
    "when": "show:l-s1",
    "title": "Broda",
-   "text": "Recepcjonista zameldował mężczyznę z brodą, bo taki był na zdjęciu w dowodzie. Edward Szulc od trzech lat się goli. W pokoju 214 nocował ktoś, kto miał jego dokument, ale nie jego twarz."
+   "text": "Recepcjonista zameldował mężczyznę z brodą, bo taki był na zdjęciu w dowodzie. Edward Szulc od trzech lat się goli. W pokoju 214 nocował ktoś, kto miał jego dokument, ale nie jego twarz.",
+   "video": "assets/video/005-bt-beard.mp4",
+   "img": "assets/evidence/005-szulc-id.webp"
   },
   {
    "id": "b-door",
    "when": "sp-wardrobe",
    "title": "Drugie drzwi",
-   "text": "Za tylną ścianą szafy są stalowe drzwi do korytarza gospodarczego. Pokój bez okien nigdy nie był zamknięty od środka — miał wyjście, o którym wiedzieli tylko ci, którzy go budowali."
+   "text": "Za tylną ścianą szafy są stalowe drzwi do korytarza gospodarczego. Pokój bez okien nigdy nie był zamknięty od środka — miał wyjście, o którym wiedzieli tylko ci, którzy go budowali.",
+   "video": "assets/video/005-bt-door.mp4",
+   "img": "assets/evidence/005-wardrobe.webp"
   },
   {
    "id": "b-pass",
    "when": "lie:k-l2",
    "title": "Pasażer",
-   "text": "Kraska przyznaje: Szulc wsiadł do jej samochodu na dworcu. Ostatnia osoba, która widziała go wolnego, siedzi przy stole komisji i poprawiała listę uczestników."
+   "text": "Kraska przyznaje: Szulc wsiadł do jej samochodu na dworcu. Ostatnia osoba, która widziała go wolnego, siedzi przy stole komisji i poprawiała listę uczestników.",
+   "video": "assets/video/005-bt-pass.mp4",
+   "img": "assets/evidence/005-ticket.webp"
   },
   {
    "id": "b-ring",
    "when": "lie:k-l6",
    "title": "Obrączka",
-   "text": "Damian Pietras, prezes spółki, która zarobi na ugodzie miliony, jest mężem sekretarz komisji. Różne nazwiska ukrywały to przez trzy lata."
+   "text": "Damian Pietras, prezes spółki, która zarobi na ugodzie miliony, jest mężem sekretarz komisji. Różne nazwiska ukrywały to przez trzy lata.",
+   "video": "assets/video/005-bt-ring.mp4",
+   "img": "assets/people/005-kraska.webp"
   }
  ],
  "hintTrail": [
