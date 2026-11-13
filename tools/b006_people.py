@@ -125,7 +125,7 @@ people = [
   ]},
 
  {'id': 'joanna', 'name': 'Joanna Rak', 'role': 'Prowadzi bufet kina', 'age': 58,
-  'desc': 'Pracuje za barem „Zorzy” od 1999 roku. Ciepła, gadatliwa, z ołówkiem za uchem. Zna wszystkich stałych widzów po imieniu i wszystko, co dzieje się w foyer.',
+  'desc': 'Pracuje za barem „Zorzy” od 1999 roku. Ciepła, gadatliwa, z ołówkiem wpiętym w rude loki. Zna wszystkich stałych widzów po imieniu i wszystko, co dzieje się w foyer.',
   'deflect': ['Ja tam stałam za barem, kochanie. Nic więcej nie wiem.', 'Nie będę gadać o ludziach za plecami.', 'Tego nie widziałam, nie będę zmyślać.'],
   'showDefault': ['Pierwszy raz widzę.', 'Nie znam się na tym, ja jestem od kawy i ciastek.'],
   'questions': [

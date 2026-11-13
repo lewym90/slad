@@ -10,10 +10,10 @@ def spot(id, name, text, gives, requires=None, lockedText=None):
 # Położenia śladów na zdjęciach (x, y, r — względem szerokości i wysokości obrazu) ustawiane po wygenerowaniu grafik.
 locations = [
  {'id': 'booth', 'name': 'Kabina projekcyjna', 'kind': 'Nad balkonem sali, wejście z korytarza balkonu',
-  'desc': 'Ciasne pomieszczenie z dwoma projektorami Meopta, stołem przewijarki i regałem z taśmami. Przez okienka projekcyjne widać ciemną salę. Ciało zabrano w nocy — na podłodze przy przewijarce został zarys kredą.',
+  'desc': 'Ciasne pomieszczenie z dwoma projektorami Meopta, stołem przewijarki i regałem z taśmami. Przez okienka projekcyjne widać ciemną salę. Ciało zabrano w nocy — na środku podłogi został zarys kredą.',
   'spots': [
    spot('sp-log', 'Dziennik kabiny', 'Gruby zeszyt na pulpicie między projektorami.', ['e06']),
-   spot('sp-proj', 'Projektor A i przewijarka', 'Szpula na projektorze A, pusty stół przewijarki.', ['e07']),
+   spot('sp-proj', 'Projektor A', 'Pełna szpula na projektorze A po lewej.', ['e07']),
    spot('sp-can', 'Puszka na podłodze', 'Stalowa puszka przy zarysie ciała, pod regałem.', ['e08']),
    spot('sp-photo', 'Zdjęcie w ramce', 'Czarno-białe zdjęcie na ścianie nad przewijarką.', ['e09']),
    spot('sp-door', 'Drzwi ewakuacyjne', 'Stalowe drzwi na schody pożarowe.', ['e10']),
@@ -22,8 +22,8 @@ locations = [
    spot('sp-calc', 'Projektor B', 'Wasze wyliczenie godziny zmiany projektorów.', ['e26'], requires={'puzzle': 'p-reel'},
         lockedText='Projektor B przejął film w trakcie seansu. Żeby ustalić, kiedy dokładnie, policzcie to z karty kopii i dziennika — zagadka „Zmiana projektorów”.'),
   ],
-  'search': {'aspect': 1.5, 'spots': {'sp-log': [0.47, 0.52, 0.05], 'sp-proj': [0.22, 0.45, 0.07], 'sp-can': [0.6, 0.86, 0.05], 'sp-photo': [0.7, 0.2, 0.05],
-                                      'sp-door': [0.92, 0.45, 0.06], 'sp-card': [0.36, 0.75, 0.04], 'sp-desk': [0.8, 0.66, 0.05]}}},
+  'search': {'aspect': 1.5, 'spots': {'sp-log': [0.33, 0.49, 0.05], 'sp-proj': [0.135, 0.15, 0.07], 'sp-can': [0.845, 0.655, 0.045], 'sp-photo': [0.607, 0.25, 0.05],
+                                      'sp-door': [0.81, 0.34, 0.06], 'sp-card': [0.49, 0.715, 0.045], 'sp-desk': [0.885, 0.86, 0.06]}}},
  {'id': 'foyer', 'name': 'Foyer', 'kind': 'Parter kina, za kasami',
   'desc': 'Marmurowa posadzka, bar z ciemnego drewna, girlandy po wczorajszym pożegnaniu. Na ścianie przeszklona gablota z plakatami, przy drzwiach na salę panel oświetlenia.',
   'spots': [
@@ -43,12 +43,12 @@ locations = [
   'spots': [
    spot('sp-stairs', 'Schody pożarowe', 'Stalowe schody od drzwi kabiny na bruk.', ['e19']),
    spot('sp-bin', 'Kontener na makulaturę', 'Niebieski kontener przy tylnych drzwiach.', ['e20']),
-   spot('sp-wedge', 'Pod schodami', 'Coś leży w kałuży pod dolnym biegiem schodów.', ['e21']),
+   spot('sp-wedge', 'U stóp schodów', 'Coś leży w kałuży tuż przy schodach.', ['e21']),
    spot('sp-back', 'Tylne drzwi zaplecza', 'Metalowe drzwi z czujnikiem nad framugą.', ['e22']),
    spot('sp-letter', 'Złożone skrawki', 'Kartka złożona z mokrych skrawków z kontenera.', ['e27'], requires={'puzzle': 'p-torn'},
         lockedText='Mokre skrawki z kontenera to jedna kartka. Złóżcie ją — zagadka „Podarty list”.'),
   ],
-  'search': {'aspect': 1.5, 'spots': {'sp-stairs': [0.62, 0.38, 0.08], 'sp-bin': [0.3, 0.72, 0.07], 'sp-wedge': [0.66, 0.86, 0.04], 'sp-back': [0.44, 0.55, 0.05]}}},
+  'search': {'aspect': 1.5, 'spots': {'sp-stairs': [0.7, 0.62, 0.07], 'sp-bin': [0.475, 0.69, 0.05], 'sp-wedge': [0.635, 0.875, 0.035], 'sp-back': [0.355, 0.64, 0.05]}}},
  {'id': 'flat', 'name': 'Mieszkanie pana Lipki', 'kind': 'Oficyna, ul. Gdańska 43, II piętro',
   'desc': 'Jeden pokój z kuchnią, kredens, stół nakryty ceratą, fotel przy oknie. Pan Lipka zaprasza: „Proszę zobaczyć, skąd patrzyłem”.',
   'spots': [
@@ -56,7 +56,7 @@ locations = [
    spot('sp-clock', 'Zegar ścienny', 'Okrągły zegar nad kredensem.', ['e24']),
    spot('sp-watch', 'Pudełko na stole', 'Otwarte pudełko z zegarkiem, obok baterie.', ['e25']),
   ],
-  'search': {'aspect': 1.5, 'spots': {'sp-window': [0.78, 0.4, 0.09], 'sp-clock': [0.3, 0.2, 0.05], 'sp-watch': [0.45, 0.72, 0.05]}}},
+  'search': {'aspect': 1.5, 'spots': {'sp-window': [0.75, 0.25, 0.09], 'sp-clock': [0.157, 0.13, 0.06], 'sp-watch': [0.3, 0.85, 0.065]}}},
 ]
 
 puzzles = [
@@ -141,7 +141,7 @@ solution = {
   {'h': 'Kto umiał to zrobić', 'p': 'Zmienić projektor umieli Damian Wróbel, Grzegorz Barcz i — o czym nikt już nie pamiętał — Ewa Sitek, z domu Kalinowska, kinooperatorka „Zorzy” w latach 1996–2001. Zdjęcie w kabinie, bufetowa i rejestr PESEL mówią to samo.'},
   {'h': 'Alibi o 21:04', 'p': 'Damian Wróbel o 21:03 płacił kartą w sklepie 300 m od kina, a kamera pizzerii widziała go wychodzącego i wracającego frontem. Grzegorz Barcz od 21:01 do 21:12 stał przed kinem z telefonem. Joanna Rak nie odchodziła od baru. Sitek była „w biurze” — sama.'},
   {'h': 'Godzina pana Lipki', 'p': 'Sąsiad widział osobę w jasnym płaszczu zbiegającą schodami pożarowymi „dziesięć po dziesiątej”. Jego zegar śpieszy się o godzinę: nastawił go z zegarka po bracie, wciąż na czasie letnim. Naprawdę była 21:10 — minuta przed zamknięciem drzwi kabiny o 21:11:02 w dzienniku alarmu. Pomylił się, ale nie kłamał.'},
-  {'h': 'Droga przez podwórze', 'p': 'Tylne drzwi zaplecza, trzy kroki od biura: wyjście o 20:41, powrót o 21:13. Deszcz od 21:05. Mokry płaszcz kierowniczki z farbą i rdzą z poręczy schodów pożarowych, starta farba na poręczy, klin kinooperatora na czerwonym sznurku w kałuży pod schodami.'},
+  {'h': 'Droga przez podwórze', 'p': 'Tylne drzwi zaplecza, trzy kroki od biura: wyjście o 20:41, powrót o 21:13. Deszcz od 21:05. Mokry płaszcz kierowniczki z farbą i rdzą z poręczy schodów pożarowych, starta farba na poręczy, klin kinooperatora na czerwonym sznurku w kałuży u stóp schodów.'},
   {'h': 'List i plakaty', 'p': 'W kontenerze przy tylnych drzwiach — skrawki listu Barcza do konserwator: dwa plakaty to kopie, oryginały są w katalogu „Rewersu”, klucz do gabloty mieli tylko on i kierowniczka. Sitek zamówiła w 2025 roku faksymile, a komitentem aukcji jest Ars-Lokus — spółka jej męża, Tomasza Sitka.'},
   {'h': 'Fałszywe tropy', 'p': 'Damian ukrył wyjście po wódkę na po imprezie, Grzegorz — telefon do wierzyciela i kłótnię z ojcem o pieniądze. Obaj kłamali, żaden nie zabił. Pan Lipka nie kłamał wcale: pomylił godzinę przez nieprzestawiony zegarek.'},
  ]}

@@ -36,7 +36,7 @@ evidence = [
            ['Zgłoszenie', 'Ewa Sitek, kierowniczka kina, telefon na 112 o 22:43'],
            ['Znaleźli', 'Ewa Sitek i Damian Wróbel, około 22:41']]},
    'W sobotę kino zorganizowało „Ostatni seans” — pożegnalną projekcję z taśmy 35 mm przed zamknięciem kina. Film skończył się przed 22:00, potem w foyer trwało pożegnanie. Kinooperator na nie nie zszedł. Kierowniczka i technik poszli na górę. Wewnętrzne drzwi kabiny były zamknięte na klucz, a klucz od nich miał w kieszeni zmarły. Kierowniczka otworzyła zapasowym kluczem z biura.',
-   'Leon Barcz leżał na podłodze przy stole przewijarki, z raną tyłu głowy. Obok leżała stalowa puszka na taśmę filmową z krwią na krawędzi. Drzwi ewakuacyjne kabiny, prowadzące na zewnętrzne schody pożarowe, były zamknięte. W projektorze B wciąż paliła się lampa; zgasił ją technik.',
+   'Leon Barcz leżał na podłodze na środku kabiny, przed stołem przewijarki, z raną tyłu głowy. Obok leżała stalowa puszka na taśmę filmową z krwią na krawędzi. Drzwi ewakuacyjne kabiny, prowadzące na zewnętrzne schody pożarowe, były zamknięte. W projektorze B wciąż paliła się lampa; zgasił ją technik.',
    {'note': 'Wstępna ocena patrolu: możliwy nieszczęśliwy wypadek — upadek ciężkiej puszki z regału. Prokurator nie przyjął tej wersji bez sekcji.'}],
    start=True, time=[T(22, 41, 'Ewa Sitek i Damian Wróbel znajdują ciało Leona Barcza w kabinie', 'Raport'), T(22, 43, 'Zgłoszenie na 112', 'Raport')]),
  ev('e02', 'Zlecenie', 'Polecenie prokuratora', 'Wypadek czy zabójstwo?', [
@@ -73,7 +73,7 @@ evidence = [
    {'note': 'Po wpisie o 20:00 strona jest pusta. Wcześniejsze kartki: przy każdym seansie z taśmy ta sama kolejność — start, zmiana projektora co do minuty, przewinięcie, koniec.'}],
    time=[T(20, 0, 'Leon Barcz wpisuje do dziennika start projekcji (cz. I na projektorze A)', 'Dziennik kabiny')]),
  ev('e07', 'Oględziny', 'Projektor A i stół przewijarki', 'Dwa projektory Meopta i stół do przewijania taśmy.', [
-   'Projektor A wyłączony. Na jego szpuli odbiorczej nawinięta cała część I — końcem na zewnątrz, czyli nieprzewinięta. Na projektorze B część II, przewinięta do końca; luźny koniec taśmy zwisa ze szpuli.',
+   'Projektor A wyłączony. Na jego szpuli cała część I, nawinięta końcem na zewnątrz — czyli po projekcji nieprzewinięta. Na projektorze B część II, puszczona do samego końca; luźny koniec taśmy zwisa aż do podłogi.',
    'Stół przewijarki pusty. Na blacie odciśnięty w kurzu okrągły ślad, wielkości puszki na szpulę.'],
    ),
  ev('e08', 'Przedmiot', 'Puszka przy ciele', 'Stalowa puszka na szpulę 1800 m.', [
@@ -81,7 +81,7 @@ evidence = [
    'Puszka leżała u stóp regału z taśmami, metr od ciała — jakby spadła z góry. Na górnej półce regału, na wysokości około 1,9 m, gruba, nienaruszona warstwa kurzu — nie ma w niej śladu po niczym, co stałoby tam niedawno.'],
    ),
  ev('e09', 'Fotografia', 'Zdjęcie na ścianie kabiny', 'Oprawione w ramkę, nad stołem przewijarki.', [
-   'Czarno-białe zdjęcie: mężczyzna w fartuchu i młoda kobieta z włosami spiętymi w kok przy projektorze Meopta, oboje w białych rękawiczkach. Kobieta trzyma rękę na dźwigni zmiany.',
+   'Czarno-białe zdjęcie: wąsaty mężczyzna w roboczym fartuchu i młoda jasnowłosa kobieta z włosami spiętymi w kok, przy projektorze. Kobieta w białych rękawiczkach trzyma rękę na dźwigni zmiany.',
    {'quote': 'Kabina „Zorzy”, 1998. Leon i jego najzdolniejsza uczennica — Ewa Kalinowska.', 'by': 'podpis na passe-partout'}]),
  ev('e10', 'Oględziny', 'Drzwi ewakuacyjne kabiny', 'Stalowe drzwi na schody pożarowe.', [
    'Drzwi z samozamykaczem i drążkiem od środka, od zewnątrz bez klamki — zamknięte otwiera się je tylko z kabiny. Przy progu w linoleum świeże wgniecenie, jak od drewnianego klina. Klina w kabinie nie ma.',
@@ -90,7 +90,7 @@ evidence = [
    {'kv': [['Tytuł', '„Dziewczyna z Bałut” (1958)'], ['Kopia', '35 mm, obraz 1:1,37, dźwięk optyczny'],
            ['Część I', '1 750 m'], ['Część II', '1 096 m'], ['Razem', '2 846 m']]},
    {'note': 'Dopisek długopisem: „Złożone na dwie duże szpule — jedna zmiana. Zorza, 5.12, ostatni raz. L.B.”'}]),
- ev('e12', 'Oględziny', 'Biurko kinooperatora', 'Mały stolik pod oknem kontrolnym.', [
+ ev('e12', 'Oględziny', 'Biurko kinooperatora', 'Mały stolik przy regale z taśmami.', [
    'Termos z herbatą, okulary, ołówek, stos starych biletów. Na wierzchu leży koperta zaadresowana starannym pismem:',
    {'quote': 'Pani dr Alicja Wrzos, Miejska Konserwator Zabytków — do rąk własnych.', 'by': 'koperta'},
    {'note': 'Koperta jest niezaklejona i pusta.'}]),
@@ -128,7 +128,7 @@ evidence = [
  ev('e20', 'Przedmiot', 'Skrawki z kontenera', 'Niebieski plastikowy kontener na makulaturę przy tylnych drzwiach.', [
    'Na wierzchu, pod uchyloną klapą: mokra kartka w linie, podarta na dziewięć kawałków. Pismo odręczne, staranne, atrament miejscami się rozmył. Pod spodem kartony po kubkach z baru.',
    {'note': 'Skrawki zabezpieczono i wysuszono. Złóżcie je w analizie — zagadka „Podarty list”.'}]),
- ev('e21', 'Przedmiot', 'Drewniany klin', 'Pod schodami pożarowymi, w kałuży.', [
+ ev('e21', 'Przedmiot', 'Drewniany klin', 'U stóp schodów pożarowych, w kałuży.', [
    'Gruby, wytarty klin z jasnego drewna z wywierconą dziurką i pętlą czerwonego sznurka — żeby dało się go wyszarpnąć spod drzwi jednym ruchem. Mokry. Na jednej krawędzi świeże wgniecenie, jakby spadł z wysoka na stalowy stopień.']),
  ev('e22', 'Oględziny', 'Tylne drzwi zaplecza', 'Z podwórza na korytarz zaplecza.', [
    'Metalowe drzwi z zamkiem i czujnikiem alarmu nad framugą. Za nimi korytarz zaplecza: po prawej, trzy kroki od drzwi, biuro kierowniczki; dalej korytarz prowadzi do foyer. Z podwórza nie ma innego wejścia do budynku poza schodami pożarowymi do kabiny.']),

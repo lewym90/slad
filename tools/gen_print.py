@@ -93,7 +93,8 @@ def build(cid):
     c.setFont('Sans', 9); c.setFillColor(GREY); c.drawString(M, d.y, meta); c.setFillColor(black); d.y -= 26
     intro = case['intro']
     d.para(intro['lead'], 'SerifI', 12, 17, gap=10)
-    for p in intro.get('brief', []): d.para(p)
+    for p in intro.get('brief', []):
+        if 'Do wydruku' not in p: d.para(p)
     d.y -= 6; d.head('Zadania')
     for i, t in enumerate(intro.get('task', []), 1): d.para(f'{i}. {t}', 'Serif', 11, 16, gap=3)
     d.y -= 10

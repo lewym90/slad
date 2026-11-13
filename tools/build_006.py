@@ -47,7 +47,8 @@ for k, p in [('art', 'assets/art/006-keyart.webp'), ('ambience', 'assets/audio/c
 if ex('assets/voice/006'): case['voiceDir'] = 'assets/voice/006'
 if ex('assets/voice/006-brief.mp3'): case['voice'] = {'brief': 'assets/voice/006-brief.mp3'}
 EVIMG = {'e08': 'assets/evidence/006-can.webp', 'e09': 'assets/evidence/006-photo.webp', 'e13': 'assets/evidence/006-posters.webp',
-         'e16': 'assets/evidence/006-coat.webp', 'e21': 'assets/evidence/006-wedge.webp'}
+         'e16': 'assets/evidence/006-coat.webp', 'e21': 'assets/evidence/006-wedge.webp',
+         'e04': 'assets/evidence/006-leon.webp', 'e20': 'assets/evidence/006-scraps.webp'}
 for e in evidence:
     if e['id'] in EVIMG and ex(EVIMG[e['id']]): e['img'] = EVIMG[e['id']]
 for pr in people:
@@ -60,7 +61,7 @@ BT = {'b-change': 'change', 'b-clock': 'clock', 'b-student': 'student', 'b-lette
 for b in R.breakthroughs:
     v = f"assets/video/006-bt-{BT[b['id']]}.mp4"
     if ex(v): b['video'] = v
-    im = {'b-change': 'assets/places/006-booth.webp', 'b-clock': 'assets/places/006-flat.webp', 'b-student': EVIMG['e09'], 'b-letter': 'assets/places/006-yard.webp'}[b['id']]
+    im = {'b-change': 'assets/places/006-booth.webp', 'b-clock': 'assets/evidence/006-clock.webp', 'b-student': EVIMG['e09'], 'b-letter': 'assets/places/006-yard.webp'}[b['id']]
     if ex(im): b['img'] = im
 vlp = os.path.join(os.path.dirname(__file__), 'voice', '006-lines.json')
 if os.path.exists(vlp):

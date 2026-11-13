@@ -41,7 +41,7 @@ VOICE: {VOICE[who]}
 """
     if n:
         h += f"""
-STRUCTURE: the recording contains exactly {n} separate spoken lines, in the order given below. Between every two consecutive lines leave EXACTLY 3 seconds of complete silence (pure digital silence, no room tone, no sounds) so the lines can be cut apart. Never speak the line numbers, the stage directions or any of these instructions. Keep the same voice, timbre, pitch and recording level for every line.
+STRUCTURE: the recording contains exactly {n} separate spoken line(s), in the order given below. Between every two consecutive lines leave EXACTLY 3 seconds of complete silence (pure digital silence, no room tone, no sounds) so the lines can be cut apart. Never speak the line numbers, the stage directions or any of these instructions. Keep the same voice, timbre, pitch and recording level for every line.
 
 ACTING NOTES (do not read aloud) — for each line its type is given; play it accordingly:
 """
@@ -62,15 +62,25 @@ for who in order:
     L += [{'id': f'show-{i}', 'kind': 'showdef', 'text': d} for i, d in enumerate(p.get('showDefault', []))]
     for i, x in enumerate(L, 1): x['n'] = i; x['spoken'] = clean(x['text'])
     for x in L: assert not re.search(r'\d|[A-Z]{2,}', x['spoken']), (who, x['id'], x['spoken'])
-    fname = f'{CID}-{who}-all.wav'
-    lines_out[f'{CID}-{who}'] = {'name': p['name'], 'file': fname, 'lines': L}
-    notes = '\n'.join(f"Line {x['n']}: {KIND[x['kind']]}." for x in L)
-    spoken = '\n\n'.join(x['spoken'] for x in L)
-    blocks.append(head(fname, who, len(L)) + notes + f"""
+    # podział na krótkie nagrania: generator obcina długie pliki i gubi kwestie (maks. 5 kwestii i ok. 130 słów na plik)
+    parts, cur, wc = [], [], 0
+    for x in L:
+        w = len(x['spoken'].split())
+        if cur and (len(cur) >= 5 or wc + w > 130): parts.append(cur); cur, wc = [], 0
+        cur.append(x); wc += w
+    if cur: parts.append(cur)
+    lines_out[f'{CID}-{who}'] = {'name': p['name'], 'parts': [{'file': f'{CID}-{who}-{i}.wav', 'n': len(P)} for i, P in enumerate(parts, 1)], 'lines': L}
+    for i, P in enumerate(parts, 1):
+        fname = f'{CID}-{who}-{i}.wav'
+        notes = '\n'.join(f"Line {k}: {KIND[x['kind']]}." for k, x in enumerate(P, 1))
+        spoken = '\n\n'.join(x['spoken'] for x in P)
+        blocks.append(head(fname, who, len(P)) + notes + f"""
 
 {COMMON}
 
-TEXT TO SPEAK — {len(L)} lines, separated here by blank lines. Read each one exactly as written, in Polish, word for word, then leave 3 seconds of silence before the next one. Do not add, omit, translate or read any of these instructions aloud:
+IMPORTANT: the recording must contain ALL {len(P)} lines, complete, in this exact order. Do not skip, shorten, merge or paraphrase any line. After each line stop speaking and leave a clearly audible 3-second gap of complete silence.
+
+TEXT TO SPEAK — {len(P)} lines, separated here by blank lines. Read each one exactly as written, in Polish, word for word, then leave 3 seconds of silence before the next one. Do not add, omit, translate or read any of these instructions aloud:
 <<<
 {spoken}
 >>>""")
@@ -129,8 +139,8 @@ VQ = ' Maximum quality: crisp, stable, artefact-free footage with no flicker exc
 vids = [
  ('006-intro.mp4', f"A seamless looping shot: a very slow, smooth drift through a dark, empty old cinema auditorium towards a large blank screen; a soft beam of projector light passes overhead from a small window at the back, dust motes floating slowly in it, the screen glowing faintly white with a gentle film flicker. The very first and the very last frame must look nearly identical so the clip loops without a visible cut. {VID}"),
  ('006-bt-change.mp4', f"Close-up in a dim projection booth: the lamp housing of a vintage 35mm film projector lights up from inside with a warm glow, then its big feed reel starts to turn by itself and the film begins to run through the gate with a fast, steady flicker of light; the camera slowly racks focus from the turning reel to the projection port, where the beam shoots out into darkness. No hands, no people. {VID}"),
- ('006-bt-clock.mp4', f"An extreme close-up of a round white-faced analogue wall clock in an old man's room in grey morning light: the second hand sweeps slowly, the camera pushes in very slowly until the black hour hand fills the frame, then gently pulls focus to a lace curtain and a rainy courtyard window behind it. {VID}"),
- ('006-bt-student.mp4', f"A slow push-in on a framed black-and-white photograph hanging on the dark wall of a projection booth: in the photo a middle-aged projectionist and a young blonde woman in white gloves at a vintage film projector, both seen small and slightly from the side so their faces stay soft and not detailed; flickering projector light from off-screen washes over the glass of the frame. {VID}"),
+ ('006-bt-clock.mp4', "A slow, smooth push-in towards a round analogue wall clock hanging on a grey, slightly stained plastered wall in an old man's flat, in grey morning light from a window on the right: a white clock face with large black Arabic numerals from 1 to 12, a thin dark metal rim, black hour and minute hands showing ten past ten and a thin second hand sweeping slowly; below the clock the top of a dark wooden 1960s sideboard with a small vintage valve radio and a table lamp with a cream glass shade; to the right of the clock a framed old black-and-white photograph of a tram. The camera pushes in until the clock face fills most of the frame. The only characters allowed anywhere in the video are the printed numerals on the clock face. " + VID.replace('no text, no letters, no numbers, no logos, no faces visible', 'no other text, no letters, no logos, no faces visible')),
+ ('006-bt-student.mp4', "A slow push-in on a framed black-and-white photograph with a cream passe-partout, hanging on the dark grey wall of an old cinema projection booth and washed by flickering warm light from an unseen running projector. Inside the photograph, posed side by side and facing the camera: a man of about 45 with dark curly hair greying at the temples, a thick dark moustache and a grey work coat, and a young woman of about 24 with ash-blonde hair pinned up in a neat bun, also in a grey work coat, wearing white cotton gloves, her gloved hand resting on the lever of a big vintage 35mm film projector with large reels; both with a faint proud smile; the print is old and slightly faded. The camera pushes in from the whole frame to the two figures. The only faces in the video are the two people inside the old photograph. " + VID.replace('no faces visible', 'no other faces')),
  ('006-bt-letter.mp4', f"Top-down close-up on a dark wooden table under a desk lamp: nine wet, torn pieces of a lined handwritten letter slowly slide together by themselves and join into one whole sheet, the torn edges matching; the blue ink is blurred and completely illegible; drops of water glisten on the paper. No hands. {VID}"),
 ]
 v = [f"# ŚLAD — prompty filmowe i dźwiękowe, sprawa {CID} „{c['title']}”\n", "Każdy film to osobny prompt. Filmy bez dźwięku — dźwięk dodaje gra. Kolejność plików: wstęp, potem cztery przełomy.\n", "## WIDEO\n"]

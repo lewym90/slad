@@ -237,7 +237,8 @@
      "ev": "x6",
      "a": "Plakaty z tych lat drukowano w tysiącach egzemplarzy. Na aukcjach jest ich pełno."
     }
-   ]
+   ],
+   "img": "assets/people/006-ewa.webp"
   },
   {
    "id": "damian",
@@ -355,7 +356,8 @@
      "ev": "e09",
      "a": "Nie wiem, kto to jest. Pan Leon mówił kiedyś, że przede mną miał tylko jedną uczennicę, dawno temu, i że była lepsza od niego."
     }
-   ]
+   ],
+   "img": "assets/people/006-damian.webp"
   },
   {
    "id": "grzegorz",
@@ -464,14 +466,15 @@
      "ev": "e04",
      "a": "Ojciec czekał na ten wieczór pół roku. Mówił, że to będzie najlepsza projekcja w jego życiu."
     }
-   ]
+   ],
+   "img": "assets/people/006-grzegorz.webp"
   },
   {
    "id": "joanna",
    "name": "Joanna Rak",
    "role": "Prowadzi bufet kina",
    "age": 58,
-   "desc": "Pracuje za barem „Zorzy” od 1999 roku. Ciepła, gadatliwa, z ołówkiem za uchem. Zna wszystkich stałych widzów po imieniu i wszystko, co dzieje się w foyer.",
+   "desc": "Pracuje za barem „Zorzy” od 1999 roku. Ciepła, gadatliwa, z ołówkiem wpiętym w rude loki. Zna wszystkich stałych widzów po imieniu i wszystko, co dzieje się w foyer.",
    "deflect": [
     "Ja tam stałam za barem, kochanie. Nic więcej nie wiem.",
     "Nie będę gadać o ludziach za plecami.",
@@ -575,7 +578,8 @@
      "ev": "e16",
      "a": "W tym płaszczu wtedy przyszła. Miała go na ramionach, cały mokry."
     }
-   ]
+   ],
+   "img": "assets/people/006-joanna.webp"
   },
   {
    "id": "lipka",
@@ -676,7 +680,8 @@
      "ev": "x1",
      "a": "Padać zaczęło akurat, jak on zbiegał. Tego jestem pewien. Dlatego wstałem do okna."
     }
-   ]
+   ],
+   "img": "assets/people/006-lipka.webp"
   }
  ],
  "locations": [
@@ -684,7 +689,7 @@
    "id": "booth",
    "name": "Kabina projekcyjna",
    "kind": "Nad balkonem sali, wejście z korytarza balkonu",
-   "desc": "Ciasne pomieszczenie z dwoma projektorami Meopta, stołem przewijarki i regałem z taśmami. Przez okienka projekcyjne widać ciemną salę. Ciało zabrano w nocy — na podłodze przy przewijarce został zarys kredą.",
+   "desc": "Ciasne pomieszczenie z dwoma projektorami Meopta, stołem przewijarki i regałem z taśmami. Przez okienka projekcyjne widać ciemną salę. Ciało zabrano w nocy — na środku podłogi został zarys kredą.",
    "spots": [
     {
      "id": "sp-log",
@@ -696,8 +701,8 @@
     },
     {
      "id": "sp-proj",
-     "name": "Projektor A i przewijarka",
-     "text": "Szpula na projektorze A, pusty stół przewijarki.",
+     "name": "Projektor A",
+     "text": "Pełna szpula na projektorze A po lewej.",
      "gives": [
       "e07"
      ]
@@ -759,42 +764,43 @@
     "aspect": 1.5,
     "spots": {
      "sp-log": [
-      0.47,
-      0.52,
+      0.33,
+      0.49,
       0.05
      ],
      "sp-proj": [
-      0.22,
-      0.45,
+      0.135,
+      0.15,
       0.07
      ],
      "sp-can": [
-      0.6,
-      0.86,
-      0.05
+      0.845,
+      0.655,
+      0.045
      ],
      "sp-photo": [
-      0.7,
-      0.2,
+      0.607,
+      0.25,
       0.05
      ],
      "sp-door": [
-      0.92,
-      0.45,
+      0.81,
+      0.34,
       0.06
      ],
      "sp-card": [
-      0.36,
-      0.75,
-      0.04
+      0.49,
+      0.715,
+      0.045
      ],
      "sp-desk": [
-      0.8,
-      0.66,
-      0.05
+      0.885,
+      0.86,
+      0.06
      ]
     }
-   }
+   },
+   "img": "assets/places/006-booth.webp"
   },
   {
    "id": "foyer",
@@ -818,7 +824,8 @@
       "e14"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/006-foyer.webp"
   },
   {
    "id": "office",
@@ -856,7 +863,8 @@
       "e18"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/006-office.webp"
   },
   {
    "id": "yard",
@@ -882,8 +890,8 @@
     },
     {
      "id": "sp-wedge",
-     "name": "Pod schodami",
-     "text": "Coś leży w kałuży pod dolnym biegiem schodów.",
+     "name": "U stóp schodów",
+     "text": "Coś leży w kałuży tuż przy schodach.",
      "gives": [
       "e21"
      ]
@@ -913,27 +921,28 @@
     "aspect": 1.5,
     "spots": {
      "sp-stairs": [
+      0.7,
       0.62,
-      0.38,
-      0.08
-     ],
-     "sp-bin": [
-      0.3,
-      0.72,
       0.07
      ],
+     "sp-bin": [
+      0.475,
+      0.69,
+      0.05
+     ],
      "sp-wedge": [
-      0.66,
-      0.86,
-      0.04
+      0.635,
+      0.875,
+      0.035
      ],
      "sp-back": [
-      0.44,
-      0.55,
+      0.355,
+      0.64,
       0.05
      ]
     }
-   }
+   },
+   "img": "assets/places/006-yard.webp"
   },
   {
    "id": "flat",
@@ -970,22 +979,23 @@
     "aspect": 1.5,
     "spots": {
      "sp-window": [
-      0.78,
-      0.4,
+      0.75,
+      0.25,
       0.09
      ],
      "sp-clock": [
-      0.3,
-      0.2,
-      0.05
+      0.157,
+      0.13,
+      0.06
      ],
      "sp-watch": [
-      0.45,
-      0.72,
-      0.05
+      0.3,
+      0.85,
+      0.065
      ]
     }
-   }
+   },
+   "img": "assets/places/006-flat.webp"
   }
  ],
  "evidence": [
@@ -1016,7 +1026,7 @@
      ]
     },
     "W sobotę kino zorganizowało „Ostatni seans” — pożegnalną projekcję z taśmy 35 mm przed zamknięciem kina. Film skończył się przed 22:00, potem w foyer trwało pożegnanie. Kinooperator na nie nie zszedł. Kierowniczka i technik poszli na górę. Wewnętrzne drzwi kabiny były zamknięte na klucz, a klucz od nich miał w kieszeni zmarły. Kierowniczka otworzyła zapasowym kluczem z biura.",
-    "Leon Barcz leżał na podłodze przy stole przewijarki, z raną tyłu głowy. Obok leżała stalowa puszka na taśmę filmową z krwią na krawędzi. Drzwi ewakuacyjne kabiny, prowadzące na zewnętrzne schody pożarowe, były zamknięte. W projektorze B wciąż paliła się lampa; zgasił ją technik.",
+    "Leon Barcz leżał na podłodze na środku kabiny, przed stołem przewijarki, z raną tyłu głowy. Obok leżała stalowa puszka na taśmę filmową z krwią na krawędzi. Drzwi ewakuacyjne kabiny, prowadzące na zewnętrzne schody pożarowe, były zamknięte. W projektorze B wciąż paliła się lampa; zgasił ją technik.",
     {
      "note": "Wstępna ocena patrolu: możliwy nieszczęśliwy wypadek — upadek ciężkiej puszki z regału. Prokurator nie przyjął tej wersji bez sekcji."
     }
@@ -1110,7 +1120,8 @@
      "Początek projekcji „Dziewczyny z Bałut” (104 min)",
      "Program wieczoru"
     ]
-   ]
+   ],
+   "img": "assets/evidence/006-leon.webp"
   },
   {
    "id": "e05",
@@ -1180,7 +1191,7 @@
    "title": "Projektor A i stół przewijarki",
    "summary": "Dwa projektory Meopta i stół do przewijania taśmy.",
    "body": [
-    "Projektor A wyłączony. Na jego szpuli odbiorczej nawinięta cała część I — końcem na zewnątrz, czyli nieprzewinięta. Na projektorze B część II, przewinięta do końca; luźny koniec taśmy zwisa ze szpuli.",
+    "Projektor A wyłączony. Na jego szpuli cała część I, nawinięta końcem na zewnątrz — czyli po projekcji nieprzewinięta. Na projektorze B część II, puszczona do samego końca; luźny koniec taśmy zwisa aż do podłogi.",
     "Stół przewijarki pusty. Na blacie odciśnięty w kurzu okrągły ślad, wielkości puszki na szpulę."
    ]
   },
@@ -1192,7 +1203,8 @@
    "body": [
     "Pusta stalowa puszka z wieczkiem, waga 2,9 kg. Etykieta: „Dziewczyna z Bałut — cz. I”. Na krawędzi wieczka krew i włosy.",
     "Puszka leżała u stóp regału z taśmami, metr od ciała — jakby spadła z góry. Na górnej półce regału, na wysokości około 1,9 m, gruba, nienaruszona warstwa kurzu — nie ma w niej śladu po niczym, co stałoby tam niedawno."
-   ]
+   ],
+   "img": "assets/evidence/006-can.webp"
   },
   {
    "id": "e09",
@@ -1200,12 +1212,13 @@
    "title": "Zdjęcie na ścianie kabiny",
    "summary": "Oprawione w ramkę, nad stołem przewijarki.",
    "body": [
-    "Czarno-białe zdjęcie: mężczyzna w fartuchu i młoda kobieta z włosami spiętymi w kok przy projektorze Meopta, oboje w białych rękawiczkach. Kobieta trzyma rękę na dźwigni zmiany.",
+    "Czarno-białe zdjęcie: wąsaty mężczyzna w roboczym fartuchu i młoda jasnowłosa kobieta z włosami spiętymi w kok, przy projektorze. Kobieta w białych rękawiczkach trzyma rękę na dźwigni zmiany.",
     {
      "quote": "Kabina „Zorzy”, 1998. Leon i jego najzdolniejsza uczennica — Ewa Kalinowska.",
      "by": "podpis na passe-partout"
     }
-   ]
+   ],
+   "img": "assets/evidence/006-photo.webp"
   },
   {
    "id": "e10",
@@ -1259,7 +1272,7 @@
    "id": "e12",
    "type": "Oględziny",
    "title": "Biurko kinooperatora",
-   "summary": "Mały stolik pod oknem kontrolnym.",
+   "summary": "Mały stolik przy regale z taśmami.",
    "body": [
     "Termos z herbatą, okulary, ołówek, stos starych biletów. Na wierzchu leży koperta zaadresowana starannym pismem:",
     {
@@ -1298,7 +1311,8 @@
    "body": [
     "Cztery plakaty filmowe w ramach: „Czarna perła” (1934), „Wiatr od Bałtyku” (1949), „Dziewczyna z Bałut” (1958), „Noc nad Wartą” (1962). Gablota zamknięta na zamek patentowy.",
     "Przy dolnej krawędzi dwóch plakatów — „Czarnej perły” i „Dziewczyny z Bałut” — widać pod lupą maleńki nadruk wtopiony w papier: „FX 25”. Na dwóch pozostałych nie ma niczego podobnego."
-   ]
+   ],
+   "img": "assets/evidence/006-posters.webp"
   },
   {
    "id": "e14",
@@ -1323,7 +1337,8 @@
     {
      "note": "Technik porównał je z próbką z poręczy schodów pożarowych kina: ta sama farba antykorozyjna (minia) i ta sama rdza. Kontener na makulaturę przy tylnych drzwiach jest plastikowy."
     }
-   ]
+   ],
+   "img": "assets/evidence/006-coat.webp"
   },
   {
    "id": "e17",
@@ -1394,16 +1409,18 @@
     {
      "note": "Skrawki zabezpieczono i wysuszono. Złóżcie je w analizie — zagadka „Podarty list”."
     }
-   ]
+   ],
+   "img": "assets/evidence/006-scraps.webp"
   },
   {
    "id": "e21",
    "type": "Przedmiot",
    "title": "Drewniany klin",
-   "summary": "Pod schodami pożarowymi, w kałuży.",
+   "summary": "U stóp schodów pożarowych, w kałuży.",
    "body": [
     "Gruby, wytarty klin z jasnego drewna z wywierconą dziurką i pętlą czerwonego sznurka — żeby dało się go wyszarpnąć spod drzwi jednym ruchem. Mokry. Na jednej krawędzi świeże wgniecenie, jakby spadł z wysoka na stalowy stopień."
-   ]
+   ],
+   "img": "assets/evidence/006-wedge.webp"
   },
   {
    "id": "e22",
@@ -1959,25 +1976,31 @@
    "id": "b-change",
    "when": "p-reel",
    "title": "Zmiana o 21:04",
-   "text": "Film nie przerwał się ani na sekundę. Ktoś stanął przy projektorach dokładnie o 21:04 i zrobił to, co Leon Barcz robił przez pięćdziesiąt lat — tylko że tej zmiany nikt nie wpisał do dziennika."
+   "text": "Film nie przerwał się ani na sekundę. Ktoś stanął przy projektorach dokładnie o 21:04 i zrobił to, co Leon Barcz robił przez pięćdziesiąt lat — tylko że tej zmiany nikt nie wpisał do dziennika.",
+   "video": "assets/video/006-bt-change.mp4",
+   "img": "assets/places/006-booth.webp"
   },
   {
    "id": "b-clock",
    "when": "lie:l-m1",
    "title": "Godzina pana Lipki",
-   "text": "Zegar nad stołem śpieszy się o godzinę. Człowiek na schodach pożarowych nie zbiegał po seansie, lecz w jego trakcie — minutę przed tym, jak zatrzasnęły się drzwi kabiny."
+   "text": "Zegar nad stołem śpieszy się o godzinę. Człowiek na schodach pożarowych nie zbiegał po seansie, lecz w jego trakcie — minutę przed tym, jak zatrzasnęły się drzwi kabiny.",
+   "img": "assets/evidence/006-clock.webp"
   },
   {
    "id": "b-student",
    "when": "show:j-s1",
    "title": "Uczennica",
-   "text": "Na zdjęciu z kabiny, przy dźwigni zmiany, stoi młoda Ewa Kalinowska. Dziś nazywa się Sitek i prowadzi kino. Twierdziła, że nigdy nie dotknęła projektora."
+   "text": "Na zdjęciu z kabiny, przy dźwigni zmiany, stoi młoda Ewa Kalinowska. Dziś nazywa się Sitek i prowadzi kino. Twierdziła, że nigdy nie dotknęła projektora.",
+   "img": "assets/evidence/006-photo.webp"
   },
   {
    "id": "b-letter",
    "when": "p-torn",
    "title": "List do konserwator",
-   "text": "Mokre skrawki układają się w list, którego Leon Barcz nie zdążył wręczyć. Dwa plakaty w gablocie to kopie. Klucz do niej mieli tylko on i kierowniczka."
+   "text": "Mokre skrawki układają się w list, którego Leon Barcz nie zdążył wręczyć. Dwa plakaty w gablocie to kopie. Klucz do niej mieli tylko on i kierowniczka.",
+   "video": "assets/video/006-bt-letter.mp4",
+   "img": "assets/places/006-yard.webp"
   }
  ],
  "hintTrail": [
@@ -2372,7 +2395,7 @@
    },
    {
     "h": "Droga przez podwórze",
-    "p": "Tylne drzwi zaplecza, trzy kroki od biura: wyjście o 20:41, powrót o 21:13. Deszcz od 21:05. Mokry płaszcz kierowniczki z farbą i rdzą z poręczy schodów pożarowych, starta farba na poręczy, klin kinooperatora na czerwonym sznurku w kałuży pod schodami."
+    "p": "Tylne drzwi zaplecza, trzy kroki od biura: wyjście o 20:41, powrót o 21:13. Deszcz od 21:05. Mokry płaszcz kierowniczki z farbą i rdzą z poręczy schodów pożarowych, starta farba na poręczy, klin kinooperatora na czerwonym sznurku w kałuży u stóp schodów."
    },
    {
     "h": "List i plakaty",
@@ -2499,5 +2522,11 @@
     ]
    }
   ]
+ },
+ "art": "assets/art/006-keyart.webp",
+ "ambience": "assets/audio/case-006.mp3",
+ "introVideo": "assets/video/006-intro.mp4",
+ "voice": {
+  "brief": "assets/voice/006-brief.mp3"
  }
 }

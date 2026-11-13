@@ -1,7 +1,28 @@
 {
  "006-ewa": {
   "name": "Ewa Sitek",
-  "file": "006-ewa-all.wav",
+  "parts": [
+   {
+    "file": "006-ewa-1.wav",
+    "n": 5
+   },
+   {
+    "file": "006-ewa-2.wav",
+    "n": 4
+   },
+   {
+    "file": "006-ewa-3.wav",
+    "n": 3
+   },
+   {
+    "file": "006-ewa-4.wav",
+    "n": 5
+   },
+   {
+    "file": "006-ewa-5.wav",
+    "n": 5
+   }
+  ],
   "lines": [
    {
     "id": "ew-q1",
@@ -161,7 +182,20 @@
  },
  "006-damian": {
   "name": "Damian Wróbel",
-  "file": "006-damian-all.wav",
+  "parts": [
+   {
+    "file": "006-damian-1.wav",
+    "n": 4
+   },
+   {
+    "file": "006-damian-2.wav",
+    "n": 5
+   },
+   {
+    "file": "006-damian-3.wav",
+    "n": 5
+   }
+  ],
   "lines": [
    {
     "id": "d-q1",
@@ -265,7 +299,20 @@
  },
  "006-grzegorz": {
   "name": "Grzegorz Barcz",
-  "file": "006-grzegorz-all.wav",
+  "parts": [
+   {
+    "file": "006-grzegorz-1.wav",
+    "n": 5
+   },
+   {
+    "file": "006-grzegorz-2.wav",
+    "n": 5
+   },
+   {
+    "file": "006-grzegorz-3.wav",
+    "n": 4
+   }
+  ],
   "lines": [
    {
     "id": "g-q1",
@@ -369,7 +416,20 @@
  },
  "006-joanna": {
   "name": "Joanna Rak",
-  "file": "006-joanna-all.wav",
+  "parts": [
+   {
+    "file": "006-joanna-1.wav",
+    "n": 4
+   },
+   {
+    "file": "006-joanna-2.wav",
+    "n": 5
+   },
+   {
+    "file": "006-joanna-3.wav",
+    "n": 3
+   }
+  ],
   "lines": [
    {
     "id": "j-q1",
@@ -459,7 +519,20 @@
  },
  "006-lipka": {
   "name": "Stanisław Lipka",
-  "file": "006-lipka-all.wav",
+  "parts": [
+   {
+    "file": "006-lipka-1.wav",
+    "n": 4
+   },
+   {
+    "file": "006-lipka-2.wav",
+    "n": 5
+   },
+   {
+    "file": "006-lipka-3.wav",
+    "n": 3
+   }
+  ],
   "lines": [
    {
     "id": "l-q1",
