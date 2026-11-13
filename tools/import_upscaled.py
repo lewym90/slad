@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Sprawdza i podmienia grafiki przeskalowane w Upscaylu.
-Użycie: python3 tools/import_upscaled.py paczka.zip [--apply] [--q 82]
+Użycie: python3 tools/import_upscaled.py paczka.zip [--apply] [--q 82] [--maxw 1920]
 Dopasowuje pliki po nazwie (usuwa dopiski _upscayl...), sprawdza skalę, różnicę kompozycji, robi arkusz podglądu /tmp/up-sheet.jpg."""
 import sys, os, re, glob, zipfile, tempfile, shutil
 from PIL import Image, ImageChops, ImageStat
@@ -11,6 +11,7 @@ DIRS = ['art', 'cases', 'people', 'places', 'evidence', 'video']
 def main():
     zp = sys.argv[1]; apply = '--apply' in sys.argv
     q = int(sys.argv[sys.argv.index('--q') + 1]) if '--q' in sys.argv else 82
+    maxw = int(sys.argv[sys.argv.index('--maxw') + 1]) if '--maxw' in sys.argv else 0
     tmp = tempfile.mkdtemp(); zipfile.ZipFile(zp).extractall(tmp)
     idx = {}
     for d in DIRS:
@@ -44,7 +45,9 @@ def main():
         t0 = t1 = 0
         for d, name, _, _, _, _, f in rows:
             dst = f'{A}/{d}/{name}'; t0 += os.path.getsize(dst)
-            Image.open(f).convert('RGB').save(dst, quality=q, method=6); t1 += os.path.getsize(dst)
+            im = Image.open(f).convert('RGB')
+            if maxw and im.width > maxw: im = im.resize((maxw, round(im.height * maxw / im.width)), Image.LANCZOS)
+            im.save(dst, quality=q, method=6); t1 += os.path.getsize(dst)
         print(f'PODMIENIONO {len(rows)} plików: {t0 / 2**20:.1f} MB -> {t1 / 2**20:.1f} MB')
     elif apply: print('NIE podmieniono — najpierw rozwiąż problemy.')
     shutil.rmtree(tmp)
