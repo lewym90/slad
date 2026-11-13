@@ -143,7 +143,7 @@ people = [
    SH('o-s2', 'e39', 'Znak „Wieprza” na papierze z 1946 roku? Papiernia ruszyła w pięćdziesiątym pierwszym. To przesądza sprawę. Gdybym to wiedział rano, nie usiadłbym przy tym stole.'),
   ]},
  {'id': 'marta', 'name': 'Marta Szulc', 'role': 'Żona zaginionego', 'age': 59,
-  'desc': 'Przyjechała z Koszalina w dwie godziny. Nauczycielka, ściska w dłoni telefon i torebkę z zapasową insuliną. Mówi cicho i bardzo konkretnie.',
+  'desc': 'Przyjechała z Koszalina w niecałe trzy godziny. Nauczycielka, ściska w dłoni telefon i torebkę z zapasową insuliną. Mówi cicho i bardzo konkretnie.',
   'deflect': ['Nie wiem. Edward nie opowiadał mi o szczegółach pracy.', 'Proszę go znaleźć. Tylko tyle.', 'Nie umiem na to odpowiedzieć.'],
   'showDefault': ['Nie wiem, co to jest.', 'Nigdy tego nie widziałam.'],
   'questions': [

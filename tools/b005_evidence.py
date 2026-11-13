@@ -58,7 +58,7 @@ evidence = [
    {'note': 'Wstrzykiwacze leżą w kosmetyczce, której nikt nie otwierał — suwak zapięty, w środku metka z apteki.'}]),
  ev('e10', 'Oględziny', 'Łóżko i łazienka', 'Pokój wygląda, jakby nikt w nim nie spał.', [
    'Narzuta zasłana, poduszki nietknięte. Ręczniki w łazience suche i złożone. Mydełka i szampony hotelowe zamknięte. Czajnik pusty i zimny, kubki czyste.',
-   'Na wykładzinie od drzwi w głąb pokoju ciemne ślady butów z błotem, już prawie suche. W czwartek od 21:00 w Szczecinie padał deszcz.']),
+   'Na wykładzinie od drzwi w głąb pokoju ciemne, zaschnięte ślady butów — brud z mokrej ulicy. W czwartek od 21:00 w Szczecinie padał deszcz.']),
  ev('e11', 'Oględziny', 'Szafa wnękowa — tylna ściana', 'Za szafą są drugie drzwi.', [
    'Tylna ściana szafy to płyta na czterech zatrzaskach. Zdejmuje się ją ręką, bez narzędzi. Za nią są stalowe drzwi z klamką i wkładką na klucz, zamknięte na klucz.',
    'Na dnie szafy pył i okruchy gipsu z obrzeża otworu, a przy jednym z zatrzasków świeże zarysowanie. Wieszaki zsunięte na jedną stronę drążka.',
@@ -156,7 +156,7 @@ evidence = [
    'Kierownik techniczny Wrona: „Zamek w M2 to zwykła wkładka. Dorobienie klucza zajmuje ślusarzowi pięć minut. Kopie mógł mieć każdy, kto przy tym robił.”']),
 
  # ---------- KORYTARZ GOSPODARCZY I KLATKA B ----------
- ev('e29', 'Oględziny', 'Drzwi M2 od strony korytarza', 'Korytarz gospodarczy za pokojami 210–216.', [
+ ev('e29', 'Oględziny', 'Drzwi M2 od strony korytarza', 'Korytarz gospodarczy wzdłuż ściany od podwórza.', [
    'Korytarz biegnie wzdłuż ściany od podwórza, za pokojem 214. Jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. W kurzu widać też niewyraźne odciski podeszew, prowadzące od M2 w stronę klatki B. Drzwi zamknięte na klucz.',
    'Od M2 do klatki B jest dwanaście metrów.']),
  ev('e31', 'Przedmiot', 'Karta hotelowa na klatce B', 'Podest między I a II piętrem, pod kaloryferem.', [

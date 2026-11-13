@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.16.1';
+const VERSION = '2.16.2';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -8,6 +8,12 @@ const CORE = [
   './app.js',
   './manifest.webmanifest', './assets/vendor/qrcode.js',
   './cases/index.json',
+  './data/baza/index.json',
+  './data/baza/tlo-osoby.json',
+  './data/baza/tlo-pojazdy.json',
+  './data/baza/tlo-firmy.json',
+  './data/baza/tlo-ksiegi.json',
+  './data/baza/sprawa-005.json',
   './cases/001.json',
   './cases/002.json',
   './cases/003.json',

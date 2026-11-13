@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.16.1';
+const VERSION = '2.16.2';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -107,7 +107,7 @@ function indexCase(c) {
   c.stmt = {}; c.q = {};
   c.people.forEach(p => { p.statements.forEach(s => { c.stmt[s.id] = { ...s, person: p.id }; }); p.questions.forEach(q => { c.q[q.id] = { ...q, person: p.id }; }); });
   c.show = {}; c.people.forEach(p => (p.shows || []).forEach(x => { c.show[x.id] = { ...x, person: p.id }; }));
-  c.puzzle = Object.fromEntries(c.puzzles.map(p => [p.id, p]));
+  c.puzzle = Object.fromEntries(c.puzzles.map(p => [p.id, p])); c.dbMap = c.dbMap || {};
   // skąd pochodzi dowód (do grupowania w konfrontacji)
   c.evSrc = {}; const setSrc = (ids, k) => (ids || []).forEach(id => { if (!c.evSrc[id]) c.evSrc[id] = k; });
   c.evidence.forEach(e => { if (e.start) c.evSrc[e.id] = 'start'; else if (e.private) c.evSrc[e.id] = 'team'; });
@@ -119,7 +119,7 @@ function indexCase(c) {
 }
 async function getCase(id) {
   if (CASES[id]) return CASES[id];
-  const raw = await fetchJSON(`cases/${id}.json`); if (raw.db) await loadDB();
+  const raw = await fetchJSON(`cases/${id}.json`); if (raw.db) { try { await loadDB(); } catch (_) { DBP = null; } }
   CASES[id] = indexCase(raw); dbFill(CASES[id]); return CASES[id];
 }
 /* Wariant sprawy dla trybu: „Wspólny stół” przenosi tajne akta do świata gry. */
@@ -263,6 +263,7 @@ function ensureDbEv(c, g) { if (!c || !g || !DB) return; g.found.forEach(id => {
 const dbUI = {}; // stan formularzy terminala (na sesję)
 function dbState(key, bases) { return dbUI[key] || (dbUI[key] = { base: bases[0], f: {}, res: null, err: null }); }
 function terminalHTML(c, key, canAttach, g) {
+  if (!DB) return '<div class="term"><div class="empty"><h3>Baza niedostępna</h3><p>Połączcie się z internetem i otwórzcie teczkę ponownie.</p></div></div>';
   const bases = c.db.bases; const st = dbState(key, bases); const B = BASES[st.base];
   const res = st.res; const att = id => g && (g.found.includes(c.dbMap[id]) || g.found.includes('db:' + id));
   return `<div class="term"><div class="term-tabs">${bases.map(b => `<button data-a="db-base" data-k="${key}" data-b="${b}" aria-pressed="${b === st.base}">${BASES[b].short}</button>`).join('')}</div>
@@ -275,6 +276,7 @@ function terminalHTML(c, key, canAttach, g) {
    ${canAttach ? '' : '<p class="muted" style="font-size:.85rem;margin-top:12px">Wydruki do akt dołącza się na wspólnym ekranie (zakładka Bazy).</p>'}</div>`;
 }
 function viewBases(c, g) {
+  if (!DB && !(c.offline && c.offline.db)) { loadDB().then(() => { dbFill(c); if (CASES[c.id]) dbFill(CASES[c.id]); rerender(); }).catch(() => { DBP = null; }); return `<div class="page-head"><div><div class="eyebrow">Terminal śledczy</div><h2>Bazy danych</h2></div></div><div class="empty"><h3>Łączenie z bazą…</h3><p>Baza danych nie jest jeszcze zapisana na tym urządzeniu. Połączcie się z internetem — po pierwszym otwarciu zadziała też offline.</p></div>`; }
   if (c.offline && c.offline.db) return `<div class="page-head"><div><div class="eyebrow">Terminal śledczy</div><h2>Bazy danych</h2></div></div><div class="empty"><h3>Brak dostępu</h3><p>${esc(c.offline.db)}</p></div>`;
   return `<div class="page-head"><div><div class="eyebrow">Terminal śledczy</div><h2>Bazy danych</h2><p>Ogólnopolskie rejestry: osoby, pojazdy, firmy i księgi wieczyste. Wyszukiwanie nic nie kosztuje. Żeby użyć danych w śledztwie — w pytaniach, konfrontacjach i raporcie — dołączcie wydruk do akt (1 ruch).</p></div></div>
    ${terminalHTML(c, 'g' + g.created, true, g)}`;
