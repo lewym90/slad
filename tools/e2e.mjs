@@ -40,12 +40,13 @@ if (MODE === 'phones') {
     if (i === 0) await pp.screenshot({ path: `${out}/phone-folder.png`, fullPage: false });
     codes.push(...await pp.$$eval('.code-tag b', els => els.map(e => e.textContent.trim()))); await pp.close(); }
   console.log('folder codes', codes.join(','));
-  await A('qr-done'); await p.waitForTimeout(400); await closeAll();
+  await A('qr-done'); await p.waitForTimeout(400); if (await p.locator('[data-a="unlock-ok"]').count()) { await p.locator('[data-a="unlock-ok"]').click(); await p.waitForTimeout(500); console.log('unlock screen ok'); } await closeAll();
   await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="tajne"]'); await shot('analysis-private');
   for (const [k, code] of codes.entries()) { await A('reveal'); await p.fill('#revcode', code); if (k === 0) await shot('reveal'); await A('reveal-go'); await p.waitForTimeout(300); await closeAll(); }
   await A('reveal'); await p.fill('#revcode', 'ZZZZ'); await A('reveal-go'); const bad = await p.locator('.result-bad').count(); console.log('wrong code rejected', bad === 1); await closeAll();
 } else {
-  await p.waitForTimeout(400); await shot('start-msg'); await closeAll(); await shot('files');
+  await p.waitForTimeout(400); if (await p.locator('[data-a="unlock-ok"]').count()) { await shot('unlocks'); await p.locator('[data-a="unlock-ok"]').click(); await p.waitForTimeout(500); console.log('unlock screen ok'); }
+  await shot('start-msg'); await closeAll(); await shot('files');
 }
 // zdolność roli + powiększenie zdjęcia
 await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="zespol"]'); await A('power'); await shot('power-armed'); console.log('armed', (await state()).armed, 'used', JSON.stringify((await state()).used));
@@ -68,6 +69,11 @@ for (let round = 0; round < 5; round++) {
   for (const l of (MODE === 'table' ? [...C.locations, ...C.tableMode.locations] : C.locations)) {
     await A('loc', `.loc[data-id="${l.id}"]`); if (round === 0 && l.id === 'study') await shot('location-study');
     while (await p.locator('[data-a="search"]').count()) await A('search');
+    if (l.search) { await A('look-open', `[data-id="${l.id}"]`); await p.waitForTimeout(300); if (!globalThis.lookShot) { globalThis.lookShot = true; await shot('look'); }
+      const miss = await p.evaluate(() => { const { c, g } = ctx(); return JSON.stringify(lookTap(c, g, c.loc[route().id ? Object.keys(c.loc).find(k => c.loc[k].search) : ''], 0.001, 0.001, 3)); }); if (round === 0) console.log('look miss', miss);
+      const low = await p.evaluate(lid => { const { c, g } = ctx(); const l = c.loc[lid]; const [x, y] = Object.values(l.search.spots)[0]; return JSON.stringify(lookTap(c, g, l, x, y, 1)); }, l.id); if (round === 0) console.log('look no-zoom', low);
+      for (const sid of Object.keys(l.search.spots)) { const r = await p.evaluate(([lid, s]) => JSON.stringify(window.__lookTest(lid, s)), [l.id, sid]); if (r.includes('hit')) console.log('look hit', sid); }
+      await closeAll(); }
     if (round === 0 && l.id === 'study') await shot('location-study-searched');
     await closeAll();
   }

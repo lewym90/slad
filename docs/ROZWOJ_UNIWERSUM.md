@@ -134,3 +134,10 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 - 2.15.0: terminal baz danych (#1) i okazywanie dowodów (#4) w silniku; ogólnopolska baza tła w `data/baza/`.
 - Sprawa 005 „Pokój bez okien”: debiut #1, #4 i formatu zaginięcia (#31); logika zwalidowana, testy przejścia OK; czeka na media (prompty w `docs/PROMPTY_*_005.md`).
 - Następne sprawy: kolejne nowości z listy, zmiennie (raz jedna, raz kilka; raz krótka sprawa, raz duża).
+
+## 12. Decyzje autora z 13.11.2026 (przed południem)
+1. **Ekran „Nowe uprawnienia wydziału”** na starcie sprawy, która coś odblokowuje (`case.unlocks`, opcjonalnie `unlockNote` — słowa szefa wydziału). Spis odblokowanych w Kronice wydziału (`S.unlocked`).
+2. **Raz odblokowane uprawnienie zostaje** we wszystkich kolejnych sprawach. Wyjątek tylko z fabularnym powodem (np. awaria systemu, sprawa historyczna) — pole `offline: {db: 'powód'}`; zakładka pokazuje wtedy komunikat. Walidator pilnuje: od 005 każda sprawa ma `db` (albo `offline.db`) i każda osoba ma `showDefault` (albo `offline.show`).
+3. **Oględziny na zdjęciu (#11) — zaakceptowane w tej formie:** licznik „Ślady: x z y”, ślad można wskazać dopiero po co najmniej 2× przybliżeniu, pudło bezpłatne, trafienie = 1 ruch (jak przeszukanie punktu), nieodkryte ślady jako „???”, zablokowane po trafieniu pokazują powód. Dane: `location.search = {aspect, img?, spots: {spotId: [x, y, r]}}` (współrzędne względne, r względem szerokości). Pozycje zaznacza Claude po wygenerowaniu grafiki i sprawdza; ślady muszą być wyraźnymi przedmiotami. Nie w każdym miejscu („raz tak, raz inaczej”). Silnik gotowy w 2.16.0; pierwsze użycie planowane od sprawy 006 (`FEATURES.look.since`).
+4. **Ostrość na dużym ekranie:** generator autora daje maks. 1536×1024 (grafiki) i 1280×720 (wideo). Skalowanie AI ×4 (Real-ESRGAN) wyraźnie poprawia ostrość — autor zrobi je u siebie programem **Upscayl** (Claude poda instrukcję, gdy autor będzie przy komputerze). W chmurze to ok. 1 h na grafikę (brak GPU).
+5. **Dźwięk tła 005** do ponownego wygenerowania (obecny to jednolity szum). Sprawa 005 zostaje zapieczętowana do tego czasu.

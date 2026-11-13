@@ -185,6 +185,18 @@ for (const [f, c] of runs) {
   st.forEach((s, id) => { if (!claims.has(id)) E(`zeznanie ${id} nigdy nie padnie`); else if (!s.truth && !s.unbreakable && !broken.has(id)) E(`kłamstwa ${id} nie da się podważyć`); });
 
   sh.forEach((x, id) => { if (!done.has('show:' + id)) E(`reakcja ${id} nigdy nie padnie`); });
+  // oględziny na zdjęciu
+  c.locations.filter(l => l.search).forEach(l => { const sp = l.search.spots || {}; const ids = Object.keys(sp);
+    if (!(l.search.img || l.img)) E(`oględziny ${l.id}: brak zdjęcia`);
+    l.spots.forEach(x => { if (!sp[x.id]) E(`oględziny ${l.id}: punkt ${x.id} bez położenia na zdjęciu`); });
+    ids.forEach(id => { if (!l.spots.some(x => x.id === id)) E(`oględziny ${l.id}: nieznany punkt ${id}`); const [x, y, r] = sp[id]; if (!(x > 0 && x < 1 && y > 0 && y < 1 && r >= 0.015 && r <= 0.2)) E(`oględziny ${l.id}: złe położenie ${id}`); });
+    const W = l.search.aspect || 1.5; ids.forEach((a, i) => ids.slice(i + 1).forEach(bb => { const [x1, y1, r1] = sp[a], [x2, y2, r2] = sp[bb]; if (Math.hypot((x1 - x2) * W, y1 - y2) < (r1 + r2) * W) E(`oględziny ${l.id}: obszary ${a} i ${bb} nachodzą na siebie`); })); });
+  // raz odblokowane uprawnienie musi działać w każdej kolejnej sprawie (albo mieć fabularny powód braku)
+  const FEAT = { db: '005', show: '005' };
+  Object.entries(FEAT).forEach(([k, since]) => { if (c.id >= since) { const off = c.offline && c.offline[k];
+    if (k === 'db' && !c.db && !off) E(`uprawnienie „baza danych” odblokowane od ${since} — brak db i brak powodu w offline.db`);
+    if (k === 'show' && !off) c.people.forEach(p => { if (!(p.showDefault || []).length) E(`uprawnienie „okazywanie dowodów” od ${since} — osoba ${p.id} bez showDefault`); }); } });
+  (c.unlocks || []).forEach(k => { if (!['db', 'show', 'look'].includes(k)) E(`nieznane uprawnienie ${k}`); });
   // 5a. Baza danych w sprawie
   if (c.db) { const d = loadDB(); if (!d) E('sprawa korzysta z bazy, a brak data/baza');
     else {

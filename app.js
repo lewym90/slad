@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.15.0';
+const VERSION = '2.16.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -41,6 +41,12 @@ const I = {
   gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>'
 };
 
+/* Uprawnienia wydziału — raz odblokowane zostają w kolejnych sprawach (od sprawy, która je wprowadza). */
+const FEATURES = {
+  db: { name: 'Terminal baz danych', since: '005', where: 'Zakładka „Bazy” na dolnym pasku (i w każdej teczce w telefonie).', text: 'Od dziś macie dostęp do ogólnopolskich rejestrów: PESEL (osoby), CEPiK (pojazdy), KRS (firmy) i elektronicznych ksiąg wieczystych. Wyszukiwanie jest bezpłatne, ale dane trzeba wpisać dokładnie, jak w prawdziwym systemie. Żeby użyć wyniku w śledztwie, dołączcie wydruk do akt (1 ruch).' },
+  show: { name: 'Okazywanie dowodów', since: '005', where: 'U każdej osoby zakładka „Okaż dowód”.', text: 'Możecie pokazać świadkowi zdjęcie, dokument albo wydruk i zobaczyć, jak zareaguje. To jeden ruch i nie jest to konfrontacja — nic nie tracicie, a jedno zdjęcie potrafi otworzyć nowy wątek.' },
+  look: { name: 'Oględziny na zdjęciu', since: '006', where: 'W niektórych miejscach przycisk „Rozpocznij oględziny”.', text: 'Sami przeszukujecie zdjęcie miejsca. Przybliżcie je i wskażcie ślad palcem albo myszą. Licznik pokazuje, ile śladów jest w miejscu i ile już znaleźliście. Pudło nic nie kosztuje, znaleziony ślad to jeden ruch.' },
+};
 const ROLES = [
   { id: 'koord', name: 'Koordynator', tip: 'Pilnujesz głównych pytań sprawy i decydujesz, kiedy zespół jest gotów złożyć raport.' },
   { id: 'analityk', name: 'Analityk dowodów', tip: 'Czytasz dokumenty jako pierwszy i szukasz w nich liczb, dat i drobnych niezgodności.' },
@@ -269,6 +275,7 @@ function terminalHTML(c, key, canAttach, g) {
    ${canAttach ? '' : '<p class="muted" style="font-size:.85rem;margin-top:12px">Wydruki do akt dołącza się na wspólnym ekranie (zakładka Bazy).</p>'}</div>`;
 }
 function viewBases(c, g) {
+  if (c.offline && c.offline.db) return `<div class="page-head"><div><div class="eyebrow">Terminal śledczy</div><h2>Bazy danych</h2></div></div><div class="empty"><h3>Brak dostępu</h3><p>${esc(c.offline.db)}</p></div>`;
   return `<div class="page-head"><div><div class="eyebrow">Terminal śledczy</div><h2>Bazy danych</h2><p>Ogólnopolskie rejestry: osoby, pojazdy, firmy i księgi wieczyste. Wyszukiwanie nic nie kosztuje. Żeby użyć danych w śledztwie — w pytaniach, konfrontacjach i raporcie — dołączcie wydruk do akt (1 ruch).</p></div></div>
    ${terminalHTML(c, 'g' + g.created, true, g)}`;
 }
@@ -542,7 +549,7 @@ async function renderGame(id, tab) {
   if (tab === 'raport' && !g.report) return renderShell(c, g, 'analiza', renderReport(c, g));
   if (tab === 'wynik' || (tab === 'raport' && g.report)) { if (!g.report) return go(`gra/${id}/analiza`); return renderShell(c, g, 'analiza', renderResult(c, g)); }
   ensureDbEv(c, g);
-  const views = { akta: viewFiles, miejsca: viewPlaces, osoby: viewPeople, analiza: viewAnalysis, tablica: viewBoard, ...(c.db ? { bazy: viewBases } : {}) };
+  const views = { akta: viewFiles, miejsca: viewPlaces, osoby: viewPeople, analiza: viewAnalysis, tablica: viewBoard, ...(c.db || (c.offline && c.offline.db) ? { bazy: viewBases } : {}) };
   const view = views[tab] || viewFiles;
   renderShell(c, g, views[tab] ? tab : 'akta', view(c, g));
   if (tab === 'tablica') mountBoard(c, g);
@@ -551,7 +558,7 @@ async function renderGame(id, tab) {
 function renderShell(c, g, tab, inner) {
   if (!prefetched.has(c.id)) setTimeout(() => prefetchMedia(c), 4000);
   const n = unread(g, c);
-  const tabs = [['akta', 'Akta', I.files], ['miejsca', 'Miejsca', I.map], ['osoby', 'Osoby', I.people], ...(c.db ? [['bazy', 'Bazy', I.db]] : []), ['analiza', 'Analiza', I.brain], ['tablica', 'Tablica', I.board]];
+  const tabs = [['akta', 'Akta', I.files], ['miejsca', 'Miejsca', I.map], ['osoby', 'Osoby', I.people], ...(c.db || (c.offline && c.offline.db) ? [['bazy', 'Bazy', I.db]] : []), ['analiza', 'Analiza', I.brain], ['tablica', 'Tablica', I.board]];
   const keepScroll = app().querySelector('.main') && app().dataset.tab === tab ? app().querySelector('.main').scrollTop : 0;
   app().dataset.tab = tab;
   app().innerHTML = `<div class="shell">
@@ -696,6 +703,8 @@ function spotState(c, g, s) {
 }
 function ovLocation(c, g, id) {
   const l = c.loc[id]; const i = c.locations.indexOf(l);
+  if (l.search) return { title: l.name, kicker: l.kind, full: true, body: `<div class="scene" style="${locArt(c, l, i)}"><div class="in"><div class="eyebrow">${esc(l.kind)}</div><h2>${esc(l.name)}</h2></div></div>
+   <p style="margin:14px 2px 0;color:#d6cebf">${esc(l.desc)}</p>${lookBlock(c, g, l)}` };
   return { title: l.name, kicker: l.kind, full: true, body: `<div class="scene" style="${locArt(c, l, i)}">${l.img ? `<button class="scene-zoom" data-a="pzoom" data-src="${esc(l.img)}" aria-label="Powiększ zdjęcie miejsca">⤢</button>` : ''}<div class="in"><div class="eyebrow">${esc(l.kind)}</div><h2>${esc(l.name)}</h2></div></div>
    <p style="margin:14px 2px 0;color:#d6cebf">${esc(l.desc)}</p>
    <div class="spots">${l.spots.map((s, k) => {
@@ -708,6 +717,24 @@ function ovLocation(c, g, id) {
        ${st === 'locked' && s.requires.puzzle ? `<div class="act"><button class="btn small ghost" data-a="puzzle-from-spot" data-id="${s.requires.puzzle}">${I.lock} ${esc(c.puzzle[s.requires.puzzle].title)}</button></div>` : ''}
      </div></div>`;
    }).join('')}</div>` };
+}
+function lookCount(c, g, l) { const ids = Object.keys(l.search.spots); return { all: ids.length, found: ids.filter(id => g.spots.includes(id)).length }; }
+function lookBlock(c, g, l) {
+  const n = lookCount(c, g, l); const seen = g.lookSeen || [];
+  return `<div class="look-head"><div><div class="eyebrow">Oględziny na zdjęciu</div><b>Ślady w tym miejscu: ${n.found} z ${n.all}</b></div><button class="btn" data-a="look-open" data-id="${l.id}">${n.found ? 'Wróć do oględzin' : 'Rozpocznij oględziny'}</button></div>
+   <div class="spots">${l.spots.map(sp => { const st = spotState(c, g, sp);
+     if (st === 'done') { const found = (sp.gives || []).filter(e => known(g, e)); return `<div class="spot done"><span class="tent">✓</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.text)}</p><div class="found-list">${found.map(e => `<button class="chip" data-a="ev" data-id="${e}">${esc(c.ev[e].title)}</button>`).join('')}</div></div></div>`; }
+     if (seen.includes(sp.id) && st === 'locked') return `<div class="spot locked"><span class="tent">${I.lock}</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.lockedText)}</p>${sp.requires.puzzle ? `<div class="act"><button class="btn small ghost" data-a="puzzle-from-spot" data-id="${sp.requires.puzzle}">${I.lock} ${esc(c.puzzle[sp.requires.puzzle].title)}</button></div>` : ''}</div></div>`;
+     return `<div class="spot unknown"><span class="tent">?</span><div style="flex:1"><b>Nieodkryty ślad</b><p class="muted">Szukajcie na zdjęciu.</p></div></div>`; }).join('')}</div>`;
+}
+function lookTap(c, g, l, nx, ny, scale) {
+  if (scale < 1.8) return { msg: 'Przybliżcie zdjęcie (co najmniej dwukrotnie), żeby wskazać ślad.' };
+  const W = l.search.aspect || 1.5;
+  const hit = Object.entries(l.search.spots).find(([, [x, y, r]]) => Math.hypot((nx - x) * W, ny - y) <= r * W);
+  if (!hit) return { miss: true };
+  const sp = c.spot[hit[0]]; if (g.spots.includes(sp.id)) return { msg: `${sp.name} — już obejrzane.` };
+  if (spotState(c, g, sp) === 'locked') { g.lookSeen = [...new Set([...(g.lookSeen || []), sp.id])]; save(); return { msg: `${sp.name}: ${sp.lockedText}` }; }
+  doSearch(c, g, sp.id); return { hit: sp.id };
 }
 function doSearch(c, g, sid) {
   const s = c.spot[sid]; if (g.spots.includes(sid) || spotState(c, g, s) === 'locked') return;
@@ -1139,6 +1166,10 @@ async function renderOv() {
   else if (o.type === 'menu') v = ovMenu(c, g);
   else if (o.type === 'guide') v = ovGuide(o);
   else if (o.type === 'zoom') { root.innerHTML = `<div class="zoom" id="zoom"><img src="${esc(o.src)}" alt="" id="zoomimg" draggable="false"><div class="zoom-bar"><span><span class="zh-touch">Rozsuń dwa palce, by przybliżyć · przeciągnij, by przesunąć · dwa stuknięcia: przybliż lub wróć</span><span class="zh-mouse">Kółko myszy przybliża · przeciągnij, by przesunąć · dwuklik: przybliż lub wróć</span></span><button class="icon-btn" data-a="close" aria-label="Zamknij">${I.close}</button></div></div>`; document.body.style.overflow = 'hidden'; mountZoom(); return; }
+  else if (o.type === 'look' && c && g) { const l = c.loc[o.id]; const n = lookCount(c, g, l);
+    root.innerHTML = `<div class="zoom look" id="zoom"><div class="lookwrap" id="zoomimg"><img src="${esc(l.search.img || l.img)}" alt="" draggable="false">${Object.entries(l.search.spots).filter(([sid]) => g.spots.includes(sid)).map(([, [x, y, r]]) => `<span class="lookpin" style="left:${x * 100}%;top:${y * 100}%;width:${r * 200}%;"></span>`).join('')}</div>
+     <div class="zoom-bar"><span><b>Ślady: ${n.found} z ${n.all}</b> · <span class="zh-touch">rozsuń palce, by przybliżyć, i stuknij ślad</span><span class="zh-mouse">kółkiem przybliż, kliknij ślad</span></span><button class="icon-btn" data-a="close" aria-label="Zamknij">${I.close}</button></div><div class="look-msg" id="lookmsg" hidden></div></div>`;
+    document.body.style.overflow = 'hidden'; mountZoom(o); return; }
   else if (o.type === 'vote') v = ovVote(c, g, o);
   else if (o.type === 'msg') v = { title: o.title, kicker: o.kicker || '', body: o.body };
   else if (o.type === 'dbrec' && o.k && o.k[0] === 'f') v = ovDbRec(FOLDER.c, null, o.id, false);
@@ -1191,10 +1222,17 @@ function ovMenu(c, g) {
 }
 
 /* ---------- powiększanie zdjęć ---------- */
-function mountZoom() {
+function mountZoom(o) {
   const box = $('#zoom'), img = $('#zoomimg'); if (!box || !img) return;
-  let s = 1, x = 0, y = 0; const pts = new Map(); let start = null;
-  const apply = () => { img.style.transform = `translate(${x}px,${y}px) scale(${s})`; };
+  let s = (o && o.zs) || 1, x = (o && o.zx) || 0, y = (o && o.zy) || 0; const pts = new Map(); let start = null; let down = null;
+  const apply = () => { img.style.transform = `translate(${x}px,${y}px) scale(${s})`; if (o) { o.zs = s; o.zx = x; o.zy = y; } };
+  apply();
+  if (o && o.type === 'look') {
+    box.addEventListener('pointerdown', e => { down = { x: e.clientX, y: e.clientY, t: Date.now(), n: pts.size }; });
+    box.addEventListener('pointerup', e => { if (!down || e.target.closest('.zoom-bar') || down.n > 0) return; if (Math.hypot(e.clientX - down.x, e.clientY - down.y) > 8 || Date.now() - down.t > 600) return;
+      const im = img.querySelector('img').getBoundingClientRect(); const nx = (e.clientX - im.left) / im.width, ny = (e.clientY - im.top) / im.height; if (nx < 0 || ny < 0 || nx > 1 || ny > 1) return;
+      lookResult(o, lookTap(ctx().c, ctx().g, ctx().c.loc[o.id], nx, ny, s), e.clientX, e.clientY); });
+  }
   const clamp = () => { s = Math.min(6, Math.max(1, s)); if (s === 1) { x = 0; y = 0; } };
   box.addEventListener('wheel', e => { e.preventDefault(); const k = e.deltaY < 0 ? 1.15 : 1 / 1.15; s *= k; x *= k; y *= k; clamp(); apply(); }, { passive: false });
   box.addEventListener('dblclick', e => { if (e.target.closest('.zoom-bar')) return; s = s > 1 ? 1 : 2.5; x = 0; y = 0; apply(); });
@@ -1207,6 +1245,13 @@ function mountZoom() {
   const end = e => { pts.delete(e.pointerId); start = { s, x, y, pts: new Map(pts) }; };
   box.addEventListener('pointerup', end); box.addEventListener('pointercancel', end);
 }
+function lookResult(o, r, cx, cy) {
+  const m = $('#lookmsg');
+  if (r.hit) { renderOv(); setTimeout(() => { const mm = $('#lookmsg'); if (mm) { mm.hidden = false; mm.textContent = 'Znaleziono ślad: ' + ctx().c.spot[r.hit].name; setTimeout(() => { mm.hidden = true; }, 2200); } }, 50); checkBreakthroughs(); return; }
+  if (r.miss) { const d = document.createElement('span'); d.className = 'lookmiss'; d.style.left = cx + 'px'; d.style.top = cy + 'px'; document.body.appendChild(d); setTimeout(() => d.remove(), 700); return; }
+  if (m && r.msg) { m.hidden = false; m.textContent = r.msg; clearTimeout(m._t); m._t = setTimeout(() => { m.hidden = true; }, 2600); }
+}
+window.__lookTest = (lid, sid) => { const { c, g } = ctx(); const l = c.loc[lid]; const [x, y] = l.search.spots[sid]; return lookTap(c, g, l, x, y, 3); };
 /* ---------- głosowanie zespołu (tryb z telefonami) ---------- */
 function ovVote(c, g, o) {
   const st = o.st || 0;
@@ -1235,6 +1280,7 @@ async function renderChronicle() {
   app().innerHTML = `<div class="chron"><header class="chron-head"><button class="icon-btn" data-a="home" aria-label="Archiwum">${I.back}</button><div><div class="eyebrow">Wydział spraw niewyjaśnionych</div><h1>Kronika wydziału</h1></div></header>
    <section class="panel"><div class="eyebrow">Ślady Archiwisty</div><h3>Pieczęcie, które nie należały do żadnej sprawy</h3><p class="muted">W aktach niektórych spraw ktoś zostawił obcą pieczęć z kluczem. Zabezpieczajcie je — każda kryje jedną literę. Kiedy zbierzecie wszystkie, otworzą się akta, których nie ma w archiwum.</p><div class="mslots">${slots}</div><p class="muted" style="font-size:.85rem">${Object.keys(M).length} z ${MARK_ORDER.length}</p></section>
    ${L.length ? `<div class="chron-list">${L.map(e => `<article class="paper chron-item"><div class="eyebrow">Akta ${esc(e.id)} · ${new Date(e.at).toLocaleDateString('pl-PL')} · ${esc((DIFFS[e.diff] || DIFFS.sledczy).name)} · ${e.mode === 'phones' ? 'Telewizor + telefony' : 'Wspólny stół'}</div><h3>${esc(e.title)}</h3><div class="chron-score"><b>${e.total}</b><span>pkt</span><span class="stamp">${esc(e.rank)}</span></div><p>Zespół: ${e.team.map(esc).join(', ')} · ruchy: ${e.actions}/${e.par}</p>${e.badges.length ? `<div class="badges">${e.badges.map(x => `<span class="badge-m">${esc(x)}</span>`).join('')}</div>` : ''}</article>`).join('')}</div>` : '<div class="empty">Kronika jest jeszcze pusta. Zamknijcie pierwszą sprawę.</div>'}
+   <section class="panel"><div class="eyebrow">Uprawnienia wydziału</div>${(S.unlocked || []).length ? `<ul class="g-list">${S.unlocked.filter(k => FEATURES[k]).map(k => `<li><b>${esc(FEATURES[k].name)}</b> — <span class="muted">${esc(FEATURES[k].where)}</span></li>`).join('')}</ul>` : '<p class="muted">Kolejne sprawy odblokowują nowe narzędzia śledcze. Na razie pracujecie klasycznie: akta, miejsca, przesłuchania.</p>'}</section>
    <section class="panel"><div class="eyebrow">Odznaki</div><p class="muted">Bez tropów · Zero pomyłek (bez nietrafionych konfrontacji) · Bez podpowiedzi · Oszczędni (w normie ruchów) · Weterani (poziom Weteran) · Legenda (92+ pkt)</p></section></div>`;
 }
 /* ---------- akt oskarżenia do druku ---------- */
@@ -1284,6 +1330,13 @@ function ovGuide(o) {
 }
 
 function startMsg(c, g) {
+  if (c.unlocks && c.unlocks.length && !g.unlockSeen) {
+    openOv({ type: 'msg', title: 'Nowe uprawnienia wydziału', kicker: 'Akta ' + c.id, body: `${c.unlockNote ? `<blockquote class="quote unlock-q">${esc(c.unlockNote.text)}<cite>— ${esc(c.unlockNote.by)}</cite></blockquote>` : ''}
+      <div class="unlocks">${c.unlocks.map(id => FEATURES[id]).filter(Boolean).map(f => `<article class="unlock"><span class="eyebrow">Odblokowane</span><h3>${esc(f.name)}</h3><p>${esc(f.text)}</p><p class="muted">${esc(f.where)}</p></article>`).join('')}</div>
+      <p class="muted" style="font-size:.85rem">Odblokowane uprawnienia zostają z wami w kolejnych sprawach. Spis jest w Kronice wydziału.</p>
+      <button class="btn block" data-a="unlock-ok">Rozumiem, zaczynamy</button>` });
+    return;
+  }
   const roles = g.players.map(p => `<li><b>${esc(p.name)}</b> — ${esc(ROLES.find(r => r.id === p.role).name)}: <span class="muted">${esc(ROLES.find(r => r.id === p.role).tip)}</span></li>`).join('');
   openOv({ type: 'msg', title: 'Śledztwo rozpoczęte', kicker: 'Akta ' + c.id, body: `<p>Macie przed sobą akta startowe — zacznijcie od nich. Potem przeszukujcie miejsca i przesłuchujcie świadków.</p>${c.mode === 'table' ? '<p class="muted">Gracie przy wspólnym stole: wszystko widzicie razem. Pamiętajcie o Centrali wydziału — niektóre informacje są tylko tam.</p>' : '<p class="muted">Pamiętajcie: każdy z was wie coś, czego nie wie reszta.</p>'}<h4 class="eyebrow" style="margin-top:18px">Podział ról</h4><ul class="roles">${roles}</ul>` });
 }
@@ -1361,6 +1414,8 @@ const handlers = {
   'db-search': el => { const k = el.dataset.k; const st = dbUI[k]; const form = document.querySelector(`.term-form[data-k="${k}"]`); if (!st || !form) return;
     st.f = {}; form.querySelectorAll('input').forEach(i => { if (i.value.trim()) st.f[i.name] = i.value; });
     const x = k[0] === 'f' ? FOLDER.x : dbCtx(ctx().c); const r = dbSearch(st.base, st.f, x); st.res = r.res || null; st.err = r.err || null; dbRefresh(k); },
+  'unlock-ok': () => { const { c, g } = ctx(); g.unlockSeen = true; S.unlocked = [...new Set([...(S.unlocked || []), ...(c.unlocks || [])])]; save(); ovStack = []; history.back(); setTimeout(() => startMsg(c, g), 200); },
+  'look-open': el => openOv({ type: 'look', id: el.dataset.id }),
   'fold-tab': el => { folderTab = el.dataset.t; render(); },
   'db-rec': el => openOv({ type: 'dbrec', id: el.dataset.id, k: el.dataset.k }),
   'db-attach': el => { const { c, g } = ctx(); doAttach(c, g, el.dataset.id); rerender(); },

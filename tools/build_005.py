@@ -31,6 +31,8 @@ case = {
   'modeRules': {
    'table': 'Wszystko widzicie razem. Dane operatorów, taksówek i urzędu zdobędziecie w Centrali wydziału — każde zapytanie to ruch.',
    'phones': 'Każdy gracz ma w telefonie tajne akta i własny terminal baz danych. Szukajcie równolegle, a wydruki dołączajcie na wspólnym ekranie.'}},
+ 'unlocks': ['db', 'show'],
+ 'unlockNote': {'text': 'Od dziś wydział ma dostęp do ogólnopolskich rejestrów, a prokuratura zgodziła się, żebyście pokazywali świadkom dowody już na pierwszym przesłuchaniu. Tę sprawę rozwiążecie tylko wtedy, gdy zrobicie z tego użytek.', 'by': 'szef wydziału'},
  'people': people, 'locations': R.locations, 'evidence': evidence,
  'privateClues': ['x1', 'x2', 'x3', 'x4', 'x5', 'x6'],
  'puzzles': R.puzzles, 'tableMode': R.tableMode, 'breakthroughs': R.breakthroughs,
