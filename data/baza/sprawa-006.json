@@ -1,0 +1,446 @@
+{
+ "osoby": [
+  {
+   "id": "O-006-ewa",
+   "nazwisko": "Sitek",
+   "imiona": [
+    "Ewa",
+    "Maria"
+   ],
+   "pesel": "74041938202",
+   "plec": "K",
+   "urodzony": "1974-04-19",
+   "miejsceUr": "Łódź",
+   "ojciec": "Henryk",
+   "matka": "Barbara",
+   "adres": "ul. Lumumby 9/12, 91-404 Łódź",
+   "dowod": {
+    "nr": "DEL 240217",
+    "wydany": "2019-06-03",
+    "wazny": "2029-06-03",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "zamężna",
+   "rodowe": "Kalinowska",
+   "malzonek": {
+    "pesel": "71090251511",
+    "nazwisko": "Sitek",
+    "imie": "Tomasz"
+   },
+   "case": "006"
+  },
+  {
+   "id": "O-006-tomasz",
+   "nazwisko": "Sitek",
+   "imiona": [
+    "Tomasz",
+    "Adam"
+   ],
+   "pesel": "71090251511",
+   "plec": "M",
+   "urodzony": "1971-09-02",
+   "miejsceUr": "Zgierz",
+   "ojciec": "Adam",
+   "matka": "Krystyna",
+   "adres": "ul. Lumumby 9/12, 91-404 Łódź",
+   "dowod": {
+    "nr": "DEL 238861",
+    "wydany": "2018-02-19",
+    "wazny": "2028-02-19",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "żonaty",
+   "malzonek": {
+    "pesel": "74041938202",
+    "nazwisko": "Sitek",
+    "imie": "Ewa"
+   },
+   "case": "006"
+  },
+  {
+   "id": "O-006-ewa2",
+   "nazwisko": "Sitek",
+   "imiona": [
+    "Ewa"
+   ],
+   "pesel": "90120392600",
+   "plec": "K",
+   "urodzony": "1990-12-03",
+   "miejsceUr": "Gdańsk",
+   "ojciec": "Marek",
+   "matka": "Alicja",
+   "adres": "ul. Kartuska 140/6, 80-138 Gdańsk",
+   "dowod": {
+    "nr": "DGS 951204",
+    "wydany": "2021-01-15",
+    "wazny": "2031-01-15",
+    "organ": "Prezydent Miasta Gdańska"
+   },
+   "stan": "panna",
+   "neutral": true
+  },
+  {
+   "id": "O-006-tomasz2",
+   "nazwisko": "Sitek",
+   "imiona": [
+    "Tomasz"
+   ],
+   "pesel": "85031745814",
+   "plec": "M",
+   "urodzony": "1985-03-17",
+   "miejsceUr": "Kielce",
+   "ojciec": "Józef",
+   "matka": "Danuta",
+   "adres": "ul. Warszawska 88/3, 25-547 Kielce",
+   "dowod": {
+    "nr": "DKI 026690",
+    "wydany": "2022-09-08",
+    "wazny": "2032-09-08",
+    "organ": "Prezydent Miasta Kielce"
+   },
+   "stan": "kawaler",
+   "neutral": true
+  },
+  {
+   "id": "O-006-leon",
+   "nazwisko": "Barcz",
+   "imiona": [
+    "Leon"
+   ],
+   "pesel": "53011120719",
+   "plec": "M",
+   "urodzony": "1953-01-11",
+   "miejsceUr": "Łódź",
+   "ojciec": "Władysław",
+   "matka": "Stefania",
+   "adres": "ul. Gdańska 74/5, 90-731 Łódź",
+   "dowod": {
+    "nr": "DEL 221144",
+    "wydany": "2017-03-28",
+    "wazny": "2027-03-28",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "wdowiec",
+   "neutral": true
+  },
+  {
+   "id": "O-006-grzegorz",
+   "nazwisko": "Barcz",
+   "imiona": [
+    "Grzegorz",
+    "Leon"
+   ],
+   "pesel": "80062364917",
+   "plec": "M",
+   "urodzony": "1980-06-23",
+   "miejsceUr": "Łódź",
+   "ojciec": "Leon",
+   "matka": "Halina",
+   "adres": "ul. Grochowska 301/44, 03-823 Warszawa",
+   "dowod": {
+    "nr": "DKT 770512",
+    "wydany": "2020-11-30",
+    "wazny": "2030-11-30",
+    "organ": "Prezydent m.st. Warszawy"
+   },
+   "stan": "rozwiedziony",
+   "neutral": true
+  },
+  {
+   "id": "O-006-damian",
+   "nazwisko": "Wróbel",
+   "imiona": [
+    "Damian",
+    "Paweł"
+   ],
+   "pesel": "95021473115",
+   "plec": "M",
+   "urodzony": "1995-02-14",
+   "miejsceUr": "Pabianice",
+   "ojciec": "Paweł",
+   "matka": "Ewelina",
+   "adres": "ul. Zielona 33/2, 90-604 Łódź",
+   "dowod": {
+    "nr": "DEL 255730",
+    "wydany": "2023-04-11",
+    "wazny": "2033-04-11",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "kawaler",
+   "neutral": true
+  },
+  {
+   "id": "O-006-joanna",
+   "nazwisko": "Rak",
+   "imiona": [
+    "Joanna",
+    "Teresa"
+   ],
+   "pesel": "68083080405",
+   "plec": "K",
+   "urodzony": "1968-08-30",
+   "miejsceUr": "Łódź",
+   "ojciec": "Stanisław",
+   "matka": "Teresa",
+   "adres": "ul. Limanowskiego 41/18, 91-030 Łódź",
+   "dowod": {
+    "nr": "DEL 333092",
+    "wydany": "2016-10-05",
+    "wazny": "2026-10-05",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "wdowa",
+   "rodowe": "Mazur",
+   "neutral": true
+  },
+  {
+   "id": "O-006-lipka",
+   "nazwisko": "Lipka",
+   "imiona": [
+    "Stanisław"
+   ],
+   "pesel": "42100711310",
+   "plec": "M",
+   "urodzony": "1942-10-07",
+   "miejsceUr": "Łódź",
+   "ojciec": "Józef",
+   "matka": "Marianna",
+   "adres": "ul. Gdańska 43/9 (oficyna), 90-730 Łódź",
+   "dowod": {
+    "nr": "DEL 712608",
+    "wydany": "2019-01-21",
+    "wazny": "2029-01-21",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "wdowiec",
+   "neutral": true
+  },
+  {
+   "id": "O-006-wrzos",
+   "nazwisko": "Wrzos",
+   "imiona": [
+    "Alicja"
+   ],
+   "pesel": "77052856200",
+   "plec": "K",
+   "urodzony": "1977-05-28",
+   "miejsceUr": "Łódź",
+   "ojciec": "Tadeusz",
+   "matka": "Irena",
+   "adres": "ul. Narutowicza 60/4, 90-136 Łódź",
+   "dowod": {
+    "nr": "DEL 847315",
+    "wydany": "2020-07-14",
+    "wazny": "2030-07-14",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "zamężna",
+   "rodowe": "Kępa",
+   "neutral": true
+  },
+  {
+   "id": "O-006-nowak",
+   "nazwisko": "Szymański",
+   "imiona": [
+    "Ryszard"
+   ],
+   "pesel": "66110967114",
+   "plec": "M",
+   "urodzony": "1966-11-09",
+   "miejsceUr": "Kraków",
+   "ojciec": "Jan",
+   "matka": "Zofia",
+   "adres": "ul. Długa 50/7, 31-146 Kraków",
+   "dowod": {
+    "nr": "DKR 560094",
+    "wydany": "2018-12-03",
+    "wazny": "2028-12-03",
+    "organ": "Prezydent Miasta Krakowa"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-006-pawlak",
+   "nazwisko": "Pawlak",
+   "imiona": [
+    "Andrzej"
+   ],
+   "pesel": "69070423919",
+   "plec": "M",
+   "urodzony": "1969-07-04",
+   "miejsceUr": "Łódź",
+   "ojciec": "Henryk",
+   "matka": "Maria",
+   "adres": "ul. Piotrkowska 120/3, 90-006 Łódź",
+   "dowod": {
+    "nr": "DEL 329981",
+    "wydany": "2017-09-25",
+    "wazny": "2027-09-25",
+    "organ": "Prezydent Miasta Łodzi"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  }
+ ],
+ "pojazdy": [
+  {
+   "id": "V-006-sitek",
+   "nr": "EL 4K271",
+   "vin": "VF1RFB00X63519284",
+   "marka": "Renault",
+   "model": "Captur",
+   "rok": 2020,
+   "kolor": "beżowy metalik",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Tomasz Sitek",
+    "pesel": "71090251511",
+    "adres": "ul. Lumumby 9/12, 91-404 Łódź"
+   },
+   "rejestracja": "2020-05-12",
+   "oc": {
+    "ubezpieczyciel": "PZU SA",
+    "do": "2027-05-11"
+   },
+   "badanie": "2027-05-06",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-006-grzegorz",
+   "nr": "WI 72058",
+   "vin": "WVWZZZAUZJW204417",
+   "marka": "Volkswagen",
+   "model": "Golf",
+   "rok": 2018,
+   "kolor": "czarny",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Grzegorz Barcz",
+    "pesel": "80062364917",
+    "adres": "ul. Grochowska 301/44, 03-823 Warszawa"
+   },
+   "rejestracja": "2021-08-03",
+   "oc": {
+    "ubezpieczyciel": "Link4 SA",
+    "do": "2027-08-02"
+   },
+   "badanie": "2027-07-20",
+   "status": "zarejestrowany",
+   "neutral": true
+  }
+ ],
+ "firmy": [
+  {
+   "id": "F-006-ars",
+   "krs": "0000611480",
+   "nip": "7272841237",
+   "regon": "364112907",
+   "nazwa": "ARS-LOKUS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Lumumby 9/12, 91-404 Łódź",
+   "dataWpisu": "2016-04-07",
+   "kapital": "5 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "SITEK",
+     "imiona": "TOMASZ ADAM",
+     "pesel": "71090251511"
+    }
+   ],
+   "wspolnicy": [
+    {
+     "nazwa": "TOMASZ ADAM SITEK",
+     "udzialy": "100 udziałów o łącznej wartości 5 000 zł"
+    }
+   ],
+   "pkd": [
+    "47.79.Z Sprzedaż detaliczna artykułów używanych prowadzona w wyspecjalizowanych sklepach",
+    "74.90.Z Pozostała działalność profesjonalna, naukowa i techniczna"
+   ],
+   "status": "aktywny",
+   "case": "006"
+  },
+  {
+   "id": "F-006-kina",
+   "krs": "0000140762",
+   "nip": "7251843314",
+   "regon": "473215660",
+   "nazwa": "ŁÓDZKIE KINA STUDYJNE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Gdańska 41, 90-730 Łódź",
+   "dataWpisu": "2002-11-18",
+   "kapital": "1 200 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "PAWLAK",
+     "imiona": "ANDRZEJ",
+     "pesel": "69070423919"
+    }
+   ],
+   "wspolnicy": [
+    {
+     "nazwa": "GMINA MIASTO ŁÓDŹ",
+     "udzialy": "2 400 udziałów o łącznej wartości 1 200 000 zł"
+    }
+   ],
+   "pkd": [
+    "59.14.Z Działalność związana z projekcją filmów"
+   ],
+   "status": "aktywny",
+   "neutral": true
+  },
+  {
+   "id": "F-006-rew",
+   "krs": "0000287315",
+   "nip": "6762409854",
+   "regon": "120481775",
+   "nazwa": "DOM AUKCYJNY REWERS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Sławkowska 12, 31-014 Kraków",
+   "dataWpisu": "2007-08-20",
+   "kapital": "250 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "SZYMAŃSKI",
+     "imiona": "RYSZARD",
+     "pesel": "66110967114"
+    }
+   ],
+   "pkd": [
+    "47.79.Z Sprzedaż detaliczna artykułów używanych prowadzona w wyspecjalizowanych sklepach",
+    "82.99.Z Pozostała działalność wspomagająca prowadzenie działalności gospodarczej"
+   ],
+   "status": "aktywny",
+   "neutral": true
+  }
+ ],
+ "ksiegi": [
+  {
+   "id": "K-006-zorza",
+   "nr": "LD1M/00087412/8",
+   "typ": "działka zabudowana",
+   "polozenie": "ul. Gdańska 41, 90-730 Łódź",
+   "opis": "Działka nr 211/4, obręb S-3 Śródmieście, pow. 1 184 m², budynek kina z 1958 r. (sala na 280 miejsc z balkonem), podwórze wspólne z posesją nr 43",
+   "wlasciciele": [
+    {
+     "nazwa": "ŁÓDZKIE KINA STUDYJNE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+     "krs": "0000140762",
+     "udzial": "całość"
+    }
+   ],
+   "podstawa": "aport Gminy Miasto Łódź, akt notarialny Rep. A nr 5112/2002",
+   "hipoteki": [],
+   "ostrzezenia": [
+    "Wzmianka: umowa przedwstępna sprzedaży nieruchomości z 14.09.2026 (Rep. A nr 9033/2026), wydanie nieruchomości do 31.12.2026"
+   ],
+   "neutral": true
+  }
+ ]
+}

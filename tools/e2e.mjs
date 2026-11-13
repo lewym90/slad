@@ -57,6 +57,12 @@ const solvePuzzle = async pz => {
   await A('tab', '[data-tab="analiza"]'); await A('ana', '[data-t="zagadki"]');
   await A('puzzle', `[data-id="${pz.id}"]`);
   if (pz.input === 'grid') { const sol = pz.answers[0]; for (const r of pz.grid.rows) for (const cl of pz.grid.cols) await p.selectOption(`[data-gc="${pz.id}|${r.id}|${cl.id}"]`, sol[r.id][cl.id]); }
+  else if (pz.input === 'torn') {
+    await p.waitForTimeout(300); const t = await p.evaluate(id => window.__tornTest(id), pz.id);
+    if (t) { await p.mouse.move(t.from[0], t.from[1]); await p.mouse.down(); await p.mouse.move((t.from[0] + t.to[0]) / 2, (t.from[1] + t.to[1]) / 2, { steps: 6 }); await p.mouse.move(t.to[0], t.to[1], { steps: 6 }); await p.mouse.up(); await p.waitForTimeout(250);
+      const st = await state(); console.log('torn drag placed', JSON.stringify((st.puzzles[pz.id] || {}).placed || [])); }
+    await shot('puzzle-torn-' + pz.id); await p.evaluate(id => window.__tornTest(id, true), pz.id); await p.waitForTimeout(300); await shot('puzzle-' + pz.id); await closeAll(); return;
+  }
   else if (pz.input === 'text') { await p.fill('#pzin', pz.answers[0]); }
   else if (pz.input === 'number') { const [lo, hi] = pz.answers[0].split('-').map(Number); await p.fill('#pzin', String(Math.round((lo + (hi || lo)) / 2))); }
   else { const d = pz.answers[0].replace(/\D/g, ''); for (let i = 0; i < 4; i++) { for (let k = 0; k < +d[i]; k++) await p.locator(`[data-a="dial"][data-id="${pz.id}"][data-i="${i}"][data-d="1"]`).click(); } }

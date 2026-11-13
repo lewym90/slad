@@ -71,6 +71,13 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - **Nowe uprawnienia i oględziny na zdjęciu (2.16):** `case.unlocks` (+ `unlockNote`) pokazuje ekran „Nowe uprawnienia wydziału”; katalog uprawnień `FEATURES` w `app.js`; `offline: {db: 'powód'}` wyłącza zakładkę z fabularnym wyjaśnieniem. `location.search = {aspect, spots: {spotId: [x, y, r]}}` zamienia listę punktów w oględziny zdjęcia (licznik, wskazanie po przybliżeniu ≥2×, pudło bez kosztu, trafienie 1 ruch). Walidator sprawdza położenia, nachodzenie obszarów i ciągłość odblokowanych uprawnień.
 - Sprawa 005 „Pokój bez okien” jest gotowa (media dodane). Prompty: `docs/PROMPTY_GRAFIK_005.md`, `docs/PROMPTY_GLOSY_005.md`, `docs/PROMPTY_FILMY_DZWIEK_005.md` (`tools/prompts_005.py`); źródło: `tools/build_005.py` + `b005_*.py`.
 
+## Nowe mechaniki (2.17)
+- **Rekonstrukcja podartego dokumentu (`input: "torn"` w zagadce):** `torn: {lines: [...], cols, rows, font: 'hand'|'type', stain}` — tekst rysuje aplikacja, kartka jest cięta na `cols × rows` postrzępionych skrawków (kształt z ziarna id zagadki, zawsze ten sam). Skrawki przeciąga się palcem lub myszą; pasujący wskakuje na miejsce (tolerancja 26 px), ułożone zapisują się w `g.puzzles[id].placed`. Po ułożeniu wszystkich zagadka rozwiązuje się sama (nagroda jak w innych zagadkach). Hook testowy `window.__tornTest(id, all)`.
+- **Świadek, który się myli (`mistake: true` w zeznaniu):** konfrontacja działa jak przy kłamstwie, ale protokół oznacza zeznanie „Sprostowane — pomyłka, nie kłamstwo”, a licznik osoby pokazuje „sprostowane” zamiast „podważone”.
+- **Materiały do wydruku:** `tools/gen_print.py` tworzy `assets/print/NNN.pdf` dla gotowych spraw (wprowadzenie, zadania, osoby, miejsca, puste arkusze na oś czasu, podejrzanych i notatki — bez dowodów). Pole `print` w `cases/index.json`; lista w Ustawieniach („Do wydruku”) i wzmianka na starcie sprawy. Drukowanie nigdy nie jest wymagane.
+- W oględzinach na zdjęciu punkt bez położenia na zdjęciu jest dozwolony tylko jako nagroda za zagadkę (pokazuje się wtedy z kłódką i przyciskiem zagadki). Walidator: uprawnienie `look` od 006 musi mieć co najmniej jedno miejsce z `search` (albo `offline.look`).
+- Sprawa 006 „Ostatni seans” — logika gotowa i zwalidowana, czeka na media (`tools/build_006.py`, `b006_*.py`, prompty `tools/prompts_006.py`).
+
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).
 - `sw.js`, `manifest.webmanifest` — PWA i tryb offline. Przy każdej zmianie podnieś `VERSION` w `sw.js` i `app.js`.

@@ -141,3 +141,14 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 3. **Oględziny na zdjęciu (#11) — zaakceptowane w tej formie:** licznik „Ślady: x z y”, ślad można wskazać dopiero po co najmniej 2× przybliżeniu, pudło bezpłatne, trafienie = 1 ruch (jak przeszukanie punktu), nieodkryte ślady jako „???”, zablokowane po trafieniu pokazują powód. Dane: `location.search = {aspect, img?, spots: {spotId: [x, y, r]}}` (współrzędne względne, r względem szerokości). Pozycje zaznacza Claude po wygenerowaniu grafiki i sprawdza; ślady muszą być wyraźnymi przedmiotami. Nie w każdym miejscu („raz tak, raz inaczej”). Silnik gotowy w 2.16.0; pierwsze użycie planowane od sprawy 006 (`FEATURES.look.since`).
 4. **Ostrość na dużym ekranie:** generator autora daje maks. 1536×1024 (grafiki) i 1280×720 (wideo). Skalowanie AI ×4 (Real-ESRGAN) wyraźnie poprawia ostrość — autor zrobi je u siebie programem **Upscayl** (Claude poda instrukcję, gdy autor będzie przy komputerze). W chmurze to ok. 1 h na grafikę (brak GPU).
 5. Dźwięk tła 005 wygenerowany ponownie (lepszy prompt ze zdarzeniami na osi czasu) — sprawa 005 odpieczętowana w 2.16.1.
+
+## 13. Plan spraw 006–009 (zatwierdzony 13.11.2026: „Zgoda.”)
+- **006 „Ostatni seans”** (średnia, 80–110 min): debiut oględzin na zdjęciu (#11), rekonstrukcji podartego dokumentu (#13), świadka, który się myli, a nie kłamie (#19), i materiałów do wydruku (#43). Baza i okazywanie dowodów działają dalej.
+- **007 „Biała cisza”** (100–140 min): mapa z czasami przejść (#12), dowód dźwiękowy (#14), zegar gry liczony akcjami (#20).
+- **008 „Cień w galerii”** (60–90 min): sprawca znany od początku — udowodnić (#29), nakazy prokuratora (#3), telefon podejrzanego (#6).
+- **009 „Czarna skrzynka”** (ok. 2,5–3 h): 48 godzin zatrzymania (#21), presja i adwokat (#16), finał w sądzie (#27).
+- Wątek przewodni uniwersum: zgodnie z decyzją autora od 005, a gdzie to możliwe bez komplikacji — od 003 (szczegóły tylko w plikach spraw, bez opisywania tutaj).
+
+## 14. Stan wdrożenia 2.17 (13.11.2026)
+- Silnik: zagadka „podarty dokument” (`input: "torn"`), zeznania-pomyłki (`mistake: true`), materiały do wydruku (`tools/gen_print.py`, Ustawienia → „Do wydruku”).
+- 006: logika zwalidowana (0 błędów poza brakującymi zdjęciami), przejście testowe 100 pkt; czeka na grafiki, głosy, filmy i dźwięk, potem rozmieszczenie śladów na zdjęciach.

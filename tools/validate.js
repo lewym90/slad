@@ -96,7 +96,8 @@ for (const [f, c] of runs) {
   for (const [id, p] of pz) {
     p.requires.forEach(x => { if (!isTok(x)) E(`zagadka ${id}: nieznany wymóg ${x}`); });
     ((p.reward || {}).spots || []).forEach(x => { if (!spots.has(x)) E(`zagadka ${id}: nagroda — brak punktu ${x}`); });
-    if (!p.answers.length) E(`zagadka ${id}: brak odpowiedzi`);
+    if (p.input === 'torn') { const T = p.torn || {}; const n = (T.cols || 3) * (T.rows || 3); if (!Array.isArray(T.lines) || !T.lines.filter(Boolean).length) E(`zagadka ${id}: podarty dokument bez treści`); if (n < 4 || n > 16) E(`zagadka ${id}: liczba skrawków ${n} poza zakresem 4–16`); if ((T.lines || []).length > 17) E(`zagadka ${id}: za dużo wierszy na kartce (maks. 17)`); p.answers = p.answers || []; }
+    else if (!p.answers.length) E(`zagadka ${id}: brak odpowiedzi`);
     if (!p.hints || p.hints.length !== 3) E(`zagadka ${id}: wymagane 3 stopnie podpowiedzi`);
     // 5. Brak przecieku odpowiedzi
     const text = [p.prompt, p.title].join(' ');
@@ -188,13 +189,14 @@ for (const [f, c] of runs) {
   // oględziny na zdjęciu
   c.locations.filter(l => l.search).forEach(l => { const sp = l.search.spots || {}; const ids = Object.keys(sp);
     if (!(l.search.img || l.img)) E(`oględziny ${l.id}: brak zdjęcia`);
-    l.spots.forEach(x => { if (!sp[x.id]) E(`oględziny ${l.id}: punkt ${x.id} bez położenia na zdjęciu`); });
+    l.spots.forEach(s => { if (!sp[s.id] && !(s.requires && s.requires.puzzle)) E(`oględziny ${l.id}: punkt ${s.id} nie ma miejsca na zdjęciu (dozwolone tylko dla nagrody za zagadkę)`); });
     ids.forEach(id => { if (!l.spots.some(x => x.id === id)) E(`oględziny ${l.id}: nieznany punkt ${id}`); const [x, y, r] = sp[id]; if (!(x > 0 && x < 1 && y > 0 && y < 1 && r >= 0.015 && r <= 0.2)) E(`oględziny ${l.id}: złe położenie ${id}`); });
     const W = l.search.aspect || 1.5; ids.forEach((a, i) => ids.slice(i + 1).forEach(bb => { const [x1, y1, r1] = sp[a], [x2, y2, r2] = sp[bb]; if (Math.hypot((x1 - x2) * W, y1 - y2) < (r1 + r2) * W) E(`oględziny ${l.id}: obszary ${a} i ${bb} nachodzą na siebie`); })); });
   // raz odblokowane uprawnienie musi działać w każdej kolejnej sprawie (albo mieć fabularny powód braku)
-  const FEAT = { db: '005', show: '005' };
+  const FEAT = { db: '005', show: '005', look: '006' };
   Object.entries(FEAT).forEach(([k, since]) => { if (c.id >= since) { const off = c.offline && c.offline[k];
     if (k === 'db' && !c.db && !off) E(`uprawnienie „baza danych” odblokowane od ${since} — brak db i brak powodu w offline.db`);
+    if (k === 'look' && !off && !c.locations.some(l => l.search)) E(`uprawnienie „oględziny na zdjęciu” od ${since} — żadne miejsce nie ma search i brak powodu w offline.look`);
     if (k === 'show' && !off) c.people.forEach(p => { if (!(p.showDefault || []).length) E(`uprawnienie „okazywanie dowodów” od ${since} — osoba ${p.id} bez showDefault`); }); } });
   (c.unlocks || []).forEach(k => { if (!['db', 'show', 'look'].includes(k)) E(`nieznane uprawnienie ${k}`); });
   // 5a. Baza danych w sprawie

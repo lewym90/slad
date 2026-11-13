@@ -817,3 +817,24 @@ body{font-variant-numeric:lining-nums}
 @keyframes lookmiss{from{transform:scale(.3);opacity:1}to{transform:scale(1.4);opacity:0}}
 .look-msg{position:absolute;left:50%;bottom:calc(18px + var(--safe-b,0px));transform:translateX(-50%);max-width:min(560px,92vw);padding:10px 14px;background:rgba(10,10,12,.92);border:1px solid var(--gold);border-radius:4px;color:var(--txt);font-size:.95rem;text-align:center;z-index:2}
 .unlock-q cite{display:block;margin-top:6px}
+/* zagadka: podarty dokument */
+.torn-wrap{position:relative;max-width:100%;overflow:hidden;margin:6px auto 12px;user-select:none;-webkit-user-select:none}
+.torn-board{position:absolute;left:0;top:0;transform-origin:0 0}
+.torn-frame{position:absolute;left:0;top:0;border:2px dashed rgba(200,180,140,.45);border-radius:4px;background:rgba(255,255,255,.03)}
+.torn-piece{position:absolute;left:0;top:0;touch-action:none;cursor:grab;filter:drop-shadow(0 3px 5px rgba(0,0,0,.45));will-change:transform}
+.torn-piece.drag{cursor:grabbing;filter:drop-shadow(0 10px 14px rgba(0,0,0,.55))}
+.torn-piece.placed{cursor:default;filter:none;pointer-events:none;z-index:0}
+.torn-paper{width:520px;height:680px;box-sizing:border-box;padding:54px 46px;color:#2a2620;background:#efe6d2 linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 100%);background-image:repeating-linear-gradient(180deg,transparent 0 33px,rgba(90,120,160,.18) 33px 34px);overflow:hidden}
+.torn-paper p{margin:0;line-height:34px;min-height:34px}
+.torn-paper.tp-hand{font-family:var(--f-hand);font-size:25px}
+.torn-paper.tp-type{font-family:var(--f-type);font-size:18px;background-image:none}
+.torn-paper.tp-wet{background-color:#e8dcc2;background-image:radial-gradient(ellipse 140px 90px at 22% 30%,rgba(120,95,55,.18),transparent 70%),radial-gradient(ellipse 180px 120px at 76% 72%,rgba(120,95,55,.16),transparent 70%),radial-gradient(ellipse 90px 60px at 60% 18%,rgba(120,95,55,.12),transparent 70%),repeating-linear-gradient(180deg,transparent 0 33px,rgba(90,120,160,.14) 33px 34px)}
+.torn-done{max-width:520px;margin:14px auto 0;overflow:auto}
+.torn-done .torn-paper{max-width:100%;height:auto;min-height:0}
+@media (max-width:560px){.torn-done .torn-paper{width:100%;padding:28px 22px}}
+.print-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:2px 0 14px}
+.print-item{display:flex;align-items:baseline;gap:8px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:var(--txt);text-decoration:none;background:rgba(255,255,255,.03)}
+.print-item:hover{border-color:rgba(255,255,255,.3)}
+.print-item .mono{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.print-item b{flex:1;font-weight:500}
+.print-item small{color:var(--muted);font-size:.75rem}

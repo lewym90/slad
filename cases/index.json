@@ -10,7 +10,8 @@
    "difficulty": "Wymagająca",
    "cover": "assets/art/001-manor.webp",
    "ready": true,
-   "teaser": "Most zalany, pięć osób w domu, doktor martwy przy kominku. I kobieta, która według aktu zgonu spłonęła trzynaście lat temu."
+   "teaser": "Most zalany, pięć osób w domu, doktor martwy przy kominku. I kobieta, która według aktu zgonu spłonęła trzynaście lat temu.",
+   "print": "assets/print/001.pdf"
   },
   {
    "id": "002",
@@ -22,7 +23,8 @@
    "difficulty": "Wymagająca",
    "cover": "assets/cases/002-cover.webp",
    "ready": true,
-   "teaser": "Świadek w sprawie katastrofy sprzed dziesięciu lat wsiada do nocnego pociągu. Do sądu nie dociera."
+   "teaser": "Świadek w sprawie katastrofy sprzed dziesięciu lat wsiada do nocnego pociągu. Do sądu nie dociera.",
+   "print": "assets/print/002.pdf"
   },
   {
    "id": "003",
@@ -34,7 +36,8 @@
    "difficulty": "Wymagająca",
    "cover": "assets/cases/003-cover.webp",
    "ready": true,
-   "teaser": "Sanatorium „Jodła” zamknięto osiem lat temu. Od tygodnia nocą pali się tam światło — w okienku pod dachem, do którego nie ma wejścia."
+   "teaser": "Sanatorium „Jodła” zamknięto osiem lat temu. Od tygodnia nocą pali się tam światło — w okienku pod dachem, do którego nie ma wejścia.",
+   "print": "assets/print/003.pdf"
   },
   {
    "id": "004",
@@ -46,7 +49,8 @@
    "difficulty": "Wymagająca",
    "cover": "assets/cases/004-cover.webp",
    "ready": true,
-   "teaser": "Ruda. Noc awarii systemu ostrzegania i zapis alarmowy, który zniknął z archiwum."
+   "teaser": "Ruda. Noc awarii systemu ostrzegania i zapis alarmowy, który zniknął z archiwum.",
+   "print": "assets/print/004.pdf"
   },
   {
    "id": "005",
@@ -58,19 +62,20 @@
    "difficulty": "Trudna",
    "cover": "assets/cases/005-cover.webp",
    "ready": true,
-   "teaser": "Zamknięta konferencja, pokój zamknięty od środka i archiwista, którego nazwisko znika z listy."
+   "teaser": "Zamknięta konferencja, pokój zamknięty od środka i archiwista, którego nazwisko znika z listy.",
+   "print": "assets/print/005.pdf"
   },
   {
    "id": "006",
    "title": "Ostatni seans",
-   "tagline": "Projektor po północy",
-   "genre": "Gotycki kryminał",
-   "duration": "70–100 min",
-   "players": "2–6",
+   "tagline": "Kino „Zorza”, kabina nad balkonem",
+   "genre": "Kryminał klasyczny",
+   "duration": "80–110 min",
+   "players": "1–6",
    "difficulty": "Wymagająca",
    "cover": "assets/cases/006-cover.webp",
    "ready": false,
-   "teaser": "Kino Iluzja jest zamknięte od lat. A jednak ktoś puścił film."
+   "teaser": "Ostatni seans w historii kina poszedł bez jednej przerwy. Na pożegnanie nie zszedł tylko kinooperator."
   },
   {
    "id": "007",

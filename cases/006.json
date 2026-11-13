@@ -1,0 +1,2503 @@
+{
+ "id": "006",
+ "title": "Ostatni seans",
+ "subtitle": "Film poszedł do końca. Kinooperator — nie.",
+ "genre": "Kryminał klasyczny",
+ "duration": "80–110 min",
+ "players": "1–6",
+ "difficulty": "Wymagająca",
+ "cover": "assets/cases/006-cover.webp",
+ "par": 72,
+ "intro": {
+  "lead": "Niedziela, 6 grudnia, 9:00. Kino „Zorza” w Łodzi, kabina projekcyjna nad balkonem. Na podłodze zarys kredą, w projektorze wciąż zawieszona taśma.",
+  "brief": [
+   "W sobotę wieczorem kino „Zorza” pożegnało się z widzami. Sto dwanaście osób obejrzało z taśmy 35 mm film, od którego w 1958 roku wszystko się zaczęło. Projekcję prowadził Leon Barcz, kinooperator od pięćdziesięciu dwóch lat.",
+   "Film poszedł do końca bez jednej przerwy. Na pożegnanie w foyer pan Leon już nie zszedł. O 22:41 kierowniczka i technik znaleźli go martwego w kabinie zamkniętej na klucz, z raną głowy i stalową puszką na taśmę obok.",
+   "Patrol uznał, że to mógł być wypadek. Prokurator ma wątpliwości. Macie kino, podwórze, pięć osób do przesłuchania i sąsiada, który twierdzi, że coś widział ze swojego okna.",
+   "Jeśli wolicie notować na papierze, w ustawieniach, w części „Do wydruku”, czeka plan sprawy: osoby, miejsca i arkusze na oś czasu. To nieobowiązkowe."
+  ],
+  "task": [
+   "Czy Leon Barcz zginął w wypadku, czy został zabity — a jeśli zabity, to przez kogo?",
+   "Jak sprawca dostał się do kabiny i jak z niej wyszedł?",
+   "Kto i kiedy zmienił projektor w czasie seansu?",
+   "Dlaczego kinooperator musiał zginąć właśnie tego wieczoru?"
+  ],
+  "rules": [
+   "Każde przeszukanie, każde pytanie i każde okazanie dowodu to jeden ruch. Wyszukiwanie w bazach jest bezpłatne, dołączenie wydruku do akt to ruch.",
+   "Nowość: oględziny na zdjęciu. W niektórych miejscach sami szukacie śladów na fotografii z oględzin. Przybliżcie zdjęcie i wskażcie ślad. Licznik podpowiada, ile ich jest. Pudło nic nie kosztuje.",
+   "Nowość: rekonstrukcja dokumentu. Podarte kartki składacie w zakładce Analiza, przeciągając skrawki na miejsce.",
+   "Uwaga: świadek może się po prostu mylić. Pomyłka to nie kłamstwo — kiedy ją wyjaśnicie, protokół oznaczy zeznanie jako sprostowane."
+  ],
+  "modeRules": {
+   "table": "Wszystko widzicie razem. Dane od operatorów, banku i firmy ochrony zdobędziecie w Centrali wydziału — każde zapytanie to ruch.",
+   "phones": "Każdy gracz ma w telefonie tajne akta i własny terminal baz danych. Oględziny na zdjęciu i rekonstrukcja dokumentu odbywają się na wspólnym ekranie."
+  }
+ },
+ "unlocks": [
+  "look"
+ ],
+ "unlockNote": {
+  "text": "Technicy przysyłają od dziś zdjęcia z oględzin w pełnej rozdzielczości. Zanim kogoś zapytacie, przyjrzyjcie się sami — najmniejszy szczegół na zdjęciu bywa ważniejszy niż godzina przesłuchania.",
+  "by": "szef wydziału"
+ },
+ "people": [
+  {
+   "id": "ewa",
+   "name": "Ewa Sitek",
+   "role": "Kierowniczka kina „Zorza”",
+   "age": 52,
+   "desc": "Szczupła, w czarnym golfie, z perfekcyjnie upiętymi włosami. To ona wymyśliła „Ostatni seans”. Mówi spokojnie i rzeczowo, tylko co chwilę obraca obrączkę na palcu.",
+   "deflect": [
+    "Proszę mnie nie łapać za słowa.",
+    "Prowadzę to kino od dwudziestu lat. Nie wiem, do czego pan zmierza.",
+    "Wczoraj był najtrudniejszy wieczór w moim życiu. Proszę o fakty."
+   ],
+   "showDefault": [
+    "Nie rozumiem, co to ma wspólnego z panem Leonem.",
+    "Widzę to pierwszy raz."
+   ],
+   "questions": [
+    {
+     "id": "ew-q1",
+     "q": "Gdzie pani była w czasie seansu?",
+     "a": "W biurze, od pięć po ósmej. Liczyłam utarg z biletów i układałam przemówienie na pożegnanie. Nie ruszałam się stamtąd do końca filmu.",
+     "claims": [
+      "e-l1"
+     ]
+    },
+    {
+     "id": "ew-q2",
+     "q": "Jak znaleźliście pana Leona?",
+     "a": "Nie zszedł na pożegnanie. O wpół do jedenastej poszłam z Damianem na górę. Drzwi zamknięte, pukałam, cisza. Otworzyłam zapasowym kluczem. Leżał przy przewijarce, obok ta puszka. Lampa w projektorze jeszcze świeciła.",
+     "claims": [
+      "e-c1"
+     ]
+    },
+    {
+     "id": "ew-q3",
+     "q": "Dlaczego to pani zapaliła światło na sali?",
+     "a": "Bo ekran zrobił się biały, a z kabiny nic. Pomyślałam, że pan Leon się wzruszył — ostatni seans w jego życiu. Ktoś musiał zapalić, ludzie siedzieli po ciemku.",
+     "claims": [
+      "e-c2"
+     ]
+    },
+    {
+     "id": "ew-q4",
+     "q": "Kto w kinie umie zmienić projektor w trakcie seansu?",
+     "a": "Pan Leon i Damian, którego pan Leon uczył. Ja się na tym nie znam. Nigdy w życiu nie obsługiwałam projektora, jestem od papierów i ludzi.",
+     "claims": [
+      "e-l7"
+     ]
+    },
+    {
+     "id": "ew-q5",
+     "q": "Co z plakatami w gablocie, kiedy kino zostanie zamknięte?",
+     "a": "To duma „Zorzy”. Cztery oryginały, wiszą tu od lat. Po zamknięciu trafią do muzeum kinematografii, już to uzgodniłam.",
+     "claims": [
+      "e-l5"
+     ]
+    },
+    {
+     "id": "ew-q6",
+     "q": "Wiedziała pani, co pan Leon chciał powiedzieć po seansie?",
+     "a": "Miał przemówić na pożegnaniu, jak wszyscy. Nie wiem, co przygotował. Nie pokazywał mi tekstu.",
+     "requiresAny": [
+      "st:j-c3",
+      "e12"
+     ]
+    },
+    {
+     "id": "ew-q7",
+     "q": "Dlaczego od razu powiedziała pani, że puszka spadła z półki?",
+     "a": "Bo tak to wyglądało. Leżała pod regałem. Co miałam pomyśleć? Że ktoś... Nie, wtedy nawet przez myśl mi to nie przeszło.",
+     "requires": [
+      "st:d-c4"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "e-c1",
+     "text": "O 22:41 otworzyłam kabinę zapasowym kluczem i znalazłam pana Leona.",
+     "truth": true
+    },
+    {
+     "id": "e-c2",
+     "text": "Pod koniec filmu zapaliłam światło na sali panelem przy drzwiach.",
+     "truth": true
+    },
+    {
+     "id": "e-l1",
+     "text": "Przez cały seans nie wychodziłam z biura.",
+     "contradicts": [
+      "st:j-c2",
+      "x5"
+     ],
+     "response": "Raz wyszłam. Około dziesięć po dziewiątej wyniosłam do kontenera kartony z baru. Kilka minut, nic ważnego. Zapomniałam o tym.",
+     "reveals": [
+      "e-l2"
+     ]
+    },
+    {
+     "id": "e-l2",
+     "text": "Na podwórku byłam kilka minut, tylko przy kontenerze, około 21:10.",
+     "contradicts": [
+      "x5",
+      "e16",
+      "t4"
+     ],
+     "response": "Wyszłam wcześniej, za dwadzieścia dziewiąta. Drzwi kabiny były otwarte, weszłam po schodach, żeby zamienić słowo z panem Leonem. On leżał na podłodze. Zamknęłam drzwi i zbiegłam. Potem stałam pod daszkiem i nie mogłam się ruszyć. Nie wiem, jak długo.",
+     "gives": [
+      "t5"
+     ],
+     "reveals": [
+      "e-l3"
+     ]
+    },
+    {
+     "id": "e-l3",
+     "text": "W kabinie byłam tylko chwilę i od razu zbiegłam.",
+     "contradicts": [
+      "e26",
+      "x5",
+      "t4"
+     ],
+     "response": "Byłam dłużej. Kiedy kończyła się pierwsza część, zmieniłam projektor. Pan Leon sam mnie tego nauczył, trzydzieści lat temu. Nie mogłam pozwolić, żeby ostatni seans się urwał. Wyszłam, kiedy zaczęło padać. Ale on już leżał, kiedy weszłam. Ja go nie zabiłam.",
+     "gives": [
+      "t6"
+     ],
+     "reveals": [
+      "e-l4"
+     ]
+    },
+    {
+     "id": "e-l4",
+     "text": "Nie zabiłam pana Leona. Kiedy weszłam, już leżał.",
+     "contradicts": [
+      "e27",
+      "x2"
+     ],
+     "response": "Pokazał mi ten list. Powiedział, że po seansie wręczy go pani Wrzos, przy wszystkich, przy dziennikarzach. Dwadzieścia lat tego kina — i miałam wyjść na złodziejkę na jego pożegnaniu. Puszka stała na stole przewijarki. Nie pamiętam, kiedy ją chwyciłam. Potem myślałam już tylko o jednym: film musi iść. Póki szedł, wszyscy myśleli, że on żyje.",
+     "gives": [
+      "t7"
+     ]
+    },
+    {
+     "id": "e-l5",
+     "text": "W gablocie wiszą cztery oryginały.",
+     "contradicts": [
+      "e13",
+      "e17",
+      "e27"
+     ],
+     "response": "Dwa to faksymile. Zamówiłam je, żeby oryginały nie blakły w świetle foyer. Oryginały są bezpieczne, leżą u mnie w domu.",
+     "reveals": [
+      "e-l6"
+     ]
+    },
+    {
+     "id": "e-l6",
+     "text": "Oryginały obu plakatów leżą bezpieczne u mnie w domu.",
+     "contradicts": [
+      "d02",
+      "d03"
+     ],
+     "response": "Nie ma ich w domu. Mąż oddał je do aukcji przez swoją firmę. Kino zamykają, kolekcja i tak poszłaby do magazynu, a my toniemy w długach. Myślałam, że nikt nie zauważy różnicy. Nikt poza nim.",
+     "gives": [
+      "t8"
+     ]
+    },
+    {
+     "id": "e-l7",
+     "text": "Nigdy w życiu nie obsługiwałam projektora.",
+     "contradicts": [
+      "st:j-c6",
+      "d01",
+      "t6"
+     ],
+     "response": "Na zdjęciu jestem ja. Przed ślubem nazywałam się Kalinowska. Przez pięć lat siedziałam w tej kabinie obok pana Leona. Potem przeszłam do biura i nikt już o tym nie pamiętał.",
+     "gives": [
+      "t9"
+     ]
+    }
+   ],
+   "shows": [
+    {
+     "id": "ew-s1",
+     "ev": "e09",
+     "a": "Stare zdjęcie. Pan Leon miał w kabinie mnóstwo pamiątek. Nie wiem, czemu mi je państwo pokazują."
+    },
+    {
+     "id": "ew-s2",
+     "ev": "e16",
+     "a": "Mój płaszcz. Zahaczyłam o coś przy kontenerze. Na podwórku wszystko jest zardzewiałe."
+    },
+    {
+     "id": "ew-s3",
+     "ev": "x6",
+     "a": "Plakaty z tych lat drukowano w tysiącach egzemplarzy. Na aukcjach jest ich pełno."
+    }
+   ]
+  },
+  {
+   "id": "damian",
+   "name": "Damian Wróbel",
+   "role": "Technik projekcji",
+   "age": 31,
+   "desc": "Wysoki, w czarnej bluzie z logo „Zorzy” i z kucykiem. Od trzech lat uczył się u pana Leona projekcji z taśmy. Ma czerwone oczy i nie wypuszcza z ręki telefonu.",
+   "deflect": [
+    "Ja tylko obsługuję projektor. Nic więcej nie wiem.",
+    "Pan Leon był dla mnie jak dziadek. Naprawdę myślicie, że…",
+    "Nie pamiętam, serio. Byłem w szoku."
+   ],
+   "showDefault": [
+    "Nie wiem, co mam o tym powiedzieć.",
+    "To nie moja działka."
+   ],
+   "questions": [
+    {
+     "id": "d-q1",
+     "q": "Gdzie pan był w czasie seansu?",
+     "a": "Przy barze z panią Joanną, szykowaliśmy pożegnanie. Za pięć dziewiąta wyszedłem zapalić na podwórko, wróciłem po kwadransie. Nikogo tam nie było.",
+     "claims": [
+      "d-l1"
+     ]
+    },
+    {
+     "id": "d-q2",
+     "q": "Jak pan Leon prowadził projekcję z taśmy?",
+     "a": "Jak zegarek. Każdą zmianę projektora wpisywał do dziennika, co do minuty. A pierwszą część przewijał od razu, kiedy szła druga. Mówił, że szpula na stole ma być gotowa, zanim film się skończy.",
+     "claims": [
+      "d-c1"
+     ]
+    },
+    {
+     "id": "d-q3",
+     "q": "Kto poza panem Leonem umie zmienić projektor?",
+     "a": "Ja. Uczył mnie od trzech lat. Wczoraj chciał zrobić wszystko sam, to był jego wieczór. Nie byłem w kabinie ani razu w czasie seansu.",
+     "claims": [
+      "d-c2"
+     ]
+    },
+    {
+     "id": "d-q4",
+     "q": "Dlaczego drzwi pożarowe kabiny były otwarte w czasie seansu?",
+     "a": "Pan Leon zawsze je klinował. Dwa projektory z lampami ksenonowymi — w kabinie jest jak w saunie. Miał taki stary drewniany klin na czerwonym sznurku.",
+     "claims": [
+      "d-c3"
+     ]
+    },
+    {
+     "id": "d-q5",
+     "q": "Co pan zobaczył, kiedy weszliście do kabiny?",
+     "a": "Pani Ewa otworzyła drzwi zapasowym kluczem. Pan Leon leżał przy przewijarce. W projektorze B jeszcze świeciła lampa, zgasiłem ją. Pani Ewa od razu powiedziała, że puszka musiała spaść z półki.",
+     "claims": [
+      "d-c4"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "d-c1",
+     "text": "Pan Leon wpisywał każdą zmianę do dziennika i od razu przewijał pierwszą część.",
+     "truth": true
+    },
+    {
+     "id": "d-c2",
+     "text": "W czasie seansu nie byłem w kabinie ani razu.",
+     "truth": true
+    },
+    {
+     "id": "d-c3",
+     "text": "Pan Leon zawsze klinował drzwi pożarowe kabiny, bo lampy grzeją.",
+     "truth": true
+    },
+    {
+     "id": "d-c4",
+     "text": "Pani Ewa od razu powiedziała, że puszka spadła z półki.",
+     "truth": true
+    },
+    {
+     "id": "d-c5",
+     "text": "Pan Leon wpisywał do dziennika każdą zmianę projektora. Jeśli jej nie wpisał, to nie on ją zrobił.",
+     "truth": true
+    },
+    {
+     "id": "d-l1",
+     "text": "Od 20:55 do 21:10 paliłem na podwórku i nikogo tam nie widziałem.",
+     "contradicts": [
+      "x4",
+      "x3",
+      "st:j-c5"
+     ],
+     "response": "Dobra. Nie byłem na podwórku. Poszedłem do Żabki po wódkę i papierosy na po imprezie. Pani Ewa zakazała alkoholu, więc nie chciałem się przyznać. Wróciłem frontem, przez foyer.",
+     "gives": [
+      "t1"
+     ]
+    }
+   ],
+   "shows": [
+    {
+     "id": "d-s1",
+     "ev": "e06",
+     "a": "Nie ma zmiany projektora. Pan Leon wpisał każdą od pięćdziesięciu lat, nawet na seansie dla trzech osób. Jeśli jej nie wpisał, to nie on ją zrobił.",
+     "claims": [
+      "d-c5"
+     ]
+    },
+    {
+     "id": "d-s2",
+     "ev": "e07",
+     "a": "Pierwsza część nieprzewinięta? Pan Leon zabrałby się za to, gdy tylko ruszyła druga. Chyba że już nie mógł."
+    },
+    {
+     "id": "d-s3",
+     "ev": "e09",
+     "a": "Nie wiem, kto to jest. Pan Leon mówił kiedyś, że przede mną miał tylko jedną uczennicę, dawno temu, i że była lepsza od niego."
+    }
+   ]
+  },
+  {
+   "id": "grzegorz",
+   "name": "Grzegorz Barcz",
+   "role": "Syn kinooperatora",
+   "age": 46,
+   "desc": "Przyjechał z Warszawy na pożegnanie kina ojca. Drogi płaszcz, zmęczona twarz, telefon, który co chwilę wibruje. Odpowiada krótko i patrzy w podłogę.",
+   "deflect": [
+    "To był mój ojciec. Proszę o trochę szacunku.",
+    "Nie mam nic do dodania.",
+    "Pytajcie personel, ja tu tylko byłem gościem."
+   ],
+   "showDefault": [
+    "Nie wiem. Dawno tu nie bywałem.",
+    "Nic mi to nie mówi."
+   ],
+   "questions": [
+    {
+     "id": "g-q1",
+     "q": "Gdzie pan był podczas seansu?",
+     "a": "Na sali, w piątym rzędzie. Cały film. Ostatni seans ojca — gdzie miałbym być?",
+     "claims": [
+      "g-l1"
+     ]
+    },
+    {
+     "id": "g-q2",
+     "q": "O czym rozmawiał pan z ojcem przed seansem?",
+     "a": "O filmie. O tym, że to koniec. Zwykła rozmowa.",
+     "claims": [
+      "g-l2"
+     ]
+    },
+    {
+     "id": "g-q3",
+     "q": "Umie pan obsługiwać projektor?",
+     "a": "Jako dzieciak spędzałem w tej kabinie każde popołudnie. Zmianę projektora zrobiłbym dziś z zamkniętymi oczami. Tylko że wczoraj nie miałem po co tam wchodzić.",
+     "claims": [
+      "g-c1"
+     ]
+    },
+    {
+     "id": "g-q4",
+     "q": "Kto jest na zdjęciu z pana ojcem w kabinie?",
+     "a": "Ojciec i jakaś praktykantka. Miałem wtedy osiemnaście lat i inne rzeczy w głowie. Ojciec miał paru uczniów, nie pamiętam ich.",
+     "requires": [
+      "e09"
+     ]
+    },
+    {
+     "id": "g-q5",
+     "q": "Ojciec mówił panu o plakatach w gablocie?",
+     "a": "W zeszłym tygodniu dzwonił i coś mamrotał, że „ktoś tu kręci”. Myślałem, że chodzi o sprzedaż budynku. Nie słuchałem go uważnie. Teraz żałuję.",
+     "requiresAny": [
+      "e13",
+      "st:j-c3"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "g-c1",
+     "text": "Umiem zmienić projektor, nauczyłem się w dzieciństwie.",
+     "truth": true
+    },
+    {
+     "id": "g-c3",
+     "text": "Ojciec zawsze stawiał pustą puszkę na stole przewijarki, nigdy na górnej półce.",
+     "truth": true
+    },
+    {
+     "id": "g-l1",
+     "text": "Cały seans siedziałem na sali.",
+     "contradicts": [
+      "x3",
+      "st:j-c4"
+     ],
+     "response": "Wyszedłem o dziewiątej zadzwonić. Do człowieka, któremu jestem winien pieniądze. Stałem przed kinem, aż skończyłem. Nie chciałem, żeby to wyszło na jaw — nie w taki dzień.",
+     "gives": [
+      "t2"
+     ]
+    },
+    {
+     "id": "g-l2",
+     "text": "Przed seansem rozmawiałem z ojcem tylko o filmie.",
+     "contradicts": [
+      "st:j-c1"
+     ],
+     "response": "Pokłóciliśmy się. Prosiłem, żeby poręczył mi pożyczkę albo dał mieszkanie pod zastaw. Odmówił. Powiedziałem mu rzeczy, których nie da się cofnąć. To była nasza ostatnia rozmowa.",
+     "gives": [
+      "t3"
+     ]
+    }
+   ],
+   "shows": [
+    {
+     "id": "g-s1",
+     "ev": "e08",
+     "a": "Ta puszka nie spadła z żadnej półki. Ojciec nigdy nie trzymał pustej puszki na górze. Zawsze stała na stole przewijarki, żeby od razu schować do niej przewiniętą szpulę.",
+     "claims": [
+      "g-c3"
+     ]
+    },
+    {
+     "id": "g-s2",
+     "ev": "e04",
+     "a": "Ojciec czekał na ten wieczór pół roku. Mówił, że to będzie najlepsza projekcja w jego życiu."
+    }
+   ]
+  },
+  {
+   "id": "joanna",
+   "name": "Joanna Rak",
+   "role": "Prowadzi bufet kina",
+   "age": 58,
+   "desc": "Pracuje za barem „Zorzy” od 1999 roku. Ciepła, gadatliwa, z ołówkiem za uchem. Zna wszystkich stałych widzów po imieniu i wszystko, co dzieje się w foyer.",
+   "deflect": [
+    "Ja tam stałam za barem, kochanie. Nic więcej nie wiem.",
+    "Nie będę gadać o ludziach za plecami.",
+    "Tego nie widziałam, nie będę zmyślać."
+   ],
+   "showDefault": [
+    "Pierwszy raz widzę.",
+    "Nie znam się na tym, ja jestem od kawy i ciastek."
+   ],
+   "questions": [
+    {
+     "id": "j-q1",
+     "q": "Co się działo przed seansem?",
+     "a": "Pan Leon przyszedł o wpół do ósmej na herbatę. Przy barze pokłócił się z synem — o pieniądze, o mieszkanie, aż ludzie się oglądali. Potem poszedł na górę, cały czerwony.",
+     "claims": [
+      "j-c1"
+     ]
+    },
+    {
+     "id": "j-q2",
+     "q": "Czy pan Leon mówił coś szczególnego?",
+     "a": "Miał kopertę w kieszeni marynarki. Powiedział, że po seansie da coś pani konserwator i że wszyscy się zdziwią, co się dzieje z naszymi plakatami. Pytałam o co chodzi — machnął ręką.",
+     "claims": [
+      "j-c3"
+     ]
+    },
+    {
+     "id": "j-q3",
+     "q": "Kto wychodził z foyer w czasie seansu?",
+     "a": "Damian wyszedł frontem za pięć dziewiąta i wrócił z ulicy jakoś dziesięć po, z reklamówką. A syn pana Leona wyszedł z sali koło dziewiątej, przed kino, z telefonem przy uchu. Wrócił po kwadransie.",
+     "claims": [
+      "j-c5",
+      "j-c4"
+     ]
+    },
+    {
+     "id": "j-q4",
+     "q": "Widziała pani kierowniczkę w czasie seansu?",
+     "a": "Przyszła od zaplecza kwadrans po dziewiątej. Mokra, z płaszczem zarzuconym na ramiona, włosy jej się rozsypały. Powiedziała, że wynosiła śmieci. Zdziwiłam się, bo śmieci zawsze wynosi Damian.",
+     "claims": [
+      "j-c2"
+     ]
+    },
+    {
+     "id": "j-q5",
+     "q": "Jak skończył się film?",
+     "a": "Ostatnia scena, napisy i nagle biały ekran. Świecił tak z pięć minut. Ludzie bili brawo, myśleli, że pan Leon zaraz zejdzie się ukłonić. W końcu pani Ewa zapaliła światło panelem przy drzwiach sali.",
+     "claims": [
+      "j-c7"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "j-c1",
+     "text": "Przed seansem pan Leon pokłócił się z synem o pieniądze i mieszkanie.",
+     "truth": true
+    },
+    {
+     "id": "j-c2",
+     "text": "Kierowniczka przyszła od zaplecza kwadrans po dziewiątej, mokra, i mówiła, że wynosiła śmieci.",
+     "truth": true
+    },
+    {
+     "id": "j-c3",
+     "text": "Pan Leon miał kopertę i zapowiedział, że po seansie powie coś o plakatach.",
+     "truth": true
+    },
+    {
+     "id": "j-c4",
+     "text": "Syn pana Leona wyszedł przed kino koło dziewiątej i wrócił po kwadransie.",
+     "truth": true
+    },
+    {
+     "id": "j-c5",
+     "text": "Damian wyszedł frontem za pięć dziewiąta i wrócił z ulicy z reklamówką.",
+     "truth": true
+    },
+    {
+     "id": "j-c6",
+     "text": "Na zdjęciu z kabiny jest Ewa Sitek, z domu Kalinowska, która przed laty była kinooperatorką.",
+     "truth": true
+    },
+    {
+     "id": "j-c7",
+     "text": "Po napisach ekran świecił na biało około pięciu minut, aż kierowniczka zapaliła światło.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "j-s1",
+     "ev": "e09",
+     "a": "Przecież to Ewa! Pani Ewa, z domu Kalinowska. Kiedy zaczynałam tu pracować, ona jeszcze siedziała w kabinie z panem Leonem. Najlepsza, mówił o niej. Dopiero potem przeszła do biura.",
+     "claims": [
+      "j-c6"
+     ]
+    },
+    {
+     "id": "j-s2",
+     "ev": "e16",
+     "a": "W tym płaszczu wtedy przyszła. Miała go na ramionach, cały mokry."
+    }
+   ]
+  },
+  {
+   "id": "lipka",
+   "name": "Stanisław Lipka",
+   "role": "Sąsiad z oficyny naprzeciwko",
+   "age": 84,
+   "desc": "Emerytowany motorniczy tramwaju. Mieszka w oficynie od 1961 roku, z okna widzi tył kina. Przyszedł sam, w kapeluszu i krawacie, bo „jak się coś widziało, to trzeba powiedzieć”.",
+   "deflect": [
+    "Ja wiem, co widziałem, proszę pana.",
+    "Oczy mam jeszcze dobre, tylko nogi gorsze.",
+    "Tego to już nie wiem, nie będę zmyślał."
+   ],
+   "showDefault": [
+    "A co ja mogę o tym wiedzieć?",
+    "Nie, tego nie widziałem."
+   ],
+   "questions": [
+    {
+     "id": "l-q1",
+     "q": "Co pan widział w sobotę wieczorem?",
+     "a": "Wstałem zamknąć okno, bo zaczęło kropić. Patrzę, a tu ktoś zbiega po tych żelaznych schodach z kina. Szybko, trzymał się poręczy. Długi jasny płaszcz. Zegar nad stołem pokazywał jakieś dziesięć po dziesiątej, od razu na niego spojrzałem.",
+     "claims": [
+      "l-m1",
+      "l-c2"
+     ]
+    },
+    {
+     "id": "l-q2",
+     "q": "Widział pan twarz tej osoby?",
+     "a": "Z tej odległości, w tym świetle? Nie. Kaptura nie miał. Włosy jasne albo siwe, nie wiem. Mogła to być i kobieta. Zszedł na podwórze i zniknął pod ścianą kina, tam gdzie tylne drzwi.",
+     "claims": [
+      "l-c3"
+     ]
+    },
+    {
+     "id": "l-q3",
+     "q": "Czy drzwi kabiny były otwarte?",
+     "a": "W czasie seansów zawsze są otwarte, pan Leon je podpiera, bo mu gorąco. Ale jak ten ktoś zbiegał, drzwi na górze były już zamknięte. Pamiętam, bo kiedy są otwarte, z kabiny bije światło od lamp, a wtedy na górze było już ciemno.",
+     "claims": [
+      "l-c4"
+     ]
+    },
+    {
+     "id": "l-q4",
+     "q": "Kiedy ostatnio nastawiał pan zegar?",
+     "a": "W czwartek, jak zmieniałem baterię. Nastawiłem z zegarka po bracie. Ten nigdy się nie myli, nakręcam go co rano od trzydziestu lat.",
+     "claims": [
+      "l-c5"
+     ],
+     "requires": [
+      "e24"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "l-c2",
+     "text": "Kiedy ta osoba zbiegała, zaczynało kropić.",
+     "truth": true
+    },
+    {
+     "id": "l-c3",
+     "text": "Osoba w jasnym płaszczu zeszła na podwórze i zniknęła przy tylnych drzwiach kina.",
+     "truth": true
+    },
+    {
+     "id": "l-c4",
+     "text": "Kiedy ta osoba zbiegała, drzwi kabiny były już zamknięte.",
+     "truth": true
+    },
+    {
+     "id": "l-c5",
+     "text": "Zegar nastawiłem w czwartek z zegarka po bracie.",
+     "truth": true
+    },
+    {
+     "id": "l-m1",
+     "text": "Kogoś na schodach pożarowych widziałem około dziesięć po dziesiątej wieczorem.",
+     "mistake": true,
+     "contradicts": [
+      "e24",
+      "e25"
+     ],
+     "response": "Godzinę więcej? Mój Boże... Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — kto by pamiętał o zegarku w pudełku. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić.",
+     "gives": [
+      "t4"
+     ]
+    }
+   ],
+   "shows": [
+    {
+     "id": "l-s1",
+     "ev": "x5",
+     "a": "Jedenaście po dziewiątej drzwi się zamknęły? Nie, to niemożliwe. Ja widziałem tego człowieka o dziesiątej, zegar miałem przed nosem."
+    },
+    {
+     "id": "l-s2",
+     "ev": "x1",
+     "a": "Padać zaczęło akurat, jak on zbiegał. Tego jestem pewien. Dlatego wstałem do okna."
+    }
+   ]
+  }
+ ],
+ "locations": [
+  {
+   "id": "booth",
+   "name": "Kabina projekcyjna",
+   "kind": "Nad balkonem sali, wejście z korytarza balkonu",
+   "desc": "Ciasne pomieszczenie z dwoma projektorami Meopta, stołem przewijarki i regałem z taśmami. Przez okienka projekcyjne widać ciemną salę. Ciało zabrano w nocy — na podłodze przy przewijarce został zarys kredą.",
+   "spots": [
+    {
+     "id": "sp-log",
+     "name": "Dziennik kabiny",
+     "text": "Gruby zeszyt na pulpicie między projektorami.",
+     "gives": [
+      "e06"
+     ]
+    },
+    {
+     "id": "sp-proj",
+     "name": "Projektor A i przewijarka",
+     "text": "Szpula na projektorze A, pusty stół przewijarki.",
+     "gives": [
+      "e07"
+     ]
+    },
+    {
+     "id": "sp-can",
+     "name": "Puszka na podłodze",
+     "text": "Stalowa puszka przy zarysie ciała, pod regałem.",
+     "gives": [
+      "e08"
+     ]
+    },
+    {
+     "id": "sp-photo",
+     "name": "Zdjęcie w ramce",
+     "text": "Czarno-białe zdjęcie na ścianie nad przewijarką.",
+     "gives": [
+      "e09"
+     ]
+    },
+    {
+     "id": "sp-door",
+     "name": "Drzwi ewakuacyjne",
+     "text": "Stalowe drzwi na schody pożarowe.",
+     "gives": [
+      "e10"
+     ]
+    },
+    {
+     "id": "sp-card",
+     "name": "Puszka części II",
+     "text": "Otwarta puszka przy projektorze B, w środku karta.",
+     "gives": [
+      "e11"
+     ]
+    },
+    {
+     "id": "sp-desk",
+     "name": "Biurko kinooperatora",
+     "text": "Termos, okulary, koperta.",
+     "gives": [
+      "e12"
+     ]
+    },
+    {
+     "id": "sp-calc",
+     "name": "Projektor B",
+     "text": "Wasze wyliczenie godziny zmiany projektorów.",
+     "gives": [
+      "e26"
+     ],
+     "requires": {
+      "puzzle": "p-reel"
+     },
+     "lockedText": "Projektor B przejął film w trakcie seansu. Żeby ustalić, kiedy dokładnie, policzcie to z karty kopii i dziennika — zagadka „Zmiana projektorów”."
+    }
+   ],
+   "search": {
+    "aspect": 1.5,
+    "spots": {
+     "sp-log": [
+      0.47,
+      0.52,
+      0.05
+     ],
+     "sp-proj": [
+      0.22,
+      0.45,
+      0.07
+     ],
+     "sp-can": [
+      0.6,
+      0.86,
+      0.05
+     ],
+     "sp-photo": [
+      0.7,
+      0.2,
+      0.05
+     ],
+     "sp-door": [
+      0.92,
+      0.45,
+      0.06
+     ],
+     "sp-card": [
+      0.36,
+      0.75,
+      0.04
+     ],
+     "sp-desk": [
+      0.8,
+      0.66,
+      0.05
+     ]
+    }
+   }
+  },
+  {
+   "id": "foyer",
+   "name": "Foyer",
+   "kind": "Parter kina, za kasami",
+   "desc": "Marmurowa posadzka, bar z ciemnego drewna, girlandy po wczorajszym pożegnaniu. Na ścianie przeszklona gablota z plakatami, przy drzwiach na salę panel oświetlenia.",
+   "spots": [
+    {
+     "id": "sp-case",
+     "name": "Gablota z plakatami",
+     "text": "Cztery stare plakaty filmowe za szkłem.",
+     "gives": [
+      "e13"
+     ]
+    },
+    {
+     "id": "sp-panel",
+     "name": "Panel oświetlenia sali",
+     "text": "Szafka z przełącznikami przy drzwiach na salę.",
+     "gives": [
+      "e14"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "office",
+   "name": "Biuro kierowniczki",
+   "kind": "Korytarz zaplecza, przy tylnych drzwiach",
+   "desc": "Małe biuro z biurkiem, szafą na dokumenty i wieszakiem. Na biurku kasetka z utargiem i wydruk przemówienia pożegnalnego z dopiskami.",
+   "spots": [
+    {
+     "id": "sp-coat",
+     "name": "Wieszak",
+     "text": "Jasny płaszcz kierowniczki.",
+     "gives": [
+      "e16"
+     ],
+     "requires": {
+      "all": [
+       "lie:e-l1"
+      ]
+     },
+     "lockedText": "Płaszcz kierowniczki kina. Bez powodu prokurator nie zgodzi się go zabezpieczyć — najpierw wykażcie, że jego właścicielka mija się z prawdą o tym, co robiła w czasie seansu."
+    },
+    {
+     "id": "sp-folder",
+     "name": "Szafa z dokumentami",
+     "text": "Segregatory i teczki kina.",
+     "gives": [
+      "e17"
+     ]
+    },
+    {
+     "id": "sp-keys",
+     "name": "Szafka z kluczami",
+     "text": "Zapasowe klucze i zeszyt wydań.",
+     "gives": [
+      "e18"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "yard",
+   "name": "Podwórze za kinem",
+   "kind": "Wspólne podwórze z oficyną pod numerem 43",
+   "desc": "Ciasna łódzka studnia: mokry bruk, latarnia, kontenery pod ścianą. Na tylnej ścianie kina żelazne schody pożarowe prowadzą do drzwi kabiny. Obok nich tylne drzwi zaplecza.",
+   "spots": [
+    {
+     "id": "sp-stairs",
+     "name": "Schody pożarowe",
+     "text": "Stalowe schody od drzwi kabiny na bruk.",
+     "gives": [
+      "e19"
+     ]
+    },
+    {
+     "id": "sp-bin",
+     "name": "Kontener na makulaturę",
+     "text": "Niebieski kontener przy tylnych drzwiach.",
+     "gives": [
+      "e20"
+     ]
+    },
+    {
+     "id": "sp-wedge",
+     "name": "Pod schodami",
+     "text": "Coś leży w kałuży pod dolnym biegiem schodów.",
+     "gives": [
+      "e21"
+     ]
+    },
+    {
+     "id": "sp-back",
+     "name": "Tylne drzwi zaplecza",
+     "text": "Metalowe drzwi z czujnikiem nad framugą.",
+     "gives": [
+      "e22"
+     ]
+    },
+    {
+     "id": "sp-letter",
+     "name": "Złożone skrawki",
+     "text": "Kartka złożona z mokrych skrawków z kontenera.",
+     "gives": [
+      "e27"
+     ],
+     "requires": {
+      "puzzle": "p-torn"
+     },
+     "lockedText": "Mokre skrawki z kontenera to jedna kartka. Złóżcie ją — zagadka „Podarty list”."
+    }
+   ],
+   "search": {
+    "aspect": 1.5,
+    "spots": {
+     "sp-stairs": [
+      0.62,
+      0.38,
+      0.08
+     ],
+     "sp-bin": [
+      0.3,
+      0.72,
+      0.07
+     ],
+     "sp-wedge": [
+      0.66,
+      0.86,
+      0.04
+     ],
+     "sp-back": [
+      0.44,
+      0.55,
+      0.05
+     ]
+    }
+   }
+  },
+  {
+   "id": "flat",
+   "name": "Mieszkanie pana Lipki",
+   "kind": "Oficyna, ul. Gdańska 43, II piętro",
+   "desc": "Jeden pokój z kuchnią, kredens, stół nakryty ceratą, fotel przy oknie. Pan Lipka zaprasza: „Proszę zobaczyć, skąd patrzyłem”.",
+   "spots": [
+    {
+     "id": "sp-window",
+     "name": "Okno",
+     "text": "Fotel przy oknie, za szybą podwórze.",
+     "gives": [
+      "e23"
+     ]
+    },
+    {
+     "id": "sp-clock",
+     "name": "Zegar ścienny",
+     "text": "Okrągły zegar nad kredensem.",
+     "gives": [
+      "e24"
+     ]
+    },
+    {
+     "id": "sp-watch",
+     "name": "Pudełko na stole",
+     "text": "Otwarte pudełko z zegarkiem, obok baterie.",
+     "gives": [
+      "e25"
+     ]
+    }
+   ],
+   "search": {
+    "aspect": 1.5,
+    "spots": {
+     "sp-window": [
+      0.78,
+      0.4,
+      0.09
+     ],
+     "sp-clock": [
+      0.3,
+      0.2,
+      0.05
+     ],
+     "sp-watch": [
+      0.45,
+      0.72,
+      0.05
+     ]
+    }
+   }
+  }
+ ],
+ "evidence": [
+  {
+   "id": "e01",
+   "type": "Raport",
+   "title": "Raport z miejsca zdarzenia",
+   "summary": "Sobota, 22:55. Pierwsze ustalenia patrolu w kinie „Zorza”.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Miejsce",
+       "Kino „Zorza”, ul. Gdańska 41, Łódź — kabina projekcyjna nad balkonem"
+      ],
+      [
+       "Zmarły",
+       "Leon Barcz, 73 l., kinooperator kina „Zorza” od 1974 roku"
+      ],
+      [
+       "Zgłoszenie",
+       "Ewa Sitek, kierowniczka kina, telefon na 112 o 22:43"
+      ],
+      [
+       "Znaleźli",
+       "Ewa Sitek i Damian Wróbel, około 22:41"
+      ]
+     ]
+    },
+    "W sobotę kino zorganizowało „Ostatni seans” — pożegnalną projekcję z taśmy 35 mm przed zamknięciem kina. Film skończył się przed 22:00, potem w foyer trwało pożegnanie. Kinooperator na nie nie zszedł. Kierowniczka i technik poszli na górę. Wewnętrzne drzwi kabiny były zamknięte na klucz, a klucz od nich miał w kieszeni zmarły. Kierowniczka otworzyła zapasowym kluczem z biura.",
+    "Leon Barcz leżał na podłodze przy stole przewijarki, z raną tyłu głowy. Obok leżała stalowa puszka na taśmę filmową z krwią na krawędzi. Drzwi ewakuacyjne kabiny, prowadzące na zewnętrzne schody pożarowe, były zamknięte. W projektorze B wciąż paliła się lampa; zgasił ją technik.",
+    {
+     "note": "Wstępna ocena patrolu: możliwy nieszczęśliwy wypadek — upadek ciężkiej puszki z regału. Prokurator nie przyjął tej wersji bez sekcji."
+    }
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-12-05 22:41",
+     "Ewa Sitek i Damian Wróbel znajdują ciało Leona Barcza w kabinie",
+     "Raport"
+    ],
+    [
+     "2026-12-05 22:43",
+     "Zgłoszenie na 112",
+     "Raport"
+    ]
+   ]
+  },
+  {
+   "id": "e02",
+   "type": "Zlecenie",
+   "title": "Polecenie prokuratora",
+   "summary": "Wypadek czy zabójstwo?",
+   "body": [
+    {
+     "quote": "Siedemdziesięciotrzyletni kinooperator ginie w zamkniętej kabinie w trakcie ostatniego seansu w historii kina. Sto dwanaście osób na sali, nikt niczego nie zauważył, film poszedł do końca. Chcę wiedzieć, czy to był wypadek. A jeśli nie — kto i dlaczego.",
+     "by": "prok. Marek Olszewski, Prokuratura Rejonowa Łódź-Śródmieście"
+    },
+    {
+     "kv": [
+      [
+       "Zakres",
+       "przyczyna śmierci Leona Barcza; sprawca, jeśli był; jak dostał się do kabiny i jak z niej wyszedł; motyw"
+      ],
+      [
+       "Dostęp",
+       "budynek kina, podwórze, rejestry PESEL, CEPiK, KRS i EKW"
+      ]
+     ]
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e03",
+   "type": "Opinia",
+   "title": "Wstępna opinia lekarza",
+   "summary": "Oględziny w kabinie, sobota 23:30.",
+   "body": [
+    "Rana tłuczona tyłu głowy, w okolicy ciemieniowej, od jednego uderzenia krawędzią twardego, metalowego przedmiotu. Kształt rany zgodny z krawędzią wieczka puszki na taśmę filmową, zabezpieczonej przy ciele.",
+    {
+     "kv": [
+      [
+       "Szacowany czas zgonu",
+       "między 20:30 a 21:30"
+      ],
+      [
+       "Śmierć",
+       "najpewniej w ciągu kilku minut od urazu"
+      ],
+      [
+       "Ślady walki",
+       "brak"
+      ]
+     ]
+    },
+    {
+     "note": "Czy uraz mógł powstać od puszki spadającej z regału, rozstrzygnie sekcja."
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e04",
+   "type": "Ulotka",
+   "title": "Program wieczoru „Ostatni seans”",
+   "summary": "Rozdawany widzom przy wejściu.",
+   "body": [
+    {
+     "quote": "Kino „Zorza” 1958–2026. Ostatni seans. 19:30 — lampka wina w foyer. 20:00 — „Dziewczyna z Bałut” (1958), pierwszy film wyświetlony w „Zorzy”, z oryginalnej kopii 35 mm, 104 minuty. Po seansie — pożegnanie z kinem w foyer. Projekcję poprowadzi pan Leon Barcz, kinooperator „Zorzy” od 1974 roku.",
+     "by": "ulotka kina"
+    },
+    {
+     "note": "Na odwrocie: „Dziękujemy, że byliście z nami. Ewa Sitek, kierowniczka kina”."
+    }
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-12-05 20:00",
+     "Początek projekcji „Dziewczyny z Bałut” (104 min)",
+     "Program wieczoru"
+    ]
+   ]
+  },
+  {
+   "id": "e05",
+   "type": "Wykaz",
+   "title": "Kto był w budynku",
+   "summary": "Lista sporządzona przez patrol po północy.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Widzowie",
+       "112 osób (sprzedane bilety i zaproszenia)"
+      ],
+      [
+       "Personel",
+       "Ewa Sitek (kierowniczka), Damian Wróbel (technik projekcji), Joanna Rak (bufet), Leon Barcz (kinooperator)"
+      ],
+      [
+       "Goście specjalni",
+       "dr Alicja Wrzos, miejska konserwator zabytków; Grzegorz Barcz, syn kinooperatora"
+      ],
+      [
+       "Sąsiedzi",
+       "Stanisław Lipka, ul. Gdańska 43 (oficyna) — zgłosił się sam: widział coś ze swojego okna"
+      ]
+     ]
+    },
+    {
+     "note": "Dr Wrzos wyszła o 22:10, przed znalezieniem ciała. Pozostali z listy zgodzili się zostać do rana albo wrócić na przesłuchanie."
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e06",
+   "type": "Dziennik",
+   "title": "Dziennik kabiny",
+   "summary": "Gruby zeszyt w kratkę na pulpicie między projektorami.",
+   "body": [
+    "Na wewnętrznej stronie okładki ołówkiem: „24 klatki = 1 sekunda. Klatka 35 mm (4 perforacje) = 19 mm.”",
+    {
+     "log": [
+      "28.11  „Lato w Arkadii”, kopia 35 mm, 2 części",
+      "       18:00  start — cz. I na A",
+      "       18:59  zm. A→B",
+      "       19:12  cz. I przewinięta",
+      "       19:41  koniec, światło na sali             L.B.",
+      " 5.12  „Dziewczyna z Bałut”, kopia 35 mm, 2 części",
+      "       20:00  start — cz. I na A                  L.B."
+     ]
+    },
+    {
+     "note": "Po wpisie o 20:00 strona jest pusta. Wcześniejsze kartki: przy każdym seansie z taśmy ta sama kolejność — start, zmiana projektora co do minuty, przewinięcie, koniec."
+    }
+   ],
+   "time": [
+    [
+     "2026-12-05 20:00",
+     "Leon Barcz wpisuje do dziennika start projekcji (cz. I na projektorze A)",
+     "Dziennik kabiny"
+    ]
+   ]
+  },
+  {
+   "id": "e07",
+   "type": "Oględziny",
+   "title": "Projektor A i stół przewijarki",
+   "summary": "Dwa projektory Meopta i stół do przewijania taśmy.",
+   "body": [
+    "Projektor A wyłączony. Na jego szpuli odbiorczej nawinięta cała część I — końcem na zewnątrz, czyli nieprzewinięta. Na projektorze B część II, przewinięta do końca; luźny koniec taśmy zwisa ze szpuli.",
+    "Stół przewijarki pusty. Na blacie odciśnięty w kurzu okrągły ślad, wielkości puszki na szpulę."
+   ]
+  },
+  {
+   "id": "e08",
+   "type": "Przedmiot",
+   "title": "Puszka przy ciele",
+   "summary": "Stalowa puszka na szpulę 1800 m.",
+   "body": [
+    "Pusta stalowa puszka z wieczkiem, waga 2,9 kg. Etykieta: „Dziewczyna z Bałut — cz. I”. Na krawędzi wieczka krew i włosy.",
+    "Puszka leżała u stóp regału z taśmami, metr od ciała — jakby spadła z góry. Na górnej półce regału, na wysokości około 1,9 m, gruba, nienaruszona warstwa kurzu — nie ma w niej śladu po niczym, co stałoby tam niedawno."
+   ]
+  },
+  {
+   "id": "e09",
+   "type": "Fotografia",
+   "title": "Zdjęcie na ścianie kabiny",
+   "summary": "Oprawione w ramkę, nad stołem przewijarki.",
+   "body": [
+    "Czarno-białe zdjęcie: mężczyzna w fartuchu i młoda kobieta z włosami spiętymi w kok przy projektorze Meopta, oboje w białych rękawiczkach. Kobieta trzyma rękę na dźwigni zmiany.",
+    {
+     "quote": "Kabina „Zorzy”, 1998. Leon i jego najzdolniejsza uczennica — Ewa Kalinowska.",
+     "by": "podpis na passe-partout"
+    }
+   ]
+  },
+  {
+   "id": "e10",
+   "type": "Oględziny",
+   "title": "Drzwi ewakuacyjne kabiny",
+   "summary": "Stalowe drzwi na schody pożarowe.",
+   "body": [
+    "Drzwi z samozamykaczem i drążkiem od środka, od zewnątrz bez klamki — zamknięte otwiera się je tylko z kabiny. Przy progu w linoleum świeże wgniecenie, jak od drewnianego klina. Klina w kabinie nie ma.",
+    {
+     "quote": "KLIN! Lampy grzeją. L.B.",
+     "by": "kartka przyklejona nad drążkiem"
+    }
+   ]
+  },
+  {
+   "id": "e11",
+   "type": "Dokument",
+   "title": "Karta kopii filmowej",
+   "summary": "W otwartej puszce części II, przy projektorze B.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Tytuł",
+       "„Dziewczyna z Bałut” (1958)"
+      ],
+      [
+       "Kopia",
+       "35 mm, obraz 1:1,37, dźwięk optyczny"
+      ],
+      [
+       "Część I",
+       "1 750 m"
+      ],
+      [
+       "Część II",
+       "1 096 m"
+      ],
+      [
+       "Razem",
+       "2 846 m"
+      ]
+     ]
+    },
+    {
+     "note": "Dopisek długopisem: „Złożone na dwie duże szpule — jedna zmiana. Zorza, 5.12, ostatni raz. L.B.”"
+    }
+   ]
+  },
+  {
+   "id": "e12",
+   "type": "Oględziny",
+   "title": "Biurko kinooperatora",
+   "summary": "Mały stolik pod oknem kontrolnym.",
+   "body": [
+    "Termos z herbatą, okulary, ołówek, stos starych biletów. Na wierzchu leży koperta zaadresowana starannym pismem:",
+    {
+     "quote": "Pani dr Alicja Wrzos, Miejska Konserwator Zabytków — do rąk własnych.",
+     "by": "koperta"
+    },
+    {
+     "note": "Koperta jest niezaklejona i pusta."
+    }
+   ]
+  },
+  {
+   "id": "e26",
+   "type": "Wyliczenie",
+   "title": "Godzina zmiany projektorów",
+   "summary": "Wasze wyliczenie z karty kopii i dziennika.",
+   "body": [
+    "24 klatki na sekundę po 19 mm to 0,456 m taśmy na sekundę, czyli 27,36 m na minutę. Część I ma 1 750 m, więc trwa 64 minuty. Projekcja ruszyła o 20:00, a zatem projektor B musiał zostać uruchomiony około 21:04.",
+    {
+     "note": "Film poszedł bez przerwy. O 21:04 ktoś stał w kabinie przy projektorach. Leon Barcz nie wpisał tej zmiany do dziennika i nie przewinął części I — wbrew zwyczajowi, którego trzymał się od lat."
+    }
+   ],
+   "time": [
+    [
+     "2026-12-05 21:04",
+     "Zmiana projektorów A→B — wykonał ją ktoś w kabinie",
+     "Wyliczenie"
+    ]
+   ]
+  },
+  {
+   "id": "e13",
+   "type": "Oględziny",
+   "title": "Gablota z plakatami",
+   "summary": "Przeszklona gablota na ścianie foyer.",
+   "body": [
+    "Cztery plakaty filmowe w ramach: „Czarna perła” (1934), „Wiatr od Bałtyku” (1949), „Dziewczyna z Bałut” (1958), „Noc nad Wartą” (1962). Gablota zamknięta na zamek patentowy.",
+    "Przy dolnej krawędzi dwóch plakatów — „Czarnej perły” i „Dziewczyny z Bałut” — widać pod lupą maleńki nadruk wtopiony w papier: „FX 25”. Na dwóch pozostałych nie ma niczego podobnego."
+   ]
+  },
+  {
+   "id": "e14",
+   "type": "Oględziny",
+   "title": "Panel oświetlenia sali",
+   "summary": "Przy drzwiach z foyer na salę.",
+   "body": [
+    "Szafka z przełącznikami oświetlenia widowni. Nad nią mosiężna tabliczka:",
+    {
+     "quote": "Światło na sali zapala kinooperator z kabiny. Panel tylko w razie awarii. L.B.",
+     "by": "tabliczka nad panelem"
+    }
+   ]
+  },
+  {
+   "id": "e16",
+   "type": "Przedmiot",
+   "title": "Płaszcz kierowniczki",
+   "summary": "Zabezpieczony za zgodą prokuratora.",
+   "body": [
+    "Jasnobeżowy trencz z wieszaka w biurze. Ramiona i plecy jeszcze wilgotne. Na prawym rękawie, od mankietu do łokcia, i na prawej kieszeni rdzawe smugi oraz drobiny czerwonopomarańczowej farby.",
+    {
+     "note": "Technik porównał je z próbką z poręczy schodów pożarowych kina: ta sama farba antykorozyjna (minia) i ta sama rdza. Kontener na makulaturę przy tylnych drzwiach jest plastikowy."
+    }
+   ]
+  },
+  {
+   "id": "e17",
+   "type": "Dokument",
+   "title": "Teczka „Plakaty”",
+   "summary": "Z szafy w biurze kierowniczki.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Wycena (2024)",
+       "Pracownia Konserwacji i Ekspertyz Papieru VESPER, Wrocław: cztery plakaty, oryginały, łącznie 186 000 zł"
+      ],
+      [
+       "Najcenniejsze",
+       "„Czarna perła” (1934) — 92 000 zł; „Dziewczyna z Bałut” (1958) — 41 000 zł"
+      ],
+      [
+       "Faktura VESPER z 14.10.2025",
+       "wykonanie dwóch faksymile ekspozycyjnych: „Czarna perła”, „Dziewczyna z Bałut” — 3 800 zł"
+      ],
+      [
+       "Zamawiająca",
+       "Ewa Sitek, kierowniczka kina"
+      ]
+     ]
+    },
+    {
+     "note": "Na zamówieniu dopisek: „oryginały — do depozytu”. W teczce nie ma żadnego dokumentu depozytu."
+    }
+   ],
+   "time": [
+    [
+     "2025-10-14 10:00",
+     "Kierowniczka zamawia w pracowni VESPER dwie faksymile plakatów",
+     "Teczka „Plakaty”"
+    ]
+   ]
+  },
+  {
+   "id": "e18",
+   "type": "Oględziny",
+   "title": "Szafka z kluczami",
+   "summary": "W biurze, obok biurka.",
+   "body": [
+    "Zapasowe klucze opisane na zawieszkach: kabina (drzwi wewnętrzne), zaplecze, gablota w foyer — kluczyk nr 2. Zeszyt wydań kluczy: kluczyk do gabloty nie był nikomu wydawany od 2019 roku.",
+    {
+     "note": "Kluczyk nr 1 do gabloty nosił przy sobie Leon Barcz — znaleziono go w jego kieszeni razem z kluczem do kabiny."
+    }
+   ]
+  },
+  {
+   "id": "e19",
+   "type": "Oględziny",
+   "title": "Schody pożarowe",
+   "summary": "Stalowe schody z kabiny na podwórze.",
+   "body": [
+    "Dwa biegi z pomostem, poręcz pomalowana dawno temu czerwonopomarańczową farbą antykorozyjną, łuszcząca się i rdzawa. W połowie dolnego biegu, na wysokości dłoni, farba jest świeżo starta na długości kilkunastu centymetrów — jakby ktoś zjeżdżał ręką po mokrej poręczy."
+   ]
+  },
+  {
+   "id": "e20",
+   "type": "Przedmiot",
+   "title": "Skrawki z kontenera",
+   "summary": "Niebieski plastikowy kontener na makulaturę przy tylnych drzwiach.",
+   "body": [
+    "Na wierzchu, pod uchyloną klapą: mokra kartka w linie, podarta na dziewięć kawałków. Pismo odręczne, staranne, atrament miejscami się rozmył. Pod spodem kartony po kubkach z baru.",
+    {
+     "note": "Skrawki zabezpieczono i wysuszono. Złóżcie je w analizie — zagadka „Podarty list”."
+    }
+   ]
+  },
+  {
+   "id": "e21",
+   "type": "Przedmiot",
+   "title": "Drewniany klin",
+   "summary": "Pod schodami pożarowymi, w kałuży.",
+   "body": [
+    "Gruby, wytarty klin z jasnego drewna z wywierconą dziurką i pętlą czerwonego sznurka — żeby dało się go wyszarpnąć spod drzwi jednym ruchem. Mokry. Na jednej krawędzi świeże wgniecenie, jakby spadł z wysoka na stalowy stopień."
+   ]
+  },
+  {
+   "id": "e22",
+   "type": "Oględziny",
+   "title": "Tylne drzwi zaplecza",
+   "summary": "Z podwórza na korytarz zaplecza.",
+   "body": [
+    "Metalowe drzwi z zamkiem i czujnikiem alarmu nad framugą. Za nimi korytarz zaplecza: po prawej, trzy kroki od drzwi, biuro kierowniczki; dalej korytarz prowadzi do foyer. Z podwórza nie ma innego wejścia do budynku poza schodami pożarowymi do kabiny."
+   ]
+  },
+  {
+   "id": "e27",
+   "type": "Dokument",
+   "title": "List Leona Barcza",
+   "summary": "Złożony z mokrych skrawków z kontenera.",
+   "body": [
+    {
+     "quote": "Łódź, 5 grudnia 2026 r. Szanowna Pani Konserwator, dwa plakaty w gablocie „Zorzy” to nie są te, które wiszą tu od lat. To kopie. Znam każdą plamkę na oryginałach. „Czarną perłę” i „Dziewczynę z Bałut” znalazłem w katalogu domu aukcyjnego „Rewers”, aukcja 12 grudnia, poz. 117 i 118. Klucz do gabloty mają dwie osoby: ja i kierowniczka kina. Proszę o interwencję przed aukcją. Leon Barcz, kinooperator",
+     "by": "odręczny list, pismo Leona Barcza"
+    },
+    {
+     "note": "To list z pustej koperty na biurku w kabinie. Ktoś go podarł i wyrzucił do kontenera przy tylnych drzwiach kina."
+    }
+   ]
+  },
+  {
+   "id": "e23",
+   "type": "Oględziny",
+   "title": "Widok z okna pana Lipki",
+   "summary": "II piętro oficyny naprzeciwko kina.",
+   "body": [
+    "Okno wychodzi na wspólne podwórze. Wprost naprzeciwko, jakieś piętnaście metrów dalej, tylna ściana kina, schody pożarowe i drzwi kabiny. Latarnia na podwórzu oświetla dolny bieg schodów i tylne drzwi zaplecza."
+   ]
+  },
+  {
+   "id": "e24",
+   "type": "Oględziny",
+   "title": "Zegar ścienny pana Lipki",
+   "summary": "Okrągły zegar nad stołem.",
+   "body": [
+    "Okrągły zegar na baterię nad kredensem. Kiedy jesteście w mieszkaniu, pokazuje dokładnie o godzinę więcej niż wasze telefony."
+   ]
+  },
+  {
+   "id": "e25",
+   "type": "Przedmiot",
+   "title": "Zegarek po bracie",
+   "summary": "Na stole, w otwartym pudełku.",
+   "body": [
+    "Stary nakręcany zegarek kieszonkowy w pudełku z napisem „po Mietku”, obok otwarta paczka baterii — jednej brakuje. Zegarek chodzi równo — ale też pokazuje godzinę więcej niż wasze telefony. Nikt nie przestawił go od lata."
+   ]
+  },
+  {
+   "id": "x1",
+   "type": "Komunikat",
+   "title": "Dane IMGW — opady",
+   "summary": "Punkt pomiarowy Łódź-Śródmieście, sobota 5.12.",
+   "body": [
+    {
+     "log": [
+      "do 21:05        bez opadu, 4 °C",
+      "21:05–23:40     deszcz słaby do umiarkowanego",
+      "wiatr           słaby, południowo-zachodni"
+     ]
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-12-05 21:05",
+     "Zaczyna padać deszcz",
+     "IMGW"
+    ]
+   ]
+  },
+  {
+   "id": "x2",
+   "type": "Opinia",
+   "title": "Sekcja zwłok — wnioski",
+   "summary": "Zakład Medycyny Sądowej, niedziela 8:00.",
+   "body": [
+    "Jedno silne uderzenie krawędzią wieczka puszki e08 w tył głowy, zadane z góry i z zamachem przez osobę stojącą za ofiarą. Puszka o wadze 2,9 kg spadająca z wysokości 1,9 m nie wytworzyłaby takiego urazu ani takiego kąta rany.",
+    {
+     "kv": [
+      [
+       "Czas zgonu",
+       "między 20:30 a 21:30, najpewniej w pierwszej połowie tego przedziału"
+      ],
+      [
+       "Wniosek",
+       "zabójstwo; wypadek wykluczony"
+      ]
+     ]
+    }
+   ],
+   "private": true
+  },
+  {
+   "id": "x3",
+   "type": "Kadry",
+   "title": "Kamera pizzerii naprzeciwko kina",
+   "summary": "Pizzeria „Pod Zorzą”, ul. Gdańska 40 — kamera nad wejściem.",
+   "body": [
+    {
+     "log": [
+      "20:56  młody mężczyzna w czarnej bluzie z logo „Zorzy” wychodzi z kina, idzie w prawo",
+      "21:01  mężczyzna ok. 45 lat w ciemnej kurtce wychodzi z kina, telefon przy uchu",
+      "21:01–21:12  ten sam mężczyzna stoi przed kinem, rozmawia, pali",
+      "21:11  mężczyzna w czarnej bluzie wraca z reklamówką, wchodzi do kina",
+      "21:12  mężczyzna w ciemnej kurtce wraca do kina"
+     ]
+    },
+    {
+     "note": "Na kadrach rozpoznawalni: Damian Wróbel (bluza z logo kina) i Grzegorz Barcz. Kamera widzi tylko front kina, nie podwórze."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-12-05 20:56",
+     "Damian Wróbel wychodzi z kina frontem, na ulicę",
+     "Kamera pizzerii"
+    ],
+    [
+     "2026-12-05 21:01",
+     "Grzegorz Barcz wychodzi przed kino z telefonem",
+     "Kamera pizzerii"
+    ],
+    [
+     "2026-12-05 21:11",
+     "Damian Wróbel wraca z reklamówką",
+     "Kamera pizzerii"
+    ],
+    [
+     "2026-12-05 21:12",
+     "Grzegorz Barcz wraca do kina",
+     "Kamera pizzerii"
+    ]
+   ]
+  },
+  {
+   "id": "x4",
+   "type": "Wydruk",
+   "title": "Transakcja kartą Damiana Wróbla",
+   "summary": "Odpowiedź banku na zapytanie prokuratora.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Data i godzina",
+       "sobota 5.12.2026, 21:03:22"
+      ],
+      [
+       "Miejsce",
+       "sklep Żabka, ul. Gdańska 60, Łódź (ok. 300 m od kina)"
+      ],
+      [
+       "Kwota",
+       "42,97 zł"
+      ]
+     ]
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-12-05 21:03",
+     "Damian Wróbel płaci kartą w sklepie przy Gdańskiej 60",
+     "Bank"
+    ]
+   ]
+  },
+  {
+   "id": "x5",
+   "type": "Wydruk",
+   "title": "Centrala alarmowa kina",
+   "summary": "Dziennik czujników drzwi, sobota 5.12.",
+   "body": [
+    {
+     "log": [
+      "czuwanie: wyłączone 18:30–23:59 (impreza) — czujniki drzwi nadal zapisują zdarzenia",
+      "strefa 4 — drzwi ewakuacyjne kabiny:  19:52:30 otwarte",
+      "                                       21:11:02 zamknięte",
+      "strefa 2 — tylne drzwi zaplecza:       20:41:12 otwarte · 20:41:19 zamknięte",
+      "                                       21:13:05 otwarte · 21:13:14 zamknięte",
+      "strefa 3 — wyjścia ewakuacyjne sali:   brak zdarzeń 19:00–22:40"
+     ]
+    },
+    {
+     "note": "Czujnik strefy 4 rejestruje stan skrzydła drzwi: „otwarte” znaczy, że drzwi nie przylegają do framugi."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-12-05 19:52",
+     "Drzwi ewakuacyjne kabiny zostają otwarte (na klin)",
+     "Centrala alarmowa"
+    ],
+    [
+     "2026-12-05 20:41",
+     "Ktoś wychodzi tylnymi drzwiami zaplecza na podwórze",
+     "Centrala alarmowa"
+    ],
+    [
+     "2026-12-05 21:11",
+     "Drzwi ewakuacyjne kabiny zamykają się",
+     "Centrala alarmowa"
+    ],
+    [
+     "2026-12-05 21:13",
+     "Ktoś wchodzi tylnymi drzwiami z podwórza na zaplecze",
+     "Centrala alarmowa"
+    ]
+   ]
+  },
+  {
+   "id": "x6",
+   "type": "Katalog",
+   "title": "Katalog Domu Aukcyjnego „Rewers”",
+   "summary": "Aukcja „Plakat polski”, Kraków, 12.12.2026.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Poz. 117",
+       "„Czarna perła” (1934), litografia barwna, 98 × 68 cm, cena wywoławcza 70 000 zł"
+      ],
+      [
+       "Poz. 118",
+       "„Dziewczyna z Bałut” (1958), offset, 84 × 58 cm, cena wywoławcza 32 000 zł"
+      ],
+      [
+       "Pochodzenie obu",
+       "kolekcja prywatna, Łódź"
+      ],
+      [
+       "Komitent (umowa komisu z 2.11.2026)",
+       "Ars-Lokus sp. z o.o., Łódź; podpisał prezes zarządu"
+      ]
+     ]
+    },
+    {
+     "note": "Dom aukcyjny nie podaje nazwiska prezesa — odsyła do rejestru KRS."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-11-02 12:00",
+     "Spółka Ars-Lokus oddaje dwa plakaty do sprzedaży w domu aukcyjnym „Rewers”",
+     "Katalog aukcji"
+    ]
+   ]
+  },
+  {
+   "id": "d01",
+   "type": "Wydruk z bazy",
+   "title": "PESEL: Sitek Ewa",
+   "summary": "Kierowniczka kina „Zorza”.",
+   "body": [],
+   "db": "O-006-ewa"
+  },
+  {
+   "id": "d02",
+   "type": "Wydruk z bazy",
+   "title": "KRS: Ars-Lokus",
+   "summary": "Komitent z katalogu aukcji.",
+   "body": [],
+   "db": "F-006-ars"
+  },
+  {
+   "id": "d03",
+   "type": "Wydruk z bazy",
+   "title": "PESEL: Sitek Tomasz",
+   "summary": "Prezes spółki Ars-Lokus.",
+   "body": [],
+   "db": "O-006-tomasz"
+  },
+  {
+   "id": "t1",
+   "type": "Zeznanie",
+   "title": "Damian Wróbel: sklep zamiast podwórka",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Od 20:56 do 21:11 nie było mnie na podwórku. Poszedłem do Żabki po wódkę i papierosy na po imprezie — pani Ewa zakazała alkoholu, więc nie chciałem się przyznać. Wróciłem frontem przez foyer."
+   ],
+   "testimony": true,
+   "time": [
+    [
+     "2026-12-05 21:03",
+     "Damian Wróbel w sklepie, 300 m od kina",
+     "Zeznanie D. Wróbla"
+    ]
+   ]
+  },
+  {
+   "id": "t2",
+   "type": "Zeznanie",
+   "title": "Grzegorz Barcz: telefon przed kinem",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Wyszedłem z sali o dziewiątej zadzwonić do człowieka, któremu jestem winien pieniądze. Stałem przed kinem do dwunastu po dziewiątej. Nie chciałem, żeby to wyszło."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t3",
+   "type": "Zeznanie",
+   "title": "Grzegorz Barcz: kłótnia z ojcem",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Przed seansem prosiłem ojca, żeby poręczył mi pożyczkę albo dał mieszkanie pod zastaw. Odmówił. Pokłóciliśmy się przy barze. To była nasza ostatnia rozmowa."
+   ],
+   "testimony": true,
+   "time": [
+    [
+     "2026-12-05 19:30",
+     "Grzegorz Barcz kłóci się z ojcem przy barze o pieniądze",
+     "Zeznanie G. Barcza"
+    ]
+   ]
+  },
+  {
+   "id": "t4",
+   "type": "Zeznanie",
+   "title": "Stanisław Lipka: sprostowanie godziny",
+   "summary": "Po wyjaśnieniu pomyłki.",
+   "body": [
+    "Zegar nad stołem nastawiłem w czwartek z zegarka po bracie, a tego zegarka nikt nie przestawił na czas zimowy. Człowiek na schodach pożarowych zbiegał więc nie około 22:10, tylko około 21:10 — chwilę po tym, jak zaczęło kropić."
+   ],
+   "testimony": true,
+   "time": [
+    [
+     "2026-12-05 21:10",
+     "Ktoś w długim jasnym płaszczu zbiega schodami pożarowymi kina",
+     "Zeznanie S. Lipki (po sprostowaniu)"
+    ]
+   ]
+  },
+  {
+   "id": "t5",
+   "type": "Zeznanie",
+   "title": "Ewa Sitek: schody pożarowe",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Wyszłam tylnymi drzwiami za dwadzieścia dziewiąta. Weszłam po schodach pożarowych do kabiny. Pan Leon leżał na podłodze. Zamknęłam za sobą drzwi i zbiegłam — byłam na górze tylko chwilę."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t6",
+   "type": "Zeznanie",
+   "title": "Ewa Sitek: zmiana projektora",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Byłam w kabinie dłużej. Kiedy kończyła się pierwsza część, zmieniłam projektor — nauczył mnie tego pan Leon trzydzieści lat temu. Wyszłam, kiedy zaczęło padać."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t7",
+   "type": "Zeznanie",
+   "title": "Ewa Sitek: przyznanie",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Pan Leon pokazał mi list do pani konserwator i powiedział, że po seansie wręczy go przy wszystkich. Chwyciłam puszkę ze stołu przewijarki i uderzyłam. Potem pilnowałam, żeby film szedł dalej — póki szedł, wszyscy myśleli, że on żyje. List podarłam na schodach i wyrzuciłam do kontenera."
+   ],
+   "testimony": true,
+   "time": [
+    [
+     "2026-12-05 20:50",
+     "Ewa Sitek zabija Leona Barcza w kabinie (według jej przyznania)",
+     "Zeznanie E. Sitek"
+    ]
+   ]
+  },
+  {
+   "id": "t8",
+   "type": "Zeznanie",
+   "title": "Ewa Sitek: plakaty",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Oryginały „Czarnej perły” i „Dziewczyny z Bałut” oddaliśmy do sprzedaży przez firmę męża. W gablocie zawiesiłam faksymile. Kino i tak zamykają — myślałam, że nikt nie zauważy."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t9",
+   "type": "Zeznanie",
+   "title": "Ewa Sitek: praktyka w kabinie",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Na zdjęciu jestem ja. Przed ślubem nazywałam się Kalinowska. Od 1996 do 2001 roku byłam kinooperatorką w „Zorzy”, uczył mnie pan Leon. Potem przeszłam do biura."
+   ],
+   "testimony": true
+  }
+ ],
+ "privateClues": [
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5",
+  "x6"
+ ],
+ "puzzles": [
+  {
+   "id": "p-reel",
+   "kind": "Obliczenie",
+   "title": "Zmiana projektorów",
+   "prompt": "Film szedł bez przerwy, a dziennik kabiny milczy. O której godzinie ktoś musiał uruchomić projektor B? Policzcie z karty kopii i z dziennika.",
+   "requires": [
+    "e06",
+    "e11"
+   ],
+   "input": "time",
+   "answers": [
+    "2104"
+   ],
+   "hints": [
+    "Na okładce dziennika jest wszystko, czego trzeba: ile klatek przesuwa się w sekundę i ile milimetrów ma jedna klatka. Policzcie, ile metrów taśmy przesuwa się w minutę.",
+    "24 klatki po 19 mm to 456 mm, czyli 0,456 m na sekundę i 27,36 m na minutę. Podzielcie przez to długość części I z karty kopii.",
+    "1 750 m podzielone przez 27,36 m na minutę to prawie dokładnie 64 minuty. Projekcja ruszyła o 20:00, więc zmiana nastąpiła o 21:04."
+   ],
+   "solution": "Część I ma 1 750 m, a taśma przesuwa się z prędkością 27,36 m na minutę — to 64 minuty projekcji. Start o 20:00, więc projektor B ruszył o 21:04. Leon Barcz nie wpisał tej zmiany i nie przewinął części I. Zmianę zrobił ktoś inny.",
+   "reward": {
+    "search": true,
+    "spots": [
+     "sp-calc"
+    ]
+   }
+  },
+  {
+   "id": "p-torn",
+   "kind": "Rekonstrukcja",
+   "title": "Podarty list",
+   "prompt": "Mokre skrawki z kontenera to jedna kartka w linie. Złóżcie ją z powrotem.",
+   "requires": [
+    "e20"
+   ],
+   "input": "torn",
+   "answers": [],
+   "torn": {
+    "lines": [
+     "Łódź, 5 grudnia 2026 r.",
+     "",
+     "Szanowna Pani Konserwator,",
+     "dwa plakaty w gablocie „Zorzy”",
+     "to nie są te, które wiszą tu",
+     "od lat. To kopie. Znam każdą",
+     "plamkę na oryginałach.",
+     "„Czarną perłę” i „Dziewczynę",
+     "z Bałut” znalazłem w katalogu",
+     "domu aukcyjnego „Rewers”,",
+     "aukcja 12 grudnia, poz. 117 i 118.",
+     "Klucz do gabloty mają dwie osoby:",
+     "ja i kierowniczka kina.",
+     "Proszę o interwencję przed aukcją.",
+     "",
+     "Leon Barcz, kinooperator"
+    ],
+    "cols": 3,
+    "rows": 3,
+    "font": "hand",
+    "stain": true
+   },
+   "hints": [
+    "Zacznijcie od narożników — każdy ma dwie proste krawędzie.",
+    "Pierwsza linijka to miejsce i data, ostatnia — podpis. Linie na papierze muszą przechodzić gładko z kawałka na kawałek.",
+    "Tylko jeden skrawek nie ma żadnej prostej krawędzi. To on trafia w sam środek kartki."
+   ],
+   "solution": "To list Leona Barcza do miejskiej konserwator zabytków: dwa plakaty w gablocie to kopie, a oryginały trafiły na aukcję do domu aukcyjnego „Rewers”. Klucz do gabloty mieli tylko on i kierowniczka kina.",
+   "reward": {
+    "search": true,
+    "spots": [
+     "sp-letter"
+    ]
+   }
+  }
+ ],
+ "tableMode": {
+  "parBonus": 5,
+  "locations": [
+   {
+    "id": "hq",
+    "name": "Centrala wydziału",
+    "kind": "Zapytania przez radio i telefon",
+    "desc": "Wóz łączności przed kinem. Każde zapytanie to jeden ruch, odpowiedzi przychodzą od razu.",
+    "img": "assets/places/001-hq.webp",
+    "spots": [
+     {
+      "id": "sp-hq-imgw",
+      "name": "IMGW",
+      "text": "Prosicie o dane o opadach w Śródmieściu.",
+      "gives": [
+       "x1"
+      ]
+     },
+     {
+      "id": "sp-hq-zms",
+      "name": "Zakład Medycyny Sądowej",
+      "text": "Prosicie o wnioski z sekcji zwłok.",
+      "gives": [
+       "x2"
+      ]
+     },
+     {
+      "id": "sp-hq-pizza",
+      "name": "Pizzeria naprzeciwko kina",
+      "text": "Prosicie o nagranie z kamery nad wejściem.",
+      "gives": [
+       "x3"
+      ]
+     },
+     {
+      "id": "sp-hq-bank",
+      "name": "Bank",
+      "text": "Prosicie o transakcje kartami osób z personelu w czasie seansu.",
+      "gives": [
+       "x4"
+      ]
+     },
+     {
+      "id": "sp-hq-alarm",
+      "name": "Firma ochrony kina",
+      "text": "Prosicie o dziennik czujników centrali alarmowej.",
+      "gives": [
+       "x5"
+      ]
+     },
+     {
+      "id": "sp-hq-rewers",
+      "name": "Dom aukcyjny „Rewers”",
+      "text": "Prosicie o katalog najbliższej aukcji plakatów.",
+      "gives": [
+       "x6"
+      ],
+      "requires": {
+       "all": [
+        "e27"
+       ]
+      },
+      "lockedText": "Nie macie jeszcze powodu, by pytać krakowski dom aukcyjny o cokolwiek."
+     }
+    ]
+   }
+  ],
+  "questions": {}
+ },
+ "breakthroughs": [
+  {
+   "id": "b-change",
+   "when": "p-reel",
+   "title": "Zmiana o 21:04",
+   "text": "Film nie przerwał się ani na sekundę. Ktoś stanął przy projektorach dokładnie o 21:04 i zrobił to, co Leon Barcz robił przez pięćdziesiąt lat — tylko że tej zmiany nikt nie wpisał do dziennika."
+  },
+  {
+   "id": "b-clock",
+   "when": "lie:l-m1",
+   "title": "Godzina pana Lipki",
+   "text": "Zegar nad stołem śpieszy się o godzinę. Człowiek na schodach pożarowych nie zbiegał po seansie, lecz w jego trakcie — minutę przed tym, jak zatrzasnęły się drzwi kabiny."
+  },
+  {
+   "id": "b-student",
+   "when": "show:j-s1",
+   "title": "Uczennica",
+   "text": "Na zdjęciu z kabiny, przy dźwigni zmiany, stoi młoda Ewa Kalinowska. Dziś nazywa się Sitek i prowadzi kino. Twierdziła, że nigdy nie dotknęła projektora."
+  },
+  {
+   "id": "b-letter",
+   "when": "p-torn",
+   "title": "List do konserwator",
+   "text": "Mokre skrawki układają się w list, którego Leon Barcz nie zdążył wręczyć. Dwa plakaty w gablocie to kopie. Klucz do niej mieli tylko on i kierowniczka."
+  }
+ ],
+ "hintTrail": [
+  {
+   "unless": [
+    "sp-can"
+   ],
+   "text": "Zacznijcie od kabiny projekcyjnej. Obejrzyjcie zdjęcie z oględzin i przybliżcie je — czy ta puszka naprawdę mogła spaść z półki?"
+  },
+  {
+   "unless": [
+    "sp-log"
+   ],
+   "when": [
+    "sp-can"
+   ],
+   "text": "Kinooperator prowadził dziennik kabiny. Co do niego wpisał w sobotę — i czego nie wpisał?"
+  },
+  {
+   "unless": [
+    "d-q2"
+   ],
+   "when": [
+    "sp-log"
+   ],
+   "text": "Technik projekcji zna zwyczaje pana Leona. Zapytajcie, jak prowadził seans z taśmy."
+  },
+  {
+   "unless": [
+    "p-reel"
+   ],
+   "when": [
+    "e06",
+    "e11"
+   ],
+   "text": "Film poszedł bez przerwy, a w dzienniku brakuje zmiany projektora. Policzcie, o której musiała nastąpić."
+  },
+  {
+   "unless": [
+    "l-q1"
+   ],
+   "when": [
+    "sp-door"
+   ],
+   "text": "Drzwi kabiny prowadzą na schody pożarowe nad podwórzem. Sąsiad z oficyny naprzeciwko twierdzi, że coś widział."
+  },
+  {
+   "unless": [
+    "sp-clock"
+   ],
+   "when": [
+    "l-q1"
+   ],
+   "text": "Pan Lipka podał bardzo dokładną godzinę. Sprawdźcie, skąd ją wziął — obejrzyjcie jego mieszkanie."
+  },
+  {
+   "unless": [
+    "lie:l-m1"
+   ],
+   "when": [
+    "e24"
+   ],
+   "text": "Zegar pana Lipki pokazuje godzinę więcej niż wasze telefony. Wskażcie to przy jego zeznaniu w protokole."
+  },
+  {
+   "unless": [
+    "sp-bin"
+   ],
+   "when": [
+    "sp-stairs"
+   ],
+   "text": "Kto zbiegł schodami, był na podwórzu. Zajrzyjcie do kontenera przy tylnych drzwiach."
+  },
+  {
+   "unless": [
+    "p-torn"
+   ],
+   "when": [
+    "e20"
+   ],
+   "text": "Skrawki z kontenera to jedna kartka. Złóżcie ją w zakładce Analiza."
+  },
+  {
+   "unless": [
+    "j-q4"
+   ],
+   "when": [
+    "ew-q1"
+   ],
+   "text": "Kierowniczka twierdzi, że nie wychodziła z biura. Bufetowa przez cały seans widziała, kto wchodzi do foyer."
+  },
+  {
+   "unless": [
+    "lie:e-l1"
+   ],
+   "when": [
+    "st:j-c2"
+   ],
+   "text": "Bufetowa widziała kierowniczkę wracającą od zaplecza, mokrą. Skonfrontujcie to z jej zeznaniem."
+  },
+  {
+   "unless": [
+    "show:j-s1"
+   ],
+   "when": [
+    "e09"
+   ],
+   "text": "Na zdjęciu z kabiny jest kobieta z nazwiskiem. Pokażcie je komuś, kto pracuje w kinie od dawna."
+  },
+  {
+   "unless": [
+    "d02"
+   ],
+   "when": [
+    "x6"
+   ],
+   "text": "Komitent z katalogu aukcji to spółka. Sprawdźcie ją w KRS — kto nią kieruje?"
+  },
+  {
+   "text": "Macie dość, by złożyć raport. Najważniejsze: kto był w kabinie o 21:04."
+  }
+ ],
+ "report": {
+  "questions": [
+   {
+    "id": "r-who",
+    "q": "Kto zabił Leona Barcza?",
+    "type": "single",
+    "points": 16,
+    "options": [
+     [
+      "ewa",
+      "Ewa Sitek, kierowniczka kina"
+     ],
+     [
+      "damian",
+      "Damian Wróbel, technik projekcji"
+     ],
+     [
+      "grzegorz",
+      "Grzegorz Barcz, syn kinooperatora"
+     ],
+     [
+      "joanna",
+      "Joanna Rak, bufetowa"
+     ],
+     [
+      "accident",
+      "Nikt — to był wypadek, puszka spadła z regału"
+     ]
+    ],
+    "correct": "ewa",
+    "proof": {
+     "count": 3,
+     "each": 4,
+     "valid": [
+      "e16",
+      "x5",
+      "t4",
+      "e26",
+      "e27",
+      "e17",
+      "x2",
+      "e19",
+      "e20",
+      "t5",
+      "t6",
+      "t7",
+      "t9",
+      "d02",
+      "d03",
+      "x6",
+      "e09",
+      "d01",
+      "e18"
+     ],
+     "label": "Wskażcie trzy dowody, które najmocniej łączą tę osobę ze zbrodnią."
+    }
+   },
+   {
+    "id": "r-change",
+    "q": "Kto i kiedy zmienił projektor w czasie seansu?",
+    "type": "single",
+    "points": 14,
+    "options": [
+     [
+      "ewa",
+      "Ewa Sitek, około 21:04"
+     ],
+     [
+      "leon",
+      "Leon Barcz, tuż przed śmiercią"
+     ],
+     [
+      "damian",
+      "Damian Wróbel, około 21:04"
+     ],
+     [
+      "grzegorz",
+      "Grzegorz Barcz, gdy wyszedł z sali"
+     ],
+     [
+      "none",
+      "Nikt — cały film był na jednej szpuli"
+     ]
+    ],
+    "correct": "ewa"
+   },
+   {
+    "id": "r-route",
+    "q": "Którędy sprawca dostał się do kabiny i jak z niej wyszedł?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "fire",
+      "Tylnymi drzwiami zaplecza na podwórze i schodami pożarowymi do drzwi podpartych klinem; wyszedł tą samą drogą, a drzwi bez klina się zatrzasnęły"
+     ],
+     [
+      "key",
+      "Wewnętrznymi drzwiami, zapasowym kluczem z biura, i zamknął je za sobą"
+     ],
+     [
+      "hall",
+      "Wyjściem ewakuacyjnym z sali, w ciemności, w trakcie filmu"
+     ],
+     [
+      "stay",
+      "Ukrył się w kabinie i wyszedł dopiero przy znalezieniu ciała o 22:41"
+     ]
+    ],
+    "correct": "fire"
+   },
+   {
+    "id": "r-lipka",
+    "q": "Dlaczego pan Lipka podał godzinę 22:10?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "clock",
+      "Nastawił zegar z zegarka po bracie, którego nikt nie przestawił na czas zimowy"
+     ],
+     [
+      "cover",
+      "Chronił kogoś z personelu kina"
+     ],
+     [
+      "other",
+      "Widział inną osobę, która wyszła na podwórze po seansie"
+     ],
+     [
+      "day",
+      "Pomylił sobotę z piątkiem"
+     ]
+    ],
+    "correct": "clock"
+   },
+   {
+    "id": "r-motive",
+    "q": "Jaki był motyw?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "posters",
+      "Leon Barcz chciał ujawnić, że oryginały dwóch plakatów z gabloty sprzedaje firma męża kierowniczki, a w gablocie wiszą kopie"
+     ],
+     [
+      "flat",
+      "Spadek — mieszkanie kinooperatora"
+     ],
+     [
+      "job",
+      "Zemsta za odsunięcie od projekcji na ostatnim seansie"
+     ],
+     [
+      "building",
+      "Kinooperator blokował sprzedaż budynku kina"
+     ]
+    ],
+    "correct": "posters"
+   },
+   {
+    "id": "r-liars",
+    "q": "Kto skłamał w zeznaniach, choć nie zabił?",
+    "type": "multi",
+    "points": 10,
+    "hint": "Zaznaczcie wszystkie właściwe odpowiedzi. Każda błędna odejmuje punkty za trafną. Pomyłka to nie kłamstwo.",
+    "options": [
+     [
+      "damian",
+      "Damian Wróbel"
+     ],
+     [
+      "grzegorz",
+      "Grzegorz Barcz"
+     ],
+     [
+      "joanna",
+      "Joanna Rak"
+     ],
+     [
+      "lipka",
+      "Stanisław Lipka"
+     ]
+    ],
+    "correct": [
+     "damian",
+     "grzegorz"
+    ]
+   },
+   {
+    "id": "r-order",
+    "q": "Ułóżcie wydarzenia soboty we właściwej kolejności.",
+    "type": "order",
+    "points": 14,
+    "items": [
+     [
+      "quarrel",
+      "Leon Barcz kłóci się z synem przy barze"
+     ],
+     [
+      "start",
+      "Rusza projekcja części I na projektorze A"
+     ],
+     [
+      "out",
+      "Ktoś wychodzi tylnymi drzwiami zaplecza na podwórze"
+     ],
+     [
+      "shop",
+      "Damian Wróbel płaci w sklepie przy Gdańskiej 60"
+     ],
+     [
+      "change",
+      "Ktoś w kabinie uruchamia projektor B"
+     ],
+     [
+      "rain",
+      "Zaczyna padać deszcz"
+     ],
+     [
+      "close",
+      "Drzwi ewakuacyjne kabiny się zamykają"
+     ],
+     [
+      "back",
+      "Ktoś wchodzi z podwórza tylnymi drzwiami zaplecza"
+     ],
+     [
+      "white",
+      "Po napisach ekran świeci na biało"
+     ]
+    ],
+    "correct": [
+     "quarrel",
+     "start",
+     "out",
+     "shop",
+     "change",
+     "rain",
+     "close",
+     "back",
+     "white"
+    ]
+   }
+  ]
+ },
+ "solution": {
+  "summary": "Leona Barcza zabiła Ewa Sitek, kierowniczka kina. Kinooperator odkrył, że dwa najcenniejsze plakaty w gablocie to faksymile, a oryginały wystawiła na aukcję spółka jej męża, i chciał po seansie wręczyć list konserwator zabytków. Za dwadzieścia dziewiąta Sitek wyszła tylnymi drzwiami, weszła schodami pożarowymi do kabiny przez drzwi podparte klinem i uderzyła Barcza puszką. Potem — jako dawna kinooperatorka — o 21:04 sama zmieniła projektor, żeby film szedł dalej i nikt nie zajrzał do kabiny. Wyszła po 21:10, wyrzucając klin; drzwi się zatrzasnęły. List podarła i wyrzuciła do kontenera.",
+  "steps": [
+   {
+    "h": "Puszka, która nie spadła",
+    "p": "Na górnej półce regału nienaruszony kurz, a na stole przewijarki okrągły ślad po puszce. Syn: ojciec zawsze trzymał pustą puszkę na stole. Sekcja: uderzenie z zamachem, przez osobę stojącą za ofiarą — upadek puszki wykluczony."
+   },
+   {
+    "h": "Zmiana, której nikt nie zapisał",
+    "p": "Część I ma 1 750 m, taśma biegnie 27,36 m na minutę: zmiana projektorów musiała nastąpić o 21:04. Film nie przerwał się ani na chwilę, a Barcz — który od lat wpisywał każdą zmianę i od razu przewijał pierwszą część — nie zrobił ani jednego, ani drugiego. O 21:04 przy projektorach stał ktoś inny."
+   },
+   {
+    "h": "Kto umiał to zrobić",
+    "p": "Zmienić projektor umieli Damian Wróbel, Grzegorz Barcz i — o czym nikt już nie pamiętał — Ewa Sitek, z domu Kalinowska, kinooperatorka „Zorzy” w latach 1996–2001. Zdjęcie w kabinie, bufetowa i rejestr PESEL mówią to samo."
+   },
+   {
+    "h": "Alibi o 21:04",
+    "p": "Damian Wróbel o 21:03 płacił kartą w sklepie 300 m od kina, a kamera pizzerii widziała go wychodzącego i wracającego frontem. Grzegorz Barcz od 21:01 do 21:12 stał przed kinem z telefonem. Joanna Rak nie odchodziła od baru. Sitek była „w biurze” — sama."
+   },
+   {
+    "h": "Godzina pana Lipki",
+    "p": "Sąsiad widział osobę w jasnym płaszczu zbiegającą schodami pożarowymi „dziesięć po dziesiątej”. Jego zegar śpieszy się o godzinę: nastawił go z zegarka po bracie, wciąż na czasie letnim. Naprawdę była 21:10 — minuta przed zamknięciem drzwi kabiny o 21:11:02 w dzienniku alarmu. Pomylił się, ale nie kłamał."
+   },
+   {
+    "h": "Droga przez podwórze",
+    "p": "Tylne drzwi zaplecza, trzy kroki od biura: wyjście o 20:41, powrót o 21:13. Deszcz od 21:05. Mokry płaszcz kierowniczki z farbą i rdzą z poręczy schodów pożarowych, starta farba na poręczy, klin kinooperatora na czerwonym sznurku w kałuży pod schodami."
+   },
+   {
+    "h": "List i plakaty",
+    "p": "W kontenerze przy tylnych drzwiach — skrawki listu Barcza do konserwator: dwa plakaty to kopie, oryginały są w katalogu „Rewersu”, klucz do gabloty mieli tylko on i kierowniczka. Sitek zamówiła w 2025 roku faksymile, a komitentem aukcji jest Ars-Lokus — spółka jej męża, Tomasza Sitka."
+   },
+   {
+    "h": "Fałszywe tropy",
+    "p": "Damian ukrył wyjście po wódkę na po imprezie, Grzegorz — telefon do wierzyciela i kłótnię z ojcem o pieniądze. Obaj kłamali, żaden nie zabił. Pan Lipka nie kłamał wcale: pomylił godzinę przez nieprzestawiony zegarek."
+   }
+  ]
+ },
+ "endings": {
+  "correct": {
+   "title": "Ostatni seans",
+   "text": "Ewa Sitek zostaje zatrzymana w niedzielę po południu, a jej mąż wieczorem. Dom aukcyjny „Rewers” wycofuje pozycje 117 i 118 z aukcji; oryginały plakatów wracają do Łodzi w tekturowych tubach, z pieczęcią prokuratury. Kino „Zorza” zostaje zamknięte zgodnie z planem, ale na drzwiach kabiny ktoś przykleja kartkę: „Klin! Lampy grzeją. L.B.”",
+   "decision": {
+    "q": "Plakaty wróciły. Co jeszcze zrobicie w tej sprawie?",
+    "options": [
+     {
+      "id": "museum",
+      "label": "Wnioskować, by oryginały trafiły do muzeum kinematografii jako depozyt kolekcji „Zorzy”",
+      "text": "Muzeum przyjmuje cztery plakaty z tabliczką „Z kolekcji kina »Zorza« 1958–2026. Ocalone przez Leona Barcza”. Grzegorz Barcz przychodzi na otwarcie wystawy. Nie mówi nic, tylko długo stoi przed „Dziewczyną z Bałut”."
+     },
+     {
+      "id": "auction",
+      "label": "Zawiadomić prokuraturę o sprawdzeniu wszystkich obiektów, które Ars-Lokus oddała do „Rewersu” w ostatnich latach",
+      "text": "Okazuje się, że spółka Sitków sprzedała przez „Rewers” jedenaście obiektów — każdy „z kolekcji prywatnej, Łódź”. Trzy pochodziły z miejskich instytucji. Proces Ewy Sitek obejmuje także oszustwa."
+     },
+     {
+      "id": "vesper",
+      "label": "Ustalić, kto w pracowni VESPER wykonał faksymile i czy wiedział, do czego posłużą",
+      "text": "Wrocławska pracownia odpowiada uprzejmym pismem: wykonała faksymile ekspozycyjne zgodnie ze zleceniem, oznaczone dyskretnym nadrukiem, jak każe dobra praktyka. Pismo podpisuje prezes, Teodor Ancel. Do pisma dołączono katalog usług. Na ostatniej stronie, drobnym drukiem: „ekspertyzy autentyczności dokumentów dawnych”."
+     }
+    ]
+   }
+  },
+  "wrong": {
+   "damian": {
+    "title": "Uczeń",
+    "text": "Damian umiał zmienić projektor i skłamał, gdzie był, więc wskazujecie jego. Ale o 21:03 płacił kartą w sklepie przy Gdańskiej 60, a kamera pizzerii widziała, jak wraca frontem z reklamówką. Zanim śledztwo wraca na właściwy tor, plakaty zostają sprzedane na aukcji."
+   },
+   "grzegorz": {
+    "title": "Syn",
+    "text": "Kłótnia o pieniądze, długi, umiejętność zmiany projektora — wszystko pasowało. Tyle że od 21:01 do 21:12 Grzegorz stał przed kinem z telefonem, na oczach kamery. Prawdziwa sprawczyni ma czas, by odebrać z Krakowa pieniądze za plakaty."
+   },
+   "joanna": {
+    "title": "Bufet",
+    "text": "Joanna Rak nie odchodziła od baru i nie umiała obsłużyć projektora. Jej zeznania były prawdziwe od pierwszego do ostatniego słowa — i to one powinny was zaprowadzić do sprawczyni."
+   },
+   "accident": {
+    "title": "Nieszczęśliwy wypadek",
+    "text": "Uznajecie, że ciężka puszka spadła z regału. Dokładnie tak miało to wyglądać. Sekcja mówi co innego, ale zanim prokurator to przeczyta, w Krakowie stuka młotek licytatora. „Czarna perła” idzie za sto dziesięć tysięcy."
+   }
+  },
+  "partial": "Wskazaliście właściwą osobę, ale część wniosków jest błędna lub niepoparta dowodami. Sitek zostaje zatrzymana, ale obrona będzie miała o co walczyć."
+ },
+ "db": {
+  "date": "2026-12-06",
+  "bases": [
+   "osoby",
+   "pojazdy",
+   "firmy",
+   "ksiegi"
+  ],
+  "attach": [
+   {
+    "rec": "O-006-ewa",
+    "ev": "d01",
+    "paths": [
+     {
+      "q": {
+       "nazwisko": "Sitek",
+       "imie": "Ewa"
+      },
+      "from": [
+       "e05"
+      ]
+     },
+     {
+      "q": {
+       "pesel": "74041938202"
+      },
+      "from": [
+       "d03"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "F-006-ars",
+    "ev": "d02",
+    "paths": [
+     {
+      "q": {
+       "nazwa": "Ars-Lokus"
+      },
+      "from": [
+       "x6"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "O-006-tomasz",
+    "ev": "d03",
+    "paths": [
+     {
+      "q": {
+       "pesel": "71090251511"
+      },
+      "from": [
+       "d02"
+      ]
+     },
+     {
+      "q": {
+       "nazwisko": "Sitek",
+       "imie": "Tomasz"
+      },
+      "from": [
+       "d01"
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,7 +1,7 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.16.4';
-const BUILD = '10.11.2026';
+const VERSION = '2.17.0';
+const BUILD = '13.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
 
@@ -726,7 +726,7 @@ function lookBlock(c, g, l) {
   return `<div class="look-head"><div><div class="eyebrow">Oględziny na zdjęciu</div><b>Ślady w tym miejscu: ${n.found} z ${n.all}</b></div><button class="btn" data-a="look-open" data-id="${l.id}">${n.found ? 'Wróć do oględzin' : 'Rozpocznij oględziny'}</button></div>
    <div class="spots">${l.spots.map(sp => { const st = spotState(c, g, sp);
      if (st === 'done') { const found = (sp.gives || []).filter(e => known(g, e)); return `<div class="spot done"><span class="tent">✓</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.text)}</p><div class="found-list">${found.map(e => `<button class="chip" data-a="ev" data-id="${e}">${esc(c.ev[e].title)}</button>`).join('')}</div></div></div>`; }
-     if (seen.includes(sp.id) && st === 'locked') return `<div class="spot locked"><span class="tent">${I.lock}</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.lockedText)}</p>${sp.requires.puzzle ? `<div class="act"><button class="btn small ghost" data-a="puzzle-from-spot" data-id="${sp.requires.puzzle}">${I.lock} ${esc(c.puzzle[sp.requires.puzzle].title)}</button></div>` : ''}</div></div>`;
+     if ((seen.includes(sp.id) || !l.search.spots[sp.id]) && st === 'locked') return `<div class="spot locked"><span class="tent">${I.lock}</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.lockedText)}</p>${sp.requires.puzzle ? `<div class="act"><button class="btn small ghost" data-a="puzzle-from-spot" data-id="${sp.requires.puzzle}">${I.lock} ${esc(c.puzzle[sp.requires.puzzle].title)}</button></div>` : ''}</div></div>`;
      return `<div class="spot unknown"><span class="tent">?</span><div style="flex:1"><b>Nieodkryty ślad</b><p class="muted">Szukajcie na zdjęciu.</p></div></div>`; }).join('')}</div>`;
 }
 function lookTap(c, g, l, nx, ny, scale) {
@@ -752,9 +752,9 @@ function viewPeople(c, g) {
   return `<div class="page-head"><div><div class="eyebrow">Przesłuchania</div><h2>Osoby</h2><p>Każde pytanie to jeden ruch. Zeznania, które padną, trafiają do protokołu — możecie je podważyć dowodem. Nietrafiona konfrontacja kosztuje ${pkt(diffOf(g).wrong)}.</p></div></div>
   <div class="ppl-grid">${c.people.map(p => {
     const qs = availableQs(c, g, p); const left = qs.filter(q => !g.asked.includes(q.id)).length;
-    const br = p.statements.filter(s => g.broken.includes(s.id)).length;
+    const br = p.statements.filter(s => g.broken.includes(s.id) && !s.mistake).length, mk = p.statements.filter(s => g.broken.includes(s.id) && s.mistake).length;
     return `<button class="person" data-a="person" data-id="${p.id}">${portrait(p, g)}<div class="info"><b>${esc(personName(g, p))}</b><small>${esc(personRole(g, p))}</small>
-     <div class="tally">${left ? `<span class="chip">${left} nowe pytania</span>` : ''}${br ? `<span class="chip red">${br} podważone</span>` : ''}</div></div></button>`;
+     <div class="tally">${left ? `<span class="chip">${left} nowe pytania</span>` : ''}${br ? `<span class="chip red">${br} podważone</span>` : ''}${mk ? `<span class="chip">${mk} sprostowane</span>` : ''}</div></div></button>`;
   }).join('')}</div>`;
 }
 function ovPerson(c, g, id, mode) {
@@ -771,9 +771,9 @@ function ovPerson(c, g, id, mode) {
   }
   if (mode === 'stmt') {
     return { title: personName(g, p), kicker: 'Protokół zeznań', full: true, body: head + (stm.length ? `<p class="muted" style="font-size:.9rem">Wybierzcie zeznanie i wskażcie dowód, który mu przeczy. Prawdziwe zeznania też tu są — nie każde zdanie to kłamstwo.</p>
-     <div class="stmts">${stm.map(s => { const b = g.broken.includes(s.id); return `<div class="stmt ${b ? 'broken' : ''}"><q>${esc(s.text)}</q><div class="row"><span class="eyebrow">${b ? 'Podważone' : 'Zeznanie'}</span>${b ? '' : `<button class="btn small red" data-a="confront" data-id="${s.id}">Konfrontuj</button>`}</div></div>`; }).join('')}</div>` : '<div class="empty">Ta osoba nie złożyła jeszcze żadnych twierdzeń. Zacznijcie od pytań.</div>') };
+     <div class="stmts">${stm.map(s => { const b = g.broken.includes(s.id); return `<div class="stmt ${b ? 'broken' : ''}"><q>${esc(s.text)}</q><div class="row"><span class="eyebrow">${b ? (s.mistake ? 'Sprostowane — pomyłka, nie kłamstwo' : 'Podważone') : 'Zeznanie'}</span>${b ? '' : `<button class="btn small red" data-a="confront" data-id="${s.id}">Konfrontuj</button>`}</div></div>`; }).join('')}</div>` : '<div class="empty">Ta osoba nie złożyła jeszcze żadnych twierdzeń. Zacznijcie od pytań.</div>') };
   }
-  const tr = log.map(m => { if (m.t === 'q') return `<div class="tq">${esc(m.text)}</div>`; if (m.t === 'show') return `<div class="tq show">${I.eye} ${esc(m.text)}</div>`; const vs = voiceFor(c, p.id, m); return `<div class="ta ${m.t === 'break' ? 'break' : m.t === 'deflect' ? 'deflect' : ''}"><span class="who">${esc(personName(g, p))}${m.t === 'break' ? ' · po konfrontacji' : ''}${vs ? `<button class="vplay" data-a="vplay" data-src="${esc(vs)}" aria-label="Odsłuchaj wypowiedź">${I.sound}</button>` : ''}</span>${esc(m.text)}</div>`; }).join('');
+  const tr = log.map(m => { if (m.t === 'q') return `<div class="tq">${esc(m.text)}</div>`; if (m.t === 'show') return `<div class="tq show">${I.eye} ${esc(m.text)}</div>`; const vs = voiceFor(c, p.id, m); return `<div class="ta ${m.t === 'break' ? 'break' : m.t === 'deflect' ? 'deflect' : ''}"><span class="who">${esc(personName(g, p))}${m.t === 'break' ? (m.mk ? ' · sprostowanie' : ' · po konfrontacji') : ''}${vs ? `<button class="vplay" data-a="vplay" data-src="${esc(vs)}" aria-label="Odsłuchaj wypowiedź">${I.sound}</button>` : ''}</span>${esc(m.text)}</div>`; }).join('');
   return { title: personName(g, p), kicker: 'Przesłuchanie', full: true, body: head + `${c.voiceDir ? `<div class="vbar"><button class="btn small ghost" data-a="voices-toggle">${voicesOn() ? I.sound + ' Głosy świadków: włączone' : I.mute + ' Głosy świadków: wyłączone'}</button></div>` : ''}<div class="transcript" id="transcript">${tr || '<p class="muted">Rozmowa jeszcze się nie zaczęła.</p>'}</div>
    <div class="eyebrow" style="margin:18px 0 8px">Zadaj pytanie · 1 ruch</div>
    <div class="qlist">${qs.map(q => `<button class="q ${g.asked.includes(q.id) ? 'asked' : ''}" data-a="ask" data-id="${q.id}" ${g.asked.includes(q.id) ? 'disabled' : ''}>${esc(q.q)}</button>`).join('')}</div>
@@ -834,10 +834,10 @@ function doConfront(c, g, sid, evid) {
   const free = usePower(g, 'confront'); if (!free) g.actions++;
   L.push({ t: 'q', text: evid.startsWith('st:') ? `Konfrontacja: „${s.text}” — zestawiamy z zeznaniem: ${personName(g, c.person[c.stmt[evid.slice(3)].person])} — „${c.stmt[evid.slice(3)].text}”.` : `Konfrontacja: „${s.text}” — okazujemy: ${c.ev[evid].title}.` });
   if (!s.truth && (s.contradicts || []).includes(evid)) {
-    g.broken.push(sid); L.push({ t: 'break', text: s.response, v: c.voiceDir ? `${c.voiceDir}/${sid}.mp3` : undefined });
+    g.broken.push(sid); L.push({ t: 'break', mk: s.mistake ? 1 : undefined, text: s.response, v: c.voiceDir ? `${c.voiceDir}/${sid}.mp3` : undefined });
     (s.reveals || []).forEach(r => { if (!g.claims.includes(r)) g.claims.push(r); });
     gain(g, c, s.gives); save();
-    toast('Zeznanie podważone', personName(g, p), 'Konfrontacja'); sfx('break');
+    toast(s.mistake ? 'Pomyłka wyjaśniona' : 'Zeznanie podważone', personName(g, p), s.mistake ? 'Sprostowanie' : 'Konfrontacja'); sfx('break');
     return true;
   }
   g.tried = g.tried || {}; (g.tried[sid] = g.tried[sid] || []).includes(evid) || g.tried[sid].push(evid);
@@ -878,7 +878,7 @@ const MX_COLS = [['motyw', 'Motyw'], ['okazja', 'Okazja'], ['alibi', 'Alibi'], [
 function matrixHTML(c, g) {
   const m = g.matrix || {};
   return `<p class="muted">Wasza wspólna tabela podejrzanych. Gra niczego tu nie podpowiada — wpisujcie własne ustalenia. Licznik podważonych zeznań bierze się z protokołów.</p>
-   <div class="mx">${c.people.map(p => { const br = p.statements.filter(s => g.broken.includes(s.id)).length; return `<div class="mx-row"><div class="mx-who">${portrait(p, g, 'mini')}<div><b>${esc(personName(g, p))}</b><small>${esc(personRole(g, p))}</small>${br ? `<span class="chip red">${br} podważone</span>` : ''}</div></div>
+   <div class="mx">${c.people.map(p => { const br = p.statements.filter(s => g.broken.includes(s.id) && !s.mistake).length, mk = p.statements.filter(s => g.broken.includes(s.id) && s.mistake).length; return `<div class="mx-row"><div class="mx-who">${portrait(p, g, 'mini')}<div><b>${esc(personName(g, p))}</b><small>${esc(personRole(g, p))}</small>${br ? `<span class="chip red">${br} podważone</span>` : ''}${mk ? `<span class="chip">${mk} sprostowane</span>` : ''}</div></div>
      <div class="mx-cells">${MX_COLS.map(([k, l]) => `<label class="mx-cell"><span>${l}</span><textarea data-mx="${p.id}|${k}" rows="2" placeholder="—">${esc((m[p.id] || {})[k] || '')}</textarea></label>`).join('')}</div></div>`; }).join('')}</div>`;
 }
 function teamHTML(c, g) {
@@ -920,14 +920,16 @@ function ovPuzzle(c, g, id, msg) {
   } else if (pz.input === 'grid') {
     const Gd = pz.grid, gv = gridVals[id] = gridVals[id] || {};
     input = `<div class="gridp" role="group" aria-label="${esc(pz.title)}">${Gd.rows.map(r => `<div class="gp-row"><b>${esc(r.label)}</b><div class="gp-cells">${Gd.cols.map(cl => `<label class="gp-cell"><span>${esc(cl.label)}</span><select data-gc="${esc(id)}|${esc(r.id)}|${esc(cl.id)}" aria-label="${esc(r.label)}, ${esc(cl.label)}"><option value="">—</option>${Gd.options.map(o => `<option value="${esc(o.id)}"${(gv[r.id] || {})[cl.id] === o.id ? ' selected' : ''}>${esc(o.label)}</option>`).join('')}</select></label>`).join('')}</div></div>`).join('')}</div>`;
+  } else if (pz.input === 'torn') { const pl = (st.placed || []).length, n = tornGeom(pz).length;
+    input = `<p class="muted" style="font-size:.9rem;margin:10px 0 6px">Przeciągajcie skrawki na kartkę w ramce. Pasujący kawałek sam wskoczy na miejsce. Ułożone: <b id="torn-count">${pl} z ${n}</b>.</p><div class="torn-wrap" id="torn" data-id="${esc(id)}"></div>`;
   } else if (pz.input === 'number') input = `<div class="field" style="margin:16px 0;max-width:260px"><label for="pzin">Liczba</label><input class="input" id="pzin" inputmode="decimal" autocomplete="off" placeholder="np. 123" style="font-family:var(--f-mono);font-size:1.6rem"></div>`;
   else input = `<div class="field" style="margin:16px 0"><label for="pzin">Odpowiedź</label><input class="input" id="pzin" autocomplete="off" placeholder="Wpiszcie odpowiedź"></div>`;
   const hints = pz.hints.slice(0, st.hints || 0).map((h, i) => `<div class="hint-box"><span class="eyebrow">Podpowiedź ${i + 1}</span><br>${esc(h)}</div>`).join('');
-  return { title: pz.title, kicker: pz.kind, body: st.solved ? `<div class="result-ok"><b>Rozwiązane.</b> ${esc(pz.solution)}</div>` :
+  return { title: pz.title, kicker: pz.kind, body: st.solved ? `<div class="result-ok"><b>Rozwiązane.</b> ${esc(pz.solution)}</div>${pz.input === 'torn' ? `<div class="torn-done">${tornPaperHTML(pz)}</div>` : ''}` :
    `<p style="font-family:var(--f-display);font-size:1.3rem;margin-top:0">${esc(pz.prompt)}</p>
    <p class="muted" style="font-size:.88rem">Potrzebne materiały: ${pz.requires.map(r => c.ev[r] ? `<button class="chip" data-a="ev" data-id="${r}">${esc(c.ev[r].title)}</button>` : '').join(' ')} ${c.mode === 'table' ? '— i może coś, czego dowiecie się w centrali.' : '— i może coś, co ma ktoś z was w tajnych aktach.'}</p>
    ${input}${msg ? `<div class="result-bad">${esc(msg)}</div>` : ''}${hints}
-   <div class="row-actions"><button class="btn" data-a="solve" data-id="${id}">Sprawdź</button>${(st.hints || 0) < Math.min(pz.hints.length, diffOf(g).hints) ? `<button class="btn ghost" data-a="phint" data-id="${id}">Podpowiedź (${g.armed === 'hint' ? 'zdolność: bez kary' : '−' + diffOf(g).hint + ' pkt'})</button>` : ''}</div>
+   <div class="row-actions">${pz.input === 'torn' ? '' : `<button class="btn" data-a="solve" data-id="${id}">Sprawdź</button>`}${(st.hints || 0) < Math.min(pz.hints.length, diffOf(g).hints) ? `<button class="btn ghost" data-a="phint" data-id="${id}">Podpowiedź (${g.armed === 'hint' ? 'zdolność: bez kary' : '−' + diffOf(g).hint + ' pkt'})</button>` : ''}</div>
    <p class="muted" style="font-size:.8rem;margin-top:12px">Próby: ${st.attempts || 0}. Błędne próby nie kosztują punktów.</p>` };
 }
 function doSolve(c, g, id) {
@@ -937,7 +939,8 @@ function doSolve(c, g, id) {
   else val = ($('#pzin') || {}).value || '';
   const num = parseFloat(String(val).replace(',', '.').replace(/[^0-9.\-]/g, ''));
   const gv = gridVals[id] || {};
-  const ok = pz.input === 'grid' ? pz.answers.some(a => pz.grid.rows.every(r => pz.grid.cols.every(cl => (gv[r.id] || {})[cl.id] === (a[r.id] || {})[cl.id])))
+  const ok = pz.input === 'torn' ? (st.placed || []).length === tornGeom(pz).length
+    : pz.input === 'grid' ? pz.answers.some(a => pz.grid.rows.every(r => pz.grid.cols.every(cl => (gv[r.id] || {})[cl.id] === (a[r.id] || {})[cl.id])))
     : pz.input === 'text' ? pz.answers.some(a => norm(a) === norm(val))
     : pz.input === 'number' ? !isNaN(num) && pz.answers.some(a => { const [lo, hi] = String(a).split('-').map(Number); return num >= lo && num <= (isNaN(hi) ? lo : hi); })
     : pz.answers.some(a => digits(a) === digits(val));
@@ -948,6 +951,69 @@ function doSolve(c, g, id) {
   save(); toast(pz.title, 'Zagadka rozwiązana', 'Rozwiązane'); sfx('unlock');
   return null;
 }
+
+/* zagadka: podarty dokument — skrawki tej samej kartki (tekst rysuje aplikacja), przycięte postrzępionym wielokątem */
+const TW = 520, TH = 680, tornMem = {};
+const hashStr = str => { let h = 2166136261; for (const ch of str) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+const rngOf = seed => () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+function tornGeom(pz) {
+  if (pz._geo) return pz._geo;
+  const T = pz.torn, C = T.cols || 3, R = T.rows || 3, r = rngOf(hashStr(pz.id));
+  const P = []; for (let j = 0; j <= R; j++) { P[j] = []; for (let i = 0; i <= C; i++) { let x = i / C * TW, y = j / R * TH; if (i > 0 && i < C) x += (r() - .5) * TW / C * .3; if (j > 0 && j < R) y += (r() - .5) * TH / R * .3; P[j][i] = [x, y]; } }
+  const jag = (a, b, edge) => { if (edge) return [a, b]; const n = 9, pts = [a], dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L;
+    for (let k = 1; k < n; k++) { const t = k / n + (r() - .5) * .05, o = (r() - .5) * L * .06; pts.push([a[0] + dx * t + nx * o, a[1] + dy * t + ny * o]); } pts.push(b); return pts; };
+  const H = [], V = [];
+  for (let j = 0; j <= R; j++) { H[j] = []; for (let i = 0; i < C; i++) H[j][i] = jag(P[j][i], P[j][i + 1], j === 0 || j === R); }
+  for (let j = 0; j < R; j++) { V[j] = []; for (let i = 0; i <= C; i++) V[j][i] = jag(P[j][i], P[j + 1][i], i === 0 || i === C); }
+  const out = [];
+  for (let j = 0; j < R; j++) for (let i = 0; i < C; i++) {
+    const poly = [...H[j][i], ...V[j][i + 1].slice(1), ...H[j + 1][i].slice().reverse().slice(1), ...V[j][i].slice().reverse().slice(1, -1)];
+    const xs = poly.map(q => q[0]), ys = poly.map(q => q[1]); out.push({ poly, bb: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] });
+  }
+  return (pz._geo = out);
+}
+const TBW = TW + 140, TBH = TH + 90, TOX = 70, TOY = 45; // stół: kartka w środku, skrawki rozrzucone na niej i wokół
+function tornScatter(pz) {
+  const G = tornGeom(pz), r = rngOf(hashStr(pz.id + 's')), n = G.length, C = pz.torn.cols || 3, R = pz.torn.rows || 3;
+  const order = [...Array(n).keys()];
+  for (let i = n - 1; i > 0; i--) { const k = Math.floor(r() * (i + 1)); [order[i], order[k]] = [order[k], order[i]]; }
+  for (let i = 0; i < n; i++) if (order[i] === i) { const k = (i + 1) % n; [order[i], order[k]] = [order[k], order[i]]; }
+  const pos = {}; order.forEach((pi, slot) => { const b = G[pi].bb, cx = TOX - 50 + ((slot % C) + .5) * (TW + 100) / C, cy = TOY - 30 + (Math.floor(slot / C) + .5) * (TH + 60) / R;
+    let dx = cx - (b[0] + b[2]) / 2 + (r() - .5) * 40, dy = cy - (b[1] + b[3]) / 2 + (r() - .5) * 40;
+    dx = Math.max(6 - TOX - b[0], Math.min(TBW - 6 - TOX - b[2], dx)); dy = Math.max(6 - TOY - b[1], Math.min(TBH - 6 - TOY - b[3], dy)); pos[pi] = [dx, dy]; });
+  return pos;
+}
+function tornPaperHTML(pz) { const T = pz.torn; return `<div class="torn-paper ${T.font === 'type' ? 'tp-type' : 'tp-hand'}${T.stain ? ' tp-wet' : ''}">${T.lines.map(l => l ? `<p>${esc(l)}</p>` : '<p class="gap"></p>').join('')}</div>`; }
+function mountTorn(c, g, id) {
+  const wrap = $('#torn'); if (!wrap) return; const pz = c.puzzle[id]; const G = tornGeom(pz);
+  const sc = Math.min(1.2, wrap.clientWidth / TBW, Math.max(260, window.innerHeight * 0.74) / TBH);
+  const m = tornMem[id] || (tornMem[id] = { pos: tornScatter(pz), z: 1 });
+  const st = () => (g.puzzles[id] = g.puzzles[id] || { hints: 0, attempts: 0 }); const placed = () => st().placed || [];
+  wrap.style.height = TBH * sc + 'px'; wrap.style.width = TBW * sc + 'px';
+  const paper = tornPaperHTML(pz);
+  wrap.innerHTML = `<div class="torn-board" style="width:${TBW}px;height:${TBH}px;transform:scale(${sc})"><div class="torn-frame" style="left:${TOX}px;top:${TOY}px;width:${TW}px;height:${TH}px"></div>${G.map((pc, i) => {
+    const pl = placed().includes(i), [dx, dy] = pl ? [0, 0] : m.pos[i];
+    return `<div class="torn-piece${pl ? ' placed' : ''}" data-i="${i}" style="left:${TOX}px;top:${TOY}px;width:${TW}px;height:${TH}px;clip-path:polygon(${pc.poly.map(q => q[0].toFixed(1) + 'px ' + q[1].toFixed(1) + 'px').join(',')});transform:translate(${dx}px,${dy}px)">${paper}</div>`; }).join('')}</div>`;
+  wrap.querySelectorAll('.torn-piece:not(.placed)').forEach(el => {
+    const i = +el.dataset.i; let sx, sy, ox, oy, on = false;
+    el.addEventListener('pointerdown', e => { e.preventDefault(); on = true; el.setPointerCapture(e.pointerId); sx = e.clientX; sy = e.clientY; [ox, oy] = m.pos[i]; el.style.zIndex = ++m.z; el.classList.add('drag'); });
+    el.addEventListener('pointermove', e => { if (!on) return; const b = G[i].bb; m.pos[i] = [Math.max(-TOX - b[0], Math.min(TBW - TOX - b[2], ox + (e.clientX - sx) / sc)), Math.max(-TOY - b[1], Math.min(TBH - TOY - b[3], oy + (e.clientY - sy) / sc))]; el.style.transform = `translate(${m.pos[i][0]}px,${m.pos[i][1]}px)`; });
+    const up = () => { if (!on) return; on = false; el.classList.remove('drag');
+      const [dx, dy] = m.pos[i]; if (Math.abs(dx) < 26 && Math.abs(dy) < 26) tornPlace(c, g, id, i); };
+    el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+  });
+}
+function tornPlace(c, g, id, i) {
+  const pz = c.puzzle[id], s = (g.puzzles[id] = g.puzzles[id] || { hints: 0, attempts: 0 }); s.placed = s.placed || [];
+  if (!s.placed.includes(i)) s.placed.push(i); sfx('paper'); save();
+  if (s.placed.length === tornGeom(pz).length) { doSolve(c, g, id); rerender(); } else renderOv();
+}
+window.__tornTest = (id, all) => { const { c, g } = ctx(); const G = tornGeom(c.puzzle[id]); const wrap = $('#torn'); if (!wrap) return null;
+  if (all) { for (let i = 0; i < G.length; i++) if (!((g.puzzles[id] || {}).placed || []).includes(i)) tornPlace(c, g, id, i); return true; }
+  wrap.scrollIntoView({ block: 'center' }); const els = [...wrap.querySelectorAll('.torn-piece:not(.placed)')]; if (!els.length) return null;
+  const el = els[els.length - 1], i = +el.dataset.i, m = tornMem[id], b = G[i].bb, R = wrap.getBoundingClientRect(), k = R.width / TBW;
+  const cx = (b[0] + b[2]) / 2 + TOX, cy = (b[1] + b[3]) / 2 + TOY;
+  return { i, from: [R.left + (cx + m.pos[i][0]) * k, R.top + (cy + m.pos[i][1]) * k], to: [R.left + cx * k, R.top + cy * k] }; };
 
 /* tajne akta po dystrybucji */
 function ovPrivate(c, g, i, opened) {
@@ -1195,6 +1261,7 @@ async function renderOv() {
   if (o.type === 'confront') { const hd = root.querySelector('.ov-head'), st = root.querySelector('.cf-sticky'); if (hd && st) st.style.top = hd.offsetHeight + 'px'; cfFilter(); }
   if (o.type === 'person' && o.mode === 'show') cfFilter();
   const tr = $('#transcript'); if (tr && o.scrollEnd) { tr.lastElementChild && tr.lastElementChild.scrollIntoView({ block: 'center' }); o.scrollEnd = false; }
+  if (o.type === 'puzzle' && c && c.puzzle[o.id] && c.puzzle[o.id].input === 'torn' && !(g.puzzles[o.id] || {}).solved) mountTorn(c, g, o.id);
   const inp = $('#pzin'); if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') handlers.solve({ dataset: { id: o.id } }); });
   const rc = $('#revcode'); if (rc) { rc.focus(); rc.addEventListener('keydown', e => { if (e.key === 'Enter') handlers['reveal-go'](); }); }
 }
@@ -1211,6 +1278,8 @@ function ovSettings() {
    <div class="settings-row"><div><b>Wielkość tekstu</b><small>Dla czytania przy stole</small></div><div class="seg">${[['m', 'A'], ['l', 'A+'], ['xl', 'A++']].map(([k, l]) => `<button aria-pressed="${s.text === k}" data-a="text" data-v="${k}">${l}</button>`).join('')}</div></div>
    <div class="settings-row"><div><b>Instruktaż przed sprawą</b><small>Krótki przewodnik po zasadach i ekranach gry, pokazywany po wybraniu trybu. W trakcie gry zawsze dostępny w menu.</small></div><button class="switch" aria-pressed="${s.guide !== false}" data-a="guide-toggle" aria-label="Instruktaż przed sprawą"></button></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
+   <div class="settings-row"><div><b>Do wydruku</b><small>Nieobowiązkowe materiały pomocnicze do każdej sprawy: wprowadzenie, osoby, miejsca i puste arkusze na oś czasu, podejrzanych i notatki. Bez dowodów i bez zdradzania czegokolwiek. Gra nie wymaga drukowania.</small></div></div>
+   <div class="print-list">${(CATALOG || []).filter(k => k.ready && k.print).map(k => `<a class="print-item" href="${esc(k.print)}" target="_blank" rel="noopener" download="SLAD-${esc(k.id)}-do-wydruku.pdf"><span class="mono">${esc(k.id)}</span><b>${esc(k.title)}</b><small>PDF</small></a>`).join('') || '<p class="muted">Lista spraw wczytuje się…</p>'}</div>
    <div class="settings-row"><div><b>Kopia zapasowa</b><small>Postęp jest zapisywany na tym urządzeniu. Eksportuj, by przenieść go gdzie indziej.</small></div></div>
    <div class="row-actions"><button class="btn small ghost" data-a="export">Eksportuj zapis</button><label class="btn small ghost" style="cursor:pointer">Importuj zapis<input type="file" accept="application/json,.json" data-import hidden></label></div>
    <hr class="sep"><button class="btn small ghost" data-a="wipe">Usuń wszystkie zapisy</button>` };
@@ -1342,7 +1411,7 @@ function startMsg(c, g) {
     return;
   }
   const roles = g.players.map(p => `<li><b>${esc(p.name)}</b> — ${esc(ROLES.find(r => r.id === p.role).name)}: <span class="muted">${esc(ROLES.find(r => r.id === p.role).tip)}</span></li>`).join('');
-  openOv({ type: 'msg', title: 'Śledztwo rozpoczęte', kicker: 'Akta ' + c.id, body: `<p>Macie przed sobą akta startowe — zacznijcie od nich. Potem przeszukujcie miejsca i przesłuchujcie świadków.</p>${c.mode === 'table' ? '<p class="muted">Gracie przy wspólnym stole: wszystko widzicie razem. Pamiętajcie o Centrali wydziału — niektóre informacje są tylko tam.</p>' : '<p class="muted">Pamiętajcie: każdy z was wie coś, czego nie wie reszta.</p>'}<h4 class="eyebrow" style="margin-top:18px">Podział ról</h4><ul class="roles">${roles}</ul>` });
+  openOv({ type: 'msg', title: 'Śledztwo rozpoczęte', kicker: 'Akta ' + c.id, body: `<p>Macie przed sobą akta startowe — zacznijcie od nich. Potem przeszukujcie miejsca i przesłuchujcie świadków.</p>${c.mode === 'table' ? '<p class="muted">Gracie przy wspólnym stole: wszystko widzicie razem. Pamiętajcie o Centrali wydziału — niektóre informacje są tylko tam.</p>' : '<p class="muted">Pamiętajcie: każdy z was wie coś, czego nie wie reszta.</p>'}${(CATALOG || []).some(k => k.id === c.id && k.print) ? '<p class="muted" style="font-size:.85rem">Lubicie notować na papierze? W Ustawieniach, w części „Do wydruku”, jest nieobowiązkowy PDF tej sprawy: osoby, miejsca i puste arkusze na oś czasu i podejrzanych.</p>' : ''}<h4 class="eyebrow" style="margin-top:18px">Podział ról</h4><ul class="roles">${roles}</ul>` });
 }
 /* ---------- akcje ---------- */
 const ctx = () => { const r = route(); return { c: caseFor(r.id), g: G(r.id), r }; };
