@@ -113,6 +113,18 @@
    "cover": "assets/cases/009-cover.webp",
    "ready": false,
    "teaser": "Czterdzieści minut dryfu, luka w zapisie i karta, która zniknęła z rejestratora."
+  },
+  {
+   "id": "010",
+   "title": "Palimpsest",
+   "tagline": "Wszystko, co już raz rozwiązaliście",
+   "genre": "Finał kampanii",
+   "duration": "4–5 h, z przerwami",
+   "players": "1–6",
+   "difficulty": "Najtrudniejsza",
+   "cover": "assets/cases/010-cover.webp",
+   "ready": false,
+   "teaser": "Ktoś przez lata poprawiał przeszłość. Pora przeczytać to, co było napisane pod spodem."
   }
  ]
 }
