@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.16.2';
+const VERSION = '2.16.3';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -788,6 +788,7 @@ function doAsk(c, g, qid) {
 }
 function doShow(c, g, pid, eid) {
   const p = c.person[pid]; const e = c.ev[eid]; if (!p || !e) return;
+  const now = Date.now(); if (doShow.last && doShow.last.k === pid + '|' + eid && now - doShow.last.t < 2000) return; doShow.last = { k: pid + '|' + eid, t: now };
   if (!usePower(g, 'ask')) g.actions++;
   g.shown = g.shown || []; g.showsDone = g.showsDone || []; g.showDef = g.showDef || {};
   if (!g.shown.includes(pid + '|' + eid)) g.shown.push(pid + '|' + eid);
@@ -827,7 +828,8 @@ function cfFilter() {
   document.querySelectorAll('#cf-groups .cf-group').forEach(gr => { let n = 0; gr.querySelectorAll('.cf-item').forEach(it => { const ok = (cat === 'all' || it.dataset.cat === cat) ; it.hidden = !ok; if (ok) n++; }); gr.hidden = !n; if (n) any = true; });
 }
 function doConfront(c, g, sid, evid) {
-  const s = c.stmt[sid]; const p = c.person[s.person];
+  const s = c.stmt[sid]; const p = c.person[s.person]; if (g.broken.includes(sid)) return;
+  const now = Date.now(); if (doConfront.last && doConfront.last.k === sid + '|' + evid && now - doConfront.last.t < 2000) return; doConfront.last = { k: sid + '|' + evid, t: now };
   const L = (g.log[p.id] = g.log[p.id] || []);
   const free = usePower(g, 'confront'); if (!free) g.actions++;
   L.push({ t: 'q', text: evid.startsWith('st:') ? `Konfrontacja: „${s.text}” — zestawiamy z zeznaniem: ${personName(g, c.person[c.stmt[evid.slice(3)].person])} — „${c.stmt[evid.slice(3)].text}”.` : `Konfrontacja: „${s.text}” — okazujemy: ${c.ev[evid].title}.` });
