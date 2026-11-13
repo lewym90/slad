@@ -1,7 +1,7 @@
 {
  "005-kraska": {
   "name": "Iwona Kraska",
-  "file": "005-kraska-all.mp3",
+  "file": "005-kraska-all.wav",
   "lines": [
    {
     "id": "k-q1",
@@ -154,7 +154,7 @@
  },
  "005-kosowski": {
   "name": "mec. Adrian Kosowski",
-  "file": "005-kosowski-all.mp3",
+  "file": "005-kosowski-all.wav",
   "lines": [
    {
     "id": "a-q1",
@@ -237,7 +237,7 @@
  },
  "005-dabrowska": {
   "name": "mec. Ewa Dąbrowska",
-  "file": "005-dabrowska-all.mp3",
+  "file": "005-dabrowska-all.wav",
   "lines": [
    {
     "id": "d-q1",
@@ -313,7 +313,7 @@
  },
  "005-lis": {
   "name": "Bartosz Lis",
-  "file": "005-lis-all.mp3",
+  "file": "005-lis-all.wav",
   "lines": [
    {
     "id": "l-q1",
@@ -410,7 +410,7 @@
  },
  "005-morawiec": {
   "name": "dr Lech Morawiec",
-  "file": "005-morawiec-all.mp3",
+  "file": "005-morawiec-all.wav",
   "lines": [
    {
     "id": "o-q1",
@@ -493,7 +493,7 @@
  },
  "005-marta": {
   "name": "Marta Szulc",
-  "file": "005-marta-all.mp3",
+  "file": "005-marta-all.wav",
   "lines": [
    {
     "id": "m-q1",

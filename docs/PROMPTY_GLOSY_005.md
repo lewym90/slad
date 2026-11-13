@@ -8,8 +8,8 @@ Każda postać to **jeden prompt = jedno nagranie** ze wszystkimi jej kwestiami 
 ```
 Generate a single spoken-voice audio file in Polish.
 
-FILE NAME: 005-narrator-brief.mp3
-FORMAT: MP3, 44.1 kHz, mono. Dry, close-miked studio voice recording. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
+FILE NAME: 005-narrator-brief.wav
+FORMAT: the highest audio quality available — preferably uncompressed WAV, 48 kHz, 24-bit, mono (if WAV is not possible: the highest-bitrate file available). Dry, close-miked, broadcast-quality studio voice recording, clean and noise-free. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
 
 CHARACTER: Narrator
 VOICE: Mature Polish male narrator in his early 50s. Deep, warm, slightly gravelly baritone. Noir documentary style: calm, measured, low and intimate, like a seasoned detective reading a case file aloud late at night. Standard Polish pronunciation, no regional accent. If you generated this narrator for an earlier case, reuse exactly the same voice.
@@ -27,8 +27,8 @@ Piątek, trzynastego marca, godzina dziesiąta czterdzieści. Hotel „Gryf” w
 ```
 Generate a single spoken-voice audio file in Polish.
 
-FILE NAME: 005-kraska-all.mp3
-FORMAT: MP3, 44.1 kHz, mono. Dry, close-miked studio voice recording. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
+FILE NAME: 005-kraska-all.wav
+FORMAT: the highest audio quality available — preferably uncompressed WAV, 48 kHz, 24-bit, mono (if WAV is not possible: the highest-bitrate file available). Dry, close-miked, broadcast-quality studio voice recording, clean and noise-free. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
 
 CHARACTER: Iwona Kraska
 VOICE: Polish woman, 47, secretary of a city claims commission. Polished, quick, pleasant mezzo-soprano with an office politeness that sounds rehearsed; precise diction. When lying she stays smooth and friendly, slightly too fast; when cornered her voice gets cooler, clipped and controlled, never hysterical. Standard Polish.
@@ -110,8 +110,8 @@ To nie ma związku z moją pracą w komisji.
 ```
 Generate a single spoken-voice audio file in Polish.
 
-FILE NAME: 005-kosowski-all.mp3
-FORMAT: MP3, 44.1 kHz, mono. Dry, close-miked studio voice recording. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
+FILE NAME: 005-kosowski-all.wav
+FORMAT: the highest audio quality available — preferably uncompressed WAV, 48 kHz, 24-bit, mono (if WAV is not possible: the highest-bitrate file available). Dry, close-miked, broadcast-quality studio voice recording, clean and noise-free. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
 
 CHARACTER: Adrian Kosowski
 VOICE: Polish man, 52, a Warsaw attorney. Confident, slightly hoarse baritone of a man who talks on the phone all day, a little arrogant, ironic, fluent legal phrasing. Brisk and dismissive by default; defensive and curt when caught. Standard Polish.
@@ -163,8 +163,8 @@ Nie widzę tu niczego, co dotyczyłoby mojej klientki.
 ```
 Generate a single spoken-voice audio file in Polish.
 
-FILE NAME: 005-dabrowska-all.mp3
-FORMAT: MP3, 44.1 kHz, mono. Dry, close-miked studio voice recording. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
+FILE NAME: 005-dabrowska-all.wav
+FORMAT: the highest audio quality available — preferably uncompressed WAV, 48 kHz, 24-bit, mono (if WAV is not possible: the highest-bitrate file available). Dry, close-miked, broadcast-quality studio voice recording, clean and noise-free. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
 
 CHARACTER: Ewa Dąbrowska
 VOICE: Polish woman, 44, a city legal counsel. Calm, low, dry alto, careful and measured, every word weighed; quiet intensity, a touch of tiredness. Reluctant and embarrassed when admitting something, then concise and firm. Standard Polish.
@@ -213,8 +213,8 @@ Tego wcześniej nie widziałam.
 ```
 Generate a single spoken-voice audio file in Polish.
 
-FILE NAME: 005-lis-all.mp3
-FORMAT: MP3, 44.1 kHz, mono. Dry, close-miked studio voice recording. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
+FILE NAME: 005-lis-all.wav
+FORMAT: the highest audio quality available — preferably uncompressed WAV, 48 kHz, 24-bit, mono (if WAV is not possible: the highest-bitrate file available). Dry, close-miked, broadcast-quality studio voice recording, clean and noise-free. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
 
 CHARACTER: Bartosz Lis
 VOICE: Polish young man, 24, a night receptionist after a sleepless shift. Light, slightly nasal tenor, polite service tone, talks a bit too fast when nervous, swallows the ends of sentences; sheepish when he admits something, genuinely shocked in one line. Standard Polish.
@@ -272,8 +272,8 @@ Tego nie widziałem, przysięgam.
 ```
 Generate a single spoken-voice audio file in Polish.
 
-FILE NAME: 005-morawiec-all.mp3
-FORMAT: MP3, 44.1 kHz, mono. Dry, close-miked studio voice recording. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
+FILE NAME: 005-morawiec-all.wav
+FORMAT: the highest audio quality available — preferably uncompressed WAV, 48 kHz, 24-bit, mono (if WAV is not possible: the highest-bitrate file available). Dry, close-miked, broadcast-quality studio voice recording, clean and noise-free. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
 
 CHARACTER: Lech Morawiec
 VOICE: Polish man, 61, a court document examiner. Soft, precise, slightly fussy baritone of an old-school scholar, gentle when talking about paper and handwriting, uneasy and evasive when money or timing comes up. Standard Polish.
@@ -325,8 +325,8 @@ Bez oryginału nie powiem nic pewnego.
 ```
 Generate a single spoken-voice audio file in Polish.
 
-FILE NAME: 005-marta-all.mp3
-FORMAT: MP3, 44.1 kHz, mono. Dry, close-miked studio voice recording. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
+FILE NAME: 005-marta-all.wav
+FORMAT: the highest audio quality available — preferably uncompressed WAV, 48 kHz, 24-bit, mono (if WAV is not possible: the highest-bitrate file available). Dry, close-miked, broadcast-quality studio voice recording, clean and noise-free. No music, no background ambience, no sound effects, no breathing noises between lines beyond what is natural. About 0.3 seconds of silence at the start and at the end.
 
 CHARACTER: Marta Szulc
 VOICE: Polish woman, 59, a teacher whose husband is missing. Quiet, warm, controlled mezzo with a tremor of fear kept under tight control; very concrete and clear, short sentences, occasionally a breath of emotion, never melodramatic. Standard Polish.

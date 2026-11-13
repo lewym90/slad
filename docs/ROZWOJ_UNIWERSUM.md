@@ -9,7 +9,7 @@ Stan na: 12.11.2026, wersja aplikacji 2.13.1. Sprawy 001–004 gotowe, 005–009
 2. Dedukcja na najwyższym poziomie: rozwiązanie wynika wyłącznie z materiałów, jedna jednoznaczna odpowiedź, walidator bez błędów.
 3. Autor gra w sprawy — **nie zdradzać fabuły**, nie pokazywać zarysu, rozwiązań ani opisów mediów (prompty oznaczane tylko cyframi, podział GRAFIKI / VIDEO / DŹWIĘK).
 4. Grafiki i media muszą być zgodne z fabułą w każdym szczególe (np. coś mokre, gdy nie powinno — to dla gracza dowód). Każdy obraz jest audytowany po wygenerowaniu.
-5. Duże, osobne grafiki lokacji (wyświetlanie na telewizorze). Żadnych skrótów.
+5. Duże, osobne grafiki lokacji (wyświetlanie na telewizorze). Żadnych skrótów. Od sprawy 005 każdy prompt wymaga NAJWYŻSZEJ możliwej rozdzielczości i jakości wpisanej w treść (grafiki ≥4K, idealnie 6144×4096 / 8K; wideo 4K; audio WAV 48 kHz 24-bit) — autor niczego nie zmienia, tylko kopiuje.
 6. Nowości wprowadzamy **stopniowo i zmiennie**: raz jedna nowość, raz kilka, raz sprawa krótka, raz duża. Nie wszystko naraz. Kierunek: coraz bogatsza rozgrywka, docelowo mega-sprawa 4–5 h, a uniwersum może mieć znacznie więcej niż 9 spraw.
 7. Nie tworzymy edytora spraw dla autora (zna by fabułę przed grą).
 
