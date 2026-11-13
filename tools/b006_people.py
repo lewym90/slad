@@ -157,7 +157,7 @@ people = [
    Q('l-q1', 'Co pan widział w sobotę wieczorem?', 'Wstałem zamknąć okno, bo zaczęło kropić. Patrzę, a tu ktoś zbiega po tych żelaznych schodach z kina. Szybko, trzymał się poręczy. Długi jasny płaszcz. Zegar nad stołem pokazywał jakieś dziesięć po dziesiątej, od razu na niego spojrzałem.', ['l-m1', 'l-c2']),
    Q('l-q2', 'Widział pan twarz tej osoby?', 'Z tej odległości, w tym świetle? Nie. Kaptura nie miał. Włosy jasne albo siwe, nie wiem. Mogła to być i kobieta. Zszedł na podwórze i zniknął pod ścianą kina, tam gdzie tylne drzwi.', ['l-c3']),
    Q('l-q3', 'Czy drzwi kabiny były otwarte?', 'W czasie seansów zawsze są otwarte, pan Leon je podpiera, bo mu gorąco. Ale jak ten ktoś zbiegał, drzwi na górze były już zamknięte. Pamiętam, bo kiedy są otwarte, z kabiny bije światło od lamp, a wtedy na górze było już ciemno.', ['l-c4']),
-   Q('l-q4', 'Kiedy ostatnio nastawiał pan zegar?', 'W czwartek, jak zmieniałem baterię. Nastawiłem z zegarka po bracie. Chodzi jak szwajcarski, co niedzielę go nakręcam.', ['l-c5'], requires=['e24']),
+   Q('l-q4', 'Kiedy ostatnio nastawiał pan zegar?', 'W czwartek, jak zmieniałem baterię. Nastawiłem z zegarka po bracie. Chodzi jak szwajcarski, codziennie rano go nakręcam.', ['l-c5'], requires=['e24']),
   ],
   'statements': [
    S('l-c2', 'Kiedy ta osoba zbiegała, zaczynało kropić.', truth=True),

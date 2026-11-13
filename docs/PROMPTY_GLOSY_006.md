@@ -325,7 +325,7 @@ Z tej odległości, w tym świetle? Nie. Kaptura nie miał. Włosy jasne albo si
 
 W czasie seansów zawsze są otwarte, pan Leon je podpiera, bo mu gorąco. Ale jak ten ktoś zbiegał, drzwi na górze były już zamknięte. Pamiętam, bo kiedy są otwarte, z kabiny bije światło od lamp, a wtedy na górze było już ciemno.
 
-W czwartek, jak zmieniałem baterię. Nastawiłem z zegarka po bracie. Chodzi jak szwajcarski, co niedzielę go nakręcam.
+W czwartek, jak zmieniałem baterię. Nastawiłem z zegarka po bracie. Chodzi jak szwajcarski, codziennie rano go nakręcam.
 
 Godzinę więcej? Mój Boże... Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — nakręcam go, ale wskazówek nie ruszam, kto by o tym pamiętał. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić.
 
