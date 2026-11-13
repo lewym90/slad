@@ -57,7 +57,7 @@
    "players": "2–6",
    "difficulty": "Trudna",
    "cover": "assets/cases/005-cover.webp",
-   "ready": false,
+   "ready": true,
    "teaser": "Zamknięta konferencja, pokój zamknięty od środka i archiwista, którego nazwisko znika z listy."
   },
   {

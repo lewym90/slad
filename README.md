@@ -2,7 +2,7 @@
 
 Kooperacyjna gra detektywistyczna dla 2–6 osób przy jednym ekranie (telefon, tablet, komputer). Instaluje się jak aplikacja (PWA) i po pierwszym uruchomieniu działa offline.
 
-Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”, 004 „Martwy kanał”. Sprawy 005–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
+Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”, 004 „Martwy kanał”, 005 „Pokój bez okien”. Sprawy 006–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
 
 ## Tryby gry (wybór po otwarciu sprawy)
 - **Wspólny stół** — jeden ekran (laptop, telewizor, tablet). Wszyscy widzą wszystko. Informacje, które w drugim trybie są tajnymi aktami, trzeba zdobyć w śledztwie (m.in. w miejscu „Centrala wydziału”). Najlepszy we dwoje.
@@ -69,7 +69,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - Walidator: sumy kontrolne PESEL/NIP/KW/nr dowodu, unikalność, powiązania (małżonkowie, zarządy, właściciele), osiągalność dowodów z bazy, czy każde zapytanie ze ścieżki zwraca rekord i czy jego dane występują DOSŁOWNIE w dowodzie-źródle, imiennicy nie do rozróżnienia, oraz czy każdy identyfikator w tekstach sprawy (tablice, PESEL, KRS, NIP, KW, dowody) istnieje w bazie w tej samej formie (`db.ignore` na wyjątki, np. numer pociągu).
 - **Okazywanie dowodów (zakładka „Okaż dowód” u osoby):** `shows: [{id, ev, a, requires?, claims?, gives?}]` i `showDefault: [...]` (odpowiedź na wszystko inne). 1 ruch. Token `show:<id>` do bramek i przełomów. Głosy: `<voiceDir>/<id>.mp3` i `<osoba>-show-<i>.mp3`.
 - **Nowe uprawnienia i oględziny na zdjęciu (2.16):** `case.unlocks` (+ `unlockNote`) pokazuje ekran „Nowe uprawnienia wydziału”; katalog uprawnień `FEATURES` w `app.js`; `offline: {db: 'powód'}` wyłącza zakładkę z fabularnym wyjaśnieniem. `location.search = {aspect, spots: {spotId: [x, y, r]}}` zamienia listę punktów w oględziny zdjęcia (licznik, wskazanie po przybliżeniu ≥2×, pudło bez kosztu, trafienie 1 ruch). Walidator sprawdza położenia, nachodzenie obszarów i ciągłość odblokowanych uprawnień.
-- Sprawa 005 „Pokój bez okien” jest gotowa logicznie i zapieczętowana do czasu dodania mediów. Prompty: `docs/PROMPTY_GRAFIK_005.md`, `docs/PROMPTY_GLOSY_005.md`, `docs/PROMPTY_FILMY_DZWIEK_005.md` (`tools/prompts_005.py`); źródło: `tools/build_005.py` + `b005_*.py`.
+- Sprawa 005 „Pokój bez okien” jest gotowa (media dodane). Prompty: `docs/PROMPTY_GRAFIK_005.md`, `docs/PROMPTY_GLOSY_005.md`, `docs/PROMPTY_FILMY_DZWIEK_005.md` (`tools/prompts_005.py`); źródło: `tools/build_005.py` + `b005_*.py`.
 
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).
