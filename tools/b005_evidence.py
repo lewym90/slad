@@ -123,6 +123,7 @@ evidence = [
    {'kv': [['Nieruchomość', 'kamienica, ul. Wielkopolska 21, Szczecin, KW SZ1S/00045218/0'], ['Wartość według operatu', '38,4 mln zł'],
            ['Podstawa roszczenia', 'akt nadania własności z 14.09.1946 dla Karola Rudnickiego, wydany przez Zarząd Miejski w Szczecinie'],
            ['Wnioskodawczyni', 'Helena Rudnicka-Lange (79 l., Hamburg), córka Karola Rudnickiego'],
+           ['Załącznik do wniosku', 'prywatna ekspertyza papieru i tuszu, Pracownia Konserwacji i Ekspertyz Papieru VESPER, Wrocław (2021): „materiał zgodny z epoką”'],
            ['Cesjonariusz roszczenia', 'Restytucja Pomorska sp. z o.o. (umowa cesji z 07.02.2022)'], ['Pełnomocnik', 'mec. Adrian Kosowski']]},
    'Komisja może zawrzeć ugodę: zwrot kamienicy albo odszkodowanie. Wszystko zależy od tego, czy akt z 1946 roku jest autentyczny. Oceny miał dokonać biegły z archiwum, które przechowuje oryginał.']),
  ev('e20', 'Dokument', 'Regulamin komisji — § 9', 'Kto opiniuje dokumenty i co, gdy biegły nie przyjdzie.', [

@@ -128,7 +128,8 @@ evidence = [
    {'log': ['do 22:10      bez opadu, −6 °C', '22:10–00:40   śnieg, natężenie równomierne: ok. 2 cm na godzinę', 'po 00:40      bez opadu']},
    {'note': 'Przyrost pokrywy: 5 cm. Wiatr słaby — śnieg nie był nawiewany.'}], private=True),
  ev('x2', 'Plan', 'Projekt sanatorium z 1936 roku', 'Z archiwum budowlanego.', [
-   'Przekrój wschodniego skrzydła: parter, I piętro, II piętro, a nad nimi III piętro w mansardzie — „izolatorium, 8 łóżek”. Dostęp wyłącznie klatką gospodarczą. W szczycie od strony doliny: cztery rzędy okien.'], private=True),
+   'Przekrój wschodniego skrzydła: parter, I piętro, II piętro, a nad nimi III piętro w mansardzie — „izolatorium, 8 łóżek”. Dostęp wyłącznie klatką gospodarczą. W szczycie od strony doliny: cztery rzędy okien.',
+   {'note': 'Kopia z mikrofilmu. Oryginalne rysunki od 2019 roku przebywają w konserwacji w pracowni VESPER we Wrocławiu.'}], private=True),
  ev('x3', 'Akta osobowe', 'Kwestionariusz stróża', 'Kadry gminy Jaworzyn.', [
    {'kv': [['Zenon Kubik', 'ur. 1963'], ['Zatrudniony', 'marzec 2019, stróż obiektu „Jodła”'], ['Poprzednio', 'leśniczy, Nadleśnictwo Jaworzyn (do 2018)'], ['Stan cywilny', 'wdowiec']]},
    {'note': 'Adnotacja kadrowej: „Sam zgłosił się na to stanowisko, choć płaca jest niska. Zrezygnował dla niego z pracy w lesie.”'}], private=True),

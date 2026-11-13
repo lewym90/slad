@@ -217,7 +217,8 @@ evidence = [
  # ---------- REDAKCJA „GŁOS RUDY” ----------
  ev('e36', 'Notatka', 'Notatki Leny Hajduk', 'Plan artykułu „Syreny na papierze”.', [
    'Notatnik reporterki. Hasło „Syreny na papierze”: źródło B.L. zapewnia, że kanał rezerwowy K3 jest atrapą, a protokół odbioru podrobiony. Dowód: telemetria z nadajnika, kopia na pendrive.',
-   {'quote': 'Spotkanie 00:05 pod Kolonią. Ma przynieść kopię telemetrii. Nie wiem, kto jeszcze wie.', 'by': 'L. Hajduk, notatnik'}]),
+   {'quote': 'Spotkanie 00:05 pod Kolonią. Ma przynieść kopię telemetrii. Nie wiem, kto jeszcze wie.', 'by': 'L. Hajduk, notatnik'},
+   'Na ostatniej stronie, starszy wpis innym długopisem: „VESPER, Wrocław — »ekspertyzy« starych dokumentów. Kto to zamawia i ile płaci? Temat na później.”']),
  ev('e37', 'Korespondencja', 'E-mail Lasota — Hajduk', 'Czwartek 21:15.', [
    {'quote': 'Spotkajmy się o północy na parkingu pod Kolonią. Dam Pani, co trzeba. Jutro o dziewiątej NIK. Niech Pani niczego nie publikuje przed południem.', 'by': 'B. Lasota do L. Hajduk, 26.11 21:15'}],
    time=[T(21, 15, 'Lasota umawia się z Leną Hajduk na północ pod Kolonią', 'E-mail', day=D)]),

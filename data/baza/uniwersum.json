@@ -1,0 +1,63 @@
+{
+ "osoby": [
+  {
+   "id": "O-U-ancel",
+   "nazwisko": "Ancel",
+   "imiona": [
+    "Teodor",
+    "Feliks"
+   ],
+   "pesel": "58020941719",
+   "plec": "M",
+   "urodzony": "1958-02-09",
+   "miejsceUr": "Wrocław",
+   "ojciec": "Feliks",
+   "matka": "Halina",
+   "adres": "ul. Wita Stwosza 3/2, 50-148 Wrocław",
+   "dowod": {
+    "nr": "DWR 561530",
+    "wydany": "2019-11-04",
+    "wazny": "2029-11-04",
+    "organ": "Prezydent Wrocławia"
+   },
+   "stan": "wdowiec",
+   "neutral": true
+  }
+ ],
+ "pojazdy": [],
+ "firmy": [
+  {
+   "id": "F-U-vesper",
+   "krs": "0000331908",
+   "nip": "8971790345",
+   "regon": "021004872",
+   "nazwa": "PRACOWNIA KONSERWACJI I EKSPERTYZ PAPIERU VESPER SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Kiełbaśnicza 17, 50-110 Wrocław",
+   "dataWpisu": "2009-06-22",
+   "kapital": "80 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "ANCEL",
+     "imiona": "TEODOR FELIKS",
+     "pesel": "58020941719"
+    }
+   ],
+   "wspolnicy": [
+    {
+     "nazwa": "TEODOR FELIKS ANCEL",
+     "udzialy": "160 udziałów o łącznej wartości 80 000 zł"
+    }
+   ],
+   "pkd": [
+    "90.03.Z Artystyczna i literacka działalność twórcza",
+    "91.01.B Działalność archiwów",
+    "71.20.B Pozostałe badania i analizy techniczne"
+   ],
+   "status": "aktywny",
+   "neutral": true
+  }
+ ],
+ "ksiegi": []
+}
