@@ -1,0 +1,79 @@
+# ŚLAD — prompty graficzne, sprawa 005 „Pokój bez okien”
+
+Każdy blok to osobny obraz — wklejaj bez zmian. Plansze potnę i podepnę do gry. Obrazy nie zawierają tekstu.
+
+## 1
+```
+A single photorealistic contact sheet, 3:2 landscape (1536×1024): exactly 6 separate portrait panels with a 4:5 vertical aspect, arranged in a strict grid of 3 columns and 2 rows, all panels identical in size, separated by uniform solid pure black gutters about 2% of the image width, black outer margin of the same width. Each panel contains exactly one person, head and shoulders, eye level, facing the camera at a slight three-quarter angle. Style for every panel: cinematic film still, 85mm lens, shallow depth of field, low-key lighting with a cool blue-teal key light and a small warm tungsten accent, muted desaturated colour grade, subtle 35mm film grain, realistic skin texture with pores and wrinkles, ordinary Central-European faces, not models, no glamour makeup. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders inside the panels.
+Row 1, panel 1: a 47-year-old Polish woman, a city commission secretary, shoulder-length dark brown hair perfectly styled, subtle makeup, small pearl earrings, a thin gold wedding ring visible on a hand resting near her collar, navy tailored skirt-suit jacket over a white blouse, polite controlled half-smile that does not reach her watchful eyes, blurred elegant hotel conference room with warm lamps behind her.
+Row 1, panel 2: a 52-year-old Polish attorney from Warsaw, short dark hair greying at the sides, two-day stubble, tired but sharp eyes, expensive dark grey suit, white shirt with the top button undone, loosened tie, a smartphone held near his chest, a faint ironic smirk, blurred hotel bar with brass lamps behind him.
+Row 1, panel 3: a 44-year-old Polish woman, a city legal counsel, slim, straight light-brown hair tied back, no-nonsense face, minimal makeup, thin-framed glasses, a red wool coat over a dark grey blazer, serious, measured, slightly tired expression, blurred hotel lobby with leather armchairs behind her.
+Row 2, panel 1: a 24-year-old Polish man, a night hotel receptionist after a sleepless shift, short messy light-brown hair, pale face with dark circles under the eyes, slight stubble, a dark hotel uniform jacket thrown over a grey hooded sweatshirt, anxious polite expression, blurred dark-wood reception counter with a small desk lamp behind him.
+Row 2, panel 2: a 61-year-old Polish forensic document examiner, short, balding with neat grey hair at the sides, round wire glasses, tweed jacket with a small magnifying loupe in the breast pocket, a mild scholarly but uneasy expression, blurred hotel room with a desk lamp behind him.
+Row 2, panel 3: a 59-year-old Polish woman, a teacher whose husband is missing, short ash-blonde hair, kind tired face with fine wrinkles, eyes red from worry but composed, a beige cardigan over a simple blouse, holding a smartphone tightly in both hands near her chest, blurred hotel corridor with warm wall lamps behind her.
+```
+
+## 2
+```
+A single photorealistic sheet, 3:2 landscape (1536×1024): exactly 2 panels side by side, each with a 4:5 vertical aspect, identical in size, separated by a uniform solid pure black gutter about 2% of the image width, black outer margin of the same width. Both panels show THE SAME Polish man — the same face, the same nose, eyes, ears, eyebrows and the same thin-rimmed rectangular glasses — photographed eight years apart. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders inside the panels.
+Panel 1 (left): an official identity-document style head-and-shoulders photograph of him at about 55 years old: plain light-grey background, flat even frontal lighting, neutral expression, looking straight at the camera, grey hair cut short, a short neatly trimmed greying full beard and moustache, dark jacket, white shirt. Slightly flat, slightly faded colours like a scan of an ID photo.
+Panel 2 (right): a warm candid snapshot of the same man at 62–63 years old at a home birthday dinner: COMPLETELY CLEAN-SHAVEN (no beard, no moustache, smooth chin), silver-grey hair cut short, the same glasses, a navy knitted sweater, smiling warmly, sitting at a table with a white tablecloth, a small cake and teacups, warm tungsten home light, shallow depth of field, a blurred living room behind him.
+```
+
+## 3
+```
+A single photorealistic evidence contact sheet, 1:1 square (1254×1254): exactly 9 separate square panels arranged in a strict grid of 3 columns and 3 rows, all panels identical in size, separated by uniform solid pure black gutters about 2% of the image width, black outer margin of the same width. Each panel is a forensic-style close-up of one subject, lit by a hard flashlight-like key light from above at an angle, deep black falloff, muted desaturated colours, subtle film grain, macro detail. No people, no hands, no faces. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders inside the panels.
+Row 1: (1) a grey fabric wheeled suitcase lying open on a hotel luggage rack: two folded shirts, a folded sweater, a plain grey document folder and a CLOSED, zipped dark toiletry bag on top — nothing else; (2) the inside of a hotel built-in wardrobe: the back wall panel has been removed and leans aside, revealing a steel service door with a small keyhole and a simple thumb-turn knob on this side, fine white plaster dust on the wardrobe floor, empty hangers pushed to one side of the rail; (3) a dusty narrow service corridor with pipes along the wall: a grey steel door whose handle and escutcheon are noticeably clean and dust-free, and on the dusty floor in front of it a clean swept semicircle where the door has recently swung open.
+Row 2: (4) a crumpled paper train ticket wedged between the metal seat rails under the passenger seat of a dark car, a rubber floor mat with dried muddy shoe marks, the ticket's print illegible; (5) a hotel room desk: a plain white envelope with a blank white key card half sticking out of it, a blank hotel notepad and a pen in a leather holder; (6) an old photocopy of a typed 1940s official document with round stamp shapes and a signature scrawl, all writing illegible, in the top corner a faint grey ghostly outline of an oval watermark, the copy slightly smudged.
+Row 3: (7) a yellow sticky note stuck to the edge of a computer monitor, covered with hasty handwritten scribble and three exclamation marks, the handwriting illegible; (8) an open metal key cabinet on a basement wall with rows of keys hanging on hooks, small blank round tags, one key on a hook in the middle; (9) a concrete staircase landing with a cast-iron radiator, and on the floor under the radiator a plain white plastic hotel key card lying face down (its blank back side up).
+```
+
+## 4
+```
+A single photorealistic cinematic interior, 3:2 landscape (1536×1024): a narrow hotel room WITHOUT ANY WINDOW, lit only by warm bedside lamps and a ceiling light: a neatly made double bed with an untouched bedspread and two plumped pillows, a small desk with a lamp, a closed built-in wardrobe filling one side wall, a grey wheeled suitcase standing CLOSED on a luggage rack, a small square ventilation grille high on the wall near the ceiling with four screws, an open bathroom door showing folded dry white towels, the entrance door standing wide open to the corridor with its inner security latch visibly cut through (a cleanly cut metal latch hanging), faint damp shoe smudges on the carpet near the door, clean and quiet. 24mm lens, deep focus, muted colour grade with warm tungsten and cool teal shadows, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 5
+```
+A single photorealistic cinematic interior, 3:2 landscape (1536×1024): the reception and lobby of an old, elegant mid-size city hotel in Szczecin: a long dark-wood reception counter with a computer screen turned away from the camera, a small document scanner and a brass desk bell on the counter, a key-card encoder, behind it a wall with pigeonholes, a lobby with leather armchairs and a low table, brass wall lamps, a wide entrance glass door on one side showing a grey overcast street with wet cobblestones, an arched passage on the other side leading to a dim bar. Time: Friday late morning in March, overcast, after a night of rain — outdoor surfaces still wet, but it is NOT raining now. 24mm lens, deep focus, muted colour grade, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 6
+```
+A single photorealistic cinematic interior, 3:2 landscape (1536×1024): a hotel conference room called amber room, with warm amber-toned wood panelling: a long table for twelve with leather chairs, glass carafes of water, closed document folders with coloured tabs at each seat, one chair at the head of the table, a projector on the table, a binder lying open in the middle, papers left as if a meeting was suddenly interrupted, two cold cups of coffee, tall windows with heavy curtains showing a grey overcast sky. Time: Friday late morning in March, overcast, after a night of rain — outdoor surfaces still wet, but it is NOT raining now. 24mm lens, deep focus, muted colour grade, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 7
+```
+A single photorealistic cinematic interior, 3:2 landscape (1536×1024): the basement office of a hotel's technical manager: metal shelving full of old binders and rolled architectural drawings, a large old floor plan drawing spread on a desk under a green-shaded lamp (lines of rooms and corridors, no readable text), an open metal key cabinet with rows of keys on hooks, a door-controller panel with small LEDs on the wall, pipes and cable trays under a low ceiling, a single small high basement window with grey daylight. 24mm lens, deep focus, muted colour grade, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 8
+```
+A single photorealistic cinematic interior, 3:2 landscape (1536×1024): a narrow, dusty hotel service corridor behind guest rooms: bare painted walls, pipes and cable trays under the ceiling, a few grey steel inspection doors set into the wall at intervals, a thin layer of dust on the concrete floor, at the far end a grey staff staircase with a metal handrail going down, lit by a few cold fluorescent tubes, one tube flickering dimmer. 24mm lens, deep focus, muted colour grade, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 9
+```
+A single photorealistic cinematic interior, 3:2 landscape (1536×1024): a small classic hotel bar with dark wood and brass: a bar counter with brass lamps and shelves of bottles, a cash register, four small round tables with chairs, one corner table with an empty whisky glass and a bowl of peanuts left on it, a doorway on one side giving a partial view of the lobby, warm dim light, chairs not yet stacked. 24mm lens, deep focus, muted colour grade with warm tungsten tones, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 10
+```
+A single photorealistic cinematic interior, 3:2 landscape (1536×1024): the office of a senior archivist in a state archive in Koszalin, as seen in daylight: tall shelves packed with grey archival boxes and bundles of old files, a wooden desk with a desk lamp with a green glass shade, a computer monitor with several small yellow sticky notes on its edges (illegible handwriting), a wooden card-catalogue cabinet with many small drawers, one drawer pulled out, a magnifying glass and a light box on the desk, an empty office chair, grey daylight from a window. 24mm lens, deep focus, muted colour grade, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 11
+```
+A single photorealistic cinematic exterior, 3:2 landscape (1536×1024): a small car park behind an old city hotel in Szczecin: an automatic barrier with a camera on a short pole at the entrance, about a dozen parking bays on wet asphalt with puddles, only four parked cars: a navy blue Toyota Corolla sedan, a white compact SUV, a grey estate car and a green small SUV, NO silver cars, along the back wall of the hotel a narrow alley leading about thirty metres to a plain grey staff door with a lamp above it and a small dark camera next to it, a tiny smokers' shelter with a bench near that door, old plastered rear walls with drainpipes. Time: Friday late morning in March, overcast, after a night of rain — outdoor surfaces still wet, but it is NOT raining now. 24mm lens, deep focus, muted colour grade, fine film grain, no people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 12
+```
+A single photorealistic cinematic establishing shot, 16:9 (1536×864): an old, elegant six-storey city hotel on a cobbled old-town street in Szczecin at night in steady rain, warm light in a few windows, a lit entrance canopy, wet cobblestones reflecting the lamps, and high on the facade — between two lit windows — a section of wall with NO window at all, dark and blank, the camera slightly low, ominous and quiet, muted desaturated colour grade with deep blue-teal shadows and warm sodium accents, subtle 35mm film grain. The hotel facade is centred. No people, no vehicles. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```
+
+## 13
+```
+A single photorealistic cinematic wide interior shot, 16:9 (1536×864): a long hotel corridor at night with patterned carpet and warm wall sconces, one door in the middle standing ajar with cold light spilling out and its cut security latch visible, beside it on the carpet an envelope and a single white key card, the far end of the corridor fading into darkness, shallow depth of field, warm tungsten and cold teal light, subtle 35mm film grain, quiet and tense. No people. Absolutely no text, letters, numbers, captions, logos, watermarks, frames or borders anywhere in the image.
+```

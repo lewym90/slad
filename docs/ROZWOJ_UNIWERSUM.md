@@ -129,3 +129,8 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 6. **Druk (#43):** w Ustawieniach rozwijana sekcja „Do wydruku” z jednym linkiem (PDF) na każdą sprawę — można wydrukować z wyprzedzeniem na wiele spraw. Gdy sprawa ma materiały do druku, informacja jest na jej starcie, a szef wydziału wspomina o tym w odprawie. Druk **nigdy nie jest wymagany**: wszystko jest też w aplikacji (np. podarty list układany palcem).
 7. Wyszukiwarka w konfrontacji — usunięta.
 8. Obserwacja (#15) i rywalizacja (#26) — na razie nie.
+
+## 11. Stan wdrożenia (13.11.2026)
+- 2.15.0: terminal baz danych (#1) i okazywanie dowodów (#4) w silniku; ogólnopolska baza tła w `data/baza/`.
+- Sprawa 005 „Pokój bez okien”: debiut #1, #4 i formatu zaginięcia (#31); logika zwalidowana, testy przejścia OK; czeka na media (prompty w `docs/PROMPTY_*_005.md`).
+- Następne sprawy: kolejne nowości z listy, zmiennie (raz jedna, raz kilka; raz krótka sprawa, raz duża).

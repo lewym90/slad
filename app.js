@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.14.1';
+const VERSION = '2.15.0';
 const BUILD = '10.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -16,6 +16,7 @@ const MONTHS = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'l
 const DAYS = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
 
 const I = {
+  db: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v6.5c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V5.5"/><path d="M4.5 12v6.5c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V12"/></svg>',
   eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
   files: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 10h18"/></svg>',
   map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
@@ -99,19 +100,21 @@ function indexCase(c) {
   c.spot = {}; c.locations.forEach(l => l.spots.forEach((s, i) => { c.spot[s.id] = { ...s, loc: l.id, n: i + 1 }; }));
   c.stmt = {}; c.q = {};
   c.people.forEach(p => { p.statements.forEach(s => { c.stmt[s.id] = { ...s, person: p.id }; }); p.questions.forEach(q => { c.q[q.id] = { ...q, person: p.id }; }); });
+  c.show = {}; c.people.forEach(p => (p.shows || []).forEach(x => { c.show[x.id] = { ...x, person: p.id }; }));
   c.puzzle = Object.fromEntries(c.puzzles.map(p => [p.id, p]));
   // skąd pochodzi dowód (do grupowania w konfrontacji)
   c.evSrc = {}; const setSrc = (ids, k) => (ids || []).forEach(id => { if (!c.evSrc[id]) c.evSrc[id] = k; });
   c.evidence.forEach(e => { if (e.start) c.evSrc[e.id] = 'start'; else if (e.private) c.evSrc[e.id] = 'team'; });
   c.locations.forEach(l => l.spots.forEach(sp => setSrc(sp.gives, 'loc:' + l.id)));
   ((c.tableMode && c.tableMode.locations) || []).forEach(l => l.spots.forEach(sp => setSrc(sp.gives, 'team')));
-  c.people.forEach(p => { p.questions.forEach(q => setSrc(q.gives, 'talk')); p.statements.forEach(st => setSrc(st.gives, 'talk')); });
+  c.people.forEach(p => { p.questions.forEach(q => setSrc(q.gives, 'talk')); p.statements.forEach(st => setSrc(st.gives, 'talk')); (p.shows || []).forEach(x => setSrc(x.gives, 'talk')); });
   c.evidence.forEach(e => { if (!c.evSrc[e.id]) c.evSrc[e.id] = 'other'; });
   return c;
 }
 async function getCase(id) {
   if (CASES[id]) return CASES[id];
-  CASES[id] = indexCase(await fetchJSON(`cases/${id}.json`)); return CASES[id];
+  const raw = await fetchJSON(`cases/${id}.json`); if (raw.db) await loadDB();
+  CASES[id] = indexCase(raw); dbFill(CASES[id]); return CASES[id];
 }
 /* Wariant sprawy dla trybu: „Wspólny stół” przenosi tajne akta do świata gry. */
 function variant(base, mode) {
@@ -123,9 +126,9 @@ function variant(base, mode) {
   c.locations = [...base.locations, ...(t.locations || [])];
   c.people = base.people.map(p => (t.questions || {})[p.id] ? { ...p, questions: [...p.questions, ...t.questions[p.id]] } : p);
   c.privateClues = []; c.par = base.par + (t.parBonus || 0); c.mode = 'table';
-  base._table = indexCase(c); return base._table;
+  base._table = indexCase(c); dbFill(base._table); return base._table;
 }
-const caseFor = (id) => { const g = G(id); return variant(CASES[id], g && g.mode); };
+const caseFor = (id) => { const g = G(id); const c = variant(CASES[id], g && g.mode); ensureDbEv(c, g); return c; };
 const MODES = {
   table: { name: 'Wspólny stół', sub: 'Jeden ekran: laptop, telewizor albo tablet', points: ['Wszyscy widzicie wszystko i gracie jak jeden zespół detektywów przy jednym stole.', 'Nie ma tajnych akt. Informacje, które w drugim trybie trafiają do kieszeni graczy, trzeba zdobyć w śledztwie — m.in. w miejscu „Centrala wydziału”.', 'Najlepszy we dwoje: jedna osoba czyta dokumenty na głos, druga prowadzi tablicę i oś czasu.'] },
   phones: { name: 'Telewizor + telefony', sub: 'Wspólny ekran i prywatne teczki w telefonach', points: ['Gra toczy się na wspólnym ekranie. Na starcie każdy skanuje aparatem telefonu swój kod QR i widzi tylko swoje tajne akta.', 'Sami decydujecie, kiedy podzielić się wiedzą: możecie ją opowiedzieć albo ujawnić dokument na wspólnym ekranie, wpisując jego kod z telefonu.', 'Najlepszy dla 3–6 osób. Telefon potrzebuje internetu tylko przy pierwszym otwarciu kodu. Ktoś bez telefonu może zajrzeć do teczki na wspólnym ekranie.'] }
@@ -158,6 +161,7 @@ const known = (g, id) => g.found.includes(id) || g.shared.includes(id);
 function has(g, c, tok) {
   if (tok.startsWith('lie:')) return g.broken.includes(tok.slice(4));
   if (tok.startsWith('st:')) return g.claims.includes(tok.slice(3));
+  if (tok.startsWith('show:')) return (g.showsDone || []).includes(tok.slice(5));
   if (c.puzzle[tok]) return !!(g.puzzles[tok] && g.puzzles[tok].solved);
   if (c.spot[tok]) return g.spots.includes(tok);
   if (c.q[tok]) return g.asked.includes(tok);
@@ -172,6 +176,114 @@ function gain(g, c, ids, silent) {
   (ids || []).forEach(id => { if (c.ev[id] && !known(g, id)) { g.found.push(id); got.push(id); } });
   if (got.length && !silent) { got.forEach((id, i) => setTimeout(() => toast(c.ev[id].title, c.ev[id].summary, 'Nowy dowód', id), i * 450)); sfx(); }
   return got;
+}
+
+
+/* ---------- BAZY DANYCH (terminal śledczy, wspólny dla całego uniwersum) ---------- */
+let DB = null, DBP = null;
+function loadDB() {
+  if (DB) return Promise.resolve(DB);
+  if (!DBP) DBP = (async () => {
+    const ix = await fetchJSON('data/baza/index.json');
+    const parts = await Promise.all(ix.files.map(f => fetchJSON('data/baza/' + f)));
+    const d = { osoby: [], pojazdy: [], firmy: [], ksiegi: [], byId: {}, baseOf: {} };
+    parts.forEach(pt => DBASE_KEYS.forEach(k => (pt[k] || []).forEach(r => { d[k].push(r); d.byId[r.id] = r; d.baseOf[r.id] = k; })));
+    DB = d; return d;
+  })();
+  return DBP;
+}
+const DBASE_KEYS = ['osoby', 'pojazdy', 'firmy', 'ksiegi'];
+const lc = v => String(v || '').trim().toLocaleLowerCase('pl');
+const FORM_ABBR = [[/\bsp\.\s*z\s*o\.\s*o\.?/g, 'spółka z ograniczoną odpowiedzialnością'], [/\bs\.\s*a\./g, 'spółka akcyjna'], [/\bsp\.\s*j\./g, 'spółka jawna'], [/\bsp\.\s*k\./g, 'spółka komandytowa']];
+const nameTokens = v => { let t = lc(v); FORM_ABBR.forEach(([re, full]) => { t = t.replace(re, full); }); return t.split(/\s+/).filter(Boolean); };
+function solvedSet() { const s = new Set((S.chronicle || []).map(x => x.id)); Object.entries(S.games || {}).forEach(([id, g]) => { if (g && g.report) s.add(id); }); return s; }
+function dbCtx(c, solved) { return { date: c.db.date, caseId: c.id, solved: solved || solvedSet() }; }
+function dbVisible(r, x) {
+  if (r.from && r.from > x.date) return false;
+  if (r.to && r.to <= x.date) return false;
+  if (r.afterSolved && !x.solved.has(r.afterSolved)) return false;
+  if (r.case && !r.neutral && r.case !== x.caseId && !x.solved.has(r.case)) return false;
+  return true;
+}
+const fmtD = iso => { if (!iso) return '—'; const [y, m, d] = iso.split('-'); return `${d}.${m}.${y}`; };
+const BASES = {
+  osoby: { name: 'Ewidencja ludności (PESEL)', short: 'PESEL', fields: [['nazwisko', 'Nazwisko'], ['imie', 'Imię'], ['pesel', 'Numer PESEL']],
+    need: f => f.nazwisko || f.pesel, needMsg: 'Podajcie nazwisko albo numer PESEL.',
+    match: (r, f) => (!f.nazwisko || lc(r.nazwisko) === lc(f.nazwisko)) && (!f.imie || r.imiona.some(n => lc(n) === lc(f.imie))) && (!f.pesel || r.pesel === f.pesel.trim()),
+    row: r => [`${r.nazwisko} ${r.imiona.join(' ')}`, `ur. ${fmtD(r.urodzony)} · ${r.adres.split(', ').pop().replace(/^\d{2}-\d{3} /, '')}${r.zgon ? ' · zmarł(a)' : ''}`],
+    title: r => `PESEL: ${r.nazwisko} ${r.imiona[0]}`,
+    body: r => [{ kv: [['Nazwisko', r.nazwisko], ...(r.rodowe ? [['Nazwisko rodowe', r.rodowe]] : []), ['Imiona', r.imiona.join(' ')], ['PESEL', r.pesel], ['Płeć', r.plec === 'M' ? 'mężczyzna' : 'kobieta'],
+      ['Data urodzenia', fmtD(r.urodzony)], ['Miejsce urodzenia', r.miejsceUr], ['Imię ojca', r.ojciec], ['Imię matki', r.matka], ['Adres zameldowania', r.adres],
+      ['Stan cywilny', r.stan], ...(r.malzonek ? [['Małżonek', `${r.malzonek.imie} ${r.malzonek.nazwisko}, PESEL ${r.malzonek.pesel}`]] : []), ...(r.zgon ? [['Data zgonu', fmtD(r.zgon)]] : [])] },
+      { h: 'Dowód osobisty' }, { kv: [['Seria i numer', r.dowod.nr], ['Data wydania', fmtD(r.dowod.wydany)], ['Ważny do', fmtD(r.dowod.wazny)], ['Organ wydający', r.dowod.organ]] }] },
+  pojazdy: { name: 'Centralna Ewidencja Pojazdów (CEPiK)', short: 'CEPiK', fields: [['nr', 'Numer rejestracyjny'], ['vin', 'Numer VIN']],
+    need: f => f.nr || f.vin, needMsg: 'Podajcie numer rejestracyjny albo VIN.',
+    match: (r, f) => (!f.nr || lc(r.nr) === lc(f.nr)) && (!f.vin || lc(r.vin) === lc(f.vin)),
+    row: r => [r.nr, `${r.marka} ${r.model}, ${r.kolor}, ${r.rok}`],
+    title: r => `CEPiK: ${r.nr}`,
+    body: r => [{ kv: [['Numer rejestracyjny', r.nr], ['VIN', r.vin], ['Marka i model', `${r.marka} ${r.model}`], ['Rodzaj', r.rodzaj], ['Rok produkcji', String(r.rok)], ['Kolor', r.kolor], ['Data rejestracji', fmtD(r.rejestracja)], ['Status', r.status]] },
+      { h: 'Właściciel' }, { kv: [['Nazwa / imię i nazwisko', r.wlasciciel.nazwa], ...(r.wlasciciel.pesel ? [['PESEL', r.wlasciciel.pesel]] : []), ...(r.wlasciciel.krs ? [['KRS', r.wlasciciel.krs]] : []), ['Adres', r.wlasciciel.adres]] },
+      { h: 'Ubezpieczenie i badania' }, { kv: [['Ubezpieczyciel OC', r.oc.ubezpieczyciel], ['OC ważne do', fmtD(r.oc.do)], ['Badanie techniczne ważne do', fmtD(r.badanie)]] }] },
+  firmy: { name: 'Krajowy Rejestr Sądowy (KRS)', short: 'KRS', fields: [['krs', 'Numer KRS'], ['nip', 'NIP'], ['nazwa', 'Nazwa (całe słowa)']],
+    need: f => f.krs || f.nip || f.nazwa, needMsg: 'Podajcie numer KRS, NIP albo nazwę.',
+    match: (r, f) => (!f.krs || r.krs === f.krs.trim()) && (!f.nip || r.nip === f.nip.trim()) && (!f.nazwa || (t => nameTokens(f.nazwa).every(w => t.includes(w)))(nameTokens(r.nazwa))),
+    row: r => [r.nazwa, `KRS ${r.krs} · ${r.adres.split(', ').pop().replace(/^\d{2}-\d{3} /, '')}${r.status !== 'aktywny' ? ' · ' + r.status : ''}`],
+    title: r => `KRS: ${r.nazwa.replace(/ SPÓŁKA .*$/, '')}`,
+    body: r => [{ kv: [['Nazwa', r.nazwa], ['Forma prawna', r.forma], ['Numer KRS', r.krs], ['NIP', r.nip], ['REGON', r.regon], ['Siedziba i adres', r.adres], ['Data wpisu do rejestru', fmtD(r.dataWpisu)], ...(r.kapital ? [['Kapitał zakładowy', r.kapital]] : []), ['Status', r.status]] },
+      { h: 'Reprezentacja' }, { kv: r.zarzad.map(z => [z.funkcja, `${z.nazwisko} ${z.imiona}, PESEL ${z.pesel}`]) },
+      ...(r.wspolnicy ? [{ h: 'Wspólnicy' }, { kv: r.wspolnicy.map(w => [w.nazwa, w.udzialy]) }] : []),
+      { h: 'Przedmiot działalności (PKD)' }, { kv: r.pkd.map((x, i) => [i ? 'Pozostała' : 'Przeważająca', x]) }] },
+  ksiegi: { name: 'Elektroniczne Księgi Wieczyste (EKW)', short: 'EKW', fields: [['nr', 'Numer księgi (np. AB1C/00012345/6)']],
+    need: f => f.nr, needMsg: 'Podajcie pełny numer księgi.',
+    match: (r, f) => lc(r.nr) === lc(f.nr),
+    row: r => [r.nr, r.polozenie],
+    title: r => `EKW: ${r.nr}`,
+    body: r => [{ kv: [['Numer księgi', r.nr], ['Rodzaj nieruchomości', r.typ], ['Położenie', r.polozenie]] },
+      { h: 'Dział I-O — oznaczenie nieruchomości' }, r.opis,
+      { h: 'Dział II — własność' }, { kv: r.wlasciciele.map(w => [w.nazwa + (w.pesel ? `, PESEL ${w.pesel}` : '') + (w.krs ? `, KRS ${w.krs}` : ''), w.udzial]) }, `Podstawa nabycia: ${r.podstawa}.`,
+      { h: 'Dział III — prawa, roszczenia i ograniczenia' }, ...(r.ostrzezenia.length ? r.ostrzezenia : ['Brak wpisów.']),
+      { h: 'Dział IV — hipoteka' }, ...(r.hipoteki.length ? r.hipoteki : ['Brak wpisów.'])] },
+};
+function dbSearch(base, f, x) {
+  const B = BASES[base]; if (!B.need(f)) return { err: B.needMsg };
+  const res = DB[base].filter(r => dbVisible(r, x) && B.match(r, f));
+  return { res };
+}
+function dbEvidence(id) { const r = DB && DB.byId[id]; if (!r) return null; const B = BASES[DB.baseOf[id]];
+  return { id: 'db:' + id, type: 'Wydruk z bazy', title: B.title(r), summary: `${B.name} — wydruk dołączony do akt.`, body: B.body(r), dbRec: id }; }
+function dbFill(c) { if (!c.db || !DB) return; c.evidence.forEach(e => { if (e.db && DB.byId[e.db]) { const B = BASES[DB.baseOf[e.db]]; e.body = B.body(DB.byId[e.db]); } });
+  c.dbMap = Object.fromEntries((c.db.attach || []).map(a => [a.rec, a.ev])); (c.db.attach || []).forEach(a => { c.evSrc[a.ev] = 'db'; }); }
+function ensureDbEv(c, g) { if (!c || !g || !DB) return; g.found.forEach(id => { if (id.startsWith('db:') && !c.ev[id]) { const e = dbEvidence(id.slice(3)); if (e) { c.ev[id] = e; c.evSrc[id] = 'db'; } } }); }
+const dbUI = {}; // stan formularzy terminala (na sesję)
+function dbState(key, bases) { return dbUI[key] || (dbUI[key] = { base: bases[0], f: {}, res: null, err: null }); }
+function terminalHTML(c, key, canAttach, g) {
+  const bases = c.db.bases; const st = dbState(key, bases); const B = BASES[st.base];
+  const res = st.res; const att = id => g && (g.found.includes(c.dbMap[id]) || g.found.includes('db:' + id));
+  return `<div class="term"><div class="term-tabs">${bases.map(b => `<button data-a="db-base" data-k="${key}" data-b="${b}" aria-pressed="${b === st.base}">${BASES[b].short}</button>`).join('')}</div>
+   <div class="term-box"><div class="term-name">${esc(B.name)}</div>
+    <form class="term-form" data-k="${key}" onsubmit="return false">${B.fields.map(([k, l]) => `<label class="field"><span>${esc(l)}</span><input class="input" name="${k}" value="${esc(st.f[k] || '')}" autocomplete="off" autocapitalize="off" spellcheck="false"></label>`).join('')}
+    <button class="btn" data-a="db-search" data-k="${key}">Szukaj</button></form>
+    <div class="term-res">${st.err ? `<div class="result-bad">${esc(st.err)}</div>` : !res ? `<p class="muted" style="font-size:.85rem">Wyszukiwanie jest bezpłatne. Baza obejmuje cały kraj. Dane muszą być wpisane dokładnie — jak w prawdziwym systemie.</p>`
+      : !res.length ? `<div class="term-none">Brak rekordów spełniających kryteria.</div>` : res.length > 30 ? `<div class="term-none">Znaleziono ${res.length} rekordów. Zawęźcie kryteria wyszukiwania.</div>`
+      : `<div class="term-count">Znaleziono: ${res.length}</div>${res.map(r => { const [a, b] = B.row(r); return `<button class="term-row" data-a="db-rec" data-id="${esc(r.id)}" data-k="${key}"><b>${esc(a)}</b><span>${esc(b)}</span>${att(r.id) ? '<i>w aktach</i>' : ''}</button>`; }).join('')}`}</div></div>
+   ${canAttach ? '' : '<p class="muted" style="font-size:.85rem;margin-top:12px">Wydruki do akt dołącza się na wspólnym ekranie (zakładka Bazy).</p>'}</div>`;
+}
+function viewBases(c, g) {
+  return `<div class="page-head"><div><div class="eyebrow">Terminal śledczy</div><h2>Bazy danych</h2><p>Ogólnopolskie rejestry: osoby, pojazdy, firmy i księgi wieczyste. Wyszukiwanie nic nie kosztuje. Żeby użyć danych w śledztwie — w pytaniach, konfrontacjach i raporcie — dołączcie wydruk do akt (1 ruch).</p></div></div>
+   ${terminalHTML(c, 'g' + g.created, true, g)}`;
+}
+function ovDbRec(c, g, id, canAttach) {
+  const r = DB.byId[id]; const B = BASES[DB.baseOf[id]]; const evId = c.dbMap[id] || 'db:' + id; const inF = g && g.found.includes(evId);
+  const e = c.dbMap[id] ? { ...c.ev[c.dbMap[id]], body: B.body(r) } : dbEvidence(id);
+  return { title: B.title(r), kicker: B.name, body: `<article class="paper doc dbprint"><div class="dh"><div><small>${esc(B.name)} · stan na ${fmtD(c.db.date)}</small><h3>${esc(B.title(r))}</h3></div><span class="stamp">Wydruk</span></div>${blocksHTML(e.body)}</article>
+   ${canAttach ? `<div class="doc-actions">${inF ? `<button class="btn small ghost" data-a="ev" data-id="${esc(evId)}">W aktach — otwórz</button>` : `<button class="btn small" data-a="db-attach" data-id="${esc(id)}">Dołącz wydruk do akt · 1 ruch</button>`}</div>` : ''}` };
+}
+function doAttach(c, g, id) {
+  const evId = c.dbMap[id] || 'db:' + id; if (g.found.includes(evId)) return;
+  g.actions++;
+  if (c.dbMap[id]) gain(g, c, [evId]);
+  else { c.ev[evId] = dbEvidence(id); c.evSrc[evId] = 'db'; g.found.push(evId); toast(c.ev[evId].title, 'Wydruk dołączony do akt', 'Bazy danych', evId); sfx(); }
+  save();
 }
 
 /* ---------- dźwięk (Web Audio: pętla bez przerw, osobne głośności) ---------- */
@@ -381,7 +493,7 @@ const b64u = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').repl
 const unb64u = s => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
 function folderURL(c, g, i) {
   const pl = g.players[i];
-  const payload = b64u(JSON.stringify({ c: c.id, n: pl.name, r: pl.role, e: g.priv[i] || [], s: g.created }));
+  const payload = b64u(JSON.stringify({ c: c.id, n: pl.name, r: pl.role, e: g.priv[i] || [], s: g.created, ...(c.db ? { sv: [...solvedSet()] } : {}) }));
   return location.href.split('#')[0] + '#/teczka/' + payload;
 }
 function qrSVG(text) {
@@ -399,11 +511,12 @@ function renderQR(c, g) {
 }
 
 /* --- teczka gracza na jego telefonie --- */
+let FOLDER = null, folderTab = 'files';
 async function renderFolder(payload) {
   let d; try { d = JSON.parse(unb64u(payload)); } catch (_) { app().innerHTML = '<div class="section"><div class="empty"><h2>Nieprawidłowy kod</h2><p>Zeskanujcie kod jeszcze raz z głównego ekranu.</p></div></div>'; return; }
   const c = await getCase(d.c); const role = ROLES.find(r => r.id === d.r) || ROLES[0];
   const g = { created: d.s };
-  app().innerHTML = `<div class="folder"><div class="folder-top"><div class="logo">ŚLAD</div><span class="stamp" style="color:#e8695e;border-color:#e8695e">Tylko dla: ${esc(d.n)}</span></div>
+  let html = `<div class="folder"><div class="folder-top"><div class="logo">ŚLAD</div><span class="stamp" style="color:#e8695e;border-color:#e8695e">Tylko dla: ${esc(d.n)}</span></div>
    <p class="muted">Sprawa ${esc(c.id)} · ${esc(c.title)}. Nie pokazuj tego ekranu innym graczom. Gra toczy się na wspólnym ekranie — tutaj masz tylko swoje tajne akta.</p>
    <div class="role-card"><span class="eyebrow">Twoja funkcja w zespole</span><br><b>${esc(role.name)}</b><p class="muted" style="margin:.4em 0 0">${esc(role.tip)}</p></div>
    <p style="margin-top:18px">Chcesz pokazać dokument wszystkim? Na wspólnym ekranie wybierz <b>Analiza → Tajne akta → Ujawnij dokument</b> i wpisz jego kod.</p>
@@ -413,6 +526,11 @@ async function renderFolder(payload) {
      ${qm ? `<label class="field"><span>Motyw</span><select class="input" id="v-mot">${['<option value="">— wybierz —</option>', ...qm.options.map(o => `<option>${esc(o[1])}</option>`)].join('')}</select></label>` : ''}
      <button class="btn block" data-a="vote-card">Gotowe — schowaj</button><div id="v-card" class="vote-card" hidden></div></section>` : ''; })()}
    <p class="muted" style="text-align:center;margin:30px 0 10px">Możesz zablokować telefon — ta strona zostanie w przeglądarce.</p></div>`;
+  if (c.db) { FOLDER = { c, x: dbCtx(c, new Set(d.sv || [])) }; const cut = html.indexOf('<div class="role-card">');
+    const tabs = `<div class="tabs fold-tabs"><button data-a="fold-tab" data-t="files" aria-pressed="${folderTab !== 'db'}">Moja teczka</button><button data-a="fold-tab" data-t="db" aria-pressed="${folderTab === 'db'}">${I.db} Terminal baz</button></div>`;
+    html = html.slice(0, cut) + tabs + (folderTab === 'db' ? terminalHTML(c, 'f' + d.s, false, null) + '</div>' : html.slice(cut)); }
+  app().innerHTML = html;
+  const tf = document.querySelector('.term-form'); if (tf) tf.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); handlers['db-search']({ dataset: { k: tf.dataset.k } }); } });
 }
 
 /* ---------- gra ---------- */
@@ -423,15 +541,17 @@ async function renderGame(id, tab) {
   if (g.phase === 'qr') return renderQR(c, g);
   if (tab === 'raport' && !g.report) return renderShell(c, g, 'analiza', renderReport(c, g));
   if (tab === 'wynik' || (tab === 'raport' && g.report)) { if (!g.report) return go(`gra/${id}/analiza`); return renderShell(c, g, 'analiza', renderResult(c, g)); }
-  const views = { akta: viewFiles, miejsca: viewPlaces, osoby: viewPeople, analiza: viewAnalysis, tablica: viewBoard };
+  ensureDbEv(c, g);
+  const views = { akta: viewFiles, miejsca: viewPlaces, osoby: viewPeople, analiza: viewAnalysis, tablica: viewBoard, ...(c.db ? { bazy: viewBases } : {}) };
   const view = views[tab] || viewFiles;
   renderShell(c, g, views[tab] ? tab : 'akta', view(c, g));
   if (tab === 'tablica') mountBoard(c, g);
+  if (tab === 'bazy') { const tf = document.querySelector('.term-form'); if (tf) tf.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); handlers['db-search']({ dataset: { k: tf.dataset.k } }); } }); }
 }
 function renderShell(c, g, tab, inner) {
   if (!prefetched.has(c.id)) setTimeout(() => prefetchMedia(c), 4000);
   const n = unread(g, c);
-  const tabs = [['akta', 'Akta', I.files], ['miejsca', 'Miejsca', I.map], ['osoby', 'Osoby', I.people], ['analiza', 'Analiza', I.brain], ['tablica', 'Tablica', I.board]];
+  const tabs = [['akta', 'Akta', I.files], ['miejsca', 'Miejsca', I.map], ['osoby', 'Osoby', I.people], ...(c.db ? [['bazy', 'Bazy', I.db]] : []), ['analiza', 'Analiza', I.brain], ['tablica', 'Tablica', I.board]];
   const keepScroll = app().querySelector('.main') && app().dataset.tab === tab ? app().querySelector('.main').scrollTop : 0;
   app().dataset.tab = tab;
   app().innerHTML = `<div class="shell">
@@ -481,18 +601,19 @@ function blocksHTML(body, pin) { // pin = id dowodu → przy każdym fragmencie 
 }
 function docHTML(c, e, compact) {
   const kind = e.private ? 'Tajne akta' : e.testimony ? 'Protokół' : 'Dowód';
-  return `<article class="paper doc"><div class="dh"><div><small>Akta ${esc(c.id)} · ${kind} ${esc(e.id.toUpperCase())}</small><h3>${esc(e.title)}</h3></div><span class="stamp">${esc(e.type)}</span></div>
+  return `<article class="paper doc"><div class="dh"><div><small>Akta ${esc(c.id)} · ${kind} ${esc(evNo(e.id))}</small><h3>${esc(e.title)}</h3></div><span class="stamp">${esc(e.type)}</span></div>
    ${imgsOf(e).length ? `<div class="photos">${imgsOf(e).map((src, i) => `<figure class="photo${e.wide ? ' wide' : ''}" style="--rot:${i % 2 ? '1.6deg' : '-1.2deg'}"><button class="zoomable" data-a="pzoom" data-src="${esc(src)}" aria-label="Powiększ zdjęcie"><img src="${esc(src)}" alt="${esc(e.title)}" loading="lazy"><span class="zoom-ic">⤢</span></button></figure>`).join('')}</div>` : ''}
    ${compact ? '' : `<p style="font-style:italic;color:var(--paperMuted);margin-top:0">${esc(e.summary)}</p>`}${blocksHTML(e.body, compact ? null : e.id)}${e.mark && !compact ? `<button class="amark ${(S.marks || {})[c.id] ? 'got' : ''}" data-a="amark" data-c="${esc(c.id)}" data-l="${esc(e.mark)}" title="Ta pieczęć nie należy do sprawy."><span class="amark-ic">${I.key || '⚿'}</span><span>ARCH.</span><b>${esc(e.mark)}</b></button>` : ''}</article>`;
 }
 
 /* --- AKTA --- */
 let filesFilter = 'all';
+const evNo = id => id.startsWith('db:') ? 'WYDRUK' : id.toUpperCase();
 const imgsOf = e => !e.img ? [] : Array.isArray(e.img) ? e.img : [e.img];
 function evCard(c, g, id) {
   const e = c.ev[id]; const isNew = !g.read.includes(id); const im = imgsOf(e)[0];
   return `<button class="ev ${e.testimony ? 'testimony' : ''} ${e.private ? 'private' : ''}" style="--rot:${rot(id)}" data-a="ev" data-id="${id}">
-   ${isNew ? '<span class="new">NOWE</span>' : ''}${im ? `<span class="thumb" style="background-image:url('${esc(im)}')"></span>` : ''}<span class="type">${esc(e.type)}</span><h4>${esc(e.title)}</h4><p>${esc(e.summary)}</p><span class="id">${esc(id.toUpperCase())}</span></button>`;
+   ${isNew ? '<span class="new">NOWE</span>' : ''}${im ? `<span class="thumb" style="background-image:url('${esc(im)}')"></span>` : ''}<span class="type">${esc(e.type)}</span><h4>${esc(e.title)}</h4><p>${esc(e.summary)}</p><span class="id">${esc(evNo(id))}</span></button>`;
 }
 function viewFiles(c, g) {
   let ids = visibleEvidence(g, c).slice().reverse();
@@ -501,7 +622,7 @@ function viewFiles(c, g) {
   if (filesFilter === 'test') ids = ids.filter(i => c.ev[i].testimony);
   if (filesFilter === 'priv') ids = ids.filter(i => c.ev[i].private);
   const total = c.evidence.length;
-  return `<div class="page-head"><div><div class="eyebrow">Materiał dowodowy</div><h2>Akta sprawy</h2><p>Zebrane dokumenty, fotografie i protokoły${c.mode === 'table' ? '' : ' oraz ujawnione tajne akta'}. Zebrano ${visibleEvidence(g, c).length} z ${total} pozycji.</p></div></div>
+  return `<div class="page-head"><div><div class="eyebrow">Materiał dowodowy</div><h2>Akta sprawy</h2><p>Zebrane dokumenty, fotografie i protokoły${c.mode === 'table' ? '' : ' oraz ujawnione tajne akta'}. Zebrano ${visibleEvidence(g, c).filter(i => !i.startsWith('db:')).length} z ${total} pozycji.</p></div></div>
    <div class="tabs" role="group">${[['all', 'Wszystkie'], ['docs', 'Dowody'], ['test', 'Protokoły'], ...(c.mode === 'table' ? [] : [['priv', 'Ujawnione tajne']])].map(([k, l]) => `<button aria-pressed="${filesFilter === k}" data-a="filter" data-f="${k}">${l} · ${counts[k]}</button>`).join('')}</div>
    ${ids.length ? `<div class="ev-grid">${ids.map(id => evCard(c, g, id)).join('')}</div>` : '<div class="empty">Brak materiałów w tej kategorii.</div>'}`;
 }
@@ -611,12 +732,19 @@ function ovPerson(c, g, id, mode) {
   const p = c.person[id]; const log = g.log[id] || [];
   const qs = availableQs(c, g, p); const stm = openStatements(g, p);
   const head = `<div class="room-head">${portrait(p, g)}<div><div class="eyebrow">${esc(personRole(g, p))}${p.age ? ' · ' + p.age + ' l.' : ''}</div><h3>${esc(personName(g, p))}</h3><p>${esc(p.desc)}</p></div></div>
-   <div class="tabs"><button aria-pressed="${mode !== 'stmt'}" data-a="pmode" data-id="${id}" data-m="talk">Rozmowa</button><button aria-pressed="${mode === 'stmt'}" data-a="pmode" data-id="${id}" data-m="stmt">Protokół zeznań · ${stm.length}</button><button data-a="pin" data-key="p:${id}">${I.pin} Na tablicę</button></div>`;
+   <div class="tabs"><button aria-pressed="${mode !== 'stmt' && mode !== 'show'}" data-a="pmode" data-id="${id}" data-m="talk">Rozmowa</button>${p.showDefault ? `<button aria-pressed="${mode === 'show'}" data-a="pmode" data-id="${id}" data-m="show">Okaż dowód</button>` : ''}<button aria-pressed="${mode === 'stmt'}" data-a="pmode" data-id="${id}" data-m="stmt">Protokół zeznań · ${stm.length}</button><button data-a="pin" data-key="p:${id}">${I.pin} Na tablicę</button></div>`;
+  if (mode === 'show') {
+    const shown = g.shown || []; const ids = visibleEvidence(g, c); const tab = (topOv() && topOv().cat) || 'all';
+    const item = eid => { const was = shown.includes(id + '|' + eid); return `<div class="cf-item${was ? ' shown' : ''}" data-cat="${evCat(c, eid)}"><button class="cf-main" data-a="show" data-p="${id}" data-id="${eid}"><small>${esc(c.ev[eid].type)} · ${esc(evNo(eid))}${was ? ' · pokazano' : ''}</small><b>${esc(c.ev[eid].title)}</b><span>${esc(c.ev[eid].summary)}</span></button><button class="cf-prev" data-a="cf-preview" data-id="${eid}" data-p="${id}" aria-label="Podgląd">${I.eye}</button></div>`; };
+    return { title: personName(g, p), kicker: 'Okazanie dowodu', full: true, body: head + `<p class="muted" style="font-size:.9rem">Pokażcie tej osobie dowód i zobaczcie, jak zareaguje. Okazanie to jeden ruch. To nie konfrontacja — nie musicie niczego podważać.</p>
+     <div class="cf-tabs" style="margin:10px 0 4px">${CONF_TABS.filter(([k]) => k !== 'talk').map(([k, n]) => `<button data-a="cf-tab" data-k="${k}" aria-pressed="${k === tab}">${n}</button>`).join('')}</div>
+     <div id="cf-groups">${evGroups(c, ids, item).join('')}</div>` };
+  }
   if (mode === 'stmt') {
     return { title: personName(g, p), kicker: 'Protokół zeznań', full: true, body: head + (stm.length ? `<p class="muted" style="font-size:.9rem">Wybierzcie zeznanie i wskażcie dowód, który mu przeczy. Prawdziwe zeznania też tu są — nie każde zdanie to kłamstwo.</p>
      <div class="stmts">${stm.map(s => { const b = g.broken.includes(s.id); return `<div class="stmt ${b ? 'broken' : ''}"><q>${esc(s.text)}</q><div class="row"><span class="eyebrow">${b ? 'Podważone' : 'Zeznanie'}</span>${b ? '' : `<button class="btn small red" data-a="confront" data-id="${s.id}">Konfrontuj</button>`}</div></div>`; }).join('')}</div>` : '<div class="empty">Ta osoba nie złożyła jeszcze żadnych twierdzeń. Zacznijcie od pytań.</div>') };
   }
-  const tr = log.map(m => { if (m.t === 'q') return `<div class="tq">${esc(m.text)}</div>`; const vs = voiceFor(c, p.id, m); return `<div class="ta ${m.t === 'break' ? 'break' : m.t === 'deflect' ? 'deflect' : ''}"><span class="who">${esc(personName(g, p))}${m.t === 'break' ? ' · po konfrontacji' : ''}${vs ? `<button class="vplay" data-a="vplay" data-src="${esc(vs)}" aria-label="Odsłuchaj wypowiedź">${I.sound}</button>` : ''}</span>${esc(m.text)}</div>`; }).join('');
+  const tr = log.map(m => { if (m.t === 'q') return `<div class="tq">${esc(m.text)}</div>`; if (m.t === 'show') return `<div class="tq show">${I.eye} ${esc(m.text)}</div>`; const vs = voiceFor(c, p.id, m); return `<div class="ta ${m.t === 'break' ? 'break' : m.t === 'deflect' ? 'deflect' : ''}"><span class="who">${esc(personName(g, p))}${m.t === 'break' ? ' · po konfrontacji' : ''}${vs ? `<button class="vplay" data-a="vplay" data-src="${esc(vs)}" aria-label="Odsłuchaj wypowiedź">${I.sound}</button>` : ''}</span>${esc(m.text)}</div>`; }).join('');
   return { title: personName(g, p), kicker: 'Przesłuchanie', full: true, body: head + `${c.voiceDir ? `<div class="vbar"><button class="btn small ghost" data-a="voices-toggle">${voicesOn() ? I.sound + ' Głosy świadków: włączone' : I.mute + ' Głosy świadków: wyłączone'}</button></div>` : ''}<div class="transcript" id="transcript">${tr || '<p class="muted">Rozmowa jeszcze się nie zaczęła.</p>'}</div>
    <div class="eyebrow" style="margin:18px 0 8px">Zadaj pytanie · 1 ruch</div>
    <div class="qlist">${qs.map(q => `<button class="q ${g.asked.includes(q.id) ? 'asked' : ''}" data-a="ask" data-id="${q.id}" ${g.asked.includes(q.id) ? 'disabled' : ''}>${esc(q.q)}</button>`).join('')}</div>
@@ -629,7 +757,19 @@ function doAsk(c, g, qid) {
   (q.claims || []).forEach(s => { if (!g.claims.includes(s)) g.claims.push(s); });
   gain(g, c, q.gives); save();
 }
-const EV_THING = /^(Przedmiot|Oględziny|Obserwacja|Fotografia|Kadry|Kadr|Nagranie|Eksperyment|Ślad|Dowód)/i;
+function doShow(c, g, pid, eid) {
+  const p = c.person[pid]; const e = c.ev[eid]; if (!p || !e) return;
+  if (!usePower(g, 'ask')) g.actions++;
+  g.shown = g.shown || []; g.showsDone = g.showsDone || []; g.showDef = g.showDef || {};
+  if (!g.shown.includes(pid + '|' + eid)) g.shown.push(pid + '|' + eid);
+  const L = (g.log[pid] = g.log[pid] || []); L.push({ t: 'show', text: 'Okazujecie: ' + e.title });
+  const au = (p.shows || []).find(x => x.ev === eid && (!x.requires || x.requires.every(r => has(g, c, r))));
+  if (au) { L.push({ t: 'a', text: au.a, v: c.voiceDir ? `${c.voiceDir}/${au.id}.mp3` : undefined });
+    if (!g.showsDone.includes(au.id)) { g.showsDone.push(au.id); (au.claims || []).forEach(s => { if (!g.claims.includes(s)) g.claims.push(s); }); gain(g, c, au.gives); } }
+  else { const n = g.showDef[pid] || 0; const i = n % p.showDefault.length; g.showDef[pid] = n + 1; L.push({ t: 'deflect', text: p.showDefault[i], v: c.voiceDir ? `${c.voiceDir}/${pid}-show-${i}.mp3` : undefined }); }
+  save();
+}
+const EV_THING = /^(Przedmiot|Oględziny|Obserwacja|Fotografia|Zdjęcie|Kadry|Kadr|Nagranie|Eksperyment|Ślad|Dowód)/i;
 function evCat(c, id) { const e = c.ev[id]; if (c.evSrc[id] === 'team') return 'team'; if (e.testimony || /^Zeznanie/i.test(e.type)) return 'talk'; return EV_THING.test(e.type) ? 'thing' : 'doc'; }
 const CONF_TABS = [['all', 'Wszystko'], ['thing', 'Rzeczy i oględziny'], ['doc', 'Dokumenty i wykazy'], ['team', 'Notatki zespołu'], ['talk', 'Zeznania']];
 function ovConfront(c, g, sid, o) {
@@ -640,9 +780,7 @@ function ovConfront(c, g, sid, o) {
   const tab = (o && o.cat) || 'all';
   const btn = (key, cat, small, title, sub, text, prevId) => { const bad = tried.includes(key);
     return `<div class="cf-item${bad ? ' tried' : ''}" data-cat="${cat}"><button class="cf-main" data-a="confront-with" data-s="${sid}" data-id="${key}"><small>${esc(small)}${bad ? ' · ✗ już okazane' : ''}</small><b>${esc(title)}</b>${sub ? `<span>${esc(sub)}</span>` : ''}</button>${prevId ? `<button class="cf-prev" data-a="cf-preview" data-id="${prevId}" data-s="${sid}" aria-label="Podgląd">${I.eye}</button>` : ''}</div>`; };
-  const groups = []; const order = ['start', ...c.locations.map(l => 'loc:' + l.id), 'talk', 'team', 'other'];
-  const label = k => k === 'start' ? 'Akta początkowe' : k === 'talk' ? 'Z przesłuchań' : k === 'team' ? 'Notatki zespołu' : k === 'other' ? 'Inne' : c.loc[k.slice(4)].name;
-  order.forEach(k => { const list = ids.filter(id => c.evSrc[id] === k); if (list.length) groups.push(`<details class="cf-group" open><summary>${esc(label(k))} <i>${list.length}</i></summary><div class="cf-list">${list.map(id => btn(id, evCat(c, id), `${c.ev[id].type} · ${id.toUpperCase()}`, c.ev[id].title, c.ev[id].summary, '', id)).join('')}</div></details>`); });
+  const groups = evGroups(c, ids, id => btn(id, evCat(c, id), `${c.ev[id].type} · ${evNo(id)}`, c.ev[id].title, c.ev[id].summary, '', id));
   const byP = {}; others.forEach(x => (byP[x.person] = byP[x.person] || []).push(x));
   Object.keys(byP).forEach(pid => { const pp = c.person[pid]; groups.push(`<details class="cf-group" open><summary>${pp.img ? `<img src="${esc(pp.img)}" alt="">` : ''}Zeznania: ${esc(personName(g, pp))} <i>${byP[pid].length}</i></summary><div class="cf-list">${byP[pid].map(x => btn('st:' + x.id, 'talk', 'Zeznanie', '„' + x.text + '”', '', personName(g, pp), null)).join('')}</div></details>`); });
   return { title: 'Konfrontacja', kicker: personName(g, p), body: `<div class="cf-sticky"><div class="stmt"><q>${esc(s.text)}</q></div>
@@ -650,8 +788,13 @@ function ovConfront(c, g, sid, o) {
    <p class="muted" style="margin:12px 0 4px;font-size:.85rem">Co przeczy temu zeznaniu? Okażcie dowód albo zestawcie je z zeznaniem innej osoby. Konfrontacja kosztuje 1 ruch; nietrafiona dodatkowo ${diffOf(g).wrong} pkt.${g.armed === 'confront' ? ' <b>Aktywna zdolność „Sprawdzam”: bez ruchu i bez kary.</b>' : ''}</p>
    <div id="cf-groups">${groups.join('')}</div>` };
 }
+function evGroups(c, ids, item) {
+  const order = ['start', ...c.locations.map(l => 'loc:' + l.id), 'talk', 'db', 'team', 'other'];
+  const label = k => k === 'start' ? 'Akta początkowe' : k === 'talk' ? 'Z przesłuchań' : k === 'db' ? 'Wydruki z baz danych' : k === 'team' ? 'Notatki zespołu' : k === 'other' ? 'Inne' : c.loc[k.slice(4)].name;
+  return order.map(k => { const list = ids.filter(id => (c.evSrc[id] || 'other') === k); return list.length ? `<details class="cf-group" open><summary>${esc(label(k))} <i>${list.length}</i></summary><div class="cf-list">${list.map(item).join('')}</div></details>` : ''; }).filter(Boolean);
+}
 function cfFilter() {
-  const o = topOv(); if (!o || o.type !== 'confront') return; const cat = o.cat || 'all'; let any = false;
+  const o = topOv(); if (!o || !(o.type === 'confront' || (o.type === 'person' && o.mode === 'show'))) return; const cat = o.cat || 'all'; let any = false;
   document.querySelectorAll('#cf-groups .cf-group').forEach(gr => { let n = 0; gr.querySelectorAll('.cf-item').forEach(it => { const ok = (cat === 'all' || it.dataset.cat === cat) ; it.hidden = !ok; if (ok) n++; }); gr.hidden = !n; if (n) any = true; });
 }
 function doConfront(c, g, sid, evid) {
@@ -786,7 +929,7 @@ function ovPrivate(c, g, i, opened) {
 const BW = 2400, BH = 1700; // rozmiar tablicy w pikselach (przy zoomie 1)
 const boardItem = (g, key) => g.board.items.find(x => x.key === key);
 function boardLabel(c, g, key) {
-  const [t, id] = key.split(':'); const it = boardItem(g, key) || {};
+  const ci = key.indexOf(':'); const t = key.slice(0, ci), id = key.slice(ci + 1); const it = boardItem(g, key) || {};
   if (t === 'ev') { const e = c.ev[id]; return { kind: 'ev', id, title: e ? e.title : '?', sub: e ? e.type : '', e: e && visibleEvidence(g, c).includes(id) ? e : null }; }
   if (t === 'p') { const p = c.person[id]; return { kind: 'person', title: p ? personName(g, p) : '?', p }; }
   if (t === 'f') { const e = c.ev[it.src]; return { kind: 'frag', text: it.text || '', fmt: it.fmt || 'p', by: it.by || '', src: it.src, srcTitle: e ? e.title : '' }; }
@@ -834,7 +977,7 @@ function mountBoard(c, g) {
     else {
       const open = !!it.open, e = L.e; cls = open ? 'open' : 'prev';
       const ph = e ? imgsOf(e) : [];
-      inner = `<div class="bcard bdoc ${open ? 'open' : ''}" ${R}><small>${esc(L.sub)} · ${esc(L.id.toUpperCase())}</small><b class="btitle">${esc(L.title)}</b>
+      inner = `<div class="bcard bdoc ${open ? 'open' : ''}" ${R}><small>${esc(L.sub)} · ${esc(evNo(L.id))}</small><b class="btitle">${esc(L.title)}</b>
        ${ph.length ? `<div class="bph">${(open ? ph : ph.slice(0, 1)).map(src => `<img src="${esc(src)}" alt="" loading="lazy" draggable="false">`).join('')}</div>` : ''}
        ${e ? `<div class="bbody doc">${blocksHTML(e.body)}</div>` : ''}
        <div class="btools"><button class="bbtn" data-bx="toggle" aria-label="${open ? 'Zwiń' : 'Rozwiń'} kartę">${open ? 'Zwiń' : 'Rozwiń'}</button><button class="bbtn" data-bx="open" aria-label="Otwórz w aktach">Akta</button></div></div>`;
@@ -868,7 +1011,7 @@ function attachDrag(el, c, g) {
     if (e.type === 'pointercancel') return;
     const key = el.dataset.key;
     const bx = dt && dt.closest ? dt.closest('[data-bx]') : null;
-    if (bx) { if (bx.dataset.bx === 'toggle') { const i = it(); i.open = !i.open; save(); render(); } else if (bx.dataset.bx === 'open') openOv({ type: 'ev', id: key.split(':')[1] }); return; }
+    if (bx) { if (bx.dataset.bx === 'toggle') { const i = it(); i.open = !i.open; save(); render(); } else if (bx.dataset.bx === 'open') openOv({ type: 'ev', id: key.slice(key.indexOf(':') + 1) }); return; }
     if (linkMode && boardSel && boardSel !== key) {
       if (!g.board.links.some(l => (l.a === boardSel && l.b === key) || (l.b === boardSel && l.a === key))) g.board.links.push({ a: boardSel, b: key });
       boardSel = null; linkMode = false; save(); render(); return;
@@ -998,8 +1141,10 @@ async function renderOv() {
   else if (o.type === 'zoom') { root.innerHTML = `<div class="zoom" id="zoom"><img src="${esc(o.src)}" alt="" id="zoomimg" draggable="false"><div class="zoom-bar"><span><span class="zh-touch">Rozsuń dwa palce, by przybliżyć · przeciągnij, by przesunąć · dwa stuknięcia: przybliż lub wróć</span><span class="zh-mouse">Kółko myszy przybliża · przeciągnij, by przesunąć · dwuklik: przybliż lub wróć</span></span><button class="icon-btn" data-a="close" aria-label="Zamknij">${I.close}</button></div></div>`; document.body.style.overflow = 'hidden'; mountZoom(); return; }
   else if (o.type === 'vote') v = ovVote(c, g, o);
   else if (o.type === 'msg') v = { title: o.title, kicker: o.kicker || '', body: o.body };
+  else if (o.type === 'dbrec' && o.k && o.k[0] === 'f') v = ovDbRec(FOLDER.c, null, o.id, false);
   else if (!c || !g) { ovStack = []; root.innerHTML = ''; return; }
-  else if (o.type === 'ev') { v = { title: c.ev[o.id].title, kicker: 'Akta ' + c.id, body: docHTML(c, c.ev[o.id]) + `<div class="doc-actions">${o.from && c.stmt[o.from] ? `<button class="btn small" data-a="confront-with" data-s="${o.from}" data-id="${o.id}">Okaż ten dowód</button>` : ''}<button class="btn small ghost" data-a="pin" data-key="ev:${o.id}">${I.pin} Na tablicę</button></div>` }; if (!g.read.includes(o.id)) { g.read.push(o.id); save(); setTimeout(render, 0); } }
+  else if (o.type === 'dbrec') v = ovDbRec(c, g, o.id, true);
+  else if (o.type === 'ev') { v = { title: c.ev[o.id].title, kicker: 'Akta ' + c.id, body: docHTML(c, c.ev[o.id]) + `<div class="doc-actions">${o.from && c.stmt[o.from] ? `<button class="btn small" data-a="confront-with" data-s="${o.from}" data-id="${o.id}">Okaż ten dowód</button>` : ''}${o.fromP && c.person[o.fromP] ? `<button class="btn small" data-a="show" data-p="${o.fromP}" data-id="${o.id}">Pokaż: ${esc(personName(g, c.person[o.fromP]))}</button>` : ''}<button class="btn small ghost" data-a="pin" data-key="ev:${o.id}">${I.pin} Na tablicę</button></div>` }; if (!g.read.includes(o.id)) { g.read.push(o.id); save(); setTimeout(render, 0); } }
   else if (o.type === 'loc') v = ovLocation(c, g, o.id);
   else if (o.type === 'person') v = ovPerson(c, g, o.id, o.mode);
   else if (o.type === 'confront') v = ovConfront(c, g, o.id, o);
@@ -1013,6 +1158,7 @@ async function renderOv() {
    <div class="ov-body">${v.body}</div></div></div>`;
   document.body.style.overflow = 'hidden';
   if (o.type === 'confront') { const hd = root.querySelector('.ov-head'), st = root.querySelector('.cf-sticky'); if (hd && st) st.style.top = hd.offsetHeight + 'px'; cfFilter(); }
+  if (o.type === 'person' && o.mode === 'show') cfFilter();
   const tr = $('#transcript'); if (tr && o.scrollEnd) { tr.lastElementChild && tr.lastElementChild.scrollIntoView({ block: 'center' }); o.scrollEnd = false; }
   const inp = $('#pzin'); if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') handlers.solve({ dataset: { id: o.id } }); });
   const rc = $('#revcode'); if (rc) { rc.focus(); rc.addEventListener('keydown', e => { if (e.key === 'Enter') handlers['reveal-go'](); }); }
@@ -1114,9 +1260,11 @@ function guideCards(mode, diff) {
   return [
    { k: 'Witajcie w wydziale', t: 'O co chodzi w tej grze', b: `<p>Jesteście zespołem śledczych. Dostajecie akta sprawy i macie ją rozwiązać: <b>kto, jak, kiedy i dlaczego</b>.</p><p>Na końcu składacie <b>akt oskarżenia</b> i każdy wniosek podpieracie dowodami. Nie ma limitu czasu ani losowości — wszystko, czego potrzebujecie, jest w aktach, miejscach i zeznaniach.</p><p class="g-tip">To planszówka do rozmowy. Ekran to tylko teczka z aktami — najważniejsze dzieje się między wami: czytajcie na głos, spierajcie się, notujcie, sprawdzajcie się nawzajem.</p>` },
    { k: 'Ekran gry', t: 'Pięć zakładek i górny pasek', b: `<ul class="g-list"><li><b>${I.files} Akta</b> — wszystkie zdobyte dokumenty. Nowe mają czerwony licznik. Każdy dokument można przypiąć na tablicę, a w otwartym dokumencie pinezką — także pojedynczy fragment.</li><li><b>${I.map} Miejsca</b> — szkic miejsca zdarzenia i karty miejsc do przeszukania.</li><li><b>${I.people} Osoby</b> — przesłuchania świadków i podejrzanych.</li><li><b>${I.brain} Analiza</b> — zagadki, oś czasu, tabela podejrzanych${phones ? ', tajne akta' : ''}, zespół i zdolności ról, notatki i akt oskarżenia.</li><li><b>${I.board} Tablica</b> — korkowa tablica z czerwoną nitką. Przypięty dowód pokazuje treść, „Rozwiń” otwiera go w całości.</li></ul><p>Na górze: <b>licznik ruchów</b>, <b>żarówka</b> (trop, gdy utkniecie), dźwięk i <b>menu</b> — tam jest briefing sprawy, ten instruktaż i ustawienia.</p>` },
-   { k: 'Ruchy i punkty', t: 'Co kosztuje, a co jest za darmo', b: `<p><b>Jeden ruch</b> to: przeszukanie punktu w miejscu, jedno pytanie zadane świadkowi albo jedna konfrontacja.</p><p><b>Za darmo:</b> czytanie akt, szkic, zagadki, oś czasu, notatki i tablica.</p><p>Wybrany poziom: <b>${esc(D.name)}</b>.</p><table class="g-table"><tr><td>Ruchy ponad normę sprawy</td><td>−1 pkt za każde 2 ruchy (najwyżej −15)</td></tr><tr><td>Podpowiedź w zagadce</td><td>−${D.hint} pkt (najwyżej ${D.hints} na zagadkę)</td></tr><tr><td>Trop (żarówka)</td><td>${D.trop == null ? 'niedostępny (wyjątek: zdolność Koordynatora)' : '−' + D.trop + ' pkt'}</td></tr><tr><td>Nietrafiona konfrontacja</td><td>−${D.wrong} pkt</td></tr></table><p>Rangi: Stażysta, Aspirant (40), Inspektor (60), Komisarz (78), <b>Legenda archiwum (92+)</b>. Zanim wydacie ruch — porozmawiajcie, czy warto.</p>` },
+   { k: 'Ruchy i punkty', t: 'Co kosztuje, a co jest za darmo', b: `<p><b>Jeden ruch</b> to: przeszukanie punktu w miejscu, jedno pytanie zadane świadkowi albo jedna konfrontacja. W sprawach, które to udostępniają, także okazanie dowodu i dołączenie wydruku z bazy danych do akt.</p><p><b>Za darmo:</b> czytanie akt, szkic, zagadki, oś czasu, notatki i tablica.</p><p>Wybrany poziom: <b>${esc(D.name)}</b>.</p><table class="g-table"><tr><td>Ruchy ponad normę sprawy</td><td>−1 pkt za każde 2 ruchy (najwyżej −15)</td></tr><tr><td>Podpowiedź w zagadce</td><td>−${D.hint} pkt (najwyżej ${D.hints} na zagadkę)</td></tr><tr><td>Trop (żarówka)</td><td>${D.trop == null ? 'niedostępny (wyjątek: zdolność Koordynatora)' : '−' + D.trop + ' pkt'}</td></tr><tr><td>Nietrafiona konfrontacja</td><td>−${D.wrong} pkt</td></tr></table><p>Rangi: Stażysta, Aspirant (40), Inspektor (60), Komisarz (78), <b>Legenda archiwum (92+)</b>. Zanim wydacie ruch — porozmawiajcie, czy warto.</p>` },
    { k: 'Miejsca', t: 'Przeszukiwanie i szkic miejsca zdarzenia', b: `<p>Każde miejsce ma kilka <b>punktów</b>. Przeszukanie punktu to jeden ruch i zwykle daje nowe dowody.</p><p>Niektóre punkty są <b>zablokowane</b> ${I.lock}. Otwiera je rozwiązana zagadka albo postęp w śledztwie — na przykład nakaz prokuratora po podważeniu czyjegoś zeznania. Opis blokady podpowiada, czego brakuje.</p><p>Nad kartami jest <b>szkic</b>: stuknijcie pomieszczenie, by do niego przejść. Na przeszukanych punktach pojawiają się żółte tabliczki z numerami, a obrys ciała — dopiero po oględzinach. Szkic pokazuje tylko to, co widzielibyście na miejscu.</p><p>Każde zdjęcie — w aktach i w miejscach — możecie <b>powiększyć</b> dotknięciem. Przybliżajcie palcami albo kółkiem myszy: szczegóły mają znaczenie.</p>` },
    { k: 'Przesłuchania', t: 'Pytania, protokół, konfrontacje', b: `<p>Wybierzcie osobę i zadawajcie pytania. <b>Nowe pytania pojawiają się</b>, gdy zdobędziecie dowody, które dają do nich podstawę.</p><p>Ważne zdania świadków trafiają do <b>protokołu</b>. Jeśli macie dowód, który przeczy zeznaniu — zróbcie <b>konfrontację</b>: wskażcie zdanie i dowód. Możecie też <b>zestawić dwa zeznania</b> — gdy jeden świadek mówi coś, co wyklucza wersję drugiego. Trafiona konfrontacja zmusza świadka do zmiany wersji i często daje nowe informacje. Nietrafiona kosztuje ${pkt(D.wrong)}.</p><p class="g-tip">Słuchajcie uważnie. Świadkowie odpowiadają dokładnie na to, o co pytacie. Jeśli ktoś powie za dużo albo wie coś, czego nie mógł wiedzieć — to nie przypadek. Na taką wpadkę nie ma przycisku: musicie ją wyłapać sami.</p><p><b>Każdy świadek ma swój głos</b> — odpowiedzi czyta lektor, a przycisk z głośnikiem przy wypowiedzi odtwarza ją ponownie. Głosy wyłączycie w oknie przesłuchania albo w ustawieniach.</p>` },
+   { k: 'Okazywanie dowodów', t: 'Pokaż i zobacz reakcję', b: `<p>W sprawach, które to umożliwiają, osoba ma zakładkę <b>Okaż dowód</b>. Pokazujecie jej zdjęcie, dokument albo wydruk i słyszycie, co powie. To jeden ruch.</p><p>To nie konfrontacja: niczego nie podważacie i nie tracicie punktów. Ludzie reagują jednak różnie na różne rzeczy — czasem jedno zdjęcie otwiera nowy wątek.</p>` },
+   { k: 'Bazy danych', t: 'Terminal śledczy', b: `<p>W sprawach z zakładką <b>${I.db} Bazy</b> macie dostęp do ogólnopolskich rejestrów: <b>PESEL</b> (osoby), <b>CEPiK</b> (pojazdy), <b>KRS</b> (firmy) i <b>EKW</b> (księgi wieczyste). Baza jest wspólna dla wszystkich spraw i obejmuje cały kraj.</p><p>Wyszukiwanie nic nie kosztuje, ale działa jak prawdziwy system: dane trzeba wpisać <b>dokładnie</b>. Samo nazwisko pokaże wszystkie osoby o tym nazwisku, nazwisko z imieniem — tylko pasujące. Literówka albo inna forma numeru oznacza brak wyników.</p><p>Żeby użyć danych w śledztwie (pytania, konfrontacje, raport), <b>dołączcie wydruk do akt</b> — to jeden ruch. W trybie z telefonami terminal jest też w każdej teczce, więc kilka osób może szukać naraz.</p>` },
    { k: 'Analiza', t: 'Zagadki, oś czasu, tablica', b: `<p><b>Zagadki</b> pojawiają się, gdy macie potrzebne materiały. Odpowiedzi nie ma w żadnym dokumencie wprost — trzeba połączyć kilka faktów. Na tym poziomie każda ma ${D.hints === 1 ? `jedną podpowiedź (−${D.hint} pkt)` : `${podp(D.hints)} (po −${D.hint} pkt)`}.</p><p><b>Oś czasu</b> zbiera godziny z dokumentów i zeznań. Wpisy oznaczone „ustalone” pochodzą z rozwiązanych zagadek. Pamiętajcie: zeznanie to wersja świadka, nie fakt.</p><p><b>Podejrzani</b> to wspólna tabela: motyw, okazja, alibi — wypełniacie ją sami. <b>Notatki</b> są wspólne, a na <b>tablicy</b> przypinacie dowody i osoby i łączycie je nitką.</p><p>Gdy odkryjecie coś kluczowego, ekran zatrzyma się na chwilę — to <b>przełom</b> w śledztwie.</p>` },
    { k: 'Zespół', t: 'Role i ich zdolności', b: `<p>Każdy gracz dostaje <b>rolę</b>. Rola podpowiada, czym się zająć, i daje <b>jedną zdolność na całą sprawę</b> (Analiza → Zespół):</p><table class="g-table">${ROLES.map(r => `<tr><td>${esc(r.name)}</td><td>${esc(POWERS[r.id].name)}: ${esc(POWERS[r.id].desc)}</td></tr>`).join('')}</table><p>Zdolność uruchamiacie przyciskiem — zadziała przy następnej pasującej akcji. Uzgodnijcie, kiedy jej użyć: to wasze asy w rękawie.</p>` },
    phones
@@ -1162,6 +1310,9 @@ function checkBreakthroughs() {
   clearTimeout(btTimer); btTimer = setTimeout(() => { if (btShow) return checkLater(nb.id); btShow = nb.id; renderBt(); sfx('break'); }, 650);
 }
 const rerender = () => { render(); renderOv(); checkBreakthroughs(); };
+function dbRefresh(k) { const box = document.querySelector(`.term-form[data-k="${k}"]`); const term = box && box.closest('.term'); if (!term) return rerender();
+  const c = k[0] === 'f' ? FOLDER.c : ctx().c; const g = k[0] === 'f' ? null : ctx().g; const tmp = document.createElement('div'); tmp.innerHTML = terminalHTML(c, k, k[0] !== 'f', g); term.replaceWith(tmp.firstElementChild);
+  const f = document.querySelector(`.term-form[data-k="${k}"]`); if (f) f.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); handlers['db-search']({ dataset: { k } }); } }); }
 const handlers = {
   home: () => { ovStack = []; renderOv(); go(''); },
   how: () => $('#how').scrollIntoView({ behavior: 'smooth' }),
@@ -1203,8 +1354,16 @@ const handlers = {
   ask: el => { const { c, g } = ctx(); if (g.asked.includes(el.dataset.id)) return; doAsk(c, g, el.dataset.id); topOv().scrollEnd = true; rerender(); if (voicesOn() && c.voiceDir) { const q = c.q[el.dataset.id]; const L = g.log[q.person]; speak(L[L.length - 1].v); } },
   confront: el => openOv({ type: 'confront', id: el.dataset.id }),
   'confront-with': el => { const { c, g } = ctx(); doConfront(c, g, el.dataset.s, el.dataset.id); if (voicesOn() && c.voiceDir) { const L = g.log[c.stmt[el.dataset.s].person]; speak(L[L.length - 1].v); } let idx = ovStack.length - 1; while (idx > 0 && ovStack[idx].type !== 'confront') idx--; const n = ovStack.length - idx; ovStack = ovStack.slice(0, idx); history.go(-n); const o = topOv(); if (o && o.type === 'person') { o.mode = 'talk'; o.scrollEnd = true; } setTimeout(rerender, 30); },
-  'cf-tab': el => { const o = topOv(); if (!o || o.type !== 'confront') return; o.cat = el.dataset.k; document.querySelectorAll('.cf-tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === o.cat)); cfFilter(); },
-  'cf-preview': el => openOv({ type: 'ev', id: el.dataset.id, from: el.dataset.s }),
+  'cf-tab': el => { const o = topOv(); if (!o || !(o.type === 'confront' || (o.type === 'person' && o.mode === 'show'))) return; o.cat = el.dataset.k; document.querySelectorAll('.cf-tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === o.cat)); cfFilter(); },
+  'cf-preview': el => openOv({ type: 'ev', id: el.dataset.id, from: el.dataset.s, fromP: el.dataset.p }),
+  show: el => { const { c, g } = ctx(); doShow(c, g, el.dataset.p, el.dataset.id); let idx = ovStack.length - 1; while (idx > 0 && ovStack[idx].type !== 'person') idx--; const n = ovStack.length - 1 - idx; const o = ovStack[idx]; o.mode = 'talk'; o.scrollEnd = true; if (n > 0) { ovStack = ovStack.slice(0, idx + 1); history.go(-n); } if (voicesOn() && c.voiceDir) { const L = g.log[el.dataset.p]; speak(L[L.length - 1].v); } setTimeout(rerender, 30); },
+  'db-base': el => { const st = dbUI[el.dataset.k]; if (!st) return; st.base = el.dataset.b; st.res = null; st.err = null; dbRefresh(el.dataset.k); },
+  'db-search': el => { const k = el.dataset.k; const st = dbUI[k]; const form = document.querySelector(`.term-form[data-k="${k}"]`); if (!st || !form) return;
+    st.f = {}; form.querySelectorAll('input').forEach(i => { if (i.value.trim()) st.f[i.name] = i.value; });
+    const x = k[0] === 'f' ? FOLDER.x : dbCtx(ctx().c); const r = dbSearch(st.base, st.f, x); st.res = r.res || null; st.err = r.err || null; dbRefresh(k); },
+  'fold-tab': el => { folderTab = el.dataset.t; render(); },
+  'db-rec': el => openOv({ type: 'dbrec', id: el.dataset.id, k: el.dataset.k }),
+  'db-attach': el => { const { c, g } = ctx(); doAttach(c, g, el.dataset.id); rerender(); },
   puzzle: el => openOv({ type: 'puzzle', id: el.dataset.id }),
   'puzzle-from-spot': el => { const { c, g } = ctx(); const pz = c.puzzle[el.dataset.id]; if (puzzleVisible(c, g, pz)) openOv({ type: 'puzzle', id: pz.id }); else openOv({ type: 'msg', title: pz.title, kicker: 'Za mało danych', body: '<p>Na razie nie macie materiałów, które pozwoliłyby się do tego zabrać. Szukajcie dalej.</p>' }); },
   dial: el => { const id = el.dataset.id, i = +el.dataset.i; const { c } = ctx(); const max = c.puzzle[id].input === 'time' && i === 0 ? 3 : c.puzzle[id].input === 'time' && i === 2 ? 6 : 10; dialVals[id][i] = (dialVals[id][i] + +el.dataset.d + max) % max; renderOv(); },

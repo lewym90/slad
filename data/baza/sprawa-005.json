@@ -1,0 +1,911 @@
+{
+ "osoby": [
+  {
+   "id": "O-005-szulc",
+   "nazwisko": "Szulc",
+   "imiona": [
+    "Edward"
+   ],
+   "pesel": "63051741216",
+   "plec": "M",
+   "urodzony": "1963-05-17",
+   "miejsceUr": "Słupsk",
+   "ojciec": "Józef",
+   "matka": "Irena",
+   "adres": "ul. Morska 41/6, 75-221 Koszalin",
+   "dowod": {
+    "nr": "CGB 741827",
+    "wydany": "2018-04-10",
+    "wazny": "2028-04-10",
+    "organ": "Prezydent Miasta Koszalina"
+   },
+   "stan": "żonaty",
+   "malzonek": {
+    "pesel": "66090220807",
+    "nazwisko": "Szulc",
+    "imie": "Marta"
+   },
+   "neutral": true
+  },
+  {
+   "id": "O-005-marta",
+   "nazwisko": "Szulc",
+   "imiona": [
+    "Marta",
+    "Irena"
+   ],
+   "pesel": "66090220807",
+   "plec": "K",
+   "urodzony": "1966-09-02",
+   "miejsceUr": "Koszalin",
+   "ojciec": "Stanisław",
+   "matka": "Wanda",
+   "adres": "ul. Morska 41/6, 75-221 Koszalin",
+   "dowod": {
+    "nr": "CHK 120934",
+    "wydany": "2021-09-14",
+    "wazny": "2031-09-14",
+    "organ": "Prezydent Miasta Koszalina"
+   },
+   "stan": "zamężna",
+   "rodowe": "Bielecka",
+   "malzonek": {
+    "pesel": "63051741216",
+    "nazwisko": "Szulc",
+    "imie": "Edward"
+   },
+   "neutral": true
+  },
+  {
+   "id": "O-005-szulc2",
+   "nazwisko": "Szulc",
+   "imiona": [
+    "Edward",
+    "Marian"
+   ],
+   "pesel": "58012653017",
+   "plec": "M",
+   "urodzony": "1958-01-26",
+   "miejsceUr": "Opole",
+   "ojciec": "Marian",
+   "matka": "Helena",
+   "adres": "ul. Ozimska 112/9, 45-310 Opole",
+   "dowod": {
+    "nr": "CFW 888412",
+    "wydany": "2019-02-05",
+    "wazny": "2029-02-05",
+    "organ": "Prezydent Miasta Opola"
+   },
+   "stan": "wdowiec",
+   "neutral": true
+  },
+  {
+   "id": "O-005-kraska",
+   "nazwisko": "Kraska",
+   "imiona": [
+    "Iwona",
+    "Anna"
+   ],
+   "pesel": "78112337503",
+   "plec": "K",
+   "urodzony": "1978-11-23",
+   "miejsceUr": "Szczecin",
+   "ojciec": "Ryszard",
+   "matka": "Teresa",
+   "adres": "ul. Szafera 8, 71-245 Szczecin",
+   "dowod": {
+    "nr": "CMR 105117",
+    "wydany": "2022-03-30",
+    "wazny": "2032-03-30",
+    "organ": "Prezydent Miasta Szczecin"
+   },
+   "stan": "zamężna",
+   "malzonek": {
+    "pesel": "67082145713",
+    "nazwisko": "Pietras",
+    "imie": "Damian"
+   },
+   "case": "005"
+  },
+  {
+   "id": "O-005-kraska2",
+   "nazwisko": "Kraska",
+   "imiona": [
+    "Iwona"
+   ],
+   "pesel": "85040923300",
+   "plec": "K",
+   "urodzony": "1985-04-09",
+   "miejsceUr": "Toruń",
+   "ojciec": "Jerzy",
+   "matka": "Maria",
+   "adres": "ul. Kasztanowa 14, 87-100 Toruń",
+   "dowod": {
+    "nr": "CDP 012265",
+    "wydany": "2020-06-18",
+    "wazny": "2030-06-18",
+    "organ": "Prezydent Miasta Torunia"
+   },
+   "stan": "panna",
+   "neutral": true
+  },
+  {
+   "id": "O-005-pietras",
+   "nazwisko": "Pietras",
+   "imiona": [
+    "Damian",
+    "Jan"
+   ],
+   "pesel": "67082145713",
+   "plec": "M",
+   "urodzony": "1967-08-21",
+   "miejsceUr": "Stargard",
+   "ojciec": "Jan",
+   "matka": "Krystyna",
+   "adres": "ul. Szafera 8, 71-245 Szczecin",
+   "dowod": {
+    "nr": "CLS 962091",
+    "wydany": "2019-11-04",
+    "wazny": "2029-11-04",
+    "organ": "Prezydent Miasta Szczecin"
+   },
+   "stan": "żonaty",
+   "malzonek": {
+    "pesel": "78112337503",
+    "nazwisko": "Kraska",
+    "imie": "Iwona"
+   },
+   "case": "005"
+  },
+  {
+   "id": "O-005-pietras2",
+   "nazwisko": "Pietras",
+   "imiona": [
+    "Damian"
+   ],
+   "pesel": "90021112011",
+   "plec": "M",
+   "urodzony": "1990-02-11",
+   "miejsceUr": "Rzeszów",
+   "ojciec": "Adam",
+   "matka": "Bożena",
+   "adres": "ul. Podgórna 7, 35-321 Rzeszów",
+   "dowod": {
+    "nr": "CEK 608840",
+    "wydany": "2023-01-12",
+    "wazny": "2033-01-12",
+    "organ": "Prezydent Miasta Rzeszowa"
+   },
+   "stan": "kawaler",
+   "neutral": true
+  },
+  {
+   "id": "O-005-lis",
+   "nazwisko": "Lis",
+   "imiona": [
+    "Bartosz"
+   ],
+   "pesel": "01273006119",
+   "plec": "M",
+   "urodzony": "2001-07-30",
+   "miejsceUr": "Szczecin",
+   "ojciec": "Krzysztof",
+   "matka": "Agata",
+   "adres": "ul. Jasna 5/14, 70-777 Szczecin",
+   "dowod": {
+    "nr": "CPA 020478",
+    "wydany": "2019-08-21",
+    "wazny": "2029-08-21",
+    "organ": "Prezydent Miasta Szczecin"
+   },
+   "stan": "kawaler",
+   "neutral": true
+  },
+  {
+   "id": "O-005-morawiec",
+   "nazwisko": "Morawiec",
+   "imiona": [
+    "Lech",
+    "Tadeusz"
+   ],
+   "pesel": "64120531811",
+   "plec": "M",
+   "urodzony": "1964-12-05",
+   "miejsceUr": "Poznań",
+   "ojciec": "Tadeusz",
+   "matka": "Halina",
+   "adres": "ul. Grunwaldzka 88/3, 60-311 Poznań",
+   "dowod": {
+    "nr": "CJN 118806",
+    "wydany": "2017-05-22",
+    "wazny": "2027-05-22",
+    "organ": "Prezydent Miasta Poznania"
+   },
+   "stan": "rozwiedziony",
+   "neutral": true
+  },
+  {
+   "id": "O-005-kosowski",
+   "nazwisko": "Kosowski",
+   "imiona": [
+    "Adrian"
+   ],
+   "pesel": "73061429019",
+   "plec": "M",
+   "urodzony": "1973-06-14",
+   "miejsceUr": "Warszawa",
+   "ojciec": "Wiesław",
+   "matka": "Danuta",
+   "adres": "ul. Puławska 140/22, 02-624 Warszawa",
+   "dowod": {
+    "nr": "CKT 734410",
+    "wydany": "2020-10-02",
+    "wazny": "2030-10-02",
+    "organ": "Prezydent m.st. Warszawy"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-dabrowska",
+   "nazwisko": "Dąbrowska",
+   "imiona": [
+    "Ewa",
+    "Maria"
+   ],
+   "pesel": "81100814401",
+   "plec": "K",
+   "urodzony": "1981-10-08",
+   "miejsceUr": "Szczecin",
+   "ojciec": "Andrzej",
+   "matka": "Lucyna",
+   "adres": "ul. Monte Cassino 33/2, 70-466 Szczecin",
+   "dowod": {
+    "nr": "CMB 791273",
+    "wydany": "2021-04-27",
+    "wazny": "2031-04-27",
+    "organ": "Prezydent Miasta Szczecin"
+   },
+   "stan": "rozwiedziona",
+   "neutral": true
+  },
+  {
+   "id": "O-005-rudnicka",
+   "nazwisko": "Rudnicka-Lange",
+   "imiona": [
+    "Helena"
+   ],
+   "pesel": "47030307709",
+   "plec": "K",
+   "urodzony": "1947-03-03",
+   "miejsceUr": "Szczecin",
+   "ojciec": "Karol",
+   "matka": "Gertruda",
+   "adres": "pobyt stały za granicą: Hamburg (Niemcy)",
+   "dowod": {
+    "nr": "CAE 402918",
+    "wydany": "2016-11-08",
+    "wazny": "2026-11-08",
+    "organ": "Prezydent Miasta Szczecin"
+   },
+   "stan": "wdowa",
+   "rodowe": "Rudnicka",
+   "neutral": true
+  },
+  {
+   "id": "O-005-laskowski",
+   "nazwisko": "Laskowski",
+   "imiona": [
+    "Wojciech"
+   ],
+   "pesel": "79031460011",
+   "plec": "M",
+   "urodzony": "1979-03-14",
+   "miejsceUr": "Gdańsk",
+   "ojciec": "Jan",
+   "matka": "Maria",
+   "adres": "ul. Grunwaldzka 211/5, 80-266 Gdańsk",
+   "dowod": {
+    "nr": "CGS 420871",
+    "wydany": "2020-02-12",
+    "wazny": "2030-02-12",
+    "organ": "Prezydent Miasta Gdańska"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-michalak",
+   "nazwisko": "Michalak",
+   "imiona": [
+    "Piotr"
+   ],
+   "pesel": "83070263715",
+   "plec": "M",
+   "urodzony": "1983-07-02",
+   "miejsceUr": "Poznań",
+   "ojciec": "Jan",
+   "matka": "Maria",
+   "adres": "ul. Dąbrowskiego 74/11, 60-529 Poznań",
+   "dowod": {
+    "nr": "CJT 911830",
+    "wydany": "2022-05-30",
+    "wazny": "2032-05-30",
+    "organ": "Prezydent Miasta Poznania"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-ratajczak",
+   "nazwisko": "Ratajczak",
+   "imiona": [
+    "Tomasz"
+   ],
+   "pesel": "70101967416",
+   "plec": "M",
+   "urodzony": "1970-10-19",
+   "miejsceUr": "Wrocław",
+   "ojciec": "Jan",
+   "matka": "Maria",
+   "adres": "ul. Legnicka 52/8, 54-203 Wrocław",
+   "dowod": {
+    "nr": "CDW 437102",
+    "wydany": "2018-09-03",
+    "wazny": "2028-09-03",
+    "organ": "Prezydent Wrocławia"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-fijalkowski",
+   "nazwisko": "Fijałkowski",
+   "imiona": [
+    "Grzegorz"
+   ],
+   "pesel": "62012871111",
+   "plec": "M",
+   "urodzony": "1962-01-28",
+   "miejsceUr": "Koszalin",
+   "ojciec": "Jan",
+   "matka": "Maria",
+   "adres": "ul. Zwycięstwa 102/4, 75-033 Koszalin",
+   "dowod": {
+    "nr": "CHG 900154",
+    "wydany": "2017-12-11",
+    "wazny": "2027-12-11",
+    "organ": "Prezydent Miasta Koszalina"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-banas",
+   "nazwisko": "Banaś",
+   "imiona": [
+    "Marek"
+   ],
+   "pesel": "75050674819",
+   "plec": "M",
+   "urodzony": "1975-05-06",
+   "miejsceUr": "Kraków",
+   "ojciec": "Jan",
+   "matka": "Maria",
+   "adres": "ul. Kalwaryjska 31/2, 30-504 Kraków",
+   "dowod": {
+    "nr": "CKR 812433",
+    "wydany": "2021-03-17",
+    "wazny": "2031-03-17",
+    "organ": "Prezydent Miasta Krakowa"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-kmiecik",
+   "nazwisko": "Kmiecik",
+   "imiona": [
+    "Bożena"
+   ],
+   "pesel": "58121578504",
+   "plec": "K",
+   "urodzony": "1958-12-15",
+   "miejsceUr": "Lublin",
+   "ojciec": "Jan",
+   "matka": "Maria",
+   "adres": "ul. Narutowicza 18/6, 20-016 Lublin",
+   "dowod": {
+    "nr": "CLU 270611",
+    "wydany": "2016-06-29",
+    "wazny": "2026-06-29",
+    "organ": "Prezydent Miasta Lublin"
+   },
+   "stan": "zamężna",
+   "neutral": true
+  },
+  {
+   "id": "O-005-krupa",
+   "nazwisko": "Krupa",
+   "imiona": [
+    "Paweł"
+   ],
+   "pesel": "88080882213",
+   "plec": "M",
+   "urodzony": "1988-08-08",
+   "miejsceUr": "Szczecin",
+   "ojciec": "Jan",
+   "matka": "Maria",
+   "adres": "ul. Kolumba 9/17, 70-035 Szczecin",
+   "dowod": {
+    "nr": "CPB 755216",
+    "wydany": "2023-10-04",
+    "wazny": "2033-10-04",
+    "organ": "Prezydent Miasta Szczecin"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-sowa",
+   "nazwisko": "Sowa",
+   "imiona": [
+    "Krzysztof"
+   ],
+   "pesel": "70031881112",
+   "plec": "M",
+   "urodzony": "1970-03-18",
+   "miejsceUr": "Szczecin",
+   "ojciec": "Henryk",
+   "matka": "Zofia",
+   "adres": "ul. Szczecińska 4, 72-006 Mierzyn",
+   "dowod": {
+    "nr": "CMS 430418",
+    "wydany": "2020-08-11",
+    "wazny": "2030-08-11",
+    "organ": "Wójt Gminy Dobra (Szczecińska)"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-005-klos",
+   "nazwisko": "Kłos",
+   "imiona": [
+    "Roman"
+   ],
+   "pesel": "66052490219",
+   "plec": "M",
+   "urodzony": "1966-05-24",
+   "miejsceUr": "Police",
+   "ojciec": "Roman",
+   "matka": "Jadwiga",
+   "adres": "ul. Kościuszki 40, 72-010 Police",
+   "dowod": {
+    "nr": "CPL 911726",
+    "wydany": "2018-01-30",
+    "wazny": "2028-01-30",
+    "organ": "Burmistrz Polic"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  }
+ ],
+ "pojazdy": [
+  {
+   "id": "V-005-rest",
+   "nr": "ZS 7PR04",
+   "vin": "TMBJR7NP4N7051873",
+   "marka": "Skoda",
+   "model": "Superb",
+   "rok": 2022,
+   "kolor": "srebrny",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "firma",
+    "nazwa": "RESTYTUCJA POMORSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+    "krs": "0000781264",
+    "adres": "ul. Jagiellońska 12/4, 70-435 Szczecin"
+   },
+   "rejestracja": "2022-04-12",
+   "oc": {
+    "ubezpieczyciel": "Warta SA",
+    "do": "2026-04-11"
+   },
+   "badanie": "2026-04-08",
+   "status": "zarejestrowany",
+   "case": "005"
+  },
+  {
+   "id": "V-005-kraska",
+   "nr": "ZS 3K118",
+   "vin": "SB1K93BE10E128064",
+   "marka": "Toyota",
+   "model": "Corolla",
+   "rok": 2020,
+   "kolor": "granatowy",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Iwona Anna Kraska",
+    "pesel": "78112337503",
+    "adres": "ul. Szafera 8, 71-245 Szczecin"
+   },
+   "rejestracja": "2020-09-01",
+   "oc": {
+    "ubezpieczyciel": "PZU SA",
+    "do": "2026-08-31"
+   },
+   "badanie": "2026-08-25",
+   "status": "zarejestrowany",
+   "case": "005"
+  },
+  {
+   "id": "V-005-laskowski",
+   "nr": "GD 2LM47",
+   "vin": "TMBAG7NE6K0215530",
+   "marka": "Skoda",
+   "model": "Octavia",
+   "rok": 2019,
+   "kolor": "granatowy",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Wojciech Laskowski",
+    "pesel": "79031460011",
+    "adres": "ul. Grunwaldzka 211/5, 80-266 Gdańsk"
+   },
+   "rejestracja": "2019-05-20",
+   "oc": {
+    "ubezpieczyciel": "Ergo Hestia SA",
+    "do": "2026-05-19"
+   },
+   "badanie": "2026-05-15",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-michalak",
+   "nr": "PO 51RT3",
+   "vin": "U5YPU81BBML926401",
+   "marka": "Kia",
+   "model": "Sportage",
+   "rok": 2021,
+   "kolor": "biały",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Piotr Michalak",
+    "pesel": "83070263715",
+    "adres": "ul. Dąbrowskiego 74/11, 60-529 Poznań"
+   },
+   "rejestracja": "2021-03-08",
+   "oc": {
+    "ubezpieczyciel": "Allianz SA",
+    "do": "2027-03-07"
+   },
+   "badanie": "2027-03-01",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-ratajczak",
+   "nr": "DW 6TK02",
+   "vin": "WVWZZZ3CZJE118274",
+   "marka": "Volkswagen",
+   "model": "Passat",
+   "rok": 2018,
+   "kolor": "czarny",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Tomasz Ratajczak",
+    "pesel": "70101967416",
+    "adres": "ul. Legnicka 52/8, 54-203 Wrocław"
+   },
+   "rejestracja": "2018-06-14",
+   "oc": {
+    "ubezpieczyciel": "PZU SA",
+    "do": "2026-06-13"
+   },
+   "badanie": "2026-06-10",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-fijalkowski",
+   "nr": "ZK 40112",
+   "vin": "W0LZT8GB2H1017745",
+   "marka": "Opel",
+   "model": "Insignia",
+   "rok": 2017,
+   "kolor": "szary",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Grzegorz Fijałkowski",
+    "pesel": "62012871111",
+    "adres": "ul. Zwycięstwa 102/4, 75-033 Koszalin"
+   },
+   "rejestracja": "2017-11-02",
+   "oc": {
+    "ubezpieczyciel": "Generali SA",
+    "do": "2026-11-01"
+   },
+   "badanie": "2026-10-28",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-banas",
+   "nr": "KR 7PW15",
+   "vin": "WAUZZZF41LA084322",
+   "marka": "Audi",
+   "model": "A4",
+   "rok": 2020,
+   "kolor": "grafitowy",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Marek Banaś",
+    "pesel": "75050674819",
+    "adres": "ul. Kalwaryjska 31/2, 30-504 Kraków"
+   },
+   "rejestracja": "2020-07-21",
+   "oc": {
+    "ubezpieczyciel": "Uniqa SA",
+    "do": "2026-07-20"
+   },
+   "badanie": "2026-07-14",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-kmiecik",
+   "nr": "LU 204CK",
+   "vin": "UU1HSDAG456712093",
+   "marka": "Dacia",
+   "model": "Duster",
+   "rok": 2016,
+   "kolor": "zielony",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Bożena Kmiecik",
+    "pesel": "58121578504",
+    "adres": "ul. Narutowicza 18/6, 20-016 Lublin"
+   },
+   "rejestracja": "2016-04-04",
+   "oc": {
+    "ubezpieczyciel": "Link4 SA",
+    "do": "2027-01-03"
+   },
+   "badanie": "2026-12-20",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-krupa",
+   "nr": "ZS 86HE4",
+   "vin": "ZFA35600006M48127",
+   "marka": "Fiat",
+   "model": "Tipo",
+   "rok": 2019,
+   "kolor": "czerwony",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "osoba",
+    "nazwa": "Paweł Krupa",
+    "pesel": "88080882213",
+    "adres": "ul. Kolumba 9/17, 70-035 Szczecin"
+   },
+   "rejestracja": "2019-09-16",
+   "oc": {
+    "ubezpieczyciel": "PZU SA",
+    "do": "2026-09-15"
+   },
+   "badanie": "2026-09-10",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-hotel",
+   "nr": "ZS 12KA7",
+   "vin": "WVGZZZ1TZPW033186",
+   "marka": "Volkswagen",
+   "model": "Touran",
+   "rok": 2023,
+   "kolor": "biały",
+   "rodzaj": "samochód osobowy",
+   "wlasciciel": {
+    "typ": "firma",
+    "nazwa": "HOTEL GRYF SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+    "krs": "0000208815",
+    "adres": "ul. Panieńska 22, 70-535 Szczecin"
+   },
+   "rejestracja": "2023-02-28",
+   "oc": {
+    "ubezpieczyciel": "Warta SA",
+    "do": "2027-02-27"
+   },
+   "badanie": "2026-02-20",
+   "status": "zarejestrowany",
+   "neutral": true
+  },
+  {
+   "id": "V-005-piek",
+   "nr": "ZPL 4C71",
+   "vin": "ZFA25000002F61730",
+   "marka": "Fiat",
+   "model": "Ducato",
+   "rok": 2017,
+   "kolor": "biały",
+   "rodzaj": "samochód ciężarowy (do 3,5 t)",
+   "wlasciciel": {
+    "typ": "firma",
+    "nazwa": "PIEKARNIA KŁOS SPÓŁKA JAWNA",
+    "krs": "0000530146",
+    "adres": "ul. Kościuszki 40, 72-010 Police"
+   },
+   "rejestracja": "2017-03-30",
+   "oc": {
+    "ubezpieczyciel": "Compensa SA",
+    "do": "2026-03-29"
+   },
+   "badanie": "2026-03-25",
+   "status": "zarejestrowany",
+   "neutral": true
+  }
+ ],
+ "firmy": [
+  {
+   "id": "F-005-rest",
+   "krs": "0000781264",
+   "nip": "8513124409",
+   "regon": "383017290",
+   "nazwa": "RESTYTUCJA POMORSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Jagiellońska 12/4, 70-435 Szczecin",
+   "dataWpisu": "2019-03-04",
+   "kapital": "50 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "PIETRAS",
+     "imiona": "DAMIAN JAN",
+     "pesel": "67082145713"
+    }
+   ],
+   "wspolnicy": [
+    {
+     "nazwa": "DAMIAN JAN PIETRAS",
+     "udzialy": "100 udziałów o łącznej wartości 50 000 zł"
+    }
+   ],
+   "pkd": [
+    "68.10.Z Kupno i sprzedaż nieruchomości na własny rachunek",
+    "70.22.Z Doradztwo w zakresie prowadzenia działalności gospodarczej"
+   ],
+   "status": "aktywny",
+   "case": "005"
+  },
+  {
+   "id": "F-005-pb",
+   "krs": "0000412377",
+   "nip": "8512047718",
+   "regon": "320988415",
+   "nazwa": "PB PIETRAS BUDOWNICTWO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Fabryczna 3, 72-010 Police",
+   "dataWpisu": "2012-01-16",
+   "kapital": "100 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "PIETRAS",
+     "imiona": "DAMIAN JAN",
+     "pesel": "67082145713"
+    }
+   ],
+   "wspolnicy": [
+    {
+     "nazwa": "DAMIAN JAN PIETRAS",
+     "udzialy": "200 udziałów o łącznej wartości 100 000 zł"
+    }
+   ],
+   "pkd": [
+    "41.20.Z Roboty budowlane związane ze wznoszeniem budynków",
+    "43.39.Z Wykonywanie pozostałych robót budowlanych wykończeniowych"
+   ],
+   "status": "aktywny",
+   "case": "005"
+  },
+  {
+   "id": "F-005-hotel",
+   "krs": "0000208815",
+   "nip": "8512047724",
+   "regon": "811540207",
+   "nazwa": "HOTEL GRYF SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Panieńska 22, 70-535 Szczecin",
+   "dataWpisu": "2004-07-01",
+   "kapital": "2 000 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "SOWA",
+     "imiona": "KRZYSZTOF",
+     "pesel": "70031881112"
+    }
+   ],
+   "pkd": [
+    "55.10.Z Hotele i podobne obiekty zakwaterowania"
+   ],
+   "status": "aktywny",
+   "neutral": true
+  },
+  {
+   "id": "F-005-piek",
+   "krs": "0000530146",
+   "nip": "8513124415",
+   "regon": "321456980",
+   "nazwa": "PIEKARNIA KŁOS SPÓŁKA JAWNA",
+   "forma": "spółka jawna",
+   "adres": "ul. Kościuszki 40, 72-010 Police",
+   "dataWpisu": "2014-10-20",
+   "zarzad": [
+    {
+     "funkcja": "WSPÓLNIK REPREZENTUJĄCY",
+     "nazwisko": "KŁOS",
+     "imiona": "ROMAN",
+     "pesel": "66052490219"
+    }
+   ],
+   "pkd": [
+    "10.71.Z Produkcja pieczywa"
+   ],
+   "status": "aktywny",
+   "neutral": true
+  }
+ ],
+ "ksiegi": [
+  {
+   "id": "K-005-claim",
+   "nr": "SZ1S/00045218/0",
+   "typ": "działka zabudowana",
+   "polozenie": "ul. Wielkopolska 21, 70-450 Szczecin",
+   "opis": "Działka nr 14/3, obręb 1012 Śródmieście, pow. 612 m², kamienica pięciokondygnacyjna z 1904 r., 14 lokali",
+   "wlasciciele": [
+    {
+     "nazwa": "Gmina Miasto Szczecin",
+     "udzial": "całość"
+    }
+   ],
+   "podstawa": "nabycie z mocy prawa, decyzja Wojewody Szczecińskiego z 12.05.1992",
+   "hipoteki": [],
+   "ostrzezenia": [
+    "Ostrzeżenie o niezgodności treści księgi z rzeczywistym stanem prawnym na rzecz Heleny Rudnickiej-Lange (wpis z 18.06.2021, sygn. I Ns 412/21)",
+    "Wzmianka: roszczenie przeniesione umową cesji z 07.02.2022 na rzecz RESTYTUCJA POMORSKA SP. Z O.O. (KRS 0000781264)"
+   ],
+   "case": "005"
+  },
+  {
+   "id": "K-005-jag",
+   "nr": "SZ1S/00131740/8",
+   "typ": "lokal użytkowy",
+   "polozenie": "ul. Jagiellońska 12/4, 70-435 Szczecin",
+   "opis": "Lokal użytkowy nr 4, pow. 86 m², I piętro kamienicy, 3 pomieszczenia, aneks kuchenny, łazienka",
+   "wlasciciele": [
+    {
+     "nazwa": "RESTYTUCJA POMORSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+     "krs": "0000781264",
+     "udzial": "całość"
+    }
+   ],
+   "podstawa": "umowa sprzedaży, akt notarialny Rep. A nr 2107/2019",
+   "hipoteki": [],
+   "ostrzezenia": [],
+   "case": "005"
+  }
+ ]
+}

@@ -7,6 +7,47 @@ const files = process.argv.slice(2).length ? process.argv.slice(2) : JSON.parse(
 const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
 const digits = s => String(s).replace(/\D/g, '');
 let failures = 0;
+/* ---------- baza danych: wczytanie i kontrola globalna ---------- */
+const DBK = ['osoby', 'pojazdy', 'firmy', 'ksiegi'];
+let DBX = null;
+function loadDB() {
+  if (DBX) return DBX; const dir = path.join(root, 'data/baza'); if (!fs.existsSync(path.join(dir, 'index.json'))) return null;
+  const d = { byId: {}, baseOf: {} }; DBK.forEach(k => { d[k] = []; });
+  JSON.parse(fs.readFileSync(path.join(dir, 'index.json'), 'utf8')).files.forEach(f => { const pt = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')); DBK.forEach(k => (pt[k] || []).forEach(r => { d[k].push(r); if (d.byId[r.id]) dbErr.push(`baza: duplikat id ${r.id}`); d.byId[r.id] = r; d.baseOf[r.id] = k; })); });
+  DBX = d; return d;
+}
+const dbErr = [];
+const peselOk = p => /^\d{11}$/.test(p) && (10 - [1, 3, 7, 9, 1, 3, 7, 9, 1, 3].reduce((a, w, i) => a + w * +p[i], 0) % 10) % 10 === +p[10];
+const nipOk = n => /^\d{10}$/.test(n) && [6, 5, 7, 2, 3, 4, 5, 6, 7].reduce((a, w, i) => a + w * +n[i], 0) % 11 === +n[9];
+const KWV = { X: 10, A: 11, B: 12, C: 13, D: 14, E: 15, F: 16, G: 17, H: 18, I: 19, J: 20, K: 21, L: 22, M: 23, N: 24, O: 25, P: 26, R: 27, S: 28, T: 29, U: 30, W: 31, Y: 32, Z: 33 };
+const kwOk = s => { const m = /^([A-Z0-9]{4})\/(\d{8})\/(\d)$/.exec(s); if (!m) return false; const b = m[1] + m[2]; return [...b].reduce((a, ch, i) => a + (/\d/.test(ch) ? +ch : KWV[ch]) * [1, 3, 7][i % 3], 0) % 10 === +m[3]; };
+const dowOk = s => { const m = /^([A-Z]{3}) (\d)(\d{5})$/.exec(s); if (!m) return false; const v = [...m[1]].map(ch => ch.charCodeAt(0) - 55).concat([...m[3]].map(Number)); return v.reduce((a, x, i) => a + x * [7, 3, 1, 7, 3, 1, 7, 3][i], 0) % 10 === +m[2]; };
+function checkDB() {
+  const d = loadDB(); if (!d) return;
+  const uniq = (list, f, name) => { const seen = new Map(); list.forEach(r => { const v = f(r); if (v == null) return; if (seen.has(v)) dbErr.push(`baza: powtórzony ${name} ${v} (${seen.get(v)}, ${r.id})`); seen.set(v, r.id); }); };
+  uniq(d.osoby, r => r.pesel, 'PESEL'); uniq(d.osoby, r => r.dowod && r.dowod.nr, 'nr dowodu'); uniq(d.pojazdy, r => r.nr, 'nr rejestracyjny'); uniq(d.pojazdy, r => r.vin, 'VIN');
+  uniq(d.firmy, r => r.krs, 'KRS'); uniq(d.firmy, r => r.nip, 'NIP'); uniq(d.ksiegi, r => r.nr, 'nr księgi');
+  const P = new Map(d.osoby.map(r => [r.pesel, r])), K = new Map(d.firmy.map(r => [r.krs, r]));
+  d.osoby.forEach(r => { if (!peselOk(r.pesel)) dbErr.push(`baza ${r.id}: zła suma PESEL`); if (r.dowod && !dowOk(r.dowod.nr)) dbErr.push(`baza ${r.id}: zła suma nr dowodu ${r.dowod.nr}`);
+    const born = `${+r.pesel.slice(2, 4) > 20 ? '20' : '19'}${r.pesel.slice(0, 2)}-${String(+r.pesel.slice(2, 4) % 20).padStart(2, '0')}-${r.pesel.slice(4, 6)}`; if (born !== r.urodzony) dbErr.push(`baza ${r.id}: PESEL nie zgadza się z datą urodzenia`);
+    if ((+r.pesel[9] % 2 ? 'M' : 'K') !== r.plec) dbErr.push(`baza ${r.id}: PESEL nie zgadza się z płcią`);
+    if (r.malzonek) { const m = P.get(r.malzonek.pesel); if (!m) dbErr.push(`baza ${r.id}: małżonek ${r.malzonek.pesel} nie istnieje`); else if (!m.malzonek || m.malzonek.pesel !== r.pesel) dbErr.push(`baza ${r.id}: małżeństwo niesymetryczne`); else if (m.nazwisko !== r.malzonek.nazwisko || !m.imiona.includes(r.malzonek.imie)) dbErr.push(`baza ${r.id}: dane małżonka niezgodne z jego rekordem`); } });
+  d.firmy.forEach(r => { if (!nipOk(r.nip)) dbErr.push(`baza ${r.id}: zła suma NIP`); r.zarzad.forEach(z => { const o = P.get(z.pesel); if (!o) dbErr.push(`baza ${r.id}: członek zarządu ${z.pesel} nie istnieje w ewidencji`); else if (o.nazwisko.toUpperCase() !== z.nazwisko) dbErr.push(`baza ${r.id}: nazwisko w zarządzie niezgodne z ewidencją (${z.nazwisko})`); }); });
+  d.pojazdy.forEach(r => { const w = r.wlasciciel; if (w.pesel && !P.get(w.pesel)) dbErr.push(`baza ${r.id}: właściciel ${w.pesel} nie istnieje`); if (w.krs && !K.get(w.krs)) dbErr.push(`baza ${r.id}: firma ${w.krs} nie istnieje`); if (w.krs && K.get(w.krs) && K.get(w.krs).nazwa !== w.nazwa) dbErr.push(`baza ${r.id}: nazwa właściciela niezgodna z KRS`); });
+  d.ksiegi.forEach(r => { if (!kwOk(r.nr)) dbErr.push(`baza ${r.id}: zła cyfra kontrolna KW ${r.nr}`); r.wlasciciele.forEach(w => { if (w.pesel && !P.get(w.pesel)) dbErr.push(`baza ${r.id}: właściciel ${w.pesel} nie istnieje`); if (w.krs && !K.get(w.krs)) dbErr.push(`baza ${r.id}: firma ${w.krs} nie istnieje`); }); });
+}
+checkDB();
+if (DBX) { console.log(`\nBaza danych: osoby ${DBX.osoby.length} · pojazdy ${DBX.pojazdy.length} · firmy ${DBX.firmy.length} · księgi ${DBX.ksiegi.length}`); dbErr.forEach(e => console.log('  BŁĄD   ' + e)); if (!dbErr.length) console.log('  OK — sumy kontrolne, unikalność i powiązania'); failures += dbErr.length; }
+const lcx = v => String(v || '').trim().toLocaleLowerCase('pl');
+const FORMS = [[/\bsp\.\s*z\s*o\.\s*o\.?/g, 'spółka z ograniczoną odpowiedzialnością'], [/\bs\.\s*a\./g, 'spółka akcyjna'], [/\bsp\.\s*j\./g, 'spółka jawna'], [/\bsp\.\s*k\./g, 'spółka komandytowa']];
+const ntok = v => { let t = lcx(v); FORMS.forEach(([re, f]) => { t = t.replace(re, f); }); return t.split(/\s+/).filter(Boolean); };
+const DBMATCH = {
+  osoby: (r, f) => (!f.nazwisko || lcx(r.nazwisko) === lcx(f.nazwisko)) && (!f.imie || r.imiona.some(n => lcx(n) === lcx(f.imie))) && (!f.pesel || r.pesel === f.pesel.trim()),
+  pojazdy: (r, f) => (!f.nr || lcx(r.nr) === lcx(f.nr)) && (!f.vin || lcx(r.vin) === lcx(f.vin)),
+  firmy: (r, f) => (!f.krs || r.krs === f.krs.trim()) && (!f.nip || r.nip === f.nip.trim()) && (!f.nazwa || (t => ntok(f.nazwa).every(w => t.includes(w)))(ntok(r.nazwa))),
+  ksiegi: (r, f) => lcx(r.nr) === lcx(f.nr) };
+const dbVis = (r, c) => !(r.from && r.from > c.db.date) && !(r.to && r.to <= c.db.date) && !r.afterSolved && !(r.case && !r.neutral && r.case !== c.id);
+const recText = r => JSON.stringify(r);
 
 function applyTable(raw) {
   const t = raw.tableMode || {}; const c = JSON.parse(JSON.stringify(raw));
@@ -37,7 +78,8 @@ for (const [f, c] of runs) {
   c.people.forEach(p => { p.questions.forEach(q => { if (qs.has(q.id)) E(`duplikat pytania ${q.id}`); qs.set(q.id, { ...q, person: p.id }); }); p.statements.forEach(s => { if (st.has(s.id)) E(`duplikat zeznania ${s.id}`); st.set(s.id, { ...s, person: p.id }); }); });
   const pz = new Map(c.puzzles.map(p => [p.id, p]));
   if (ev.size !== c.evidence.length) E('powtórzone ID dowodów');
-  const isTok = t => t.startsWith('lie:') || t.startsWith('st:') ? st.has(t.slice(t.indexOf(':') + 1)) : ev.has(t) || spots.has(t) || qs.has(t) || pz.has(t);
+  const sh = new Map(); c.people.forEach(p => (p.shows || []).forEach(x => { if (sh.has(x.id) || qs.has(x.id) || st.has(x.id)) E(`duplikat id reakcji ${x.id}`); sh.set(x.id, { ...x, person: p.id }); }));
+  const isTok = t => t.startsWith('show:') ? sh.has(t.slice(5)) : t.startsWith('lie:') || t.startsWith('st:') ? st.has(t.slice(t.indexOf(':') + 1)) : ev.has(t) || spots.has(t) || qs.has(t) || pz.has(t);
   const needEv = (id, where) => { if (!ev.has(id)) E(`${where}: brak dowodu ${id}`); };
 
   // 1. Referencje
@@ -49,6 +91,8 @@ for (const [f, c] of runs) {
     if (!s.truth && !s.response) E(`zeznanie ${id}: brak reakcji po konfrontacji`);
     (s.contradicts || []).filter(x => !x.startsWith('st:')).forEach(x => needEv(x, `zeznanie ${id}`)); (s.gives || []).forEach(x => needEv(x, `zeznanie ${id}`)); (s.reveals || []).forEach(x => { if (!st.has(x)) E(`zeznanie ${id}: ujawnia nieznane ${x}`); });
   }
+  for (const [id, x] of sh) { needEv(x.ev, `reakcja ${id}`); (x.requires || []).forEach(t => { if (!isTok(t)) E(`reakcja ${id}: nieznany wymóg ${t}`); }); (x.gives || []).forEach(t => needEv(t, `reakcja ${id}`)); (x.claims || []).forEach(t => { if (!st.has(t)) E(`reakcja ${id}: nieznane zeznanie ${t}`); }); if (!x.a) E(`reakcja ${id}: brak tekstu`); }
+  c.people.forEach(p => { if ((p.shows || []).length && !(p.showDefault || []).length) E(`osoba ${p.id}: reakcje bez domyślnych odpowiedzi`); });
   for (const [id, p] of pz) {
     p.requires.forEach(x => { if (!isTok(x)) E(`zagadka ${id}: nieznany wymóg ${x}`); });
     ((p.reward || {}).spots || []).forEach(x => { if (!spots.has(x)) E(`zagadka ${id}: nagroda — brak punktu ${x}`); });
@@ -78,7 +122,7 @@ for (const [f, c] of runs) {
       const R = refs(k); if (!R) { W(`warunek ${i}: nieznany typ ${k.t}`); return; }
       R.forEach(([r, cl]) => { if (!rows.includes(r) || !cols.includes(cl)) W(`warunek ${i}: nieznana komórka ${r}/${cl}`); });
       [k.v, k.v1, k.v2, ...(k.vs || [])].filter(v => v !== undefined).forEach(v => { if (!opts.includes(v)) W(`warunek ${i}: nieznane miejsce ${v}`); });
-      if (!k.src || !k.src.length) W(`warunek ${i}: brak dokumentu źródłowego`); else k.src.forEach(x => { if (!ev.has(x)) W(`warunek ${i}: brak dowodu ${x}`); else if (!p.requires.includes(x)) W(`warunek ${i}: dowód ${x} nie jest na liście wymaganych materiałów zagadki`); });
+      if (!k.src || !k.src.length) W(`warunek ${i}: brak dokumentu źródłowego`); else k.src.forEach(x => { if (!ev.has(x) && !isTok(x)) W(`warunek ${i}: brak dowodu ${x}`); else if (!p.requires.includes(x)) W(`warunek ${i}: dowód ${x} nie jest na liście wymaganych materiałów zagadki`); });
       if (!k.why) W(`warunek ${i}: brak opisu (pole why)`);
     });
     p.requires.forEach(x => { if (ev.has(x) && !cons.some(k => (k.src || []).includes(x))) warns.push(`zagadka ${id}: wymagany dowód ${x} nie jest źródłem żadnego warunku`); });
@@ -116,18 +160,22 @@ for (const [f, c] of runs) {
   spots.forEach((s, sid) => (s.gives || []).forEach(id => addSrc(id, sid)));
   qs.forEach((q, qid) => (q.gives || []).forEach(id => addSrc(id, qid)));
   st.forEach((s, sid) => (s.gives || []).forEach(id => addSrc(id, sid)));
+  sh.forEach((x, xid) => (x.gives || []).forEach(id => addSrc(id, xid)));
+  ((c.db && c.db.attach) || []).forEach(a => addSrc(a.ev, 'baza:' + a.rec));
   c.evidence.forEach(e => { if (!sources.has(e.id)) E(`dowód ${e.id} nie ma źródła — nie da się go zdobyć`); });
 
   // 2. Symulacja osiągalności (zespół ujawnia wszystkie tajne akta)
   const K = new Set([...c.evidence.filter(e => e.start).map(e => e.id), ...(c.privateClues || [])]);
   const done = new Set(), claims = new Set(), broken = new Set(), solved = new Set();
-  const has = t => t.startsWith('lie:') ? broken.has(t.slice(4)) : t.startsWith('st:') ? claims.has(t.slice(3)) : pz.has(t) ? solved.has(t) : spots.has(t) || qs.has(t) ? done.has(t) : K.has(t);
+  const has = t => t.startsWith('show:') ? done.has(t) : t.startsWith('lie:') ? broken.has(t.slice(4)) : t.startsWith('st:') ? claims.has(t.slice(3)) : pz.has(t) ? solved.has(t) : spots.has(t) || qs.has(t) ? done.has(t) : K.has(t);
   let changed = true, rounds = 0;
   while (changed && rounds++ < 200) {
     changed = false;
     for (const [id, s] of spots) if (!done.has(id) && (!s.requires || ((!s.requires.puzzle || solved.has(s.requires.puzzle)) && (!s.requires.all || s.requires.all.every(has))))) { done.add(id); (s.gives || []).forEach(x => K.add(x)); changed = true; }
     for (const [id, q] of qs) if (!done.has(id) && (q.requires || []).every(has) && (!q.requiresAny || q.requiresAny.some(has))) { done.add(id); (q.gives || []).forEach(x => K.add(x)); (q.claims || []).forEach(x => claims.add(x)); changed = true; }
     for (const [id, p] of pz) if (!solved.has(id) && p.requires.every(has)) { solved.add(id); if (p.reward && p.reward.search) (p.reward.spots || []).forEach(s => { done.add(s); (spots.get(s).gives || []).forEach(x => K.add(x)); }); changed = true; }
+    for (const [id, x] of sh) if (!done.has('show:' + id) && K.has(x.ev) && (x.requires || []).every(has)) { done.add('show:' + id); (x.gives || []).forEach(t => K.add(t)); (x.claims || []).forEach(t => claims.add(t)); changed = true; }
+    ((c.db && c.db.attach) || []).forEach(a => { if (!K.has(a.ev) && a.paths.some(pt => pt.from.every(t => K.has(t)))) { K.add(a.ev); changed = true; } });
     for (const id of claims) { const s = st.get(id); if (!broken.has(id) && !s.truth && (s.contradicts || []).some(x => x.startsWith('st:') ? claims.has(x.slice(3)) : K.has(x))) { broken.add(id); (s.gives || []).forEach(x => K.add(x)); (s.reveals || []).forEach(x => claims.add(x)); changed = true; } }
   }
   c.evidence.forEach(e => { if (!K.has(e.id)) E(`dowód ${e.id} nieosiągalny w pełnym przejściu`); });
@@ -136,6 +184,29 @@ for (const [f, c] of runs) {
   pz.forEach((_, id) => { if (!solved.has(id)) E(`zagadka ${id} nigdy się nie odblokuje`); });
   st.forEach((s, id) => { if (!claims.has(id)) E(`zeznanie ${id} nigdy nie padnie`); else if (!s.truth && !s.unbreakable && !broken.has(id)) E(`kłamstwa ${id} nie da się podważyć`); });
 
+  sh.forEach((x, id) => { if (!done.has('show:' + id)) E(`reakcja ${id} nigdy nie padnie`); });
+  // 5a. Baza danych w sprawie
+  if (c.db) { const d = loadDB(); if (!d) E('sprawa korzysta z bazy, a brak data/baza');
+    else {
+      const evText = id => { const e = ev.get(id); if (!e) return ''; if (e.db) return recText(d.byId[e.db] || {}); return JSON.stringify(e.body) + ' ' + e.title; };
+      (c.db.bases || []).forEach(b => { if (!DBK.includes(b)) E(`baza: nieznany rejestr ${b}`); });
+      (c.db.attach || []).forEach(a => { const r = d.byId[a.rec]; const e = ev.get(a.ev);
+        if (!r) { E(`baza: brak rekordu ${a.rec}`); return; } if (!e) E(`baza: brak dowodu ${a.ev}`); else if (e.db !== a.rec) E(`baza: dowód ${a.ev} nie wskazuje rekordu ${a.rec}`);
+        if (!dbVis(r, c)) E(`baza: rekord ${a.rec} niewidoczny w dacie sprawy`); const base = d.baseOf[a.rec]; if (!(c.db.bases || []).includes(base)) E(`baza: rejestr ${base} niedostępny w sprawie`);
+        a.paths.forEach((pt, i) => { const res = d[base].filter(x => dbVis(x, c) && DBMATCH[base](x, pt.q)); if (!res.some(x => x.id === a.rec)) E(`baza ${a.ev} ścieżka ${i}: zapytanie nie zwraca rekordu`); if (res.length > 30) E(`baza ${a.ev} ścieżka ${i}: ponad 30 wyników — gracz nie zobaczy listy`);
+          const txt = lcx(pt.from.map(evText).join(' ')); Object.values(pt.q).forEach(v => { if (!txt.includes(lcx(v))) E(`baza ${a.ev} ścieżka ${i}: „${v}” nie występuje w ${pt.from.join(', ')} w tej formie`); });
+          if (base === 'osoby' && pt.q.nazwisko) { const same = res.filter(x => x.id !== a.rec && x.urodzony.slice(0, 4) === r.urodzony.slice(0, 4) && x.adres.split(' ').pop() === r.adres.split(' ').pop()); if (same.length) E(`baza ${a.ev}: imiennik z tym samym rokiem urodzenia i miastem — nie da się rozróżnić`); } }); });
+      // każdy identyfikator w tekstach sprawy musi istnieć w bazie dokładnie w tej formie
+      const vis = { nr: new Set(), pesel: new Set(), krs: new Set(), nip: new Set(), kw: new Set(), dow: new Set() };
+      d.pojazdy.filter(x => dbVis(x, c)).forEach(x => vis.nr.add(x.nr)); d.osoby.filter(x => dbVis(x, c)).forEach(x => { vis.pesel.add(x.pesel); vis.dow.add(x.dowod.nr); });
+      d.firmy.filter(x => dbVis(x, c)).forEach(x => { vis.krs.add(x.krs); vis.nip.add(x.nip); }); d.ksiegi.filter(x => dbVis(x, c)).forEach(x => vis.kw.add(x.nr));
+      const ign = new Set(c.db.ignore || []);
+      const texts = []; c.evidence.filter(e => !e.db).forEach(e => texts.push([e.id, JSON.stringify(e.body) + ' ' + e.title + ' ' + e.summary]));
+      c.people.forEach(p => { p.questions.forEach(q => texts.push([q.id, q.q + ' ' + q.a])); p.statements.forEach(x => texts.push([x.id, x.text + ' ' + (x.response || '')])); (p.shows || []).forEach(x => texts.push([x.id, x.a])); });
+      texts.push(['intro', JSON.stringify(c.intro)]); texts.push(['raport', JSON.stringify(c.report) + JSON.stringify(c.solution) + JSON.stringify(c.endings)]);
+      const RX = [['nr', /\b[A-Z]{2,3} [0-9][0-9A-Z]{3,4}\b|\b[A-Z]{2,3} [0-9A-Z]{3,4}[0-9]\b/g], ['pesel', /(?<![\d ])\d{11}(?!\d)/g], ['krs', /\b0000\d{6}\b/g], ['nip', /(?<!\d)(?!0000)\d{10}(?!\d)/g], ['kw', /\b[A-Z]{2}\d[A-Z]\/\d{8}\/\d\b/g], ['dow', /\b[A-Z]{3} \d{6}\b/g]];
+      texts.forEach(([w, t]) => RX.forEach(([k, re]) => (t.match(re) || []).forEach(m => { if (k === 'nr' && /^[A-Z]{3} \d{6}$/.test(m)) return; if (!ign.has(m) && !vis[k].has(m)) E(`${w}: identyfikator „${m}” nie istnieje w bazie w tej formie`); })));
+    } }
   // 5b. Przełomy, pieczęcie archiwisty, sprzeczności zeznań
   (c.breakthroughs || []).forEach(b => { if (!b.id || !b.title || !b.text) E(`przełom ${b.id}: brak pól`); if (!isTok(b.when)) E(`przełom ${b.id}: nieznany token ${b.when}`); else if (!has(b.when)) E(`przełom ${b.id}: nieosiągalny`); });
   c.evidence.forEach(e => { if (e.mark && !/^[A-ZĄĆĘŁŃÓŚŹŻ]$/.test(e.mark)) E(`dowód ${e.id}: zła pieczęć ${e.mark}`); });
@@ -145,10 +216,12 @@ for (const [f, c] of runs) {
   const fsx = require('fs'), pathx = require('path');
   if (c.voiceDir) c.people.forEach(p => { [...p.questions, ...((c.tableMode && c.tableMode.questions && c.tableMode.questions[p.id]) || [])].forEach(q => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${q.id}.mp3`))) E(`brak głosu ${q.id}`); });
     p.statements.filter(x => x.response).forEach(x => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${x.id}.mp3`))) E(`brak głosu ${x.id}`); });
-    (p.deflect || []).forEach((_, i) => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${p.id}-deflect-${i}.mp3`))) E(`brak głosu ${p.id}-deflect-${i}`); }); });
+    (p.deflect || []).forEach((_, i) => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${p.id}-deflect-${i}.mp3`))) E(`brak głosu ${p.id}-deflect-${i}`); });
+    (p.shows || []).forEach(x => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${x.id}.mp3`))) E(`brak głosu ${x.id}`); });
+    (p.showDefault || []).forEach((_, i) => { if (!fsx.existsSync(pathx.join(__dirname, '..', `${c.voiceDir}/${p.id}-show-${i}.mp3`))) E(`brak głosu ${p.id}-show-${i}`); }); });
   if (c.voiceDir) { const VL = JSON.parse(fsx.readFileSync(pathx.join(__dirname, 'voice', 'lines.json'), 'utf8'));
     c.people.forEach(p => { const rec = VL[`${c.id}-${p.id}`]; if (!rec) { E(`brak tekstów nagrań dla ${p.id}`); return; } const byId = Object.fromEntries(rec.lines.map(l => [l.id, l.text]));
-      const cur = [...p.questions, ...((c.tableMode && c.tableMode.questions && c.tableMode.questions[p.id]) || [])].map(q => [q.id, q.a]).concat(p.statements.filter(x => x.response).map(x => [x.id, x.response]), (p.deflect || []).map((d, i) => [`deflect-${i}`, d]));
+      const cur = [...p.questions, ...((c.tableMode && c.tableMode.questions && c.tableMode.questions[p.id]) || [])].map(q => [q.id, q.a]).concat(p.statements.filter(x => x.response).map(x => [x.id, x.response]), (p.deflect || []).map((d, i) => [`deflect-${i}`, d]), (p.shows || []).map(x => [x.id, x.a]), (p.showDefault || []).map((d, i) => [`show-${i}`, d]));
       cur.forEach(([id, t]) => { if (byId[id] !== t) E(`kwestia ${id} różni się od nagrania — nagrać ponownie albo przywrócić tekst`); }); }); }
   [c.voice && c.voice.brief, c.introVideo, c.keyart, ...(c.breakthroughs || []).flatMap(b => [b.img, b.video])].filter(Boolean).forEach(f => { if (!fsx.existsSync(pathx.join(__dirname, '..', f))) E(`brak pliku ${f}`); });
 

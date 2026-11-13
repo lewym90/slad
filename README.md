@@ -62,6 +62,14 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - Sprawa 004 „Martwy kanał” jest gotowa (grafiki, głosy, filmy i ambient dodane). Prompty użyte do mediów: `docs/PROMPTY_GRAFIK_004.md`, `docs/PROMPTY_GLOSY_004.md`, `docs/PROMPTY_FILMY_DZWIEK_004.md` (generuje je `tools/prompts_004.py`).
 - Plan rozwoju uniwersum, decyzje autora i zasady: `docs/ROZWOJ_UNIWERSUM.md` (czytać przed pracą nad kolejnymi sprawami).
 
+## Nowe mechaniki (2.15)
+- **Terminal baz danych (zakładka „Bazy”, `case.db`):** ogólnopolska baza wspólna dla całego uniwersum — `data/baza/index.json` wylicza pliki: tło (`tlo-*.json`, wygenerowane raz przez `tools/gen_db.py`, ziarno stałe — NIE generować ponownie po wydaniu sprawy z bazą) i rekordy spraw (`sprawa-NNN.json`, z `tools/bNNN_db.py`). Rejestry: `osoby` (PESEL), `pojazdy` (CEPiK), `firmy` (KRS), `ksiegi` (EKW). Wyszukiwanie dokładne jak w prawdziwym systemie: bez znaczenia są tylko wielkość liter i spacje na brzegach; nazwisko zwraca wszystkich o tym nazwisku, nazwisko + imię tylko pasujących; nazwy firm po całych słowach (skróty form prawnych typu „sp. z o.o.” są rozwijane). Ponad 30 wyników → „zawęźcie kryteria”.
+- Widoczność rekordu: `from`/`to` względem `db.date` sprawy; `case: "NNN"` = widoczny tylko w tej sprawie i w innych dopiero po jej rozwiązaniu na urządzeniu; `neutral: true` = zawsze; `afterSolved` = dopiero po rozwiązaniu wskazanej sprawy.
+- Dołączenie wydruku do akt kosztuje 1 ruch. `db.attach` mapuje rekordy na dowody sprawy (`dNN`, pole `db` w dowodzie — treść generuje aplikacja z rekordu) i opisuje ścieżki dojścia (`paths: [{q, from}]`). Inne rekordy trafiają do akt jako wydruki `db:<id>` (bez znaczenia dla bramek — nic nie zdradzają). W trybie z telefonami terminal jest też w każdej teczce (bez dołączania).
+- Walidator: sumy kontrolne PESEL/NIP/KW/nr dowodu, unikalność, powiązania (małżonkowie, zarządy, właściciele), osiągalność dowodów z bazy, czy każde zapytanie ze ścieżki zwraca rekord i czy jego dane występują DOSŁOWNIE w dowodzie-źródle, imiennicy nie do rozróżnienia, oraz czy każdy identyfikator w tekstach sprawy (tablice, PESEL, KRS, NIP, KW, dowody) istnieje w bazie w tej samej formie (`db.ignore` na wyjątki, np. numer pociągu).
+- **Okazywanie dowodów (zakładka „Okaż dowód” u osoby):** `shows: [{id, ev, a, requires?, claims?, gives?}]` i `showDefault: [...]` (odpowiedź na wszystko inne). 1 ruch. Token `show:<id>` do bramek i przełomów. Głosy: `<voiceDir>/<id>.mp3` i `<osoba>-show-<i>.mp3`.
+- Sprawa 005 „Pokój bez okien” jest gotowa logicznie i zapieczętowana do czasu dodania mediów. Prompty: `docs/PROMPTY_GRAFIK_005.md`, `docs/PROMPTY_GLOSY_005.md`, `docs/PROMPTY_FILMY_DZWIEK_005.md` (`tools/prompts_005.py`); źródło: `tools/build_005.py` + `b005_*.py`.
+
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).
 - `sw.js`, `manifest.webmanifest` — PWA i tryb offline. Przy każdej zmianie podnieś `VERSION` w `sw.js` i `app.js`.
@@ -80,7 +88,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 ## Testy
 ```bash
 node tools/validate.js
-CASE=001 MODE=table node tools/e2e.mjs http://localhost:8000/ phone    # CASE: 001|002|003|004 (004 wymaga ready:true); MODE: table | phones; urządzenie: phone | tablet | desktop
+CASE=001 MODE=table node tools/e2e.mjs http://localhost:8000/ phone    # CASE: 001…005 (sprawa zapieczętowana wymaga kopii z ready:true); MODE: table | phones; urządzenie: phone | tablet | desktop
 node tools/audit.mjs http://localhost:8000/ /tmp/state.json
 CASE=001 MODE=table node tools/board_test.mjs http://localhost:8000/ phone
 ```

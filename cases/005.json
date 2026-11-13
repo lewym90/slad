@@ -1,0 +1,3290 @@
+{
+ "id": "005",
+ "title": "Pokój bez okien",
+ "subtitle": "Zamknięty od środka. Pusty od rana.",
+ "genre": "Zagadka psychologiczna",
+ "duration": "100–140 min",
+ "players": "2–6",
+ "difficulty": "Trudna",
+ "cover": "assets/cases/005-cover.webp",
+ "par": 86,
+ "intro": {
+  "lead": "Piątek, 13 marca, 10:40. Hotel „Gryf” w Szczecinie, II piętro. Drzwi pokoju 214 stoją otworem, zasuwa jest przecięta. Pokój nie ma okien.",
+  "brief": [
+   "Dr Edward Szulc, 63-letni archiwista z Koszalina, miał o 9:00 przedstawić komisji ugodowej opinię o dokumencie, od którego zależy zwrot kamienicy wartej 38 milionów złotych.",
+   "Według recepcji zameldował się w czwartek o 23:05. O 23:13 zamek zarejestrował zasunięcie zasuwy od środka. O 23:50 z jego skrzynki wyszedł mail: rezygnuje i prosi, żeby go nie szukać. Rano jego nazwiska nie było już na liście uczestników.",
+   "O 9:47 technik przeciął zasuwę. Pokój był pusty. W walizce została insulina.",
+   "Żona mówi, że bez insuliny mąż jest w niebezpieczeństwie. Prokurator chce raportu do wieczora. Macie hotel, sześć osób do przesłuchania i dostęp do ogólnopolskich baz danych."
+  ],
+  "task": [
+   "Gdzie jest dr Edward Szulc?",
+   "Kto zorganizował jego zniknięcie i kto podszył się pod niego w hotelu?",
+   "Jak ktoś wyszedł z pokoju zamkniętego od środka?",
+   "Dlaczego jego nazwisko zniknęło z listy uczestników?"
+  ],
+  "rules": [
+   "Każde przeszukanie, każde pytanie i każde okazanie dowodu to jeden ruch. Ruchów nie brakuje, ale najlepsze zespoły zamykają sprawę oszczędnie.",
+   "Nowość: zakładka Bazy. Ogólnopolskie rejestry PESEL, CEPiK, KRS i EKW. Wyszukiwanie jest bezpłatne, ale dane trzeba wpisać dokładnie. Żeby użyć wyniku w śledztwie, dołączcie wydruk do akt (1 ruch).",
+   "Nowość: Okaż dowód. Każdej osobie możecie pokazać dowód i zobaczyć jej reakcję. To nie konfrontacja — nie tracicie punktów, a jedno zdjęcie potrafi otworzyć nowy wątek.",
+   "Świadkowie kłamią, czasem kilka razy z rzędu. Gdy dowód przeczy zeznaniu, użyjcie konfrontacji. Nietrafiona konfrontacja kosztuje punkty."
+  ],
+  "modeRules": {
+   "table": "Wszystko widzicie razem. Dane operatorów, taksówek i urzędu zdobędziecie w Centrali wydziału — każde zapytanie to ruch.",
+   "phones": "Każdy gracz ma w telefonie tajne akta i własny terminal baz danych. Szukajcie równolegle, a wydruki dołączajcie na wspólnym ekranie."
+  }
+ },
+ "people": [
+  {
+   "id": "kraska",
+   "name": "Iwona Kraska",
+   "role": "Sekretarz Komisji Ugodowej",
+   "age": 47,
+   "desc": "Elegancka, w granatowym kostiumie, z teczką pełną kolorowych zakładek. Mówi szybko i uprzejmie, ale za każdym razem sprawdza, kto jeszcze słucha.",
+   "deflect": [
+    "Proszę pytać o fakty, a nie o domysły.",
+    "Ja tylko organizuję posiedzenia. Nic więcej.",
+    "Na to pytanie odpowie przewodniczący komisji."
+   ],
+   "showDefault": [
+    "Nie wiem, co miałabym o tym powiedzieć.",
+    "To nie ma związku z moją pracą w komisji."
+   ],
+   "questions": [
+    {
+     "id": "k-q1",
+     "q": "Co pani robiła w czwartek wieczorem?",
+     "a": "Od ósmej siedziałam w centrum biznesowym nad materiałami na piątek, potem poszłam do siebie. Z hotelu nie wychodziłam, padało.",
+     "claims": [
+      "k-l1"
+     ]
+    },
+    {
+     "id": "k-q2",
+     "q": "Miała pani odebrać doktora Szulca z dworca?",
+     "a": "Proponowałam mu to SMS-em. Odpisał, że weźmie taksówkę, więc zostałam w hotelu.",
+     "claims": [
+      "k-l9"
+     ]
+    },
+    {
+     "id": "k-q3",
+     "q": "Kiedy dowiedziała się pani, że doktor zrezygnował?",
+     "a": "Rano, kwadrans po siódmej, kiedy otworzyłam pocztę. Od razu poprawiłam listę i wydrukowałam ją przed posiedzeniem.",
+     "claims": [
+      "k-l4"
+     ]
+    },
+    {
+     "id": "k-q4",
+     "q": "Skąd na posiedzeniu wziął się doktor Morawiec?",
+     "a": "Zadzwoniłam do niego rano, zaraz po przeczytaniu maila. Regulamin na to pozwala, a doktor akurat był w Szczecinie.",
+     "claims": [
+      "k-l5"
+     ]
+    },
+    {
+     "id": "k-q5",
+     "q": "Kto wybrał dla doktora pokój 214?",
+     "a": "Hotel. Ja tylko zarezerwowałam pokój dla biegłego, numer przydziela recepcja.",
+     "claims": [
+      "k-l7"
+     ]
+    },
+    {
+     "id": "k-q6",
+     "q": "Znała pani wnioski z opinii doktora Szulca?",
+     "a": "Projekt dostałam w środę, zaszyfrowany. Hasło doktor podał mi przez telefon, żebym przygotowała kopie dla komisji. Tak, znałam wnioski.",
+     "claims": [
+      "k-c1"
+     ],
+     "requiresAny": [
+      "e36",
+      "e39"
+     ]
+    },
+    {
+     "id": "k-q7",
+     "q": "Co łączy panią ze spółką Restytucja Pomorska i jej prezesem?",
+     "a": "Nic. Spółkę znam z akt sprawy. Pana Pietrasa nigdy nie spotkałam.",
+     "claims": [
+      "k-l6"
+     ],
+     "requires": [
+      "d02"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "k-l9",
+     "text": "Szulc odpisał mi SMS-em, że weźmie taksówkę z dworca.",
+     "contradicts": [
+      "x1",
+      "x4"
+     ],
+     "response": "Może nie odpisał. Może mi się pomyliło. Miałam tyle wiadomości tego wieczoru."
+    },
+    {
+     "id": "k-l1",
+     "text": "W czwartek wieczorem nie wychodziłam z hotelu.",
+     "contradicts": [
+      "e18",
+      "st:d-c2"
+     ],
+     "response": "Dobrze. Pojechałam na dworzec, na wszelki wypadek. Doktora nie było, czekałam kwadrans i wróciłam. Nie mówiłam o tym, bo nie chciałam wyjść na kogoś, kto go zgubił.",
+     "reveals": [
+      "k-l2"
+     ]
+    },
+    {
+     "id": "k-l2",
+     "text": "Na dworcu doktora nie było. Czekałam kwadrans i wróciłam sama.",
+     "contradicts": [
+      "st:m-c3",
+      "e40",
+      "x6"
+     ],
+     "response": "Wsiadł. Pojechaliśmy do biura komisji w urzędzie, po akta, które miał przejrzeć przed posiedzeniem. Potem podwiozłam go pod hotel i tyle go widziałam.",
+     "reveals": [
+      "k-l3"
+     ]
+    },
+    {
+     "id": "k-l3",
+     "text": "Z dworca zawiozłam doktora do biura komisji w urzędzie, a potem pod hotel.",
+     "contradicts": [
+      "x5",
+      "x1"
+     ],
+     "response": "Więcej nic nie powiem. Doktor wysiadł pod hotelem. Co było dalej, nie wiem."
+    },
+    {
+     "id": "k-l4",
+     "text": "O rezygnacji doktora dowiedziałam się w piątek o 7:15.",
+     "contradicts": [
+      "e05"
+     ],
+     "response": "Widziałam tego maila w nocy. Nie chciałam nikogo budzić. Poprawiłam listę od razu, żeby rano było mniej zamieszania."
+    },
+    {
+     "id": "k-l5",
+     "text": "Doktora Morawca poprosiłam w piątek rano, po przeczytaniu maila.",
+     "contradicts": [
+      "x2",
+      "st:o-c2"
+     ],
+     "response": "Biegły zawsze powinien mieć zastępcę. Zadzwoniłam w czwartek, bo to zwykła ostrożność. Nic więcej w tym nie ma."
+    },
+    {
+     "id": "k-l7",
+     "text": "Pokój 214 przydzielił doktorowi hotel.",
+     "contradicts": [
+      "e17"
+     ],
+     "response": "Prosiłam o 214, bo doktor chciał spokojnego pokoju. Tak mi powiedział przez telefon.",
+     "reveals": [
+      "k-l8"
+     ]
+    },
+    {
+     "id": "k-l8",
+     "text": "Doktor sam prosił o cichy pokój bez okien.",
+     "contradicts": [
+      "st:m-c4"
+     ],
+     "response": "Może źle zrozumiałam. Proszę już o to nie pytać."
+    },
+    {
+     "id": "k-l6",
+     "text": "Damiana Pietrasa, prezesa Restytucji Pomorskiej, nie znam.",
+     "contradicts": [
+      "d03",
+      "d06"
+     ],
+     "response": "To mój mąż. Mamy różne nazwiska, bo nie chciałam, żeby ktoś łączył moją pracę z jego interesami. Z tą sprawą nie ma to nic wspólnego."
+    },
+    {
+     "id": "k-c1",
+     "text": "Znałam wnioski z projektu opinii doktora Szulca od środy.",
+     "truth": true
+    }
+   ],
+   "shows": []
+  },
+  {
+   "id": "kosowski",
+   "name": "mec. Adrian Kosowski",
+   "role": "Pełnomocnik wnioskodawczyni",
+   "age": 52,
+   "desc": "Adwokat z Warszawy. Drogi garnitur, zmęczone oczy, telefon w ręku. Odpowiada pewnie i dodaje, czego nie musi mówić.",
+   "deflect": [
+    "Bez komentarza. Tajemnica adwokacka.",
+    "Proszę skierować to pytanie na piśmie.",
+    "Moja klientka ma prawo do ugody. Reszta to państwa problem."
+   ],
+   "showDefault": [
+    "I co mam z tym zrobić?",
+    "Nie widzę tu niczego, co dotyczyłoby mojej klientki."
+   ],
+   "questions": [
+    {
+     "id": "a-q1",
+     "q": "Gdzie pan był w czwartek wieczorem?",
+     "a": "W barze na dole, od dziewiątej do zamknięcia. Ugoda nie załatwia się sama, miałem sporo telefonów.",
+     "claims": [
+      "a-c1"
+     ]
+    },
+    {
+     "id": "a-q2",
+     "q": "Czy kontaktował się pan z doktorem Szulcem przed posiedzeniem?",
+     "a": "Nigdy. Biegły jest niezależny. Pełnomocnikowi nie wolno się z nim kontaktować i nie robiłem tego.",
+     "claims": [
+      "a-l1"
+     ]
+    },
+    {
+     "id": "a-q3",
+     "q": "Kim jest cesjonariusz roszczenia?",
+     "a": "Restytucja Pomorska. W 2022 roku kupiła roszczenie od mojej klientki. Pani Rudnicka-Lange ma prawie osiemdziesiąt lat, nie chciała procesu na lata.",
+     "claims": [
+      "a-c2"
+     ]
+    },
+    {
+     "id": "a-q4",
+     "q": "Co pan wie o znaku wodnym na akcie z 1946 roku?",
+     "a": "Nic. Słyszę to pierwszy raz. Jeśli to prawda, ktoś oszukał moją klientkę, i to dawno przed mną.",
+     "requires": [
+      "e39"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "a-c1",
+     "text": "W czwartek od 21:00 do zamknięcia baru siedziałem w barze „Kotwica”.",
+     "truth": true
+    },
+    {
+     "id": "a-l1",
+     "text": "Z doktorem Szulcem nigdy się nie kontaktowałem.",
+     "contradicts": [
+      "e43"
+     ],
+     "response": "Napisałem do niego raz. Propozycja konsultacji, wszystko legalne. Odmówił. Na tym sprawa się skończyła i więcej się nie odzywałem."
+    },
+    {
+     "id": "a-c2",
+     "text": "Restytucja Pomorska kupiła roszczenie od pani Rudnickiej-Lange w 2022 roku.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "a-s1",
+     "ev": "d02",
+     "a": "Restytucja płaci moje faktury jako cesjonariusz. Prezesa, Pietrasa, znam z dwóch spotkań. Żona? Nie mam pojęcia, kim jest jego żona."
+    }
+   ]
+  },
+  {
+   "id": "dabrowska",
+   "name": "mec. Ewa Dąbrowska",
+   "role": "Radca prawny Urzędu Miasta",
+   "age": 44,
+   "desc": "Szczupła, w czerwonym płaszczu przewieszonym przez krzesło. To ona nie pozwoliła rano zamknąć sprawy jednym mailem. Waży każde słowo.",
+   "deflect": [
+    "Reprezentuję Gminę. Nie mogę o tym mówić.",
+    "Proszę zapytać sekretariat komisji.",
+    "Nie będę spekulować."
+   ],
+   "showDefault": [
+    "Nie wiem, co to ma wspólnego z doktorem.",
+    "Tego wcześniej nie widziałam."
+   ],
+   "questions": [
+    {
+     "id": "d-q1",
+     "q": "Kiedy przyjechała pani do hotelu?",
+     "a": "W piątek, za dwadzieścia dziewiąta. Posiedzenie było o dziewiątej.",
+     "claims": [
+      "d-l1"
+     ]
+    },
+    {
+     "id": "d-q2",
+     "q": "Dlaczego nalegała pani na otwarcie pokoju?",
+     "a": "Bo doktor Szulc nie jest człowiekiem, który rezygnuje mailem o północy. We wtorek napisał do mnie, że czuje presję.",
+     "claims": [
+      "d-c1"
+     ]
+    },
+    {
+     "id": "d-q3",
+     "q": "Co wie pani o opinii doktora Szulca?",
+     "a": "Tyle, że miała być niekorzystna dla wnioskodawczyni. Szczegółów mi nie podał. Projekt miała tylko sekretarz komisji."
+    }
+   ],
+   "statements": [
+    {
+     "id": "d-l1",
+     "text": "W hotelu byłam dopiero w piątek, o 8:40.",
+     "contradicts": [
+      "x4",
+      "st:l-c2"
+     ],
+     "response": "Przyjechałam w czwartek, około dziesiątej wieczorem. Chciałam porozmawiać z doktorem przed posiedzeniem, sam o to prosił. Czekałam w holu prawie do jedenastej i nie przyszedł. Widziałam za to Iwonę. Za kwadrans jedenasta, może kilka minut wcześniej, weszła od strony parkingu, mokra, z kluczykami w ręku.",
+     "reveals": [
+      "d-c2"
+     ]
+    },
+    {
+     "id": "d-c1",
+     "text": "Doktor Szulc pisał mi, że ktoś wywiera na niego presję.",
+     "truth": true
+    },
+    {
+     "id": "d-c2",
+     "text": "Około 22:45 Iwona Kraska weszła do hotelu od strony parkingu, mokra, z kluczykami w ręku.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "d-s1",
+     "ev": "d03",
+     "a": "Pietras… Damian. Iwona mówiła kiedyś „mój Damian”, na wigilii w urzędzie. Nie wiedziałam, że to ten Pietras. Ona prowadzi protokoły tej komisji od trzech lat."
+    }
+   ]
+  },
+  {
+   "id": "lis",
+   "name": "Bartosz Lis",
+   "role": "Nocny recepcjonista",
+   "age": 24,
+   "desc": "Wezwany z domu po nocnej zmianie. W hotelowej marynarce narzuconej na bluzę, z podkrążonymi oczami. Odpowiada grzecznie, ale za szybko.",
+   "deflect": [
+    "Nie pamiętam.",
+    "To trzeba sprawdzić w systemie.",
+    "Ja tylko meldowałem gości."
+   ],
+   "showDefault": [
+    "Nie kojarzę.",
+    "Tego nie widziałem, przysięgam."
+   ],
+   "questions": [
+    {
+     "id": "l-q1",
+     "q": "Kto zameldował się w pokoju 214?",
+     "a": "Doktor Szulc, o 23:05. Przyszedł pieszo od strony parkingu, z walizką. Starszy pan, z brodą, w okularach, w szarym płaszczu i kapeluszu. Mówił mało, pokasływał. Dowód się zgadzał, zeskanowałem go.",
+     "claims": [
+      "l-c1"
+     ]
+    },
+    {
+     "id": "l-q2",
+     "q": "Czy wieczorem ktoś czekał w holu?",
+     "a": "Pani mecenas Dąbrowska, znam ją z posiedzeń komisji. Siedziała od kwadransa po dziesiątej prawie do jedenastej i pytała, czy doktor Szulc już jest.",
+     "claims": [
+      "l-c2"
+     ]
+    },
+    {
+     "id": "l-q3",
+     "q": "Czy w nocy odchodził pan od recepcji?",
+     "a": "Ani na chwilę. Do siódmej rano siedziałem przy ladzie.",
+     "claims": [
+      "l-l1"
+     ]
+    },
+    {
+     "id": "l-q4",
+     "q": "Ile kart wydał pan do pokoju 214?",
+     "a": "Dwie. 214-A gość wziął do ręki, 214-B włożyłem do koperty z mapką hotelu. Tak robimy zawsze.",
+     "requires": [
+      "e31"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "l-c1",
+     "text": "Gość z 214 przyszedł o 23:05 pieszo od parkingu: starszy, z brodą, w okularach, płaszczu i kapeluszu.",
+     "truth": true
+    },
+    {
+     "id": "l-c2",
+     "text": "W czwartek od 22:15 do prawie 23:00 w holu czekała mec. Dąbrowska.",
+     "truth": true
+    },
+    {
+     "id": "l-l1",
+     "text": "Przez całą noc ani na chwilę nie odszedłem od recepcji.",
+     "contradicts": [
+      "e16",
+      "st:o-c3"
+     ],
+     "response": "Wyszedłem na papierosa. Od kwadransa po jedenastej do mniej więcej za dwadzieścia pięć dwunasta byłem w palarni z tyłu. Koło dwudziestej trzeciej dwadzieścia pięć z wyjścia służbowego wyszedł facet w kapeluszu, z parasolem. Poszedł szybko na parking i chwilę później odjechał srebrnym autem. Myślałem, że to ktoś z obsługi.",
+     "reveals": [
+      "l-c3"
+     ]
+    },
+    {
+     "id": "l-c3",
+     "text": "Około 23:25 z wyjścia służbowego wyszedł mężczyzna w kapeluszu, z parasolem, i odjechał srebrnym samochodem.",
+     "truth": true
+    },
+    {
+     "id": "l-c4",
+     "text": "Mężczyzna zameldowany w 214 miał brodę — taką jak na zdjęciu w dowodzie.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "l-s1",
+     "ev": "e42",
+     "a": "To jest doktor Szulc? Ten pan nie ma brody. Nasz gość miał brodę, siwą, przyciętą. Taką jak na zdjęciu w dowodzie, dlatego się zgadzało. To… to nie był ten człowiek.",
+     "claims": [
+      "l-c4"
+     ]
+    },
+    {
+     "id": "l-s2",
+     "ev": "d01",
+     "a": "Srebrna skoda… Tak, to mogła być ona. Duża, ciemne szyby z tyłu. Stała na końcu parkingu, przy alejce.",
+     "requires": [
+      "lie:l-l1"
+     ]
+    },
+    {
+     "id": "l-s3",
+     "ev": "e31",
+     "a": "To karta 214-A, ta, którą dałem gościowi do ręki. Skąd ona na klatce B? Tamtędy chodzi tylko personel."
+    }
+   ]
+  },
+  {
+   "id": "morawiec",
+   "name": "dr Lech Morawiec",
+   "role": "Biegły sądowy, badanie dokumentów",
+   "age": 61,
+   "desc": "Niski, w tweedowej marynarce, z lupą w kieszeni na piersi. Mówi o papierze z czułością, o pieniądzach niechętnie.",
+   "deflect": [
+    "To pytanie wykracza poza moją specjalność.",
+    "Opiniuję dokumenty, nie ludzi.",
+    "Proszę mnie w to nie mieszać."
+   ],
+   "showDefault": [
+    "Mogę na to spojrzeć, ale nic mi to nie mówi.",
+    "Bez oryginału nie powiem nic pewnego."
+   ],
+   "questions": [
+    {
+     "id": "o-q1",
+     "q": "Kiedy dowiedział się pan o tym posiedzeniu?",
+     "a": "W piątek rano, za dwadzieścia ósma. Pani Kraska zadzwoniła, a ja przyjechałem prosto z dworca.",
+     "claims": [
+      "o-l1"
+     ]
+    },
+    {
+     "id": "o-q2",
+     "q": "Czy widział pan oryginał aktu z 1946 roku?",
+     "a": "Nie, tylko kopię z akt komisji. Na kopii nie ocenię papieru, mogę mówić o piśmie i pieczęci.",
+     "claims": [
+      "o-c1"
+     ]
+    },
+    {
+     "id": "o-q3",
+     "q": "Co pan robił w czwartek wieczorem?",
+     "a": "Zjadłem kolację w pokoju i oglądałem telewizję. Koło dwudziestej trzeciej dwadzieścia dzwoniłem do recepcji po dodatkową poduszkę. Nikt nie odebrał, więc dałem spokój.",
+     "claims": [
+      "o-c3"
+     ],
+     "requires": [
+      "lie:o-l1"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "o-l1",
+     "text": "Pani Kraska zadzwoniła do mnie w piątek o 7:40, a ja przyjechałem prosto z dworca.",
+     "contradicts": [
+      "e15",
+      "x2"
+     ],
+     "response": "Dobrze, powiem prawdę. W czwartek miałem rozprawę w sądzie okręgowym. O 19:32 zadzwoniła pani Kraska: proszę zostać w Szczecinie, ekspert może jutro nie dojechać. Zarezerwowałem pokój. Wtedy nie wydało mi się to dziwne.",
+     "reveals": [
+      "o-c2"
+     ]
+    },
+    {
+     "id": "o-c1",
+     "text": "Aktu z 1946 roku nie widziałem w oryginale, tylko na kopii.",
+     "truth": true
+    },
+    {
+     "id": "o-c2",
+     "text": "W czwartek o 19:32 Kraska prosiła mnie, żebym został w Szczecinie, bo „ekspert może jutro nie dojechać”.",
+     "truth": true
+    },
+    {
+     "id": "o-c3",
+     "text": "Około 23:20 dzwoniłem z pokoju do recepcji i nikt nie odebrał.",
+     "truth": true
+    },
+    {
+     "id": "o-c4",
+     "text": "Podpis na karcie meldunkowej 214 nakreśliła inna ręka niż wzory podpisów doktora Szulca.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "o-s1",
+     "ev": "e13",
+     "a": "Porównałem z wzorami z archiwum. To nie jest ręka doktora Szulca: inny nacisk, inne połączenia liter, zupełnie inaczej stawiane „z”. Doktor zawsze pisze pełne imię. Ktoś naśladował podpis, i to naprędce.",
+     "requires": [
+      "e37"
+     ],
+     "claims": [
+      "o-c4"
+     ]
+    },
+    {
+     "id": "o-s2",
+     "ev": "e39",
+     "a": "Znak „Wieprza” na papierze z 1946 roku? Papiernia ruszyła w pięćdziesiątym pierwszym. To przesądza sprawę. Gdybym to wiedział rano, nie usiadłbym przy tym stole."
+    }
+   ]
+  },
+  {
+   "id": "marta",
+   "name": "Marta Szulc",
+   "role": "Żona zaginionego",
+   "age": 59,
+   "desc": "Przyjechała z Koszalina w dwie godziny. Nauczycielka, ściska w dłoni telefon i torebkę z zapasową insuliną. Mówi cicho i bardzo konkretnie.",
+   "deflect": [
+    "Nie wiem. Edward nie opowiadał mi o szczegółach pracy.",
+    "Proszę go znaleźć. Tylko tyle.",
+    "Nie umiem na to odpowiedzieć."
+   ],
+   "showDefault": [
+    "Nie wiem, co to jest.",
+    "Nigdy tego nie widziałam."
+   ],
+   "questions": [
+    {
+     "id": "m-q1",
+     "q": "Kiedy ostatnio miała pani kontakt z mężem?",
+     "a": "O 21:49 dostałam SMS-a: „Jestem. Pani Kraska już czeka przed dworcem, mam z nią jechać. Zadzwonię z hotelu.” Nie zadzwonił. Proszę, tu jest zrzut ekranu.",
+     "claims": [
+      "m-c3"
+     ],
+     "gives": [
+      "e44"
+     ]
+    },
+    {
+     "id": "m-q2",
+     "q": "Jak mąż wygląda? Ma pani aktualne zdjęcie?",
+     "a": "Od trzech lat nie nosi brody, goli się codziennie. To zdjęcie z jego urodzin, z lutego.",
+     "claims": [
+      "m-c1"
+     ],
+     "gives": [
+      "e42"
+     ]
+    },
+    {
+     "id": "m-q3",
+     "q": "Jak groźny jest dla niego brak insuliny?",
+     "a": "Bierze ją rano i wieczorem. Jeden wstrzykiwacz zawsze ma w teczce, zapasowe w kosmetyczce. Bez insuliny do wieczora może stracić przytomność. A jeśli ktoś dał mu coś na sen…",
+     "claims": [
+      "m-c2"
+     ]
+    },
+    {
+     "id": "m-q4",
+     "q": "Czy ktoś naciskał na męża w tej sprawie?",
+     "a": "Przyszedł list od adwokata, z propozycją pieniędzy. Edward był wściekły. Zrobiłam zdjęcie, zanim go schował.",
+     "gives": [
+      "e43"
+     ]
+    },
+    {
+     "id": "m-q5",
+     "q": "Czy mąż bywał wcześniej w hotelu „Gryf”?",
+     "a": "W październiku 2024 roku, na poprzednim posiedzeniu tej samej komisji. Narzekał na śniadania.",
+     "claims": [
+      "m-c5"
+     ]
+    },
+    {
+     "id": "m-q6",
+     "q": "Według sekretariatu mąż prosił o pokój bez okien. To możliwe?",
+     "a": "Nigdy w życiu. Edward ma klaustrofobię, w windzie jeździ z zamkniętymi oczami. Pokój bez okien to dla niego koszmar.",
+     "claims": [
+      "m-c4"
+     ],
+     "requires": [
+      "e17"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "m-c1",
+     "text": "Mąż od trzech lat nie nosi brody.",
+     "truth": true
+    },
+    {
+     "id": "m-c2",
+     "text": "Bez insuliny mąż może do wieczora stracić przytomność.",
+     "truth": true
+    },
+    {
+     "id": "m-c3",
+     "text": "O 21:49 mąż napisał: „Jestem. Pani Kraska już czeka przed dworcem, mam z nią jechać.”",
+     "truth": true
+    },
+    {
+     "id": "m-c4",
+     "text": "Mąż ma klaustrofobię. Nigdy nie prosiłby o pokój bez okien.",
+     "truth": true
+    },
+    {
+     "id": "m-c5",
+     "text": "W październiku 2024 roku mąż nocował w hotelu „Gryf”.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "m-s1",
+     "ev": "e13",
+     "a": "To nie jest jego podpis. Edward zawsze podpisuje się pełnym imieniem i nazwiskiem, od czterdziestu lat tak samo."
+    },
+    {
+     "id": "m-s2",
+     "ev": "x3",
+     "a": "Gryf-Guest… W 2024 roku telefon sam się łączył z tą siecią, Edward się dziwił. Ale tu jest trzecie piętro. Edward miał pokój na drugim. To kto trzymał jego telefon?"
+    },
+    {
+     "id": "m-s3",
+     "ev": "e14",
+     "a": "To zdjęcie z dowodu z 2018 roku. Wtedy jeszcze nosił brodę. Ogolił się na sześćdziesiąte urodziny i już nie zapuścił."
+    }
+   ]
+  }
+ ],
+ "locations": [
+  {
+   "id": "room",
+   "name": "Pokój 214",
+   "kind": "Hotel „Gryf”, II piętro, skrzydło B",
+   "desc": "Wąski pokój bez okien, oświetlony tylko lampami. Łóżko, biurko, szafa wnękowa i łazienka. Drzwi z przeciętą zasuwą stoją otworem.",
+   "spots": [
+    {
+     "id": "sp-suitcase",
+     "name": "Walizka na stojaku",
+     "text": "Szara walizka na kółkach, zamknięta na suwak.",
+     "gives": [
+      "e09"
+     ]
+    },
+    {
+     "id": "sp-bed",
+     "name": "Łóżko i łazienka",
+     "text": "Zasłane łóżko, za nim drzwi do łazienki.",
+     "gives": [
+      "e10"
+     ]
+    },
+    {
+     "id": "sp-desk",
+     "name": "Biurko",
+     "text": "Koperta z recepcji, notes, długopis.",
+     "gives": [
+      "e12"
+     ]
+    },
+    {
+     "id": "sp-wardrobe",
+     "name": "Szafa wnękowa",
+     "text": "Głęboka szafa na całą ścianę. Kilka pustych wieszaków.",
+     "gives": [
+      "e11"
+     ],
+     "requires": {
+      "all": [
+       "e24"
+      ]
+     },
+     "lockedText": "Zwykła hotelowa szafa: wieszaki, półka, sejf bez zawartości. Bez konkretnego powodu nie będziecie rozbierać mebli."
+    }
+   ]
+  },
+  {
+   "id": "reception",
+   "name": "Recepcja i hol",
+   "kind": "Parter hotelu „Gryf”",
+   "desc": "Długa lada z ciemnego drewna, za nią ekran systemu hotelowego i skaner dokumentów. W holu fotele, z boku wejście do baru.",
+   "spots": [
+    {
+     "id": "sp-card",
+     "name": "Karta meldunkowa i skaner",
+     "text": "Dokumenty z zameldowania gościa z 214.",
+     "gives": [
+      "e13",
+      "e14"
+     ]
+    },
+    {
+     "id": "sp-register",
+     "name": "Księga gości",
+     "text": "Wyciąg z systemu: kto nocował w hotelu.",
+     "gives": [
+      "e15"
+     ]
+    },
+    {
+     "id": "sp-phone",
+     "name": "Centrala telefoniczna",
+     "text": "Dziennik połączeń wewnętrznych.",
+     "gives": [
+      "e16"
+     ]
+    },
+    {
+     "id": "sp-booking",
+     "name": "Skrzynka rezerwacji",
+     "text": "Korespondencja w sprawie pokoju dla biegłego.",
+     "gives": [
+      "e17"
+     ]
+    },
+    {
+     "id": "sp-locks",
+     "name": "System zamków",
+     "text": "Eksport zdarzeń zamków na kartę.",
+     "gives": [
+      "e27"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hall",
+   "name": "Sala „Bursztynowa”",
+   "kind": "Sala konferencyjna, I piętro",
+   "desc": "Stół na dwanaście osób, karafki z wodą, rzutnik. Na krzesłach teczki uczestników. Posiedzenie przerwano o 9:40.",
+   "spots": [
+    {
+     "id": "sp-files",
+     "name": "Akta komisji",
+     "text": "Segregator z wnioskiem i kopiami dokumentów.",
+     "gives": [
+      "e19",
+      "e22"
+     ]
+    },
+    {
+     "id": "sp-rules",
+     "name": "Regulamin komisji",
+     "text": "Oprawiony regulamin przy miejscu przewodniczącego.",
+     "gives": [
+      "e20"
+     ]
+    },
+    {
+     "id": "sp-minutes",
+     "name": "Notatki protokolanta",
+     "text": "Zapis pierwszych czterdziestu minut posiedzenia.",
+     "gives": [
+      "e21"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tech",
+   "name": "Dział techniczny",
+   "kind": "Piwnica hotelu",
+   "desc": "Pokój kierownika technicznego, regały z segregatorami i szafka na klucze. Zbigniew Wrona pracuje w hotelu od trzydziestu lat.",
+   "spots": [
+    {
+     "id": "sp-plans",
+     "name": "Archiwum planów",
+     "text": "Teczki z planami budynku i dokumentacją remontów.",
+     "gives": [
+      "e23",
+      "e24"
+     ]
+    },
+    {
+     "id": "sp-invoice",
+     "name": "Archiwum faktur",
+     "text": "Segregatory z fakturami za remonty.",
+     "gives": [
+      "e25"
+     ]
+    },
+    {
+     "id": "sp-exit",
+     "name": "Kontroler drzwi służbowych",
+     "text": "Panel z dziennikiem wyjść personelu.",
+     "gives": [
+      "e26"
+     ]
+    },
+    {
+     "id": "sp-keys",
+     "name": "Szafka z kluczami",
+     "text": "Klucze techniczne i zeszyt wydań.",
+     "gives": [
+      "e28"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "service",
+   "name": "Korytarz gospodarczy i klatka B",
+   "kind": "Zaplecze hotelu",
+   "desc": "Wąski korytarz za pokojami, rury pod sufitem, stare drzwi rewizyjne. Na końcu klatka schodowa personelu, a na dole palarnia przy wyjściu służbowym.",
+   "spots": [
+    {
+     "id": "sp-m2",
+     "name": "Drzwi M2 od korytarza",
+     "text": "Stalowe drzwi w ścianie korytarza, za pokojem 214.",
+     "gives": [
+      "e29"
+     ]
+    },
+    {
+     "id": "sp-stairs",
+     "name": "Klatka schodowa B",
+     "text": "Betonowe schody, kaloryfery na podestach.",
+     "gives": [
+      "e31"
+     ]
+    },
+    {
+     "id": "sp-smoke",
+     "name": "Palarnia personelu",
+     "text": "Mała wiata przy wyjściu B.",
+     "gives": [
+      "e30"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bar",
+   "name": "Bar „Kotwica”",
+   "kind": "Parter hotelu",
+   "desc": "Ciemne drewno, mosiężne lampy, kilka stolików. Z baru widać kawałek holu.",
+   "spots": [
+    {
+     "id": "sp-bills",
+     "name": "Kasa fiskalna",
+     "text": "Rachunki z czwartkowego wieczoru.",
+     "gives": [
+      "e32"
+     ]
+    },
+    {
+     "id": "sp-barman",
+     "name": "Barman",
+     "text": "Rafał Czajka miał czwartkową zmianę.",
+     "gives": [
+      "e33"
+     ]
+    },
+    {
+     "id": "sp-rs",
+     "name": "Zamówienia room service",
+     "text": "Kuchnia prowadzi zeszyt zamówień do pokojów.",
+     "gives": [
+      "e34"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "archive",
+   "name": "Archiwum w Koszalinie",
+   "kind": "Wideorozmowa z gabinetem dr. Szulca",
+   "desc": "Na ekranie gabinet z regałami teczek i lampą z zieloną szybką. Przy biurku zastępczyni dr. Szulca, Joanna Kurek, pokazuje wam to, o co poprosicie.",
+   "spots": [
+    {
+     "id": "sp-notes",
+     "name": "Biurko dr. Szulca",
+     "text": "Monitor obklejony karteczkami.",
+     "gives": [
+      "e35"
+     ]
+    },
+    {
+     "id": "sp-catalog",
+     "name": "Kartoteka znaków wodnych",
+     "text": "Szuflady z kartami katalogowymi papierni.",
+     "gives": [
+      "e45"
+     ]
+    },
+    {
+     "id": "sp-mail",
+     "name": "Skrzynka służbowa",
+     "text": "Wysłane wiadomości i załączniki.",
+     "gives": [
+      "e36",
+      "e38"
+     ]
+    },
+    {
+     "id": "sp-sign",
+     "name": "Teczka korespondencji",
+     "text": "Pisma podpisane przez dr. Szulca.",
+     "gives": [
+      "e37"
+     ]
+    },
+    {
+     "id": "sp-pdf",
+     "name": "Projekt opinii",
+     "text": "Plik otwarty hasłem.",
+     "gives": [
+      "e39"
+     ],
+     "requires": {
+      "puzzle": "p-pdf"
+     },
+     "lockedText": "Plik jest zaszyfrowany. Bez czterocyfrowego hasła go nie otworzycie."
+    }
+   ]
+  },
+  {
+   "id": "parking",
+   "name": "Parking za hotelem",
+   "kind": "Szlaban z kamerą ANPR",
+   "desc": "Kilkanaście miejsc za budynkiem, szlaban z kamerą odczytującą tablice. Wzdłuż ściany wąska alejka do wyjścia służbowego.",
+   "spots": [
+    {
+     "id": "sp-anpr",
+     "name": "Szlaban i kamera",
+     "text": "Rejestr wjazdów i wyjazdów.",
+     "gives": [
+      "e18"
+     ]
+    },
+    {
+     "id": "sp-lane",
+     "name": "Alejka za hotelem",
+     "text": "Trzydzieści metrów do wyjścia B.",
+     "gives": [
+      "e41"
+     ]
+    },
+    {
+     "id": "sp-car",
+     "name": "Samochód Iwony Kraski",
+     "text": "Granatowa toyota na miejscu numer 7.",
+     "gives": [
+      "e40"
+     ],
+     "requires": {
+      "all": [
+       "lie:k-l1"
+      ]
+     },
+     "lockedText": "Samochód sekretarz komisji. Bez podstaw prokurator nie zgodzi się na przeszukanie. Najpierw wykażcie, że jego właścicielka kłamie o czwartkowym wieczorze."
+    }
+   ]
+  }
+ ],
+ "evidence": [
+  {
+   "id": "e01",
+   "type": "Raport",
+   "title": "Zgłoszenie zaginięcia",
+   "summary": "Piątek, 10:20. Pierwsze ustalenia patrolu w hotelu „Gryf”.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Miejsce",
+       "Hotel „Gryf”, ul. Panieńska 22, Szczecin — pokój 214 (II piętro)"
+      ],
+      [
+       "Zgłaszająca",
+       "mec. Ewa Dąbrowska, radca prawny Urzędu Miasta, piątek 10:05"
+      ],
+      [
+       "Zaginiony",
+       "dr Edward Szulc, 63 l., kierownik Oddziału Zbiorów Notarialnych Archiwum Państwowego w Koszalinie"
+      ],
+      [
+       "Ostatni ślad",
+       "zameldowanie w recepcji, czwartek 12.03, 23:05"
+      ]
+     ]
+    },
+    "Dr Szulc przyjechał do Szczecina jako biegły na zamknięte posiedzenie Komisji Ugodowej ds. Roszczeń Reprywatyzacyjnych, wyznaczone na piątek 9:00 w sali „Bursztynowej” hotelu. Na posiedzenie nie przyszedł. Pokój 214 był zamknięty od środka na zasuwę, a po jej przecięciu okazał się pusty.",
+    "Rozpytanie gości II piętra: Marek Banaś (pokój 216, obok 214) około 23:20 słyszał za ścianą metaliczne trzaśnięcie, „jak drzwi przeciwpożarowe”. Pozostali goście niczego nie zauważyli.",
+    {
+     "note": "Pokój 214 nie ma okien. Jedyne wejście z korytarza to drzwi z zamkiem na kartę."
+    }
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-03-13 10:05",
+     "Mec. Dąbrowska zgłasza zaginięcie dr. Szulca",
+     "Zgłoszenie"
+    ],
+    [
+     "2026-03-12 23:20",
+     "Gość z 216 słyszy za ścianą metaliczne trzaśnięcie",
+     "Zgłoszenie"
+    ]
+   ]
+  },
+  {
+   "id": "e02",
+   "type": "Zlecenie",
+   "title": "Polecenie prokuratora",
+   "summary": "Szukać człowieka, nie tylko sprawcy.",
+   "body": [
+    {
+     "quote": "Sześćdziesięciotrzyletni biegły znika z zamkniętego pokoju w noc przed posiedzeniem, na którym ważą się miliony. Nie interesuje mnie, czy uciekł, czy go porwano — chcę wiedzieć, gdzie jest. Macie dostęp do baz danych i do hotelu. Raport do wieczora.",
+     "by": "prok. Anna Wilk, Prokuratura Rejonowa Szczecin-Śródmieście"
+    },
+    {
+     "kv": [
+      [
+       "Zakres",
+       "miejsce pobytu dr. Szulca; sprawcy i pomocnicy; sposób opuszczenia pokoju 214; usunięcie biegłego z listy uczestników"
+      ],
+      [
+       "Dostęp",
+       "rejestry PESEL, CEPiK, KRS, EKW"
+      ]
+     ]
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e03",
+   "type": "Notatka",
+   "title": "Rozmowa z żoną zaginionego",
+   "summary": "Marta Szulc, telefon do hotelu o 9:58.",
+   "body": [
+    "Hotel zadzwonił do Marty Szulc jako osoby kontaktowej. Żona mówi, że mąż choruje na cukrzycę i bierze insulinę rano i wieczorem. Ostatnią dawkę przyjął w czwartek około 19:00, w pociągu. Bez insuliny jego stan pogorszy się w ciągu doby.",
+    "Marta Szulc wyjechała z Koszalina samochodem. Będzie w hotelu około 12:40 i jest gotowa odpowiadać na pytania."
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-03-12 19:00",
+     "Szulc przyjmuje ostatnią dawkę insuliny w pociągu",
+     "Notatka z rozmowy z żoną"
+    ]
+   ]
+  },
+  {
+   "id": "e04",
+   "type": "Dokument",
+   "title": "Lista uczestników — wersja ze środy",
+   "summary": "Rozesłana uczestnikom 11.03 o 16:05.",
+   "body": [
+    "Komisja Ugodowa ds. Roszczeń Reprywatyzacyjnych przy Prezydencie Miasta Szczecin. Posiedzenie zamknięte, 13.03.2026, godz. 9:00, Hotel „Gryf”, sala „Bursztynowa”. Sprawa: wniosek Heleny Rudnickiej-Lange o zwrot nieruchomości przy ul. Wielkopolskiej 21.",
+    {
+     "kv": [
+      [
+       "Przewodniczący",
+       "Tadeusz Rogalski, sędzia w stanie spoczynku"
+      ],
+      [
+       "Sekretarz komisji",
+       "Iwona Kraska"
+      ],
+      [
+       "Za Gminę Miasto Szczecin",
+       "mec. Ewa Dąbrowska, radca prawny"
+      ],
+      [
+       "Pełnomocnik wnioskodawczyni",
+       "mec. Adrian Kosowski, adwokat"
+      ],
+      [
+       "Biegły",
+       "dr Edward Szulc, Archiwum Państwowe w Koszalinie"
+      ],
+      [
+       "Członkowie komisji",
+       "trzy osoby z Urzędu Miasta"
+      ]
+     ]
+    },
+    {
+     "note": "Rozesłała: Iwona Kraska, sekretariat komisji."
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e05",
+   "type": "Dokument",
+   "title": "Lista uczestników — wydruk z piątku",
+   "summary": "Wyłożona w sali „Bursztynowej” przed posiedzeniem.",
+   "body": [
+    "Ta sama lista co w środę, z jedną różnicą: nie ma na niej biegłego dr. Edwarda Szulca. W jego miejscu wpisano: „Biegły: dr Lech Morawiec (zastępstwo, § 9 ust. 3 regulaminu)”.",
+    {
+     "log": [
+      "Lista_uczestnikow_v3.docx",
+      "ostatni zapis:  12.03.2026 23:58",
+      "autor zapisu: ikraska",
+      "wydruk:  13.03.2026 07:31, drukarka centrum biznesowego"
+     ]
+    },
+    {
+     "note": "Stopka wydruku pochodzi z drukarki hotelu. Poprzednia wersja pliku (v2) była zapisana 11.03 o 15:40."
+    }
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-03-12 23:58",
+     "Ostatni zapis listy uczestników bez Szulca (plik v3, autor: ikraska)",
+     "Stopka wydruku listy"
+    ],
+    [
+     "2026-03-13 07:31",
+     "Wydruk listy bez Szulca w centrum biznesowym",
+     "Stopka wydruku listy"
+    ]
+   ]
+  },
+  {
+   "id": "e06",
+   "type": "Korespondencja",
+   "title": "E-mail „rezygnuję”",
+   "summary": "Wiadomość ze skrzynki dr. Szulca, czwartek 23:50.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Od",
+       "e.szulc@archiwum-kz.pl"
+      ],
+      [
+       "Do",
+       "sekretariat komisji (I. Kraska)"
+      ],
+      [
+       "Wysłano",
+       "12.03.2026, 23:50"
+      ],
+      [
+       "Temat",
+       "rezygnacja"
+      ]
+     ]
+    },
+    {
+     "quote": "Rezygnuję z udziału w posiedzeniu. Proszę mnie nie szukać. E.S.",
+     "by": "treść wiadomości"
+    },
+    "Iwona Kraska przekazała wiadomość członkom komisji w piątek o 8:50, na sali."
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-03-12 23:50",
+     "Ze skrzynki Szulca wychodzi mail z rezygnacją",
+     "E-mail"
+    ]
+   ]
+  },
+  {
+   "id": "e07",
+   "type": "Protokół",
+   "title": "Protokół otwarcia pokoju 214",
+   "summary": "Piątek, 9:47, w obecności dyrektora hotelu.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Obecni",
+       "Krzysztof Sowa (dyrektor hotelu), Zbigniew Wrona (kierownik techniczny), mec. Ewa Dąbrowska"
+      ],
+      [
+       "9:41",
+       "karta MASTER-02 — zamek odmawia otwarcia (zasunięta zasuwa wewnętrzna)"
+      ],
+      [
+       "9:47",
+       "Wrona przecina zasuwę od strony korytarza i otwiera drzwi"
+      ]
+     ]
+    },
+    "Pokój pusty. Łóżko zasłane, walizka na stojaku. W pokoju nie ma okien, jest tylko kratka wentylacji mechanicznej 20 × 20 cm pod sufitem, przykręcona czterema śrubami, nienaruszona. Nikt nie ukrywał się w łazience ani w szafie."
+   ],
+   "start": true,
+   "time": [
+    [
+     "2026-03-13 09:47",
+     "Technik przecina zasuwę 214 — pokój pusty",
+     "Protokół otwarcia"
+    ]
+   ]
+  },
+  {
+   "id": "e09",
+   "type": "Oględziny",
+   "title": "Walizka w pokoju 214",
+   "summary": "Szara walizka na kółkach na stojaku.",
+   "body": [
+    "W walizce: dwie koszule, sweter, bielizna, kosmetyczka. W kosmetyczce glukometr i dwa zapasowe wstrzykiwacze z insuliną, oba pełne. Na wierzchu teczka z kopiami regulaminu komisji.",
+    "Brak: telefonu, portfela, dowodu osobistego, płaszcza i kapelusza. Brak także skórzanej teczki na dokumenty.",
+    {
+     "note": "Wstrzykiwacze leżą w kosmetyczce, której nikt nie otwierał — suwak zapięty, w środku metka z apteki."
+    }
+   ]
+  },
+  {
+   "id": "e10",
+   "type": "Oględziny",
+   "title": "Łóżko i łazienka",
+   "summary": "Pokój wygląda, jakby nikt w nim nie spał.",
+   "body": [
+    "Narzuta zasłana, poduszki nietknięte. Ręczniki w łazience suche i złożone. Mydełka i szampony hotelowe zamknięte. Czajnik pusty i zimny, kubki czyste.",
+    "Na podłodze przy drzwiach wilgotne smugi po butach, już prawie wyschnięte. W czwartek od 21:00 w Szczecinie padał deszcz."
+   ]
+  },
+  {
+   "id": "e11",
+   "type": "Oględziny",
+   "title": "Szafa wnękowa — tylna ściana",
+   "summary": "Za szafą są drugie drzwi.",
+   "body": [
+    "Tylna ściana szafy to płyta na czterech zatrzaskach. Zdejmuje się ją ręką, bez narzędzi. Za nią są stalowe drzwi z wkładką na klucz, zamknięte. Klamki od strony pokoju brak — jest tylko pokrętło zamka.",
+    "Na dnie szafy drobny pył gipsowy, a przy jednym z zatrzasków świeże zarysowanie. Wieszaki zsunięte na jedną stronę drążka.",
+    {
+     "note": "Pokrętłem od strony pokoju drzwi da się otworzyć, ale zamknąć od zewnątrz można je tylko kluczem."
+    }
+   ]
+  },
+  {
+   "id": "e12",
+   "type": "Oględziny",
+   "title": "Biurko w pokoju 214",
+   "summary": "Koperta z recepcji i hotelowy notes.",
+   "body": [
+    "Na biurku koperta recepcji z drugą kartą do pokoju: „214-B”. Karta nieużywana. Notes hotelowy czysty, bez odcisków pisma na pierwszej kartce. Długopis w etui."
+   ]
+  },
+  {
+   "id": "e13",
+   "type": "Dokument",
+   "title": "Karta meldunkowa — pokój 214",
+   "summary": "Wypełniona w czwartek o 23:05.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Gość",
+       "Edward Szulc"
+      ],
+      [
+       "Dokument tożsamości",
+       "dowód osobisty CGB 741827"
+      ],
+      [
+       "Przyjazd",
+       "12.03.2026, 23:05, pieszo"
+      ],
+      [
+       "Pojazd",
+       "— (brak)"
+      ],
+      [
+       "Rezerwacja",
+       "Komisja Ugodowa (płatnik: Urząd Miasta), zamówiła I. Kraska"
+      ],
+      [
+       "Przyjął",
+       "B. Lis"
+      ],
+      [
+       "Podpis gościa",
+       "„E. Szulc”"
+      ]
+     ]
+    },
+    "Podpis nakreślony szybko, pochylonym pismem: duże „E”, kropka i nazwisko. Wydano dwie karty: 214-A (gość) i 214-B (w kopercie do pokoju)."
+   ],
+   "time": [
+    [
+     "2026-03-12 23:05",
+     "„Edward Szulc” melduje się w recepcji, przyjął B. Lis",
+     "Karta meldunkowa"
+    ]
+   ]
+  },
+  {
+   "id": "e14",
+   "type": "Dokument",
+   "title": "Skan dowodu osobistego gościa",
+   "summary": "Skaner w recepcji, 23:05.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Nazwisko i imię",
+       "SZULC EDWARD"
+      ],
+      [
+       "Seria i numer",
+       "CGB 741827"
+      ],
+      [
+       "Data wydania",
+       "10.04.2018"
+      ],
+      [
+       "Data ważności",
+       "10.04.2028"
+      ]
+     ]
+    },
+    "Zdjęcie na dowodzie przedstawia mężczyznę około pięćdziesięciu pięciu lat, w okularach, z krótką, siwiejącą brodą."
+   ]
+  },
+  {
+   "id": "e15",
+   "type": "Rejestr",
+   "title": "Księga gości — noc z 12 na 13 marca",
+   "summary": "System recepcji, wyciąg dla policji.",
+   "body": [
+    {
+     "log": [
+      "105  Laskowski Wojciech      zam. 12.03 17:10  poj. GD 2LM47",
+      "112  Michalak Piotr, Anna     zam. 12.03 19:05  poj. PO 51RT3",
+      "118  Morawiec Lech           zam. 12.03 21:20  —         rez. 12.03 19:40 (online), tel. 512 300 846",
+      "121  Sobolewska Kinga        zam. 12.03 16:30  —",
+      "203  Ratajczak Tomasz        zam. 12.03 18:55  poj. DW 6TK02",
+      "207  Fijałkowski Grzegorz    zam. 12.03 20:10  poj. ZK 40112",
+      "214  Szulc Edward            zam. 12.03 23:05  —         rez. 05.03 (I. Kraska)",
+      "216  Banaś Marek             zam. 12.03 22:20  poj. KR 7PW15",
+      "305  Kraska Iwona            zam. 12.03 18:22  poj. ZS 3K118",
+      "309  Kosowski Adrian         zam. 12.03 19:40  —",
+      "312  Kmiecik Bożena          zam. 12.03 21:05  poj. LU 204CK"
+     ]
+    },
+    {
+     "note": "Zameldowania od 22:00 przyjmował nocny recepcjonista Bartosz Lis. Wcześniejsze — zmiana dzienna. Goście podają numer rejestracyjny, jeśli korzystają z parkingu."
+    }
+   ],
+   "time": [
+    [
+     "2026-03-12 21:20",
+     "Morawiec melduje się w hotelu (rezerwacja online z 19:40)",
+     "Księga gości"
+    ],
+    [
+     "2026-03-12 22:20",
+     "Lis melduje M. Banasia w pokoju 216",
+     "Księga gości"
+    ]
+   ]
+  },
+  {
+   "id": "e16",
+   "type": "Rejestr",
+   "title": "Dziennik centrali telefonicznej",
+   "summary": "Połączenia wewnętrzne do recepcji, noc 12/13.03.",
+   "body": [
+    {
+     "log": [
+      "22:10  pok. 118 → room service    odebrane   0:48",
+      "22:47  pok. 312 → recepcja        odebrane   0:21",
+      "23:22  pok. 118 → recepcja        NIEODEBRANE (sygnał 60 s)",
+      "23:41  pok. 207 → recepcja        odebrane   0:35",
+      "06:15  pok. 203 → recepcja        odebrane   0:40"
+     ]
+    },
+    {
+     "note": "Recepcja ma jeden aparat na ladzie. Nocą nie ma przekierowania na telefon komórkowy."
+    }
+   ],
+   "time": [
+    [
+     "2026-03-12 23:22",
+     "Telefon z pokoju 118 do recepcji — nikt nie odbiera",
+     "Dziennik centrali"
+    ]
+   ]
+  },
+  {
+   "id": "e17",
+   "type": "Korespondencja",
+   "title": "Rezerwacja pokoju dla biegłego",
+   "summary": "E-mail Iwony Kraski do hotelu, 5 marca.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Od",
+       "I. Kraska, sekretariat Komisji Ugodowej"
+      ],
+      [
+       "Do",
+       "rezerwacje, Hotel „Gryf”"
+      ],
+      [
+       "Data",
+       "05.03.2026, 11:12"
+      ]
+     ]
+    },
+    {
+     "quote": "Dla biegłego, dr. Edwarda Szulca, proszę o pokój 214, przyjazd 12.03 wieczorem, jedna noc. Doktor prosi o pokój cichy, bez okien od ulicy. Płatnik: Urząd Miasta.",
+     "by": "treść wiadomości"
+    },
+    {
+     "note": "Recepcja: pokój 214 jest jedynym pokojem w hotelu bez okien. Zwykle sprzedajemy go jako ostatni."
+    }
+   ]
+  },
+  {
+   "id": "e27",
+   "type": "Rejestr",
+   "title": "Zdarzenia zamków na kartę",
+   "summary": "Eksport systemu zamków, wybrane drzwi.",
+   "body": [
+    {
+     "log": [
+      "12.03 18:31:10  305           karta 305-A          otwarcie",
+      "12.03 20:04:22  centrum bizn.  karta 305-A          otwarcie",
+      "12.03 21:24:05  118           karta 118-A          otwarcie",
+      "12.03 22:44:16  centrum bizn.  karta 305-A          otwarcie",
+      "12.03 23:02:55  305           karta 305-A          otwarcie",
+      "12.03 23:05:31  recepcja      karta 214-A, 214-B   zakodowane (B. Lis)",
+      "12.03 23:09:14  214           karta 214-A          otwarcie",
+      "12.03 23:13:40  214           zasuwa wewnętrzna    ZAŁĄCZONA",
+      "13.03 09:41:02  214           karta MASTER-02      ODMOWA (zasuwa)"
+     ]
+    },
+    {
+     "note": "Zamki zapisują otwarcia kartą oraz załączenie i zwolnienie zasuwy. Wyjścia z pokoju bez użycia karty nie są zapisywane. Po 23:13:40 drzwi 214 nie zarejestrowały żadnego zdarzenia aż do rana."
+    }
+   ],
+   "time": [
+    [
+     "2026-03-12 23:09",
+     "Drzwi 214 otwarte kartą 214-A",
+     "Zamki na kartę"
+    ],
+    [
+     "2026-03-12 23:13",
+     "W 214 załączona zasuwa wewnętrzna — drzwi nie otwierają się do rana",
+     "Zamki na kartę"
+    ]
+   ]
+  },
+  {
+   "id": "e18",
+   "type": "Rejestr",
+   "title": "Rejestr szlabanu parkingu (ANPR)",
+   "summary": "Kamera odczytuje tablice przy wjeździe i wyjeździe.",
+   "body": [
+    {
+     "log": [
+      "12.03 17:10  WJAZD  GD 2LM47",
+      "12.03 18:22  WJAZD  ZS 3K118",
+      "12.03 18:55  WJAZD  DW 6TK02",
+      "12.03 19:05  WJAZD  PO 51RT3",
+      "12.03 20:10  WJAZD  ZK 40112",
+      "12.03 21:05  WJAZD  LU 204CK",
+      "12.03 21:36  WYJAZD ZS 3K118",
+      "12.03 22:20  WJAZD  KR 7PW15",
+      "12.03 22:41  WJAZD  ZS 3K118",
+      "12.03 22:58  WJAZD  ZS 7PR04",
+      "12.03 23:31  WYJAZD ZS 7PR04",
+      "13.03 05:40  WJAZD  ZPL 4C71",
+      "13.03 05:52  WYJAZD ZPL 4C71",
+      "13.03 05:55  WJAZD  ZS 86HE4",
+      "13.03 06:50  WYJAZD DW 6TK02",
+      "13.03 07:45  WJAZD  ZS 12KA7",
+      "13.03 08:10  WYJAZD GD 2LM47"
+     ]
+    },
+    {
+     "note": "Parking jest za hotelem. Szlaban otwiera się automatycznie każdemu pojazdowi. Kamera zapisuje tylko numer i godzinę."
+    }
+   ],
+   "time": [
+    [
+     "2026-03-12 21:36",
+     "Samochód ZS 3K118 wyjeżdża z parkingu",
+     "ANPR"
+    ],
+    [
+     "2026-03-12 22:41",
+     "ZS 3K118 wraca na parking",
+     "ANPR"
+    ],
+    [
+     "2026-03-12 22:58",
+     "Wjeżdża ZS 7PR04",
+     "ANPR"
+    ],
+    [
+     "2026-03-12 23:31",
+     "Wyjeżdża ZS 7PR04",
+     "ANPR"
+    ]
+   ]
+  },
+  {
+   "id": "e41",
+   "type": "Oględziny",
+   "title": "Dojazd za hotelem",
+   "summary": "Wąska alejka między parkingiem a wyjściem służbowym.",
+   "body": [
+    "Alejka prowadzi od parkingu wzdłuż tylnej ściany hotelu do wyjścia służbowego B — około trzydziestu metrów. Nad wyjściem jest lampa, ale kamera nad drzwiami nie działa od lutego (zgłoszenie serwisowe z 9.02, czeka na część).",
+    "Z okna palarni personelu widać alejkę i kilka ostatnich miejsc parkingowych."
+   ]
+  },
+  {
+   "id": "e40",
+   "type": "Oględziny",
+   "title": "Samochód Iwony Kraski",
+   "summary": "Toyota Corolla, ZS 3K118, przeszukana za zgodą prokuratora.",
+   "body": [
+    "Pod fotelem pasażera, wciśnięty między szyny: bilet kolejowy PKP Intercity, IC 38170 „Parsęta”, Koszalin 19:27 → Szczecin Główny 21:47, 12.03.2026, wagon 6, miejsce 45. Bilet imienny: Edward Szulc.",
+    "Na dywaniku po stronie pasażera zaschnięte ślady błota. W bagażniku parasol i torba z wydrukami materiałów komisji."
+   ]
+  },
+  {
+   "id": "e19",
+   "type": "Dokument",
+   "title": "Wniosek Heleny Rudnickiej-Lange",
+   "summary": "Streszczenie z akt komisji.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Nieruchomość",
+       "kamienica, ul. Wielkopolska 21, Szczecin, KW SZ1S/00045218/0"
+      ],
+      [
+       "Wartość według operatu",
+       "38,4 mln zł"
+      ],
+      [
+       "Podstawa roszczenia",
+       "akt nadania własności z 14.09.1946 dla Karola Rudnickiego, wydany przez Zarząd Miejski w Szczecinie"
+      ],
+      [
+       "Wnioskodawczyni",
+       "Helena Rudnicka-Lange (79 l., Hamburg), córka Karola Rudnickiego"
+      ],
+      [
+       "Cesjonariusz roszczenia",
+       "Restytucja Pomorska sp. z o.o. (umowa cesji z 07.02.2022)"
+      ],
+      [
+       "Pełnomocnik",
+       "mec. Adrian Kosowski"
+      ]
+     ]
+    },
+    "Komisja może zawrzeć ugodę: zwrot kamienicy albo odszkodowanie. Wszystko zależy od tego, czy akt z 1946 roku jest autentyczny. Oceny miał dokonać biegły z archiwum, które przechowuje oryginał."
+   ]
+  },
+  {
+   "id": "e20",
+   "type": "Dokument",
+   "title": "Regulamin komisji — § 9",
+   "summary": "Kto opiniuje dokumenty i co, gdy biegły nie przyjdzie.",
+   "body": [
+    {
+     "quote": "§ 9 ust. 3. W razie nieobecności biegłego sekretarz komisji może zaproponować innego biegłego z listy biegłych sądowych. Komisja rozstrzyga sprawę na podstawie opinii biegłego obecnego na posiedzeniu.",
+     "by": "Regulamin Komisji Ugodowej"
+    },
+    {
+     "note": "Ugoda zawarta na posiedzeniu jest wykonalna po podpisie prezydenta miasta. Termin: 14 dni."
+    }
+   ]
+  },
+  {
+   "id": "e21",
+   "type": "Protokół",
+   "title": "Notatka z piątkowego posiedzenia",
+   "summary": "Od 8:55 do przerwy o 9:40.",
+   "body": [
+    "8:55 — sekretarz komisji Iwona Kraska informuje, że dr Szulc zrezygnował w nocy mailem, i proponuje biegłego dr. Lecha Morawca (§ 9 ust. 3). Dr Morawiec jest obecny na sali.",
+    "9:05 — mec. Dąbrowska sprzeciwia się i żąda sprawdzenia pokoju dr. Szulca. Mec. Kosowski wnosi o kontynuowanie posiedzenia z nowym biegłym.",
+    "9:20 — recepcja nie może się dodzwonić do pokoju 214. 9:40 — przewodniczący zarządza przerwę do wyjaśnienia sprawy."
+   ],
+   "time": [
+    [
+     "2026-03-13 08:55",
+     "Kraska ogłasza rezygnację Szulca i proponuje Morawca",
+     "Notatka z posiedzenia"
+    ]
+   ]
+  },
+  {
+   "id": "e22",
+   "type": "Dokument",
+   "title": "Kopia aktu nadania z 1946",
+   "summary": "Kserokopia z akt komisji. Oryginał jest w Koszalinie.",
+   "body": [
+    "Akt nadania własności nieruchomości przy ul. Wielkopolskiej 21 dla Karola Rudnickiego, datowany 14.09.1946, z pieczęcią Zarządu Miejskiego w Szczecinie i podpisem wiceprezydenta miasta.",
+    {
+     "note": "Na kopii widać tylko zarys znaku wodnego w rogu karty — kilka liter, nieczytelne. Ocena papieru wymaga oryginału."
+    }
+   ]
+  },
+  {
+   "id": "e23",
+   "type": "Plan",
+   "title": "Plan II piętra z 1974 roku",
+   "summary": "Archiwum techniczne hotelu.",
+   "body": [
+    "Skrzydło B, II piętro. Pokoje 210–213 i 215–216 od strony ulicy. Między 213 a 215 pomieszczenie bez okien opisane jako „magazyn bielizny”. Magazyn ma dwoje drzwi: od korytarza gościnnego i drugie, oznaczone M2, do korytarza gospodarczego biegnącego za pokojami do klatki schodowej B.",
+    {
+     "note": "Klatka B to schody personelu. Na parterze kończy się wyjściem służbowym na tył budynku."
+    }
+   ]
+  },
+  {
+   "id": "e24",
+   "type": "Dokument",
+   "title": "Dokumentacja adaptacji z 2019 roku",
+   "summary": "Opis powykonawczy: magazyn → pokój 214.",
+   "body": [
+    {
+     "quote": "Adaptacja magazynu bielizny na pokój hotelowy nr 214 (bez okien, wentylacja mechaniczna). Drzwi M2 do korytarza gospodarczego pozostawiono jako drzwi rewizyjne (dostęp do pionów wod.-kan.), zakryte tylną ścianą szafy wnękowej, demontowaną bez narzędzi. Drzwi zamykane na klucz od strony korytarza. Klucz R-2 w szafce technicznej.",
+     "by": "opis powykonawczy, wrzesień 2019"
+    },
+    {
+     "kv": [
+      [
+       "Wykonawca",
+       "PB Pietras Budownictwo sp. z o.o., Police"
+      ],
+      [
+       "Kierownik robót",
+       "D. Pietras"
+      ],
+      [
+       "Odbiór",
+       "Zbigniew Wrona, kierownik techniczny hotelu"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e25",
+   "type": "Dokument",
+   "title": "Faktura za adaptację pokoju 214",
+   "summary": "Archiwum księgowe hotelu, 2019.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Faktura",
+       "VAT nr 47/2019 z 30.09.2019"
+      ],
+      [
+       "Sprzedawca",
+       "PB Pietras Budownictwo sp. z o.o., ul. Fabryczna 3, 72-010 Police"
+      ],
+      [
+       "NIP sprzedawcy",
+       "8512047718"
+      ],
+      [
+       "Nabywca",
+       "Hotel Gryf sp. z o.o."
+      ],
+      [
+       "Usługa",
+       "adaptacja pom. gospodarczego II p. na pokój hotelowy nr 214 wraz z zabudową szafy i drzwiami rewizyjnymi"
+      ],
+      [
+       "Kwota",
+       "86 400 zł brutto"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "e26",
+   "type": "Rejestr",
+   "title": "Wyjście służbowe B — dziennik drzwi",
+   "summary": "Kontroler drzwi na parterze klatki B.",
+   "body": [
+    {
+     "log": [
+      "12.03 21:58:02  otwarcie kartą     K. Nowicka (kelnerka)",
+      "12.03 23:24:51  otwarcie przyciskiem wyjścia (od wewnątrz)",
+      "13.03 05:31:40  otwarcie kartą     P. Krupa (kucharz)",
+      "13.03 06:12:19  otwarcie przyciskiem wyjścia (od wewnątrz)"
+     ]
+    },
+    {
+     "note": "Od zewnątrz drzwi otwiera tylko karta personelu. Od środka wystarczy przycisk — bez alarmu, bez karty."
+    }
+   ],
+   "time": [
+    [
+     "2026-03-12 23:24",
+     "Ktoś wychodzi wyjściem służbowym B (przycisk od środka)",
+     "Dziennik drzwi B"
+    ]
+   ]
+  },
+  {
+   "id": "e28",
+   "type": "Oględziny",
+   "title": "Szafka z kluczami technicznymi",
+   "summary": "Pokój kierownika technicznego.",
+   "body": [
+    "Klucz R-2 wisi na swoim haczyku. W zeszycie wydań ostatni wpis przy R-2: 14.01.2025, hydraulik, zwrot tego samego dnia.",
+    "Kierownik techniczny Wrona: „Zamek w M2 to zwykła wkładka. Dorobienie klucza zajmuje ślusarzowi pięć minut. Kopie mógł mieć każdy, kto przy tym robił.”"
+   ]
+  },
+  {
+   "id": "e29",
+   "type": "Oględziny",
+   "title": "Drzwi M2 od strony korytarza",
+   "summary": "Korytarz gospodarczy za pokojami 210–216.",
+   "body": [
+    "Korytarz jest zakurzony i rzadko używany. Klamka i szyld drzwi M2 są czyste, a na posadzce przed drzwiami kurz jest starty w kształt półokręgu — drzwi niedawno otwierano. Drzwi zamknięte na klucz.",
+    "Od M2 do klatki B jest dwanaście metrów."
+   ]
+  },
+  {
+   "id": "e31",
+   "type": "Przedmiot",
+   "title": "Karta hotelowa na klatce B",
+   "summary": "Podest między I a II piętrem, pod kaloryferem.",
+   "body": [
+    "Biała karta z nadrukiem „Hotel Gryf · 214”. Recepcja odczytała ją czytnikiem: karta 214-A, zakodowana w czwartek o 23:05:31, użyta raz — o 23:09:14 przy drzwiach 214."
+   ]
+  },
+  {
+   "id": "e30",
+   "type": "Oględziny",
+   "title": "Palarnia personelu",
+   "summary": "Mała wiata na tyłach, przy wyjściu B.",
+   "body": [
+    "W popielniczce kilkanaście niedopałków tej samej marki, część świeża. Na parapecie kubek z nadrukiem „BARTEK” z resztką zimnej kawy.",
+    "Z palarni widać alejkę, wyjście służbowe B i koniec parkingu."
+   ]
+  },
+  {
+   "id": "e32",
+   "type": "Rejestr",
+   "title": "Rachunki baru „Kotwica”",
+   "summary": "Kasa fiskalna, czwartek wieczorem.",
+   "body": [
+    {
+     "log": [
+      "21:04  stolik 4   rachunek pok. 309  piwo, woda",
+      "21:36  stolik 2   gotówka            herbata x2",
+      "22:31  stolik 4   rachunek pok. 309  whisky, orzeszki",
+      "23:47  stolik 4   rachunek pok. 309  whisky",
+      "00:22  stolik 4   rachunek pok. 309  zamknięcie rachunku, podpis A. Kosowski"
+     ]
+    },
+    {
+     "note": "Bar jest na parterze, obok holu. Czynny do 0:30."
+    }
+   ],
+   "time": [
+    [
+     "2026-03-12 21:04",
+     "Kosowski zaczyna wieczór w barze (rachunek pok. 309)",
+     "Rachunki baru"
+    ]
+   ]
+  },
+  {
+   "id": "e33",
+   "type": "Zeznanie",
+   "title": "Barman o czwartkowym wieczorze",
+   "summary": "Rafał Czajka, barman.",
+   "body": [
+    {
+     "quote": "Mecenas siedział przy czwórce od dziewiątej do zamknięcia. Wyszedł raz, do toalety, na pięć minut, koło jedenastej. Dużo rozmawiał przez telefon, głośno, o jakiejś ugodzie.",
+     "by": "Rafał Czajka"
+    },
+    "Barman nie widział nikogo, kto przypominałby dr. Szulca. Z baru widać tylko część holu, bez recepcji."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "e34",
+   "type": "Rejestr",
+   "title": "Room service — zamówienie z pokoju 118",
+   "summary": "Kuchnia hotelowa, czwartek.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Zamówienie",
+       "telefon z pok. 118, 22:10"
+      ],
+      [
+       "Doręczenie",
+       "22:18, kelnerka K. Nowicka, do rąk gościa"
+      ],
+      [
+       "Pozycje",
+       "zupa rybna, herbata"
+      ],
+      [
+       "Rachunek",
+       "na pokój, podpis L. Morawiec"
+      ]
+     ]
+    }
+   ],
+   "time": [
+    [
+     "2026-03-12 22:18",
+     "Morawiec odbiera kolację w pokoju 118",
+     "Room service"
+    ]
+   ]
+  },
+  {
+   "id": "e35",
+   "type": "Notatka",
+   "title": "Notatki na biurku dr. Szulca",
+   "summary": "Kartka przypięta do monitora, wideorozmowa z archiwum.",
+   "body": [
+    {
+     "quote": "Wielkopolska 21 — akt z 1946: filigran „WIEPRZA”!!! Sprawdzić, kiedy ruszyła papiernia. Hasło do projektu opinii = miesiąc i rok uruchomienia (MM + dwie ostatnie cyfry roku). Hasło podać tylko sekretarzowi komisji, telefonicznie.",
+     "by": "pismo dr. Szulca"
+    },
+    "Zastępczyni dr. Szulca, Joanna Kurek, potwierdza, że kartkę napisał on, w poniedziałek 9.03."
+   ]
+  },
+  {
+   "id": "e45",
+   "type": "Dokument",
+   "title": "Karta katalogowa papierni",
+   "summary": "Kartoteka znaków wodnych archiwum.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Znak wodny",
+       "„WIEPRZA” w owalu"
+      ],
+      [
+       "Wytwórca",
+       "Zakłady Papiernicze „Wieprza” w Sławnie"
+      ],
+      [
+       "Uruchomienie produkcji",
+       "3 października 1951"
+      ],
+      [
+       "Uwagi",
+       "papier kancelaryjny dla urzędów województwa koszalińskiego i szczecińskiego, lata 1951–1968"
+      ]
+     ]
+    },
+    {
+     "note": "Karta z kartoteki prowadzonej przez dr. Szulca od 2009 roku."
+    }
+   ]
+  },
+  {
+   "id": "e36",
+   "type": "Korespondencja",
+   "title": "Wysłane e-maile dr. Szulca",
+   "summary": "Skrzynka służbowa, wyciąg.",
+   "body": [
+    {
+     "log": [
+      "10.03 09:12  do: E. Dąbrowska     temat: posiedzenie 13.03   „Czuję presję. Dostałem list od pełnomocnika wnioskodawczyni. Chciałbym porozmawiać przed posiedzeniem.”",
+      "11.03 14:20  do: sekretariat komisji (I. Kraska)   temat: projekt opinii   załącznik: Projekt_opinii_Wielkopolska21.pdf (zaszyfrowany)",
+      "11.03 15:02  do: sekretariat komisji (I. Kraska)   temat: hasło   „Hasło podam telefonicznie, jak ustaliliśmy.”"
+     ]
+    },
+    {
+     "note": "Archiwum ma kopię wysłanego pliku. Hasła nie zapisano w skrzynce."
+    }
+   ],
+   "time": [
+    [
+     "2026-03-11 14:20",
+     "Szulc wysyła Kraskiej zaszyfrowany projekt opinii",
+     "E-maile Szulca"
+    ]
+   ]
+  },
+  {
+   "id": "e38",
+   "type": "Dokument",
+   "title": "Zaszyfrowany projekt opinii",
+   "summary": "Plik PDF chroniony hasłem.",
+   "body": [
+    "Projekt_opinii_Wielkopolska21.pdf — 14 stron. Hasło: cztery cyfry. Podgląd pokazuje tylko stronę tytułową: „Opinia w przedmiocie autentyczności aktu nadania z 14.09.1946 r.”"
+   ]
+  },
+  {
+   "id": "e39",
+   "type": "Opinia",
+   "title": "Projekt opinii dr. Szulca",
+   "summary": "Odszyfrowany plik z archiwum.",
+   "body": [
+    {
+     "quote": "Akt nadania z 14.09.1946 r. sporządzono na papierze ze znakiem wodnym Zakładów Papierniczych „Wieprza” w Sławnie, które rozpoczęły produkcję w 1951 r. Ponadto numer aktu nie figuruje w dzienniku podawczym Zarządu Miejskiego za 1946 r. Dokument nie mógł powstać w dacie, którą nosi. Jest falsyfikatem.",
+     "by": "dr Edward Szulc, projekt opinii, 11.03.2026"
+    },
+    {
+     "note": "Bez autentycznego aktu z 1946 roku roszczenie do kamienicy przy Wielkopolskiej 21 upada."
+    }
+   ]
+  },
+  {
+   "id": "e37",
+   "type": "Dokument",
+   "title": "Wzory podpisów dr. Szulca",
+   "summary": "Dokumenty z archiwum z lat 2021–2026.",
+   "body": [
+    "Siedem podpisów pod pismami służbowymi i protokołami. Na każdym pełne imię i nazwisko: „Edward Szulc”, pismo okrągłe, prawie pionowe, z charakterystycznie zawiniętym „z”. Żadnego podpisu skrótem."
+   ]
+  },
+  {
+   "id": "e42",
+   "type": "Zdjęcie",
+   "title": "Zdjęcie dr. Szulca z lutego 2026",
+   "summary": "Urodziny w domu, 21 lutego.",
+   "body": [
+    "Dr Edward Szulc przy stole, w swetrze, uśmiechnięty. Gładko ogolony, w okularach w cienkiej oprawie. Siwe, krótko obcięte włosy."
+   ]
+  },
+  {
+   "id": "e43",
+   "type": "Korespondencja",
+   "title": "List mec. Kosowskiego do dr. Szulca",
+   "summary": "Zdjęcie listu z 2 marca, przesłane przez żonę.",
+   "body": [
+    {
+     "quote": "Szanowny Panie Doktorze, w związku z posiedzeniem 13 marca proponuję prywatną konsultację w zakresie historii dokumentu z 1946 r. Moja klientka gotowa jest pokryć honorarium w wysokości 50 000 zł. Proszę o kontakt pod numerem 501 664 092.",
+     "by": "mec. Adrian Kosowski, 02.03.2026"
+    },
+    {
+     "note": "Na marginesie dopisek dr. Szulca: „NIE. Zgłosić Dąbrowskiej.”"
+    }
+   ]
+  },
+  {
+   "id": "e44",
+   "type": "Zdjęcie",
+   "title": "SMS od męża — zrzut ekranu",
+   "summary": "Telefon Marty Szulc, numer 694 117 230.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Od",
+       "Edward (601 238 447)"
+      ],
+      [
+       "Godzina",
+       "12.03.2026, 21:49"
+      ],
+      [
+       "Treść",
+       "„Jestem. Pani Kraska już czeka przed dworcem, mam z nią jechać. Zadzwonię z hotelu.”"
+      ]
+     ]
+    },
+    "Ostatnia wiadomość od męża. Telefonu z hotelu nie było."
+   ],
+   "time": [
+    [
+     "2026-03-12 21:49",
+     "Szulc pisze do żony: „Pani Kraska już czeka przed dworcem”",
+     "SMS do żony"
+    ]
+   ]
+  },
+  {
+   "id": "x1",
+   "type": "Dane",
+   "title": "Operator: telefon dr. Szulca",
+   "summary": "Zdarzenia w sieci, numer 601 238 447.",
+   "body": [
+    {
+     "log": [
+      "12.03 21:47:12  SZC-DWORZEC-02       rejestracja w sieci",
+      "12.03 21:49:03  SZC-DWORZEC-02       SMS wychodzący do 694 117 230",
+      "12.03 21:58:51  SZC-ŚRÓDMIEŚCIE-14   aktualizacja lokalizacji",
+      "12.03 22:03:17  SZC-ŚRÓDMIEŚCIE-14   wylogowanie (telefon wyłączony)",
+      "12.03 23:48:05  SZC-STAREMIASTO-05   rejestracja w sieci",
+      "12.03 23:52:44  SZC-STAREMIASTO-05   wylogowanie (telefon wyłączony)"
+     ]
+    },
+    {
+     "kv": [
+      [
+       "SZC-DWORZEC-02",
+       "Dworzec Główny, ul. Kolumba, Nabrzeże Wieleckie"
+      ],
+      [
+       "SZC-ŚRÓDMIEŚCIE-14",
+       "ul. Jagiellońska (nr 1–40), al. Piastów (odc. pl. Szarych Szeregów – ul. Bogusława X), ul. Bogusława X (część)"
+      ],
+      [
+       "SZC-CENTRUM-03",
+       "pl. Armii Krajowej (Urząd Miasta), ul. Mazowiecka, ul. Matejki"
+      ],
+      [
+       "SZC-STAREMIASTO-05",
+       "ul. Panieńska, Wały Chrobrego, Rynek Sienny (m.in. Hotel „Gryf”)"
+      ]
+     ]
+    },
+    {
+     "note": "Od 21:00 do 22:03 numer nie wysłał ani nie odebrał żadnego SMS-a ani połączenia poza SMS-em o 21:49."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-03-12 21:58",
+     "Telefon Szulca w komórce Śródmieście-14 (Jagiellońska / al. Piastów)",
+     "Operator — telefon Szulca"
+    ],
+    [
+     "2026-03-12 22:03",
+     "Telefon Szulca wyłączony w komórce Śródmieście-14",
+     "Operator — telefon Szulca"
+    ],
+    [
+     "2026-03-12 23:48",
+     "Telefon Szulca włączony przy hotelu (Stare Miasto-05) na 4 minuty",
+     "Operator — telefon Szulca"
+    ]
+   ]
+  },
+  {
+   "id": "x2",
+   "type": "Dane",
+   "title": "Operator: telefon Iwony Kraski",
+   "summary": "Zdarzenia w sieci, numer 605 482 119.",
+   "body": [
+    {
+     "log": [
+      "12.03 19:32:15  SZC-STAREMIASTO-05   połączenie wychodzące do 512 300 846, 2 min 41 s",
+      "12.03 20:15:40  SZC-STAREMIASTO-05   SMS wychodzący do 601 238 447",
+      "12.03 21:44:30  SZC-DWORZEC-02       aktualizacja lokalizacji",
+      "12.03 21:59:20  SZC-ŚRÓDMIEŚCIE-14   aktualizacja lokalizacji",
+      "12.03 22:32:05  SZC-ŚRÓDMIEŚCIE-14   ostatnie zdarzenie w tej komórce",
+      "12.03 22:39:48  SZC-STAREMIASTO-05   aktualizacja lokalizacji",
+      "12.03 22:46:10  SZC-STAREMIASTO-05   połączenie wychodzące do 603 951 004, 0 min 48 s",
+      "12.03 23:33:02  SZC-STAREMIASTO-05   SMS przychodzący od 603 951 004"
+     ]
+    },
+    {
+     "kv": [
+      [
+       "512 300 846",
+       "abonent: Lech Morawiec"
+      ],
+      [
+       "601 238 447",
+       "abonent: Edward Szulc"
+      ],
+      [
+       "603 951 004",
+       "abonent: Restytucja Pomorska sp. z o.o. (numer firmowy)"
+      ]
+     ]
+    },
+    {
+     "note": "Opis komórek jak w danych telefonu dr. Szulca: Śródmieście-14 obejmuje ul. Jagiellońską i część al. Piastów, a Urząd Miasta leży w komórce Centrum-03."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-03-12 19:32",
+     "Kraska dzwoni do Morawca (2 min 41 s)",
+     "Operator — telefon Kraski"
+    ],
+    [
+     "2026-03-12 21:59",
+     "Telefon Kraski w komórce Śródmieście-14",
+     "Operator — telefon Kraski"
+    ],
+    [
+     "2026-03-12 22:46",
+     "Kraska dzwoni pod numer firmowy Restytucji Pomorskiej",
+     "Operator — telefon Kraski"
+    ],
+    [
+     "2026-03-12 23:33",
+     "Kraska dostaje SMS z numeru Restytucji Pomorskiej",
+     "Operator — telefon Kraski"
+    ]
+   ]
+  },
+  {
+   "id": "x3",
+   "type": "Dane",
+   "title": "Hotelowa sieć Wi-Fi — dziennik urządzeń",
+   "summary": "Eksport od firmy obsługującej sieć „Gryf-Guest”.",
+   "body": [
+    {
+     "log": [
+      "Galaxy-A53-Edward   pierwsze połączenie z siecią: 17.10.2024",
+      "Galaxy-A53-Edward   12.03 23:48:20–23:52:30  punkt AP-3B   0,4 MB",
+      "iPhone-Iwona        12.03 18:31–21:35  AP-1A / AP-3B",
+      "iPhone-Iwona        12.03 22:44–23:01  AP-1A",
+      "iPhone-Iwona        12.03 23:03–13.03 07:12  AP-3B",
+      "Pixel-AK            12.03 21:00–13.03 00:31  AP-1A"
+     ]
+    },
+    {
+     "kv": [
+      [
+       "AP-1A",
+       "parter: hol, recepcja, bar, centrum biznesowe"
+      ],
+      [
+       "AP-2B",
+       "II piętro, skrzydło B: pokoje 210–216"
+      ],
+      [
+       "AP-3B",
+       "III piętro, skrzydło B: pokoje 305–312"
+      ]
+     ]
+    },
+    {
+     "note": "Telefon łączy się z siecią sam, jeśli kiedyś już był do niej podłączony. W nocy z 12 na 13 marca urządzenie Galaxy-A53-Edward ani razu nie połączyło się z punktem AP-2B."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-03-12 23:48",
+     "Telefon Szulca łączy się z Wi-Fi na III piętrze (AP-3B)",
+     "Wi-Fi hotelu"
+    ]
+   ]
+  },
+  {
+   "id": "x4",
+   "type": "Dane",
+   "title": "Dyspozytornia Taxi Pomorze",
+   "summary": "Kursy w czwartek wieczorem, rejon dworca i Starego Miasta.",
+   "body": [
+    {
+     "log": [
+      "22:02  ul. Monte Cassino → Hotel „Gryf”     klient: E. Dąbrowska (konto)   przyjazd 22:12",
+      "22:52  Hotel „Gryf” → ul. Monte Cassino     klient: E. Dąbrowska (konto)"
+     ]
+    },
+    {
+     "note": "Między 21:40 a 23:10 żadna taksówka korporacji nie wiozła klienta spod Dworca Głównego na ul. Panieńską. Dworzec obsługują w tych godzinach tylko dwie korporacje; druga (Radio Taxi 91) też nie miała takiego kursu."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2026-03-12 22:12",
+     "Dąbrowska przyjeżdża taksówką pod hotel",
+     "Dyspozytornia taxi"
+    ],
+    [
+     "2026-03-12 22:52",
+     "Dąbrowska odjeżdża taksówką spod hotelu",
+     "Dyspozytornia taxi"
+    ]
+   ]
+  },
+  {
+   "id": "x5",
+   "type": "Dane",
+   "title": "Ochrona Urzędu Miasta — rejestr wejść",
+   "summary": "Budynek przy pl. Armii Krajowej 1.",
+   "body": [
+    "Budynek jest zamknięty od 18:00 do 6:00. W czwartek 12.03 po 18:00 nie odnotowano żadnego wejścia — ani kartą, ani przez ochronę. Ostatnie wyjście sekretariatu komisji: Iwona Kraska, 16:42.",
+    {
+     "note": "Biuro komisji i jej akta są w tym budynku, pokój 112."
+    }
+   ],
+   "private": true
+  },
+  {
+   "id": "x6",
+   "type": "Zeznanie",
+   "title": "Kierownik pociągu IC 38170",
+   "summary": "Rozmowa telefoniczna, piątek 12:30.",
+   "body": [
+    {
+     "quote": "Pamiętam tego pana, siedział w szóstce. Starszy, bez brody, w szarym płaszczu i kapeluszu. Walizka na kółkach i skórzana teczka pod pachą. Na peronie czekała na niego kobieta z parasolem, koło pięćdziesiątki, w beżowym płaszczu. Wzięła od niego teczkę i poszli do wyjścia.",
+     "by": "Waldemar Gołąb, kierownik pociągu"
+    }
+   ],
+   "private": true,
+   "testimony": true,
+   "time": [
+    [
+     "2026-03-12 21:47",
+     "Szulc wysiada w Szczecinie; na peronie czeka na niego kobieta z parasolem",
+     "Kierownik pociągu"
+    ]
+   ]
+  },
+  {
+   "id": "d01",
+   "type": "Wydruk z bazy",
+   "title": "CEPiK: ZS 7PR04",
+   "summary": "Pojazd z rejestru szlabanu.",
+   "body": [],
+   "db": "V-005-rest"
+  },
+  {
+   "id": "d02",
+   "type": "Wydruk z bazy",
+   "title": "KRS: Restytucja Pomorska",
+   "summary": "Spółka, która przejęła roszczenie.",
+   "body": [],
+   "db": "F-005-rest"
+  },
+  {
+   "id": "d03",
+   "type": "Wydruk z bazy",
+   "title": "PESEL: Pietras Damian",
+   "summary": "Prezes Restytucji Pomorskiej.",
+   "body": [],
+   "db": "O-005-pietras"
+  },
+  {
+   "id": "d04",
+   "type": "Wydruk z bazy",
+   "title": "EKW: SZ1S/00045218/0",
+   "summary": "Kamienica przy ul. Wielkopolskiej 21.",
+   "body": [],
+   "db": "K-005-claim"
+  },
+  {
+   "id": "d05",
+   "type": "Wydruk z bazy",
+   "title": "KRS: PB Pietras Budownictwo",
+   "summary": "Wykonawca adaptacji pokoju 214.",
+   "body": [],
+   "db": "F-005-pb"
+  },
+  {
+   "id": "d06",
+   "type": "Wydruk z bazy",
+   "title": "PESEL: Kraska Iwona",
+   "summary": "Sekretarz komisji.",
+   "body": [],
+   "db": "O-005-kraska"
+  },
+  {
+   "id": "d07",
+   "type": "Wydruk z bazy",
+   "title": "PESEL: Szulc Edward",
+   "summary": "Zaginiony biegły.",
+   "body": [],
+   "db": "O-005-szulc"
+  }
+ ],
+ "privateClues": [
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5",
+  "x6"
+ ],
+ "puzzles": [
+  {
+   "id": "p-pdf",
+   "kind": "Hasło",
+   "title": "Projekt opinii dr. Szulca",
+   "prompt": "Projekt opinii jest zaszyfrowany czterocyfrowym hasłem. Jakie hasło ustawił dr Szulc? Sam zostawił wskazówkę.",
+   "requires": [
+    "e35",
+    "e45",
+    "e38"
+   ],
+   "input": "digits4",
+   "answers": [
+    "1051"
+   ],
+   "hints": [
+    "Kartka na monitorze mówi, z czego składa się hasło. Potrzebujecie nazwy papierni ze znaku wodnego.",
+    "Znak wodny na akcie to „WIEPRZA”. Kartoteka znaków wodnych podaje datę uruchomienia tej papierni. Hasło to miesiąc i dwie ostatnie cyfry roku.",
+    "Papiernia „Wieprza” ruszyła 3 października 1951: miesiąc 10, rok 51. Hasło: 1051."
+   ],
+   "solution": "Hasło to miesiąc i rok uruchomienia papierni „Wieprza”, której znak wodny jest na akcie z 1946 roku: październik 1951, czyli 1051. Szulc wybrał je celowo — to sedno jego opinii.",
+   "reward": {
+    "spots": [
+     "sp-pdf"
+    ]
+   }
+  },
+  {
+   "id": "p-where",
+   "kind": "Macierz alibi",
+   "title": "Kto gdzie był",
+   "prompt": "Gdzie była każda z pięciu osób o 22:15, gdy dr Szulc powinien już być w hotelu, i o 23:20, gdy ktoś zniknął z zamkniętego pokoju? Wybierzcie miejsce dla każdej osoby w obu kolumnach.",
+   "requires": [
+    "e18",
+    "x3",
+    "e32",
+    "x4",
+    "st:l-c2",
+    "e15",
+    "lie:l-l1",
+    "e34",
+    "e16"
+   ],
+   "input": "grid",
+   "grid": {
+    "rows": [
+     {
+      "id": "kraska",
+      "label": "Iwona Kraska"
+     },
+     {
+      "id": "kosowski",
+      "label": "Adrian Kosowski"
+     },
+     {
+      "id": "dabrowska",
+      "label": "Ewa Dąbrowska"
+     },
+     {
+      "id": "lis",
+      "label": "Bartosz Lis"
+     },
+     {
+      "id": "morawiec",
+      "label": "Lech Morawiec"
+     }
+    ],
+    "cols": [
+     {
+      "id": "t1",
+      "label": "22:15"
+     },
+     {
+      "id": "t2",
+      "label": "23:20"
+     }
+    ],
+    "options": [
+     {
+      "id": "hol",
+      "label": "Hol i recepcja"
+     },
+     {
+      "id": "bar",
+      "label": "Bar"
+     },
+     {
+      "id": "pok",
+      "label": "Własny pokój"
+     },
+     {
+      "id": "zap",
+      "label": "Palarnia"
+     },
+     {
+      "id": "out",
+      "label": "Poza hotelem"
+     }
+    ],
+    "constraints": [
+     {
+      "t": "is",
+      "r": "kraska",
+      "c": "t1",
+      "v": "out",
+      "src": [
+       "e18"
+      ],
+      "why": "Jej toyota ZS 3K118 wyjechała z parkingu o 21:36 i wróciła o 22:41."
+     },
+     {
+      "t": "is",
+      "r": "kraska",
+      "c": "t2",
+      "v": "pok",
+      "src": [
+       "x3"
+      ],
+      "why": "Od 23:03 do rana jej telefon był w punkcie AP-3B, na piętrze jej pokoju 305."
+     },
+     {
+      "t": "is",
+      "r": "kosowski",
+      "c": "t1",
+      "v": "bar",
+      "src": [
+       "e32",
+       "x3"
+      ],
+      "why": "Rachunki baru na jego pokój od 21:04 do 0:22, a telefon cały czas na parterze (AP-1A)."
+     },
+     {
+      "t": "is",
+      "r": "kosowski",
+      "c": "t2",
+      "v": "bar",
+      "src": [
+       "e32",
+       "x3"
+      ],
+      "why": "Rachunki o 22:31 i 23:47, telefon na parterze do 0:31."
+     },
+     {
+      "t": "is",
+      "r": "dabrowska",
+      "c": "t1",
+      "v": "hol",
+      "src": [
+       "x4",
+       "st:l-c2"
+      ],
+      "why": "Taksówka przywiozła ją o 22:12, a recepcjonista widział ją w holu od 22:15."
+     },
+     {
+      "t": "is",
+      "r": "dabrowska",
+      "c": "t2",
+      "v": "out",
+      "src": [
+       "x4"
+      ],
+      "why": "Odjechała taksówką o 22:52."
+     },
+     {
+      "t": "is",
+      "r": "lis",
+      "c": "t1",
+      "v": "hol",
+      "src": [
+       "e15"
+      ],
+      "why": "O 22:20 meldował w recepcji gościa z pokoju 216."
+     },
+     {
+      "t": "is",
+      "r": "lis",
+      "c": "t2",
+      "v": "zap",
+      "src": [
+       "lie:l-l1"
+      ],
+      "why": "Sam przyznał: od 23:15 do około 23:35 był w palarni."
+     },
+     {
+      "t": "is",
+      "r": "morawiec",
+      "c": "t1",
+      "v": "pok",
+      "src": [
+       "e34"
+      ],
+      "why": "Zamówił kolację z pokoju o 22:10 i odebrał ją w pokoju o 22:18."
+     },
+     {
+      "t": "is",
+      "r": "morawiec",
+      "c": "t2",
+      "v": "pok",
+      "src": [
+       "e16"
+      ],
+      "why": "O 23:22 dzwonił do recepcji z telefonu w pokoju 118."
+     }
+    ]
+   },
+   "answers": [
+    {
+     "kraska": {
+      "t1": "out",
+      "t2": "pok"
+     },
+     "kosowski": {
+      "t1": "bar",
+      "t2": "bar"
+     },
+     "dabrowska": {
+      "t1": "hol",
+      "t2": "out"
+     },
+     "lis": {
+      "t1": "hol",
+      "t2": "zap"
+     },
+     "morawiec": {
+      "t1": "pok",
+      "t2": "pok"
+     }
+    }
+   ],
+   "hints": [
+    "Zacznijcie od twardych zapisów: szlaban parkingu, rachunki baru, room service i centrala telefoniczna.",
+    "O 22:15 tylko jedna z tych osób była poza hotelem. O 23:20 też tylko jedna, ale już ktoś inny.",
+    "Kraska: poza hotelem, potem pokój. Kosowski: bar i bar. Dąbrowska: hol, potem poza hotelem. Lis: hol, potem palarnia. Morawiec: pokój i pokój."
+   ],
+   "solution": "O 22:15 Kraska jeździła po mieście (21:36–22:41), Dąbrowska czekała w holu, Lis był w recepcji, Kosowski w barze, Morawiec w pokoju. O 23:20, gdy ktoś wychodził z 214 drzwiami za szafą, Lis był w palarni, Dąbrowska już w domu, Kosowski w barze, Morawiec w pokoju, a Kraska u siebie na III piętrze. Żadna z tych osób nie była w pokoju 214.",
+   "reward": {
+    "time": [
+     [
+      "2026-03-12 23:20",
+      "Nikt z piątki nie był przy 214: Lis w palarni, Kosowski w barze, Morawiec i Kraska w pokojach, Dąbrowska poza hotelem",
+      "Macierz alibi"
+     ]
+    ]
+   }
+  }
+ ],
+ "tableMode": {
+  "parBonus": 6,
+  "locations": [
+   {
+    "id": "hq",
+    "name": "Centrala wydziału",
+    "kind": "Zapytania przez radio i telefon",
+    "desc": "Wóz łączności przed hotelem. Każde zapytanie to jeden ruch, odpowiedzi przychodzą od razu.",
+    "img": "assets/places/001-hq.webp",
+    "spots": [
+     {
+      "id": "sp-hq-op1",
+      "name": "Operator: telefon Szulca",
+      "text": "Prosicie o zdarzenia w sieci dla numeru dr. Szulca.",
+      "gives": [
+       "x1"
+      ]
+     },
+     {
+      "id": "sp-hq-op2",
+      "name": "Operator: telefon Kraski",
+      "text": "Prosicie o zdarzenia w sieci dla numeru sekretarz komisji.",
+      "gives": [
+       "x2"
+      ]
+     },
+     {
+      "id": "sp-hq-wifi",
+      "name": "Firma obsługująca Wi-Fi hotelu",
+      "text": "Prosicie o dziennik urządzeń w sieci „Gryf-Guest”.",
+      "gives": [
+       "x3"
+      ]
+     },
+     {
+      "id": "sp-hq-taxi",
+      "name": "Dyspozytornie taxi",
+      "text": "Prosicie o kursy spod dworca i pod hotel.",
+      "gives": [
+       "x4"
+      ]
+     },
+     {
+      "id": "sp-hq-um",
+      "name": "Ochrona Urzędu Miasta",
+      "text": "Prosicie o rejestr wejść do budynku przy pl. Armii Krajowej.",
+      "gives": [
+       "x5"
+      ]
+     },
+     {
+      "id": "sp-hq-pkp",
+      "name": "PKP Intercity",
+      "text": "Prosicie o rozmowę z kierownikiem pociągu IC 38170.",
+      "gives": [
+       "x6"
+      ]
+     }
+    ]
+   }
+  ],
+  "questions": {}
+ },
+ "breakthroughs": [
+  {
+   "id": "b-beard",
+   "when": "show:l-s1",
+   "title": "Broda",
+   "text": "Recepcjonista zameldował mężczyznę z brodą, bo taki był na zdjęciu w dowodzie. Edward Szulc od trzech lat się goli. W pokoju 214 nocował ktoś, kto miał jego dokument, ale nie jego twarz."
+  },
+  {
+   "id": "b-door",
+   "when": "sp-wardrobe",
+   "title": "Drugie drzwi",
+   "text": "Za tylną ścianą szafy są stalowe drzwi do korytarza gospodarczego. Pokój bez okien nigdy nie był zamknięty od środka — miał wyjście, o którym wiedzieli tylko ci, którzy go budowali."
+  },
+  {
+   "id": "b-pass",
+   "when": "lie:k-l2",
+   "title": "Pasażer",
+   "text": "Kraska przyznaje: Szulc wsiadł do jej samochodu na dworcu. Ostatnia osoba, która widziała go wolnego, siedzi przy stole komisji i poprawiała listę uczestników."
+  },
+  {
+   "id": "b-ring",
+   "when": "lie:k-l6",
+   "title": "Obrączka",
+   "text": "Damian Pietras, prezes spółki, która zarobi na ugodzie miliony, jest mężem sekretarz komisji. Różne nazwiska ukrywały to przez trzy lata."
+  }
+ ],
+ "hintTrail": [
+  {
+   "unless": [
+    "sp-suitcase"
+   ],
+   "text": "Zacznijcie od pokoju 214. Co zostało, a czego brakuje?"
+  },
+  {
+   "unless": [
+    "sp-locks"
+   ],
+   "when": [
+    "sp-suitcase"
+   ],
+   "text": "Zamek pokoju zapisuje zdarzenia. Sprawdźcie, co działo się z drzwiami w nocy."
+  },
+  {
+   "unless": [
+    "sp-card"
+   ],
+   "when": [
+    "sp-locks"
+   ],
+   "text": "Kto właściwie zameldował się w 214? Zobaczcie kartę meldunkową i skan dowodu."
+  },
+  {
+   "unless": [
+    "m-q2"
+   ],
+   "when": [
+    "sp-card"
+   ],
+   "text": "Żona dr. Szulca jest w hotelu. Zapytajcie, jak dziś wygląda jej mąż."
+  },
+  {
+   "unless": [
+    "show:l-s1"
+   ],
+   "when": [
+    "e42",
+    "e14"
+   ],
+   "text": "Macie aktualne zdjęcie dr. Szulca. Pokażcie je osobie, która widziała gościa z 214."
+  },
+  {
+   "unless": [
+    "sp-anpr"
+   ],
+   "when": [
+    "sp-card"
+   ],
+   "text": "Parking ma szlaban z kamerą. Kto przyjeżdżał i odjeżdżał w czwartek wieczorem?"
+  },
+  {
+   "unless": [
+    "d01"
+   ],
+   "when": [
+    "e18"
+   ],
+   "text": "Jeden samochód z rejestru szlabanu nie pasuje do żadnego gościa. Sprawdźcie go w CEPiK."
+  },
+  {
+   "unless": [
+    "d02"
+   ],
+   "when": [
+    "d01"
+   ],
+   "text": "Właścicielem samochodu jest spółka. KRS powie, kto nią kieruje i gdzie ma siedzibę."
+  },
+  {
+   "unless": [
+    "lie:k-l6"
+   ],
+   "when": [
+    "d02"
+   ],
+   "text": "Prezes spółki ma PESEL w rejestrze KRS. Ewidencja ludności powie o nim więcej — także o rodzinie."
+  },
+  {
+   "unless": [
+    "sp-wardrobe"
+   ],
+   "when": [
+    "e23"
+   ],
+   "text": "Plan z 1974 roku pokazuje magazyn z dwojgiem drzwi. Co się stało z drugimi drzwiami przy remoncie w 2019?"
+  },
+  {
+   "unless": [
+    "p-pdf"
+   ],
+   "when": [
+    "e35",
+    "e38"
+   ],
+   "text": "Szulc zapisał, czym jest hasło do projektu opinii. Kartoteka znaków wodnych zna odpowiedź."
+  },
+  {
+   "unless": [
+    "lie:k-l1"
+   ],
+   "when": [
+    "e18"
+   ],
+   "text": "Toyota ZS 3K118 należy do jednej z uczestniczek posiedzenia. Gdzie była między 21:36 a 22:41?"
+  },
+  {
+   "unless": [
+    "p-where"
+   ],
+   "when": [
+    "lie:l-l1",
+    "x3"
+   ],
+   "text": "Zbierzcie, gdzie kto był o 22:15 i o 23:20. Macierz alibi uporządkuje noc."
+  },
+  {
+   "text": "Macie dość, by złożyć raport. Pamiętajcie: najważniejsze pytanie brzmi, gdzie jest dr Szulc."
+  }
+ ],
+ "report": {
+  "questions": [
+   {
+    "id": "r-who",
+    "q": "Kto zorganizował zniknięcie dr. Edwarda Szulca?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "kraska",
+      "Iwona Kraska, sekretarz komisji"
+     ],
+     [
+      "kosowski",
+      "Adrian Kosowski, pełnomocnik wnioskodawczyni"
+     ],
+     [
+      "dabrowska",
+      "Ewa Dąbrowska, radca prawny Gminy"
+     ],
+     [
+      "lis",
+      "Bartosz Lis, nocny recepcjonista"
+     ],
+     [
+      "morawiec",
+      "Lech Morawiec, biegły zastępczy"
+     ],
+     [
+      "self",
+      "Nikt — dr Szulc odszedł sam, zdezorientowany"
+     ]
+    ],
+    "correct": "kraska",
+    "proof": {
+     "count": 3,
+     "each": 4,
+     "valid": [
+      "d03",
+      "d06",
+      "e18",
+      "e05",
+      "x3",
+      "e40",
+      "e17",
+      "x2",
+      "x6",
+      "e44"
+     ],
+     "label": "Wskażcie trzy dowody, które najmocniej łączą tę osobę ze zniknięciem biegłego."
+    }
+   },
+   {
+    "id": "r-imp",
+    "q": "Kto zameldował się w czwartek o 23:05 jako Edward Szulc?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "pietras",
+      "Damian Pietras, prezes Restytucji Pomorskiej"
+     ],
+     [
+      "szulc",
+      "Sam dr Edward Szulc"
+     ],
+     [
+      "morawiec",
+      "Lech Morawiec"
+     ],
+     [
+      "kosowski",
+      "Adrian Kosowski"
+     ],
+     [
+      "banas",
+      "Marek Banaś, gość z pokoju 216"
+     ]
+    ],
+    "correct": "pietras"
+   },
+   {
+    "id": "r-where",
+    "q": "Gdzie należy natychmiast szukać dr. Szulca?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "jag",
+      "Szczecin, ul. Jagiellońska 12/4 — lokal Restytucji Pomorskiej"
+     ],
+     [
+      "szafera",
+      "Szczecin, ul. Szafera 8 — dom Pietrasa i Kraski"
+     ],
+     [
+      "police",
+      "Police, ul. Fabryczna 3 — siedziba PB Pietras Budownictwo"
+     ],
+     [
+      "urzad",
+      "Urząd Miasta, pl. Armii Krajowej 1 — biuro komisji"
+     ],
+     [
+      "hotel",
+      "W hotelu, w zaplombowanej części zaplecza"
+     ]
+    ],
+    "correct": "jag"
+   },
+   {
+    "id": "r-how",
+    "q": "Jak fałszywy gość opuścił pokój 214 zamknięty od środka?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "m2",
+      "Drzwiami rewizyjnymi M2 za tylną ścianą szafy, do korytarza gospodarczego i klatki B"
+     ],
+     [
+      "master",
+      "Ktoś otworzył drzwi kartą MASTER, a zasuwę załączył potem z zewnątrz"
+     ],
+     [
+      "vent",
+      "Przez kratkę wentylacyjną pod sufitem"
+     ],
+     [
+      "never",
+      "Nigdy nie wszedł do pokoju — zasuwę załączono zdalnie"
+     ],
+     [
+      "morning",
+      "Wyszedł rano, w zamieszaniu przy otwieraniu drzwi"
+     ]
+    ],
+    "correct": "m2"
+   },
+   {
+    "id": "r-list",
+    "q": "Dlaczego nazwisko dr. Szulca zniknęło z listy uczestników?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "plan",
+      "Kraska usunęła je w nocy, osiem minut po „rezygnacji” wysłanej z telefonu Szulca, by komisja przyjęła opinię Morawca"
+     ],
+     [
+      "real",
+      "Szulc sam zrezygnował mailem, a lista to tylko formalność"
+     ],
+     [
+      "error",
+      "Hotelowa drukarka wydrukowała starą wersję pliku"
+     ],
+     [
+      "kos",
+      "Kosowski zażądał wykreślenia biegłego na posiedzeniu"
+     ]
+    ],
+    "correct": "plan"
+   },
+   {
+    "id": "r-motive",
+    "q": "Jaki był motyw?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "claim",
+      "Opinia Szulca dowodziła, że akt z 1946 roku jest falsyfikatem, a roszczenie do kamienicy za 38 mln zł należało do spółki męża Kraski"
+     ],
+     [
+      "fee",
+      "Kosowski bał się utraty honorarium od wnioskodawczyni"
+     ],
+     [
+      "revenge",
+      "Zemsta za dawny spór o archiwum"
+     ],
+     [
+      "career",
+      "Morawiec chciał zająć miejsce Szulca na liście biegłych"
+     ]
+    ],
+    "correct": "claim"
+   },
+   {
+    "id": "r-signs",
+    "q": "Które ustalenia dowodzą, że w 214 zameldował się ktoś inny niż dr Szulc?",
+    "type": "multi",
+    "points": 10,
+    "hint": "Zaznaczcie wszystkie właściwe odpowiedzi. Każda błędna odejmuje punkty za trafną.",
+    "options": [
+     [
+      "beard",
+      "Gość miał brodę, a Szulc od trzech lat jej nie nosi"
+     ],
+     [
+      "sign",
+      "Podpis „E. Szulc” nakreśliła inna ręka niż wzory podpisów Szulca"
+     ],
+     [
+      "foot",
+      "Gość przyszedł pieszo, bez samochodu"
+     ],
+     [
+      "bed",
+      "Łóżko było nietknięte, a ręczniki suche"
+     ],
+     [
+      "insulin",
+      "Insulina została w walizce"
+     ]
+    ],
+    "correct": [
+     "beard",
+     "sign"
+    ]
+   },
+   {
+    "id": "r-order",
+    "q": "Ułóżcie wydarzenia czwartkowego wieczoru we właściwej kolejności.",
+    "type": "order",
+    "points": 12,
+    "items": [
+     [
+      "call",
+      "Kraska prosi Morawca, by został w Szczecinie"
+     ],
+     [
+      "train",
+      "Szulc wysiada z pociągu i pisze do żony o pani Kraskiej"
+     ],
+     [
+      "off",
+      "Telefon Szulca zostaje wyłączony w rejonie ul. Jagiellońskiej"
+     ],
+     [
+      "back",
+      "Toyota Kraski wraca na parking hotelu"
+     ],
+     [
+      "check",
+      "Fałszywy „Szulc” melduje się w recepcji"
+     ],
+     [
+      "latch",
+      "W pokoju 214 zostaje załączona zasuwa"
+     ],
+     [
+      "exit",
+      "Ktoś wychodzi wyjściem służbowym B"
+     ],
+     [
+      "mail",
+      "Z telefonu Szulca na III piętrze wychodzi mail z rezygnacją"
+     ],
+     [
+      "list",
+      "Kraska zapisuje listę uczestników bez Szulca"
+     ]
+    ],
+    "correct": [
+     "call",
+     "train",
+     "off",
+     "back",
+     "check",
+     "latch",
+     "exit",
+     "mail",
+     "list"
+    ]
+   }
+  ]
+ },
+ "solution": {
+  "summary": "Dr Edwarda Szulca uprowadzili Iwona Kraska, sekretarz komisji, i jej mąż Damian Pietras, prezes Restytucji Pomorskiej — spółki, która przejęła roszczenie do kamienicy przy Wielkopolskiej 21. Kraska odebrała biegłego z dworca i zawiozła do lokalu spółki przy ul. Jagiellońskiej 12/4. Pietras zameldował się w hotelu jako Szulc, na jego dowodzie z brodą na zdjęciu, załączył zasuwę i wyszedł drzwiami za szafą, które sam zostawił w 2019 roku. Kraska wysłała z telefonu Szulca mail z „rezygnacją” i usunęła go z listy.",
+  "steps": [
+   {
+    "h": "Pokój, w którym nikt nie spał",
+    "p": "Zasuwa w 214 została załączona o 23:13:40 i do rana drzwi niczego nie zarejestrowały. Łóżko nietknięte, ręczniki suche, kosmetyczka z insuliną zamknięta. Brakowało płaszcza, kapelusza, telefonu, dowodu i teczki."
+   },
+   {
+    "h": "Broda",
+    "p": "Recepcjonista zameldował mężczyznę z brodą, zgodnego ze zdjęciem z dowodu wydanego w 2018 roku. Żona: Szulc od trzech lat się goli. Na zdjęciu z lutego jest gładko ogolony. Podpis „E. Szulc” różni się od wszystkich wzorów — Szulc zawsze podpisywał się pełnym imieniem."
+   },
+   {
+    "h": "Druga droga z pokoju",
+    "p": "Plan z 1974 roku pokazuje magazyn bielizny z drzwiami M2 do korytarza gospodarczego. Przy adaptacji w 2019 drzwi zostawiono za płytą szafy, zamykane kluczem od korytarza. Za szafą świeży pył, przy M2 starty kurz, na klatce B karta 214-A, o 23:24 wyjście służbowe otwarte przyciskiem od środka, o 23:31 z parkingu wyjeżdża ZS 7PR04."
+   },
+   {
+    "h": "Samochód, spółka, małżeństwo",
+    "p": "ZS 7PR04 należy do Restytucji Pomorskiej (CEPiK). Jej jedynym wspólnikiem i prezesem jest Damian Pietras (KRS), z PESEL-em, pod którym ewidencja ludności podaje żonę: Iwonę Kraską. Ten sam Pietras jako kierownik robót zostawił w 2019 drzwi M2 za szafą."
+   },
+   {
+    "h": "Pasażerka",
+    "p": "O 21:49 Szulc napisał żonie, że pani Kraska czeka przed dworcem. Kierownik pociągu widział kobietę z parasolem. Toyota Kraski była poza hotelem od 21:36 do 22:41, a pod fotelem pasażera leżał bilet Szulca. Telefony Szulca i Kraski były od 21:58 w tej samej komórce Śródmieście-14, obejmującej ul. Jagiellońską. Telefon Szulca zgasł tam o 22:03. Urząd Miasta był tej nocy zamknięty."
+   },
+   {
+    "h": "Rezygnacja z cudzego telefonu",
+    "p": "O 23:48 telefon Szulca na cztery minuty połączył się z Wi-Fi na III piętrze (AP-3B), piętrze pokoju Kraski — a nigdy z punktem przy 214. O 23:50 wyszedł z niego mail „Proszę mnie nie szukać. E.S.”, o 23:58 Kraska zapisała listę bez Szulca, a już o 19:32 prosiła Morawca, żeby został w Szczecinie."
+   },
+   {
+    "h": "Motyw",
+    "p": "Projekt opinii Szulca: papier aktu z 1946 roku pochodzi z papierni uruchomionej w 1951. Akt to falsyfikat, a roszczenie warte 38,4 mln zł należało do spółki męża Kraski. Szulc miał wypaść z gry do podpisania ugody, a potem wrócić jako zdezorientowany starszy pan, który w nocy „zrezygnował” i zniknął."
+   },
+   {
+    "h": "Fałszywe tropy",
+    "p": "Kosowski próbował kupić biegłego listem, ale całą noc spędził w barze. Dąbrowska ukryła wieczorną wizytę, bo spotkanie z biegłym przed posiedzeniem nie wypadało. Lis ukrył przerwę na papierosa. Morawiec ukrył telefon z czwartku, bo dał się wciągnąć w zastępstwo, nie pytając dlaczego."
+   }
+  ]
+ },
+ "endings": {
+  "correct": {
+   "title": "Pokój bez okien",
+   "text": "O 13:20 policja wchodzi do lokalu przy ul. Jagiellońskiej 12/4. Dr Edward Szulc leży na kanapie w pokoju bez okien, otumaniony lekiem nasennym, z cukrem na granicy śpiączki. Karetka zabiera go do szpitala, a żona jedzie za nią. Pietras zostaje zatrzymany godzinę później w domu przy ul. Szafera, Kraska — przy stole komisji, gdy próbuje wznowić posiedzenie. Skórzana teczka z oryginałem opinii leży w szafie lokalu.",
+   "decision": {
+    "q": "Szulc przeżył, a komisja czeka. Co zrobicie z ugodą i aktem z 1946 roku?",
+    "options": [
+     {
+      "id": "law",
+      "label": "Zawiadomić prokuraturę o fałszerstwie aktu i wnieść o unieważnienie postępowania ugodowego",
+      "text": "Prokuratura zabezpiecza oryginał aktu w Koszalinie. Komisja umarza postępowanie, a cesja dla Restytucji trafia do sądu jako element oszustwa. Szulc po dwóch tygodniach wraca do archiwum i sam kończy opinię."
+     },
+     {
+      "id": "press",
+      "label": "Udostępnić projekt opinii dziennikarzom, zanim ktokolwiek spróbuje go podważyć",
+      "text": "Tekst „Akt z papieru, którego nie było” ukazuje się w sobotę. Prezydent miasta zawiesza prace komisji. Obrona Kraski i Pietrasa grzmi o nagonce medialnej, ale sprawa reprywatyzacyjna wraca do sądów pod lupą opinii publicznej."
+     },
+     {
+      "id": "audit",
+      "label": "Zażądać audytu wszystkich ugód komisji z udziałem Kraski z ostatnich trzech lat",
+      "text": "Audyt obejmuje jedenaście postępowań. W dwóch pojawia się ta sama kancelaria notarialna i ten sam papier. Proces o uprowadzenie Szulca przeciąga się, ale miasto odzyskuje dwie kamienice."
+     }
+    ]
+   }
+  },
+  "wrong": {
+   "kosowski": {
+    "title": "Pełnomocnik",
+    "text": "Kosowski skłamał o liście do biegłego i chciał kontynuować posiedzenie, więc oskarżacie go. Tymczasem całą noc przesiedział w barze, co potwierdzają rachunki, barman i hotelowa sieć. Szulca znajduje dopiero w sobotę rano sprzątaczka biura przy Jagiellońskiej — w ciężkim stanie."
+   },
+   "dabrowska": {
+    "title": "Radca prawny",
+    "text": "Dąbrowska ukryła, że była w hotelu w czwartek. Ale to ona żądała otwarcia pokoju, a o 22:52 odjechała taksówką do domu. Zanim śledztwo wraca na właściwy tor, mija noc. Szulc przeżywa, ale ze znacznym uszczerbkiem na zdrowiu."
+   },
+   "lis": {
+    "title": "Recepcjonista",
+    "text": "Lis zostawił recepcję i skłamał, więc wydaje się wspólnikiem. W rzeczywistości zameldował człowieka, którego dowód się zgadzał, i palił papierosa, gdy ten wychodził. Prawdziwi sprawcy zdążą wypuścić Szulca w niedzielę na dworcu — bez pamięci i bez wiarygodności."
+   },
+   "morawiec": {
+    "title": "Biegły zastępczy",
+    "text": "Morawiec skłamał o porze telefonu i zyskiwał na nieobecności Szulca. Ale nie wiedział, dlaczego ma zostać w Szczecinie, a w nocy jadł kolację w swoim pokoju. Ugoda zostaje wstrzymana, a Szulc odnaleziony dopiero następnego dnia."
+   },
+   "self": {
+    "title": "Zagubiony staruszek",
+    "text": "Uznajecie, że zdezorientowany diabetyk napisał w nocy dziwny mail i wyszedł w deszcz. Dokładnie tak miało to wyglądać. Komisja przyjmuje opinię Morawca, a Szulc pojawia się w niedzielę na dworcu w Szczecinie — otumaniony, bez teczki i bez wiarygodności. Nikt nie słucha, co ma do powiedzenia o papierni „Wieprza”."
+   }
+  },
+  "partial": "Wskazaliście właściwą osobę, ale część wniosków jest błędna lub niepoparta dowodami. Szulc zostaje odnaleziony, choć później, niż mógł, a obrona będzie miała o co walczyć."
+ },
+ "db": {
+  "date": "2026-03-13",
+  "bases": [
+   "osoby",
+   "pojazdy",
+   "firmy",
+   "ksiegi"
+  ],
+  "ignore": [
+   "IC 38170"
+  ],
+  "attach": [
+   {
+    "rec": "V-005-rest",
+    "ev": "d01",
+    "paths": [
+     {
+      "q": {
+       "nr": "ZS 7PR04"
+      },
+      "from": [
+       "e18"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "F-005-rest",
+    "ev": "d02",
+    "paths": [
+     {
+      "q": {
+       "krs": "0000781264"
+      },
+      "from": [
+       "d01"
+      ]
+     },
+     {
+      "q": {
+       "krs": "0000781264"
+      },
+      "from": [
+       "d04"
+      ]
+     },
+     {
+      "q": {
+       "nazwa": "Restytucja Pomorska"
+      },
+      "from": [
+       "e19"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "O-005-pietras",
+    "ev": "d03",
+    "paths": [
+     {
+      "q": {
+       "pesel": "67082145713"
+      },
+      "from": [
+       "d02"
+      ]
+     },
+     {
+      "q": {
+       "nazwisko": "Pietras",
+       "imie": "Damian"
+      },
+      "from": [
+       "d02"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "K-005-claim",
+    "ev": "d04",
+    "paths": [
+     {
+      "q": {
+       "nr": "SZ1S/00045218/0"
+      },
+      "from": [
+       "e19"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "F-005-pb",
+    "ev": "d05",
+    "paths": [
+     {
+      "q": {
+       "nip": "8512047718"
+      },
+      "from": [
+       "e25"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "O-005-kraska",
+    "ev": "d06",
+    "paths": [
+     {
+      "q": {
+       "nazwisko": "Kraska",
+       "imie": "Iwona"
+      },
+      "from": [
+       "e04"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "O-005-szulc",
+    "ev": "d07",
+    "paths": [
+     {
+      "q": {
+       "nazwisko": "Szulc",
+       "imie": "Edward"
+      },
+      "from": [
+       "e01"
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

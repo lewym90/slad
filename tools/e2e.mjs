@@ -20,6 +20,7 @@ const FROM = process.env.FROM_STATE;
 if (FROM) { await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(s => localStorage.setItem('slad.v2', s), fs.readFileSync(FROM, 'utf8')); await p.goto(URL + `#/gra/${CID}/akta`, { waitUntil: 'networkidle' }); await p.reload({ waitUntil: 'networkidle' }); }
 else { await p.goto(URL, { waitUntil: 'networkidle' }); await shot('home'); await shot('home-full', true); }
 const C = await p.evaluate(cid => fetch(`cases/${cid}.json`).then(r => r.json()), CID);
+const hasT = (g, t) => t.startsWith('lie:') ? g.broken.includes(t.slice(4)) : t.startsWith('st:') ? g.claims.includes(t.slice(3)) : t.startsWith('show:') ? (g.showsDone || []).includes(t.slice(5)) : (g.found.includes(t) || g.shared.includes(t) || !!(g.puzzles[t] && g.puzzles[t].solved) || g.spots.includes(t) || g.asked.includes(t));
 const state = async () => { await p.evaluate(c => { window.__cid = c; }, CID); return p.evaluate(() => JSON.parse(localStorage.getItem('slad.v2')).games[window.__cid]); };
 if (!FROM) {
 await A('open-case', `[data-id="${CID}"]`); await shot('intro'); await shot('intro-full', true);
@@ -75,11 +76,13 @@ for (let round = 0; round < 5; round++) {
     await A('person', `[data-id="${per.id}"]`);
     while (await p.locator('[data-a="ask"]:not([disabled])').count()) await A('ask', ':not([disabled])');
     if (round === 0 && per.id === 'wiktor') await shot('interrogation');
+    if (per.showDefault) for (const x of per.shows || []) { const g = await state(); if ((g.showsDone || []).includes(x.id)) continue; if (!(hasT(g, x.ev) && (x.requires || []).every(t => hasT(g, t)))) continue;
+      await A('pmode', '[data-m="show"]'); if (!globalThis.showShot) { globalThis.showShot = true; await shot('show-tab'); } await A('show', `[data-p="${per.id}"][data-id="${x.ev}"]`); await p.waitForTimeout(250); if (!(await state()).showsDone.includes(x.id)) errs.push('show failed ' + x.id); }
     await A('pmode', `[data-m="stmt"]`);
     const g = await state();
     for (const s of per.statements) {
       if (s.truth || !g.claims.includes(s.id) || g.broken.includes(s.id)) continue;
-      const evid = s.contradicts.find(x => g.found.includes(x) || g.shared.includes(x)); if (!evid) continue;
+      const evid = s.contradicts.find(x => x.startsWith('st:') ? g.claims.includes(x.slice(3)) : (g.found.includes(x) || g.shared.includes(x))); if (!evid) continue;
       await A('confront', `[data-id="${s.id}"]`); if (s.id === 'w-l2') await shot('confront-pick');
       if (!globalThis.cfChecked && !evid.startsWith('st:')) { globalThis.cfChecked = true;
         const vis = () => p.evaluate(() => [...document.querySelectorAll('.cf-item')].filter(x => !x.hidden && x.offsetParent).length);
@@ -93,7 +96,20 @@ for (let round = 0; round < 5; round++) {
     await closeAll();
   }
   for (let rep = 0; rep < 2; rep++) { const g = await state();
-  for (const pz of C.puzzles) { if ((await state()).puzzles[pz.id]?.solved) continue; if (pz.requires.every(r => g.found.includes(r) || g.shared.includes(r) || (g.puzzles[r] && g.puzzles[r].solved))) await solvePuzzle(pz); } }
+  for (const pz of C.puzzles) { if ((await state()).puzzles[pz.id]?.solved) continue; if (pz.requires.every(r => hasT(g, r))) await solvePuzzle(pz); } }
+  if (C.db) { if (!globalThis.baseOf) globalThis.baseOf = await p.evaluate(() => loadDB().then(d => d.baseOf));
+    await A('tab', '[data-tab="bazy"]');
+    if (round === 0) { await shot('bazy');
+      await A('db-base', '[data-b="pojazdy"]'); await p.fill('.term-form input[name="nr"]', 'ZS7PR04'); await A('db-search'); const none = await p.locator('.term-none').count();
+      await A('db-base', '[data-b="osoby"]'); await p.fill('.term-form input[name="nazwisko"]', 'Kowalski'); await A('db-search'); const many = await p.locator('.term-row').count() + await p.locator('.term-none').count();
+      await p.fill('.term-form input[name="nazwisko"]', 'kowalski'); await p.fill('.term-form input[name="imie"]', 'jan'); await A('db-search'); const jan = await p.locator('.term-row').count(); const janOk = await p.$$eval('.term-row b', els => els.every(e => /^Kowalski Jan/.test(e.textContent)));
+      await shot('bazy-results'); console.log('db: no-space plate rejected', none === 1, '| Kowalski results', many, '| Jan Kowalski', jan, janOk); if (none !== 1 || !janOk) errs.push('db search semantics'); }
+    for (const a of C.db.attach) { const g = await state(); if (g.found.includes(a.ev)) continue; const pt = a.paths.find(x => x.from.every(t => hasT(g, t))); if (!pt) continue;
+      const base = globalThis.baseOf[a.rec]; await A('db-base', `[data-b="${base}"]`);
+      for (const inp of await p.$$('.term-form input')) await inp.fill('');
+      for (const [k, v] of Object.entries(pt.q)) await p.fill(`.term-form input[name="${k}"]`, v);
+      await A('db-search'); await A('db-rec', `[data-id="${a.rec}"]`); if (!globalThis.recShot) { globalThis.recShot = true; await shot('db-record'); } await A('db-attach', `[data-id="${a.rec}"]`); await p.waitForTimeout(200); await closeAll();
+      if (!(await state()).found.includes(a.ev)) errs.push('attach failed ' + a.ev); } }
 }
 fs.writeFileSync(`/tmp/state-${CID}-${dev}-${MODE}.json`, await p.evaluate(() => localStorage.getItem('slad.v2')));
 }
