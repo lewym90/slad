@@ -1721,5 +1721,474 @@
     "spoken": "Nigdy tego nie widziałam."
    }
   ]
+ },
+ "006-ewa": {
+  "name": "Ewa Sitek",
+  "lines": [
+   {
+    "id": "ew-q1",
+    "kind": "q",
+    "text": "W biurze, od pięć po ósmej. Liczyłam utarg z biletów i układałam przemówienie na pożegnanie. Nie ruszałam się stamtąd do końca filmu.",
+    "spoken": "W biurze, od pięć po ósmej. Liczyłam utarg z biletów i układałam przemówienie na pożegnanie. Nie ruszałam się stamtąd do końca filmu."
+   },
+   {
+    "id": "ew-q2",
+    "kind": "q",
+    "text": "Nie zszedł na pożegnanie. O wpół do jedenastej poszłam z Damianem na górę. Drzwi zamknięte, pukałam, cisza. Otworzyłam zapasowym kluczem. Leżał przy przewijarce, obok ta puszka. Lampa w projektorze jeszcze świeciła.",
+    "spoken": "Nie zszedł na pożegnanie. O wpół do jedenastej poszłam z Damianem na górę. Drzwi zamknięte, pukałam, cisza. Otworzyłam zapasowym kluczem. Leżał przy przewijarce, obok ta puszka. Lampa w projektorze jeszcze świeciła."
+   },
+   {
+    "id": "ew-q3",
+    "kind": "q",
+    "text": "Bo ekran zrobił się biały, a z kabiny nic. Pomyślałam, że pan Leon się wzruszył — ostatni seans w jego życiu. Ktoś musiał zapalić, ludzie siedzieli po ciemku.",
+    "spoken": "Bo ekran zrobił się biały, a z kabiny nic. Pomyślałam, że pan Leon się wzruszył — ostatni seans w jego życiu. Ktoś musiał zapalić, ludzie siedzieli po ciemku."
+   },
+   {
+    "id": "ew-q4",
+    "kind": "q",
+    "text": "Pan Leon i Damian, którego pan Leon uczył. Ja się na tym nie znam. Nigdy w życiu nie obsługiwałam projektora, jestem od papierów i ludzi.",
+    "spoken": "Pan Leon i Damian, którego pan Leon uczył. Ja się na tym nie znam. Nigdy w życiu nie obsługiwałam projektora, jestem od papierów i ludzi."
+   },
+   {
+    "id": "ew-q5",
+    "kind": "q",
+    "text": "To duma „Zorzy”. Cztery oryginały, wiszą tu od lat. Po zamknięciu trafią do muzeum kinematografii, już to uzgodniłam.",
+    "spoken": "To duma „Zorzy”. Cztery oryginały, wiszą tu od lat. Po zamknięciu trafią do muzeum kinematografii, już to uzgodniłam."
+   },
+   {
+    "id": "ew-q6",
+    "kind": "q",
+    "text": "Miał przemówić na pożegnaniu, jak wszyscy. Nie wiem, co przygotował. Nie pokazywał mi tekstu.",
+    "spoken": "Miał przemówić na pożegnaniu, jak wszyscy. Nie wiem, co przygotował. Nie pokazywał mi tekstu."
+   },
+   {
+    "id": "ew-q7",
+    "kind": "q",
+    "text": "Bo tak to wyglądało. Leżała pod regałem. Co miałam pomyśleć? Że ktoś... Nie, wtedy nawet przez myśl mi to nie przeszło.",
+    "spoken": "Bo tak to wyglądało. Leżała pod regałem. Co miałam pomyśleć? Że ktoś... Nie, wtedy nawet przez myśl mi to nie przeszło."
+   },
+   {
+    "id": "e-l1",
+    "kind": "break",
+    "text": "Raz wyszłam. Około dziesięć po dziewiątej wyniosłam do kontenera kartony z baru. Kilka minut, nic ważnego. Zapomniałam o tym.",
+    "spoken": "Raz wyszłam. Około dziesięć po dziewiątej wyniosłam do kontenera kartony z baru. Kilka minut, nic ważnego. Zapomniałam o tym."
+   },
+   {
+    "id": "e-l2",
+    "kind": "break",
+    "text": "Wyszłam wcześniej, za dwadzieścia dziewiąta. Drzwi kabiny były otwarte, weszłam po schodach, żeby zamienić słowo z panem Leonem. On leżał na podłodze. Zamknęłam drzwi i zbiegłam. Potem stałam pod daszkiem i nie mogłam się ruszyć. Nie wiem, jak długo.",
+    "spoken": "Wyszłam wcześniej, za dwadzieścia dziewiąta. Drzwi kabiny były otwarte, weszłam po schodach, żeby zamienić słowo z panem Leonem. On leżał na podłodze. Zamknęłam drzwi i zbiegłam. Potem stałam pod daszkiem i nie mogłam się ruszyć. Nie wiem, jak długo."
+   },
+   {
+    "id": "e-l3",
+    "kind": "break",
+    "text": "Byłam dłużej. Kiedy kończyła się pierwsza część, zmieniłam projektor. Pan Leon sam mnie tego nauczył, trzydzieści lat temu. Nie mogłam pozwolić, żeby ostatni seans się urwał. Wyszłam, kiedy zaczęło padać. Ale on już leżał, kiedy weszłam. Ja go nie zabiłam.",
+    "spoken": "Byłam dłużej. Kiedy kończyła się pierwsza część, zmieniłam projektor. Pan Leon sam mnie tego nauczył, trzydzieści lat temu. Nie mogłam pozwolić, żeby ostatni seans się urwał. Wyszłam, kiedy zaczęło padać. Ale on już leżał, kiedy weszłam. Ja go nie zabiłam."
+   },
+   {
+    "id": "e-l4",
+    "kind": "break",
+    "text": "Pokazał mi ten list. Powiedział, że po seansie wręczy go pani Wrzos, przy wszystkich, przy dziennikarzach. Dwadzieścia lat tego kina — i miałam wyjść na złodziejkę na jego pożegnaniu. Puszka stała na stole przewijarki. Nie pamiętam, kiedy ją chwyciłam. Potem myślałam już tylko o jednym: film musi iść. Póki szedł, wszyscy myśleli, że on żyje.",
+    "spoken": "Pokazał mi ten list. Powiedział, że po seansie wręczy go pani Wrzos, przy wszystkich, przy dziennikarzach. Dwadzieścia lat tego kina — i miałam wyjść na złodziejkę na jego pożegnaniu. Puszka stała na stole przewijarki. Nie pamiętam, kiedy ją chwyciłam. Potem myślałam już tylko o jednym: film musi iść. Póki szedł, wszyscy myśleli, że on żyje."
+   },
+   {
+    "id": "e-l5",
+    "kind": "break",
+    "text": "Dwa to faksymile. Zamówiłam je, żeby oryginały nie blakły w świetle foyer. Oryginały są bezpieczne, leżą u mnie w domu.",
+    "spoken": "Dwa to faksymile. Zamówiłam je, żeby oryginały nie blakły w świetle foyer. Oryginały są bezpieczne, leżą u mnie w domu."
+   },
+   {
+    "id": "e-l6",
+    "kind": "break",
+    "text": "Nie ma ich w domu. Mąż oddał je do aukcji przez swoją firmę. Kino zamykają, kolekcja i tak poszłaby do magazynu, a my toniemy w długach. Myślałam, że nikt nie zauważy różnicy. Nikt poza nim.",
+    "spoken": "Nie ma ich w domu. Mąż oddał je do aukcji przez swoją firmę. Kino zamykają, kolekcja i tak poszłaby do magazynu, a my toniemy w długach. Myślałam, że nikt nie zauważy różnicy. Nikt poza nim."
+   },
+   {
+    "id": "e-l7",
+    "kind": "break",
+    "text": "Na zdjęciu jestem ja. Przed ślubem nazywałam się Kalinowska. Przez pięć lat siedziałam w tej kabinie obok pana Leona. Potem przeszłam do biura i nikt już o tym nie pamiętał.",
+    "spoken": "Na zdjęciu jestem ja. Przed ślubem nazywałam się Kalinowska. Przez pięć lat siedziałam w tej kabinie obok pana Leona. Potem przeszłam do biura i nikt już o tym nie pamiętał."
+   },
+   {
+    "id": "ew-s1",
+    "kind": "show",
+    "text": "Stare zdjęcie. Pan Leon miał w kabinie mnóstwo pamiątek. Nie wiem, czemu mi je państwo pokazują.",
+    "spoken": "Stare zdjęcie. Pan Leon miał w kabinie mnóstwo pamiątek. Nie wiem, czemu mi je państwo pokazują."
+   },
+   {
+    "id": "ew-s2",
+    "kind": "show",
+    "text": "Mój płaszcz. Zahaczyłam o coś przy kontenerze. Na podwórku wszystko jest zardzewiałe.",
+    "spoken": "Mój płaszcz. Zahaczyłam o coś przy kontenerze. Na podwórku wszystko jest zardzewiałe."
+   },
+   {
+    "id": "ew-s3",
+    "kind": "show",
+    "text": "Plakaty z tych lat drukowano w tysiącach egzemplarzy. Na aukcjach jest ich pełno.",
+    "spoken": "Plakaty z tych lat drukowano w tysiącach egzemplarzy. Na aukcjach jest ich pełno."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Proszę mnie nie łapać za słowa.",
+    "spoken": "Proszę mnie nie łapać za słowa."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Prowadzę to kino od dwudziestu lat. Nie wiem, do czego pan zmierza.",
+    "spoken": "Prowadzę to kino od dwudziestu lat. Nie wiem, do czego pan zmierza."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Wczoraj był najtrudniejszy wieczór w moim życiu. Proszę o fakty.",
+    "spoken": "Wczoraj był najtrudniejszy wieczór w moim życiu. Proszę o fakty."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie rozumiem, co to ma wspólnego z panem Leonem.",
+    "spoken": "Nie rozumiem, co to ma wspólnego z panem Leonem."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Widzę to pierwszy raz.",
+    "spoken": "Widzę to pierwszy raz."
+   }
+  ]
+ },
+ "006-damian": {
+  "name": "Damian Wróbel",
+  "lines": [
+   {
+    "id": "d-q1",
+    "kind": "q",
+    "text": "Przy barze z panią Joanną, szykowaliśmy pożegnanie. Za pięć dziewiąta wyszedłem zapalić na podwórko, wróciłem po kwadransie. Nikogo tam nie było.",
+    "spoken": "Przy barze z panią Joanną, szykowaliśmy pożegnanie. Za pięć dziewiąta wyszedłem zapalić na podwórko, wróciłem po kwadransie. Nikogo tam nie było."
+   },
+   {
+    "id": "d-q2",
+    "kind": "q",
+    "text": "Jak zegarek. Każdą zmianę projektora wpisywał do dziennika, co do minuty. A pierwszą część przewijał od razu, kiedy szła druga. Mówił, że szpula na stole ma być gotowa, zanim film się skończy.",
+    "spoken": "Jak zegarek. Każdą zmianę projektora wpisywał do dziennika, co do minuty. A pierwszą część przewijał od razu, kiedy szła druga. Mówił, że szpula na stole ma być gotowa, zanim film się skończy."
+   },
+   {
+    "id": "d-q3",
+    "kind": "q",
+    "text": "Ja. Uczył mnie od trzech lat. Wczoraj chciał zrobić wszystko sam, to był jego wieczór. Nie byłem w kabinie ani razu w czasie seansu.",
+    "spoken": "Ja. Uczył mnie od trzech lat. Wczoraj chciał zrobić wszystko sam, to był jego wieczór. Nie byłem w kabinie ani razu w czasie seansu."
+   },
+   {
+    "id": "d-q4",
+    "kind": "q",
+    "text": "Pan Leon zawsze je klinował. Dwa projektory z lampami ksenonowymi — w kabinie jest jak w saunie. Miał taki stary drewniany klin na czerwonym sznurku.",
+    "spoken": "Pan Leon zawsze je klinował. Dwa projektory z lampami ksenonowymi — w kabinie jest jak w saunie. Miał taki stary drewniany klin na czerwonym sznurku."
+   },
+   {
+    "id": "d-q5",
+    "kind": "q",
+    "text": "Pani Ewa otworzyła drzwi zapasowym kluczem. Pan Leon leżał przy przewijarce. W projektorze B jeszcze świeciła lampa, zgasiłem ją. Pani Ewa od razu powiedziała, że puszka musiała spaść z półki.",
+    "spoken": "Pani Ewa otworzyła drzwi zapasowym kluczem. Pan Leon leżał przy przewijarce. W projektorze B jeszcze świeciła lampa, zgasiłem ją. Pani Ewa od razu powiedziała, że puszka musiała spaść z półki."
+   },
+   {
+    "id": "d-l1",
+    "kind": "break",
+    "text": "Dobra. Nie byłem na podwórku. Poszedłem do Żabki po wódkę i papierosy na po imprezie. Pani Ewa zakazała alkoholu, więc nie chciałem się przyznać. Wróciłem frontem, przez foyer.",
+    "spoken": "Dobra. Nie byłem na podwórku. Poszedłem do Żabki po wódkę i papierosy na po imprezie. Pani Ewa zakazała alkoholu, więc nie chciałem się przyznać. Wróciłem frontem, przez foyer."
+   },
+   {
+    "id": "d-s1",
+    "kind": "show",
+    "text": "Nie ma zmiany projektora. Pan Leon wpisał każdą od pięćdziesięciu lat, nawet na seansie dla trzech osób. Jeśli jej nie wpisał, to nie on ją zrobił.",
+    "spoken": "Nie ma zmiany projektora. Pan Leon wpisał każdą od pięćdziesięciu lat, nawet na seansie dla trzech osób. Jeśli jej nie wpisał, to nie on ją zrobił."
+   },
+   {
+    "id": "d-s2",
+    "kind": "show",
+    "text": "Pierwsza część nieprzewinięta? Pan Leon zabrałby się za to, gdy tylko ruszyła druga. Chyba że już nie mógł.",
+    "spoken": "Pierwsza część nieprzewinięta? Pan Leon zabrałby się za to, gdy tylko ruszyła druga. Chyba że już nie mógł."
+   },
+   {
+    "id": "d-s3",
+    "kind": "show",
+    "text": "Nie wiem, kto to jest. Pan Leon mówił kiedyś, że przede mną miał tylko jedną uczennicę, dawno temu, i że była lepsza od niego.",
+    "spoken": "Nie wiem, kto to jest. Pan Leon mówił kiedyś, że przede mną miał tylko jedną uczennicę, dawno temu, i że była lepsza od niego."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja tylko obsługuję projektor. Nic więcej nie wiem.",
+    "spoken": "Ja tylko obsługuję projektor. Nic więcej nie wiem."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Pan Leon był dla mnie jak dziadek. Naprawdę myślicie, że…",
+    "spoken": "Pan Leon był dla mnie jak dziadek. Naprawdę myślicie, że…"
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Nie pamiętam, serio. Byłem w szoku.",
+    "spoken": "Nie pamiętam, serio. Byłem w szoku."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem, co mam o tym powiedzieć.",
+    "spoken": "Nie wiem, co mam o tym powiedzieć."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "To nie moja działka.",
+    "spoken": "To nie moja działka."
+   }
+  ]
+ },
+ "006-grzegorz": {
+  "name": "Grzegorz Barcz",
+  "lines": [
+   {
+    "id": "g-q1",
+    "kind": "q",
+    "text": "Na sali, w piątym rzędzie. Cały film. Ostatni seans ojca — gdzie miałbym być?",
+    "spoken": "Na sali, w piątym rzędzie. Cały film. Ostatni seans ojca — gdzie miałbym być?"
+   },
+   {
+    "id": "g-q2",
+    "kind": "q",
+    "text": "O filmie. O tym, że to koniec. Zwykła rozmowa.",
+    "spoken": "O filmie. O tym, że to koniec. Zwykła rozmowa."
+   },
+   {
+    "id": "g-q3",
+    "kind": "q",
+    "text": "Jako dzieciak spędzałem w tej kabinie każde popołudnie. Zmianę projektora zrobiłbym dziś z zamkniętymi oczami. Tylko że wczoraj nie miałem po co tam wchodzić.",
+    "spoken": "Jako dzieciak spędzałem w tej kabinie każde popołudnie. Zmianę projektora zrobiłbym dziś z zamkniętymi oczami. Tylko że wczoraj nie miałem po co tam wchodzić."
+   },
+   {
+    "id": "g-q4",
+    "kind": "q",
+    "text": "Ojciec i jakaś praktykantka. Miałem wtedy osiemnaście lat i inne rzeczy w głowie. Ojciec miał paru uczniów, nie pamiętam ich.",
+    "spoken": "Ojciec i jakaś praktykantka. Miałem wtedy osiemnaście lat i inne rzeczy w głowie. Ojciec miał paru uczniów, nie pamiętam ich."
+   },
+   {
+    "id": "g-q5",
+    "kind": "q",
+    "text": "W zeszłym tygodniu dzwonił i coś mamrotał, że „ktoś tu kręci”. Myślałem, że chodzi o sprzedaż budynku. Nie słuchałem go uważnie. Teraz żałuję.",
+    "spoken": "W zeszłym tygodniu dzwonił i coś mamrotał, że „ktoś tu kręci”. Myślałem, że chodzi o sprzedaż budynku. Nie słuchałem go uważnie. Teraz żałuję."
+   },
+   {
+    "id": "g-l1",
+    "kind": "break",
+    "text": "Wyszedłem o dziewiątej zadzwonić. Do człowieka, któremu jestem winien pieniądze. Stałem przed kinem, aż skończyłem. Nie chciałem, żeby to wyszło na jaw — nie w taki dzień.",
+    "spoken": "Wyszedłem o dziewiątej zadzwonić. Do człowieka, któremu jestem winien pieniądze. Stałem przed kinem, aż skończyłem. Nie chciałem, żeby to wyszło na jaw — nie w taki dzień."
+   },
+   {
+    "id": "g-l2",
+    "kind": "break",
+    "text": "Pokłóciliśmy się. Prosiłem, żeby poręczył mi pożyczkę albo dał mieszkanie pod zastaw. Odmówił. Powiedziałem mu rzeczy, których nie da się cofnąć. To była nasza ostatnia rozmowa.",
+    "spoken": "Pokłóciliśmy się. Prosiłem, żeby poręczył mi pożyczkę albo dał mieszkanie pod zastaw. Odmówił. Powiedziałem mu rzeczy, których nie da się cofnąć. To była nasza ostatnia rozmowa."
+   },
+   {
+    "id": "g-s1",
+    "kind": "show",
+    "text": "Ta puszka nie spadła z żadnej półki. Ojciec nigdy nie trzymał pustej puszki na górze. Zawsze stała na stole przewijarki, żeby od razu schować do niej przewiniętą szpulę.",
+    "spoken": "Ta puszka nie spadła z żadnej półki. Ojciec nigdy nie trzymał pustej puszki na górze. Zawsze stała na stole przewijarki, żeby od razu schować do niej przewiniętą szpulę."
+   },
+   {
+    "id": "g-s2",
+    "kind": "show",
+    "text": "Ojciec czekał na ten wieczór pół roku. Mówił, że to będzie najlepsza projekcja w jego życiu.",
+    "spoken": "Ojciec czekał na ten wieczór pół roku. Mówił, że to będzie najlepsza projekcja w jego życiu."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "To był mój ojciec. Proszę o trochę szacunku.",
+    "spoken": "To był mój ojciec. Proszę o trochę szacunku."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Nie mam nic do dodania.",
+    "spoken": "Nie mam nic do dodania."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Pytajcie personel, ja tu tylko byłem gościem.",
+    "spoken": "Pytajcie personel, ja tu tylko byłem gościem."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem. Dawno tu nie bywałem.",
+    "spoken": "Nie wiem. Dawno tu nie bywałem."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Nic mi to nie mówi.",
+    "spoken": "Nic mi to nie mówi."
+   }
+  ]
+ },
+ "006-joanna": {
+  "name": "Joanna Rak",
+  "lines": [
+   {
+    "id": "j-q1",
+    "kind": "q",
+    "text": "Pan Leon przyszedł o wpół do ósmej na herbatę. Przy barze pokłócił się z synem — o pieniądze, o mieszkanie, aż ludzie się oglądali. Potem poszedł na górę, cały czerwony.",
+    "spoken": "Pan Leon przyszedł o wpół do ósmej na herbatę. Przy barze pokłócił się z synem — o pieniądze, o mieszkanie, aż ludzie się oglądali. Potem poszedł na górę, cały czerwony."
+   },
+   {
+    "id": "j-q2",
+    "kind": "q",
+    "text": "Miał kopertę w kieszeni marynarki. Powiedział, że po seansie da coś pani konserwator i że wszyscy się zdziwią, co się dzieje z naszymi plakatami. Pytałam o co chodzi — machnął ręką.",
+    "spoken": "Miał kopertę w kieszeni marynarki. Powiedział, że po seansie da coś pani konserwator i że wszyscy się zdziwią, co się dzieje z naszymi plakatami. Pytałam o co chodzi — machnął ręką."
+   },
+   {
+    "id": "j-q3",
+    "kind": "q",
+    "text": "Damian wyszedł frontem za pięć dziewiąta i wrócił z ulicy jakoś dziesięć po, z reklamówką. A syn pana Leona wyszedł z sali koło dziewiątej, przed kino, z telefonem przy uchu. Wrócił po kwadransie.",
+    "spoken": "Damian wyszedł frontem za pięć dziewiąta i wrócił z ulicy jakoś dziesięć po, z reklamówką. A syn pana Leona wyszedł z sali koło dziewiątej, przed kino, z telefonem przy uchu. Wrócił po kwadransie."
+   },
+   {
+    "id": "j-q4",
+    "kind": "q",
+    "text": "Przyszła od zaplecza kwadrans po dziewiątej. Mokra, z płaszczem zarzuconym na ramiona, włosy jej się rozsypały. Powiedziała, że wynosiła śmieci. Zdziwiłam się, bo śmieci zawsze wynosi Damian.",
+    "spoken": "Przyszła od zaplecza kwadrans po dziewiątej. Mokra, z płaszczem zarzuconym na ramiona, włosy jej się rozsypały. Powiedziała, że wynosiła śmieci. Zdziwiłam się, bo śmieci zawsze wynosi Damian."
+   },
+   {
+    "id": "j-q5",
+    "kind": "q",
+    "text": "Ostatnia scena, napisy i nagle biały ekran. Świecił tak z pięć minut. Ludzie bili brawo, myśleli, że pan Leon zaraz zejdzie się ukłonić. W końcu pani Ewa zapaliła światło panelem przy drzwiach sali.",
+    "spoken": "Ostatnia scena, napisy i nagle biały ekran. Świecił tak z pięć minut. Ludzie bili brawo, myśleli, że pan Leon zaraz zejdzie się ukłonić. W końcu pani Ewa zapaliła światło panelem przy drzwiach sali."
+   },
+   {
+    "id": "j-s1",
+    "kind": "show",
+    "text": "Przecież to Ewa! Pani Ewa, z domu Kalinowska. Kiedy zaczynałam tu pracować, ona jeszcze siedziała w kabinie z panem Leonem. Najlepsza, mówił o niej. Dopiero potem przeszła do biura.",
+    "spoken": "Przecież to Ewa! Pani Ewa, z domu Kalinowska. Kiedy zaczynałam tu pracować, ona jeszcze siedziała w kabinie z panem Leonem. Najlepsza, mówił o niej. Dopiero potem przeszła do biura."
+   },
+   {
+    "id": "j-s2",
+    "kind": "show",
+    "text": "W tym płaszczu wtedy przyszła. Miała go na ramionach, cały mokry.",
+    "spoken": "W tym płaszczu wtedy przyszła. Miała go na ramionach, cały mokry."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja tam stałam za barem, kochanie. Nic więcej nie wiem.",
+    "spoken": "Ja tam stałam za barem, kochanie. Nic więcej nie wiem."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Nie będę gadać o ludziach za plecami.",
+    "spoken": "Nie będę gadać o ludziach za plecami."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Tego nie widziałam, nie będę zmyślać.",
+    "spoken": "Tego nie widziałam, nie będę zmyślać."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Pierwszy raz widzę.",
+    "spoken": "Pierwszy raz widzę."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Nie znam się na tym, ja jestem od kawy i ciastek.",
+    "spoken": "Nie znam się na tym, ja jestem od kawy i ciastek."
+   }
+  ]
+ },
+ "006-lipka": {
+  "name": "Stanisław Lipka",
+  "lines": [
+   {
+    "id": "l-q1",
+    "kind": "q",
+    "text": "Wstałem zamknąć okno, bo zaczęło kropić. Patrzę, a tu ktoś zbiega po tych żelaznych schodach z kina. Szybko, trzymał się poręczy. Długi jasny płaszcz. Zegar nad stołem pokazywał jakieś dziesięć po dziesiątej, od razu na niego spojrzałem.",
+    "spoken": "Wstałem zamknąć okno, bo zaczęło kropić. Patrzę, a tu ktoś zbiega po tych żelaznych schodach z kina. Szybko, trzymał się poręczy. Długi jasny płaszcz. Zegar nad stołem pokazywał jakieś dziesięć po dziesiątej, od razu na niego spojrzałem."
+   },
+   {
+    "id": "l-q2",
+    "kind": "q",
+    "text": "Z tej odległości, w tym świetle? Nie. Kaptura nie miał. Włosy jasne albo siwe, nie wiem. Mogła to być i kobieta. Zszedł na podwórze i zniknął pod ścianą kina, tam gdzie tylne drzwi.",
+    "spoken": "Z tej odległości, w tym świetle? Nie. Kaptura nie miał. Włosy jasne albo siwe, nie wiem. Mogła to być i kobieta. Zszedł na podwórze i zniknął pod ścianą kina, tam gdzie tylne drzwi."
+   },
+   {
+    "id": "l-q3",
+    "kind": "q",
+    "text": "W czasie seansów zawsze są otwarte, pan Leon je podpiera, bo mu gorąco. Ale jak ten ktoś zbiegał, drzwi na górze były już zamknięte. Pamiętam, bo kiedy są otwarte, z kabiny bije światło od lamp, a wtedy na górze było już ciemno.",
+    "spoken": "W czasie seansów zawsze są otwarte, pan Leon je podpiera, bo mu gorąco. Ale jak ten ktoś zbiegał, drzwi na górze były już zamknięte. Pamiętam, bo kiedy są otwarte, z kabiny bije światło od lamp, a wtedy na górze było już ciemno."
+   },
+   {
+    "id": "l-q4",
+    "kind": "q",
+    "text": "W czwartek, jak zmieniałem baterię. Nastawiłem z zegarka po bracie. Ten nigdy się nie myli, nakręcam go co rano od trzydziestu lat.",
+    "spoken": "W czwartek, jak zmieniałem baterię. Nastawiłem z zegarka po bracie. Ten nigdy się nie myli, nakręcam go co rano od trzydziestu lat."
+   },
+   {
+    "id": "l-m1",
+    "kind": "mistake",
+    "text": "Godzinę więcej? Mój Boże... Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — kto by pamiętał o zegarku w pudełku. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić.",
+    "spoken": "Godzinę więcej? Mój Boże... Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — kto by pamiętał o zegarku w pudełku. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić."
+   },
+   {
+    "id": "l-s1",
+    "kind": "show",
+    "text": "Jedenaście po dziewiątej drzwi się zamknęły? Nie, to niemożliwe. Ja widziałem tego człowieka o dziesiątej, zegar miałem przed nosem.",
+    "spoken": "Jedenaście po dziewiątej drzwi się zamknęły? Nie, to niemożliwe. Ja widziałem tego człowieka o dziesiątej, zegar miałem przed nosem."
+   },
+   {
+    "id": "l-s2",
+    "kind": "show",
+    "text": "Padać zaczęło akurat, jak on zbiegał. Tego jestem pewien. Dlatego wstałem do okna.",
+    "spoken": "Padać zaczęło akurat, jak on zbiegał. Tego jestem pewien. Dlatego wstałem do okna."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja wiem, co widziałem, proszę pana.",
+    "spoken": "Ja wiem, co widziałem, proszę pana."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Oczy mam jeszcze dobre, tylko nogi gorsze.",
+    "spoken": "Oczy mam jeszcze dobre, tylko nogi gorsze."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Tego to już nie wiem, nie będę zmyślał.",
+    "spoken": "Tego to już nie wiem, nie będę zmyślał."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "A co ja mogę o tym wiedzieć?",
+    "spoken": "A co ja mogę o tym wiedzieć?"
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Nie, tego nie widziałem.",
+    "spoken": "Nie, tego nie widziałem."
+   }
+  ]
  }
 }
