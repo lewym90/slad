@@ -151,4 +151,4 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 
 ## 14. Stan wdrożenia 2.17 (13.11.2026)
 - Silnik: zagadka „podarty dokument” (`input: "torn"`), zeznania-pomyłki (`mistake: true`), materiały do wydruku (`tools/gen_print.py`, Ustawienia → „Do wydruku”).
-- 006: logika zwalidowana (0 błędów poza brakującymi zdjęciami), przejście testowe 100 pkt; czeka na grafiki, głosy, filmy i dźwięk, potem rozmieszczenie śladów na zdjęciach.
+- 006: komplet mediów, ślady na zdjęciach rozmieszczone, walidacja bez błędów, przejścia testowe 100 pkt; otwarta w 2.17.1 (13.11.2026). Do zrobienia przy okazji: przeskalowanie grafik 006 w Upscaylu razem z 001–005.

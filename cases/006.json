@@ -1210,12 +1210,12 @@
    "id": "e09",
    "type": "Fotografia",
    "title": "Zdjęcie na ścianie kabiny",
-   "summary": "Oprawione w ramkę, nad stołem przewijarki.",
+   "summary": "Oprawione w ramkę, nad stołem przewijarki. Technik zdjął je ze ściany.",
    "body": [
-    "Czarno-białe zdjęcie: wąsaty mężczyzna w roboczym fartuchu i młoda jasnowłosa kobieta z włosami spiętymi w kok, przy projektorze. Kobieta w białych rękawiczkach trzyma rękę na dźwigni zmiany.",
+    "Stare, pożółkłe czarno-białe zdjęcie: wąsaty mężczyzna w roboczym fartuchu i młoda jasnowłosa kobieta z włosami spiętymi w kok, między nimi projektor. Kobieta w białych rękawiczkach trzyma rękę na dźwigni zmiany.",
     {
      "quote": "Kabina „Zorzy”, 1998. Leon i jego najzdolniejsza uczennica — Ewa Kalinowska.",
-     "by": "podpis na passe-partout"
+     "by": "napis ołówkiem na odwrocie fotografii"
     }
    ],
    "img": "assets/evidence/006-photo.webp"
@@ -1459,7 +1459,7 @@
    "id": "e24",
    "type": "Oględziny",
    "title": "Zegar ścienny pana Lipki",
-   "summary": "Okrągły zegar nad stołem.",
+   "summary": "Na ścianie nad kredensem, tuż przy stole.",
    "body": [
     "Okrągły zegar na baterię nad kredensem. Kiedy jesteście w mieszkaniu, pokazuje dokładnie o godzinę więcej niż wasze telefony."
    ]
@@ -1750,7 +1750,7 @@
    "title": "Stanisław Lipka: sprostowanie godziny",
    "summary": "Po wyjaśnieniu pomyłki.",
    "body": [
-    "Zegar nad stołem nastawiłem w czwartek z zegarka po bracie, a tego zegarka nikt nie przestawił na czas zimowy. Człowiek na schodach pożarowych zbiegał więc nie około 22:10, tylko około 21:10 — chwilę po tym, jak zaczęło kropić."
+    "Zegar ścienny nastawiłem w czwartek z zegarka po bracie, a tego zegarka nikt nie przestawił na czas zimowy. Człowiek na schodach pożarowych zbiegał więc nie około 22:10, tylko około 21:10 — chwilę po tym, jak zaczęło kropić."
    ],
    "testimony": true,
    "time": [
@@ -1984,7 +1984,8 @@
    "id": "b-clock",
    "when": "lie:l-m1",
    "title": "Godzina pana Lipki",
-   "text": "Zegar nad stołem śpieszy się o godzinę. Człowiek na schodach pożarowych nie zbiegał po seansie, lecz w jego trakcie — minutę przed tym, jak zatrzasnęły się drzwi kabiny.",
+   "text": "Zegar pana Lipki śpieszy się o godzinę. Człowiek na schodach pożarowych nie zbiegał po seansie, lecz w jego trakcie — minutę przed tym, jak zatrzasnęły się drzwi kabiny.",
+   "video": "assets/video/006-bt-clock.mp4",
    "img": "assets/evidence/006-clock.webp"
   },
   {
@@ -1992,6 +1993,7 @@
    "when": "show:j-s1",
    "title": "Uczennica",
    "text": "Na zdjęciu z kabiny, przy dźwigni zmiany, stoi młoda Ewa Kalinowska. Dziś nazywa się Sitek i prowadzi kino. Twierdziła, że nigdy nie dotknęła projektora.",
+   "video": "assets/video/006-bt-student.mp4",
    "img": "assets/evidence/006-photo.webp"
   },
   {
@@ -2526,6 +2528,7 @@
  "art": "assets/art/006-keyart.webp",
  "ambience": "assets/audio/case-006.mp3",
  "introVideo": "assets/video/006-intro.mp4",
+ "voiceDir": "assets/voice/006",
  "voice": {
   "brief": "assets/voice/006-brief.mp3"
  }

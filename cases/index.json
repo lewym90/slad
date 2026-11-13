@@ -74,8 +74,9 @@
    "players": "1–6",
    "difficulty": "Wymagająca",
    "cover": "assets/cases/006-cover.webp",
-   "ready": false,
-   "teaser": "Ostatni seans w historii kina poszedł bez jednej przerwy. Na pożegnanie nie zszedł tylko kinooperator."
+   "ready": true,
+   "teaser": "Ostatni seans w historii kina poszedł bez jednej przerwy. Na pożegnanie nie zszedł tylko kinooperator.",
+   "print": "assets/print/006.pdf"
   },
   {
    "id": "007",

@@ -164,7 +164,7 @@ endings = {
 
 breakthroughs = [
  {'id': 'b-change', 'when': 'p-reel', 'title': 'Zmiana o 21:04', 'text': 'Film nie przerwał się ani na sekundę. Ktoś stanął przy projektorach dokładnie o 21:04 i zrobił to, co Leon Barcz robił przez pięćdziesiąt lat — tylko że tej zmiany nikt nie wpisał do dziennika.'},
- {'id': 'b-clock', 'when': 'lie:l-m1', 'title': 'Godzina pana Lipki', 'text': 'Zegar nad stołem śpieszy się o godzinę. Człowiek na schodach pożarowych nie zbiegał po seansie, lecz w jego trakcie — minutę przed tym, jak zatrzasnęły się drzwi kabiny.'},
+ {'id': 'b-clock', 'when': 'lie:l-m1', 'title': 'Godzina pana Lipki', 'text': 'Zegar pana Lipki śpieszy się o godzinę. Człowiek na schodach pożarowych nie zbiegał po seansie, lecz w jego trakcie — minutę przed tym, jak zatrzasnęły się drzwi kabiny.'},
  {'id': 'b-student', 'when': 'show:j-s1', 'title': 'Uczennica', 'text': 'Na zdjęciu z kabiny, przy dźwigni zmiany, stoi młoda Ewa Kalinowska. Dziś nazywa się Sitek i prowadzi kino. Twierdziła, że nigdy nie dotknęła projektora.'},
  {'id': 'b-letter', 'when': 'p-torn', 'title': 'List do konserwator', 'text': 'Mokre skrawki układają się w list, którego Leon Barcz nie zdążył wręczyć. Dwa plakaty w gablocie to kopie. Klucz do niej mieli tylko on i kierowniczka.'},
 ]

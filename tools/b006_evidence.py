@@ -80,9 +80,9 @@ evidence = [
    'Pusta stalowa puszka z wieczkiem, waga 2,9 kg. Etykieta: „Dziewczyna z Bałut — cz. I”. Na krawędzi wieczka krew i włosy.',
    'Puszka leżała u stóp regału z taśmami, metr od ciała — jakby spadła z góry. Na górnej półce regału, na wysokości około 1,9 m, gruba, nienaruszona warstwa kurzu — nie ma w niej śladu po niczym, co stałoby tam niedawno.'],
    ),
- ev('e09', 'Fotografia', 'Zdjęcie na ścianie kabiny', 'Oprawione w ramkę, nad stołem przewijarki.', [
-   'Czarno-białe zdjęcie: wąsaty mężczyzna w roboczym fartuchu i młoda jasnowłosa kobieta z włosami spiętymi w kok, przy projektorze. Kobieta w białych rękawiczkach trzyma rękę na dźwigni zmiany.',
-   {'quote': 'Kabina „Zorzy”, 1998. Leon i jego najzdolniejsza uczennica — Ewa Kalinowska.', 'by': 'podpis na passe-partout'}]),
+ ev('e09', 'Fotografia', 'Zdjęcie na ścianie kabiny', 'Oprawione w ramkę, nad stołem przewijarki. Technik zdjął je ze ściany.', [
+   'Stare, pożółkłe czarno-białe zdjęcie: wąsaty mężczyzna w roboczym fartuchu i młoda jasnowłosa kobieta z włosami spiętymi w kok, między nimi projektor. Kobieta w białych rękawiczkach trzyma rękę na dźwigni zmiany.',
+   {'quote': 'Kabina „Zorzy”, 1998. Leon i jego najzdolniejsza uczennica — Ewa Kalinowska.', 'by': 'napis ołówkiem na odwrocie fotografii'}]),
  ev('e10', 'Oględziny', 'Drzwi ewakuacyjne kabiny', 'Stalowe drzwi na schody pożarowe.', [
    'Drzwi z samozamykaczem i drążkiem od środka, od zewnątrz bez klamki — zamknięte otwiera się je tylko z kabiny. Przy progu w linoleum świeże wgniecenie, jak od drewnianego klina. Klina w kabinie nie ma.',
    {'quote': 'KLIN! Lampy grzeją. L.B.', 'by': 'kartka przyklejona nad drążkiem'}]),
@@ -139,7 +139,7 @@ evidence = [
  # ---------- MIESZKANIE STANISŁAWA LIPKI ----------
  ev('e23', 'Oględziny', 'Widok z okna pana Lipki', 'II piętro oficyny naprzeciwko kina.', [
    'Okno wychodzi na wspólne podwórze. Wprost naprzeciwko, jakieś piętnaście metrów dalej, tylna ściana kina, schody pożarowe i drzwi kabiny. Latarnia na podwórzu oświetla dolny bieg schodów i tylne drzwi zaplecza.']),
- ev('e24', 'Oględziny', 'Zegar ścienny pana Lipki', 'Okrągły zegar nad stołem.', [
+ ev('e24', 'Oględziny', 'Zegar ścienny pana Lipki', 'Na ścianie nad kredensem, tuż przy stole.', [
    'Okrągły zegar na baterię nad kredensem. Kiedy jesteście w mieszkaniu, pokazuje dokładnie o godzinę więcej niż wasze telefony.']),
  ev('e25', 'Przedmiot', 'Zegarek po bracie', 'Na stole, w otwartym pudełku.', [
    'Stary nakręcany zegarek kieszonkowy w pudełku z napisem „po Mietku”, obok otwarta paczka baterii — jednej brakuje. Zegarek chodzi równo — ale też pokazuje godzinę więcej niż wasze telefony. Nikt nie przestawił go od lata.']),
@@ -198,7 +198,7 @@ evidence = [
    'Przed seansem prosiłem ojca, żeby poręczył mi pożyczkę albo dał mieszkanie pod zastaw. Odmówił. Pokłóciliśmy się przy barze. To była nasza ostatnia rozmowa.'],
    testimony=True, time=[T(19, 30, 'Grzegorz Barcz kłóci się z ojcem przy barze o pieniądze', 'Zeznanie G. Barcza')]),
  ev('t4', 'Zeznanie', 'Stanisław Lipka: sprostowanie godziny', 'Po wyjaśnieniu pomyłki.', [
-   'Zegar nad stołem nastawiłem w czwartek z zegarka po bracie, a tego zegarka nikt nie przestawił na czas zimowy. Człowiek na schodach pożarowych zbiegał więc nie około 22:10, tylko około 21:10 — chwilę po tym, jak zaczęło kropić.'],
+   'Zegar ścienny nastawiłem w czwartek z zegarka po bracie, a tego zegarka nikt nie przestawił na czas zimowy. Człowiek na schodach pożarowych zbiegał więc nie około 22:10, tylko około 21:10 — chwilę po tym, jak zaczęło kropić.'],
    testimony=True, time=[T(21, 10, 'Ktoś w długim jasnym płaszczu zbiega schodami pożarowymi kina', 'Zeznanie S. Lipki (po sprostowaniu)')]),
  ev('t5', 'Zeznanie', 'Ewa Sitek: schody pożarowe', 'Po konfrontacji.', [
    'Wyszłam tylnymi drzwiami za dwadzieścia dziewiąta. Weszłam po schodach pożarowych do kabiny. Pan Leon leżał na podłodze. Zamknęłam za sobą drzwi i zbiegłam — byłam na górze tylko chwilę.'],

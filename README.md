@@ -76,7 +76,7 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - **Świadek, który się myli (`mistake: true` w zeznaniu):** konfrontacja działa jak przy kłamstwie, ale protokół oznacza zeznanie „Sprostowane — pomyłka, nie kłamstwo”, a licznik osoby pokazuje „sprostowane” zamiast „podważone”.
 - **Materiały do wydruku:** `tools/gen_print.py` tworzy `assets/print/NNN.pdf` dla gotowych spraw (wprowadzenie, zadania, osoby, miejsca, puste arkusze na oś czasu, podejrzanych i notatki — bez dowodów). Pole `print` w `cases/index.json`; lista w Ustawieniach („Do wydruku”) i wzmianka na starcie sprawy. Drukowanie nigdy nie jest wymagane.
 - W oględzinach na zdjęciu punkt bez położenia na zdjęciu jest dozwolony tylko jako nagroda za zagadkę (pokazuje się wtedy z kłódką i przyciskiem zagadki). Walidator: uprawnienie `look` od 006 musi mieć co najmniej jedno miejsce z `search` (albo `offline.look`).
-- Sprawa 006 „Ostatni seans” — logika gotowa i zwalidowana, czeka na media (`tools/build_006.py`, `b006_*.py`, prompty `tools/prompts_006.py`).
+- Sprawa 006 „Ostatni seans” — gotowa i otwarta od 2.17.1 (`tools/build_006.py`, `b006_*.py`, prompty `tools/prompts_006.py`). Głosy tnie `tools/cut_voices.py NNN katalog` (sprawdza liczbę i tempo kwestii; nagrania postaci w krótkich częściach po maks. 5 kwestii, bo generator gubi kwestie w długich plikach).
 
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).

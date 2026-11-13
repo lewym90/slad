@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.17.0';
+const VERSION = '2.17.1';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -21,6 +21,28 @@ const CORE = [
   './cases/003.json',
   './cases/004.json',
   './cases/005.json',
+  './cases/006.json',
+  './assets/audio/case-006.mp3',
+  './assets/voice/006-brief.mp3',
+  './assets/art/006-keyart.webp',
+  './assets/evidence/006-can.webp',
+  './assets/evidence/006-clock.webp',
+  './assets/evidence/006-coat.webp',
+  './assets/evidence/006-leon.webp',
+  './assets/evidence/006-photo.webp',
+  './assets/evidence/006-posters.webp',
+  './assets/evidence/006-scraps.webp',
+  './assets/evidence/006-wedge.webp',
+  './assets/people/006-damian.webp',
+  './assets/people/006-ewa.webp',
+  './assets/people/006-grzegorz.webp',
+  './assets/people/006-joanna.webp',
+  './assets/people/006-lipka.webp',
+  './assets/places/006-booth.webp',
+  './assets/places/006-flat.webp',
+  './assets/places/006-foyer.webp',
+  './assets/places/006-office.webp',
+  './assets/places/006-yard.webp',
   './assets/audio/case-002.mp3',
   './assets/audio/case-003.mp3',
   './assets/voice/001-brief.mp3',

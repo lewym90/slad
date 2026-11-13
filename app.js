@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.17.0';
+const VERSION = '2.17.1';
 const BUILD = '13.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
