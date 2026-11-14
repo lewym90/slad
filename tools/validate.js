@@ -79,8 +79,16 @@ for (const [f, c] of runs) {
   const pz = new Map(c.puzzles.map(p => [p.id, p]));
   if (ev.size !== c.evidence.length) E('powtórzone ID dowodów');
   const sh = new Map(); c.people.forEach(p => (p.shows || []).forEach(x => { if (sh.has(x.id) || qs.has(x.id) || st.has(x.id)) E(`duplikat id reakcji ${x.id}`); sh.set(x.id, { ...x, person: p.id }); }));
-  const isTok = t => t.startsWith('show:') ? sh.has(t.slice(5)) : t.startsWith('lie:') || t.startsWith('st:') ? st.has(t.slice(t.indexOf(':') + 1)) : ev.has(t) || spots.has(t) || qs.has(t) || pz.has(t);
+  const isTok = t => t.startsWith('show:') ? sh.has(t.slice(5)) : t.startsWith('lie:') || t.startsWith('st:') ? st.has(t.slice(t.indexOf(':') + 1)) : ev.has(t) || spots.has(t) || qs.has(t) || pz.has(t) || marks.has(t);
   const needEv = (id, where) => { if (!ev.has(id)) E(`${where}: brak dowodu ${id}`); };
+  const marks = new Map(); c.evidence.forEach(e => { if (!e.audio) return; const A = e.audio, opts = A.options || [];
+    if (!A.src || !fs.existsSync(path.join(root, A.src))) E(`nagranie ${e.id}: brak pliku ${A.src}`); if (!(A.dur > 0)) E(`nagranie ${e.id}: brak długości`); if (!Array.isArray(A.peaks) || A.peaks.length < 50) E(`nagranie ${e.id}: brak fali dźwięku (peaks)`);
+    if (new Set(opts).size !== opts.length) E(`nagranie ${e.id}: powtórzone opcje`); if (!(A.marks || []).length) E(`nagranie ${e.id}: brak znaczników`);
+    if (opts.length < (A.marks || []).length + 3) warns.push(`nagranie ${e.id}: mało fałszywych opcji`);
+    (A.marks || []).forEach(m => { if (marks.has(m.id) || ev.has(m.id) || spots.has(m.id)) E(`nagranie ${e.id}: duplikat id ${m.id}`); marks.set(m.id, { ...m, ev: e.id });
+      if (!opts.includes(m.label)) E(`nagranie ${e.id}: etykieta „${m.label}” spoza listy`); if (!(m.at || []).length) E(`nagranie ${e.id}: znacznik ${m.id} bez czasu`);
+      (m.at || []).forEach(([t, tol]) => { if (!(t >= 0 && t <= A.dur && tol > 0 && tol <= 3)) E(`nagranie ${e.id}: zły czas znacznika ${m.id}`); });
+      (m.gives || []).forEach(x => needEv(x, `znacznik ${m.id}`)); }); });
 
   // 1. Referencje
   for (const [id, s] of spots) { (s.gives || []).forEach(x => needEv(x, `punkt ${id}`)); if (s.requires && s.requires.puzzle && !pz.has(s.requires.puzzle)) E(`punkt ${id}: brak zagadki ${s.requires.puzzle}`); if (s.requires && s.requires.all) s.requires.all.forEach(t => { if (!isTok(t)) E(`punkt ${id}: nieznany wymóg ${t}`); }); if (s.requires && !s.lockedText) E(`punkt ${id}: brak tekstu blokady`); }
@@ -163,12 +171,14 @@ for (const [f, c] of runs) {
   st.forEach((s, sid) => (s.gives || []).forEach(id => addSrc(id, sid)));
   sh.forEach((x, xid) => (x.gives || []).forEach(id => addSrc(id, xid)));
   ((c.db && c.db.attach) || []).forEach(a => addSrc(a.ev, 'baza:' + a.rec));
+  marks.forEach((m, mid) => (m.gives || []).forEach(id => addSrc(id, 'nagranie:' + mid)));
+  ((c.clock && c.clock.events) || []).forEach(x => (x.gives || []).forEach(id => addSrc(id, 'zdarzenie:' + x.id)));
   c.evidence.forEach(e => { if (!sources.has(e.id)) E(`dowód ${e.id} nie ma źródła — nie da się go zdobyć`); });
 
   // 2. Symulacja osiągalności (zespół ujawnia wszystkie tajne akta)
-  const K = new Set([...c.evidence.filter(e => e.start).map(e => e.id), ...(c.privateClues || [])]);
+  const K = new Set([...c.evidence.filter(e => e.start).map(e => e.id), ...(c.privateClues || []), ...((c.clock && c.clock.events) || []).flatMap(x => x.gives || [])]);
   const done = new Set(), claims = new Set(), broken = new Set(), solved = new Set();
-  const has = t => t.startsWith('show:') ? done.has(t) : t.startsWith('lie:') ? broken.has(t.slice(4)) : t.startsWith('st:') ? claims.has(t.slice(3)) : pz.has(t) ? solved.has(t) : spots.has(t) || qs.has(t) ? done.has(t) : K.has(t);
+  const has = t => t.startsWith('show:') ? done.has(t) : t.startsWith('lie:') ? broken.has(t.slice(4)) : t.startsWith('st:') ? claims.has(t.slice(3)) : pz.has(t) ? solved.has(t) : spots.has(t) || qs.has(t) || marks.has(t) ? done.has(t) : K.has(t);
   let changed = true, rounds = 0;
   while (changed && rounds++ < 200) {
     changed = false;
@@ -177,6 +187,7 @@ for (const [f, c] of runs) {
     for (const [id, p] of pz) if (!solved.has(id) && p.requires.every(has)) { solved.add(id); if (p.reward && p.reward.search) (p.reward.spots || []).forEach(s => { done.add(s); (spots.get(s).gives || []).forEach(x => K.add(x)); }); changed = true; }
     for (const [id, x] of sh) if (!done.has('show:' + id) && K.has(x.ev) && (x.requires || []).every(has)) { done.add('show:' + id); (x.gives || []).forEach(t => K.add(t)); (x.claims || []).forEach(t => claims.add(t)); changed = true; }
     ((c.db && c.db.attach) || []).forEach(a => { if (!K.has(a.ev) && a.paths.some(pt => pt.from.every(t => K.has(t)))) { K.add(a.ev); changed = true; } });
+    marks.forEach((m, mid) => { if (!done.has(mid) && K.has(m.ev)) { done.add(mid); (m.gives || []).forEach(x => K.add(x)); changed = true; } });
     for (const id of claims) { const s = st.get(id); if (!broken.has(id) && !s.truth && (s.contradicts || []).some(x => x.startsWith('st:') ? claims.has(x.slice(3)) : K.has(x))) { broken.add(id); (s.gives || []).forEach(x => K.add(x)); (s.reveals || []).forEach(x => claims.add(x)); changed = true; } }
   }
   c.evidence.forEach(e => { if (!K.has(e.id)) E(`dowód ${e.id} nieosiągalny w pełnym przejściu`); });
@@ -186,6 +197,39 @@ for (const [f, c] of runs) {
   st.forEach((s, id) => { if (!claims.has(id)) E(`zeznanie ${id} nigdy nie padnie`); else if (!s.truth && !s.unbreakable && !broken.has(id)) E(`kłamstwa ${id} nie da się podważyć`); });
 
   sh.forEach((x, id) => { if (!done.has('show:' + id)) E(`reakcja ${id} nigdy nie padnie`); });
+  marks.forEach((_, id) => { if (!done.has(id)) E(`znacznik nagrania ${id} nieosiągalny`); });
+  // zegar, mapa szlaków i ślady, które przepadają z czasem (od 007)
+  const hmv = x => /^\d{1,2}:\d{2}$/.test(String(x)) ? String(x).split(':').map(Number).reduce((h, m) => h * 60 + m) : NaN;
+  if (c.clock) { const KC = c.clock; const start = hmv((KC.start || '').split(' ')[1]);
+    if (!/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(KC.start || '')) E('zegar: zły start');
+    if (isNaN(hmv(KC.par)) || hmv(KC.par) <= start) E('zegar: zła norma (par)');
+    ['search', 'ask', 'show', 'confront', 'attach', 'hq', 'listen', 'wait'].forEach(k => { if (!(KC.costs && KC.costs[k] > 0)) E(`zegar: brak kosztu ${k}`); });
+    const evIds = new Set(); (KC.events || []).forEach(x => { if (!x.id || !x.title || !x.text) E(`zegar: zdarzenie bez pól ${x.id}`); if (evIds.has(x.id)) E(`zegar: duplikat zdarzenia ${x.id}`); evIds.add(x.id); if (isNaN(hmv(x.at)) || hmv(x.at) <= start) E(`zegar ${x.id}: zła godzina`); (x.gives || []).forEach(y => needEv(y, `zdarzenie ${x.id}`)); if (x.weather && x.weather !== 'storm') E(`zegar ${x.id}: nieznana pogoda`); });
+    spots.forEach((sp, id) => { if (sp.expires) { if (isNaN(hmv(sp.expires)) || hmv(sp.expires) <= start) E(`punkt ${id}: zła godzina wygaśnięcia`); if (!sp.expiredText) E(`punkt ${id}: brak expiredText`); } });
+    const exp = new Set([...spots].filter(([, sp]) => sp.expires).map(([id]) => id));
+    let unsafe = new Set(); const uShow = new Set(), uClaim = new Set();
+    const claimSrc = new Map(); const addC = (cl, src) => { if (!claimSrc.has(cl)) claimSrc.set(cl, []); claimSrc.get(cl).push(src); };
+    qs.forEach((q, id) => (q.claims || []).forEach(cl => addC(cl, id))); sh.forEach((x, id) => (x.claims || []).forEach(cl => addC(cl, 'show:' + id))); st.forEach((x, id) => (x.reveals || []).forEach(cl => addC(cl, 'lie:' + id)));
+    for (let k = 0; k < 4; k++) { // ślad, który przepada → reakcje na niego → to, co dają te reakcje
+      unsafe = new Set(c.evidence.map(e => e.id).filter(id => { const src = sources.get(id) || []; return src.length && src.every(x => exp.has(x) || uShow.has(x)); }));
+      sh.forEach((x, id) => { if (unsafe.has(x.ev)) uShow.add(id); });
+      claimSrc.forEach((src, cl) => { if (src.every(x => x.startsWith('show:') && uShow.has(x.slice(5)))) uClaim.add(cl); }); }
+    const bad = t => unsafe.has(t) || exp.has(t) || (t.startsWith('show:') && uShow.has(t.slice(5))) || (t.startsWith('st:') && uClaim.has(t.slice(3)));
+    const allL = (arr, w) => (arr || []).forEach(t => { if (bad(t)) E(`${w}: wymaga śladu, który przepada z czasem (${t})`); });
+    const anyL = (arr, w) => { if ((arr || []).length && arr.every(bad)) E(`${w}: każda droga prowadzi przez ślad, który przepada z czasem`); };
+    spots.forEach((sp, id) => allL(sp.requires && sp.requires.all, `punkt ${id}`)); qs.forEach((q, id) => { allL(q.requires, `pytanie ${id}`); anyL(q.requiresAny, `pytanie ${id}`); });
+    pz.forEach((p, id) => allL(p.requires, `zagadka ${id}`)); sh.forEach((x, id) => allL(x.requires, `reakcja ${id}`));
+    st.forEach((sx, id) => { if (!sx.truth) anyL(sx.contradicts, `zeznanie ${id}`); }); (c.breakthroughs || []).forEach(b => { if (bad(b.when)) E(`przełom ${b.id}: zależy od śladu, który przepada z czasem`); });
+    ((c.db && c.db.attach) || []).forEach(a => { if (a.paths.every(pt => pt.from.some(bad))) E(`baza ${a.ev}: każda ścieżka wymaga śladu, który przepada z czasem`); });
+    c.report.questions.forEach(q => { if (q.proof && q.proof.valid.filter(x => !bad(x)).length < q.proof.count) E(`raport ${q.id}: za mało dowodów, które nie przepadają z czasem`); });
+  } else spots.forEach((sp, id) => { if (sp.expires) E(`punkt ${id}: wygaśnięcie bez zegara`); });
+  if (c.map) { const M = c.map; const ids = new Set(M.nodes.map(n => n.id)); if (ids.size !== M.nodes.length) E('mapa: powtórzone węzły'); if (!ids.has(M.start)) E('mapa: zły punkt startowy');
+    M.edges.forEach((e, i) => { if (!ids.has(e.a) || !ids.has(e.b)) E(`mapa: krawędź ${i} — nieznany węzeł`); if (!(Array.isArray(e.t) && e.t.length === 2 && e.t.every(x => x > 0))) E(`mapa: krawędź ${i} — złe czasy`); if ('storm' in e && e.storm !== null && !(Array.isArray(e.storm) && e.storm.length === 2 && e.storm.every(x => x > 0))) E(`mapa: krawędź ${i} — złe czasy w śnieżycy`); if ('storm' in e && e.storm === null && !e.closedWhy) E(`mapa: krawędź ${i} — brak powodu zamknięcia`); });
+    const reach = storm => { const seen = new Set([M.start]); let ch = true; while (ch) { ch = false; M.edges.forEach(e => { const t = storm && 'storm' in e ? e.storm : e.t; if (!t) return; if (seen.has(e.a) && !seen.has(e.b)) { seen.add(e.b); ch = true; } if (seen.has(e.b) && !seen.has(e.a)) { seen.add(e.a); ch = true; } }); } return seen; };
+    [false, true].forEach(sto => { const RR = reach(sto); ids.forEach(n => { if (!RR.has(n)) E(`mapa: punkt ${n} nieosiągalny${sto ? ' w śnieżycy' : ''}`); }); });
+    c.locations.forEach(l => { if (l.at && !ids.has(l.at)) E(`miejsce ${l.id}: nieznany punkt mapy ${l.at}`); if (!l.at && l.id !== 'hq') E(`miejsce ${l.id}: brak położenia na mapie`); });
+    c.people.forEach(p => { if (!p.at || !ids.has(p.at)) E(`osoba ${p.id}: brak lub zły punkt mapy`); });
+  } else { c.locations.forEach(l => { if (l.at) E(`miejsce ${l.id}: położenie bez mapy`); }); c.people.forEach(p => { if (p.at) E(`osoba ${p.id}: położenie bez mapy`); }); }
   // oględziny na zdjęciu
   c.locations.filter(l => l.search).forEach(l => { const sp = l.search.spots || {}; const ids = Object.keys(sp);
     if (!(l.search.img || l.img)) E(`oględziny ${l.id}: brak zdjęcia`);

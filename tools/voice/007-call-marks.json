@@ -1,0 +1,8 @@
+{"options": ["Porywy wiatru", "Trzask ognia w piecu", "Szczekanie psa", "Drugi głos", "Pikanie cofającej maszyny", "Kroki na śniegu", "Silnik skutera śnieżnego", "Dzwonek telefonu", "Kaszel", "Trzask lodu na antenie"],
+ "marks": [
+  {"id": "m-wind", "label": "Porywy wiatru", "at": [[1.8, 1.3], [16.6, 1.6]], "gives": ["e31"]},
+  {"id": "m-stove", "label": "Trzask ognia w piecu", "at": [[1.9, 1.4], [9.8, 1.0]], "gives": ["e32"]},
+  {"id": "m-dog", "label": "Szczekanie psa", "at": [[6.8, 1.2]], "gives": ["e33"]},
+  {"id": "m-voice", "label": "Drugi głos", "at": [[14.2, 1.0]], "gives": ["e34"]},
+  {"id": "m-beep", "label": "Pikanie cofającej maszyny", "at": [[17.6, 2.2]], "gives": ["e35"]}
+ ]}

@@ -165,3 +165,10 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 - 006: daty faktury i oznaczenia faksymile ujednolicone z resztą osi czasu (faksymile zamówione tuż przed oddaniem oryginałów do komisu).
 - Walidator porównuje teksty z nagraniami bez względu na interpunkcję i wielkość liter (poprawka przecinka nie wymaga nowego nagrania).
 - Zagadka „Podarty list”: skrawki rozłożone równomierniej na stole, bez zbędnych komunikatów o próbach.
+
+## 17. Sprawa 007 „Biała cisza” — budowa (14.11.2026, wersja 2.18.0)
+- Zatwierdzone przez autora („Zgoda na wszystko”): zegar zamiast ruchów (wynik od godziny raportu), spóźnienie nigdy nie blokuje rozwiązania; mapa z pozycją zespołu i czasami przejść, śnieżyca wydłuża lub zamyka szlaki, mapa w PDF-ie do wydruku; dowód dźwiękowy z zaznaczaniem momentu i analizą technika jako podpowiedzią (nagranie składa Claude z pojedynczych dźwięków); bazy i okazywanie dowodów działają przez radio, kosztują czas; 1–6 graczy.
+- Silnik 2.18: `clock`, `map`, `evidence.audio`, `novelties`, punkty `expires`; walidator: osiągalność mapy (także w śnieżycy), zdarzenia zegara, znaczniki nagrań, zakaz jedynych dróg przez ślady, które przepadają z czasem.
+- Sprawa zbudowana skryptem `tools/build_007.py` (moduły `b007_*.py`), walidacja bez błędów logiki, przejścia testowe w obu trybach z kompletem dowodów i przełomów. Zapieczętowana do czasu mediów; nagranie łączności w repozytorium jest tymczasowe (syntetyczne) — do podmiany na złożone z wygenerowanych dźwięków.
+- Prompty mediów: `docs/PROMPTY_007.md` (generuje `tools/prompts_007.py`, kolejność plików: `tools/voice/007-media-order.json`).
+

@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.17.9';
+const VERSION = '2.18.0';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -15,6 +15,7 @@ const CORE = [
   './data/baza/tlo-ksiegi.json',
   './data/baza/sprawa-005.json',
   './data/baza/sprawa-006.json',
+  './data/baza/sprawa-007.json',
   './data/baza/uniwersum.json',
   './cases/001.json',
   './cases/002.json',

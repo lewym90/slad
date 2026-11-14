@@ -1,0 +1,315 @@
+{
+ "osoby": [
+  {
+   "id": "O-007-weronika",
+   "nazwisko": "Kos",
+   "imiona": [
+    "Weronika",
+    "Anna"
+   ],
+   "pesel": "85071241604",
+   "plec": "K",
+   "urodzony": "1985-07-12",
+   "miejsceUr": "Jelenia Góra",
+   "ojciec": "Ryszard",
+   "matka": "Elżbieta",
+   "adres": "ul. Puławska 182/40, 02-670 Warszawa",
+   "dowod": {
+    "nr": "DGP 141862",
+    "wydany": "2021-09-14",
+    "wazny": "2031-09-14",
+    "organ": "Prezydent m.st. Warszawy"
+   },
+   "stan": "panna",
+   "case": "007"
+  },
+  {
+   "id": "O-007-weronika2",
+   "nazwisko": "Kos",
+   "imiona": [
+    "Weronika"
+   ],
+   "pesel": "99033086400",
+   "plec": "K",
+   "urodzony": "1999-03-30",
+   "miejsceUr": "Lublin",
+   "ojciec": "Marek",
+   "matka": "Joanna",
+   "adres": "ul. Narutowicza 12/3, 20-016 Lublin",
+   "dowod": {
+    "nr": "DLU 730417",
+    "wydany": "2022-04-05",
+    "wazny": "2032-04-05",
+    "organ": "Prezydent Miasta Lublin"
+   },
+   "stan": "panna",
+   "neutral": true
+  },
+  {
+   "id": "O-007-kosm",
+   "nazwisko": "Kos",
+   "imiona": [
+    "Marian"
+   ],
+   "pesel": "56060620315",
+   "plec": "M",
+   "urodzony": "1956-06-06",
+   "miejsceUr": "Kłodzko",
+   "ojciec": "Józef",
+   "matka": "Stanisława",
+   "adres": "ul. Wojska Polskiego 8/2, 57-300 Kłodzko",
+   "dowod": {
+    "nr": "DKL 518820",
+    "wydany": "2019-12-02",
+    "wazny": "2029-12-02",
+    "organ": "Burmistrz Miasta Kłodzka"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-007-adam",
+   "nazwisko": "Rogala",
+   "imiona": [
+    "Adam",
+    "Piotr"
+   ],
+   "pesel": "79090328710",
+   "plec": "M",
+   "urodzony": "1979-09-03",
+   "miejsceUr": "Kraków",
+   "ojciec": "Piotr",
+   "matka": "Maria",
+   "adres": "ul. Zakopiańska 58/4, 30-418 Kraków",
+   "dowod": {
+    "nr": "DKR 152093",
+    "wydany": "2020-02-17",
+    "wazny": "2030-02-17",
+    "organ": "Prezydent Miasta Krakowa"
+   },
+   "stan": "rozwiedziony",
+   "neutral": true
+  },
+  {
+   "id": "O-007-adam2",
+   "nazwisko": "Rogala",
+   "imiona": [
+    "Adam"
+   ],
+   "pesel": "90011847112",
+   "plec": "M",
+   "urodzony": "1990-01-18",
+   "miejsceUr": "Rzeszów",
+   "ojciec": "Tadeusz",
+   "matka": "Halina",
+   "adres": "ul. Hetmańska 21/9, 35-045 Rzeszów",
+   "dowod": {
+    "nr": "DRZ 527735",
+    "wydany": "2023-06-12",
+    "wazny": "2033-06-12",
+    "organ": "Prezydent Miasta Rzeszowa"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-007-krystian",
+   "nazwisko": "Lis",
+   "imiona": [
+    "Krystian"
+   ],
+   "pesel": "88052163412",
+   "plec": "M",
+   "urodzony": "1988-05-21",
+   "miejsceUr": "Wrocław",
+   "ojciec": "Andrzej",
+   "matka": "Beata",
+   "adres": "ul. Kasprowicza 33/7, 51-137 Wrocław",
+   "dowod": {
+    "nr": "DWR 966201",
+    "wydany": "2018-11-08",
+    "wazny": "2028-11-08",
+    "organ": "Prezydent Wrocławia"
+   },
+   "stan": "kawaler",
+   "neutral": true
+  },
+  {
+   "id": "O-007-igor",
+   "nazwisko": "Szadkowski",
+   "imiona": [
+    "Igor"
+   ],
+   "pesel": "97020915515",
+   "plec": "M",
+   "urodzony": "1997-02-09",
+   "miejsceUr": "Gdynia",
+   "ojciec": "Paweł",
+   "matka": "Ewa",
+   "adres": "ul. Świętojańska 70/11, 81-389 Gdynia",
+   "dowod": {
+    "nr": "DGY 214550",
+    "wydany": "2022-10-19",
+    "wazny": "2032-10-19",
+    "organ": "Prezydent Miasta Gdyni"
+   },
+   "stan": "kawaler",
+   "neutral": true
+  },
+  {
+   "id": "O-007-natalia",
+   "nazwisko": "Brandt",
+   "imiona": [
+    "Natalia",
+    "Maria"
+   ],
+   "pesel": "90112774205",
+   "plec": "K",
+   "urodzony": "1990-11-27",
+   "miejsceUr": "Poznań",
+   "ojciec": "Jerzy",
+   "matka": "Monika",
+   "adres": "ul. Grunwaldzka 104/2, 60-307 Poznań",
+   "dowod": {
+    "nr": "DPO 273318",
+    "wydany": "2020-08-27",
+    "wazny": "2030-08-27",
+    "organ": "Prezydent Miasta Poznania"
+   },
+   "stan": "panna",
+   "neutral": true
+  },
+  {
+   "id": "O-007-hampel",
+   "nazwisko": "Hampel",
+   "imiona": [
+    "Zdzisław"
+   ],
+   "pesel": "63040231812",
+   "plec": "M",
+   "urodzony": "1963-04-02",
+   "miejsceUr": "Karpacz",
+   "ojciec": "Henryk",
+   "matka": "Gertruda",
+   "adres": "Schronisko Hala Szronów, 58-540 Karpacz",
+   "dowod": {
+    "nr": "DJG 220916",
+    "wydany": "2017-05-30",
+    "wazny": "2027-05-30",
+    "organ": "Burmistrz Miasta Karpacza"
+   },
+   "stan": "wdowiec",
+   "neutral": true
+  },
+  {
+   "id": "O-007-kuznik",
+   "nazwisko": "Kuźnik",
+   "imiona": [
+    "Mirosław"
+   ],
+   "pesel": "74081552918",
+   "plec": "M",
+   "urodzony": "1974-08-15",
+   "miejsceUr": "Kowary",
+   "ojciec": "Stefan",
+   "matka": "Danuta",
+   "adres": "ul. Zamkowa 4/1, 58-530 Kowary",
+   "dowod": {
+    "nr": "DJG 431884",
+    "wydany": "2021-01-11",
+    "wazny": "2031-01-11",
+    "organ": "Burmistrz Miasta Kowary"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  },
+  {
+   "id": "O-007-prezes",
+   "nazwisko": "Malicki",
+   "imiona": [
+    "Jerzy"
+   ],
+   "pesel": "68102159316",
+   "plec": "M",
+   "urodzony": "1968-10-21",
+   "miejsceUr": "Warszawa",
+   "ojciec": "Stanisław",
+   "matka": "Irena",
+   "adres": "ul. Wiertnicza 96, 02-952 Warszawa",
+   "dowod": {
+    "nr": "DGP 022507",
+    "wydany": "2018-03-22",
+    "wazny": "2028-03-22",
+    "organ": "Prezydent m.st. Warszawy"
+   },
+   "stan": "żonaty",
+   "neutral": true
+  }
+ ],
+ "pojazdy": [],
+ "firmy": [
+  {
+   "id": "F-007-polartex",
+   "krs": "0000217846",
+   "nip": "5252318916",
+   "regon": "015637284",
+   "nazwa": "POLAR-TEX SPÓŁKA AKCYJNA",
+   "forma": "spółka akcyjna",
+   "adres": "ul. Postępu 21, 02-676 Warszawa",
+   "dataWpisu": "2004-10-11",
+   "kapital": "18 500 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "MALICKI",
+     "imiona": "JERZY",
+     "pesel": "68102159316"
+    },
+    {
+     "funkcja": "CZŁONEK ZARZĄDU DS. MARKETINGU",
+     "nazwisko": "KOS",
+     "imiona": "WERONIKA ANNA",
+     "pesel": "85071241604"
+    }
+   ],
+   "pkd": [
+    "14.13.Z Produkcja pozostałej odzieży wierzchniej",
+    "46.42.Z Sprzedaż hurtowa odzieży i obuwia"
+   ],
+   "status": "aktywny",
+   "neutral": true
+  },
+  {
+   "id": "F-007-rogala",
+   "krs": "0000704219",
+   "nip": "6112847302",
+   "regon": "368215090",
+   "nazwa": "ROGALA EXPEDITIONS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+   "forma": "spółka z ograniczoną odpowiedzialnością",
+   "adres": "ul. Zakopiańska 58/4, 30-418 Kraków",
+   "dataWpisu": "2017-11-06",
+   "kapital": "5 000 zł",
+   "zarzad": [
+    {
+     "funkcja": "PREZES ZARZĄDU",
+     "nazwisko": "ROGALA",
+     "imiona": "ADAM PIOTR",
+     "pesel": "79090328710"
+    }
+   ],
+   "wspolnicy": [
+    {
+     "nazwa": "ADAM PIOTR ROGALA",
+     "udzialy": "100 udziałów o łącznej wartości 5 000 zł"
+    }
+   ],
+   "pkd": [
+    "79.90.A Działalność pilotów wycieczek i przewodników turystycznych",
+    "90.04.Z Działalność obiektów kulturalnych"
+   ],
+   "status": "aktywny",
+   "neutral": true
+  }
+ ],
+ "ksiegi": []
+}

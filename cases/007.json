@@ -1,0 +1,3610 @@
+{
+ "id": "007",
+ "title": "Biała cisza",
+ "subtitle": "Głos w radiu mówił, że wszystko gra.",
+ "genre": "Zimowa ekspedycja",
+ "duration": "100–140 min",
+ "players": "1–6",
+ "difficulty": "Trudna",
+ "cover": "assets/cases/007-cover.webp",
+ "par": 60,
+ "intro": {
+  "lead": "Sobota, 16 stycznia, 8:00. Schronisko „Hala Szronów” w Karkonoszach, 1220 m n.p.m. Wiatr przewiewa śnieg przez taras, a w jadalni nikt nie rusza śniadania.",
+  "brief": [
+   "Od wtorku w Karkonoszach trenowała wyprawa „Północ 2028”, która za rok chce zimą przejść Grenlandię. Cztery noce spędziła w starym kamiennym schronie na Przełęczy Mglistej, od 2019 roku zamkniętym dla turystów.",
+   "W piątek po południu zespół zjechał na noc do schroniska. Na przełęczy został tylko łącznościowiec, Krystian Lis — miał przez dobę testować w mrozie radiostację i baterie. O 22:05 zgłosił się przez radio. Po północy radio w schronisku odezwało się jeszcze raz.",
+   "O szóstej rano Krystian nie odpowiedział. O 7:10 kierownik wyprawy i ratownik GOPR znaleźli go martwego pod skałą z masztem antenowym, piętnaście metrów od schronu.",
+   "Prokurator nie wierzy w nieszczęśliwy wypadek. Wszyscy, którzy byli w nocy w schronisku, zostali na miejscu. Macie mapę, ratownika do pomocy i dzień, który nie będzie na was czekał: od południa idzie śnieżyca.",
+   "Jeśli wolicie notować na papierze, w ustawieniach, w części „Do wydruku”, czeka plan sprawy: osoby, miejsca i arkusze na oś czasu. To nieobowiązkowe."
+  ],
+  "task": [
+   "Jak zginął Krystian Lis — wypadek czy zbrodnia? Jeśli zbrodnia: kto za nią stoi?",
+   "Kiedy naprawdę został zaatakowany i kto nadał łączność po północy?",
+   "Jak sprawca dotarł na przełęcz i wrócił na czas?",
+   "Dlaczego Krystian musiał zginąć właśnie tej nocy?"
+  ],
+  "rules": [
+   "Nowość: zegar. Zamiast ruchów liczy się czas. Pytanie i okazanie dowodu trwają 5 minut, przeszukanie punktu i konfrontacja — 10, dołączenie wydruku z bazy — 5. Zegar stoi, kiedy nic nie robicie.",
+   "Nowość: mapa szlaków. Przeszukujecie tylko miejsca w punkcie mapy, w którym jesteście, i przesłuchujecie tylko osoby, które są obok. Przejście trwa tyle, ile pokazuje mapa.",
+   "Nowość: dowód dźwiękowy. Nagranie łączności możecie odsłuchać i zaznaczyć dźwięki w tle. Pudło nic nie kosztuje, rozpoznany dźwięk to 5 minut.",
+   "O ustalonych godzinach dzieją się rzeczy, na które nie macie wpływu. Niektórych śladów nie da się zbadać po czasie — ale sprawę zawsze da się rozwiązać.",
+   "Wynik zależy od godziny, o której złożycie raport. Normę zobaczycie po stuknięciu zegara."
+  ],
+  "modeRules": {
+   "table": "Wszystko widzicie razem. Dane od meteorologów, operatora komunikatora i sponsora zdobędziecie w Centrali wydziału — każde zapytanie to 15 minut.",
+   "phones": "Każdy gracz ma w telefonie tajne akta i własny terminal baz danych. Mapa, zegar i analiza nagrania są na wspólnym ekranie."
+  }
+ },
+ "novelties": [
+  {
+   "name": "Zegar w grze",
+   "text": "W tej sprawie zamiast ruchów liczy się czas. Każda czynność trwa kilka minut, a przejście szlakiem — tyle, ile pokazuje mapa. Zegar stoi, kiedy nic nie robicie. O ustalonych godzinach dzieją się rzeczy, na które nie macie wpływu.",
+   "where": "Godzina na górnym pasku — stuknijcie ją, żeby zobaczyć plan dnia."
+  },
+  {
+   "name": "Mapa szlaków",
+   "text": "Przeszukujecie tylko miejsca w punkcie mapy, w którym jesteście, i rozmawiacie tylko z osobami, które są obok. Żeby gdzieś przejść, stuknijcie punkt na mapie.",
+   "where": "Zakładka Miejsca, na samej górze."
+  },
+  {
+   "name": "Dowód dźwiękowy",
+   "text": "Nagranie można odsłuchać, zatrzymać w dowolnym miejscu i wskazać, co słychać w tle. Pudło nic nie kosztuje.",
+   "where": "Dokument z nagraniem w aktach — przycisk „Odsłuchaj i analizuj nagranie”."
+  }
+ ],
+ "clock": {
+  "start": "2027-01-16 08:00",
+  "par": "19:50",
+  "unit": 10,
+  "costs": {
+   "search": 10,
+   "ask": 5,
+   "show": 5,
+   "confront": 10,
+   "attach": 5,
+   "hq": 15,
+   "listen": 5,
+   "wait": 30
+  },
+  "events": [
+   {
+    "id": "ev-ash",
+    "at": "12:00",
+    "title": "Południe w schronisku",
+    "text": "Zdzisław Hampel, jak co dzień, wyczyścił piec w suszarni i wysypał popiół na hałdę za schroniskiem. Śnieg zaraz go przykryje."
+   },
+   {
+    "id": "ev-storm",
+    "at": "13:00",
+    "public": true,
+    "weather": "storm",
+    "title": "Śnieżyca",
+    "text": "Z grani zjeżdża biała ściana. Wiatr w porywach do 90 km/h, widać na kilka metrów. GOPR zamyka szlak zielony przez Żleb Mglisty — na przełęcz da się dojść już tylko trasą zimową, wzdłuż tyczek, i to wolniej niż rano."
+   },
+   {
+    "id": "ev-autopsy",
+    "at": "15:00",
+    "public": true,
+    "title": "Telefon z Zakładu Medycyny Sądowej",
+    "text": "Biegły z Wrocławia przekazuje wstępne wyniki sekcji. Prokurator prosi, żebyście przeczytali je od razu.",
+    "gives": [
+     "e36"
+    ]
+   }
+  ]
+ },
+ "map": {
+  "w": 1000,
+  "h": 700,
+  "start": "hs",
+  "note": "Strzałka w górę — czas podejścia, w dół — zejścia",
+  "nodes": [
+   {
+    "id": "hs",
+    "name": "Schronisko „Hala Szronów”",
+    "alt": 1220,
+    "x": 340,
+    "y": 500,
+    "lx": 24,
+    "ly": 8,
+    "anchor": "start",
+    "hy": 56
+   },
+   {
+    "id": "gar",
+    "name": "Garaż ratraków",
+    "alt": 1210,
+    "x": 130,
+    "y": 612,
+    "lx": 0,
+    "ly": 42
+   },
+   {
+    "id": "roz",
+    "name": "Rozdroże pod Jaworem",
+    "alt": 1330,
+    "x": 600,
+    "y": 330,
+    "lx": 24,
+    "ly": 8,
+    "anchor": "start"
+   },
+   {
+    "id": "pass",
+    "name": "Przełęcz Mglista — schron",
+    "alt": 1495,
+    "x": 800,
+    "y": 125,
+    "ly": -46
+   }
+  ],
+  "edges": [
+   {
+    "a": "hs",
+    "b": "gar",
+    "t": [
+     3,
+     3
+    ],
+    "storm": [
+     5,
+     5
+    ],
+    "kind": "path",
+    "name": "",
+    "lx": 195,
+    "ly": 580
+   },
+   {
+    "a": "hs",
+    "b": "roz",
+    "t": [
+     35,
+     25
+    ],
+    "storm": [
+     55,
+     40
+    ],
+    "kind": "trail",
+    "name": "szlak zielony",
+    "path": "M340 500 C 420 470, 510 410, 600 330",
+    "lx": 525,
+    "ly": 452,
+    "nx": 400,
+    "ny": 446
+   },
+   {
+    "a": "roz",
+    "b": "pass",
+    "t": [
+     45,
+     30
+    ],
+    "storm": null,
+    "closedWhy": "lawiny w żlebie",
+    "kind": "trail",
+    "name": "Żleb Mglisty",
+    "path": "M600 330 C 680 290, 740 210, 800 125",
+    "lx": 800,
+    "ly": 260,
+    "nx": 800,
+    "ny": 318
+   },
+   {
+    "a": "hs",
+    "b": "pass",
+    "t": [
+     105,
+     75
+    ],
+    "storm": [
+     130,
+     95
+    ],
+    "kind": "winter",
+    "name": "trasa zimowa (tyczki)",
+    "path": "M340 500 C 230 330, 480 110, 800 125",
+    "lx": 330,
+    "ly": 300,
+    "nx": 470,
+    "ny": 175
+   }
+  ],
+  "deco": [
+   {
+    "d": "M560 40 C 700 18, 900 50, 1000 110",
+    "k": "ridge"
+   },
+   {
+    "d": "M650 80 C 730 60, 870 90, 950 150 C 890 200, 770 200, 690 170 C 640 150, 620 110, 650 80 Z"
+   },
+   {
+    "d": "M560 140 C 690 110, 910 140, 1000 220 L1000 300 C 900 300, 720 300, 610 260 C 520 230, 500 170, 560 140 Z"
+   },
+   {
+    "d": "M500 250 C 640 210, 900 250, 1000 330 L1000 440 C 860 420, 720 440, 600 420 C 480 400, 430 300, 500 250 Z"
+   },
+   {
+    "d": "M0 470 C 120 440, 240 430, 340 440 C 450 450, 540 500, 620 560 C 660 600, 660 650, 640 700 L0 700 Z",
+    "k": "forest"
+   },
+   {
+    "d": "M700 215 L735 195 L770 220 L748 245 Z",
+    "k": "rock"
+   }
+  ],
+  "labels": [
+   {
+    "x": 860,
+    "y": 32,
+    "t": "grań Karkonoszy"
+   },
+   {
+    "x": 140,
+    "y": 480,
+    "t": "las regla",
+    "k": "small"
+   }
+  ]
+ },
+ "people": [
+  {
+   "id": "adam",
+   "name": "Adam Rogala",
+   "role": "Kierownik wyprawy „Północ 2028”",
+   "age": 47,
+   "at": "hs",
+   "desc": "Wysoki, ogorzały, z siwiejącą brodą i dawno odmrożonym czubkiem nosa. Autor książki „Dziennik Lodu” o samotnym przejściu Spitsbergenu. Mówi gładko i z przekonaniem, jak na konferencji prasowej.",
+   "deflect": [
+    "Prowadziłem wyprawy w gorszych warunkach niż to przesłuchanie.",
+    "Krystian był moim przyjacielem. Proszę o odrobinę taktu.",
+    "Nie będę komentował plotek."
+   ],
+   "showDefault": [
+    "Nie wiem, co to ma znaczyć.",
+    "Pierwszy raz to widzę."
+   ],
+   "questions": [
+    {
+     "id": "a-q1",
+     "q": "Jak znaleźliście Krystiana?",
+     "a": "O szóstej nie zgłosił się przez radio. Wołaliśmy co dziesięć minut — cisza. Zadzwoniłem po GOPR, Tomek Kulig przyjechał skuterem i pojechaliśmy trasą zimową na przełęcz. Leżał pod skałą z masztem, przysypany śniegiem. Drzwi schronu zamknięte, w piecu zimno.",
+     "claims": [
+      "a-c1"
+     ]
+    },
+    {
+     "id": "a-q2",
+     "q": "Po co Krystian został sam w schronie?",
+     "a": "Test łączności i baterii w mrozie, dwadzieścia cztery godziny. Na Grenlandii od radia zależy życie. Krystian sam to wymyślił. Łączności o dwudziestej drugiej i o szóstej — tak się umówiliśmy.",
+     "claims": [
+      "a-c2"
+     ]
+    },
+    {
+     "id": "a-q3",
+     "q": "Gdzie pan był w nocy?",
+     "a": "Do jedenastej z minutami pisałem w jadalni przemówienie na poniedziałkową konferencję. Potem poszedłem spać. Wiatr mnie obudził, więc koło północy zszedłem na dół. Graliśmy w tysiąca z gospodarzem i Weroniką do wpół do drugiej.",
+     "claims": [
+      "a-c3"
+     ]
+    },
+    {
+     "id": "a-q4",
+     "q": "Jakie stosunki miał pan z Krystianem?",
+     "a": "Byliśmy jak bracia. Dziesięć lat wypraw. On siedział przy radiu w bazie, kiedy ja szedłem przez Spitsbergen. Nigdy się nie kłóciliśmy.",
+     "claims": [
+      "a-l1"
+     ]
+    },
+    {
+     "id": "a-q5",
+     "q": "Słyszał pan łączność po północy?",
+     "a": "Siedzieliśmy przy kartach, radio stoi w biurze za ścianą. Pan Hampel powiedział: o, Krystian się zgłasza. Słyszałem szum i jego głos. Ucieszyłem się, że wszystko gra."
+    },
+    {
+     "id": "a-q6",
+     "q": "Jak wyglądało pana samotne przejście Spitsbergenu?",
+     "a": "Trzydzieści cztery dni, sześćset czterdzieści kilometrów, sam, z pulką. Wszystko jest w moim dzienniku i w książce. Ekspertyza potwierdziła, że dziennik jest autentyczny.",
+     "claims": [
+      "a-l2"
+     ],
+     "requiresAny": [
+      "e25",
+      "st:n-c2"
+     ]
+    },
+    {
+     "id": "a-q7",
+     "q": "Kto korzystał wieczorem z laptopa wyprawy?",
+     "a": "Igor zgrywa na niego materiały. Koło wpół do dziesiątej siedziała przy nim Weronika — mówiła, że wybiera zdjęcia dla sponsora. Potem poszła na górę z migreną.",
+     "claims": [
+      "a-c4"
+     ],
+     "requires": [
+      "st:i-c3"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "a-c1",
+     "text": "Krystian nie zgłosił się o 6:00; ciało znaleźliśmy z ratownikiem o 7:10 pod skałą z masztem.",
+     "truth": true
+    },
+    {
+     "id": "a-c2",
+     "text": "Krystian miał dwie łączności z bazą: o 22:00 i o 6:00.",
+     "truth": true
+    },
+    {
+     "id": "a-c3",
+     "text": "Do 23:20 pisałem w jadalni, potem spałem, od 0:15 grałem w karty z gospodarzem i Weroniką.",
+     "truth": true
+    },
+    {
+     "id": "a-c4",
+     "text": "Około 21:30 przy laptopie wyprawy w jadalni siedziała Weronika.",
+     "truth": true
+    },
+    {
+     "id": "a-c6",
+     "text": "Radiotelefon nr 04 zawsze zostaje w biurze schroniska; nikt nie brał go na przełęcz.",
+     "truth": true
+    },
+    {
+     "id": "a-l1",
+     "text": "Z Krystianem nigdy się nie kłóciłem.",
+     "contradicts": [
+      "st:n-c1",
+      "st:i-c1"
+     ],
+     "response": "Dobrze. W czwartek się pokłóciliśmy. Krystian wbił sobie do głowy, że w 2025 roku… Powiedział, że mam czas do poniedziałku, żeby sam wszystko wyznać. Ale ja go nie skrzywdziłem. W piątek wieczorem nie wyszedłem ze schroniska ani na krok.",
+     "gives": [
+      "t1"
+     ],
+     "reveals": [
+      "a-l2"
+     ]
+    },
+    {
+     "id": "a-l2",
+     "text": "Przeszedłem Spitsbergen sam, o własnych siłach, każdy kilometr.",
+     "contradicts": [
+      "e25",
+      "e29"
+     ],
+     "response": "Szóstego dnia miałem odmrożone palce i pękniętą płozę pulki. Norweg z Longyearbyen zawiózł mnie skuterem dwieście dziesięć kilometrów na północ. Dziennik przepisałem potem w kraju, jakby tamte dni szedł ktoś inny. Weronika wiedziała od początku — to ona załatwiła ekspertyzę i premię. Krystian chciał to ujawnić w poniedziałek. Ale ja go nie zabiłem. Dla mnie skończyłoby się to wstydem, nie więzieniem.",
+     "gives": [
+      "t2"
+     ]
+    }
+   ],
+   "shows": [
+    {
+     "id": "a-s1",
+     "ev": "e07",
+     "a": "Zero cztery? To zapasowy radiotelefon z biura. Krystian miał na górze stację i swój radiotelefon, dwójkę. Czwórki nikt nie brał na przełęcz, zawsze stoi w ładowarce w bazie.",
+     "claims": [
+      "a-c6"
+     ]
+    },
+    {
+     "id": "a-s2",
+     "ev": "e25",
+     "a": "Skąd to macie? To prywatne papiery Krystiana. Proszę… to nie jest tak, jak wygląda."
+    }
+   ]
+  },
+  {
+   "id": "weronika",
+   "name": "Weronika Kos",
+   "role": "Menedżerka wyprawy z ramienia sponsora",
+   "age": 41,
+   "at": "hs",
+   "desc": "Drobna, w białej puchówce z logo Polar-Tex, z telefonem w obu dłoniach. Mówi szybko i uprzejmie, jakby prowadziła konferencję. Pod oczami ma cienie, których nie zakrył makijaż.",
+   "deflect": [
+    "Rozumiem, że to państwa praca, ale proszę mówić konkretnie.",
+    "Jestem tu z ramienia sponsora, nie jako śledcza.",
+    "Od wczoraj mam migrenę, naprawdę nie pamiętam szczegółów."
+   ],
+   "showDefault": [
+    "Nie wiem, co mam na to odpowiedzieć.",
+    "To nie moja działka, proszę zapytać Adama."
+   ],
+   "questions": [
+    {
+     "id": "w-q1",
+     "q": "Gdzie pani była w nocy?",
+     "a": "Od za kwadrans dziesiąta w pokoju. Migrena, Natalia dała mi tabletkę. Spałam, aż obudził mnie wiatr. Kwadrans po północy zeszłam na dół i graliśmy w karty do wpół do drugiej. Od stołu się nie ruszałam.",
+     "claims": [
+      "w-l1",
+      "w-l5"
+     ]
+    },
+    {
+     "id": "w-q2",
+     "q": "Kontaktował się z panią Krystian w piątek?",
+     "a": "Nie. Ostatni raz rozmawialiśmy w czwartek na przełęczy, o zdjęciach do kampanii. W piątek nie miałam od niego żadnej wiadomości.",
+     "claims": [
+      "w-l3"
+     ]
+    },
+    {
+     "id": "w-q3",
+     "q": "Jak pani jeździ na nartach?",
+     "a": "Rekreacyjnie. Chodzę z zespołem na podejścia, bo tego wymaga kontrakt. Jestem z Warszawy i pierwszy raz w życiu jestem w Karkonoszach — w nocy nie znalazłabym tu drogi.",
+     "claims": [
+      "w-l0"
+     ]
+    },
+    {
+     "id": "w-q4",
+     "q": "Czym zajmuje się pani w wyprawie?",
+     "a": "Pilnuję kontraktu Polar-Tex: zdjęcia, media, rozliczenia. Za Grenlandię 2028 firma płaci dwa miliony czterysta tysięcy złotych. W poniedziałek mamy konferencję prasową.",
+     "claims": [
+      "w-c1"
+     ]
+    },
+    {
+     "id": "w-q5",
+     "q": "Co pani wie o przejściu Spitsbergenu z 2025 roku?",
+     "a": "Wspaniały wyczyn, na którym zbudowaliśmy markę. Poza kontraktem nie mam z tym nic wspólnego. Jeśli coś było nie tak, to sprawa Adama, nie moja.",
+     "claims": [
+      "w-l4"
+     ],
+     "requiresAny": [
+      "e25",
+      "t1"
+     ]
+    },
+    {
+     "id": "w-q6",
+     "q": "Korzystała pani wieczorem z laptopa wyprawy?",
+     "a": "Wybierałam zdjęcia z treningu dla działu marketingu. Kilka minut. Niczego z niego nie kopiowałam.",
+     "claims": [
+      "w-l6"
+     ],
+     "requires": [
+      "st:a-c4"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "w-c1",
+     "text": "Za wyprawę „Północ 2028” Polar-Tex płaci 2,4 mln zł; w poniedziałek jest konferencja prasowa.",
+     "truth": true
+    },
+    {
+     "id": "w-l0",
+     "text": "Jeżdżę na nartach rekreacyjnie, w Karkonoszach jestem pierwszy raz; w nocy nie znalazłabym drogi.",
+     "contradicts": [
+      "st:i-c4",
+      "st:n-c4",
+      "d02"
+     ],
+     "response": "Urodziłam się w Jeleniej Górze, w szkole średniej startowałam w zawodach skialpinistycznych — tu, na tych stokach. To było dawno. Nie chciałam, żeby to miało znaczenie."
+    },
+    {
+     "id": "w-l1",
+     "text": "Od 21:45 do 0:15 byłam w swoim pokoju.",
+     "contradicts": [
+      "e10",
+      "e11",
+      "e13"
+     ],
+     "response": "Wyszłam na chwilę. Założyłam narty i doszłam do rozdroża, żeby przewietrzyć głowę po migrenie. Wróciłam przed północą. Nie chciałam, żeby Adam wiedział, że łamię zakaz nocnych wyjść.",
+     "gives": [
+      "t3"
+     ],
+     "reveals": [
+      "w-l2"
+     ]
+    },
+    {
+     "id": "w-l2",
+     "text": "Doszłam tylko do rozdroża; na przełęczy nie byłam.",
+     "contradicts": [
+      "x3",
+      "e18",
+      "e12"
+     ],
+     "response": "Byłam na przełęczy. Chciałam porozmawiać z nim o tej wiadomości. Krzyczał, że w poniedziałek powie wszystko, o mnie też. Odepchnęłam go. Uderzył głową o róg pieca i przestał się ruszać. Nie oddychał, tak myślałam. Wyciągnęłam go pod skałę, żeby wyglądało, że spadł z masztu. Zabrałam jego komunikator i w nocy spaliłam go w suszarni.",
+     "gives": [
+      "t4"
+     ],
+     "reveals": [
+      "w-l5"
+     ]
+    },
+    {
+     "id": "w-l3",
+     "text": "W piątek nie dostałam od Krystiana żadnej wiadomości.",
+     "contradicts": [
+      "x2"
+     ],
+     "response": "Dostałam. SMS-a z komunikatora, przy kolacji. Pisał, że ma logi z 2025 roku i moje maile, i że w poniedziałek powie wszystko. Wpadłam w panikę, ale to jeszcze niczego nie znaczy.",
+     "gives": [
+      "t5"
+     ]
+    },
+    {
+     "id": "w-l4",
+     "text": "Sprawa Spitsbergenu to sprawa Adama, nie moja.",
+     "contradicts": [
+      "e25",
+      "t2"
+     ],
+     "response": "Wiedziałam od kwietnia 2025. Krystian mi powiedział, a ja zamówiłam ekspertyzę dziennika, wypłaciłam premię i podpisałam raport dla zarządu, że wszystko sprawdzone. Gdyby to wyszło, straciłabym wszystko. Nie tylko pracę.",
+     "gives": [
+      "t6"
+     ]
+    },
+    {
+     "id": "w-l5",
+     "text": "Od 0:15 do 1:30 nie odchodziłam od stołu.",
+     "contradicts": [
+      "st:h-c3",
+      "e17"
+     ],
+     "response": "Wyszłam na kilka minut. Wzięłam z biura zapasowy radiotelefon, stanęłam za tylnymi drzwiami i puściłam do niego z telefonu nagranie Igora — Krystian przy radiu, z czwartku. Chciałam, żeby wszyscy myśleli, że po północy on jeszcze żył.",
+     "gives": [
+      "t7"
+     ]
+    },
+    {
+     "id": "w-l6",
+     "text": "Z laptopa wyprawy niczego nie kopiowałam.",
+     "contradicts": [
+      "e14"
+     ],
+     "response": "Skopiowałam jeden klip na telefon. Krystian przy radiu. Do filmu dla sponsora, nic więcej."
+    }
+   ],
+   "shows": [
+    {
+     "id": "w-s1",
+     "ev": "e13",
+     "a": "Ktoś z nartami. Wszyscy tu mamy narty."
+    },
+    {
+     "id": "w-s2",
+     "ev": "e12",
+     "a": "Popiół z pieca? Nie mam pojęcia, czemu mi to państwo pokazują."
+    }
+   ]
+  },
+  {
+   "id": "igor",
+   "name": "Igor Szadkowski",
+   "role": "Operator kamery, film dla sponsora",
+   "age": 29,
+   "at": "hs",
+   "desc": "Chudy, w czapce z pomponem, z aparatem na szyi nawet przy śniadaniu. Rzuca żartem, a potem patrzy, czy nikt się nie obraził. Unika wzroku Natalii.",
+   "deflect": [
+    "Ja tylko kręcę. Nie jestem od pytań.",
+    "Serio, nic więcej nie wiem.",
+    "Mogę pokazać materiał, ale zgadywać nie będę."
+   ],
+   "showDefault": [
+    "Nie kojarzę.",
+    "To nie moje."
+   ],
+   "questions": [
+    {
+     "id": "i-q1",
+     "q": "Gdzie pan był w nocy?",
+     "a": "Od dziesiątej robiłem timelapse gwiazd na tarasie. Stałem przy aparacie do wpół do pierwszej, zmarzłem na kość. Nikogo nie widziałem.",
+     "claims": [
+      "i-l1"
+     ]
+    },
+    {
+     "id": "i-q2",
+     "q": "Co działo się w czwartek w schronie?",
+     "a": "Wieczorem Adam i Krystian pokłócili się przy piecu. Krystian powiedział coś w stylu: masz czas do poniedziałku. Adam trzasnął drzwiami i wyszedł na mróz. Potem obaj udawali, że nic się nie stało.",
+     "claims": [
+      "i-c1"
+     ]
+    },
+    {
+     "id": "i-q3",
+     "q": "Nagrywał pan Krystiana przy radiu?",
+     "a": "Jasne, kilka razy. W czwartek tuż przed północą nakręciłem całą łączność z bazą — świetny klip, mróz, para z ust. Plik C0112. Wszystko zgrywam na laptopa wyprawy w jadalni.",
+     "claims": [
+      "i-c3"
+     ],
+     "requires": [
+      "e07"
+     ]
+    },
+    {
+     "id": "i-q4",
+     "q": "Kto z was najlepiej jeździ na nartach?",
+     "a": "Weronika. Na nagraniach z treningu zjeżdża tak, że ledwo nadążam z kamerą. Mówiła kiedyś, że startowała w zawodach.",
+     "claims": [
+      "i-c4"
+     ]
+    },
+    {
+     "id": "i-q5",
+     "q": "Co ustawił pan na tarasie?",
+     "a": "Aparat na statywie, zdjęcie co trzydzieści sekund, od dziesiątej do wpół do pierwszej. Karta jest w aparacie, możecie obejrzeć klatki."
+    }
+   ],
+   "statements": [
+    {
+     "id": "i-c1",
+     "text": "W czwartek w schronie Adam i Krystian pokłócili się; Krystian powiedział Adamowi, że ma czas do poniedziałku.",
+     "truth": true
+    },
+    {
+     "id": "i-c3",
+     "text": "W czwartek przed północą nagrał łączność Krystiana z bazą; klip C0112 jest na laptopie wyprawy w jadalni.",
+     "truth": true
+    },
+    {
+     "id": "i-c4",
+     "text": "Weronika najlepiej z całego zespołu jeździ na nartach i startowała kiedyś w zawodach.",
+     "truth": true
+    },
+    {
+     "id": "i-c5",
+     "text": "Głos z łączności o 0:40 pochodzi z jego czwartkowego klipu C0112.",
+     "truth": true
+    },
+    {
+     "id": "i-l1",
+     "text": "Od 22:00 do 0:30 stałem przy aparacie na tarasie.",
+     "contradicts": [
+      "e13"
+     ],
+     "response": "Nie stałem. Ustawiłem aparat i poszedłem do Natalii. Byłem u niej do wpół do pierwszej. Natalia ma narzeczonego, a Adam nie znosi romansów w zespole. Dlatego kłamałem.",
+     "gives": [
+      "t8"
+     ]
+    }
+   ],
+   "shows": [
+    {
+     "id": "i-s1",
+     "ev": "e34",
+     "a": "Przecież to ja! Na końcu mówię „mam” — zawsze tak mówię, kiedy kończę ujęcie. To mój klip, C0112, czwartek przed północą. Skąd on się wziął w łączności z soboty?",
+     "claims": [
+      "i-c3",
+      "i-c5"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "natalia",
+   "name": "Natalia Brandt",
+   "role": "Lekarka wyprawy",
+   "age": 36,
+   "at": "hs",
+   "desc": "Spokojna i rzeczowa, z włosami ściągniętymi w ciasny węzeł. Rano jako pierwsza obejrzała ciało. Mówi cicho, ale bez wahania — dopóki nie padnie pytanie o noc.",
+   "deflect": [
+    "Powiedziałam wszystko, co wiem jako lekarz.",
+    "Proszę nie mieszać mojego życia prywatnego do śledztwa.",
+    "Nie będę zgadywać."
+   ],
+   "showDefault": [
+    "To nie moja specjalność.",
+    "Nic mi to nie mówi."
+   ],
+   "questions": [
+    {
+     "id": "n-q1",
+     "q": "Co pani ustaliła, oglądając ciało?",
+     "a": "Rana tłuczona z tyłu głowy, niezbyt głęboka. Ciało wychłodzone, stężenie pośmiertne. Nie żył od kilku godzin — więcej powie sekcja. Mróz bardzo utrudnia określenie godziny."
+    },
+    {
+     "id": "n-q2",
+     "q": "Gdzie pani była w nocy?",
+     "a": "W swoim pokoju. Od wpół do dziesiątej. Sama. Spałam.",
+     "claims": [
+      "n-l1"
+     ]
+    },
+    {
+     "id": "n-q3",
+     "q": "Co działo się w czwartek w schronie?",
+     "a": "Adam i Krystian się pokłócili. Krystian powiedział: masz czas do poniedziałku, potem ja to zrobię. Nie wiem, o co chodziło.",
+     "claims": [
+      "n-c1"
+     ]
+    },
+    {
+     "id": "n-q4",
+     "q": "Jak zachowywała się Weronika w piątek?",
+     "a": "Przy kolacji przeczytała coś w telefonie i zbladła. Koło wpół do dziesiątej poprosiła mnie o tabletkę na migrenę, a za kwadrans dziesiąta poszła na górę.",
+     "claims": [
+      "n-c5"
+     ]
+    },
+    {
+     "id": "n-q5",
+     "q": "Kto najlepiej jeździ na nartach?",
+     "a": "Weronika, bez dwóch zdań. Na treningu zostawiała nas wszystkich w tyle.",
+     "claims": [
+      "n-c4"
+     ]
+    },
+    {
+     "id": "n-q6",
+     "q": "Co wiedziała pani o przejściu Spitsbergenu?",
+     "a": "Krystian powiedział raz po kilku piwach, że „Dziennik Lodu” to najlepsza powieść, jaką czytał. Myślałam, że żartuje.",
+     "claims": [
+      "n-c2"
+     ],
+     "requiresAny": [
+      "e25",
+      "st:a-l2"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "n-c1",
+     "text": "W czwartek w schronie Krystian powiedział Adamowi: masz czas do poniedziałku.",
+     "truth": true
+    },
+    {
+     "id": "n-c2",
+     "text": "Krystian nazwał kiedyś „Dziennik Lodu” powieścią.",
+     "truth": true
+    },
+    {
+     "id": "n-c4",
+     "text": "Weronika najlepiej z zespołu jeździ na nartach.",
+     "truth": true
+    },
+    {
+     "id": "n-c5",
+     "text": "Przy kolacji Weronika przeczytała coś w telefonie i zbladła; o 21:45 poszła do pokoju.",
+     "truth": true
+    },
+    {
+     "id": "n-c6",
+     "text": "Krystian zmarł z wychłodzenia; uraz głowy tylko go ogłuszył.",
+     "truth": true
+    },
+    {
+     "id": "n-c7",
+     "text": "Rana głowy Krystiana pasuje do kantu pieca, a nie do skały.",
+     "truth": true
+    },
+    {
+     "id": "n-l1",
+     "text": "W nocy byłam w pokoju sama.",
+     "contradicts": [
+      "t8"
+     ],
+     "response": "Igor był u mnie od dziesiątej do wpół do pierwszej. Żadne z nas nie wychodziło. Proszę, niech to nie trafi do mojego narzeczonego… choć pewnie i tak trafi.",
+     "gives": [
+      "t9"
+     ]
+    }
+   ],
+   "shows": [
+    {
+     "id": "n-s1",
+     "ev": "e36",
+     "a": "Plamy Wiszniewskiego… To znaczy, że zabił go mróz, a nie uderzenie. Uraz głowy go ogłuszył. Ktoś zostawił go nieprzytomnego na śniegu.",
+     "claims": [
+      "n-c6"
+     ]
+    },
+    {
+     "id": "n-s2",
+     "ev": "e19",
+     "a": "Krew i włosy na kancie pieca… Kształt rany by pasował. Uderzył głową o piec, nie o skałę.",
+     "claims": [
+      "n-c7"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hampel",
+   "name": "Zdzisław Hampel",
+   "role": "Gospodarz schroniska „Hala Szronów”",
+   "age": 63,
+   "at": "hs",
+   "desc": "Krępy, w swetrze z reniferami, z fajką, której nie zapala, bo w schronisku nie wolno. Prowadzi schronisko od trzydziestu lat. U jego nóg śpi Bari, wielki kudłaty owczarek.",
+   "deflect": [
+    "Ja tu jestem od gotowania i od pieca, panie władzo.",
+    "Czego nie widziałem, tego nie powiem.",
+    "Bari może więcej wie, ale on nie gada."
+   ],
+   "showDefault": [
+    "Nie znam się na tym.",
+    "Pierwszy raz widzę."
+   ],
+   "questions": [
+    {
+     "id": "h-q1",
+     "q": "Co działo się w schronisku w piątek wieczorem?",
+     "a": "Kolacja o szóstej, potem każdy w swoją stronę. Siedziałem w barze przy jadalni do jedenastej dwadzieścia, a pan Adam pisał przy stole — do tej samej godziny, bo razem gasiliśmy światło. Pani Weronika poszła na górę za kwadrans dziesiąta, pani doktor jeszcze wcześniej. Pan Igor kręcił się z aparatem.",
+     "claims": [
+      "h-c1"
+     ]
+    },
+    {
+     "id": "h-q2",
+     "q": "Słyszał pan łączności Krystiana?",
+     "a": "Radio stoi w biurze, za ścianą jadalni. O dziesiątej zgłosił się jak zawsze. Potem drugi raz w nocy, koło wpół do pierwszej — graliśmy wtedy w karty. Ucieszyłem się, bo wiało coraz mocniej.",
+     "claims": [
+      "h-c2"
+     ]
+    },
+    {
+     "id": "h-q3",
+     "q": "Kto grał z panem w karty?",
+     "a": "Od kwadrans po północy ja, pan Adam i pani Weronika. Do wpół do drugiej. Pani Weronika wyszła raz na kilka minut, koło wpół do pierwszej. Powiedziała, że do łazienki.",
+     "claims": [
+      "h-c3"
+     ]
+    },
+    {
+     "id": "h-q4",
+     "q": "Czy w nocy coś pana zaniepokoiło?",
+     "a": "Bari zaszczekał koło wpół do pierwszej, przy tylnych drzwiach. On tak ma, kiedy ktoś się kręci przy suszarni. Pomyślałem, że to ratrakowy.",
+     "claims": [
+      "h-c4"
+     ]
+    },
+    {
+     "id": "h-q5",
+     "q": "Kto korzysta z suszarni?",
+     "a": "Wszyscy z wyprawy: suszą tam buty, foki, rękawice. Jest tam piec, który czyszczę codziennie w południe, jak w zegarku.",
+     "claims": [
+      "h-c5"
+     ]
+    },
+    {
+     "id": "h-q6",
+     "q": "Gdzie stoi zapasowy radiotelefon?",
+     "a": "W ładowarce w biurze, obok bazowej. Biuro się nie zamyka, to schronisko, nie bank. Rano wszystko stało na swoim miejscu.",
+     "claims": [
+      "h-c6"
+     ],
+     "requiresAny": [
+      "e09",
+      "st:a-c6"
+     ]
+    },
+    {
+     "id": "h-q7",
+     "q": "Czy Krystian zgłaszał się też w czwartek?",
+     "a": "W czwartek cała wyprawa nocowała na górze, ale Krystian i tak zgłosił się do mnie przed północą, na próbę. Pamiętam, bo był straszny mróz i wiatr zupełnie ustał. Mówił tak samo jak zwykle: Baza, tu Mglista, wszystko gra.",
+     "claims": [
+      "h-c10"
+     ],
+     "requires": [
+      "e07"
+     ]
+    }
+   ],
+   "statements": [
+    {
+     "id": "h-c1",
+     "text": "Do 23:20 siedziałem w barze przy jadalni, a pan Adam pisał w jadalni.",
+     "truth": true
+    },
+    {
+     "id": "h-c2",
+     "text": "Około 0:40 przez radio w biurze odezwał się głos Krystiana.",
+     "truth": true
+    },
+    {
+     "id": "h-c3",
+     "text": "Około 0:35 pani Weronika na kilka minut odeszła od stołu.",
+     "truth": true
+    },
+    {
+     "id": "h-c4",
+     "text": "Około 0:40 Bari zaszczekał przy tylnych drzwiach.",
+     "truth": true
+    },
+    {
+     "id": "h-c5",
+     "text": "Piec w suszarni czyszczę codziennie w południe.",
+     "truth": true
+    },
+    {
+     "id": "h-c6",
+     "text": "Zapasowy radiotelefon stoi w ładowarce w biurze, które się nie zamyka.",
+     "truth": true
+    },
+    {
+     "id": "h-c7",
+     "text": "Żółta taśma odblaskowa na małym plecaku — to plecak pani Weroniki.",
+     "truth": true
+    },
+    {
+     "id": "h-c8",
+     "text": "W piecu w suszarni palę tylko drewnem; plastik ktoś wrzucił w nocy.",
+     "truth": true
+    },
+    {
+     "id": "h-c9",
+     "text": "Na nagraniu szczeka Bari — a Bari nigdy nie chodzi na przełęcz.",
+     "truth": true
+    },
+    {
+     "id": "h-c10",
+     "text": "W czwartek przed północą Krystian zgłosił się przez radio przy mrozie i zupełnej ciszy.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "h-s1",
+     "ev": "e12",
+     "a": "Popiół z pieca w suszarni? Ja tam palę drewnem i starymi gazetami, nie plastikiem. Ktoś tam coś spalił w nocy.",
+     "claims": [
+      "h-c8"
+     ]
+    },
+    {
+     "id": "h-s2",
+     "ev": "e13",
+     "a": "To pod moim tarasem, idą do suszarni. Z nartami na ramieniu, o tej porze? Mały plecak z żółtą taśmą… Takie odblaski ma pani Weronika, sam jej pomagałem przyszyć, bo się odpruwały.",
+     "claims": [
+      "h-c7"
+     ]
+    },
+    {
+     "id": "h-s3",
+     "ev": "e33",
+     "a": "Bari! Poznałbym go wszędzie — dwa razy, krótko, tak szczeka tylko przy tylnych drzwiach. Na przełęcz nie chodzi, stary już. Całą noc był tutaj, w korytarzu.",
+     "claims": [
+      "h-c9"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kuznik",
+   "name": "Mirosław Kuźnik",
+   "role": "Operator ratraku",
+   "age": 52,
+   "at": "gar",
+   "desc": "Barczysty, w kombinezonie poplamionym smarem, z wąsem jak szczotka. Ratrakiem jeździ od dwudziestu lat i zna tu każdy kamień. Mieszka w pokoiku przy garażu.",
+   "deflect": [
+    "Ja w nocy jeżdżę, nie gapię się na ludzi.",
+    "Pan pyta, ja mówię, ale zmyślać nie będę.",
+    "Przez szybę mało widać, jak sypie."
+   ],
+   "showDefault": [
+    "Nie wiem, panie.",
+    "Nic mi to nie mówi."
+   ],
+   "questions": [
+    {
+     "id": "k-q1",
+     "q": "Co pan robił w piątek wieczorem?",
+     "a": "Od dziesiątej do za dwadzieścia jedenasta równałem drogę dojazdową poniżej schroniska. Potem przerwa w garażu. Od dwadzieścia po dwunastej do dziesięć po pierwszej równałem plac przed schroniskiem.",
+     "claims": [
+      "k-c1"
+     ]
+    },
+    {
+     "id": "k-q2",
+     "q": "Widział pan kogoś na szlaku?",
+     "a": "Koło dziesięć po dziesiątej czołówka szła w górę zielonym szlakiem za schroniskiem. Równo i szybko, jak ktoś, kto umie chodzić. A koło wpół do dwunastej, z okna garażu, światło zjechało z góry — tak szybko, że to musiał być narciarz.",
+     "claims": [
+      "k-c2",
+      "k-c3"
+     ]
+    },
+    {
+     "id": "k-q3",
+     "q": "Czy ratrak wydaje jakieś sygnały?",
+     "a": "Na wstecznym pika, jak każda maszyna. Kiedy równam plac, ciągle cofam, więc pika co chwilę. Ludzie się skarżą, ale przepisy to przepisy.",
+     "claims": [
+      "k-c4"
+     ]
+    },
+    {
+     "id": "k-q4",
+     "q": "Czy ratrak zapisuje trasę?",
+     "a": "GPS zapisuje wszystko, dla zarządu parku. Wydruk mam w kabinie."
+    }
+   ],
+   "statements": [
+    {
+     "id": "k-c1",
+     "text": "Od 22:00 do 22:40 równałem drogę poniżej schroniska, do 0:20 miałem przerwę w garażu, a od 0:20 do 1:10 równałem plac przed schroniskiem.",
+     "truth": true
+    },
+    {
+     "id": "k-c2",
+     "text": "Około 22:10 czyjaś czołówka szła szybko w górę zielonym szlakiem.",
+     "truth": true
+    },
+    {
+     "id": "k-c3",
+     "text": "Około 23:35 światło bardzo szybko zjechało z góry — jak narciarz.",
+     "truth": true
+    },
+    {
+     "id": "k-c4",
+     "text": "Ratrak pika przy cofaniu; od 0:20 do 1:10 cofałem wiele razy na placu przed schroniskiem.",
+     "truth": true
+    }
+   ],
+   "shows": [
+    {
+     "id": "k-s1",
+     "ev": "e35",
+     "a": "To mój ratrak, na wstecznym. Tak pika tylko jedna maszyna w okolicy. W nocy cofałem tylko na placu przed schroniskiem, od dwadzieścia po dwunastej.",
+     "claims": [
+      "k-c4"
+     ]
+    }
+   ]
+  }
+ ],
+ "locations": [
+  {
+   "id": "office",
+   "name": "Biuro gospodarza",
+   "kind": "Parter schroniska, przy korytarzu do suszarni",
+   "at": "hs",
+   "desc": "Ciasny pokój z biurkiem, kasą schroniska i szafą z kluczami. Na półce radiostacja bazy wyprawy z rejestratorem łączności, obok ładowarka z radiotelefonami. Drzwi się nie zamykają.",
+   "spots": [
+    {
+     "id": "sp-radio",
+     "name": "Radiostacja bazy",
+     "text": "Radiostacja z rejestratorem — zapisuje każdą łączność.",
+     "gives": [
+      "e07",
+      "e08"
+     ]
+    },
+    {
+     "id": "sp-charger",
+     "name": "Ładowarka radiotelefonów",
+     "text": "Dwa radiotelefony w gniazdach, lista naklejona na obudowie.",
+     "gives": [
+      "e09"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dry",
+   "name": "Suszarnia",
+   "kind": "Parter schroniska, przy tylnych drzwiach",
+   "at": "hs",
+   "desc": "Gorące, duszne pomieszczenie pachnące mokrą wełną. Na stojaku narty i foki, pod ścianą plecaki i buty, w rogu żeliwny piec na drewno. Tylne drzwi prowadzą prosto na zielony szlak.",
+   "spots": [
+    {
+     "id": "sp-skis",
+     "name": "Stojak z nartami",
+     "text": "Narty i foki całej wyprawy.",
+     "gives": [
+      "e10"
+     ]
+    },
+    {
+     "id": "sp-packs",
+     "name": "Plecaki pod ścianą",
+     "text": "Cztery duże plecaki i jeden mały.",
+     "gives": [
+      "e11"
+     ]
+    },
+    {
+     "id": "sp-ash",
+     "name": "Piec w suszarni",
+     "text": "Żeliwny piec na drewno, popielnik pełny.",
+     "gives": [
+      "e12"
+     ],
+     "expires": "12:00",
+     "expiredText": "Gospodarz wyczyścił piec w południe, jak co dzień. Popiół trafił na hałdę za schroniskiem, pod świeży śnieg."
+    }
+   ],
+   "search": {
+    "aspect": 1.5,
+    "spots": {
+     "sp-skis": [
+      0.3,
+      0.45,
+      0.08
+     ],
+     "sp-packs": [
+      0.62,
+      0.72,
+      0.07
+     ],
+     "sp-ash": [
+      0.86,
+      0.55,
+      0.07
+     ]
+    }
+   }
+  },
+  {
+   "id": "terrace",
+   "name": "Taras",
+   "kind": "Pierwsze piętro schroniska, nad drzwiami suszarni",
+   "at": "hs",
+   "desc": "Drewniany taras z widokiem na zielony szlak. Na statywie wciąż stoi aparat Igora, przysypany śniegiem.",
+   "spots": [
+    {
+     "id": "sp-tl",
+     "name": "Aparat na statywie",
+     "text": "Aparat ustawiony na szlak i drzwi suszarni.",
+     "gives": [
+      "e13"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dining",
+   "name": "Jadalnia",
+   "kind": "Parter schroniska",
+   "at": "hs",
+   "desc": "Długie drewniane stoły, kominek, zdjęcia z dawnych wypraw na ścianach. W kącie stolik z laptopem wyprawy i dyskami Igora. Na stole wciąż leży talia kart.",
+   "spots": [
+    {
+     "id": "sp-photos",
+     "name": "Zdjęcia na ścianie",
+     "text": "Fotografie z wypraw i obozu.",
+     "gives": [
+      "e15"
+     ]
+    },
+    {
+     "id": "sp-laptop",
+     "name": "Laptop wyprawy",
+     "text": "Wspólny laptop z materiałami filmowymi.",
+     "gives": [
+      "e14"
+     ],
+     "requires": {
+      "all": [
+       "st:i-c3"
+      ]
+     },
+     "lockedText": "Na laptopie są tysiące plików. Najpierw ustalcie, czego właściwie szukać i kto go używa."
+    }
+   ]
+  },
+  {
+   "id": "room6",
+   "name": "Pokój nr 6",
+   "kind": "Piętro schroniska — pokój Weroniki Kos",
+   "at": "hs",
+   "desc": "Mały pokój z jednym łóżkiem, kaloryferem i stolikiem. Okno wychodzi na zaśnieżony szlak.",
+   "spots": [
+    {
+     "id": "sp-room",
+     "name": "Kaloryfer i stolik",
+     "text": "Rzeczy rozłożone do suszenia, tabletki, woda.",
+     "gives": [
+      "e16"
+     ],
+     "requires": {
+      "all": [
+       "lie:w-l1"
+      ]
+     },
+     "lockedText": "Bez zgody prokuratora nie przeszukacie pokoju. Najpierw wykażcie, że jego lokatorka mija się z prawdą o tym, gdzie była w nocy."
+    },
+    {
+     "id": "sp-phone",
+     "name": "Telefon Weroniki",
+     "text": "Telefon w etui z logo Polar-Tex.",
+     "gives": [
+      "e17"
+     ],
+     "requires": {
+      "all": [
+       "lie:w-l2"
+      ]
+     },
+     "lockedText": "Prokurator zgodzi się na przeszukanie telefonu, gdy wykażecie, że jego właścicielka była tej nocy na przełęczy."
+    }
+   ]
+  },
+  {
+   "id": "notes",
+   "name": "Kwatera śledczych",
+   "kind": "Schronisko, pokój nr 1 — wasze notatki",
+   "at": "hs",
+   "desc": "Stół zawalony aktami, termos z herbatą od gospodarza. Tu trafiają wyniki waszych obliczeń i zestawień.",
+   "spots": [
+    {
+     "id": "sp-calc",
+     "name": "Wyliczenie z wydruku GPS",
+     "text": "Wynik zagadki „Szósty dzień”.",
+     "gives": [
+      "e29"
+     ],
+     "requires": {
+      "puzzle": "p-track"
+     },
+     "lockedText": "Wydruk śladu GPS z 2025 roku kryje liczbę, którą trzeba policzyć — zagadka „Szósty dzień”."
+    },
+    {
+     "id": "sp-alibi",
+     "name": "Zestawienie alibi",
+     "text": "Wynik zagadki „Okno 22:50”.",
+     "gives": [
+      "e30"
+     ],
+     "requires": {
+      "puzzle": "p-alibi"
+     },
+     "lockedText": "Zestawcie, gdzie kto był o 22:50 — zagadka „Okno 22:50”."
+    }
+   ]
+  },
+  {
+   "id": "fork",
+   "name": "Rozdroże pod Jaworem",
+   "kind": "Szlak zielony, 1330 m n.p.m.",
+   "at": "roz",
+   "desc": "Drogowskaz oblepiony szadzią, karłowate świerki. Wyżej szlak wchodzi w wąski Żleb Mglisty, którym wiatr przewiewa śnieg.",
+   "spots": [
+    {
+     "id": "sp-tracks",
+     "name": "Pobocze szlaku",
+     "text": "Zawietrzna pod skałami, tuż przy szlaku.",
+     "gives": [
+      "e18"
+     ],
+     "expires": "13:00",
+     "expiredText": "Śnieżyca zasypała wszystko równą warstwą. Jeśli były tu jakieś ślady, już ich nie ma."
+    }
+   ]
+  },
+  {
+   "id": "shelter",
+   "name": "Wnętrze schronu",
+   "kind": "Przełęcz Mglista, 1495 m — kamienny schron z 1936 roku",
+   "at": "pass",
+   "desc": "Jedna izba z pryczami, żeliwny piec, stół pod oknem z radiostacją i stosem baterii. Szyby od środka pokryte szronem. Przy drzwiach czeka ratownik GOPR.",
+   "spots": [
+    {
+     "id": "sp-stove",
+     "name": "Żeliwny piec",
+     "text": "Piec przy pryczach, obok wiadro z węglem.",
+     "gives": [
+      "e19"
+     ]
+    },
+    {
+     "id": "sp-notebook",
+     "name": "Zeszyt na stole",
+     "text": "Zeszyt w kratkę z ołówkiem w środku.",
+     "gives": [
+      "e20"
+     ]
+    },
+    {
+     "id": "sp-logger",
+     "name": "Rejestrator przy bateriach",
+     "text": "Mały szary rejestrator z wyświetlaczem.",
+     "gives": [
+      "e21"
+     ]
+    },
+    {
+     "id": "sp-station",
+     "name": "Radiostacja",
+     "text": "Stacja stała z mikrofonem na haczyku.",
+     "gives": [
+      "e22"
+     ]
+    },
+    {
+     "id": "sp-cap",
+     "name": "Czapka i rękawice",
+     "text": "Leżą na stole, obok zeszytu.",
+     "gives": [
+      "e23"
+     ]
+    },
+    {
+     "id": "sp-satcable",
+     "name": "Powerbank przy pryczy",
+     "text": "Kabel ładowania prowadzi donikąd.",
+     "gives": [
+      "e24"
+     ]
+    },
+    {
+     "id": "sp-bag",
+     "name": "Plecak Krystiana",
+     "text": "Duży plecak oparty o pryczę.",
+     "gives": [
+      "e25"
+     ]
+    }
+   ],
+   "search": {
+    "aspect": 1.5,
+    "spots": {
+     "sp-stove": [
+      0.18,
+      0.55,
+      0.07
+     ],
+     "sp-notebook": [
+      0.52,
+      0.62,
+      0.04
+     ],
+     "sp-logger": [
+      0.62,
+      0.58,
+      0.035
+     ],
+     "sp-station": [
+      0.58,
+      0.42,
+      0.05
+     ],
+     "sp-cap": [
+      0.43,
+      0.6,
+      0.035
+     ],
+     "sp-satcable": [
+      0.84,
+      0.72,
+      0.045
+     ],
+     "sp-bag": [
+      0.93,
+      0.5,
+      0.05
+     ]
+    }
+   }
+  },
+  {
+   "id": "rock",
+   "name": "Skała z masztem",
+   "kind": "Przełęcz Mglista — piętnaście metrów od schronu",
+   "at": "pass",
+   "desc": "Czterometrowa skała z przykręconą stalową drabinką i masztem anteny. U jej stóp, pod złotą folią NRC, leży ciało Krystiana Lisa. Ratownik czeka na wasze oględziny, żeby zwieźć je skuterem.",
+   "spots": [
+    {
+     "id": "sp-body",
+     "name": "Ciało pod skałą",
+     "text": "Pod folią, w zawianym śniegu.",
+     "gives": [
+      "e26"
+     ]
+    },
+    {
+     "id": "sp-mast",
+     "name": "Drabinka i maszt",
+     "text": "Szczeble pokryte szadzią.",
+     "gives": [
+      "e27"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "garage",
+   "name": "Garaż ratraków",
+   "kind": "Sto metrów poniżej schroniska",
+   "at": "gar",
+   "desc": "Blaszany garaż z dwoma ratrakami, beczkami paliwa i pokoikiem operatora za ścianką z płyty. Pachnie ropą i kawą z termosu.",
+   "spots": [
+    {
+     "id": "sp-ratrak",
+     "name": "Kabina ratraku",
+     "text": "Na fotelu leży wydruk z GPS.",
+     "gives": [
+      "e28"
+     ]
+    }
+   ]
+  }
+ ],
+ "evidence": [
+  {
+   "id": "e01",
+   "type": "Raport",
+   "title": "Raport z miejsca zdarzenia",
+   "summary": "Sobota, 7:40. Ratownik GOPR i patrol z Karpacza.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Miejsce",
+       "Przełęcz Mglista (1495 m n.p.m.), Karkonosze — skała z masztem antenowym przy starym schronie turystycznym"
+      ],
+      [
+       "Zmarły",
+       "Krystian Lis, 38 l., łącznościowiec wyprawy „Północ 2028”"
+      ],
+      [
+       "Znaleźli",
+       "Adam Rogala, kierownik wyprawy, i ratownik GOPR Tomasz Kulig, około 7:10"
+      ],
+      [
+       "Zgłoszenie",
+       "Adam Rogala do GOPR, 6:25 — brak łączności ze schronem"
+      ]
+     ]
+    },
+    "Krystian Lis został w piątek sam w schronie na przełęczy, żeby przez dobę testować w mrozie radiostację i baterie. O 6:00 nie odpowiedział na wywołanie z bazy w schronisku „Hala Szronów”. Kierownik wyprawy wezwał ratownika i obaj pojechali skuterem śnieżnym trasą zimową na przełęcz.",
+    "Ciało leżało u stóp skały, na której stoi maszt anteny wyprawy, piętnaście metrów od drzwi schronu. Rana tyłu głowy. Drzwi schronu zamknięte, ale nie na klucz. W piecu zimno, radiostacja włączona.",
+    {
+     "note": "Wstępna ocena: nieszczęśliwy wypadek — upadek ze skały w nocy, przy wietrze i oblodzeniu, podczas sprawdzania anteny. Prokurator nie przyjął tej wersji bez sprawdzenia. Ciało zostaje na miejscu do waszych oględzin, pilnuje go ratownik."
+    }
+   ],
+   "start": true,
+   "time": [
+    [
+     "2027-01-16 06:00",
+     "Schron nie odpowiada na wywołanie bazy",
+     "Raport"
+    ],
+    [
+     "2027-01-16 07:10",
+     "Adam Rogala i ratownik GOPR znajdują ciało pod skałą z masztem",
+     "Raport"
+    ]
+   ]
+  },
+  {
+   "id": "e02",
+   "type": "Zlecenie",
+   "title": "Polecenie prokuratora",
+   "summary": "Wypadek czy zbrodnia?",
+   "body": [
+    {
+     "quote": "Łącznościowiec ginie nocą, sam na przełęczy, a po północy jego głos słychać w radiu. Chcę wiedzieć, czy spadł z tej skały, czy ktoś mu pomógł. Jeśli ktoś — to kto, kiedy i dlaczego. Wszyscy, którzy byli w nocy w schronisku, zostają na miejscu.",
+     "by": "prok. Jan Sobczak, Prokuratura Rejonowa w Jeleniej Górze"
+    },
+    {
+     "kv": [
+      [
+       "Zakres",
+       "przyczyna i czas śmierci Krystiana Lisa; sprawca, jeśli był; nocna łączność radiowa; motyw"
+      ],
+      [
+       "Dostęp",
+       "schronisko „Hala Szronów” z otoczeniem, schron na Przełęczy Mglistej, szlaki, rejestry PESEL, CEPiK, KRS i EKW"
+      ]
+     ]
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e03",
+   "type": "Komunikat",
+   "title": "Komunikat GOPR na sobotę",
+   "summary": "Dyżurka GOPR w Karpaczu, 7:30.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Pogoda",
+       "do południa wiatr 40–60 km/h, widoczność dobra; od około 13:00 śnieżyca, porywy do 90 km/h"
+      ],
+      [
+       "Szlak zielony przez Żleb Mglisty",
+       "od 13:00 zamknięty — zagrożenie lawinowe 3. stopnia; na przełęcz tylko trasą zimową, wzdłuż tyczek"
+      ],
+      [
+       "Zmierzch",
+       "16:21"
+      ],
+      [
+       "Sekcja zwłok",
+       "Zakład Medycyny Sądowej we Wrocławiu przekaże wstępne wyniki telefonicznie około 15:00"
+      ]
+     ]
+    },
+    {
+     "note": "Ratownik poprowadzi was w rakietach śnieżnych. Czasy przejść są na mapie w zakładce Miejsca."
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e04",
+   "type": "Notatka",
+   "title": "Czasy przejść zimą",
+   "summary": "Notatka ratownika Tomasza Kuliga dla prokuratora.",
+   "body": [
+    {
+     "log": [
+      "Hala Szronów → Przełęcz Mglista, szlak zielony    pieszo, w rakietach 1:20    narty skiturowe 0:50–1:05",
+      "Przełęcz Mglista → Hala Szronów, szlak zielony    pieszo, w rakietach 0:55    zjazd na nartach 0:15–0:20",
+      "Hala Szronów → Przełęcz Mglista, trasa zimowa     pieszo, w rakietach 1:45    narty skiturowe 1:15",
+      "Przełęcz Mglista → Hala Szronów, trasa zimowa     pieszo, w rakietach 1:15    zjazd na nartach 0:30",
+      "Hala Szronów ↔ Rozdroże pod Jaworem               w górę 0:35 · w dół 0:25"
+     ]
+    },
+    {
+     "note": "Czasy dla dobrej widoczności i warunków z piątkowej nocy. Podejście na nartach w 50 minut to tempo zawodnika. Zjazd nocą, z czołówką, zajmuje 15–20 minut. Skuter śnieżny jeździ tylko trasą zimową."
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e05",
+   "type": "Wydruk",
+   "title": "Plan obozu treningowego",
+   "summary": "Kartka przypięta na ścianie jadalni.",
+   "body": [
+    {
+     "log": [
+      "wt 12.01    wejście na Przełęcz Mglistą, noc w schronie — cały zespół",
+      "śr 13.01    trening: pulki, namioty, łączność; noc w schronie",
+      "czw 14.01   trening nocny, zdjęcia do filmu; noc w schronie",
+      "pt 15.01    16:00 zjazd do schroniska „Hala Szronów” (bez K. Lisa)",
+      "            K. Lis — test radiostacji i baterii w mrozie, 24 h, sam w schronie",
+      "            łączności z bazą: 22:00 i 6:00",
+      "sob 16.01   8:00 zjazd K. Lisa do schroniska, podsumowanie obozu",
+      "pon 18.01   konferencja prasowa ze sponsorem — Polar-Tex S.A., Warszawa"
+     ]
+    },
+    {
+     "note": "Dopisek długopisem: „Nocne wyjścia poza schronisko tylko w parach i po zgłoszeniu. A.R.”"
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e06",
+   "type": "Wykaz",
+   "title": "Kto był w nocy w schronisku",
+   "summary": "Lista sporządzona przez patrol.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Wyprawa",
+       "Adam Rogala (kierownik), Weronika Kos (menedżerka z ramienia sponsora, Polar-Tex S.A.), Igor Szadkowski (operator kamery), Natalia Brandt (lekarka)"
+      ],
+      [
+       "Obsługa",
+       "Zdzisław Hampel (gospodarz schroniska), Mirosław Kuźnik (operator ratraku, mieszka w pokoiku przy garażu)"
+      ],
+      [
+       "Inni",
+       "nikt — schronisko jest zamknięte na czas remontu i otwarte wyłącznie dla wyprawy"
+      ],
+      [
+       "Pokoje",
+       "piętro: nr 2 — Adam Rogala, nr 4 — Natalia Brandt, nr 5 — Igor Szadkowski, nr 6 — Weronika Kos; parter: jadalnia, biuro z radiostacją bazy, suszarnia z tylnymi drzwiami"
+      ]
+     ]
+    },
+    {
+     "note": "Pies gospodarza, owczarek Bari, nocuje w korytarzu na parterze."
+    }
+   ],
+   "start": true
+  },
+  {
+   "id": "e07",
+   "type": "Wydruk",
+   "title": "Dziennik łączności bazy",
+   "summary": "Z rejestratora radiostacji w biurze schroniska.",
+   "body": [
+    {
+     "log": [
+      "pt 15.01   16:00:00   rejestrator uruchomiony (wcześniej łączności nie nagrywano)",
+      "pt 15.01   16:21:40   ID 02 → baza   „Jestem w schronie, zaczynam test. Mróz trzyma.”",
+      "pt 15.01   22:05:14   ID 01 → baza   „Baza, tu Mglista. Dwudziesta druga, minus szesnaście, wieje coraz mocniej, w piecu napalone. Następna łączność o szóstej. Bez odbioru.”",
+      "sob 16.01  00:40:08   ID 04 → baza   „Baza, tu Mglista. Minus dwadzieścia dwa, wiatr ucichł, wszystko gra. Następna łączność o szóstej. Bez odbioru.”",
+      "sob 16.01  06:00:30   baza → ID 01   wywołanie — brak odpowiedzi",
+      "sob 16.01  06:10:05   baza → ID 01   wywołanie — brak odpowiedzi",
+      "sob 16.01  06:20:12   baza → ID 01   wywołanie — brak odpowiedzi"
+     ]
+    },
+    {
+     "note": "ID to numer radiotelefonu albo stacji. Radiostacja odczytuje go automatycznie przy każdym nadaniu. Rejestrator zapisuje dźwięk każdej łączności."
+    }
+   ],
+   "time": [
+    [
+     "2027-01-15 16:21",
+     "Krystian Lis zgłasza się ze schronu, zaczyna test",
+     "Dziennik łączności"
+    ],
+    [
+     "2027-01-15 22:05",
+     "Łączność ze stacji w schronie (ID 01) — głos Krystiana",
+     "Dziennik łączności"
+    ],
+    [
+     "2027-01-16 00:40",
+     "Łączność z radiotelefonu ID 04 — głos Krystiana",
+     "Dziennik łączności"
+    ],
+    [
+     "2027-01-16 06:00",
+     "Baza wywołuje schron — bez odpowiedzi",
+     "Dziennik łączności"
+    ]
+   ]
+  },
+  {
+   "id": "e08",
+   "type": "Nagranie",
+   "title": "Nagranie łączności z 0:40",
+   "summary": "Plik z rejestratora radiostacji bazy.",
+   "body": [
+    "Rejestrator zapisał dźwięk tak, jak wyszedł z radiostacji: z szumem, trzaskami i tłem.",
+    {
+     "quote": "Baza, tu Mglista. Minus dwadzieścia dwa, wiatr ucichł, wszystko gra. Następna łączność o szóstej. Bez odbioru.",
+     "by": "transkrypcja"
+    },
+    {
+     "note": "Odsłuchajcie i zaznaczcie dźwięki w tle. Pomagają słuchawki albo głośniejszy głośnik."
+    }
+   ],
+   "audio": {
+    "src": "assets/audio/007-call.mp3",
+    "dur": 21.5,
+    "peaks": [
+     0.884,
+     0.847,
+     0.88,
+     0.75,
+     0.156,
+     0.154,
+     0.177,
+     0.168,
+     0.216,
+     0.241,
+     0.642,
+     0.289,
+     0.24,
+     0.36,
+     0.335,
+     0.48,
+     0.317,
+     0.364,
+     0.41,
+     0.41,
+     0.678,
+     0.404,
+     0.42,
+     0.39,
+     0.367,
+     0.384,
+     0.712,
+     0.48,
+     0.434,
+     0.26,
+     0.444,
+     0.197,
+     0.449,
+     0.405,
+     0.442,
+     0.248,
+     0.413,
+     0.438,
+     0.29,
+     0.424,
+     0.392,
+     0.303,
+     0.453,
+     0.383,
+     0.549,
+     0.468,
+     0.311,
+     0.409,
+     0.69,
+     0.519,
+     0.47,
+     0.413,
+     0.532,
+     0.446,
+     0.409,
+     0.213,
+     0.448,
+     0.435,
+     0.379,
+     0.407,
+     0.593,
+     0.39,
+     0.435,
+     0.209,
+     0.418,
+     0.321,
+     0.506,
+     0.413,
+     0.38,
+     0.335,
+     0.708,
+     0.284,
+     0.463,
+     1,
+     0.667,
+     0.547,
+     0.281,
+     0.221,
+     0.413,
+     0.604,
+     0.786,
+     0.429,
+     0.254,
+     0.163,
+     0.585,
+     0.386,
+     0.385,
+     0.437,
+     0.787,
+     0.707,
+     0.421,
+     0.442,
+     0.517,
+     0.248,
+     0.176,
+     0.424,
+     0.462,
+     0.342,
+     0.373,
+     0.458,
+     0.156,
+     0.453,
+     0.134,
+     0.354,
+     0.223,
+     0.522,
+     0.452,
+     0.404,
+     0.304,
+     0.435,
+     0.54,
+     0.145,
+     0.432,
+     0.172,
+     0.343,
+     0.148,
+     0.246,
+     0.387,
+     0.595,
+     0.277,
+     0.38,
+     0.244,
+     0.221,
+     0.444,
+     0.684,
+     0.363,
+     0.103,
+     0.213,
+     0.528,
+     0.42,
+     0.144,
+     0.417,
+     0.204,
+     0.19,
+     0.578,
+     0.559,
+     0.497,
+     0.885,
+     0.197,
+     0.105,
+     0.419,
+     0.114,
+     0.349,
+     0.121,
+     0.236,
+     0.14,
+     0.105,
+     0.119,
+     0.122,
+     0.133,
+     0.116,
+     0.12,
+     0.092,
+     0.104,
+     0.134,
+     0.106,
+     0.155,
+     0.274,
+     0.381,
+     0.387,
+     0.266,
+     0.135,
+     0.125,
+     0.164,
+     0.159,
+     0.142,
+     0.162,
+     0.174,
+     0.223,
+     0.232,
+     0.221,
+     0.245,
+     0.254,
+     0.658,
+     0.653,
+     0.704,
+     0.435,
+     0.35,
+     0.713,
+     0.75,
+     0.678,
+     0.745,
+     0.468,
+     0.541,
+     0.766,
+     0.794,
+     0.795,
+     0.516,
+     0.39,
+     0.736,
+     0.76,
+     0.712,
+     0.67,
+     0.334,
+     0.291,
+     0.664,
+     0.666,
+     0.648,
+     0.229,
+     0.254,
+     0.244,
+     0.578,
+     0.567,
+     0.559,
+     0.16,
+     0.19,
+     0.514,
+     0.543,
+     0.523,
+     0.525,
+     0.122,
+     0.144,
+     0.552,
+     0.539,
+     0.523,
+     0.114,
+     0.103,
+     0.115,
+     0.12,
+     0.111,
+     0.11,
+     0.106,
+     0.104,
+     0.124,
+     0.12,
+     0.113,
+     0.111,
+     0.104,
+     0.113,
+     0.882,
+     0.894,
+     0.797,
+     0.889,
+     0.937,
+     0.917,
+     0.101,
+     0.147,
+     0.111,
+     0.121,
+     0.145
+    ],
+    "options": [
+     "Porywy wiatru",
+     "Trzask ognia w piecu",
+     "Szczekanie psa",
+     "Drugi głos",
+     "Pikanie cofającej maszyny",
+     "Kroki na śniegu",
+     "Silnik skutera śnieżnego",
+     "Dzwonek telefonu",
+     "Kaszel",
+     "Trzask lodu na antenie"
+    ],
+    "marks": [
+     {
+      "id": "m-wind",
+      "label": "Porywy wiatru",
+      "at": [
+       [
+        1.8,
+        1.3
+       ],
+       [
+        16.6,
+        1.6
+       ]
+      ],
+      "gives": [
+       "e31"
+      ]
+     },
+     {
+      "id": "m-stove",
+      "label": "Trzask ognia w piecu",
+      "at": [
+       [
+        1.9,
+        1.4
+       ],
+       [
+        9.8,
+        1.0
+       ]
+      ],
+      "gives": [
+       "e32"
+      ]
+     },
+     {
+      "id": "m-dog",
+      "label": "Szczekanie psa",
+      "at": [
+       [
+        6.8,
+        1.2
+       ]
+      ],
+      "gives": [
+       "e33"
+      ]
+     },
+     {
+      "id": "m-voice",
+      "label": "Drugi głos",
+      "at": [
+       [
+        14.2,
+        1.0
+       ]
+      ],
+      "gives": [
+       "e34"
+      ]
+     },
+     {
+      "id": "m-beep",
+      "label": "Pikanie cofającej maszyny",
+      "at": [
+       [
+        17.6,
+        2.2
+       ]
+      ],
+      "gives": [
+       "e35"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "e09",
+   "type": "Wykaz",
+   "title": "Radiotelefony wyprawy",
+   "summary": "Lista naklejona na ładowarce w biurze.",
+   "body": [
+    {
+     "kv": [
+      [
+       "01",
+       "stacja stała — schron na Przełęczy Mglistej"
+      ],
+      [
+       "02",
+       "radiotelefon — Krystian Lis"
+      ],
+      [
+       "03",
+       "radiotelefon — Adam Rogala"
+      ],
+      [
+       "04",
+       "radiotelefon zapasowy — zostaje w ładowarce w bazie, w biurze schroniska"
+      ],
+      [
+       "05",
+       "radiostacja bazy z rejestratorem — biuro schroniska"
+      ]
+     ]
+    },
+    "W ładowarce stoją dwa radiotelefony: 03 i 04. Oba naładowane do pełna.",
+    {
+     "note": "Ładowarka stoi trzy kroki od drzwi na korytarz, który prowadzi do suszarni i tylnych drzwi schroniska."
+    }
+   ]
+  },
+  {
+   "id": "e10",
+   "type": "Oględziny",
+   "title": "Narty i foki w suszarni",
+   "summary": "Stojak przy piecu.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Adam Rogala",
+       "narty 68 mm pod butem, foki suche"
+      ],
+      [
+       "Natalia Brandt",
+       "narty 92 mm, foki suche"
+      ],
+      [
+       "Igor Szadkowski",
+       "splitboard, foki suche"
+      ],
+      [
+       "Weronika Kos",
+       "narty 85 mm; foki mokre i sztywne od lodu, na krawędziach i wiązaniach zamarznięte grudy śniegu"
+      ],
+      [
+       "Krystian Lis",
+       "miejsce puste — jego narty zostały w schronie"
+      ]
+     ]
+    },
+    {
+     "note": "Gospodarz: w suszarni przez noc jest ponad trzydzieści stopni. Foki, które w piątek po południu zjechały z przełęczy, do rana wyschły na wiór."
+    }
+   ]
+  },
+  {
+   "id": "e11",
+   "type": "Oględziny",
+   "title": "Plecaki pod ścianą suszarni",
+   "summary": "Cztery duże plecaki wyprawowe i jeden mały.",
+   "body": [
+    "Mały plecak skiturowy ma wzdłuż szelek żółtą taśmę odblaskową, przyszytą grubymi ściegami. Na klapie wyszyte inicjały: W.K.",
+    "W bocznej kieszeni czołówka z mokrą opaską i para mokrych rękawiczek."
+   ]
+  },
+  {
+   "id": "e12",
+   "type": "Przedmiot",
+   "title": "Popiół z pieca w suszarni",
+   "summary": "Z popielnika żeliwnego pieca.",
+   "body": [
+    "Wśród popiołu z drewna stopiona bryłka pomarańczowego plastiku z wtopionym aluminiowym karabińczykiem i kawałek zielonej płytki elektronicznej. Na płytce da się odczytać nadruk: „SAT-COM 2”.",
+    {
+     "note": "Pomarańczowy komunikator satelitarny z karabińczykiem nosił przy pasie Krystian Lis — widać go na zdjęciu zespołu w jadalni."
+    }
+   ]
+  },
+  {
+   "id": "e13",
+   "type": "Kadry",
+   "title": "Klatki z aparatu na tarasie",
+   "summary": "Karta pamięci z aparatu Igora Szadkowskiego.",
+   "body": [
+    "Zdjęcia co 30 sekund, od 22:02 do 0:31, razem 299 klatek. Na żadnej nie widać nikogo przy statywie, a na kolejnych klatkach rośnie czapa śniegu na aparacie.",
+    "Klatka z 23:41: pod tarasem, w świetle lampy nad drzwiami suszarni, ktoś z nartami na ramieniu idzie w stronę tylnych drzwi. Twarzy nie widać. Na plecach mały plecak, na szelkach pas żółtej taśmy odblaskowej."
+   ],
+   "time": [
+    [
+     "2027-01-15 23:41",
+     "Ktoś z nartami na ramieniu idzie od szlaku do tylnych drzwi suszarni",
+     "Klatki z tarasu"
+    ]
+   ]
+  },
+  {
+   "id": "e14",
+   "type": "Wydruk",
+   "title": "Laptop wyprawy — historia pliku",
+   "summary": "Folder „Materiały / 14.01 schron”, dziennik zdarzeń systemu.",
+   "body": [
+    {
+     "log": [
+      "czw 14.01   23:58   C0112.MP4 — nagranie z kamery Igora, 1 min 04 s",
+      "pt 15.01    10:12   C0112.MP4 skopiowany z karty kamery na laptop",
+      "pt 15.01    21:32   C0112.MP4 skopiowany na urządzenie „iPhone — Weronika”",
+      "pt 15.01    21:33   urządzenie „iPhone — Weronika” odłączone"
+     ]
+    },
+    {
+     "note": "Klip C0112: Krystian przy radiostacji w schronie, w czwartek tuż przed północą, nadaje łączność do bazy. Na końcu słychać głos Igora: „mam”."
+    }
+   ],
+   "time": [
+    [
+     "2027-01-15 21:32",
+     "Klip C0112 z łącznością Krystiana trafia z laptopa na telefon Weroniki Kos",
+     "Laptop wyprawy"
+    ]
+   ]
+  },
+  {
+   "id": "e15",
+   "type": "Fotografia",
+   "title": "Zdjęcia na ścianie jadalni",
+   "summary": "Zdjęcia z wypraw i obozów.",
+   "body": [
+    "Największe, w ramie: Adam Rogala z pulką na tle lodowca, podpis „Spitsbergen solo 2025 — z Sørkapp na północ, 640 km w 34 dni. Sam”.",
+    "Obok zdjęcie zespołu przed schronem na przełęczy, z wtorku: Adam, Krystian, Natalia, Igor i Weronika w kurtkach Polar-Tex. Krystian ma przy pasie pomarańczowy komunikator satelitarny z karabińczykiem."
+   ]
+  },
+  {
+   "id": "e16",
+   "type": "Oględziny",
+   "title": "Pokój nr 6",
+   "summary": "Za zgodą prokuratora.",
+   "body": [
+    "Na kaloryferze suszą się wełniane skarpety narciarskie i wkładki do butów skiturowych — wciąż wilgotne.",
+    "Na stoliku blister z dwiema tabletkami przeciwbólowymi od Natalii. Obie na miejscu.",
+    {
+     "note": "Łóżko zasłane, poduszka bez wgniecenia. Butelka wody nieotwarta."
+    }
+   ]
+  },
+  {
+   "id": "e17",
+   "type": "Wydruk",
+   "title": "Telefon Weroniki Kos",
+   "summary": "Za zgodą prokuratora, odblokowany przez właścicielkę.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Plik",
+       "C0112.MP4 — zapisany w piątek o 21:32"
+      ],
+      [
+       "Ostatnie odtworzenie",
+       "sobota, 0:39:51 — cały klip, 1 min 04 s"
+      ],
+      [
+       "Lokalizacja telefonu",
+       "wyłączona od 21:50 do 23:45"
+      ]
+     ]
+    }
+   ],
+   "time": [
+    [
+     "2027-01-16 00:39",
+     "Na telefonie Weroniki Kos odtwarzany jest klip C0112",
+     "Telefon W. Kos"
+    ]
+   ]
+  },
+  {
+   "id": "e18",
+   "type": "Oględziny",
+   "title": "Ślady nart przy rozdrożu",
+   "summary": "Pobocze szlaku zielonego, w zawietrznej skał.",
+   "body": [
+    "Częściowo zawiany podwójny ślad nart: zakosy podejścia na fokach i — obok — łuki zjazdu w linii spadku. Szerokość śladu nart około 8,5 cm.",
+    "Ślad podejścia omija drogowskaz i prowadzi dalej w górę Żlebu Mglistego, w stronę przełęczy. Ślad zjazdu wraca z żlebu.",
+    {
+     "note": "Ratownik: to ślad z nocy. Rano nikt tędy nie szedł, a od północy nawiało tyle, że ślad sprzed wieczora byłby już niewidoczny."
+    }
+   ]
+  },
+  {
+   "id": "e19",
+   "type": "Oględziny",
+   "title": "Żeliwny piec w schronie",
+   "summary": "Piec przy pryczach.",
+   "body": [
+    "Na ostrym kancie płyty pieca, na wysokości bioder, zaschnięta krew i kilka krótkich ciemnych włosów — niedbale starte. Szmata z brunatnymi plamami leży wciśnięta w wiadro z węglem.",
+    "Piec zimny, popiół zbity — nikt nie dokładał do ognia od wielu godzin.",
+    {
+     "note": "Krew zabezpieczono do badań. Krystian Lis miał krótkie ciemne włosy."
+    }
+   ]
+  },
+  {
+   "id": "e20",
+   "type": "Dokument",
+   "title": "Zeszyt testu",
+   "summary": "Na stole pod oknem, obok baterii.",
+   "body": [
+    {
+     "log": [
+      "pt 15.01 — test 24 h, odczyty co 30 minut",
+      "20:00   bat. A 92% · B 80% · w izbie +9,4 °C",
+      "20:30   A 91% · B 79% · +9,6",
+      "21:00   A 90% · B 77% · +9,5",
+      "21:30   A 89% · B 76% · +9,4",
+      "22:00   A 88% · B 74% · +9,8   łączność OK",
+      "22:30   A 86% · B 71% · +9,4"
+     ]
+    },
+    {
+     "note": "Dalej strona jest pusta. Ołówek leży w zeszycie, między kartkami."
+    }
+   ],
+   "time": [
+    [
+     "2027-01-15 22:30",
+     "Ostatni wpis Krystiana w zeszycie testu",
+     "Zeszyt testu"
+    ]
+   ]
+  },
+  {
+   "id": "e21",
+   "type": "Wydruk",
+   "title": "Rejestrator temperatury w schronie",
+   "summary": "Mały rejestrator przy bateriach. Odczyt co 10 minut.",
+   "body": [
+    {
+     "log": [
+      "22:30   +9,4 °C",
+      "22:40   +9,2",
+      "22:50   +3,6   ← gwałtowny spadek",
+      "23:00   +6,9",
+      "23:10   +7,8",
+      "23:20   +2,1   ← gwałtowny spadek",
+      "23:30   +4,4",
+      "00:00   +3,7",
+      "00:40   +2,6",
+      "02:00   −0,9",
+      "04:00   −4,8",
+      "06:00   −8,2"
+     ]
+    },
+    {
+     "note": "Krystian mierzył nim temperaturę w izbie. Spadek o kilka stopni w kilka minut to otwarte drzwi przy mrozie i wietrze. Od 23:20 temperatura już tylko spada — nikt nie dokładał do pieca."
+    }
+   ],
+   "time": [
+    [
+     "2027-01-15 22:50",
+     "Ktoś otwiera drzwi schronu (gwałtowny spadek temperatury)",
+     "Rejestrator temperatury"
+    ],
+    [
+     "2027-01-15 23:20",
+     "Drzwi schronu znów otwarte — potem w izbie już tylko chłodnieje",
+     "Rejestrator temperatury"
+    ]
+   ]
+  },
+  {
+   "id": "e22",
+   "type": "Oględziny",
+   "title": "Radiostacja w schronie",
+   "summary": "Stacja stała ID 01, na stole pod oknem.",
+   "body": [
+    "Radiostacja włączona, kanał 3, mikrofon na haczyku. Na wyświetlaczu: „OST. NADAWANIE 22:05:14”.",
+    {
+     "note": "Po 22:05 ze stacji w schronie nikt nie nadawał."
+    }
+   ]
+  },
+  {
+   "id": "e23",
+   "type": "Oględziny",
+   "title": "Czapka i rękawice na stole",
+   "summary": "Obok zeszytu testu.",
+   "body": [
+    "Na stole leżą czapka i grube rękawice Krystiana. Jego czołówka wisi na gwoździu przy drzwiach.",
+    {
+     "note": "Ratownik: przy minus czternastu i takim wietrze nikt nie wychodzi do masztu bez rękawic, czapki i czołówki. Nikt."
+    }
+   ]
+  },
+  {
+   "id": "e24",
+   "type": "Oględziny",
+   "title": "Ładowarka bez komunikatora",
+   "summary": "Przy pryczy Krystiana.",
+   "body": [
+    "Powerbank z kablem do komunikatora satelitarnego SAT-COM 2. Samego komunikatora nie ma — ani w schronie, ani przy ciele, ani w plecaku."
+   ]
+  },
+  {
+   "id": "e25",
+   "type": "Dokument",
+   "title": "Teczka z plecaka Krystiana",
+   "summary": "Plastikowa teczka z wydrukami.",
+   "body": [
+    {
+     "h": "Ślad GPS „Spitsbergen solo 2025” — nadajnik Adama Rogali (dane z bazy w Longyearbyen)"
+    },
+    {
+     "log": [
+      "03.03.2025   18:40   pkt 45   biwak — odcinek dzienny 19 km",
+      "04.03.2025   18:55   pkt 46   biwak — odcinek dzienny 18 km",
+      "05.03.2025   09:10   pkt 47   wyjście z biwaku",
+      "05.03.2025   15:10   pkt 48   210 km od punktu 47",
+      "06.03.2025   18:30   pkt 49   biwak — odcinek dzienny 17 km"
+     ]
+    },
+    {
+     "h": "Wydruk maila z 14 kwietnia 2025 r."
+    },
+    {
+     "quote": "Krystian, rozumiem Twoje wątpliwości, ale zarząd nie może się o tym dowiedzieć w środku kampanii. Ekspertyza dziennika z pracowni we Wrocławiu rozwieje plotki. Proszę, zostaw to mnie. W.",
+     "by": "nadawca: Weronika Kos, Polar-Tex S.A."
+    },
+    {
+     "note": "Na odwrocie, pismem Krystiana: „Pon. 18.01 — konferencja. Powiem wszystko. Adam miał czas do poniedziałku. W. też.”"
+    }
+   ]
+  },
+  {
+   "id": "e26",
+   "type": "Oględziny",
+   "title": "Ciało pod skałą",
+   "summary": "U stóp skały z masztem, pod folią NRC.",
+   "body": [
+    "Krystian Lis leży na plecach u stóp skały, głową w stronę schronu. Kurtka rozpięta, bez czapki i rękawic, na butach nie ma raków. Z tyłu głowy rana tłuczona.",
+    "Ciało przykrywa warstwa nawianego śniegu grubości 12–14 cm. Pod ciałem jest stary, zmrożony śnieg bez śladu świeżego nawiania.",
+    {
+     "note": "W kieszeni kurtki radiotelefon ID 02 — wyłączony. Na piętach butów i na plecach kurtki otarcia i zbity śnieg, jakby ciało ciągnięto po ziemi."
+    }
+   ]
+  },
+  {
+   "id": "e27",
+   "type": "Oględziny",
+   "title": "Drabinka i maszt",
+   "summary": "Czterometrowa skała z przykręconą drabinką.",
+   "body": [
+    "Na stalowych szczeblach drabinki gruba warstwa szadzi, nigdzie nienaruszona. Pierwszy szczebel jest na wysokości półtora metra — żeby na nim stanąć, trzeba by strącić szadź.",
+    {
+     "note": "Ratownik: nikt nie wchodził tej nocy na skałę. Szadź przyrasta przy takim wietrze, ale ślad dłoni czy buta byłby widoczny."
+    }
+   ]
+  },
+  {
+   "id": "e28",
+   "type": "Wydruk",
+   "title": "GPS ratraku",
+   "summary": "Wydruk z kabiny ratraku, dla zarządu parku narodowego.",
+   "body": [
+    {
+     "log": [
+      "pt 15.01    22:00–22:40   droga dojazdowa poniżej schroniska — równanie",
+      "pt 15.01    22:40–00:20   postój — garaż ratraków",
+      "sob 16.01   00:20–01:10   plac przed schroniskiem — równanie, 23 manewry cofania",
+      "sob 16.01   01:10         postój — garaż ratraków"
+     ]
+    },
+    {
+     "note": "Przy każdym cofaniu ratrak włącza sygnał dźwiękowy — tego wymagają przepisy."
+    }
+   ],
+   "time": [
+    [
+     "2027-01-15 22:00",
+     "Ratrak równa drogę dojazdową poniżej schroniska (do 22:40)",
+     "GPS ratraku"
+    ],
+    [
+     "2027-01-16 00:20",
+     "Ratrak równa plac przed schroniskiem, często cofając (do 1:10)",
+     "GPS ratraku"
+    ]
+   ]
+  },
+  {
+   "id": "e29",
+   "type": "Wyliczenie",
+   "title": "Szósty dzień — wyliczenie",
+   "summary": "Wasze wyliczenie z wydruku śladu GPS z 2025 roku.",
+   "body": [
+    "210 km między 9:10 a 15:10 to sześć godzin, czyli 35 km/h. W dni przed i po Adam pokonywał po 17–19 km dziennie.",
+    {
+     "note": "Z prędkością 35 km/h nie idzie nikt na nartach z pulką. Tak jedzie skuter śnieżny. Część „samotnego” przejścia Spitsbergenu odbyła się skuterem."
+    }
+   ]
+  },
+  {
+   "id": "e30",
+   "type": "Zestawienie",
+   "title": "Kto gdzie był o 22:50",
+   "summary": "Wasze zestawienie alibi.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Adam Rogala",
+       "jadalnia — pisze, widzi go gospodarz"
+      ],
+      [
+       "Zdzisław Hampel",
+       "bar przy jadalni"
+      ],
+      [
+       "Igor Szadkowski i Natalia Brandt",
+       "pokój nr 4"
+      ],
+      [
+       "Mirosław Kuźnik",
+       "garaż ratraków — przerwa po równaniu drogi"
+      ],
+      [
+       "Weronika Kos",
+       "od 21:45 do 0:15 nikt jej nie widział"
+      ]
+     ]
+    },
+    {
+     "note": "O 22:50 ktoś otworzył drzwi schronu na przełęczy. Spośród osób ze schroniska mogła to być tylko Weronika Kos."
+    }
+   ]
+  },
+  {
+   "id": "e31",
+   "type": "Analiza nagrania",
+   "title": "Nagranie z 0:40: wiatr",
+   "summary": "Rozpoznany dźwięk w tle.",
+   "body": [
+    "W tle mocne porywy wiatru, dwa razy wyraźnie narastające. Tymczasem głos mówi, że „wiatr ucichł”."
+   ]
+  },
+  {
+   "id": "e32",
+   "type": "Analiza nagrania",
+   "title": "Nagranie z 0:40: ogień w piecu",
+   "summary": "Rozpoznany dźwięk w tle.",
+   "body": [
+    "Pod głosem, od pierwszych sekund, ciche trzaski ognia — jakby mówiący siedział przy rozpalonym piecu."
+   ]
+  },
+  {
+   "id": "e33",
+   "type": "Analiza nagrania",
+   "title": "Nagranie z 0:40: pies",
+   "summary": "Rozpoznany dźwięk w tle.",
+   "body": [
+    "Dwa krótkie szczeknięcia psa, blisko mikrofonu."
+   ]
+  },
+  {
+   "id": "e34",
+   "type": "Analiza nagrania",
+   "title": "Nagranie z 0:40: drugi głos",
+   "summary": "Rozpoznany dźwięk w tle.",
+   "body": [
+    "Po słowach „bez odbioru” cichy męski głos mówi: „mam”. To nie jest głos Krystiana."
+   ]
+  },
+  {
+   "id": "e35",
+   "type": "Analiza nagrania",
+   "title": "Nagranie z 0:40: pikanie",
+   "summary": "Rozpoznany dźwięk w tle.",
+   "body": [
+    "Rytmiczne, wysokie pikanie — osiem sygnałów w równych odstępach, jak przy cofaniu ciężkiej maszyny."
+   ]
+  },
+  {
+   "id": "e36",
+   "type": "Opinia",
+   "title": "Sekcja zwłok — wstępne wyniki",
+   "summary": "Zakład Medycyny Sądowej we Wrocławiu, telefonicznie, sobota 15:00.",
+   "body": [
+    "Rana tyłu głowy powstała od jednego uderzenia o twardą, prostą krawędź; w ranie drobiny rdzy i sadzy. Uraz pozbawił Krystiana przytomności, ale nie był śmiertelny.",
+    "Na błonie śluzowej żołądka liczne plamy Wiszniewskiego — znak, że Krystian żył jeszcze przez pewien czas w mrozie. Otarcia pięt i pleców powstały przy życiu: ciało ciągnięto.",
+    {
+     "kv": [
+      [
+       "Przyczyna śmierci",
+       "wychłodzenie organizmu"
+      ],
+      [
+       "Czas zgonu",
+       "najpewniej między 23:30 a 1:30; utrata przytomności wcześniej"
+      ],
+      [
+       "Wniosek",
+       "nieprzytomnego pozostawiono na mrozie; upadek ze skały wykluczony"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "x1",
+   "type": "Komunikat",
+   "title": "Dane meteo z przełęczy",
+   "summary": "Automatyczna stacja IMGW Przełęcz Mglista.",
+   "body": [
+    {
+     "log": [
+      "czw 14.01   23:00   −21,8 °C   wiatr  4 km/h",
+      "czw 14.01   23:50   −22,1 °C   wiatr  3 km/h",
+      "pt 15.01    01:00   −22,4 °C   wiatr  5 km/h",
+      "pt 15.01    22:00   −16,0 °C   wiatr 35 km/h",
+      "pt 15.01    23:00   −15,2 °C   wiatr 42 km/h",
+      "sob 16.01   00:00   −14,6 °C   wiatr 55 km/h, porywy 80",
+      "sob 16.01   00:40   −14,3 °C   wiatr 61 km/h, porywy 85",
+      "sob 16.01   06:00   −13,1 °C   wiatr 58 km/h"
+     ]
+    },
+    {
+     "note": "W schronisku „Hala Szronów”, 275 m niżej, wiatr w nocy był o połowę słabszy, ale w porywach dochodził do 50 km/h."
+    }
+   ],
+   "private": true
+  },
+  {
+   "id": "x2",
+   "type": "Wydruk",
+   "title": "Wiadomości z komunikatora Krystiana",
+   "summary": "Odpowiedź operatora SAT-COM na zapytanie prokuratora.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Urządzenie",
+       "SAT-COM 2, abonent: Krystian Lis"
+      ],
+      [
+       "Piątek 15.01, 19:12",
+       "SMS do: Weronika Kos"
+      ],
+      [
+       "Inne wiadomości w piątek",
+       "brak"
+      ]
+     ]
+    },
+    {
+     "quote": "Mam pełne logi z 2025 i Twoje maile. W poniedziałek na konferencji mówię wszystko — o Adamie i o Tobie. Nie dzwoń. Jutro rano zjadę, możemy pogadać.",
+     "by": "treść SMS-a z komunikatora"
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2027-01-15 19:12",
+     "Krystian wysyła z komunikatora SMS do Weroniki Kos",
+     "Operator SAT-COM"
+    ]
+   ]
+  },
+  {
+   "id": "x3",
+   "type": "Wydruk",
+   "title": "Punkty śledzenia komunikatora",
+   "summary": "Operator SAT-COM — pozycje zapisywane co 10 minut.",
+   "body": [
+    {
+     "log": [
+      "pt 15.01   16:20   Przełęcz Mglista — schron",
+      "            (co 10 minut ta sama pozycja, do 23:10)",
+      "pt 15.01   23:20   Przełęcz Mglista — schron",
+      "pt 15.01   23:30   szlak zielony, Rozdroże pod Jaworem",
+      "pt 15.01   23:40   schronisko „Hala Szronów”",
+      "pt 15.01   23:42   urządzenie wyłączone — brak dalszych pozycji"
+     ]
+    },
+    {
+     "note": "Z przełęczy do schroniska szlakiem zielonym jest 3,4 km i 275 m w dół."
+    }
+   ],
+   "private": true,
+   "time": [
+    [
+     "2027-01-15 23:30",
+     "Komunikator Krystiana jest przy Rozdrożu pod Jaworem — w drodze w dół",
+     "Operator SAT-COM"
+    ],
+    [
+     "2027-01-15 23:40",
+     "Komunikator Krystiana jest w schronisku „Hala Szronów”",
+     "Operator SAT-COM"
+    ]
+   ]
+  },
+  {
+   "id": "x4",
+   "type": "Dokument",
+   "title": "Dokumenty Polar-Tex",
+   "summary": "Udostępnione przez zarząd spółki na żądanie prokuratora.",
+   "body": [
+    {
+     "kv": [
+      [
+       "Umowa „Spitsbergen solo 2025”",
+       "premia 600 000 zł za samotne przejście, potwierdzone śladem GPS i dziennikiem; wypłacona 30.05.2025 na rachunek Rogala Expeditions sp. z o.o."
+      ],
+      [
+       "Ekspertyza „Dziennika Lodu”",
+       "Pracownia Konserwacji i Ekspertyz Papieru VESPER, Wrocław, 12.05.2025: zapisy jednorodne, bez śladów późniejszych zmian; zamawiająca: Weronika Kos"
+      ],
+      [
+       "Raport dla zarządu, czerwiec 2025",
+       "„Przejście zweryfikowane, wątpliwości wyjaśnione” — podpisała Weronika Kos"
+      ],
+      [
+       "Umowa „Północ 2028”",
+       "2 400 000 zł; podpisana 3.11.2026 przez członka zarządu Weronikę Kos"
+      ]
+     ]
+    },
+    {
+     "note": "Członek zarządu, który świadomie poświadcza nieprawdę wobec spółki, odpowiada karnie i majątkowo."
+    }
+   ],
+   "private": true
+  },
+  {
+   "id": "x5",
+   "type": "Notatka",
+   "title": "Nawiewanie śniegu w nocy",
+   "summary": "Notatka ratownika GOPR z pola pomiarowego przy schronie.",
+   "body": [
+    "Wiatr na przełęczy wzmógł się po 23:00, a od około 23:30 przenosił śnieg z grani. Na polu pomiarowym przy schronie do 6:00 przybyło 14 cm nawianego śniegu, z czego do 0:40 — około 5 cm.",
+    {
+     "note": "Gdyby ktoś upadł w tym miejscu po 0:40, pod jego ciałem leżałaby warstwa świeżego śniegu."
+    }
+   ],
+   "private": true
+  },
+  {
+   "id": "d01",
+   "type": "Wydruk z bazy",
+   "title": "KRS: Polar-Tex",
+   "summary": "Sponsor wyprawy.",
+   "body": [],
+   "db": "F-007-polartex"
+  },
+  {
+   "id": "d02",
+   "type": "Wydruk z bazy",
+   "title": "PESEL: Kos Weronika",
+   "summary": "Menedżerka wyprawy z ramienia sponsora.",
+   "body": [],
+   "db": "O-007-weronika"
+  },
+  {
+   "id": "d03",
+   "type": "Wydruk z bazy",
+   "title": "KRS: Rogala Expeditions",
+   "summary": "Odbiorca premii za 2025 rok.",
+   "body": [],
+   "db": "F-007-rogala"
+  },
+  {
+   "id": "t1",
+   "type": "Zeznanie",
+   "title": "Adam Rogala: kłótnia w czwartek",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "W czwartek pokłóciliśmy się w schronie. Krystian powiedział, że mam czas do poniedziałku, żeby sam wyznać prawdę o 2025 roku. W piątek wieczorem nie wychodziłem ze schroniska."
+   ],
+   "testimony": true,
+   "time": [
+    [
+     "2027-01-14 21:00",
+     "Kłótnia Adama Rogali z Krystianem Lisem w schronie",
+     "Zeznanie A. Rogali"
+    ]
+   ]
+  },
+  {
+   "id": "t2",
+   "type": "Zeznanie",
+   "title": "Adam Rogala: Spitsbergen",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Szóstego dnia miałem odmrożone palce i pękniętą płozę. Norweg zawiózł mnie skuterem 210 km na północ. Dziennik przepisałem potem w kraju. Weronika wiedziała od początku — to ona załatwiła ekspertyzę i premię. Krystian chciał to ujawnić w poniedziałek."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t3",
+   "type": "Zeznanie",
+   "title": "Weronika Kos: nocne narty",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Wyszłam z pokoju koło dziesiątej. Założyłam narty i doszłam do rozdroża, żeby przewietrzyć głowę. Wróciłam przed północą. Nie chciałam, żeby Adam wiedział, że łamię zakaz nocnych wyjść."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t4",
+   "type": "Zeznanie",
+   "title": "Weronika Kos: przełęcz",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Byłam na przełęczy. Chciałam porozmawiać z Krystianem o tej wiadomości. Odepchnęłam go, uderzył głową o róg pieca i przestał się ruszać. Wyciągnęłam go pod skałę, żeby wyglądało, że spadł z masztu. Zabrałam jego komunikator i spaliłam go w suszarni."
+   ],
+   "testimony": true,
+   "time": [
+    [
+     "2027-01-15 22:50",
+     "Weronika Kos w schronie z Krystianem (według jej przyznania)",
+     "Zeznanie W. Kos"
+    ]
+   ]
+  },
+  {
+   "id": "t5",
+   "type": "Zeznanie",
+   "title": "Weronika Kos: wiadomość",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Przy kolacji dostałam SMS-a z komunikatora Krystiana. Pisał, że ma logi z 2025 roku i moje maile i że w poniedziałek powie wszystko."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t6",
+   "type": "Zeznanie",
+   "title": "Weronika Kos: 2025 rok",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "O skuterze wiedziałam od kwietnia 2025. Zamówiłam ekspertyzę dziennika, wypłaciłam premię i podpisałam raport dla zarządu, że wszystko sprawdzone. Gdyby to wyszło, straciłabym wszystko."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t7",
+   "type": "Zeznanie",
+   "title": "Weronika Kos: łączność o 0:40",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "W czasie gry w karty wyszłam na kilka minut. Wzięłam z biura zapasowy radiotelefon, stanęłam za tylnymi drzwiami i puściłam do niego z telefonu nagranie Igora — Krystian przy radiu, z czwartku. Chciałam, żeby wszyscy myśleli, że po północy jeszcze żył."
+   ],
+   "testimony": true,
+   "time": [
+    [
+     "2027-01-16 00:40",
+     "Weronika Kos nadaje z radiotelefonu 04 nagranie głosu Krystiana (według jej przyznania)",
+     "Zeznanie W. Kos"
+    ]
+   ]
+  },
+  {
+   "id": "t8",
+   "type": "Zeznanie",
+   "title": "Igor Szadkowski: noc",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Ustawiłem aparat na tarasie i poszedłem do Natalii. Byłem u niej od dziesiątej do wpół do pierwszej. Kłamałem, bo Natalia ma narzeczonego, a Adam nie znosi romansów w zespole."
+   ],
+   "testimony": true
+  },
+  {
+   "id": "t9",
+   "type": "Zeznanie",
+   "title": "Natalia Brandt: noc",
+   "summary": "Po konfrontacji.",
+   "body": [
+    "Igor był u mnie w pokoju od dziesiątej do wpół do pierwszej. Żadne z nas nie wychodziło."
+   ],
+   "testimony": true
+  }
+ ],
+ "privateClues": [
+  "x1",
+  "x2",
+  "x3",
+  "x4",
+  "x5"
+ ],
+ "puzzles": [
+  {
+   "id": "p-track",
+   "kind": "Obliczenie",
+   "title": "Szósty dzień",
+   "prompt": "Wydruk śladu GPS z 2025 roku pokazuje dwa kolejne punkty z jednego marcowego dnia. Z jaką średnią prędkością poruszał się wtedy Adam Rogala? Podajcie wynik w km/h.",
+   "requires": [
+    "e25"
+   ],
+   "input": "number",
+   "answers": [
+    "34-36"
+   ],
+   "hints": [
+    "Znajdźcie na wydruku dwa punkty z tego samego dnia i policzcie, ile godzin minęło między nimi.",
+    "Między 9:10 a 15:10 minęło sześć godzin. Podzielcie przez to odległość między punktami.",
+    "210 km podzielone przez 6 godzin to 35 km/h. W inne dni Adam robił po 17–19 km na dobę."
+   ],
+   "solution": "210 km w sześć godzin to 35 km/h — tyle, ile w inne dni przechodził przez cały tydzień. Tak szybko nie idzie nikt na nartach z pulką. Tak jedzie skuter śnieżny.",
+   "reward": {
+    "search": true,
+    "spots": [
+     "sp-calc"
+    ]
+   }
+  },
+  {
+   "id": "p-alibi",
+   "kind": "Zestawienie",
+   "title": "Okno 22:50",
+   "prompt": "O 22:50 ktoś otworzył drzwi schronu na przełęczy. Ustalcie, gdzie o tej godzinie był każdy, kto nocował w schronisku.",
+   "requires": [
+    "st:h-c1",
+    "t8",
+    "t9",
+    "e28",
+    "st:k-c1",
+    "e21"
+   ],
+   "input": "grid",
+   "grid": {
+    "rows": [
+     {
+      "id": "adam",
+      "label": "Adam Rogala"
+     },
+     {
+      "id": "hampel",
+      "label": "Zdzisław Hampel"
+     },
+     {
+      "id": "igor",
+      "label": "Igor Szadkowski"
+     },
+     {
+      "id": "natalia",
+      "label": "Natalia Brandt"
+     },
+     {
+      "id": "kuznik",
+      "label": "Mirosław Kuźnik"
+     },
+     {
+      "id": "weronika",
+      "label": "Weronika Kos"
+     }
+    ],
+    "cols": [
+     {
+      "id": "t",
+      "label": "O 22:50"
+     }
+    ],
+    "options": [
+     {
+      "id": "jad",
+      "label": "jadalnia i bar"
+     },
+     {
+      "id": "n4",
+      "label": "pokój nr 4"
+     },
+     {
+      "id": "gar",
+      "label": "garaż ratraków"
+     },
+     {
+      "id": "pass",
+      "label": "schron na przełęczy"
+     }
+    ],
+    "constraints": [
+     {
+      "t": "is",
+      "r": "adam",
+      "c": "t",
+      "v": "jad",
+      "src": [
+       "st:h-c1"
+      ],
+      "why": "Gospodarz widział, jak Adam pisał w jadalni do 23:20."
+     },
+     {
+      "t": "is",
+      "r": "hampel",
+      "c": "t",
+      "v": "jad",
+      "src": [
+       "st:h-c1"
+      ],
+      "why": "Gospodarz siedział w barze przy jadalni do 23:20 — razem z Adamem gasili światło."
+     },
+     {
+      "t": "is",
+      "r": "igor",
+      "c": "t",
+      "v": "n4",
+      "src": [
+       "t8"
+      ],
+      "why": "Igor przyznał, że od 22:00 do 0:30 był w pokoju Natalii."
+     },
+     {
+      "t": "same",
+      "r1": "natalia",
+      "r2": "igor",
+      "c": "t",
+      "src": [
+       "t9"
+      ],
+      "why": "Natalia potwierdza: Igor był z nią."
+     },
+     {
+      "t": "is",
+      "r": "kuznik",
+      "c": "t",
+      "v": "gar",
+      "src": [
+       "e28",
+       "st:k-c1"
+      ],
+      "why": "O 22:40 ratrak wrócił do garażu, a jego operator miał tam przerwę — do przełęczy jest stamtąd ponad godzina drogi."
+     },
+     {
+      "t": "exactly",
+      "c": "t",
+      "v": "pass",
+      "n": 1,
+      "src": [
+       "e21"
+      ],
+      "why": "O 22:50 ktoś otworzył drzwi schronu — tak pokazuje rejestrator temperatury."
+     }
+    ]
+   },
+   "answers": [
+    {
+     "adam": {
+      "t": "jad"
+     },
+     "hampel": {
+      "t": "jad"
+     },
+     "igor": {
+      "t": "n4"
+     },
+     "natalia": {
+      "t": "n4"
+     },
+     "kuznik": {
+      "t": "gar"
+     },
+     "weronika": {
+      "t": "pass"
+     }
+    }
+   ],
+   "hints": [
+    "Zacznijcie od tych, których ktoś widział: gospodarz i Adam mają siebie nawzajem, Igor i Natalia też.",
+    "Ratrakowy o 22:40 skończył równać drogę poniżej schroniska i wrócił do garażu. Rejestrator w schronie pokazuje, że o 22:50 ktoś otworzył drzwi.",
+    "Tylko jedna osoba nie ma nikogo, kto by ją widział o 22:50: Weronika Kos. To ona była w schronie."
+   ],
+   "solution": "O 22:50 Adam i gospodarz byli w jadalni, Igor z Natalią w pokoju nr 4, a ratrakowy w garażu. Drzwi schronu na przełęczy mogła otworzyć tylko Weronika Kos.",
+   "reward": {
+    "search": true,
+    "spots": [
+     "sp-alibi"
+    ]
+   }
+  }
+ ],
+ "tableMode": {
+  "parBonus": 8,
+  "locations": [
+   {
+    "id": "hq",
+    "name": "Centrala wydziału",
+    "kind": "Zapytania przez telefon satelitarny ratownika",
+    "desc": "Ratownik GOPR ma telefon satelitarny i łączność z dyżurką w Karpaczu. Każde zapytanie to 15 minut czekania na odpowiedź.",
+    "img": "assets/places/001-hq.webp",
+    "spots": [
+     {
+      "id": "sp-hq-meteo",
+      "name": "IMGW",
+      "text": "Prosicie o dane ze stacji meteo na przełęczy z ostatnich nocy.",
+      "gives": [
+       "x1"
+      ]
+     },
+     {
+      "id": "sp-hq-sms",
+      "name": "Operator SAT-COM — wiadomości",
+      "text": "Prosicie o wiadomości wysłane z komunikatora Krystiana.",
+      "gives": [
+       "x2"
+      ],
+      "requires": {
+       "all": [
+        "e24"
+       ]
+      },
+      "lockedText": "Nie wiecie jeszcze, czy Krystian miał jakiś komunikator satelitarny."
+     },
+     {
+      "id": "sp-hq-track",
+      "name": "Operator SAT-COM — pozycje",
+      "text": "Prosicie o zapis pozycji komunikatora Krystiana.",
+      "gives": [
+       "x3"
+      ],
+      "requires": {
+       "all": [
+        "e24"
+       ]
+      },
+      "lockedText": "Nie wiecie jeszcze, czy Krystian miał jakiś komunikator satelitarny."
+     },
+     {
+      "id": "sp-hq-sponsor",
+      "name": "Zarząd Polar-Tex",
+      "text": "Prosicie o umowy sponsorskie i dokumenty z 2025 roku.",
+      "gives": [
+       "x4"
+      ],
+      "requires": {
+       "all": [
+        "e25"
+       ]
+      },
+      "lockedText": "Nie macie jeszcze powodu, by pytać zarząd sponsora o dokumenty."
+     },
+     {
+      "id": "sp-hq-snow",
+      "name": "GOPR — pole pomiarowe",
+      "text": "Prosicie o pomiar nawianego śniegu przy schronie.",
+      "gives": [
+       "x5"
+      ]
+     }
+    ]
+   }
+  ],
+  "questions": {}
+ },
+ "breakthroughs": [
+  {
+   "id": "b-voice",
+   "when": "show:i-s1",
+   "title": "Głos z czwartku",
+   "text": "Głos, który po północy uspokoił całe schronisko, nagrano dobę wcześniej. Ktoś puścił do radia czwartkowy klip Igora."
+  },
+  {
+   "id": "b-skis",
+   "when": "lie:w-l1",
+   "title": "Nocne narty",
+   "text": "Weronika Kos nie spała z migreną. Kiedy schronisko myślało, że śpi, ona miała na nogach narty, a pod nartami foki."
+  },
+  {
+   "id": "b-window",
+   "when": "p-alibi",
+   "title": "Okno 22:50",
+   "text": "O 22:50 ktoś otworzył drzwi schronu na przełęczy. Każdy w schronisku ma na tę chwilę świadka — każdy poza jedną osobą."
+  },
+  {
+   "id": "b-cold",
+   "when": "e36",
+   "title": "Biała cisza",
+   "text": "Krystian Lis nie zginął od uderzenia. Żył, kiedy ktoś wyciągnął go na śnieg pod skałę i odszedł. Zabił go mróz."
+  }
+ ],
+ "hintTrail": [
+  {
+   "unless": [
+    "sp-radio"
+   ],
+   "text": "Zacznijcie od biura gospodarza. Radiostacja bazy zapisuje każdą łączność — sprawdźcie, co nadano w nocy."
+  },
+  {
+   "unless": [
+    "show:a-s1"
+   ],
+   "when": [
+    "e07"
+   ],
+   "text": "W dzienniku łączności przy każdym nadaniu jest numer radiotelefonu. Który radiotelefon to który? Zapytajcie kierownika wyprawy albo zajrzyjcie do ładowarki."
+  },
+  {
+   "unless": [
+    "sp-station"
+   ],
+   "when": [
+    "e07"
+   ],
+   "text": "Ktoś musi wejść na przełęcz i obejrzeć schron. Zróbcie to przed 13:00 — po śnieżycy droga wydłuży się prawie dwukrotnie."
+  },
+  {
+   "unless": [
+    "m-dog"
+   ],
+   "when": [
+    "e08"
+   ],
+   "text": "Odsłuchajcie nagranie łączności z 0:40 i zaznaczcie dźwięki w tle. Tło zdradza, skąd nadawano."
+  },
+  {
+   "unless": [
+    "show:i-s1"
+   ],
+   "when": [
+    "e34"
+   ],
+   "text": "W nagraniu z 0:40 ktoś na końcu mówi „mam”. Pokażcie ten dźwięk osobie, która tak kończy swoje ujęcia."
+  },
+  {
+   "unless": [
+    "sp-laptop"
+   ],
+   "when": [
+    "st:i-c3"
+   ],
+   "text": "Klip z łącznością Krystiana jest na laptopie wyprawy w jadalni. Sprawdźcie, co się z nim działo w piątek."
+  },
+  {
+   "unless": [
+    "sp-skis"
+   ],
+   "when": [
+    "e21"
+   ],
+   "text": "Rejestrator w schronie pokazuje, kiedy ktoś otwierał drzwi. Kto mógł zdążyć tam i z powrotem? Zajrzyjcie do suszarni — narty i foki pamiętają noc."
+  },
+  {
+   "unless": [
+    "lie:w-l1"
+   ],
+   "when": [
+    "e10"
+   ],
+   "text": "Czyje foki były rano mokre? Skonfrontujcie to z zeznaniem o nocy spędzonej w pokoju."
+  },
+  {
+   "unless": [
+    "lie:i-l1"
+   ],
+   "when": [
+    "e13"
+   ],
+   "text": "Na klatkach z tarasu nikt nie stoi przy aparacie. Kto twierdził, że stał przy nim całą noc?"
+  },
+  {
+   "unless": [
+    "p-alibi"
+   ],
+   "when": [
+    "t8",
+    "t9",
+    "e28"
+   ],
+   "text": "Zestawcie, gdzie kto był o 22:50 — zagadka „Okno 22:50” w zakładce Analiza."
+  },
+  {
+   "unless": [
+    "lie:w-l2"
+   ],
+   "when": [
+    "lie:w-l1"
+   ],
+   "text": "Weronika twierdzi, że doszła tylko do rozdroża. Dokąd prowadzi ślad komunikatora Krystiana — i kiedy zjechał z przełęczy?"
+  },
+  {
+   "unless": [
+    "lie:w-l5"
+   ],
+   "when": [
+    "lie:w-l2"
+   ],
+   "text": "Kto i kiedy odchodził od stołu przy kartach? Zapytajcie gospodarza i zestawcie to z ostatnim zeznaniem Weroniki."
+  },
+  {
+   "unless": [
+    "p-track"
+   ],
+   "when": [
+    "e25"
+   ],
+   "text": "W teczce Krystiana jest ślad GPS z 2025 roku. Policzcie prędkość z szóstego dnia — zagadka „Szósty dzień”."
+  },
+  {
+   "text": "Macie dość, by złożyć raport. Najważniejsze: kto był w schronie między 22:50 a 23:20 i kto nadał łączność o 0:40."
+  }
+ ],
+ "report": {
+  "questions": [
+   {
+    "id": "r-who",
+    "q": "Kto odpowiada za śmierć Krystiana Lisa?",
+    "type": "single",
+    "points": 16,
+    "options": [
+     [
+      "weronika",
+      "Weronika Kos, menedżerka wyprawy"
+     ],
+     [
+      "adam",
+      "Adam Rogala, kierownik wyprawy"
+     ],
+     [
+      "igor",
+      "Igor Szadkowski, operator kamery"
+     ],
+     [
+      "natalia",
+      "Natalia Brandt, lekarka wyprawy"
+     ],
+     [
+      "accident",
+      "Nikt — to był wypadek, Krystian spadł ze skały"
+     ]
+    ],
+    "correct": "weronika",
+    "proof": {
+     "count": 3,
+     "each": 4,
+     "valid": [
+      "e10",
+      "e11",
+      "e12",
+      "e13",
+      "e14",
+      "e16",
+      "e17",
+      "e18",
+      "e30",
+      "x2",
+      "x3",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "d02"
+     ],
+     "label": "Wskażcie trzy dowody, które najmocniej łączą tę osobę ze zbrodnią."
+    }
+   },
+   {
+    "id": "r-call",
+    "q": "Kto i jak nadał łączność o 0:40?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "weronika",
+      "Weronika Kos — zapasowym radiotelefonem zza tylnych drzwi schroniska, puszczając z telefonu czwartkowe nagranie Igora"
+     ],
+     [
+      "krystian",
+      "Krystian Lis — ze stacji w schronie, tuż przed wyjściem do masztu"
+     ],
+     [
+      "adam",
+      "Adam Rogala — z pokoju, naśladując głos Krystiana"
+     ],
+     [
+      "igor",
+      "Igor Szadkowski — z tarasu, z własnego nagrania"
+     ]
+    ],
+    "correct": "weronika"
+   },
+   {
+    "id": "r-time",
+    "q": "Kiedy Krystian został zaatakowany?",
+    "type": "single",
+    "points": 12,
+    "options": [
+     [
+      "2250",
+      "Między 22:50 a 23:20, w schronie"
+     ],
+     [
+      "0040",
+      "Po łączności o 0:40, przy maszcie"
+     ],
+     [
+      "0600",
+      "Nad ranem, tuż przed łącznością o 6:00"
+     ],
+     [
+      "2200",
+      "Jeszcze przed łącznością o 22:05"
+     ]
+    ],
+    "correct": "2250"
+   },
+   {
+    "id": "r-route",
+    "q": "Jak sprawczyni zdążyła dotrzeć na przełęcz i wrócić?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "ski",
+      "Na nartach skiturowych, szlakiem zielonym: podejście w niespełna godzinę, zjazd w 20 minut"
+     ],
+     [
+      "foot",
+      "Pieszo, w rakietach: 1 h 20 min w górę i 55 min w dół"
+     ],
+     [
+      "ratrak",
+      "Ratrakiem, trasą zimową"
+     ],
+     [
+      "skuter",
+      "Skuterem GOPR"
+     ]
+    ],
+    "correct": "ski"
+   },
+   {
+    "id": "r-death",
+    "q": "Co było przyczyną śmierci Krystiana?",
+    "type": "single",
+    "points": 10,
+    "options": [
+     [
+      "cold",
+      "Wychłodzenie — nieprzytomnego po uderzeniu o piec wyciągnięto na śnieg"
+     ],
+     [
+      "fall",
+      "Upadek ze skały z masztem"
+     ],
+     [
+      "stove",
+      "Uderzenie głową o piec — zginął na miejscu"
+     ],
+     [
+      "pole",
+      "Cios kijkiem narciarskim"
+     ]
+    ],
+    "correct": "cold"
+   },
+   {
+    "id": "r-motive",
+    "q": "Jaki był motyw?",
+    "type": "single",
+    "points": 8,
+    "options": [
+     [
+      "fraud",
+      "Krystian chciał ujawnić, że część „samotnego” przejścia Spitsbergenu odbyła się skuterem, a ona to tuszowała"
+     ],
+     [
+      "money",
+      "Krystian był jej winien pieniądze"
+     ],
+     [
+      "love",
+      "Zazdrość o Igora"
+     ],
+     [
+      "contract",
+      "Krystian chciał przejąć kontrakt sponsorski"
+     ]
+    ],
+    "correct": "fraud"
+   },
+   {
+    "id": "r-liars",
+    "q": "Kto skłamał w zeznaniach, choć nie zabił?",
+    "type": "multi",
+    "points": 10,
+    "hint": "Zaznaczcie wszystkie właściwe odpowiedzi. Każda błędna odejmuje punkty za trafną.",
+    "options": [
+     [
+      "adam",
+      "Adam Rogala"
+     ],
+     [
+      "igor",
+      "Igor Szadkowski"
+     ],
+     [
+      "natalia",
+      "Natalia Brandt"
+     ],
+     [
+      "hampel",
+      "Zdzisław Hampel"
+     ],
+     [
+      "kuznik",
+      "Mirosław Kuźnik"
+     ]
+    ],
+    "correct": [
+     "adam",
+     "igor",
+     "natalia"
+    ]
+   },
+   {
+    "id": "r-order",
+    "q": "Ułóżcie wydarzenia we właściwej kolejności.",
+    "type": "order",
+    "points": 10,
+    "items": [
+     [
+      "clip",
+      "Igor nagrywa łączność Krystiana z bazą"
+     ],
+     [
+      "msg",
+      "Krystian wysyła z komunikatora SMS do Weroniki"
+     ],
+     [
+      "copy",
+      "Klip C0112 trafia na telefon Weroniki"
+     ],
+     [
+      "call",
+      "Ostatnia prawdziwa łączność Krystiana"
+     ],
+     [
+      "door",
+      "Ktoś otwiera drzwi schronu — pierwszy spadek temperatury"
+     ],
+     [
+      "down",
+      "Komunikator Krystiana zjeżdża z przełęczy do schroniska"
+     ],
+     [
+      "fake",
+      "Łączność z radiotelefonu nr 04"
+     ],
+     [
+      "none",
+      "Schron nie odpowiada na wywołanie bazy"
+     ]
+    ],
+    "correct": [
+     "clip",
+     "msg",
+     "copy",
+     "call",
+     "door",
+     "down",
+     "fake",
+     "none"
+    ]
+   }
+  ]
+ },
+ "solution": {
+  "summary": "Krystiana Lisa zostawiła na śmierć Weronika Kos. Łącznościowiec miał dowody, że część „samotnego” przejścia Spitsbergenu w 2025 roku Adam Rogala odbył skuterem, a Kos — członkini zarządu sponsora — wiedziała o tym i zatuszowała sprawę. W piątek o 19:12 Krystian napisał jej, że w poniedziałek ujawni wszystko. Kos wyszła nocą na nartach, o 22:50 weszła do schronu, odepchnęła go — uderzył głową o kant pieca i stracił przytomność. Wyciągnęła go pod skałę z masztem, żeby wyglądało na upadek, i zostawiła na mrozie. Zjechała w 20 minut, spaliła jego komunikator w suszarni, a o 0:40 nadała z zapasowego radiotelefonu czwartkowe nagranie jego głosu, żeby wszyscy uwierzyli, że po północy jeszcze żył.",
+  "steps": [
+   {
+    "h": "To nie był upadek",
+    "p": "Szadź na drabince nienaruszona, czapka i rękawice na stole, na kancie pieca krew i włosy, a na piętach i plecach otarcia od ciągnięcia. Sekcja: uraz głowy tylko go ogłuszył, zabił go mróz."
+   },
+   {
+    "h": "Łączność, której nie nadał Krystian",
+    "p": "Stacja w schronie ostatni raz nadawała o 22:05. Łączność z 0:40 przyszła z radiotelefonu nr 04, który zawsze stoi w biurze schroniska. Słowa — minus dwadzieścia dwa, wiatr ucichł — pasują do nocy z czwartku, nie do piątkowej, gdy na przełęczy wiało 60 km/h. W tle wieje wiatr, szczeka Bari i pika cofający ratrak, który równał wtedy plac przed schroniskiem. Na końcu Igor mówi „mam”: to jego czwartkowy klip C0112."
+   },
+   {
+    "h": "Prawdziwa godzina",
+    "p": "Ostatni wpis w zeszycie testu: 22:30. Rejestrator temperatury: drzwi otwarte około 22:50 i 23:20, potem już nikt nie dokładał do pieca. Na ciele 12–14 cm nawianego śniegu, a pod nim stary śnieg — leżało tam, zanim zaczęło mocno nawiewać."
+   },
+   {
+    "h": "Kto mógł zdążyć",
+    "p": "Pieszo w obie strony to 2 godziny 15 minut, a na nartach — niewiele ponad godzinę. O 22:50 Adam i gospodarz byli w jadalni, Igor z Natalią w pokoju nr 4, ratrakowy w garażu. Od 21:45 do 0:15 nikt nie widział tylko Weroniki Kos."
+   },
+   {
+    "h": "Nocne narty",
+    "p": "Rano tylko jej foki były mokre i oblodzone. Ślad nart szerokich na 8,5 cm prowadził przez rozdroże w żleb — jej narty mają 85 mm. Ratrakowy widział czołówkę idącą w górę o 22:10 i światło zjeżdżające po 23:30. O 23:41 aparat Igora sfotografował kogoś z nartami i małym plecakiem z żółtą taśmą — jej plecakiem."
+   },
+   {
+    "h": "Komunikator",
+    "p": "Komunikator Krystiana o 23:20 był w schronie, o 23:30 przy rozdrożu, o 23:40 w schronisku — 3,4 km w 20 minut, czyli zjazd na nartach. Potem go wyłączono, a jego stopione resztki trafiły do pieca w suszarni."
+   },
+   {
+    "h": "Nagranie w telefonie",
+    "p": "O 21:32 klip C0112 trafił z laptopa wyprawy na telefon Weroniki. O 0:35 odeszła od stołu przy kartach; o 0:39 odtworzyła klip, a o 0:40 radio w biurze nadało go jako łączność z przełęczy."
+   },
+   {
+    "h": "Motyw i fałszywe tropy",
+    "p": "Krystian napisał do niej o 19:12, że w poniedziałek powie wszystko — „o Adamie i o Tobie”. Kos zamówiła ekspertyzę dziennika, wypłaciła premię i poświadczyła zarządowi nieprawdę. Adam kłamał o kłótni i o Spitsbergenie, Igor i Natalia — o wspólnej nocy. Żadne z nich nie mogło być o 22:50 na przełęczy."
+   }
+  ]
+ },
+ "endings": {
+  "correct": {
+   "title": "Biała cisza",
+   "text": "Weronika Kos zostaje zatrzymana jeszcze w schronisku, gdy śnieżyca na chwilę cichnie. Poniedziałkowa konferencja Polar-Tex się nie odbywa. Ciało Krystiana zjeżdża skuterem do Karpacza, a na maszcie przy schronie ratownicy wieszają jego czapkę — taki zwyczaj w Karkonoszach.",
+   "decision": {
+    "q": "Krystiana nie ma, ale jego dowody zostały. Co z nimi zrobicie?",
+    "options": [
+     {
+      "id": "sponsor",
+      "label": "Przekazać zarządowi Polar-Tex i prokuraturze komplet dowodów o premii za sfałszowane przejście",
+      "text": "Polar-Tex zrywa kontrakt na Grenlandię i żąda zwrotu 600 000 zł. Adam Rogala odpowiada za wyłudzenie, „Dziennik Lodu” znika z księgarń. W wywiadzie mówi tylko jedno zdanie: „Krystian miał rację, a ja miałem czas do poniedziałku”."
+     },
+     {
+      "id": "memorial",
+      "label": "Poprosić GOPR, by nowa stacja łączności na przełęczy nosiła imię Krystiana Lisa",
+      "text": "Wiosną na schronie zawisa mosiężna tabliczka: „Stacja łączności im. Krystiana Lisa — on zawsze się zgłaszał”. Łącznościowcy z całej Polski przez tydzień nadają z przełęczy jego znak wywoławczy."
+     },
+     {
+      "id": "vesper",
+      "label": "Zlecić niezależną ekspertyzę „Dziennika Lodu” i sprawdzić, jak powstała ta z 2025 roku",
+      "text": "Biegły z Krakowa stwierdza, że część kartek dziennika to palimpsest: pierwotny tekst wywabiono i napisano nowy, na tym samym papierze. Pracownia VESPER odpowiada uprzejmym pismem, że ekspertyzę wykonano rzetelnie, na podstawie dostarczonych materiałów. Podpisuje prezes, Teodor Ancel. Do pisma dołączono katalog usług pracowni."
+     }
+    ]
+   }
+  },
+  "wrong": {
+   "adam": {
+    "title": "Czas do poniedziałku",
+    "text": "Kłótnia, sfałszowany wyczyn, groźba kompromitacji — wszystko wskazywało na Adama. Tyle że o 22:50 pisał w jadalni na oczach gospodarza, a pieszo nie zdążyłby na przełęcz nawet do północy. Weronika Kos wraca do Warszawy i usuwa z telefonu jeden klip."
+   },
+   "igor": {
+    "title": "Klip",
+    "text": "Głos z nocnej łączności pochodził z nagrania Igora, więc wskazujecie jego. Ale Igor przez całą noc był w pokoju nr 4, a klipu z laptopa nie kopiował. Prawdziwa sprawczyni ma czas, by zatrzeć resztę śladów."
+   },
+   "natalia": {
+    "title": "Pokój nr 4",
+    "text": "Natalia skłamała o nocy, ale nie po to, by kogoś zabić. Była z Igorem i żadne z nich nie wychodziło ze schroniska. Śledztwo traci dni, których nie odzyska."
+   },
+   "accident": {
+    "title": "Upadek ze skały",
+    "text": "Uznajecie, że Krystian spadł, sprawdzając antenę. Dokładnie tak miało to wyglądać. Szadź na drabince, czapka na stole i łączność z radiotelefonu nr 04 zostają w aktach, których nikt już nie otworzy."
+   }
+  },
+  "partial": "Wskazaliście właściwą osobę, ale część wniosków jest błędna albo niepoparta dowodami. Kos zostaje zatrzymana, lecz jej obrona będzie mówić o nieszczęśliwym wypadku i panice."
+ },
+ "db": {
+  "date": "2027-01-16",
+  "bases": [
+   "osoby",
+   "pojazdy",
+   "firmy",
+   "ksiegi"
+  ],
+  "attach": [
+   {
+    "rec": "F-007-polartex",
+    "ev": "d01",
+    "paths": [
+     {
+      "q": {
+       "nazwa": "Polar-Tex"
+      },
+      "from": [
+       "e06"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "O-007-weronika",
+    "ev": "d02",
+    "paths": [
+     {
+      "q": {
+       "nazwisko": "Kos",
+       "imie": "Weronika"
+      },
+      "from": [
+       "e06"
+      ]
+     }
+    ]
+   },
+   {
+    "rec": "F-007-rogala",
+    "ev": "d03",
+    "paths": [
+     {
+      "q": {
+       "nazwa": "Rogala Expeditions"
+      },
+      "from": [
+       "x4"
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

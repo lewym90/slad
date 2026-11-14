@@ -1,0 +1,770 @@
+{
+ "007-adam": {
+  "name": "Adam Rogala",
+  "parts": [
+   {
+    "file": "007-adam-1.wav",
+    "n": 3
+   },
+   {
+    "file": "007-adam-2.wav",
+    "n": 4
+   },
+   {
+    "file": "007-adam-3.wav",
+    "n": 2
+   },
+   {
+    "file": "007-adam-4.wav",
+    "n": 5
+   },
+   {
+    "file": "007-adam-5.wav",
+    "n": 2
+   }
+  ],
+  "lines": [
+   {
+    "id": "a-q1",
+    "kind": "q",
+    "text": "O szóstej nie zgłosił się przez radio. Wołaliśmy co dziesięć minut — cisza. Zadzwoniłem po GOPR, Tomek Kulig przyjechał skuterem i pojechaliśmy trasą zimową na przełęcz. Leżał pod skałą z masztem, przysypany śniegiem. Drzwi schronu zamknięte, w piecu zimno.",
+    "n": 1,
+    "spoken": "O szóstej nie zgłosił się przez radio. Wołaliśmy co dziesięć minut — cisza. Zadzwoniłem po Gopr, Tomek Kulig przyjechał skuterem i pojechaliśmy trasą zimową na przełęcz. Leżał pod skałą z masztem, przysypany śniegiem. Drzwi schronu zamknięte, w piecu zimno."
+   },
+   {
+    "id": "a-q2",
+    "kind": "q",
+    "text": "Test łączności i baterii w mrozie, dwadzieścia cztery godziny. Na Grenlandii od radia zależy życie. Krystian sam to wymyślił. Łączności o dwudziestej drugiej i o szóstej — tak się umówiliśmy.",
+    "n": 2,
+    "spoken": "Test łączności i baterii w mrozie, dwadzieścia cztery godziny. Na Grenlandii od radia zależy życie. Krystian sam to wymyślił. Łączności o dwudziestej drugiej i o szóstej — tak się umówiliśmy."
+   },
+   {
+    "id": "a-q3",
+    "kind": "q",
+    "text": "Do jedenastej z minutami pisałem w jadalni przemówienie na poniedziałkową konferencję. Potem poszedłem spać. Wiatr mnie obudził, więc koło północy zszedłem na dół. Graliśmy w tysiąca z gospodarzem i Weroniką do wpół do drugiej.",
+    "n": 3,
+    "spoken": "Do jedenastej z minutami pisałem w jadalni przemówienie na poniedziałkową konferencję. Potem poszedłem spać. Wiatr mnie obudził, więc koło północy zszedłem na dół. Graliśmy w tysiąca z gospodarzem i Weroniką do wpół do drugiej."
+   },
+   {
+    "id": "a-q4",
+    "kind": "q",
+    "text": "Byliśmy jak bracia. Dziesięć lat wypraw. On siedział przy radiu w bazie, kiedy ja szedłem przez Spitsbergen. Nigdy się nie kłóciliśmy.",
+    "n": 4,
+    "spoken": "Byliśmy jak bracia. Dziesięć lat wypraw. On siedział przy radiu w bazie, kiedy ja szedłem przez Spitsbergen. Nigdy się nie kłóciliśmy."
+   },
+   {
+    "id": "a-q5",
+    "kind": "q",
+    "text": "Siedzieliśmy przy kartach, radio stoi w biurze za ścianą. Pan Hampel powiedział: o, Krystian się zgłasza. Słyszałem szum i jego głos. Ucieszyłem się, że wszystko gra.",
+    "n": 5,
+    "spoken": "Siedzieliśmy przy kartach, radio stoi w biurze za ścianą. Pan Hampel powiedział: o, Krystian się zgłasza. Słyszałem szum i jego głos. Ucieszyłem się, że wszystko gra."
+   },
+   {
+    "id": "a-q6",
+    "kind": "q",
+    "text": "Trzydzieści cztery dni, sześćset czterdzieści kilometrów, sam, z pulką. Wszystko jest w moim dzienniku i w książce. Ekspertyza potwierdziła, że dziennik jest autentyczny.",
+    "n": 6,
+    "spoken": "Trzydzieści cztery dni, sześćset czterdzieści kilometrów, sam, z pulką. Wszystko jest w moim dzienniku i w książce. Ekspertyza potwierdziła, że dziennik jest autentyczny."
+   },
+   {
+    "id": "a-q7",
+    "kind": "q",
+    "text": "Igor zgrywa na niego materiały. Koło wpół do dziesiątej siedziała przy nim Weronika — mówiła, że wybiera zdjęcia dla sponsora. Potem poszła na górę z migreną.",
+    "n": 7,
+    "spoken": "Igor zgrywa na niego materiały. Koło wpół do dziesiątej siedziała przy nim Weronika — mówiła, że wybiera zdjęcia dla sponsora. Potem poszła na górę z migreną."
+   },
+   {
+    "id": "a-l1",
+    "kind": "break",
+    "text": "Dobrze. W czwartek się pokłóciliśmy. Krystian wbił sobie do głowy, że w 2025 roku… Powiedział, że mam czas do poniedziałku, żeby sam wszystko wyznać. Ale ja go nie skrzywdziłem. W piątek wieczorem nie wyszedłem ze schroniska ani na krok.",
+    "n": 8,
+    "spoken": "Dobrze. W czwartek się pokłóciliśmy. Krystian wbił sobie do głowy, że w dwa tysiące dwudziestym piątym roku… Powiedział, że mam czas do poniedziałku, żeby sam wszystko wyznać. Ale ja go nie skrzywdziłem. W piątek wieczorem nie wyszedłem ze schroniska ani na krok."
+   },
+   {
+    "id": "a-l2",
+    "kind": "break",
+    "text": "Szóstego dnia miałem odmrożone palce i pękniętą płozę pulki. Norweg z Longyearbyen zawiózł mnie skuterem dwieście dziesięć kilometrów na północ. Dziennik przepisałem potem w kraju, jakby tamte dni szedł ktoś inny. Weronika wiedziała od początku — to ona załatwiła ekspertyzę i premię. Krystian chciał to ujawnić w poniedziałek. Ale ja go nie zabiłem. Dla mnie skończyłoby się to wstydem, nie więzieniem.",
+    "n": 9,
+    "spoken": "Szóstego dnia miałem odmrożone palce i pękniętą płozę pulki. Norweg z Longyearbyen zawiózł mnie skuterem dwieście dziesięć kilometrów na północ. Dziennik przepisałem potem w kraju, jakby tamte dni szedł ktoś inny. Weronika wiedziała od początku — to ona załatwiła ekspertyzę i premię. Krystian chciał to ujawnić w poniedziałek. Ale ja go nie zabiłem. Dla mnie skończyłoby się to wstydem, nie więzieniem."
+   },
+   {
+    "id": "a-s1",
+    "kind": "show",
+    "text": "Zero cztery? To zapasowy radiotelefon z biura. Krystian miał na górze stację i swój radiotelefon, dwójkę. Czwórki nikt nie brał na przełęcz, zawsze stoi w ładowarce w bazie.",
+    "n": 10,
+    "spoken": "Zero cztery? To zapasowy radiotelefon z biura. Krystian miał na górze stację i swój radiotelefon, dwójkę. Czwórki nikt nie brał na przełęcz, zawsze stoi w ładowarce w bazie."
+   },
+   {
+    "id": "a-s2",
+    "kind": "show",
+    "text": "Skąd to macie? To prywatne papiery Krystiana. Proszę… to nie jest tak, jak wygląda.",
+    "n": 11,
+    "spoken": "Skąd to macie? To prywatne papiery Krystiana. Proszę… to nie jest tak, jak wygląda."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Prowadziłem wyprawy w gorszych warunkach niż to przesłuchanie.",
+    "n": 12,
+    "spoken": "Prowadziłem wyprawy w gorszych warunkach niż to przesłuchanie."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Krystian był moim przyjacielem. Proszę o odrobinę taktu.",
+    "n": 13,
+    "spoken": "Krystian był moim przyjacielem. Proszę o odrobinę taktu."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Nie będę komentował plotek.",
+    "n": 14,
+    "spoken": "Nie będę komentował plotek."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem, co to ma znaczyć.",
+    "n": 15,
+    "spoken": "Nie wiem, co to ma znaczyć."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Pierwszy raz to widzę.",
+    "n": 16,
+    "spoken": "Pierwszy raz to widzę."
+   }
+  ]
+ },
+ "007-weronika": {
+  "name": "Weronika Kos",
+  "parts": [
+   {
+    "file": "007-weronika-1.wav",
+    "n": 4
+   },
+   {
+    "file": "007-weronika-2.wav",
+    "n": 4
+   },
+   {
+    "file": "007-weronika-3.wav",
+    "n": 2
+   },
+   {
+    "file": "007-weronika-4.wav",
+    "n": 5
+   },
+   {
+    "file": "007-weronika-5.wav",
+    "n": 5
+   }
+  ],
+  "lines": [
+   {
+    "id": "w-q1",
+    "kind": "q",
+    "text": "Od za kwadrans dziesiąta w pokoju. Migrena, Natalia dała mi tabletkę. Spałam, aż obudził mnie wiatr. Kwadrans po północy zeszłam na dół i graliśmy w karty do wpół do drugiej. Od stołu się nie ruszałam.",
+    "n": 1,
+    "spoken": "Od za kwadrans dziesiąta w pokoju. Migrena, Natalia dała mi tabletkę. Spałam, aż obudził mnie wiatr. Kwadrans po północy zeszłam na dół i graliśmy w karty do wpół do drugiej. Od stołu się nie ruszałam."
+   },
+   {
+    "id": "w-q2",
+    "kind": "q",
+    "text": "Nie. Ostatni raz rozmawialiśmy w czwartek na przełęczy, o zdjęciach do kampanii. W piątek nie miałam od niego żadnej wiadomości.",
+    "n": 2,
+    "spoken": "Nie. Ostatni raz rozmawialiśmy w czwartek na przełęczy, o zdjęciach do kampanii. W piątek nie miałam od niego żadnej wiadomości."
+   },
+   {
+    "id": "w-q3",
+    "kind": "q",
+    "text": "Rekreacyjnie. Chodzę z zespołem na podejścia, bo tego wymaga kontrakt. Jestem z Warszawy i pierwszy raz w życiu jestem w Karkonoszach — w nocy nie znalazłabym tu drogi.",
+    "n": 3,
+    "spoken": "Rekreacyjnie. Chodzę z zespołem na podejścia, bo tego wymaga kontrakt. Jestem z Warszawy i pierwszy raz w życiu jestem w Karkonoszach — w nocy nie znalazłabym tu drogi."
+   },
+   {
+    "id": "w-q4",
+    "kind": "q",
+    "text": "Pilnuję kontraktu Polar-Tex: zdjęcia, media, rozliczenia. Za Grenlandię 2028 firma płaci dwa miliony czterysta tysięcy złotych. W poniedziałek mamy konferencję prasową.",
+    "n": 4,
+    "spoken": "Pilnuję kontraktu Polar-Tex: zdjęcia, media, rozliczenia. Za Grenlandię dwa tysiące dwadzieścia osiem firma płaci dwa miliony czterysta tysięcy złotych. W poniedziałek mamy konferencję prasową."
+   },
+   {
+    "id": "w-q5",
+    "kind": "q",
+    "text": "Wspaniały wyczyn, na którym zbudowaliśmy markę. Poza kontraktem nie mam z tym nic wspólnego. Jeśli coś było nie tak, to sprawa Adama, nie moja.",
+    "n": 5,
+    "spoken": "Wspaniały wyczyn, na którym zbudowaliśmy markę. Poza kontraktem nie mam z tym nic wspólnego. Jeśli coś było nie tak, to sprawa Adama, nie moja."
+   },
+   {
+    "id": "w-q6",
+    "kind": "q",
+    "text": "Wybierałam zdjęcia z treningu dla działu marketingu. Kilka minut. Niczego z niego nie kopiowałam.",
+    "n": 6,
+    "spoken": "Wybierałam zdjęcia z treningu dla działu marketingu. Kilka minut. Niczego z niego nie kopiowałam."
+   },
+   {
+    "id": "w-l0",
+    "kind": "break",
+    "text": "Urodziłam się w Jeleniej Górze, w szkole średniej startowałam w zawodach skialpinistycznych — tu, na tych stokach. To było dawno. Nie chciałam, żeby to miało znaczenie.",
+    "n": 7,
+    "spoken": "Urodziłam się w Jeleniej Górze, w szkole średniej startowałam w zawodach skialpinistycznych — tu, na tych stokach. To było dawno. Nie chciałam, żeby to miało znaczenie."
+   },
+   {
+    "id": "w-l1",
+    "kind": "break",
+    "text": "Wyszłam na chwilę. Założyłam narty i doszłam do rozdroża, żeby przewietrzyć głowę po migrenie. Wróciłam przed północą. Nie chciałam, żeby Adam wiedział, że łamię zakaz nocnych wyjść.",
+    "n": 8,
+    "spoken": "Wyszłam na chwilę. Założyłam narty i doszłam do rozdroża, żeby przewietrzyć głowę po migrenie. Wróciłam przed północą. Nie chciałam, żeby Adam wiedział, że łamię zakaz nocnych wyjść."
+   },
+   {
+    "id": "w-l2",
+    "kind": "break",
+    "text": "Byłam na przełęczy. Chciałam porozmawiać z nim o tej wiadomości. Krzyczał, że w poniedziałek powie wszystko, o mnie też. Odepchnęłam go. Uderzył głową o róg pieca i przestał się ruszać. Nie oddychał, tak myślałam. Wyciągnęłam go pod skałę, żeby wyglądało, że spadł z masztu. Zabrałam jego komunikator i w nocy spaliłam go w suszarni.",
+    "n": 9,
+    "spoken": "Byłam na przełęczy. Chciałam porozmawiać z nim o tej wiadomości. Krzyczał, że w poniedziałek powie wszystko, o mnie też. Odepchnęłam go. Uderzył głową o róg pieca i przestał się ruszać. Nie oddychał, tak myślałam. Wyciągnęłam go pod skałę, żeby wyglądało, że spadł z masztu. Zabrałam jego komunikator i w nocy spaliłam go w suszarni."
+   },
+   {
+    "id": "w-l3",
+    "kind": "break",
+    "text": "Dostałam. SMS-a z komunikatora, przy kolacji. Pisał, że ma logi z 2025 roku i moje maile, i że w poniedziałek powie wszystko. Wpadłam w panikę, ale to jeszcze niczego nie znaczy.",
+    "n": 10,
+    "spoken": "Dostałam. Esemesa z komunikatora, przy kolacji. Pisał, że ma logi z dwa tysiące dwudziestego piątego roku i moje maile, i że w poniedziałek powie wszystko. Wpadłam w panikę, ale to jeszcze niczego nie znaczy."
+   },
+   {
+    "id": "w-l4",
+    "kind": "break",
+    "text": "Wiedziałam od kwietnia 2025. Krystian mi powiedział, a ja zamówiłam ekspertyzę dziennika, wypłaciłam premię i podpisałam raport dla zarządu, że wszystko sprawdzone. Gdyby to wyszło, straciłabym wszystko. Nie tylko pracę.",
+    "n": 11,
+    "spoken": "Wiedziałam od kwietnia dwa tysiące dwudziestego piątego. Krystian mi powiedział, a ja zamówiłam ekspertyzę dziennika, wypłaciłam premię i podpisałam raport dla zarządu, że wszystko sprawdzone. Gdyby to wyszło, straciłabym wszystko. Nie tylko pracę."
+   },
+   {
+    "id": "w-l5",
+    "kind": "break",
+    "text": "Wyszłam na kilka minut. Wzięłam z biura zapasowy radiotelefon, stanęłam za tylnymi drzwiami i puściłam do niego z telefonu nagranie Igora — Krystian przy radiu, z czwartku. Chciałam, żeby wszyscy myśleli, że po północy on jeszcze żył.",
+    "n": 12,
+    "spoken": "Wyszłam na kilka minut. Wzięłam z biura zapasowy radiotelefon, stanęłam za tylnymi drzwiami i puściłam do niego z telefonu nagranie Igora — Krystian przy radiu, z czwartku. Chciałam, żeby wszyscy myśleli, że po północy on jeszcze żył."
+   },
+   {
+    "id": "w-l6",
+    "kind": "break",
+    "text": "Skopiowałam jeden klip na telefon. Krystian przy radiu. Do filmu dla sponsora, nic więcej.",
+    "n": 13,
+    "spoken": "Skopiowałam jeden klip na telefon. Krystian przy radiu. Do filmu dla sponsora, nic więcej."
+   },
+   {
+    "id": "w-s1",
+    "kind": "show",
+    "text": "Ktoś z nartami. Wszyscy tu mamy narty.",
+    "n": 14,
+    "spoken": "Ktoś z nartami. Wszyscy tu mamy narty."
+   },
+   {
+    "id": "w-s2",
+    "kind": "show",
+    "text": "Popiół z pieca? Nie mam pojęcia, czemu mi to państwo pokazują.",
+    "n": 15,
+    "spoken": "Popiół z pieca? Nie mam pojęcia, czemu mi to państwo pokazują."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Rozumiem, że to państwa praca, ale proszę mówić konkretnie.",
+    "n": 16,
+    "spoken": "Rozumiem, że to państwa praca, ale proszę mówić konkretnie."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Jestem tu z ramienia sponsora, nie jako śledcza.",
+    "n": 17,
+    "spoken": "Jestem tu z ramienia sponsora, nie jako śledcza."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Od wczoraj mam migrenę, naprawdę nie pamiętam szczegółów.",
+    "n": 18,
+    "spoken": "Od wczoraj mam migrenę, naprawdę nie pamiętam szczegółów."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem, co mam na to odpowiedzieć.",
+    "n": 19,
+    "spoken": "Nie wiem, co mam na to odpowiedzieć."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "To nie moja działka, proszę zapytać Adama.",
+    "n": 20,
+    "spoken": "To nie moja działka, proszę zapytać Adama."
+   }
+  ]
+ },
+ "007-igor": {
+  "name": "Igor Szadkowski",
+  "parts": [
+   {
+    "file": "007-igor-1.wav",
+    "n": 4
+   },
+   {
+    "file": "007-igor-2.wav",
+    "n": 5
+   },
+   {
+    "file": "007-igor-3.wav",
+    "n": 4
+   }
+  ],
+  "lines": [
+   {
+    "id": "i-q1",
+    "kind": "q",
+    "text": "Od dziesiątej robiłem timelapse gwiazd na tarasie. Stałem przy aparacie do wpół do pierwszej, zmarzłem na kość. Nikogo nie widziałem.",
+    "n": 1,
+    "spoken": "Od dziesiątej robiłem timelapse gwiazd na tarasie. Stałem przy aparacie do wpół do pierwszej, zmarzłem na kość. Nikogo nie widziałem."
+   },
+   {
+    "id": "i-q2",
+    "kind": "q",
+    "text": "Wieczorem Adam i Krystian pokłócili się przy piecu. Krystian powiedział coś w stylu: masz czas do poniedziałku. Adam trzasnął drzwiami i wyszedł na mróz. Potem obaj udawali, że nic się nie stało.",
+    "n": 2,
+    "spoken": "Wieczorem Adam i Krystian pokłócili się przy piecu. Krystian powiedział coś w stylu: masz czas do poniedziałku. Adam trzasnął drzwiami i wyszedł na mróz. Potem obaj udawali, że nic się nie stało."
+   },
+   {
+    "id": "i-q3",
+    "kind": "q",
+    "text": "Jasne, kilka razy. W czwartek tuż przed północą nakręciłem całą łączność z bazą — świetny klip, mróz, para z ust. Plik C0112. Wszystko zgrywam na laptopa wyprawy w jadalni.",
+    "n": 3,
+    "spoken": "Jasne, kilka razy. W czwartek tuż przed północą nakręciłem całą łączność z bazą — świetny klip, mróz, para z ust. Plik ce zero sto dwanaście. Wszystko zgrywam na laptopa wyprawy w jadalni."
+   },
+   {
+    "id": "i-q4",
+    "kind": "q",
+    "text": "Weronika. Na nagraniach z treningu zjeżdża tak, że ledwo nadążam z kamerą. Mówiła kiedyś, że startowała w zawodach.",
+    "n": 4,
+    "spoken": "Weronika. Na nagraniach z treningu zjeżdża tak, że ledwo nadążam z kamerą. Mówiła kiedyś, że startowała w zawodach."
+   },
+   {
+    "id": "i-q5",
+    "kind": "q",
+    "text": "Aparat na statywie, zdjęcie co trzydzieści sekund, od dziesiątej do wpół do pierwszej. Karta jest w aparacie, możecie obejrzeć klatki.",
+    "n": 5,
+    "spoken": "Aparat na statywie, zdjęcie co trzydzieści sekund, od dziesiątej do wpół do pierwszej. Karta jest w aparacie, możecie obejrzeć klatki."
+   },
+   {
+    "id": "i-l1",
+    "kind": "break",
+    "text": "Nie stałem. Ustawiłem aparat i poszedłem do Natalii. Byłem u niej do wpół do pierwszej. Natalia ma narzeczonego, a Adam nie znosi romansów w zespole. Dlatego kłamałem.",
+    "n": 6,
+    "spoken": "Nie stałem. Ustawiłem aparat i poszedłem do Natalii. Byłem u niej do wpół do pierwszej. Natalia ma narzeczonego, a Adam nie znosi romansów w zespole. Dlatego kłamałem."
+   },
+   {
+    "id": "i-s1",
+    "kind": "show",
+    "text": "Przecież to ja! Na końcu mówię „mam” — zawsze tak mówię, kiedy kończę ujęcie. To mój klip, C0112, czwartek przed północą. Skąd on się wziął w łączności z soboty?",
+    "n": 7,
+    "spoken": "Przecież to ja! Na końcu mówię „mam” — zawsze tak mówię, kiedy kończę ujęcie. To mój klip, ce zero sto dwanaście, czwartek przed północą. Skąd on się wziął w łączności z soboty?"
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja tylko kręcę. Nie jestem od pytań.",
+    "n": 8,
+    "spoken": "Ja tylko kręcę. Nie jestem od pytań."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Serio, nic więcej nie wiem.",
+    "n": 9,
+    "spoken": "Serio, nic więcej nie wiem."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Mogę pokazać materiał, ale zgadywać nie będę.",
+    "n": 10,
+    "spoken": "Mogę pokazać materiał, ale zgadywać nie będę."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie kojarzę.",
+    "n": 11,
+    "spoken": "Nie kojarzę."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "To nie moje.",
+    "n": 12,
+    "spoken": "To nie moje."
+   },
+   {
+    "id": "mam",
+    "kind": "mam",
+    "text": "Mam.",
+    "n": 13,
+    "spoken": "Mam."
+   }
+  ]
+ },
+ "007-natalia": {
+  "name": "Natalia Brandt",
+  "parts": [
+   {
+    "file": "007-natalia-1.wav",
+    "n": 5
+   },
+   {
+    "file": "007-natalia-2.wav",
+    "n": 5
+   },
+   {
+    "file": "007-natalia-3.wav",
+    "n": 4
+   }
+  ],
+  "lines": [
+   {
+    "id": "n-q1",
+    "kind": "q",
+    "text": "Rana tłuczona z tyłu głowy, niezbyt głęboka. Ciało wychłodzone, stężenie pośmiertne. Nie żył od kilku godzin — więcej powie sekcja. Mróz bardzo utrudnia określenie godziny.",
+    "n": 1,
+    "spoken": "Rana tłuczona z tyłu głowy, niezbyt głęboka. Ciało wychłodzone, stężenie pośmiertne. Nie żył od kilku godzin — więcej powie sekcja. Mróz bardzo utrudnia określenie godziny."
+   },
+   {
+    "id": "n-q2",
+    "kind": "q",
+    "text": "W swoim pokoju. Od wpół do dziesiątej. Sama. Spałam.",
+    "n": 2,
+    "spoken": "W swoim pokoju. Od wpół do dziesiątej. Sama. Spałam."
+   },
+   {
+    "id": "n-q3",
+    "kind": "q",
+    "text": "Adam i Krystian się pokłócili. Krystian powiedział: masz czas do poniedziałku, potem ja to zrobię. Nie wiem, o co chodziło.",
+    "n": 3,
+    "spoken": "Adam i Krystian się pokłócili. Krystian powiedział: masz czas do poniedziałku, potem ja to zrobię. Nie wiem, o co chodziło."
+   },
+   {
+    "id": "n-q4",
+    "kind": "q",
+    "text": "Przy kolacji przeczytała coś w telefonie i zbladła. Koło wpół do dziesiątej poprosiła mnie o tabletkę na migrenę, a za kwadrans dziesiąta poszła na górę.",
+    "n": 4,
+    "spoken": "Przy kolacji przeczytała coś w telefonie i zbladła. Koło wpół do dziesiątej poprosiła mnie o tabletkę na migrenę, a za kwadrans dziesiąta poszła na górę."
+   },
+   {
+    "id": "n-q5",
+    "kind": "q",
+    "text": "Weronika, bez dwóch zdań. Na treningu zostawiała nas wszystkich w tyle.",
+    "n": 5,
+    "spoken": "Weronika, bez dwóch zdań. Na treningu zostawiała nas wszystkich w tyle."
+   },
+   {
+    "id": "n-q6",
+    "kind": "q",
+    "text": "Krystian powiedział raz po kilku piwach, że „Dziennik Lodu” to najlepsza powieść, jaką czytał. Myślałam, że żartuje.",
+    "n": 6,
+    "spoken": "Krystian powiedział raz po kilku piwach, że „Dziennik Lodu” to najlepsza powieść, jaką czytał. Myślałam, że żartuje."
+   },
+   {
+    "id": "n-l1",
+    "kind": "break",
+    "text": "Igor był u mnie od dziesiątej do wpół do pierwszej. Żadne z nas nie wychodziło. Proszę, niech to nie trafi do mojego narzeczonego… choć pewnie i tak trafi.",
+    "n": 7,
+    "spoken": "Igor był u mnie od dziesiątej do wpół do pierwszej. Żadne z nas nie wychodziło. Proszę, niech to nie trafi do mojego narzeczonego… choć pewnie i tak trafi."
+   },
+   {
+    "id": "n-s1",
+    "kind": "show",
+    "text": "Plamy Wiszniewskiego… To znaczy, że zabił go mróz, a nie uderzenie. Uraz głowy go ogłuszył. Ktoś zostawił go nieprzytomnego na śniegu.",
+    "n": 8,
+    "spoken": "Plamy Wiszniewskiego… To znaczy, że zabił go mróz, a nie uderzenie. Uraz głowy go ogłuszył. Ktoś zostawił go nieprzytomnego na śniegu."
+   },
+   {
+    "id": "n-s2",
+    "kind": "show",
+    "text": "Krew i włosy na kancie pieca… Kształt rany by pasował. Uderzył głową o piec, nie o skałę.",
+    "n": 9,
+    "spoken": "Krew i włosy na kancie pieca… Kształt rany by pasował. Uderzył głową o piec, nie o skałę."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Powiedziałam wszystko, co wiem jako lekarz.",
+    "n": 10,
+    "spoken": "Powiedziałam wszystko, co wiem jako lekarz."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Proszę nie mieszać mojego życia prywatnego do śledztwa.",
+    "n": 11,
+    "spoken": "Proszę nie mieszać mojego życia prywatnego do śledztwa."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Nie będę zgadywać.",
+    "n": 12,
+    "spoken": "Nie będę zgadywać."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "To nie moja specjalność.",
+    "n": 13,
+    "spoken": "To nie moja specjalność."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Nic mi to nie mówi.",
+    "n": 14,
+    "spoken": "Nic mi to nie mówi."
+   }
+  ]
+ },
+ "007-hampel": {
+  "name": "Zdzisław Hampel",
+  "parts": [
+   {
+    "file": "007-hampel-1.wav",
+    "n": 3
+   },
+   {
+    "file": "007-hampel-2.wav",
+    "n": 5
+   },
+   {
+    "file": "007-hampel-3.wav",
+    "n": 5
+   },
+   {
+    "file": "007-hampel-4.wav",
+    "n": 2
+   }
+  ],
+  "lines": [
+   {
+    "id": "h-q1",
+    "kind": "q",
+    "text": "Kolacja o szóstej, potem każdy w swoją stronę. Siedziałem w barze przy jadalni do jedenastej dwadzieścia, a pan Adam pisał przy stole — do tej samej godziny, bo razem gasiliśmy światło. Pani Weronika poszła na górę za kwadrans dziesiąta, pani doktor jeszcze wcześniej. Pan Igor kręcił się z aparatem.",
+    "n": 1,
+    "spoken": "Kolacja o szóstej, potem każdy w swoją stronę. Siedziałem w barze przy jadalni do jedenastej dwadzieścia, a pan Adam pisał przy stole — do tej samej godziny, bo razem gasiliśmy światło. Pani Weronika poszła na górę za kwadrans dziesiąta, pani doktor jeszcze wcześniej. Pan Igor kręcił się z aparatem."
+   },
+   {
+    "id": "h-q2",
+    "kind": "q",
+    "text": "Radio stoi w biurze, za ścianą jadalni. O dziesiątej zgłosił się jak zawsze. Potem drugi raz w nocy, koło wpół do pierwszej — graliśmy wtedy w karty. Ucieszyłem się, bo wiało coraz mocniej.",
+    "n": 2,
+    "spoken": "Radio stoi w biurze, za ścianą jadalni. O dziesiątej zgłosił się jak zawsze. Potem drugi raz w nocy, koło wpół do pierwszej — graliśmy wtedy w karty. Ucieszyłem się, bo wiało coraz mocniej."
+   },
+   {
+    "id": "h-q3",
+    "kind": "q",
+    "text": "Od kwadrans po północy ja, pan Adam i pani Weronika. Do wpół do drugiej. Pani Weronika wyszła raz na kilka minut, koło wpół do pierwszej. Powiedziała, że do łazienki.",
+    "n": 3,
+    "spoken": "Od kwadrans po północy ja, pan Adam i pani Weronika. Do wpół do drugiej. Pani Weronika wyszła raz na kilka minut, koło wpół do pierwszej. Powiedziała, że do łazienki."
+   },
+   {
+    "id": "h-q4",
+    "kind": "q",
+    "text": "Bari zaszczekał koło wpół do pierwszej, przy tylnych drzwiach. On tak ma, kiedy ktoś się kręci przy suszarni. Pomyślałem, że to ratrakowy.",
+    "n": 4,
+    "spoken": "Bari zaszczekał koło wpół do pierwszej, przy tylnych drzwiach. On tak ma, kiedy ktoś się kręci przy suszarni. Pomyślałem, że to ratrakowy."
+   },
+   {
+    "id": "h-q5",
+    "kind": "q",
+    "text": "Wszyscy z wyprawy: suszą tam buty, foki, rękawice. Jest tam piec, który czyszczę codziennie w południe, jak w zegarku.",
+    "n": 5,
+    "spoken": "Wszyscy z wyprawy: suszą tam buty, foki, rękawice. Jest tam piec, który czyszczę codziennie w południe, jak w zegarku."
+   },
+   {
+    "id": "h-q6",
+    "kind": "q",
+    "text": "W ładowarce w biurze, obok bazowej. Biuro się nie zamyka, to schronisko, nie bank. Rano wszystko stało na swoim miejscu.",
+    "n": 6,
+    "spoken": "W ładowarce w biurze, obok bazowej. Biuro się nie zamyka, to schronisko, nie bank. Rano wszystko stało na swoim miejscu."
+   },
+   {
+    "id": "h-q7",
+    "kind": "q",
+    "text": "W czwartek cała wyprawa nocowała na górze, ale Krystian i tak zgłosił się do mnie przed północą, na próbę. Pamiętam, bo był straszny mróz i wiatr zupełnie ustał. Mówił tak samo jak zwykle: Baza, tu Mglista, wszystko gra.",
+    "n": 7,
+    "spoken": "W czwartek cała wyprawa nocowała na górze, ale Krystian i tak zgłosił się do mnie przed północą, na próbę. Pamiętam, bo był straszny mróz i wiatr zupełnie ustał. Mówił tak samo jak zwykle: Baza, tu Mglista, wszystko gra."
+   },
+   {
+    "id": "h-s1",
+    "kind": "show",
+    "text": "Popiół z pieca w suszarni? Ja tam palę drewnem i starymi gazetami, nie plastikiem. Ktoś tam coś spalił w nocy.",
+    "n": 8,
+    "spoken": "Popiół z pieca w suszarni? Ja tam palę drewnem i starymi gazetami, nie plastikiem. Ktoś tam coś spalił w nocy."
+   },
+   {
+    "id": "h-s2",
+    "kind": "show",
+    "text": "To pod moim tarasem, idą do suszarni. Z nartami na ramieniu, o tej porze? Mały plecak z żółtą taśmą… Takie odblaski ma pani Weronika, sam jej pomagałem przyszyć, bo się odpruwały.",
+    "n": 9,
+    "spoken": "To pod moim tarasem, idą do suszarni. Z nartami na ramieniu, o tej porze? Mały plecak z żółtą taśmą… Takie odblaski ma pani Weronika, sam jej pomagałem przyszyć, bo się odpruwały."
+   },
+   {
+    "id": "h-s3",
+    "kind": "show",
+    "text": "Bari! Poznałbym go wszędzie — dwa razy, krótko, tak szczeka tylko przy tylnych drzwiach. Na przełęcz nie chodzi, stary już. Całą noc był tutaj, w korytarzu.",
+    "n": 10,
+    "spoken": "Bari! Poznałbym go wszędzie — dwa razy, krótko, tak szczeka tylko przy tylnych drzwiach. Na przełęcz nie chodzi, stary już. Całą noc był tutaj, w korytarzu."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja tu jestem od gotowania i od pieca, panie władzo.",
+    "n": 11,
+    "spoken": "Ja tu jestem od gotowania i od pieca, panie władzo."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Czego nie widziałem, tego nie powiem.",
+    "n": 12,
+    "spoken": "Czego nie widziałem, tego nie powiem."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Bari może więcej wie, ale on nie gada.",
+    "n": 13,
+    "spoken": "Bari może więcej wie, ale on nie gada."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie znam się na tym.",
+    "n": 14,
+    "spoken": "Nie znam się na tym."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Pierwszy raz widzę.",
+    "n": 15,
+    "spoken": "Pierwszy raz widzę."
+   }
+  ]
+ },
+ "007-kuznik": {
+  "name": "Mirosław Kuźnik",
+  "parts": [
+   {
+    "file": "007-kuznik-1.wav",
+    "n": 4
+   },
+   {
+    "file": "007-kuznik-2.wav",
+    "n": 5
+   },
+   {
+    "file": "007-kuznik-3.wav",
+    "n": 1
+   }
+  ],
+  "lines": [
+   {
+    "id": "k-q1",
+    "kind": "q",
+    "text": "Od dziesiątej do za dwadzieścia jedenasta równałem drogę dojazdową poniżej schroniska. Potem przerwa w garażu. Od dwadzieścia po dwunastej do dziesięć po pierwszej równałem plac przed schroniskiem.",
+    "n": 1,
+    "spoken": "Od dziesiątej do za dwadzieścia jedenasta równałem drogę dojazdową poniżej schroniska. Potem przerwa w garażu. Od dwadzieścia po dwunastej do dziesięć po pierwszej równałem plac przed schroniskiem."
+   },
+   {
+    "id": "k-q2",
+    "kind": "q",
+    "text": "Koło dziesięć po dziesiątej czołówka szła w górę zielonym szlakiem za schroniskiem. Równo i szybko, jak ktoś, kto umie chodzić. A koło wpół do dwunastej, z okna garażu, światło zjechało z góry — tak szybko, że to musiał być narciarz.",
+    "n": 2,
+    "spoken": "Koło dziesięć po dziesiątej czołówka szła w górę zielonym szlakiem za schroniskiem. Równo i szybko, jak ktoś, kto umie chodzić. A koło wpół do dwunastej, z okna garażu, światło zjechało z góry — tak szybko, że to musiał być narciarz."
+   },
+   {
+    "id": "k-q3",
+    "kind": "q",
+    "text": "Na wstecznym pika, jak każda maszyna. Kiedy równam plac, ciągle cofam, więc pika co chwilę. Ludzie się skarżą, ale przepisy to przepisy.",
+    "n": 3,
+    "spoken": "Na wstecznym pika, jak każda maszyna. Kiedy równam plac, ciągle cofam, więc pika co chwilę. Ludzie się skarżą, ale przepisy to przepisy."
+   },
+   {
+    "id": "k-q4",
+    "kind": "q",
+    "text": "GPS zapisuje wszystko, dla zarządu parku. Wydruk mam w kabinie.",
+    "n": 4,
+    "spoken": "Dżipiees zapisuje wszystko, dla zarządu parku. Wydruk mam w kabinie."
+   },
+   {
+    "id": "k-s1",
+    "kind": "show",
+    "text": "To mój ratrak, na wstecznym. Tak pika tylko jedna maszyna w okolicy. W nocy cofałem tylko na placu przed schroniskiem, od dwadzieścia po dwunastej.",
+    "n": 5,
+    "spoken": "To mój ratrak, na wstecznym. Tak pika tylko jedna maszyna w okolicy. W nocy cofałem tylko na placu przed schroniskiem, od dwadzieścia po dwunastej."
+   },
+   {
+    "id": "deflect-0",
+    "kind": "deflect",
+    "text": "Ja w nocy jeżdżę, nie gapię się na ludzi.",
+    "n": 6,
+    "spoken": "Ja w nocy jeżdżę, nie gapię się na ludzi."
+   },
+   {
+    "id": "deflect-1",
+    "kind": "deflect",
+    "text": "Pan pyta, ja mówię, ale zmyślać nie będę.",
+    "n": 7,
+    "spoken": "Pan pyta, ja mówię, ale zmyślać nie będę."
+   },
+   {
+    "id": "deflect-2",
+    "kind": "deflect",
+    "text": "Przez szybę mało widać, jak sypie.",
+    "n": 8,
+    "spoken": "Przez szybę mało widać, jak sypie."
+   },
+   {
+    "id": "show-0",
+    "kind": "showdef",
+    "text": "Nie wiem, panie.",
+    "n": 9,
+    "spoken": "Nie wiem, panie."
+   },
+   {
+    "id": "show-1",
+    "kind": "showdef",
+    "text": "Nic mi to nie mówi.",
+    "n": 10,
+    "spoken": "Nic mi to nie mówi."
+   }
+  ]
+ },
+ "007-krystian": {
+  "name": "Krystian Lis",
+  "parts": [
+   {
+    "file": "007-krystian-call.wav",
+    "n": 1
+   }
+  ],
+  "lines": [
+   {
+    "id": "call",
+    "kind": "call",
+    "text": "Baza, tu Mglista. Minus dwadzieścia dwa, wiatr ucichł, wszystko gra. Następna łączność o szóstej. Bez odbioru.",
+    "n": 1,
+    "spoken": "Baza, tu Mglista. Minus dwadzieścia dwa, wiatr ucichł, wszystko gra. Następna łączność o szóstej. Bez odbioru."
+   }
+  ]
+ }
+}

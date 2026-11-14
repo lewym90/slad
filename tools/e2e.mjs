@@ -13,13 +13,15 @@ const p = await ctx.newPage(); const errs = [];
 p.on('pageerror', e => errs.push('PAGE ' + e.message)); p.on('console', m => { if (m.type() === 'error') errs.push('CONSOLE ' + m.text()); });
 p.on('dialog', d => d.accept());
 let n = 0; const shot = async (name, full = false) => { await p.waitForTimeout(350); await p.screenshot({ path: `${out}/${String(++n).padStart(2, '0')}-${name}.png`, fullPage: full }); };
-let BT = 0; const dismissBt = async () => { let k = 0; while (await p.locator('.bt').count() && k++ < 5) { BT++; if (BT <= 3) await shot('breakthrough-' + BT); await p.locator('.bt .btn[data-a="bt-close"]').click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(250); } };
-const A = async (a, extra = '') => { await dismissBt(); const el = p.locator(`[data-a="${a}"]${extra}`).first(); await el.scrollIntoViewIfNeeded().catch(() => {}); try { await el.click({ timeout: 4000 }); } catch (e) { await p.waitForTimeout(800); await dismissBt(); await el.scrollIntoViewIfNeeded().catch(() => {}); await el.click(); } await p.waitForTimeout(60); };
+let BT = 0, EVN = 0; const dismissBt = async () => { let k = 0; while (await p.locator('.bt').count() && k++ < 5) { BT++; if (BT <= 3) await shot('breakthrough-' + BT); await p.locator('.bt .btn[data-a="bt-close"]').click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(250); }
+  k = 0; while (await p.locator('#overlay-root .clock-ev').count() && k++ < 4) { EVN++; if (EVN <= 2) await shot('clock-event-' + EVN); await p.locator('#overlay-root .ov-body > .btn[data-a="close"]').last().click({ timeout: 4000 }).catch(() => {}); await p.waitForTimeout(250); } };
+const A = async (a, extra = '') => { if (await p.locator('#overlay-root .clock-ev').count() === 0 && C0clock) await p.waitForTimeout(0); await dismissBt(); const el = p.locator(`[data-a="${a}"]${extra}`).first(); await el.scrollIntoViewIfNeeded().catch(() => {}); try { await el.click({ timeout: 4000 }); } catch (e) { await p.waitForTimeout(800); await dismissBt(); await el.scrollIntoViewIfNeeded().catch(() => {}); await el.click(); } await p.waitForTimeout(60); };
 const closeAll = async () => { await dismissBt(); if (await p.locator('#zoom').count()) { await p.locator('#zoom [data-a="close"]').click(); await p.waitForTimeout(200); console.log('zoom closed', !(await p.locator('#zoom').count())); } while (await p.locator('#overlay-root .ov').count()) { await p.locator('[data-a="close-all"]').first().click({ timeout: 4000 }).catch(() => {}); await p.waitForTimeout(150); await dismissBt(); } };
+let C0clock = false;
 const FROM = process.env.FROM_STATE;
 if (FROM) { await p.goto(URL, { waitUntil: 'networkidle' }); await p.evaluate(s => localStorage.setItem('slad.v2', s), fs.readFileSync(FROM, 'utf8')); await p.goto(URL + `#/gra/${CID}/akta`, { waitUntil: 'networkidle' }); await p.reload({ waitUntil: 'networkidle' }); }
 else { await p.goto(URL, { waitUntil: 'networkidle' }); await shot('home'); await shot('home-full', true); }
-const C = await p.evaluate(cid => fetch(`cases/${cid}.json`).then(r => r.json()), CID);
+const C = await p.evaluate(cid => fetch(`cases/${cid}.json`).then(r => r.json()), CID); C0clock = !!C.clock;
 const hasT = (g, t) => t.startsWith('lie:') ? g.broken.includes(t.slice(4)) : t.startsWith('st:') ? g.claims.includes(t.slice(3)) : t.startsWith('show:') ? (g.showsDone || []).includes(t.slice(5)) : (g.found.includes(t) || g.shared.includes(t) || !!(g.puzzles[t] && g.puzzles[t].solved) || g.spots.includes(t) || g.asked.includes(t));
 const state = async () => { await p.evaluate(c => { window.__cid = c; }, CID); return p.evaluate(() => JSON.parse(localStorage.getItem('slad.v2')).games[window.__cid]); };
 if (!FROM) {
@@ -70,9 +72,14 @@ const solvePuzzle = async pz => {
   await A('solve', `[data-id="${pz.id}"]`); await shot('puzzle-' + pz.id); await closeAll();
 };
 // pętla śledztwa
+const goTo = async at => { if (!C.map || !at) return; const g0 = await state(); if ((g0.pos || C.map.start) === at) return; await closeAll(); const m = await p.evaluate(id => window.__travelTest(id), at); await p.waitForTimeout(700); await dismissBt(); await closeAll(); if (!globalThis.travelLog) globalThis.travelLog = []; globalThis.travelLog.push(at + ':' + m); };
+if (C.clock) { await A('clock'); await shot('clock'); await closeAll(); }
 for (let round = 0; round < 5; round++) {
-  await A('tab', '[data-tab="miejsca"]'); if (round === 0) await shot('places');
+  if (C.clock && round === 2) { const t = await p.evaluate(() => window.__waitAll()); await p.waitForTimeout(700); await dismissBt(); if (!globalThis.evShot) { globalThis.evShot = true; await shot('clock-events'); } await closeAll(); console.log('waited until', t); }
+  await A('tab', '[data-tab="miejsca"]'); if (round === 0) { await shot('places'); if (C.map) await shot('places-full', true); }
   for (const l of (MODE === 'table' ? [...C.locations, ...C.tableMode.locations] : C.locations)) {
+    if (C.map && round > 0 && !(await p.evaluate(lid => { const { c, g } = ctx(); const l = c.loc[lid]; return l.spots.some(s => spotState(c, g, s) === 'open'); }, l.id))) continue;
+    await goTo(l.at); await A('tab', '[data-tab="miejsca"]');
     await A('loc', `.loc[data-id="${l.id}"]`); if (round === 0 && l.id === 'study') await shot('location-study');
     while (await p.locator('[data-a="search"]').count()) await A('search');
     if (l.search) { await A('look-open', `[data-id="${l.id}"]`); await p.waitForTimeout(300); if (!globalThis.lookShot) { globalThis.lookShot = true; await shot('look'); }
@@ -83,8 +90,17 @@ for (let round = 0; round < 5; round++) {
     if (round === 0 && l.id === 'study') await shot('location-study-searched');
     await closeAll();
   }
+  for (const e of C.evidence.filter(e => e.audio)) { const g = await state(); if (!hasT(g, e.id) || e.audio.marks.every(m => (g.marks || []).includes(m.id))) continue;
+    await A('tab', '[data-tab="akta"]'); await A('ev', `[data-id="${e.id}"]`); await A('listen', `[data-id="${e.id}"]`); await p.waitForTimeout(400); await shot('listen-' + e.id);
+    const miss = await p.evaluate(id => JSON.stringify(listenPick(ctx().c, ctx().g, id, 'Kaszel', 3.0)), e.id); console.log('listen miss', miss);
+    for (const m of e.audio.marks) { const r = await p.evaluate(([id, mid]) => JSON.stringify(window.__listenTest(id, mid)), [e.id, m.id]); console.log('listen', m.id, r.includes('hit')); }
+    await A('lplay'); await p.waitForTimeout(1200); await p.evaluate(() => { renderOv(); }); await p.waitForTimeout(300); await shot('listen-done-' + e.id); await closeAll(); }
   await A('tab', '[data-tab="osoby"]'); if (round === 0) await shot('people');
   for (const per of C.people) {
+    if (C.map && !(await p.evaluate(pid => { const { c, g } = ctx(); const P = c.person[pid]; const hasT = t => has(g, c, t);
+      return availableQs(c, g, P).some(q => !g.asked.includes(q.id)) || (P.shows || []).some(x => !(g.showsDone || []).includes(x.id) && hasT(x.ev) && (x.requires || []).every(hasT))
+        || P.statements.some(s => !s.truth && g.claims.includes(s.id) && !g.broken.includes(s.id) && (s.contradicts || []).some(hasT)); }, per.id))) continue;
+    await goTo(per.at); await A('tab', '[data-tab="osoby"]');
     await A('person', `[data-id="${per.id}"]`);
     while (await p.locator('[data-a="ask"]:not([disabled])').count()) await A('ask', ':not([disabled])');
     if (round === 0 && per.id === 'wiktor') await shot('interrogation');
@@ -127,6 +143,7 @@ fs.writeFileSync(`/tmp/state-${CID}-${dev}-${MODE}.json`, await p.evaluate(() =>
 }
 const g = await state();
 const allEv = C.evidence.map(e => e.id); const missing = allEv.filter(id => !g.found.includes(id) && !g.shared.includes(id));
+if (C.clock) console.log('clock', g.mins, 'min, travel', (globalThis.travelLog || []).join(' '));
 console.log(dev, 'actions', g.actions, 'par', C.par, 'broken', g.broken.length, 'missing evidence', missing.join(',') || 'none', 'puzzles', Object.keys(g.puzzles).filter(k => g.puzzles[k].solved).length);
 // zrzuty sekcji
 const evA = C.evidence[12].id, evB = C.evidence[10].id, perA = C.people[2].id;

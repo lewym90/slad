@@ -78,6 +78,13 @@ Nie otwieraj przez `file://` (Service Worker wymaga HTTP/HTTPS).
 - W oględzinach na zdjęciu punkt bez położenia na zdjęciu jest dozwolony tylko jako nagroda za zagadkę (pokazuje się wtedy z kłódką i przyciskiem zagadki). Walidator: uprawnienie `look` od 006 musi mieć co najmniej jedno miejsce z `search` (albo `offline.look`).
 - Sprawa 006 „Ostatni seans” — gotowa i otwarta od 2.17.1 (`tools/build_006.py`, `b006_*.py`, prompty `tools/prompts_006.py`). Głosy tnie `tools/cut_voices.py NNN katalog` (sprawdza liczbę i tempo kwestii; nagrania postaci w krótkich częściach po maks. 5 kwestii, bo generator gubi kwestie w długich plikach).
 
+## Nowe mechaniki (2.18) — od sprawy 007
+- **Zegar w grze** (`clock`): zamiast ruchów liczy się czas gry — każda czynność ma koszt w minutach, przejścia trwają tyle, ile pokazuje mapa. Zegar stoi, gdy gracze nic nie robią. O ustalonych godzinach zdarzenia (`events`: pogoda, wyniki badań). Punkty z `expires` przepadają po czasie — walidator pilnuje, żeby nigdy nie były jedyną drogą do rozwiązania. Wynik liczy normę czasu (`par`, 1 pkt za każde rozpoczęte 20 min ponad normę).
+- **Mapa szlaków** (`map`): węzły z wysokością, krawędzie z czasem w obie strony i osobnym czasem w śnieżycy (`storm`, `null` = zamknięte). Miejsca i osoby mają `at` — przeszukiwać i przesłuchiwać można tylko tam, gdzie jest zespół.
+- **Dowód dźwiękowy** (`evidence.audio`): odtwarzacz z falą dźwięku, gracze wskazują moment i rozpoznają odgłos tła; znaczniki (`marks`) z oknami czasu dają dowody. „Analiza technika” działa jak podpowiedź.
+- **Nowości sprawy** (`novelties`): karta „W tej sprawie po raz pierwszy” na starcie; instruktaż dostaje kartę o zegarze i mapie.
+- Gra w pojedynkę w trybie „Wspólny stół” (od 2.17.9).
+
 ## Struktura
 - `index.html`, `styles.css`, `app.js` — aplikacja (bez zależności i bez budowania).
 - `sw.js`, `manifest.webmanifest` — PWA i tryb offline. Przy każdej zmianie podnieś `VERSION` w `sw.js` i `app.js`.

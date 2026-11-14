@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.17.9';
+const VERSION = '2.18.0';
 const BUILD = '14.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -108,12 +108,14 @@ function indexCase(c) {
   c.people.forEach(p => { p.statements.forEach(s => { c.stmt[s.id] = { ...s, person: p.id }; }); p.questions.forEach(q => { c.q[q.id] = { ...q, person: p.id }; }); });
   c.show = {}; c.people.forEach(p => (p.shows || []).forEach(x => { c.show[x.id] = { ...x, person: p.id }; }));
   c.puzzle = Object.fromEntries(c.puzzles.map(p => [p.id, p])); c.dbMap = c.dbMap || {};
+  c.mark = {}; c.evidence.forEach(e => ((e.audio || {}).marks || []).forEach(m => { c.mark[m.id] = { ...m, ev: e.id }; }));
   // skąd pochodzi dowód (do grupowania w konfrontacji)
   c.evSrc = {}; const setSrc = (ids, k) => (ids || []).forEach(id => { if (!c.evSrc[id]) c.evSrc[id] = k; });
   c.evidence.forEach(e => { if (e.start) c.evSrc[e.id] = 'start'; else if (e.private) c.evSrc[e.id] = 'team'; });
   c.locations.forEach(l => l.spots.forEach(sp => setSrc(sp.gives, 'loc:' + l.id)));
   ((c.tableMode && c.tableMode.locations) || []).forEach(l => l.spots.forEach(sp => setSrc(sp.gives, 'team')));
   c.people.forEach(p => { p.questions.forEach(q => setSrc(q.gives, 'talk')); p.statements.forEach(st => setSrc(st.gives, 'talk')); (p.shows || []).forEach(x => setSrc(x.gives, 'talk')); });
+  c.evidence.forEach(e => ((e.audio || {}).marks || []).forEach(m => setSrc(m.gives, 'other')));
   c.evidence.forEach(e => { if (!c.evSrc[e.id]) c.evSrc[e.id] = 'other'; });
   return c;
 }
@@ -168,6 +170,7 @@ function has(g, c, tok) {
   if (tok.startsWith('lie:')) return g.broken.includes(tok.slice(4));
   if (tok.startsWith('st:')) return g.claims.includes(tok.slice(3));
   if (tok.startsWith('show:')) return (g.showsDone || []).includes(tok.slice(5));
+  if (c.mark && c.mark[tok]) return (g.marks || []).includes(tok);
   if (c.puzzle[tok]) return !!(g.puzzles[tok] && g.puzzles[tok].solved);
   if (c.spot[tok]) return g.spots.includes(tok);
   if (c.q[tok]) return g.asked.includes(tok);
@@ -285,11 +288,11 @@ function ovDbRec(c, g, id, canAttach) {
   const r = DB.byId[id]; const B = BASES[DB.baseOf[id]]; const evId = c.dbMap[id] || 'db:' + id; const inF = g && g.found.includes(evId);
   const e = c.dbMap[id] ? { ...c.ev[c.dbMap[id]], body: B.body(r) } : dbEvidence(id);
   return { title: B.title(r), kicker: B.name, body: `<article class="paper doc dbprint"><div class="dh"><div><small>${esc(B.name)} · stan na ${fmtD(c.db.date)}</small><h3>${esc(B.title(r))}</h3></div><span class="stamp">Wydruk</span></div>${blocksHTML(e.body)}</article>
-   ${canAttach ? `<div class="doc-actions">${inF ? `<button class="btn small ghost" data-a="ev" data-id="${esc(evId)}">W aktach — otwórz</button>` : `<button class="btn small" data-a="db-attach" data-id="${esc(id)}">Dołącz wydruk do akt · 1 ruch</button>`}</div>` : ''}` };
+   ${canAttach ? `<div class="doc-actions">${inF ? `<button class="btn small ghost" data-a="ev" data-id="${esc(evId)}">W aktach — otwórz</button>` : `<button class="btn small" data-a="db-attach" data-id="${esc(id)}">Dołącz wydruk do akt · ${c.clock ? costTxt(c, 'attach') : '1 ruch'}</button>`}</div>` : ''}` };
 }
 function doAttach(c, g, id) {
   const evId = c.dbMap[id] || 'db:' + id; if (g.found.includes(evId)) return;
-  g.actions++;
+  spend(c, g, 'attach');
   if (c.dbMap[id]) gain(g, c, [evId]);
   else { c.ev[evId] = dbEvidence(id); c.evSrc[evId] = 'db'; g.found.push(evId); toast(c.ev[evId].title, 'Wydruk dołączony do akt', 'Bazy danych', evId); sfx(); }
   save();
@@ -321,7 +324,7 @@ function stopAmb(fade = 0.8) {
   const t = AU.ctx.currentTime; try { a.g.gain.cancelScheduledValues(t); a.g.gain.setValueAtTime(a.g.gain.value, t); a.g.gain.linearRampToValueAtTime(0, t + fade); a.n.stop(t + fade + 0.05); } catch (_) {}
 }
 async function syncAudio() {
-  const c = currentCaseId && CASES[currentCaseId]; const src = c && c.ambience;
+  const c = currentCaseId && CASES[currentCaseId]; const gg = c && G(c.id); const src = c && (c.ambienceStorm && gg && gg.weather === 'storm' ? c.ambienceStorm : c.ambience);
   const want = S.settings.sound && src && !document.hidden;
   const my = ++AU.token;
   if (!want) { stopAmb(); return; }
@@ -339,7 +342,7 @@ async function syncAudio() {
 function duck(on) { if (!AU.amb || !AU.ctx) return; try { AU.amb.g.gain.setTargetAtTime(vol('music') * (on ? 0.22 : 0.9), AU.ctx.currentTime, 0.35); } catch (_) {} }
 /* głosy świadków: plik = <voiceDir>/<id pytania lub zeznania>.mp3, odmowy: <osoba>-deflect-<n>.mp3 */
 const voicesOn = () => S.settings.voices !== false;
-function caseMedia(c) { const L = []; if (!c) return L; if (c.voice && c.voice.brief) L.push(c.voice.brief); if (c.introVideo) L.push(c.introVideo, c.introVideo.replace(/\.mp4$/, '.webp'));
+function caseMedia(c) { const L = []; if (!c) return L; if (c.voice && c.voice.brief) L.push(c.voice.brief); (c.evidence || []).forEach(e => { if (e.audio && e.audio.src) L.push(e.audio.src); }); if (c.introVideo) L.push(c.introVideo, c.introVideo.replace(/\.mp4$/, '.webp'));
   (c.breakthroughs || []).forEach(b => { if (b.video) L.push(b.video, b.video.replace(/\.mp4$/, '.webp')); });
   if (c.voiceDir) c.people.forEach(p => { [...p.questions, ...((c.tableMode && c.tableMode.questions && c.tableMode.questions[p.id]) || [])].forEach(q => L.push(`${c.voiceDir}/${q.id}.mp3`)); p.statements.filter(x => x.response).forEach(x => L.push(`${c.voiceDir}/${x.id}.mp3`)); (p.deflect || []).forEach((_, i) => L.push(`${c.voiceDir}/${p.id}-deflect-${i}.mp3`)); });
   return [...new Set(L)]; }
@@ -478,7 +481,7 @@ async function renderIntro(id) {
      <h4>Parametry</h4><p>${esc(c.duration)} · ${esc(c.players)} graczy · trudność: ${esc(c.difficulty)}</p>
     </article>
     ${inProgress ? `<div class="setup"><div class="eyebrow">Śledztwo w toku · ${esc((MODES[g.mode] || { name: 'przekazywanie urządzenia' }).name)}</div><h3>${g.report ? 'Sprawa zamknięta' : 'Wróćcie do akt'}</h3>
-      <p class="muted">Zespół: ${g.players.map(p => esc(p.name)).join(', ')} · ruchy: ${g.actions}${g.report ? ` · wynik: ${g.report.total} pkt` : ''}</p>
+      <p class="muted">Zespół: ${g.players.map(p => esc(p.name)).join(', ')} · ${c.clock ? `godzina w grze: ${fmtHM(nowMin(c, g))}` : `ruchy: ${g.actions}`}${g.report ? ` · wynik: ${g.report.total} pkt` : ''}</p>
       <div class="row-actions"><button class="btn" data-a="continue" data-id="${c.id}">${g.report ? 'Zobacz raport' : 'Kontynuuj śledztwo'}</button><button class="btn ghost" data-a="restart" data-id="${c.id}">Zacznij od nowa</button></div></div>` :
     `<div class="setup"><div class="eyebrow">Krok 1 z 2</div><h3>Jak gracie?</h3>
       <div class="modes">${tiles}</div>
@@ -555,6 +558,7 @@ async function renderGame(id, tab) {
   const view = views[tab] || viewFiles;
   renderShell(c, g, views[tab] ? tab : 'akta', view(c, g));
   if (tab === 'tablica') mountBoard(c, g);
+  if (tab === 'miejsca' && c.map) { const ms = $('#mapsheet'), n = nodeOf(c, posOf(c, g)); if (ms && n && ms.scrollWidth > ms.clientWidth) ms.scrollLeft = Math.max(0, n.x / c.map.w * ms.scrollWidth - ms.clientWidth / 2); }
   if (tab === 'bazy') { const tf = document.querySelector('.term-form'); if (tf) tf.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); handlers['db-search']({ dataset: { k: tf.dataset.k } }); } }); }
 }
 function renderShell(c, g, tab, inner) {
@@ -566,7 +570,7 @@ function renderShell(c, g, tab, inner) {
   app().innerHTML = `<div class="shell">
    <header class="topbar"><button class="icon-btn" data-a="home" aria-label="Archiwum">${I.back}</button>
     <div class="t"><small>Akta ${esc(c.id)}${g.report ? ' · zamknięta' : ''}</small><b>${esc(c.title)}</b></div>
-    <div class="moves" title="Ruchy śledcze">Ruchy<b>${g.actions}</b></div>
+    ${c.clock ? `<button class="moves clock${stormy(c, g) ? ' storm' : ''}" data-a="clock" title="Zegar w grze — plan dnia" aria-label="Zegar: ${fmtHM(nowMin(c, g))}">${stormy(c, g) ? '❄ ' : ''}Godzina<b>${fmtHM(nowMin(c, g))}</b></button>` : `<div class="moves" title="Ruchy śledcze">Ruchy<b>${g.actions}</b></div>`}
     ${g.report ? '' : `<button class="icon-btn" data-a="trop" aria-label="Trop — podpowiedź">${I.bulb}</button>`}
     <button class="icon-btn hide-sm" data-a="sound" aria-label="Dźwięk">${S.settings.sound ? I.sound : I.mute}</button>
     <button class="icon-btn" data-a="case-menu" aria-label="Menu sprawy">${I.menu}</button></header>
@@ -612,7 +616,7 @@ function docHTML(c, e, compact) {
   const kind = e.private ? 'Tajne akta' : e.testimony ? 'Protokół' : 'Dowód';
   return `<article class="paper doc"><div class="dh"><div><small>Akta ${esc(c.id)} · ${kind} ${esc(evNo(e.id))}</small><h3>${esc(e.title)}</h3></div><span class="stamp">${esc(e.type)}</span></div>
    ${imgsOf(e).length ? `<div class="photos">${imgsOf(e).map((src, i) => `<figure class="photo${e.wide ? ' wide' : ''}" style="--rot:${i % 2 ? '1.6deg' : '-1.2deg'}"><button class="zoomable" data-a="pzoom" data-src="${esc(src)}" aria-label="Powiększ zdjęcie"><img src="${esc(src)}" alt="${esc(e.title)}" loading="lazy"><span class="zoom-ic">⤢</span></button></figure>`).join('')}</div>` : ''}
-   ${compact ? '' : `<p style="font-style:italic;color:var(--paperMuted);margin-top:0">${esc(e.summary)}</p>`}${blocksHTML(e.body, compact ? null : e.id)}${e.mark && !compact ? `<button class="amark ${(S.marks || {})[c.id] ? 'got' : ''}" data-a="amark" data-c="${esc(c.id)}" data-l="${esc(e.mark)}" title="Ta pieczęć nie należy do sprawy."><span class="amark-ic">${I.key || '⚿'}</span><span>ARCH.</span><b>${esc(e.mark)}</b></button>` : ''}</article>`;
+   ${compact ? '' : `<p style="font-style:italic;color:var(--paperMuted);margin-top:0">${esc(e.summary)}</p>`}${blocksHTML(e.body, compact ? null : e.id)}${e.audio && !compact ? `<button class="btn small listen-btn" data-a="listen" data-id="${esc(e.id)}">${I.sound} Odsłuchaj i analizuj nagranie</button>` : ''}${e.mark && !compact ? `<button class="amark ${(S.marks || {})[c.id] ? 'got' : ''}" data-a="amark" data-c="${esc(c.id)}" data-l="${esc(e.mark)}" title="Ta pieczęć nie należy do sprawy."><span class="amark-ic">${I.key || '⚿'}</span><span>ARCH.</span><b>${esc(e.mark)}</b></button>` : ''}</article>`;
 }
 
 /* --- AKTA --- */
@@ -688,44 +692,50 @@ function planBlock(c, g) {
 const ART_POS = ['30% 45%', '75% 35%', '50% 80%', '15% 70%', '90% 55%', '55% 20%'];
 function locArt(c, l, i) { const img = l.img || (i % 2 ? c.cover : (c.art || c.cover)); return `background-image:url('${esc(img)}');background-position:${l.img ? 'center' : ART_POS[i % ART_POS.length]};${l.img ? '' : 'filter:saturate(.6) brightness(.75)'}`; }
 function viewPlaces(c, g) {
-  return `<div class="page-head"><div><div class="eyebrow">Plan miejsc</div><h2>Miejsca</h2><p>Każde przeszukanie punktu to jeden ruch. Niektóre punkty otworzycie dopiero, gdy będziecie wiedzieć, czego szukać.</p></div></div>
-  ${c.plan ? planBlock(c, g) : ''}
+  return `<div class="page-head"><div><div class="eyebrow">${c.map ? 'Mapa i miejsca' : 'Plan miejsc'}</div><h2>Miejsca</h2><p>${c.clock ? `Przeszukanie punktu trwa ${costTxt(c, 'search')}. Przeszukujecie tylko miejsca w punkcie mapy, w którym właśnie jesteście.` : 'Każde przeszukanie punktu to jeden ruch.'} Niektóre punkty otworzycie dopiero, gdy będziecie wiedzieć, czego szukać.</p></div></div>
+  ${c.map ? mapBlock(c, g) : ''}${c.plan ? planBlock(c, g) : ''}
   <div class="loc-grid">${c.locations.map((l, i) => {
-    const done = l.spots.filter(s => g.spots.includes(s.id)).length;
-    return `<button class="loc" data-a="loc" data-id="${l.id}"><div class="art" style="${locArt(c, l, i)}"></div><div class="in"><div class="k">${String(i + 1).padStart(2, '0')} · ${esc(l.kind)}</div><h3>${esc(l.name)}</h3>
+    const done = l.spots.filter(s => g.spots.includes(s.id)).length; const away = c.map && l.at && !isHere(c, g, l.at);
+    return `<button class="loc${away ? ' away' : ''}" data-a="loc" data-id="${l.id}"><div class="art" style="${locArt(c, l, i)}"></div><div class="in"><div class="k">${String(i + 1).padStart(2, '0')} · ${esc(l.kind)}</div><h3>${esc(l.name)}</h3>${c.map && l.at ? `<small class="loc-at${away ? '' : ' here'}">${away ? '⌖ ' + esc(nodeName(c, l.at)) : '● jesteście tutaj'}</small>` : ''}
      <div class="muted" style="font-size:.88rem">${esc(l.desc)}</div><div class="prog">${l.spots.map(s => `<i class="${g.spots.includes(s.id) ? 'on' : ''}"></i>`).join('')}</div>
      <small class="eyebrow" style="display:block;margin-top:6px">${done}/${l.spots.length} punktów</small></div></button>`;
   }).join('')}</div>`;
 }
 function spotState(c, g, s) {
   if (g.spots.includes(s.id)) return 'done';
+  if (spotGone(c, g, s)) return 'gone';
   if (s.requires && s.requires.puzzle && !has(g, c, s.requires.puzzle)) return 'locked';
   if (s.requires && s.requires.all && !s.requires.all.every(t => has(g, c, t))) return 'locked';
   return 'open';
 }
+function awayNote(c, g, at) {
+  const P = pathTo(c, g, posOf(c, g), at);
+  return `<div class="away-note"><b>Jesteście: ${esc(nodeName(c, posOf(c, g)))}.</b> To miejsce jest w punkcie „${esc(nodeName(c, at))}”${P ? ` — przejście ${fmtDur(P.total)}` : ' — przy tej pogodzie nie ma tam przejścia'}. Możecie obejrzeć, co już tu znaleźliście, ale żeby szukać dalej, musicie tam dojść.${P ? `<div class="act"><button class="btn small" data-a="travel" data-id="${at}">Przejdźcie tam (${fmtDur(P.total)})</button></div>` : ''}</div>`;
+}
 function ovLocation(c, g, id) {
-  const l = c.loc[id]; const i = c.locations.indexOf(l);
+  const l = c.loc[id]; const i = c.locations.indexOf(l); const away = c.map && l.at && !isHere(c, g, l.at);
   if (l.search) return { title: l.name, kicker: l.kind, full: true, body: `<div class="scene" style="${locArt(c, l, i)}"><div class="in"><div class="eyebrow">${esc(l.kind)}</div><h2>${esc(l.name)}</h2></div></div>
-   <p style="margin:14px 2px 0;color:#d6cebf">${esc(l.desc)}</p>${lookBlock(c, g, l)}` };
+   <p style="margin:14px 2px 0;color:#d6cebf">${esc(l.desc)}</p>${away ? awayNote(c, g, l.at) : ''}${lookBlock(c, g, l, away)}` };
   return { title: l.name, kicker: l.kind, full: true, body: `<div class="scene" style="${locArt(c, l, i)}">${l.img ? `<button class="scene-zoom" data-a="pzoom" data-src="${esc(l.img)}" aria-label="Powiększ zdjęcie miejsca">⤢</button>` : ''}<div class="in"><div class="eyebrow">${esc(l.kind)}</div><h2>${esc(l.name)}</h2></div></div>
-   <p style="margin:14px 2px 0;color:#d6cebf">${esc(l.desc)}</p>
+   <p style="margin:14px 2px 0;color:#d6cebf">${esc(l.desc)}</p>${away ? awayNote(c, g, l.at) : ''}
    <div class="spots">${l.spots.map((s, k) => {
      const st = spotState(c, g, s);
      const found = st === 'done' ? (s.gives || []).filter(e => known(g, e)) : [];
-     return `<div class="spot ${st}"><span class="tent">${k + 1}</span><div style="flex:1"><b>${esc(s.name)}</b>
-       <p>${esc(st === 'locked' ? s.lockedText : s.text)}</p>
+     return `<div class="spot ${st}"><span class="tent">${st === 'gone' ? '✕' : k + 1}</span><div style="flex:1"><b>${esc(s.name)}</b>
+       <p>${esc(st === 'locked' ? s.lockedText : st === 'gone' ? s.expiredText : s.text)}</p>
        ${st === 'done' ? `<div class="found-list">${found.map(e => `<button class="chip" data-a="ev" data-id="${e}">${esc(c.ev[e].title)}</button>`).join('')}</div>` : ''}
-       ${st === 'open' ? `<div class="act"><button class="btn small" data-a="search" data-id="${s.id}">Przeszukaj · 1 ruch</button></div>` : ''}
+       ${st === 'open' && !away ? `<div class="act"><button class="btn small" data-a="search" data-id="${s.id}">${id === 'hq' && c.clock ? 'Zapytaj' : 'Przeszukaj'} · ${c.clock ? costTxt(c, id === 'hq' ? 'hq' : 'search') : '1 ruch'}</button></div>` : ''}
        ${st === 'locked' && s.requires.puzzle ? `<div class="act"><button class="btn small ghost" data-a="puzzle-from-spot" data-id="${s.requires.puzzle}">${I.lock} ${esc(c.puzzle[s.requires.puzzle].title)}</button></div>` : ''}
      </div></div>`;
    }).join('')}</div>` };
 }
 function lookCount(c, g, l) { const ids = Object.keys(l.search.spots); return { all: ids.length, found: ids.filter(id => g.spots.includes(id)).length }; }
-function lookBlock(c, g, l) {
+function lookBlock(c, g, l, away) {
   const n = lookCount(c, g, l); const seen = g.lookSeen || [];
-  return `<div class="look-head"><div><div class="eyebrow">Oględziny na zdjęciu</div><b>Ślady w tym miejscu: ${n.found} z ${n.all}</b></div><button class="btn" data-a="look-open" data-id="${l.id}">${n.found ? 'Wróć do oględzin' : 'Rozpocznij oględziny'}</button></div>
+  return `<div class="look-head"><div><div class="eyebrow">Oględziny na zdjęciu</div><b>Ślady w tym miejscu: ${n.found} z ${n.all}</b></div>${away ? '' : `<button class="btn" data-a="look-open" data-id="${l.id}">${n.found ? 'Wróć do oględzin' : 'Rozpocznij oględziny'}</button>`}</div>
    <div class="spots">${l.spots.map(sp => { const st = spotState(c, g, sp);
      if (st === 'done') { const found = (sp.gives || []).filter(e => known(g, e)); return `<div class="spot done"><span class="tent">✓</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.text)}</p><div class="found-list">${found.map(e => `<button class="chip" data-a="ev" data-id="${e}">${esc(c.ev[e].title)}</button>`).join('')}</div></div></div>`; }
+     if (st === 'gone') return `<div class="spot locked gone"><span class="tent">✕</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.expiredText)}</p></div></div>`;
      if ((seen.includes(sp.id) || !l.search.spots[sp.id]) && st === 'locked') return `<div class="spot locked"><span class="tent">${I.lock}</span><div style="flex:1"><b>${esc(sp.name)}</b><p>${esc(sp.lockedText)}</p>${sp.requires.puzzle ? `<div class="act"><button class="btn small ghost" data-a="puzzle-from-spot" data-id="${sp.requires.puzzle}">${I.lock} ${esc(c.puzzle[sp.requires.puzzle].title)}</button></div>` : ''}</div></div>`;
      return `<div class="spot unknown"><span class="tent">?</span><div style="flex:1"><b>Nieodkryty ślad</b><p class="muted">Szukajcie na zdjęciu.</p></div></div>`; }).join('')}</div>`;
 }
@@ -735,13 +745,163 @@ function lookTap(c, g, l, nx, ny, scale) {
   const hit = Object.entries(l.search.spots).find(([, [x, y, r]]) => Math.hypot((nx - x) * W, ny - y) <= r * W);
   if (!hit) return { miss: true };
   const sp = c.spot[hit[0]]; if (g.spots.includes(sp.id)) return { msg: `${sp.name} — już obejrzane.` };
+  if (c.map && l.at && !isHere(c, g, l.at)) return { msg: 'Najpierw musicie dojść na miejsce.' };
+  if (spotGone(c, g, sp)) return { msg: `${sp.name}: ${sp.expiredText}` };
   if (spotState(c, g, sp) === 'locked') { g.lookSeen = [...new Set([...(g.lookSeen || []), sp.id])]; save(); return { msg: `${sp.name}: ${sp.lockedText}` }; }
   doSearch(c, g, sp.id); return { hit: sp.id };
 }
 function doSearch(c, g, sid) {
-  const s = c.spot[sid]; if (g.spots.includes(sid) || spotState(c, g, s) === 'locked') return;
-  if (!usePower(g, 'search')) g.actions++; g.spots.push(sid); gain(g, c, s.gives); save();
+  const s = c.spot[sid]; if (g.spots.includes(sid) || spotState(c, g, s) !== 'open' || !isHere(c, g, c.loc[s.loc] && c.loc[s.loc].at)) return;
+  if (!usePower(g, 'search')) spend(c, g, s.loc === 'hq' ? 'hq' : 'search'); g.spots.push(sid); gain(g, c, s.gives); save();
 }
+
+/* ---------- ZEGAR W GRZE, MAPA SZLAKÓW, ANALIZA NAGRAŃ (od sprawy 007) ----------
+   c.clock = { start: 'RRRR-MM-DD GG:MM', par: 'GG:MM', unit: 10, costs: {search, ask, show, confront, attach, hq, listen, wait}, events: [{id, at, title, text, public, weather, gives}] }
+   c.map = { w, h, start, nodes: [{id, name, alt, x, y}], edges: [{a, b, t: [a→b, b→a], storm: [..] | null, name, kind}] }
+   miejsce.at / osoba.at = węzeł mapy; punkt.expires = 'GG:MM' (+ expiredText) — po tej godzinie śladu nie da się już zbadać. */
+const hm = s => { const [h, m] = String(s).split(':').map(Number); return h * 60 + m; };
+const fmtHM = mins => { const m = ((Math.round(mins) % 1440) + 1440) % 1440; return `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`; };
+const fmtDur = m => m >= 60 ? `${Math.floor(m / 60)} h${m % 60 ? ' ' + (m % 60) + ' min' : ''}` : `${m} min`;
+const clockStart = c => hm(c.clock.start.split(' ')[1]);
+const nowMin = (c, g) => clockStart(c) + ((g && g.mins) || 0);
+const costTxt = (c, kind) => c.clock ? fmtDur(c.clock.costs[kind] || 0) : '1 ruch';
+const parMin = (c, g) => hm(c.clock.par) - clockStart(c) + (diffOf(g).par + (g.parBonus || 0) + (c.mode === 'table' ? ((c.tableMode || {}).parBonus || 0) : 0)) * (c.clock.unit || 10);
+function spend(c, g, kind) { g.actions++; if (c.clock) clockAdvance(c, g, c.clock.costs[kind] || 0); }
+function clockAdvance(c, g, m) {
+  const before = nowMin(c, g); g.mins = (g.mins || 0) + m; const after = nowMin(c, g);
+  (c.clock.events || []).filter(ev => !(g.evDone || []).includes(ev.id) && hm(ev.at) > before && hm(ev.at) <= after)
+    .sort((a, b) => hm(a.at) - hm(b.at)).forEach(ev => fireEvent(c, g, ev));
+}
+function fireEvent(c, g, ev) {
+  (g.evDone = g.evDone || []).push(ev.id);
+  if (ev.weather) { g.weather = ev.weather; setTimeout(syncAudio, 60); }
+  gain(g, c, ev.gives || [], true); (g.clockQ = g.clockQ || []).push(ev.id);
+}
+function checkClockQ() {
+  const r = route(); if (r.name !== 'gra' || !r.id) return; const g = G(r.id); if (!g || !(g.clockQ || []).length || g.report) return;
+  const c = caseFor(r.id); if (!c || !c.clock) return;
+  const ids = g.clockQ.slice(); g.clockQ = []; save(); sfx('stamp');
+  setTimeout(() => openOv({ type: 'events', ids }), 420);
+}
+const spotGone = (c, g, s) => !!(c.clock && s.expires && !g.spots.includes(s.id) && nowMin(c, g) >= hm(s.expires));
+const posOf = (c, g) => (g && g.pos) || (c.map && c.map.start);
+const nodeOf = (c, id) => c.map && c.map.nodes.find(n => n.id === id);
+const nodeName = (c, id) => (nodeOf(c, id) || {}).name || '';
+const isHere = (c, g, at) => !c.map || !at || posOf(c, g) === at;
+const stormy = (c, g) => !!(c.clock && g && g.weather === 'storm');
+function edgeMin(c, g, e, fwd) { const t = stormy(c, g) && 'storm' in e ? e.storm : e.t; return t ? t[fwd ? 0 : 1] : null; }
+function pathTo(c, g, from, to) {
+  const dist = { [from]: 0 }, prev = {}, todo = new Set(c.map.nodes.map(n => n.id));
+  while (todo.size) {
+    let u = null; todo.forEach(n => { if (dist[n] != null && (u == null || dist[n] < dist[u])) u = n; }); if (u == null) break; todo.delete(u); if (u === to) break;
+    c.map.edges.forEach(e => [[e.a, e.b, true], [e.b, e.a, false]].forEach(([x, y, f]) => { if (x !== u) return; const m = edgeMin(c, g, e, f); if (m == null) return; if (dist[y] == null || dist[u] + m < dist[y]) { dist[y] = dist[u] + m; prev[y] = [u, e, f]; } }));
+  }
+  if (dist[to] == null) return null;
+  const legs = []; let k = to; while (k !== from) { const [u, e, f] = prev[k]; legs.unshift({ from: u, to: k, e, m: edgeMin(c, g, e, f) }); k = u; }
+  return { total: dist[to], legs };
+}
+function whatsAt(c, g, id) {
+  const L = c.locations.filter(l => l.at === id).map(l => l.name), P = c.people.filter(p => p.at === id).map(p => personName(g, p));
+  return [L.length ? `Miejsca: ${L.join(', ')}` : '', P.length ? `Osoby: ${P.join(', ')}` : ''].filter(Boolean).join('<br>');
+}
+function mapSvg(c, g) {
+  const M = c.map, pos = posOf(c, g), storm = stormy(c, g); const N = Object.fromEntries(M.nodes.map(n => [n.id, n]));
+  const edges = M.edges.map(e => {
+    const a = N[e.a], b = N[e.b]; const t = storm && 'storm' in e ? e.storm : e.t; const closed = !t;
+    const mx = e.lx != null ? e.lx : (a.x + b.x) / 2, my = e.ly != null ? e.ly : (a.y + b.y) / 2; const d = e.path || `M${a.x} ${a.y} L${b.x} ${b.y}`;
+    const l1 = closed ? 'zamknięty' : t[0] === t[1] ? fmtDur(t[0]) : `↑ ${fmtDur(t[0])}`, l2 = closed ? (e.closedWhy || '') : t[0] === t[1] ? '' : `↓ ${fmtDur(t[1])}`;
+    return `<g class="me me-${e.kind || 'trail'}${closed ? ' closed' : ''}"><path class="me-bg" d="${d}"/><path d="${d}"/>${e.name ? `<text class="me-n" x="${e.nx != null ? e.nx : mx}" y="${e.ny != null ? e.ny : my - 24}" text-anchor="middle">${esc(e.name)}</text>` : ''}<g class="mt" transform="translate(${mx} ${my})"><rect x="-70" y="${l2 ? -23 : -15}" width="140" height="${l2 ? 46 : 30}" rx="6"/><text y="${l2 ? -3 : 6}">${esc(l1)}</text>${l2 ? `<text y="16" class="s">${esc(l2)}</text>` : ''}</g></g>`;
+  }).join('');
+  const nodes = M.nodes.map(n => { const here = n.id === pos; const ly = n.ly != null ? n.ly : -22, an = n.anchor || 'middle', lx = n.lx || 0;
+    return `<g class="mn${here ? ' here' : ''}" data-a="travel" data-id="${n.id}" role="button" tabindex="0" aria-label="${esc(n.name)}${here ? ' — jesteście tutaj' : ''}" transform="translate(${n.x} ${n.y})">${here ? '<circle class="mp" r="24"/>' : ''}<circle class="mh" r="26"/><circle class="md" r="10"/>
+     <text class="mnl" x="${lx}" y="${ly}" text-anchor="${an}">${esc(n.name)}</text>${n.alt ? `<text class="mna" x="${lx}" y="${ly + 21}" text-anchor="${an}">${n.alt} m n.p.m.</text>` : ''}${here ? `<text class="mhere" x="0" y="${n.hy || 46}" text-anchor="middle">jesteście tutaj</text>` : ''}</g>`; }).join('');
+  return `<svg class="tmap${storm ? ' storm' : ''}" viewBox="0 0 ${M.w} ${M.h}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa szlaków">
+    <defs><pattern id="msnow" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="4" cy="6" r="1.4" fill="rgba(255,255,255,.55)"/><circle cx="15" cy="16" r="1.1" fill="rgba(255,255,255,.45)"/></pattern></defs>
+    ${(M.deco || []).map(d => `<path class="mc${d.k ? ' ' + d.k : ''}" d="${d.d}"/>`).join('')}${(M.labels || []).map(l => `<text class="mlab${l.k ? ' ' + l.k : ''}" x="${l.x}" y="${l.y}" text-anchor="middle"${l.r ? ` transform="rotate(${l.r} ${l.x} ${l.y})"` : ''}>${esc(l.t)}</text>`).join('')}
+    ${edges}${nodes}${storm ? `<rect class="msnow" x="0" y="0" width="${M.w}" height="${M.h}" fill="url(#msnow)"/>` : ''}</svg>`;
+}
+function mapBlock(c, g) {
+  return `<section class="plan-card map-card"><div class="plan-top"><div><div class="eyebrow">Mapa szlaków · ${stormy(c, g) ? 'śnieżyca' : 'warunki zimowe'}</div><small class="muted">Jesteście: <b>${esc(nodeName(c, posOf(c, g)))}</b> · ${fmtHM(nowMin(c, g))}. Stuknijcie punkt na mapie, żeby tam przejść. Czasy podano dla waszego zespołu w rakietach śnieżnych${c.map.note ? '. ' + esc(c.map.note) : ''}.</small></div></div>
+    <div class="map-sheet" id="mapsheet">${mapSvg(c, g)}</div><div class="map-hint">← przesuńcie mapę w bok →</div></section>`;
+}
+function ovTravel(c, g, id) {
+  const n = nodeOf(c, id), from = posOf(c, g); const at = whatsAt(c, g, id);
+  if (id === from) return { title: n.name, kicker: 'Mapa szlaków', body: `<p>Jesteście tutaj${n.alt ? `, ${n.alt} m n.p.m.` : ''}.</p>${at ? `<p class="muted">${at}</p>` : ''}<button class="btn" data-a="close">Zostajemy</button>` };
+  const P = pathTo(c, g, from, id);
+  if (!P) return { title: n.name, kicker: 'Mapa szlaków', body: `<p>Przy obecnej pogodzie ratownik nie poprowadzi was tam żadnym szlakiem.</p><button class="btn" data-a="close">Rozumiem</button>` };
+  const now = nowMin(c, g), arr = now + P.total;
+  const ahead = (c.clock.events || []).filter(e => e.public && !(g.evDone || []).includes(e.id) && hm(e.at) > now && hm(e.at) <= arr);
+  return { title: n.name, kicker: 'Przejście', body: `<ol class="legs">${P.legs.map(l => `<li><b>${esc(nodeName(c, l.from))} → ${esc(nodeName(c, l.to))}</b><span>${esc(l.e.name || 'szlak')} · ${fmtDur(l.m)}</span></li>`).join('')}</ol>
+   <p>Czas przejścia: <b>${fmtDur(P.total)}</b>. Na miejscu będziecie o <b>${fmtHM(arr)}</b>.</p>${ahead.length ? `<p class="result-bad" style="margin:10px 0">Po drodze: ${ahead.map(e => `${e.at} — ${esc(e.title)}`).join('; ')}.</p>` : ''}
+   ${at ? `<p class="muted">${at}</p>` : ''}<div class="row-actions"><button class="btn" data-a="travel-go" data-id="${id}">Idziemy</button><button class="btn ghost" data-a="close">Zostajemy</button></div>` };
+}
+function doTravel(c, g, id) {
+  const from = posOf(c, g); if (id === from) return null; const P = pathTo(c, g, from, id); if (!P) return null;
+  (g.trail = g.trail || []).push([nowMin(c, g), from, id]); g.pos = id; clockAdvance(c, g, P.total); save(); return P;
+}
+function dayLabel(c, g) { const [d] = c.clock.start.split(' '); const [y, m, dd] = d.split('-').map(Number); const extra = Math.floor(nowMin(c, g) / 1440); const dt = new Date(y, m - 1, dd + extra); return `${DAYS[dt.getDay()]}, ${dt.getDate()} ${MONTHS[dt.getMonth()]}`; }
+function ovClock(c, g) {
+  const now = nowMin(c, g), done = g.evDone || [], E = c.clock.events || [];
+  const pub = E.filter(e => e.public && !done.includes(e.id) && hm(e.at) > now).sort((a, b) => hm(a.at) - hm(b.at)); const past = E.filter(e => done.includes(e.id)).sort((a, b) => hm(a.at) - hm(b.at));
+  const C = c.clock.costs; const rows = [['Pytanie albo okazanie dowodu', C.ask], ['Przeszukanie punktu, ślad na zdjęciu', C.search], ['Konfrontacja', C.confront], ['Rozpoznany dźwięk w nagraniu', C.listen], ['Dołączenie wydruku z bazy', C.attach], ...(c.mode === 'table' ? [['Zapytanie do centrali', C.hq]] : [])];
+  const pm = parMin(c, g), over = Math.max(0, (g.mins || 0) - pm);
+  return { title: fmtHM(now), kicker: `Zegar · ${dayLabel(c, g)}`, body: `<div class="clockface"><b>${fmtHM(now)}</b><small>${esc(dayLabel(c, g))} · ${stormy(c, g) ? 'śnieżyca' : 'pogoda bez opadów'}</small></div>
+   ${c.map ? `<p>Jesteście: <b>${esc(nodeName(c, posOf(c, g)))}</b>.</p>` : ''}
+   <h4 class="eyebrow" style="margin-top:16px">Zapowiedziane</h4>${pub.length ? `<ul class="clock-list">${pub.map(e => `<li><b>${e.at}</b> ${esc(e.title)}</li>`).join('')}</ul>` : '<p class="muted">Nic więcej nie zapowiedziano.</p>'}
+   ${past.length ? `<h4 class="eyebrow" style="margin-top:16px">Co już się wydarzyło</h4><ul class="clock-list">${past.map(e => `<li><b>${e.at}</b> ${esc(e.title)}</li>`).join('')}</ul>` : ''}
+   <h4 class="eyebrow" style="margin-top:16px">Ile to trwa</h4><table class="g-table">${rows.map(([k, v]) => `<tr><td>${k}</td><td>${fmtDur(v || 0)}</td></tr>`).join('')}<tr><td>Przejście szlakiem</td><td>tyle, ile pokazuje mapa</td></tr><tr><td>Czytanie akt, zagadki, bazy, notatki, tablica</td><td>nic</td></tr></table>
+   <p class="muted" style="font-size:.88rem">Norma tej sprawy: raport do <b>${fmtHM(clockStart(c) + pm)}</b>${over ? ` — jesteście już ${fmtDur(over)} po normie` : ''}. Każde rozpoczęte 20 minut ponad normę to −1 pkt (najwyżej −15).</p>
+   <div class="row-actions">${pub[0] ? `<button class="btn ghost" data-a="wait-until" data-id="${pub[0].id}">Czekajcie do ${pub[0].at}</button>` : ''}<button class="btn ghost" data-a="wait">Odczekajcie ${fmtDur(C.wait || 30)}</button></div>` };
+}
+function ovEvents(c, g, ids) {
+  const E = ids.map(id => (c.clock.events || []).find(e => e.id === id)).filter(Boolean); if (!E.length) return { title: 'Zegar', kicker: '', body: '' };
+  return { title: E.length > 1 ? 'Tymczasem…' : E[0].title, kicker: `Zegar · ${fmtHM(nowMin(c, g))}`, body: E.map(e => `<article class="paper doc clock-ev"><div class="dh"><div><small>Godzina ${e.at}</small><h3>${esc(e.title)}</h3></div><span class="stamp">${e.weather ? 'Pogoda' : 'Wydarzenie'}</span></div><p>${esc(e.text)}</p>${(e.gives || []).filter(x => known(g, x) && c.ev[x]).map(x => `<button class="chip" data-a="ev" data-id="${x}">${esc(c.ev[x].title)}</button>`).join(' ')}</article>`).join('') + '<button class="btn block" data-a="close" style="margin-top:14px">Dalej</button>' };
+}
+/* analiza nagrania: fala dźwięku, znaczniki, rozpoznawanie odgłosów tła */
+let LA = null, laRaf = 0, laMark = null;
+function laStop() { if (LA) { try { LA.a.pause(); } catch (_) {} } cancelAnimationFrame(laRaf); duck(false); }
+function ovListen(c, g, id) {
+  const e = c.ev[id], A = e.audio, got = g.marks || [], n = A.marks.filter(m => got.includes(m.id)).length;
+  const W = 600, H = 96, P = A.peaks || [], bw = W / Math.max(1, P.length);
+  const bars = P.map((v, i) => `<rect x="${(i * bw).toFixed(1)}" y="${(H / 2 - v * H * 0.46).toFixed(1)}" width="${Math.max(1, bw - 0.8).toFixed(1)}" height="${Math.max(1.5, v * H * 0.92).toFixed(1)}"/>`).join('');
+  const pins = A.marks.filter(m => got.includes(m.id)).map(m => { const x = (m.at[0][0] / A.dur * W).toFixed(1); return `<line class="lpin" x1="${x}" x2="${x}" y1="0" y2="${H}"/>`; }).join('');
+  const fmtS = s => s.toFixed(1).replace('.', ',');
+  return { title: e.title, kicker: 'Analiza nagrania', full: true, body: `<p class="muted" style="font-size:.92rem">Odtwórzcie nagranie. Kiedy usłyszycie coś w tle, zatrzymajcie je albo stuknijcie falę w tym miejscu, naciśnijcie <b>„To tutaj”</b> i wybierzcie, co słychać. Pudło nic nie kosztuje, rozpoznany dźwięk to ${costTxt(c, 'listen')}.</p>
+   <div class="lwave" id="lwave"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><g class="lbars">${bars}</g>${pins}<line id="lhead" class="lhead" x1="0" x2="0" y1="0" y2="${H}"/></svg></div>
+   <div class="lctl"><button class="btn" data-a="lplay" id="lplay">▶ Odtwórz</button><button class="btn ghost" data-a="lback">⟲ 3 s</button><span class="ltime" id="ltime">0,0 / ${fmtS(A.dur)} s</span></div>
+   <div class="row-actions"><button class="btn red" data-a="lmark" data-id="${id}">To tutaj — co słychać?</button></div>
+   <div class="lopts" id="lopts" hidden><p class="eyebrow" id="lat"></p>${A.options.map(o => `<button class="opt" data-a="lpick" data-id="${id}" data-l="${esc(o)}">${esc(o)}</button>`).join('')}</div>
+   <div class="look-msg static" id="lmsg" hidden></div>
+   <h4 class="eyebrow" style="margin:18px 0 8px">Rozpoznane dźwięki: ${n} z ${A.marks.length}</h4>
+   <div class="spots">${A.marks.map(m => got.includes(m.id) ? `<div class="spot done"><span class="tent">✓</span><div style="flex:1"><b>${esc(m.label)}</b> <small class="muted">· ${fmtS(m.at[0][0])} s</small><div class="found-list">${(m.gives || []).filter(x => known(g, x)).map(x => `<button class="chip" data-a="ev" data-id="${x}">${esc(c.ev[x].title)}</button>`).join('')}</div></div></div>` : `<div class="spot unknown"><span class="tent">?</span><div style="flex:1"><b>Nierozpoznany dźwięk</b></div></div>`).join('')}</div>
+   ${n < A.marks.length ? `<div class="row-actions" style="margin-top:12px"><button class="btn ghost" data-a="lhint" data-id="${id}">Analiza technika — wskaże jeden dźwięk (${g.armed === 'hint' ? 'zdolność: bez kary' : '−' + diffOf(g).hint + ' pkt'})</button></div>` : ''}` };
+}
+function mountListen(c, g, id) {
+  const A = c.ev[id].audio; if (!LA || LA.id !== id) { laStop(); const a = new Audio(A.src); a.preload = 'auto'; LA = { id, a }; }
+  const a = LA.a, wave = $('#lwave'), head = $('#lhead'), t = $('#ltime'), btn = $('#lplay'); if (!wave) return;
+  const fmtS = s => s.toFixed(1).replace('.', ',');
+  const draw = () => { const p = Math.min(1, (a.currentTime || 0) / A.dur); if (head) { head.setAttribute('x1', p * 600); head.setAttribute('x2', p * 600); } if (t) t.textContent = `${fmtS(a.currentTime || 0)} / ${fmtS(A.dur)} s`; if (btn) btn.textContent = a.paused ? '▶ Odtwórz' : '❚❚ Pauza'; };
+  const loop = () => { draw(); if (!a.paused) laRaf = requestAnimationFrame(loop); };
+  a.onplay = () => { duck(true); cancelAnimationFrame(laRaf); loop(); }; a.onpause = () => { draw(); duck(false); }; a.onended = () => { draw(); duck(false); };
+  a.volume = vol('voice');
+  wave.addEventListener('pointerdown', ev => { const r = wave.getBoundingClientRect(); a.currentTime = Math.max(0, Math.min(A.dur, (ev.clientX - r.left) / r.width * A.dur)); draw(); });
+  draw();
+}
+function listenPick(c, g, id, label, t) {
+  const A = c.ev[id].audio; const got = g.marks || [];
+  const near = A.marks.filter(m => m.at.some(([x, tol]) => Math.abs(t - x) <= tol));
+  const m = near.find(m => !got.includes(m.id) && m.label === label);
+  if (!m) { if (near.some(m => got.includes(m.id) && m.label === label)) return { msg: `${label} — ten dźwięk już rozpoznaliście.` }; return { miss: true }; }
+  g.marks = [...got, m.id]; spend(c, g, 'listen'); gain(g, c, m.gives); save(); return { hit: m };
+}
+function listenHint(c, g, id) {
+  const A = c.ev[id].audio; const got = g.marks || []; const m = A.marks.find(x => !got.includes(x.id)); if (!m) return null;
+  if (!usePower(g, 'hint')) g.listenHints = (g.listenHints || 0) + 1;
+  g.marks = [...got, m.id]; spend(c, g, 'listen'); gain(g, c, m.gives); save(); return m;
+}
+window.__listenTest = (eid, mid) => { const { c, g } = ctx(); const m = c.ev[eid].audio.marks.find(x => x.id === mid); return listenPick(c, g, eid, m.label, m.at[0][0]); };
+window.__travelTest = id => { const { c, g } = ctx(); const P = doTravel(c, g, id); rerender(); return P ? P.total : 0; };
+window.__waitAll = () => { const { c, g } = ctx(); const last = Math.max(...(c.clock.events || []).map(e => hm(e.at))); const d = last - nowMin(c, g); if (d > 0) clockAdvance(c, g, d); save(); rerender(); return fmtHM(nowMin(c, g)); };
 
 /* --- OSOBY --- */
 function portrait(p, g, cls = '') { return `<div class="polaroid ${cls}" style="--rot:${rot(p.id)}"><div class="ph" ${p.img ? `style="background-image:url('${esc(p.img)}')"` : ''}>${p.img ? '' : `<span>${esc(initials(personName(g, p)))}</span>`}</div><div class="cap">${esc(personName(g, p))}</div></div>`; }
@@ -749,39 +909,42 @@ const initials = n => n.replace(/[„”"]/g, '').split(/\s+/).map(w => w[0]).jo
 function availableQs(c, g, p) { return p.questions.filter(q => (!q.requires || q.requires.every(r => has(g, c, r))) && (!q.requiresAny || q.requiresAny.some(r => has(g, c, r)))); }
 function openStatements(g, p) { return p.statements.filter(s => g.claims.includes(s.id)); }
 function viewPeople(c, g) {
-  return `<div class="page-head"><div><div class="eyebrow">Przesłuchania</div><h2>Osoby</h2><p>Każde pytanie to jeden ruch. Zeznania, które padną, trafiają do protokołu — możecie je podważyć dowodem. Nietrafiona konfrontacja kosztuje ${pkt(diffOf(g).wrong)}.</p></div></div>
+  return `<div class="page-head"><div><div class="eyebrow">Przesłuchania</div><h2>Osoby</h2><p>${c.clock ? `Pytanie trwa ${costTxt(c, 'ask')}, konfrontacja ${costTxt(c, 'confront')}. Rozmawiacie tylko z osobami, które są tam, gdzie wy.` : 'Każde pytanie to jeden ruch.'} Zeznania, które padną, trafiają do protokołu — możecie je podważyć dowodem. Nietrafiona konfrontacja kosztuje ${pkt(diffOf(g).wrong)}.</p></div></div>
   <div class="ppl-grid">${c.people.map(p => {
     const qs = availableQs(c, g, p); const left = qs.filter(q => !g.asked.includes(q.id)).length;
     const br = p.statements.filter(s => g.broken.includes(s.id) && !s.mistake).length, mk = p.statements.filter(s => g.broken.includes(s.id) && s.mistake).length;
-    return `<button class="person" data-a="person" data-id="${p.id}">${portrait(p, g)}<div class="info"><b>${esc(personName(g, p))}</b><small>${esc(personRole(g, p))}</small>
+    return `<button class="person" data-a="person" data-id="${p.id}">${portrait(p, g)}<div class="info"><b>${esc(personName(g, p))}</b><small>${esc(personRole(g, p))}</small>${c.map && p.at ? `<small class="loc-at${isHere(c, g, p.at) ? ' here' : ''}">${isHere(c, g, p.at) ? '● obok was' : '⌖ ' + esc(nodeName(c, p.at))}</small>` : ''}
      <div class="tally">${left ? `<span class="chip">${left} nowe pytania</span>` : ''}${br ? `<span class="chip red">${br} podważone</span>` : ''}${mk ? `<span class="chip">${mk} sprostowane</span>` : ''}</div></div></button>`;
   }).join('')}</div>`;
 }
 function ovPerson(c, g, id, mode) {
-  const p = c.person[id]; const log = g.log[id] || [];
+  const p = c.person[id]; const log = g.log[id] || []; const away = c.map && p.at && !isHere(c, g, p.at);
+  const awayP = away ? (() => { const P = pathTo(c, g, posOf(c, g), p.at); return `<div class="away-note"><b>${esc(personName(g, p))} jest teraz w punkcie „${esc(nodeName(c, p.at))}”.</b> Żeby zadawać pytania, okazywać dowody i konfrontować zeznania, musicie tam dojść.${P ? `<div class="act"><button class="btn small" data-a="travel" data-id="${p.at}">Przejdźcie tam (${fmtDur(P.total)})</button></div>` : ''}</div>`; })() : '';
   const qs = availableQs(c, g, p); const stm = openStatements(g, p);
   const head = `<div class="room-head">${portrait(p, g)}<div><div class="eyebrow">${esc(personRole(g, p))}${p.age ? ' · ' + p.age + ' l.' : ''}</div><h3>${esc(personName(g, p))}</h3><p>${esc(p.desc)}</p></div></div>
    <div class="tabs"><button aria-pressed="${mode !== 'stmt' && mode !== 'show'}" data-a="pmode" data-id="${id}" data-m="talk">Rozmowa</button>${p.showDefault ? `<button aria-pressed="${mode === 'show'}" data-a="pmode" data-id="${id}" data-m="show">Okaż dowód</button>` : ''}<button aria-pressed="${mode === 'stmt'}" data-a="pmode" data-id="${id}" data-m="stmt">Protokół zeznań · ${stm.length}</button><button data-a="pin" data-key="p:${id}">${I.pin} Na tablicę</button></div>`;
   if (mode === 'show') {
     const shown = g.shown || []; const ids = visibleEvidence(g, c); const tab = (topOv() && topOv().cat) || 'all';
     const item = eid => { const was = shown.includes(id + '|' + eid); return `<div class="cf-item${was ? ' shown' : ''}" data-cat="${evCat(c, eid)}"><button class="cf-main" data-a="show" data-p="${id}" data-id="${eid}"><small>${esc(c.ev[eid].type)} · ${esc(evNo(eid))}${was ? ' · pokazano' : ''}</small><b>${esc(c.ev[eid].title)}</b><span>${esc(c.ev[eid].summary)}</span></button><button class="cf-prev" data-a="cf-preview" data-id="${eid}" data-p="${id}" aria-label="Podgląd">${I.eye}</button></div>`; };
-    return { title: personName(g, p), kicker: 'Okazanie dowodu', full: true, body: head + `<p class="muted" style="font-size:.9rem">Pokażcie tej osobie dowód i zobaczcie, jak zareaguje. Okazanie to jeden ruch. To nie konfrontacja — nie musicie niczego podważać.</p>
+    if (away) return { title: personName(g, p), kicker: 'Okazanie dowodu', full: true, body: head + awayP };
+    return { title: personName(g, p), kicker: 'Okazanie dowodu', full: true, body: head + `<p class="muted" style="font-size:.9rem">Pokażcie tej osobie dowód i zobaczcie, jak zareaguje. Okazanie to ${c.clock ? costTxt(c, 'show') : 'jeden ruch'}. To nie konfrontacja — nie musicie niczego podważać.</p>
      <div class="cf-tabs" style="margin:10px 0 4px">${CONF_TABS.filter(([k]) => k !== 'talk').map(([k, n]) => `<button data-a="cf-tab" data-k="${k}" aria-pressed="${k === tab}">${n}</button>`).join('')}</div>
      <div id="cf-groups">${evGroups(c, ids, item).join('')}</div>` };
   }
   if (mode === 'stmt') {
     return { title: personName(g, p), kicker: 'Protokół zeznań', full: true, body: head + (stm.length ? `<p class="muted" style="font-size:.9rem">Wybierzcie zeznanie i wskażcie dowód, który mu przeczy. Prawdziwe zeznania też tu są — nie każde zdanie to kłamstwo.</p>
-     <div class="stmts">${stm.map(s => { const b = g.broken.includes(s.id); return `<div class="stmt ${b ? 'broken' : ''}"><q>${esc(s.text)}</q><div class="row"><span class="eyebrow">${b ? (s.mistake ? 'Sprostowane — pomyłka, nie kłamstwo' : 'Podważone') : 'Zeznanie'}</span>${b ? '' : `<button class="btn small red" data-a="confront" data-id="${s.id}">Konfrontuj</button>`}</div></div>`; }).join('')}</div>` : '<div class="empty">Ta osoba nie złożyła jeszcze żadnych twierdzeń. Zacznijcie od pytań.</div>') };
+     ${awayP}<div class="stmts">${stm.map(s => { const b = g.broken.includes(s.id); return `<div class="stmt ${b ? 'broken' : ''}"><q>${esc(s.text)}</q><div class="row"><span class="eyebrow">${b ? (s.mistake ? 'Sprostowane — pomyłka, nie kłamstwo' : 'Podważone') : 'Zeznanie'}</span>${b || away ? '' : `<button class="btn small red" data-a="confront" data-id="${s.id}">Konfrontuj</button>`}</div></div>`; }).join('')}</div>` : '<div class="empty">Ta osoba nie złożyła jeszcze żadnych twierdzeń. Zacznijcie od pytań.</div>') };
   }
   const tr = log.map(m => { if (m.t === 'q') return `<div class="tq">${esc(m.text)}</div>`; if (m.t === 'show') return `<div class="tq show">${I.eye} ${esc(m.text)}</div>`; const vs = voiceFor(c, p.id, m); return `<div class="ta ${m.t === 'break' ? 'break' : m.t === 'deflect' ? 'deflect' : ''}"><span class="who">${esc(personName(g, p))}${m.t === 'break' ? (m.mk ? ' · sprostowanie' : ' · po konfrontacji') : ''}${vs ? `<button class="vplay" data-a="vplay" data-src="${esc(vs)}" aria-label="Odsłuchaj wypowiedź">${I.sound}</button>` : ''}</span>${esc(m.text)}</div>`; }).join('');
   return { title: personName(g, p), kicker: 'Przesłuchanie', full: true, body: head + `${c.voiceDir ? `<div class="vbar"><button class="btn small ghost" data-a="voices-toggle">${voicesOn() ? I.sound + ' Głosy świadków: włączone' : I.mute + ' Głosy świadków: wyłączone'}</button></div>` : ''}<div class="transcript" id="transcript">${tr || '<p class="muted">Rozmowa jeszcze się nie zaczęła.</p>'}</div>
-   <div class="eyebrow" style="margin:18px 0 8px">Zadaj pytanie · 1 ruch</div>
-   <div class="qlist">${qs.map(q => `<button class="q ${g.asked.includes(q.id) ? 'asked' : ''}" data-a="ask" data-id="${q.id}" ${g.asked.includes(q.id) ? 'disabled' : ''}>${esc(q.q)}</button>`).join('')}</div>
+   ${away ? awayP : `<div class="eyebrow" style="margin:18px 0 8px">Zadaj pytanie · ${c.clock ? costTxt(c, 'ask') : '1 ruch'}</div>
+   <div class="qlist">${qs.map(q => `<button class="q ${g.asked.includes(q.id) ? 'asked' : ''}" data-a="ask" data-id="${q.id}" ${g.asked.includes(q.id) ? 'disabled' : ''}>${esc(q.q)}</button>`).join('')}</div>`}
    ${qs.length < p.questions.length ? `<p class="muted" style="font-size:.85rem;margin-top:10px">Kolejne pytania pojawią się, gdy zdobędziecie odpowiednie materiały.</p>` : ''}` };
 }
 function doAsk(c, g, qid) {
   const q = c.q[qid]; if (g.asked.includes(qid)) return;
-  if (!usePower(g, 'ask')) g.actions++; g.asked.push(qid);
+  if (c.person[q.person] && !isHere(c, g, c.person[q.person].at)) return;
+  if (!usePower(g, 'ask')) spend(c, g, 'ask'); g.asked.push(qid);
   (g.log[q.person] = g.log[q.person] || []).push({ t: 'q', text: q.q }, { t: 'a', text: q.a, v: c.voiceDir ? `${c.voiceDir}/${q.id}.mp3` : undefined });
   (q.claims || []).forEach(s => { if (!g.claims.includes(s)) g.claims.push(s); });
   gain(g, c, q.gives); save();
@@ -789,7 +952,8 @@ function doAsk(c, g, qid) {
 function doShow(c, g, pid, eid) {
   const p = c.person[pid]; const e = c.ev[eid]; if (!p || !e) return;
   const now = Date.now(); if (doShow.last && doShow.last.k === pid + '|' + eid && now - doShow.last.t < 2000) return; doShow.last = { k: pid + '|' + eid, t: now };
-  if (!usePower(g, 'ask')) g.actions++;
+  if (!isHere(c, g, p.at)) return;
+  if (!usePower(g, 'ask')) spend(c, g, 'show');
   g.shown = g.shown || []; g.showsDone = g.showsDone || []; g.showDef = g.showDef || {};
   if (!g.shown.includes(pid + '|' + eid)) g.shown.push(pid + '|' + eid);
   const L = (g.log[pid] = g.log[pid] || []); L.push({ t: 'show', text: 'Okazujecie: ' + e.title });
@@ -815,7 +979,7 @@ function ovConfront(c, g, sid, o) {
   Object.keys(byP).forEach(pid => { const pp = c.person[pid]; groups.push(`<details class="cf-group" open><summary>${pp.img ? `<img src="${esc(pp.img)}" alt="">` : ''}Zeznania: ${esc(personName(g, pp))} <i>${byP[pid].length}</i></summary><div class="cf-list">${byP[pid].map(x => btn('st:' + x.id, 'talk', 'Zeznanie', '„' + x.text + '”', '', personName(g, pp), null)).join('')}</div></details>`); });
   return { title: 'Konfrontacja', kicker: personName(g, p), body: `<div class="cf-sticky"><div class="stmt"><q>${esc(s.text)}</q></div>
    <div class="cf-tools"><div class="cf-tabs">${CONF_TABS.map(([k, n]) => `<button data-a="cf-tab" data-k="${k}" aria-pressed="${k === tab}">${n}</button>`).join('')}</div></div></div>
-   <p class="muted" style="margin:12px 0 4px;font-size:.85rem">Co przeczy temu zeznaniu? Okażcie dowód albo zestawcie je z zeznaniem innej osoby. Konfrontacja kosztuje 1 ruch; nietrafiona dodatkowo ${diffOf(g).wrong} pkt.${g.armed === 'confront' ? ' <b>Aktywna zdolność „Sprawdzam”: bez ruchu i bez kary.</b>' : ''}</p>
+   <p class="muted" style="margin:12px 0 4px;font-size:.85rem">Co przeczy temu zeznaniu? Okażcie dowód albo zestawcie je z zeznaniem innej osoby. Konfrontacja kosztuje ${c.clock ? costTxt(c, 'confront') : '1 ruch'}; nietrafiona dodatkowo ${diffOf(g).wrong} pkt.${g.armed === 'confront' ? ' <b>Aktywna zdolność „Sprawdzam”: bez ruchu i bez kary.</b>' : ''}</p>
    <div id="cf-groups">${groups.join('')}</div>` };
 }
 function evGroups(c, ids, item) {
@@ -831,7 +995,8 @@ function doConfront(c, g, sid, evid) {
   const s = c.stmt[sid]; const p = c.person[s.person]; if (g.broken.includes(sid)) return;
   const now = Date.now(); if (doConfront.last && doConfront.last.k === sid + '|' + evid && now - doConfront.last.t < 2000) return; doConfront.last = { k: sid + '|' + evid, t: now };
   const L = (g.log[p.id] = g.log[p.id] || []);
-  const free = usePower(g, 'confront'); if (!free) g.actions++;
+  if (!isHere(c, g, p.at)) return false;
+  const free = usePower(g, 'confront'); if (!free) spend(c, g, 'confront');
   L.push({ t: 'q', text: evid.startsWith('st:') ? `Konfrontacja: „${s.text}” — zestawiamy z zeznaniem: ${personName(g, c.person[c.stmt[evid.slice(3)].person])} — „${c.stmt[evid.slice(3)].text}”.` : `Konfrontacja: „${s.text}” — okazujemy: ${c.ev[evid].title}.` });
   if (!s.truth && (s.contradicts || []).includes(evid)) {
     g.broken.push(sid); L.push({ t: 'break', mk: s.mistake ? 1 : undefined, text: s.response, v: c.voiceDir ? `${c.voiceDir}/${sid}.mp3` : undefined });
@@ -881,13 +1046,14 @@ function matrixHTML(c, g) {
    <div class="mx">${c.people.map(p => { const br = p.statements.filter(s => g.broken.includes(s.id) && !s.mistake).length, mk = p.statements.filter(s => g.broken.includes(s.id) && s.mistake).length; return `<div class="mx-row"><div class="mx-who">${portrait(p, g, 'mini')}<div><b>${esc(personName(g, p))}</b><small>${esc(personRole(g, p))}</small>${br ? `<span class="chip red">${br} podważone</span>` : ''}${mk ? `<span class="chip">${mk} sprostowane</span>` : ''}</div></div>
      <div class="mx-cells">${MX_COLS.map(([k, l]) => `<label class="mx-cell"><span>${l}</span><textarea data-mx="${p.id}|${k}" rows="2" placeholder="—">${esc((m[p.id] || {})[k] || '')}</textarea></label>`).join('')}</div></div>`; }).join('')}</div>`;
 }
+const powerDesc = (c, P) => !c.clock ? P.desc : P.kind === 'par' ? `Norma czasu tej sprawy rośnie o ${fmtDur(3 * (c.clock.unit || 10))}. Działa od razu.` : P.desc.replace('bez zużycia ruchu', 'bez straty czasu').replace('bez ruchu', 'bez straty czasu');
 function teamHTML(c, g) {
   const D = diffOf(g);
   const pw = g.players.map(pl => { const P = POWERS[pl.role]; const used = (g.used || {})[pl.role]; const armed = g.armed === P.kind && !used;
-    return `<div class="panel power ${used ? 'used' : ''}"><div class="eyebrow">${esc(ROLES.find(r => r.id === pl.role).name)}</div><h3>${esc(pl.name)}</h3><p><b>${esc(P.name)}</b> — ${esc(P.desc)}</p>
+    return `<div class="panel power ${used ? 'used' : ''}"><div class="eyebrow">${esc(ROLES.find(r => r.id === pl.role).name)}</div><h3>${esc(pl.name)}</h3><p><b>${esc(P.name)}</b> — ${esc(powerDesc(c, P))}</p>
      ${used ? '<span class="chip">Wykorzystana</span>' : armed ? `<span class="chip red">Aktywna — zadziała przy następnej akcji</span> <button class="btn small ghost" data-a="power-off">Anuluj</button>` : `<button class="btn small" data-a="power" data-role="${pl.role}" ${g.report ? 'disabled' : ''}>Użyj zdolności</button>`}</div>`; }).join('');
   const vote = g.mode === 'phones' ? `<div class="panel"><div class="eyebrow">Przed aktem oskarżenia</div><h3>Głosowanie zespołu</h3><p>Każdy w swoim telefonie (w teczce) typuje sprawcę i motyw — po cichu. Na sygnał wszyscy pokazujecie ekrany. Jeśli się nie zgadzacie, najpierw dyskusja, potem raport.</p><button class="btn" data-a="vote" ${g.report ? 'disabled' : ''}>Rozpocznij głosowanie</button>${g.vote ? `<p class="muted" style="margin-top:10px">Ostatnie głosowanie: ${g.vote === 'zgodni' ? 'zespół zgodny' : 'zespół podzielony'}.</p>` : ''}</div>` : '';
-  return `<p class="muted">Poziom trudności: <b>${esc(D.name)}</b> · norma ruchów: <b>${effPar(c, g)}</b>. Każda rola ma jedną zdolność na całą sprawę. Uzgodnijcie, kto i kiedy jej użyje.</p>
+  return `<p class="muted">Poziom trudności: <b>${esc(D.name)}</b> · ${c.clock ? `norma czasu: raport do <b>${fmtHM(clockStart(c) + parMin(c, g))}</b>` : `norma ruchów: <b>${effPar(c, g)}</b>`}. Każda rola ma jedną zdolność na całą sprawę. Uzgodnijcie, kto i kiedy jej użyje.</p>
    ${vote}<div class="cards2" style="margin-top:16px">${pw}</div>`;
 }
 function timeFacts(c, g) {
@@ -1199,8 +1365,10 @@ function score(c, g) {
     }
   });
   const D = diffOf(g); const par = effPar(c, g);
-  const hintPen = Object.values(g.puzzles).reduce((s, p) => s + Math.max(0, (p.hints || 0) - (p.free || 0)) * D.hint, 0);
-  const pen = [['Podpowiedzi w zagadkach', hintPen], ['Tropy', g.trops * (D.trop || 0)], ['Nietrafione konfrontacje', g.failed * D.wrong], [`Ruchy ponad normę (${g.actions}/${par})`, Math.min(15, Math.ceil(Math.max(0, g.actions - par) / 2))]];
+  const hintPen = Object.values(g.puzzles).reduce((s, p) => s + Math.max(0, (p.hints || 0) - (p.free || 0)) * D.hint, 0) + (g.listenHints || 0) * D.hint;
+  const unit = c.clock ? (c.clock.unit || 10) : 1, pm = c.clock ? parMin(c, g) : par, used = c.clock ? (g.mins || 0) : g.actions;
+  const timeLine = c.clock ? [`Czas ponad normę (raport o ${fmtHM(nowMin(c, g))}, norma ${fmtHM(clockStart(c) + pm)})`, Math.min(15, Math.ceil(Math.max(0, used - pm) / (2 * unit)))] : [`Ruchy ponad normę (${g.actions}/${par})`, Math.min(15, Math.ceil(Math.max(0, g.actions - par) / 2))];
+  const pen = [['Podpowiedzi w zagadkach' + (c.clock ? ' i analizie nagrań' : ''), hintPen], ['Tropy', g.trops * (D.trop || 0)], ['Nietrafione konfrontacje', g.failed * D.wrong], timeLine];
   const total = Math.max(0, pts - pen.reduce((s, p) => s + p[1], 0));
   return { pts, lines, pen, total, rank: RANKS.find(r => total >= r[0])[1], answers: { ...d.answers }, proofs: d.proofs.slice(), order: (d.order || []).slice(), at: Date.now() };
 }
@@ -1229,7 +1397,8 @@ function renderResult(c, g) {
 /* ---------- nakładki: render ---------- */
 async function renderOv() {
   const root = $('#overlay-root'); const o = topOv();
-  if (!o) { root.innerHTML = ''; document.body.style.overflow = ''; return; }
+  if (!o || o.type !== 'listen') laStop();
+  if (!o) { root.innerHTML = ''; document.body.style.overflow = ''; checkClockQ(); return; }
   const r = route(); const c = r.id && caseFor(r.id); const g = r.id && G(r.id);
   let v;
   if (o.type === 'settings') v = ovSettings();
@@ -1247,6 +1416,10 @@ async function renderOv() {
   else if (o.type === 'dbrec') v = ovDbRec(c, g, o.id, true);
   else if (o.type === 'ev') { v = { title: c.ev[o.id].title, kicker: 'Akta ' + c.id, body: docHTML(c, c.ev[o.id]) + `<div class="doc-actions">${o.from && c.stmt[o.from] ? `<button class="btn small" data-a="confront-with" data-s="${o.from}" data-id="${o.id}">Okaż ten dowód</button>` : ''}${o.fromP && c.person[o.fromP] ? `<button class="btn small" data-a="show" data-p="${o.fromP}" data-id="${o.id}">Pokaż: ${esc(personName(g, c.person[o.fromP]))}</button>` : ''}<button class="btn small ghost" data-a="pin" data-key="ev:${o.id}">${I.pin} Na tablicę</button></div>` }; if (!g.read.includes(o.id)) { g.read.push(o.id); save(); setTimeout(render, 0); } }
   else if (o.type === 'loc') v = ovLocation(c, g, o.id);
+  else if (o.type === 'travel') v = ovTravel(c, g, o.id);
+  else if (o.type === 'clock') v = ovClock(c, g);
+  else if (o.type === 'events') v = ovEvents(c, g, o.ids);
+  else if (o.type === 'listen') v = ovListen(c, g, o.id);
   else if (o.type === 'person') v = ovPerson(c, g, o.id, o.mode);
   else if (o.type === 'confront') v = ovConfront(c, g, o.id, o);
   else if (o.type === 'puzzle') v = ovPuzzle(c, g, o.id, o.msg);
@@ -1264,6 +1437,8 @@ async function renderOv() {
   if (o.type === 'puzzle' && c && c.puzzle[o.id] && c.puzzle[o.id].input === 'torn' && !(g.puzzles[o.id] || {}).solved) mountTorn(c, g, o.id);
   const inp = $('#pzin'); if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') handlers.solve({ dataset: { id: o.id } }); });
   const rc = $('#revcode'); if (rc) { rc.focus(); rc.addEventListener('keydown', e => { if (e.key === 'Enter') handlers['reveal-go'](); }); }
+  if (o.type === 'listen' && c && c.ev[o.id] && c.ev[o.id].audio) mountListen(c, g, o.id);
+  checkClockQ();
 }
 function ovSettings() {
   const s = S.settings;
@@ -1338,23 +1513,23 @@ function badgesFor(c, g, R) {
   if (!g.trops && !g.freeTrops) b.push('Bez tropów');
   if (!g.failed) b.push('Zero pomyłek');
   if (!Object.values(g.puzzles).some(p => p.hints)) b.push('Bez podpowiedzi');
-  if (g.actions <= effPar(c, g)) b.push('Oszczędni');
+  if (c.clock ? (g.mins || 0) <= parMin(c, g) : g.actions <= effPar(c, g)) b.push('Oszczędni');
   if (g.diff === 'weteran') b.push('Weterani');
   if (R.total >= 92) b.push('Legenda');
   return b;
 }
 function addChronicle(c, g) {
   const R = g.report; S.chronicle = S.chronicle || [];
-  S.chronicle.push({ id: c.id, title: c.title, total: R.total, rank: R.rank, actions: g.actions, par: effPar(c, g), diff: g.diff || 'sledczy', mode: g.mode, team: g.players.map(p => p.name), at: R.at, badges: badgesFor(c, g, R) });
+  S.chronicle.push({ id: c.id, title: c.title, total: R.total, rank: R.rank, actions: g.actions, par: effPar(c, g), ...(c.clock ? { time: fmtHM(nowMin(c, g)), parTime: fmtHM(clockStart(c) + parMin(c, g)) } : {}), diff: g.diff || 'sledczy', mode: g.mode, team: g.players.map(p => p.name), at: R.at, badges: badgesFor(c, g, R) });
 }
 async function renderChronicle() {
   const cat = await getCatalog(); const L = (S.chronicle || []).slice().sort((x, y) => y.at - x.at); const M = S.marks || {};
   const slots = MARK_ORDER.map(id => `<span class="mslot ${M[id] ? 'on' : ''}">${M[id] ? esc(M[id]) : ''}</span>`).join('');
   app().innerHTML = `<div class="chron"><header class="chron-head"><button class="icon-btn" data-a="home" aria-label="Archiwum">${I.back}</button><div><div class="eyebrow">Wydział spraw niewyjaśnionych</div><h1>Kronika wydziału</h1></div></header>
    <section class="panel"><div class="eyebrow">Ślady Archiwisty</div><h3>Pieczęcie, które nie należały do żadnej sprawy</h3><p class="muted">W aktach niektórych spraw ktoś zostawił obcą pieczęć z kluczem. Zabezpieczajcie je — każda kryje jedną literę. Kiedy zbierzecie wszystkie, otworzą się akta, których nie ma w archiwum.</p><div class="mslots">${slots}</div><p class="muted" style="font-size:.85rem">${Object.keys(M).length} z ${MARK_ORDER.length}</p></section>
-   ${L.length ? `<div class="chron-list">${L.map(e => `<article class="paper chron-item"><div class="eyebrow">Akta ${esc(e.id)} · ${new Date(e.at).toLocaleDateString('pl-PL')} · ${esc((DIFFS[e.diff] || DIFFS.sledczy).name)} · ${e.mode === 'phones' ? 'Telewizor + telefony' : 'Wspólny stół'}</div><h3>${esc(e.title)}</h3><div class="chron-score"><b>${e.total}</b><span>pkt</span><span class="stamp">${esc(e.rank)}</span></div><p>Zespół: ${e.team.map(esc).join(', ')} · ruchy: ${e.actions}/${e.par}</p>${e.badges.length ? `<div class="badges">${e.badges.map(x => `<span class="badge-m">${esc(x)}</span>`).join('')}</div>` : ''}</article>`).join('')}</div>` : '<div class="empty">Kronika jest jeszcze pusta. Zamknijcie pierwszą sprawę.</div>'}
+   ${L.length ? `<div class="chron-list">${L.map(e => `<article class="paper chron-item"><div class="eyebrow">Akta ${esc(e.id)} · ${new Date(e.at).toLocaleDateString('pl-PL')} · ${esc((DIFFS[e.diff] || DIFFS.sledczy).name)} · ${e.mode === 'phones' ? 'Telewizor + telefony' : 'Wspólny stół'}</div><h3>${esc(e.title)}</h3><div class="chron-score"><b>${e.total}</b><span>pkt</span><span class="stamp">${esc(e.rank)}</span></div><p>Zespół: ${e.team.map(esc).join(', ')} · ${e.time ? `raport o ${e.time} (norma ${e.parTime})` : `ruchy: ${e.actions}/${e.par}`}</p>${e.badges.length ? `<div class="badges">${e.badges.map(x => `<span class="badge-m">${esc(x)}</span>`).join('')}</div>` : ''}</article>`).join('')}</div>` : '<div class="empty">Kronika jest jeszcze pusta. Zamknijcie pierwszą sprawę.</div>'}
    <section class="panel"><div class="eyebrow">Uprawnienia wydziału</div>${(S.unlocked || []).length ? `<ul class="g-list">${S.unlocked.filter(k => FEATURES[k]).map(k => `<li><b>${esc(FEATURES[k].name)}</b> — <span class="muted">${esc(FEATURES[k].where)}</span></li>`).join('')}</ul>` : '<p class="muted">Kolejne sprawy odblokowują nowe narzędzia śledcze. Na razie pracujecie klasycznie: akta, miejsca, przesłuchania.</p>'}</section>
-   <section class="panel"><div class="eyebrow">Odznaki</div><p class="muted">Bez tropów · Zero pomyłek (bez nietrafionych konfrontacji) · Bez podpowiedzi · Oszczędni (w normie ruchów) · Weterani (poziom Weteran) · Legenda (92+ pkt)</p></section></div>`;
+   <section class="panel"><div class="eyebrow">Odznaki</div><p class="muted">Bez tropów · Zero pomyłek (bez nietrafionych konfrontacji) · Bez podpowiedzi · Oszczędni (w normie ruchów albo czasu) · Weterani (poziom Weteran) · Legenda (92+ pkt)</p></section></div>`;
 }
 /* ---------- akt oskarżenia do druku ---------- */
 function printReport(c, g) {
@@ -1365,7 +1540,7 @@ function printReport(c, g) {
   el.innerHTML = `<div class="pr-doc"><div class="pr-top"><div>WYDZIAŁ SPRAW NIEWYJAŚNIONYCH<br><small>Archiwum ŚLAD · dokument fikcyjny</small></div><div>Sygn. akt: ${esc(c.id)}/${new Date(R.at).getFullYear()}<br>${new Date(R.at).toLocaleDateString('pl-PL')}</div></div>
    <h1>AKT OSKARŻENIA</h1><h2>w sprawie: ${esc(c.title)}</h2>
    <table class="pr-t">${Q.map(q => `<tr><th>${esc(q.type === 'order' ? 'Przebieg wydarzeń' : q.q)}</th><td>${esc(ans(q))}</td></tr>`).join('')}<tr><th>Dowody wskazane przeciwko sprawcy</th><td>${(R.proofs || []).map(id => esc(c.ev[id] ? c.ev[id].title : id)).join('; ') || '—'}</td></tr></table>
-   <p class="pr-score">Ocena zespołu: <b>${R.total}/100</b> · ranga: <b>${esc(R.rank)}</b> · ruchy: ${g.actions}/${effPar(c, g)} · poziom: ${esc(diffOf(g).name)}</p>
+   <p class="pr-score">Ocena zespołu: <b>${R.total}/100</b> · ranga: <b>${esc(R.rank)}</b> · ${c.clock ? `raport o ${fmtHM(nowMin(c, g))} (norma ${fmtHM(clockStart(c) + parMin(c, g))})` : `ruchy: ${g.actions}/${effPar(c, g)}`} · poziom: ${esc(diffOf(g).name)}</p>
    <div class="pr-sign">${g.players.map(p => `<div><span></span>${esc(p.name)}<small>${esc(role(p.role))}</small></div>`).join('')}</div>
    <p class="pr-foot">Wszystkie osoby, miejsca i zdarzenia są fikcyjne. Dokument wygenerowany przez grę ŚLAD.</p></div>`;
   document.body.appendChild(el); document.body.classList.add('printing');
@@ -1374,9 +1549,9 @@ function printReport(c, g) {
 }
 
 /* ---------- instruktaż przed sprawą ---------- */
-function guideCards(mode, diff) {
+function guideCards(mode, diff, clock) {
   const phones = mode === 'phones'; const D = DIFFS[diff || 'sledczy'] || DIFFS.sledczy;
-  return [
+  const cards = [
    { k: 'Witajcie w wydziale', t: 'O co chodzi w tej grze', b: `<p>Jesteście zespołem śledczych. Dostajecie akta sprawy i macie ją rozwiązać: <b>kto, jak, kiedy i dlaczego</b>.</p><p>Na końcu składacie <b>akt oskarżenia</b> i każdy wniosek podpieracie dowodami. Nie ma limitu czasu ani losowości — wszystko, czego potrzebujecie, jest w aktach, miejscach i zeznaniach.</p><p class="g-tip">To planszówka do rozmowy. Ekran to tylko teczka z aktami — najważniejsze dzieje się między wami: czytajcie na głos, spierajcie się, notujcie, sprawdzajcie się nawzajem.</p>` },
    { k: 'Ekran gry', t: 'Pięć zakładek i górny pasek', b: `<ul class="g-list"><li><b>${I.files} Akta</b> — wszystkie zdobyte dokumenty. Nowe mają czerwony licznik. Każdy dokument można przypiąć na tablicę, a w otwartym dokumencie pinezką — także pojedynczy fragment.</li><li><b>${I.map} Miejsca</b> — szkic miejsca zdarzenia i karty miejsc do przeszukania.</li><li><b>${I.people} Osoby</b> — przesłuchania świadków i podejrzanych.</li><li><b>${I.brain} Analiza</b> — zagadki, oś czasu, tabela podejrzanych${phones ? ', tajne akta' : ''}, zespół i zdolności ról, notatki i akt oskarżenia.</li><li><b>${I.board} Tablica</b> — korkowa tablica z czerwoną nitką. Przypięty dowód pokazuje treść, „Rozwiń” otwiera go w całości.</li></ul><p>Na górze: <b>licznik ruchów</b>, <b>żarówka</b> (trop, gdy utkniecie), dźwięk i <b>menu</b> — tam jest briefing sprawy, ten instruktaż i ustawienia.</p>` },
    { k: 'Ruchy i punkty', t: 'Co kosztuje, a co jest za darmo', b: `<p><b>Jeden ruch</b> to: przeszukanie punktu w miejscu, jedno pytanie zadane świadkowi albo jedna konfrontacja. W sprawach, które to udostępniają, także okazanie dowodu i dołączenie wydruku z bazy danych do akt.</p><p><b>Za darmo:</b> czytanie akt, szkic, zagadki, oś czasu, notatki i tablica.</p><p>Wybrany poziom: <b>${esc(D.name)}</b>.</p><table class="g-table"><tr><td>Ruchy ponad normę sprawy</td><td>−1 pkt za każde 2 ruchy (najwyżej −15)</td></tr><tr><td>Podpowiedź w zagadce</td><td>−${D.hint} pkt (najwyżej ${D.hints} na zagadkę)</td></tr><tr><td>Trop (żarówka)</td><td>${D.trop == null ? 'niedostępny (wyjątek: zdolność Koordynatora)' : '−' + D.trop + ' pkt'}</td></tr><tr><td>Nietrafiona konfrontacja</td><td>−${D.wrong} pkt</td></tr></table><p>Rangi: Stażysta, Aspirant (40), Inspektor (60), Komisarz (78), <b>Legenda archiwum (92+)</b>. Zanim wydacie ruch — porozmawiajcie, czy warto.</p>` },
@@ -1392,9 +1567,11 @@ function guideCards(mode, diff) {
    { k: 'Gdy utkniecie', t: 'Trop i podpowiedzi', b: `<p><b>Żarówka</b> na górnym pasku daje <b>trop</b> od szefa wydziału — kierunek, w którym warto pójść teraz (${D.trop == null ? 'na poziomie Weteran tylko dzięki zdolności Koordynatora' : '−' + D.trop + ' pkt'}).</p><p>Przy zagadkach ${D.hints === 1 ? 'jest <b>jedna podpowiedź</b>' : `są <b>${podp(D.hints)}</b>, coraz bardziej konkretne`} (${D.hints === 1 ? '' : 'po '}−${D.hint} pkt).${D.hints >= 3 ? ' Trzecia praktycznie podaje rozwiązanie.' : ''}</p><p>Briefing i zadania sprawy znajdziecie zawsze w menu. Postęp zapisuje się sam — możecie przerwać i wrócić innego dnia.</p>` },
    { k: 'Finał', t: 'Akt oskarżenia', b: `<p>Gdy jesteście gotowi: <b>Analiza → Akt oskarżenia</b>. Odpowiadacie na pytania o sprawcę, sposób, czas, motyw i tło sprawy, układacie kolejność zdarzeń i wskazujecie <b>trzy dowody</b> przeciwko sprawcy.</p><p><b>Po podpisaniu raportu nie da się go zmienić.</b> Dostaniecie wynik 0–100, rangę, pełne rozwiązanie krok po kroku i epilog — a na końcu jedną decyzję, którą musicie podjąć jako zespół.</p><p>Wynik trafia do <b>Kroniki wydziału</b> razem z odznakami, a akt oskarżenia możecie wydrukować albo zapisać jako PDF.</p><p class="g-tip">Składajcie raport, gdy każdy wniosek umiecie podeprzeć dowodem — nie wtedy, gdy „pewnie tak było”.</p><p class="muted" style="font-size:.9em">I jeszcze jedno: w niektórych aktach ktoś zostawił obcą pieczęć z kluczem. Nie dotyczy sprawy. Zabezpieczajcie ją — Kronika podpowie, po co.</p>` },
   ];
+  if (clock) cards.splice(3, 0, { k: 'Zegar i mapa', t: 'W tej sprawie liczy się czas', b: `<p>Zamiast licznika ruchów na górnym pasku jest <b>zegar</b>. Każda czynność trwa: pytanie kilka minut, przeszukanie punktu dłużej, przejście szlakiem — tyle, ile pokazuje mapa. Zegar stoi, kiedy nic nie robicie, więc przerwa na obiad niczego nie zmienia.</p><p>O ustalonych godzinach dzieją się rzeczy, na które nie macie wpływu: zmienia się pogoda, przychodzą wyniki badań. Stuknijcie zegar, żeby zobaczyć plan dnia. Niektórych śladów nie da się zbadać po czasie — ale sprawę zawsze da się rozwiązać.</p><p>Na <b>mapie</b> (zakładka Miejsca) widzicie, gdzie jesteście. Przeszukujecie tylko miejsca w tym punkcie mapy i rozmawiacie tylko z osobami, które są obok.</p><p class="g-tip">Wynik zależy od godziny złożenia raportu. Planujcie trasę, zanim ruszycie w drogę.</p>` });
+  return cards;
 }
 function ovGuide(o) {
-  const cards = guideCards(o.mode, o.diff); const i = Math.max(0, Math.min(cards.length - 1, o.i || 0)); const cd = cards[i]; const last = i === cards.length - 1;
+  const cards = guideCards(o.mode, o.diff, o.clock); const i = Math.max(0, Math.min(cards.length - 1, o.i || 0)); const cd = cards[i]; const last = i === cards.length - 1;
   return { title: 'Jak grać', kicker: `Instruktaż · ${o.mode === 'phones' ? 'Telewizor + telefony' : 'Wspólny stół'}`, body: `
    <div class="g-dots">${cards.map((_, k) => `<button class="${k === i ? 'on' : ''}" data-a="guide-go" data-i="${k}" aria-label="Karta ${k + 1}"></button>`).join('')}</div>
    <article class="paper g-card"><div class="eyebrow">${String(i + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')} · ${esc(cd.k)}</div><h2>${esc(cd.t)}</h2>${cd.b}</article>
@@ -1403,10 +1580,11 @@ function ovGuide(o) {
 }
 
 function startMsg(c, g) {
-  if (c.unlocks && c.unlocks.length && !g.unlockSeen) {
-    openOv({ type: 'msg', title: 'Nowe uprawnienia wydziału', kicker: 'Akta ' + c.id, body: `${c.unlockNote ? `<blockquote class="quote unlock-q">${esc(c.unlockNote.text)}<cite>— ${esc(c.unlockNote.by)}</cite></blockquote>` : ''}
-      <div class="unlocks">${c.unlocks.map(id => FEATURES[id]).filter(Boolean).map(f => `<article class="unlock"><span class="eyebrow">Odblokowane</span><h3>${esc(f.name)}</h3><p>${esc(f.text)}</p><p class="muted">${esc(f.where)}</p></article>`).join('')}</div>
-      <p class="muted" style="font-size:.85rem">Odblokowane uprawnienia zostają z wami w kolejnych sprawach. Spis jest w Kronice wydziału.</p>
+  const hasUnl = !!(c.unlocks && c.unlocks.length), nov = c.novelties || [];
+  if ((hasUnl || nov.length) && !g.unlockSeen) {
+    openOv({ type: 'msg', title: hasUnl ? 'Nowe uprawnienia wydziału' : 'W tej sprawie po raz pierwszy', kicker: 'Akta ' + c.id, body: `${c.unlockNote ? `<blockquote class="quote unlock-q">${esc(c.unlockNote.text)}<cite>— ${esc(c.unlockNote.by)}</cite></blockquote>` : ''}
+      <div class="unlocks">${(c.unlocks || []).map(id => FEATURES[id]).filter(Boolean).map(f => `<article class="unlock"><span class="eyebrow">Odblokowane</span><h3>${esc(f.name)}</h3><p>${esc(f.text)}</p><p class="muted">${esc(f.where)}</p></article>`).join('')}${nov.map(f => `<article class="unlock nov"><span class="eyebrow">Nowość w tej sprawie</span><h3>${esc(f.name)}</h3><p>${esc(f.text)}</p><p class="muted">${esc(f.where)}</p></article>`).join('')}</div>
+      <p class="muted" style="font-size:.85rem">${hasUnl ? 'Odblokowane uprawnienia zostają z wami w kolejnych sprawach. Spis jest w Kronice wydziału.' : 'Te mechaniki działają w tej sprawie. Uprawnienia z poprzednich spraw — bazy danych, okazywanie dowodów i oględziny na zdjęciu — działają jak dotąd.'}</p>
       <button class="btn block" data-a="unlock-ok">Rozumiem, zaczynamy</button>` });
     return;
   }
@@ -1436,6 +1614,7 @@ function checkBreakthroughs() {
   clearTimeout(btTimer); btTimer = setTimeout(() => { if (btShow) return checkLater(nb.id); btShow = nb.id; renderBt(); sfx('break'); }, 650);
 }
 const rerender = () => { render(); renderOv(); checkBreakthroughs(); };
+const backToPrev = () => { ovStack.pop(); history.back(); setTimeout(rerender, 30); };
 function dbRefresh(k) { const box = document.querySelector(`.term-form[data-k="${k}"]`); const term = box && box.closest('.term'); if (!term) return rerender();
   const c = k[0] === 'f' ? FOLDER.c : ctx().c; const g = k[0] === 'f' ? null : ctx().g; const tmp = document.createElement('div'); tmp.innerHTML = terminalHTML(c, k, k[0] !== 'f', g); term.replaceWith(tmp.firstElementChild);
   const f = document.querySelector(`.term-form[data-k="${k}"]`); if (f) f.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); handlers['db-search']({ dataset: { k } }); } }); }
@@ -1462,7 +1641,7 @@ const handlers = {
     if (!setupMode) return;
     S.games[c.id] = newGame(c, names, setupMode, setupDiff); save(); distRevealed = false; go(`gra/${c.id}/akta`);
     const mode = setupMode;
-    if (S.settings.guide !== false) setTimeout(() => openOv({ type: 'guide', mode, diff: setupDiff, i: 0, after: true }), 250);
+    if (S.settings.guide !== false) setTimeout(() => openOv({ type: 'guide', mode, diff: setupDiff, i: 0, after: true, clock: !!c.clock }), 250);
     else if (mode === 'table') setTimeout(() => startMsg(variant(c, 'table'), S.games[c.id]), 250);
   },
   restart: el => { const id = el.dataset.id; if (!confirm('Zacząć sprawę od nowa? Obecny postęp zostanie usunięty.')) return; delete S.games[id]; save(); ovStack = []; renderOv(); go('sprawa/' + id); },
@@ -1536,7 +1715,7 @@ const handlers = {
   diff: el => { setupDiff = el.dataset.k; render(); },
   vplay: el => { if (el.classList.contains('on')) { stopVoice(); el.classList.remove('on'); return; } speak(el.dataset.src, el); },
   'voices-toggle': () => { S.settings.voices = !voicesOn(); save(); if (!voicesOn()) stopVoice(); renderOv(); },
-  power: el => { const { g } = ctx(); const P = POWERS[el.dataset.role]; if (!P || (g.used || {})[el.dataset.role]) return; if (P.kind === 'par') { g.used[el.dataset.role] = true; g.parBonus = (g.parBonus || 0) + 3; toast(P.name, 'Norma ruchów +3', 'Rola'); } else { g.armed = P.kind; toast(P.name, 'Zadziała przy następnej pasującej akcji', 'Rola'); } save(); render(); },
+  power: el => { const { g } = ctx(); const P = POWERS[el.dataset.role]; if (!P || (g.used || {})[el.dataset.role]) return; if (P.kind === 'par') { g.used[el.dataset.role] = true; g.parBonus = (g.parBonus || 0) + 3; toast(P.name, ctx().c.clock ? `Norma czasu +${fmtDur(3 * (ctx().c.clock.unit || 10))}` : 'Norma ruchów +3', 'Rola'); } else { g.armed = P.kind; toast(P.name, 'Zadziała przy następnej pasującej akcji', 'Rola'); } save(); render(); },
   'power-off': () => { const { g } = ctx(); g.armed = null; save(); render(); },
   'to-report': () => { const { c, g } = ctx(); if (g.mode === 'phones' && !g.vote) openOv({ type: 'msg', title: 'Najpierw głosowanie?', kicker: 'Przed aktem oskarżenia', body: `<p>Zanim podpiszecie raport, sprawdźcie, czy cały zespół myśli to samo. Głosowanie zajmie minutę.</p><div class="row-actions"><button class="btn" data-a="vote">Głosujemy</button><button class="btn ghost" data-a="report-go">Pomiń — prosto do raportu</button></div>` }); else go(`gra/${c.id}/raport`); },
   'report-go': () => { const { c } = ctx(); ovStack = []; renderOv(); go(`gra/${c.id}/raport`); },
@@ -1549,7 +1728,7 @@ const handlers = {
   amark: el => { S.marks = S.marks || {}; if (!S.marks[el.dataset.c]) { S.marks[el.dataset.c] = el.dataset.l; save(); toast('Zabezpieczono obcą pieczęć', `Ślady Archiwisty: ${Object.keys(S.marks).length} z ${MARK_ORDER.length}`, 'Archiwum'); sfx('stamp'); } else toast('Ta pieczęć jest już w kronice', '', 'Archiwum'); renderOv(); },
   'print-report': () => { const { c, g } = ctx(); if (g && g.report) printReport(c, g); },
   voice: el => { if (window.__voice && !window.__voice.paused && el.classList.contains('on')) { stopVoice(); return; } const L = el.querySelector('.vl'), T0 = L && (L.dataset.t || (L.dataset.t = L.textContent)); speak(el.dataset.src); const v = window.__voice; if (!v) return; el.classList.add('on'); if (L) L.textContent = 'Zatrzymaj briefing'; const off = () => { el.classList.remove('on'); if (L) L.textContent = T0; }; const t0 = voTok; const chk = setInterval(() => { if (voTok !== t0 || !window.__voice || window.__voice.paused) { clearInterval(chk); off(); } }, 300); },
-  'show-guide': () => { const { g } = ctx(); ovStack.pop(); history.back(); setTimeout(() => openOv({ type: 'guide', mode: g.mode === 'table' ? 'table' : 'phones', diff: g.diff, i: 0 }), 60); },
+  'show-guide': () => { const { c, g } = ctx(); ovStack.pop(); history.back(); setTimeout(() => openOv({ type: 'guide', mode: g.mode === 'table' ? 'table' : 'phones', diff: g.diff, i: 0, clock: !!(c && c.clock) }), 60); },
   'guide-go': el => { const o = topOv(); if (o && o.type === 'guide') { o.i = +el.dataset.i; renderOv(); const b = $('.ov-body'); if (b) b.scrollTop = 0; } },
   'guide-off': () => { S.settings.guide = false; save(); handlers['guide-end'](); },
   'guide-end': () => { const o = topOv(); ovStack.pop(); history.back(); setTimeout(renderOv, 0); if (o && o.after) { const { c, g } = ctx(); if (c && g && g.mode === 'table' && g.phase === 'play') setTimeout(() => startMsg(c, g), 120); } },
@@ -1559,6 +1738,20 @@ const handlers = {
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `slad-zapis-${new Date().toISOString().slice(0, 10)}.json`; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500); },
   wipe: () => { if (!confirm('Usunąć wszystkie zapisy na tym urządzeniu?')) return; S = freshStore(); save(); ovStack = []; renderOv(); go(''); },
   close: () => closeOv(),
+  clock: () => openOv({ type: 'clock' }),
+  travel: el => openOv({ type: 'travel', id: el.dataset.id }),
+  'travel-go': el => { const { c, g } = ctx(); const id = el.dataset.id; const P = doTravel(c, g, id); const n = ovStack.length; if (history.state && history.state.ov) history.go(-n); else ovStack = [];
+    setTimeout(() => { rerender(); if (P) { toast(nodeName(c, id), `Na miejscu o ${fmtHM(nowMin(c, g))} · przejście ${fmtDur(P.total)}`, 'Mapa'); sfx('paper'); } }, 90); },
+  wait: () => { const { c, g } = ctx(); clockAdvance(c, g, c.clock.costs.wait || 30); save(); rerender(); },
+  'wait-until': el => { const { c, g } = ctx(); const ev = c.clock.events.find(e => e.id === el.dataset.id); const d = ev ? hm(ev.at) - nowMin(c, g) : 0; if (d > 0) clockAdvance(c, g, d); save(); rerender(); },
+  listen: el => openOv({ type: 'listen', id: el.dataset.id }),
+  lplay: () => { if (!LA) return; if (LA.a.paused) LA.a.play().catch(() => {}); else LA.a.pause(); },
+  lback: () => { if (LA) LA.a.currentTime = Math.max(0, (LA.a.currentTime || 0) - 3); },
+  lmark: () => { if (!LA) return; LA.a.pause(); laMark = LA.a.currentTime || 0; const box = $('#lopts'); if (box) { box.hidden = false; $('#lat').textContent = `Moment ${laMark.toFixed(1).replace('.', ',')} s — co słychać w tle?`; box.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } },
+  lpick: el => { const { c, g } = ctx(); if (laMark == null) return; const r = listenPick(c, g, el.dataset.id, el.dataset.l, laMark); laMark = null;
+    if (r.hit) { sfx('unlock'); toast(r.hit.label, 'Rozpoznany dźwięk', 'Nagranie'); rerender(); return; }
+    const box = $('#lopts'), m = $('#lmsg'); if (box) box.hidden = true; if (m) { m.hidden = false; m.textContent = r.msg || 'W tym miejscu nagrania tego nie słychać. Posłuchajcie jeszcze raz.'; clearTimeout(m._t); m._t = setTimeout(() => { m.hidden = true; }, 3200); } if (!r.msg) sfx('wrong'); },
+  lhint: el => { const { c, g } = ctx(); const m = listenHint(c, g, el.dataset.id); if (m) toast(m.label, `Analiza technika · ${m.at[0][0].toFixed(1).replace('.', ',')} s`, 'Nagranie'); rerender(); },
   'close-all': () => { const n = ovStack.length; if (history.state && history.state.ov) history.go(-n); else { ovStack = []; renderOv(); } },
   'ov-bg': (el, e) => { if (e.target === el) handlers['close-all'](); }
 };
