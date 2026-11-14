@@ -81,6 +81,69 @@ def img_reader(rel, maxw):
     return ImageReader(b), im.width / im.height
 
 
+def svg_path(c, d, sx, sy, ox, oy):
+    """Rysuje prostą ścieżkę SVG (M, L, C, Z, współrzędne bezwzględne)."""
+    import re
+    tok = re.findall(r'[MLCZ]|-?[\d.]+', d); i = 0; p = c.beginPath(); cmd = None
+    X = lambda v: ox + float(v) * sx; Y = lambda v: oy - float(v) * sy
+    while i < len(tok):
+        t = tok[i]
+        if t in 'MLCZ': cmd = t; i += 1
+        if cmd == 'Z': p.close(); continue
+        if cmd == 'M': p.moveTo(X(tok[i]), Y(tok[i + 1])); i += 2; cmd = 'L'
+        elif cmd == 'L': p.lineTo(X(tok[i]), Y(tok[i + 1])); i += 2
+        elif cmd == 'C': p.curveTo(X(tok[i]), Y(tok[i + 1]), X(tok[i + 2]), Y(tok[i + 3]), X(tok[i + 4]), Y(tok[i + 5])); i += 6
+    return p
+
+
+def map_page(d, case):
+    """Mapa szlaków (pole map w sprawie): to samo, co gracze widzą w aplikacji od początku."""
+    m = case['map']; c = d.c
+    d.new(); d.head('Mapa', m.get('note', ''))
+    mw = W - 2 * M; sx = sy = mw / m['w']; mh = m['h'] * sy; ox = M; oy = d.y - 4
+    c.setStrokeColor(LINE); c.rect(ox, oy - mh, mw, mh)
+    for g in m.get('deco', []):
+        k = g.get('k'); pth = svg_path(c, g['d'], sx, sy, ox, oy)
+        if k == 'ridge': c.setStrokeColor(GREY); c.setLineWidth(1.2); c.drawPath(pth, stroke=1, fill=0)
+        elif k == 'forest': c.setFillColor(Color(.86, .9, .85)); c.drawPath(pth, stroke=0, fill=1)
+        elif k == 'rock': c.setFillColor(Color(.7, .7, .7)); c.drawPath(pth, stroke=0, fill=1)
+        else: c.setFillColor(Color(.93, .93, .95)); c.setStrokeColor(Color(.85, .85, .88)); c.setLineWidth(.6); c.drawPath(pth, stroke=1, fill=1)
+    c.setFillColor(GREY)
+    for lb in m.get('labels', []):
+        c.setFont('SansB' if lb.get('k') != 'small' else 'Sans', 8 if lb.get('k') != 'small' else 7); c.drawCentredString(ox + lb['x'] * sx, oy - lb['y'] * sy, lb['t'])
+    nodes = {n['id']: n for n in m['nodes']}
+    for e in m['edges']:
+        a, b = nodes[e['a']], nodes[e['b']]
+        pth = svg_path(c, e['path'], sx, sy, ox, oy) if e.get('path') else svg_path(c, f"M{a['x']} {a['y']} L{b['x']} {b['y']}", sx, sy, ox, oy)
+        kind = e.get('kind'); c.setLineWidth(2 if kind == 'trail' else 1.4)
+        c.setStrokeColor(Color(.15, .5, .2) if kind == 'trail' else (Color(.25, .3, .55) if kind == 'winter' else black))
+        c.setDash(6, 4) if kind == 'winter' else c.setDash()
+        c.drawPath(pth, stroke=1, fill=0); c.setDash()
+        x, y = ox + e.get('lx', (a['x'] + b['x']) / 2) * sx, oy - e.get('ly', (a['y'] + b['y']) / 2) * sy
+        c.setFillColor(black); c.setFont('Sans', 7.6)
+        lines = []
+        if e.get('name'): lines.append(e['name'])
+        lines.append(f"↑ {e['t'][0]} min  ↓ {e['t'][1]} min")
+        if e.get('storm') is None: lines.append('śnieżyca: zamknięte' + (f" ({e['closedWhy']})" if e.get('closedWhy') else ''))
+        else: lines.append(f"śnieżyca: ↑ {e['storm'][0]}  ↓ {e['storm'][1]} min")
+        wmax = max(pdfmetrics.stringWidth(ln, 'SansB', 7.4) for ln in lines) + 8
+        c.setFillColor(Color(1, 1, 1, alpha=0.85)); c.rect(x - wmax / 2, y - (len(lines) - 1) * 9 - 3, wmax, len(lines) * 9 + 4, stroke=0, fill=1); c.setFillColor(black)
+        for k, ln in enumerate(lines):
+            c.setFont('SansB' if k == 0 and e.get('name') else 'Sans', 7.4); c.drawCentredString(x, y - k * 9, ln)
+    for n in m['nodes']:
+        x, y = ox + n['x'] * sx, oy - n['y'] * sy
+        c.setFillColor(RED if n['id'] == m.get('start') else black); c.circle(x, y, 4, stroke=0, fill=1)
+        c.setFillColor(black); c.setFont('SerifB', 9)
+        tx, ty = x + n.get('lx', 0) * sx, y - n.get('ly', 14) * sy
+        txt = f"{n['name']}"; alt = f"{n['alt']} m n.p.m."
+        if n.get('anchor') == 'start': c.drawString(tx, ty, txt); c.setFont('Sans', 7); c.setFillColor(GREY); c.drawString(tx, ty - 9, alt)
+        else: c.drawCentredString(tx, ty, txt); c.setFont('Sans', 7); c.setFillColor(GREY); c.drawCentredString(tx, ty - 9, alt)
+    d.y = oy - mh - 16
+    c.setFillColor(GREY); c.setFont('Sans', 8)
+    c.drawString(M, d.y, 'Linia ciągła zielona — szlak; przerywana — trasa zimowa; czerwony punkt — miejsce startu zespołu. Czasy dla zespołu w rakietach.')
+    c.setFillColor(black)
+
+
 def build(cid):
     case = json.load(open(os.path.join(ROOT, 'cases', cid + '.json'), encoding='utf-8'))
     os.makedirs(os.path.join(ROOT, 'assets', 'print'), exist_ok=True)
@@ -135,6 +198,7 @@ def build(cid):
         yy = y - 40; c.setFont('Serif', 9)
         for ln in lines: c.drawString(tx, yy, ln); yy -= 12
         d.y = y - h
+    if case.get('map'): map_page(d, case)
     # 4. oś czasu
     d.new(); d.head('Oś czasu', 'Wpisujcie zdarzenia w kolejności. Zaznaczajcie źródło — kto to powiedział albo z którego dowodu to wiecie.')
     cols = [(M, 'Dzień, godzina'), (M + 92, 'Co się stało'), (W - M - 120, 'Źródło')]

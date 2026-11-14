@@ -395,7 +395,8 @@
      "ev": "e25",
      "a": "Skąd to macie? To prywatne papiery Krystiana. Proszę… to nie jest tak, jak wygląda."
     }
-   ]
+   ],
+   "img": "assets/people/007-adam.webp"
   },
   {
    "id": "weronika",
@@ -574,7 +575,8 @@
      "ev": "e12",
      "a": "Popiół z pieca? Nie mam pojęcia, czemu mi to państwo pokazują."
     }
-   ]
+   ],
+   "img": "assets/people/007-weronika.webp"
   },
   {
    "id": "igor",
@@ -677,7 +679,8 @@
       "i-c5"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/007-igor.webp"
   },
   {
    "id": "natalia",
@@ -806,7 +809,8 @@
       "n-c7"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/007-natalia.webp"
   },
   {
    "id": "hampel",
@@ -966,7 +970,8 @@
       "h-c9"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/007-hampel.webp"
   },
   {
    "id": "kuznik",
@@ -1047,7 +1052,8 @@
       "k-c4"
      ]
     }
-   ]
+   ],
+   "img": "assets/people/007-kuznik.webp"
   }
  ],
  "locations": [
@@ -1075,7 +1081,8 @@
       "e09"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/007-office.webp"
   },
   {
    "id": "dry",
@@ -1115,22 +1122,23 @@
     "aspect": 1.5,
     "spots": {
      "sp-skis": [
-      0.3,
-      0.45,
-      0.08
+      0.2,
+      0.5,
+      0.1
      ],
      "sp-packs": [
-      0.62,
-      0.72,
-      0.07
+      0.7,
+      0.58,
+      0.1
      ],
      "sp-ash": [
-      0.86,
-      0.55,
-      0.07
+      0.88,
+      0.77,
+      0.06
      ]
     }
-   }
+   },
+   "img": "assets/places/007-dry.webp"
   },
   {
    "id": "terrace",
@@ -1147,7 +1155,8 @@
       "e13"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/007-terrace.webp"
   },
   {
    "id": "dining",
@@ -1178,7 +1187,8 @@
      },
      "lockedText": "Na laptopie są tysiące plików. Najpierw ustalcie, czego właściwie szukać i kto go używa."
     }
-   ]
+   ],
+   "img": "assets/places/007-dining.webp"
   },
   {
    "id": "room6",
@@ -1215,7 +1225,8 @@
      },
      "lockedText": "Prokurator zgodzi się na przeszukanie telefonu, gdy wykażecie, że jego właścicielka była tej nocy na przełęczy."
     }
-   ]
+   ],
+   "img": "assets/places/007-room6.webp"
   },
   {
    "id": "notes",
@@ -1248,7 +1259,8 @@
      },
      "lockedText": "Zestawcie, gdzie kto był o 22:50 — zagadka „Okno 22:50”."
     }
-   ]
+   ],
+   "img": "assets/places/007-notes.webp"
   },
   {
    "id": "fork",
@@ -1267,7 +1279,8 @@
      "expires": "13:00",
      "expiredText": "Śnieżyca zasypała wszystko równą warstwą. Jeśli były tu jakieś ślady, już ich nie ma."
     }
-   ]
+   ],
+   "img": "assets/places/007-fork.webp"
   },
   {
    "id": "shelter",
@@ -1337,42 +1350,43 @@
     "aspect": 1.5,
     "spots": {
      "sp-stove": [
-      0.18,
-      0.55,
-      0.07
+      0.13,
+      0.62,
+      0.1
      ],
      "sp-notebook": [
-      0.52,
-      0.62,
+      0.54,
+      0.525,
       0.04
      ],
      "sp-logger": [
-      0.62,
-      0.58,
-      0.035
+      0.645,
+      0.455,
+      0.025
      ],
      "sp-station": [
-      0.58,
-      0.42,
-      0.05
-     ],
-     "sp-cap": [
-      0.43,
-      0.6,
+      0.535,
+      0.41,
       0.035
      ],
+     "sp-cap": [
+      0.405,
+      0.48,
+      0.045
+     ],
      "sp-satcable": [
-      0.84,
-      0.72,
+      0.86,
+      0.53,
       0.045
      ],
      "sp-bag": [
-      0.93,
-      0.5,
-      0.05
+      0.92,
+      0.8,
+      0.07
      ]
     }
-   }
+   },
+   "img": "assets/places/007-shelter.webp"
   },
   {
    "id": "rock",
@@ -1397,7 +1411,8 @@
       "e27"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/007-rock.webp"
   },
   {
    "id": "garage",
@@ -1414,7 +1429,8 @@
       "e28"
      ]
     }
-   ]
+   ],
+   "img": "assets/places/007-garage.webp"
   }
  ],
  "evidence": [
@@ -1661,246 +1677,246 @@
     "src": "assets/audio/007-call.mp3",
     "dur": 21.5,
     "peaks": [
-     0.884,
-     0.847,
-     0.88,
-     0.75,
-     0.156,
-     0.154,
-     0.177,
-     0.168,
-     0.216,
-     0.241,
-     0.642,
-     0.289,
-     0.24,
-     0.36,
-     0.335,
-     0.48,
-     0.317,
-     0.364,
-     0.41,
-     0.41,
-     0.678,
-     0.404,
-     0.42,
-     0.39,
-     0.367,
-     0.384,
-     0.712,
-     0.48,
-     0.434,
-     0.26,
-     0.444,
-     0.197,
-     0.449,
-     0.405,
-     0.442,
-     0.248,
-     0.413,
-     0.438,
-     0.29,
-     0.424,
-     0.392,
+     0.563,
+     0.238,
+     0.25,
+     0.267,
      0.303,
-     0.453,
-     0.383,
-     0.549,
-     0.468,
-     0.311,
-     0.409,
-     0.69,
-     0.519,
+     0.345,
      0.47,
-     0.413,
-     0.532,
-     0.446,
-     0.409,
-     0.213,
-     0.448,
-     0.435,
-     0.379,
-     0.407,
-     0.593,
-     0.39,
-     0.435,
-     0.209,
-     0.418,
-     0.321,
-     0.506,
-     0.413,
-     0.38,
-     0.335,
-     0.708,
-     0.284,
-     0.463,
-     1,
-     0.667,
-     0.547,
-     0.281,
-     0.221,
-     0.413,
-     0.604,
-     0.786,
-     0.429,
-     0.254,
-     0.163,
-     0.585,
-     0.386,
-     0.385,
-     0.437,
-     0.787,
-     0.707,
-     0.421,
-     0.442,
-     0.517,
-     0.248,
-     0.176,
-     0.424,
-     0.462,
-     0.342,
-     0.373,
-     0.458,
-     0.156,
-     0.453,
-     0.134,
-     0.354,
-     0.223,
-     0.522,
-     0.452,
-     0.404,
-     0.304,
-     0.435,
-     0.54,
-     0.145,
-     0.432,
-     0.172,
-     0.343,
-     0.148,
-     0.246,
-     0.387,
-     0.595,
-     0.277,
-     0.38,
-     0.244,
-     0.221,
-     0.444,
-     0.684,
-     0.363,
-     0.103,
-     0.213,
-     0.528,
-     0.42,
-     0.144,
-     0.417,
-     0.204,
-     0.19,
-     0.578,
-     0.559,
-     0.497,
-     0.885,
-     0.197,
-     0.105,
-     0.419,
-     0.114,
-     0.349,
-     0.121,
-     0.236,
-     0.14,
-     0.105,
-     0.119,
-     0.122,
-     0.133,
-     0.116,
-     0.12,
-     0.092,
-     0.104,
-     0.134,
-     0.106,
-     0.155,
-     0.274,
-     0.381,
-     0.387,
-     0.266,
-     0.135,
-     0.125,
-     0.164,
-     0.159,
-     0.142,
-     0.162,
-     0.174,
-     0.223,
-     0.232,
-     0.221,
-     0.245,
-     0.254,
-     0.658,
-     0.653,
-     0.704,
-     0.435,
-     0.35,
-     0.713,
-     0.75,
-     0.678,
-     0.745,
-     0.468,
-     0.541,
-     0.766,
-     0.794,
-     0.795,
-     0.516,
-     0.39,
-     0.736,
-     0.76,
-     0.712,
-     0.67,
-     0.334,
-     0.291,
-     0.664,
-     0.666,
-     0.648,
-     0.229,
-     0.254,
-     0.244,
-     0.578,
-     0.567,
-     0.559,
-     0.16,
-     0.19,
-     0.514,
+     0.36,
+     0.48,
+     0.384,
+     0.498,
+     0.41,
+     0.581,
+     0.622,
      0.543,
-     0.523,
-     0.525,
-     0.122,
-     0.144,
-     0.552,
+     0.546,
+     0.661,
+     0.544,
+     0.586,
+     0.453,
+     0.519,
+     0.502,
+     0.468,
+     0.531,
+     0.574,
+     0.505,
+     0.507,
+     0.468,
+     0.608,
+     0.432,
+     0.472,
+     0.518,
+     0.378,
+     0.501,
+     0.359,
+     0.786,
+     0.95,
+     0.582,
+     0.643,
+     0.511,
+     0.302,
+     0.415,
+     0.559,
+     0.491,
+     0.379,
+     0.537,
+     0.782,
+     0.494,
+     0.728,
+     0.669,
+     0.469,
+     0.405,
+     0.477,
+     0.346,
+     0.327,
+     0.498,
+     0.573,
+     0.646,
+     0.619,
+     0.529,
+     0.849,
+     0.499,
+     0.681,
+     0.481,
+     0.805,
+     0.494,
+     0.816,
+     0.831,
+     0.635,
+     0.325,
+     0.336,
+     0.565,
+     0.752,
+     0.766,
+     0.611,
+     0.493,
+     0.442,
+     0.522,
+     0.444,
+     0.495,
+     0.527,
+     0.534,
+     0.61,
+     0.546,
+     0.487,
+     0.536,
+     0.924,
+     0.688,
+     0.759,
+     0.497,
+     0.594,
+     0.434,
+     0.434,
+     0.401,
+     0.392,
+     0.762,
+     0.888,
+     0.389,
+     0.909,
+     0.54,
+     1,
+     0.93,
+     0.759,
+     0.303,
+     0.387,
+     0.645,
+     0.327,
+     0.611,
+     0.514,
+     0.926,
+     0.443,
+     0.623,
+     0.509,
+     0.489,
+     0.398,
+     0.347,
+     0.869,
+     0.861,
+     0.782,
+     0.403,
+     0.505,
+     0.592,
+     0.375,
+     0.402,
+     0.474,
+     0.393,
+     0.497,
+     0.493,
+     0.405,
+     0.507,
+     0.359,
+     0.483,
+     0.404,
      0.539,
+     0.527,
+     0.39,
      0.523,
-     0.114,
-     0.103,
-     0.115,
-     0.12,
-     0.111,
-     0.11,
-     0.106,
-     0.104,
-     0.124,
-     0.12,
-     0.113,
-     0.111,
-     0.104,
-     0.113,
-     0.882,
-     0.894,
-     0.797,
-     0.889,
-     0.937,
-     0.917,
-     0.101,
-     0.147,
-     0.111,
-     0.121,
-     0.145
+     0.305,
+     0.464,
+     0.386,
+     0.302,
+     0.264,
+     0.418,
+     0.399,
+     0.243,
+     0.223,
+     0.231,
+     0.282,
+     0.321,
+     0.346,
+     0.321,
+     0.318,
+     0.35,
+     0.384,
+     0.387,
+     0.377,
+     0.34,
+     0.4,
+     0.581,
+     0.656,
+     0.486,
+     0.308,
+     0.284,
+     0.241,
+     0.271,
+     0.233,
+     0.29,
+     0.249,
+     0.292,
+     0.348,
+     0.361,
+     0.434,
+     0.476,
+     0.719,
+     0.731,
+     0.77,
+     0.64,
+     0.662,
+     0.764,
+     0.815,
+     0.794,
+     0.835,
+     0.698,
+     0.66,
+     0.716,
+     0.844,
+     0.673,
+     0.633,
+     0.617,
+     0.642,
+     0.714,
+     0.685,
+     0.692,
+     0.529,
+     0.486,
+     0.606,
+     0.701,
+     0.619,
+     0.542,
+     0.372,
+     0.372,
+     0.563,
+     0.515,
+     0.536,
+     0.254,
+     0.246,
+     0.444,
+     0.483,
+     0.482,
+     0.5,
+     0.307,
+     0.318,
+     0.525,
+     0.595,
+     0.552,
+     0.413,
+     0.364,
+     0.326,
+     0.321,
+     0.33,
+     0.306,
+     0.327,
+     0.275,
+     0.268,
+     0.25,
+     0.267,
+     0.207,
+     0.222,
+     0.248,
+     0.448,
+     0.252,
+     0.271,
+     0.318,
+     0.303,
+     0.379,
+     0.32,
+     0.349,
+     0.37,
+     0.366,
+     0.305
     ],
     "options": [
      "Porywy wiatru",
@@ -2060,7 +2076,8 @@
     {
      "note": "Gospodarz: w suszarni przez noc jest ponad trzydzieści stopni. Foki, które w piątek po południu zjechały z przełęczy, do rana wyschły na wiór."
     }
-   ]
+   ],
+   "img": "assets/evidence/007-skins.webp"
   },
   {
    "id": "e11",
@@ -2082,7 +2099,8 @@
     {
      "note": "Pomarańczowy komunikator satelitarny z karabińczykiem nosił przy pasie Krystian Lis — widać go na zdjęciu zespołu w jadalni."
     }
-   ]
+   ],
+   "img": "assets/evidence/007-ash.webp"
   },
   {
    "id": "e13",
@@ -2099,7 +2117,8 @@
      "Ktoś z nartami na ramieniu idzie od szlaku do tylnych drzwi suszarni",
      "Klatki z tarasu"
     ]
-   ]
+   ],
+   "img": "assets/evidence/007-frame.webp"
   },
   {
    "id": "e14",
@@ -2205,7 +2224,8 @@
     {
      "note": "Krew zabezpieczono do badań. Krystian Lis miał krótkie ciemne włosy."
     }
-   ]
+   ],
+   "img": "assets/evidence/007-stove.webp"
   },
   {
    "id": "e20",
@@ -2349,7 +2369,8 @@
     {
      "note": "W kieszeni kurtki radiotelefon ID 02 — wyłączony. Na piętach butów i na plecach kurtki otarcia i zbity śnieg, jakby ciało ciągnięto po ziemi."
     }
-   ]
+   ],
+   "img": "assets/evidence/007-body.webp"
   },
   {
    "id": "e27",
@@ -2361,7 +2382,8 @@
     {
      "note": "Ratownik: nikt nie wchodził tej nocy na skałę. Szadź przyrasta przy takim wietrze, ale ślad dłoni czy buta byłby widoczny."
     }
-   ]
+   ],
+   "img": "assets/evidence/007-ladder.webp"
   },
   {
    "id": "e28",
@@ -3063,25 +3085,29 @@
    "id": "b-voice",
    "when": "show:i-s1",
    "title": "Głos z czwartku",
-   "text": "Głos, który po północy uspokoił całe schronisko, nagrano dobę wcześniej. Ktoś puścił do radia czwartkowy klip Igora."
+   "text": "Głos, który po północy uspokoił całe schronisko, nagrano dobę wcześniej. Ktoś puścił do radia czwartkowy klip Igora.",
+   "img": "assets/places/007-office.webp"
   },
   {
    "id": "b-skis",
    "when": "lie:w-l1",
    "title": "Nocne narty",
-   "text": "Weronika Kos nie spała z migreną. Kiedy schronisko myślało, że śpi, ona miała na nogach narty, a pod nartami foki."
+   "text": "Weronika Kos nie spała z migreną. Kiedy schronisko myślało, że śpi, ona miała na nogach narty, a pod nartami foki.",
+   "img": "assets/places/007-fork.webp"
   },
   {
    "id": "b-window",
    "when": "p-alibi",
    "title": "Okno 22:50",
-   "text": "O 22:50 ktoś otworzył drzwi schronu na przełęczy. Każdy w schronisku ma na tę chwilę świadka — każdy poza jedną osobą."
+   "text": "O 22:50 ktoś otworzył drzwi schronu na przełęczy. Każdy w schronisku ma na tę chwilę świadka — każdy poza jedną osobą.",
+   "img": "assets/places/007-shelter.webp"
   },
   {
    "id": "b-cold",
    "when": "e36",
    "title": "Biała cisza",
-   "text": "Krystian Lis nie zginął od uderzenia. Żył, kiedy ktoś wyciągnął go na śnieg pod skałę i odszedł. Zabił go mróz."
+   "text": "Krystian Lis nie zginął od uderzenia. Żył, kiedy ktoś wyciągnął go na śnieg pod skałę i odszedł. Zabił go mróz.",
+   "img": "assets/places/007-rock.webp"
   }
  ],
  "hintTrail": [
@@ -3606,5 +3632,12 @@
     ]
    }
   ]
+ },
+ "art": "assets/art/007-keyart.webp",
+ "ambience": "assets/audio/case-007.mp3",
+ "ambienceStorm": "assets/audio/case-007-storm.mp3",
+ "voiceDir": "assets/voice/007",
+ "voice": {
+  "brief": "assets/voice/007-brief.mp3"
  }
 }
