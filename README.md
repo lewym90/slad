@@ -4,7 +4,7 @@ Kooperacyjna gra detektywistyczna dla 1–6 osób (w pojedynkę — w trybie wsp
 
 > Kontynuacja prac (stan, zasady współpracy, lista zadań): **`docs/PRZEKAZANIE.md`**.
 
-Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”, 004 „Martwy kanał”, 005 „Pokój bez okien”. Sprawy 006–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
+Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”, 004 „Martwy kanał”, 005 „Pokój bez okien”, 006 „Ostatni seans”. Sprawy 007–010 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
 
 ## Tryby gry (wybór po otwarciu sprawy)
 - **Wspólny stół** — jeden ekran (laptop, telewizor, tablet). Wszyscy widzą wszystko. Informacje, które w drugim trybie są tajnymi aktami, trzeba zdobyć w śledztwie (m.in. w miejscu „Centrala wydziału”). Najlepszy we dwoje.
