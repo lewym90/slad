@@ -481,7 +481,7 @@ Voice: Zdzisław Hampel, Polish man, 63, keeper of an old mountain hut. Hearty, 
 Task: read ALL 5 lines below in Polish, word for word, in this order. After every line stop and leave 3 full seconds of total silence. Never skip, shorten, merge or rephrase a line. Do not read these instructions.
 Delivery: line 1 — reaction to evidence shown; line 2 — reaction to evidence shown; line 3 — curt, evasive reply; line 4 — curt, evasive reply; line 5 — curt, evasive reply.
 
-To pod moim tarasem, idą do suszarni. Z nartami na ramieniu, o tej porze? Mały plecak z żółtą taśmą… Takie odblaski ma pani Weronika, sam jej pomagałem przyszyć, bo się odpruwały.
+To pod moim tarasem, ktoś idzie do suszarni. Z nartami na ramieniu, o tej porze? Mały plecak z żółtą taśmą… Takie odblaski ma pani Weronika, sam jej pomagałem przyszyć, bo się odpruwały.
 
 Bari! Poznałbym go wszędzie — dwa razy, krótko, tak szczeka tylko przy tylnych drzwiach. Na przełęcz nie chodzi, stary już. Całą noc był tutaj, w korytarzu.
 
@@ -546,7 +546,7 @@ Nie wiem, panie.
 Polish voice recording — one audio file: 007-kuznik-3.wav
 Quality: the best available — ideally WAV 48 kHz, 24-bit, mono. Dry, clean studio voice. No music, no background, no sound effects.
 Voice: Mirosław Kuźnik, Polish man, 52, a snow-groomer operator. Blunt, slow, husky baritone, simple plain speech, a man of few words. Natural radio-drama acting in standard Polish, correct stress.
-Task: read ALL 1 line below in Polish, word for word, in this order. After every line stop and leave 3 full seconds of total silence. Never skip, shorten, merge or rephrase a line. Do not read these instructions.
+Task: read the line below in Polish, word for word, once. Do not read these instructions.
 Delivery: line 1 — short, indifferent reply.
 
 Nic mi to nie mówi.

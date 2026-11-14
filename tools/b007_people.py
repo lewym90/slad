@@ -174,7 +174,7 @@ people = [
   ],
   'shows': [
    SH('h-s1', 'e12', 'Popiół z pieca w suszarni? Ja tam palę drewnem i starymi gazetami, nie plastikiem. Ktoś tam coś spalił w nocy.', claims=['h-c8']),
-   SH('h-s2', 'e13', 'To pod moim tarasem, idą do suszarni. Z nartami na ramieniu, o tej porze? Mały plecak z żółtą taśmą… Takie odblaski ma pani Weronika, sam jej pomagałem przyszyć, bo się odpruwały.', claims=['h-c7']),
+   SH('h-s2', 'e13', 'To pod moim tarasem, ktoś idzie do suszarni. Z nartami na ramieniu, o tej porze? Mały plecak z żółtą taśmą… Takie odblaski ma pani Weronika, sam jej pomagałem przyszyć, bo się odpruwały.', claims=['h-c7']),
    SH('h-s3', 'e33', 'Bari! Poznałbym go wszędzie — dwa razy, krótko, tak szczeka tylko przy tylnych drzwiach. Na przełęcz nie chodzi, stary już. Całą noc był tutaj, w korytarzu.', claims=['h-c9']),
   ]},
 

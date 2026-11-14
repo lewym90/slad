@@ -56,7 +56,7 @@ for who in ['adam', 'weronika', 'igor', 'natalia', 'hampel', 'kuznik']:
         voice_blocks.append(f"""Polish voice recording — one audio file: {CID}-{who}-{i}.wav
 {QV}
 Voice: {VOICE[who]} Natural radio-drama acting in standard Polish, correct stress.
-Task: read ALL {len(P)} line{'s' if len(P) > 1 else ''} below in Polish, word for word, in this order. After every line stop and leave 3 full seconds of total silence. Never skip, shorten, merge or rephrase a line. Do not read these instructions.
+{f'Task: read ALL {len(P)} lines below in Polish, word for word, in this order. After every line stop and leave 3 full seconds of total silence. Never skip, shorten, merge or rephrase a line. Do not read these instructions.' if len(P) > 1 else 'Task: read the line below in Polish, word for word, once. Do not read these instructions.'}
 Delivery: {deliv}.
 
 """ + '\n\n'.join(x['spoken'] for x in P))
