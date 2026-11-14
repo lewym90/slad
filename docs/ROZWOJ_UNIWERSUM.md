@@ -1,7 +1,7 @@
 # ŚLAD — plan rozwoju uniwersum
 
 Dokument roboczy z decyzjami autora gry (właściciel repo). Służy do kontynuacji prac w dowolnej sesji/koncie Claude.
-Stan na: 12.11.2026, wersja aplikacji 2.13.1. Sprawy 001–004 gotowe, 005–009 zapieczętowane.
+Stan na: 14.11.2026, wersja aplikacji 2.18.0. Sprawy 001–006 gotowe, 007 zbudowana (czeka na media), 008–010 zapieczętowane. Bieżący stan i lista zadań: `docs/PRZEKAZANIE.md`.
 
 ## 0. Zasady nadrzędne (obowiązują zawsze)
 
@@ -171,4 +171,8 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 - Silnik 2.18: `clock`, `map`, `evidence.audio`, `novelties`, punkty `expires`; walidator: osiągalność mapy (także w śnieżycy), zdarzenia zegara, znaczniki nagrań, zakaz jedynych dróg przez ślady, które przepadają z czasem.
 - Sprawa zbudowana skryptem `tools/build_007.py` (moduły `b007_*.py`), walidacja bez błędów logiki, przejścia testowe w obu trybach z kompletem dowodów i przełomów. Zapieczętowana do czasu mediów; nagranie łączności w repozytorium jest tymczasowe (syntetyczne) — do podmiany na złożone z wygenerowanych dźwięków.
 - Prompty mediów: `docs/PROMPTY_007.md` (generuje `tools/prompts_007.py`, kolejność plików: `tools/voice/007-media-order.json`).
+
+## 18. Media i przekazanie projektu (14.11.2026)
+- Generowanie mediów wtyczką Krea odrzucone przez autora (za drogo). Wtyczek do ChatGPT i Groka nie ma. Uzgodniony kierunek do sprawdzenia: Claude obsługuje ChatGPT (grafiki) i Groka (filmy, dźwięki) w przeglądarce autora, na jego kontach — test na jednej grafice 007, gdy autor będzie przy komputerze. Szczegóły: `docs/PRZEKAZANIE.md` §5.
+- Pełne przekazanie projektu na inne konto Claude: `docs/PRZEKAZANIE.md` (bez spoilerów) i `docs/PRZEKAZANIE_DLA_CLAUDE_SPOILERY.md` (tylko dla Claude).
 

@@ -2,6 +2,8 @@
 
 Kooperacyjna gra detektywistyczna dla 1–6 osób (w pojedynkę — w trybie wspólnego stołu) przy jednym ekranie (telefon, tablet, komputer). Instaluje się jak aplikacja (PWA) i po pierwszym uruchomieniu działa offline.
 
+> Kontynuacja prac (stan, zasady współpracy, lista zadań): **`docs/PRZEKAZANIE.md`**.
+
 Gotowe sprawy: 001 „Dom, który pamięta”, 002 „Ostatni pociąg”, 003 „Cisza w sanatorium”, 004 „Martwy kanał”, 005 „Pokój bez okien”. Sprawy 006–009 są w przygotowaniu (widoczne w archiwum jako zapieczętowane). Aktualny numer wersji: Ustawienia → „Wersja gry”.
 
 ## Tryby gry (wybór po otwarciu sprawy)
