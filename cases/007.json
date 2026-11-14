@@ -3086,6 +3086,7 @@
    "when": "show:i-s1",
    "title": "Głos z czwartku",
    "text": "Głos, który po północy uspokoił całe schronisko, nagrano dobę wcześniej. Ktoś puścił do radia czwartkowy klip Igora.",
+   "video": "assets/video/007-bt-voice.mp4",
    "img": "assets/places/007-office.webp"
   },
   {
@@ -3093,6 +3094,7 @@
    "when": "lie:w-l1",
    "title": "Nocne narty",
    "text": "Weronika Kos nie spała z migreną. Kiedy schronisko myślało, że śpi, ona miała na nogach narty, a pod nartami foki.",
+   "video": "assets/video/007-bt-skis.mp4",
    "img": "assets/places/007-fork.webp"
   },
   {
@@ -3100,6 +3102,7 @@
    "when": "p-alibi",
    "title": "Okno 22:50",
    "text": "O 22:50 ktoś otworzył drzwi schronu na przełęczy. Każdy w schronisku ma na tę chwilę świadka — każdy poza jedną osobą.",
+   "video": "assets/video/007-bt-window.mp4",
    "img": "assets/places/007-shelter.webp"
   },
   {
@@ -3107,6 +3110,7 @@
    "when": "e36",
    "title": "Biała cisza",
    "text": "Krystian Lis nie zginął od uderzenia. Żył, kiedy ktoś wyciągnął go na śnieg pod skałę i odszedł. Zabił go mróz.",
+   "video": "assets/video/007-bt-cold.mp4",
    "img": "assets/places/007-rock.webp"
   }
  ],
@@ -3636,6 +3640,7 @@
  "art": "assets/art/007-keyart.webp",
  "ambience": "assets/audio/case-007.mp3",
  "ambienceStorm": "assets/audio/case-007-storm.mp3",
+ "introVideo": "assets/video/007-intro.mp4",
  "voiceDir": "assets/voice/007",
  "voice": {
   "brief": "assets/voice/007-brief.mp3"

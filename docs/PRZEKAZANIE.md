@@ -1,4 +1,4 @@
-# ŚLAD — przekazanie projektu (stan na 14.11.2026, 14:05, wersja 2.18.0)
+# ŚLAD — przekazanie projektu (stan na 14.11.2026, 22:00, wersja 2.18.2)
 
 Ten dokument pozwala kontynuować pracę **dokładnie od tego miejsca** na dowolnym koncie Claude. Bez spoilerów — rozwiązania spraw i ukryty wątek są w osobnym pliku `docs/PRZEKAZANIE_DLA_CLAUDE_SPOILERY.md`, którego **autor gry nie czyta** (sam o to prosi: „staram się wiedzieć jak najmniej”).
 
@@ -37,7 +37,7 @@ Pracuj dokładnie według tych dokumentów. Zacznij od krótkiego potwierdzenia 
 ## 3. Projekt w skrócie
 
 - **Czysta aplikacja PWA** bez serwera: `index.html`, `app.js`, `styles.css`, `sw.js`, `manifest.webmanifest`, `cases/*.json`, `cases/index.json` (lista spraw, `ready`), `data/baza/*.json` (ogólnopolska fikcyjna baza: tło + rekordy spraw + `uniwersum.json`), `assets/` (art, cases, people, places, evidence, video, audio, voice, print, plan).
-- Wersja w dwóch miejscach: `VERSION` w `app.js` i `sw.js` (obecnie **2.18.0**), `BUILD` w `app.js` (data). Każda zmiana plików gry → podbić wersję.
+- Wersja w dwóch miejscach: `VERSION` w `app.js` i `sw.js` (obecnie **2.18.2**), `BUILD` w `app.js` (data). Każda zmiana plików gry → podbić wersję.
 - Tryby: „Wspólny stół” (jeden ekran/TV, Centrala wydziału zamiast tajnych akt) i „Telefony” (każdy gracz ma tajne akta i terminal baz). Role graczy z mocami, poziomy trudności, tropy, przełomy (filmy), tablica śledcza, kronika wydziału, raport końcowy z punktami.
 - Mechaniki odblokowywane kampanijnie (zostają na zawsze): bazy danych PESEL/CEPiK/KRS/EKW (od 005), okazywanie dowodów (od 005), oględziny na zdjęciu (od 006). Mechaniki per sprawa: podarty dokument, zeznania-pomyłki, materiały do druku (006), zegar w grze, mapa szlaków, dowód dźwiękowy (007).
 - Szczegóły formatu danych: `README.md` (sekcje „Nowe mechaniki”) i walidator `tools/validate.js`.
@@ -73,11 +73,15 @@ Autor generuje grafiki w **ChatGPT**, filmy i dźwięki w **Groku**, a potem pow
 7. **Powiększone grafiki**: `python3 tools/import_upscaled.py paczka.zip` (podgląd `/tmp/up-sheet.jpg`, kontrola skali i kompozycji), potem `--apply`.
 8. Przebudować sprawę (`build_00N.py` dopisuje pola mediów tylko dla istniejących plików), dopisać pliki sprawy do precache w `sw.js`, walidacja, przejścia testowe, `ready: true` w `cases/index.json`, PDF druku, podbicie wersji, commit, push.
 
-**Ustalenia o automatyzacji generowania (14.11.2026):**
-- Wtyczka **Krea** (jest podłączona, ma Nano Banana Pro 4K, Veo 3.1, Kling 4, ElevenLabs, Topaz) — **odrzucona przez autora jako za droga** (konto darmowe, 44 jednostki; grafika 4K ≈ 220 j., film Veo 8 s ≈ 1185 j. Full HD / 2370 j. 4K, kwestia głosowa ≈ 10 j.; cała sprawa 10–17 tys. j. ≈ plan Pro 35 $/mies.).
-- Higgsfield (podłączony, wymaga ponownego logowania) — też drożej. Wtyczek do ChatGPT i Groka **nie ma**; ich API jest płatne osobno i niedostępne ze środowiska Claude.
-- **Plan uzgodniony do sprawdzenia:** Claude sam obsługuje ChatGPT (grafiki) i Groka (filmy, dźwięki) w przeglądarce autora (Claude in Chrome albo wbudowana przeglądarka aplikacji Claude na komputerze — preferowana w ustawieniach: wbudowana), na kontach autora, w ramach jego abonamentów — ta sama jakość. Warunki: autor przy komputerze, zalogowany w obu serwisach (hasła wpisuje sam), aplikacja Claude z udostępnionym folderem Pobrane (pliki zabierane przez most urządzenia), jednorazowa zgoda autora na pobieranie wygenerowanych plików („Pobieraj wszystkie pliki wygenerowane dla gry”); CAPTCHA klika autor. Zacząć od **jednej grafiki 007 jako testu jakości**. Spróbować też przejąć powiększanie (Upscayl na komputerze autora przez sterowanie komputerem albo Real-ESRGAN w środowisku Claude).
-- Do czasu testu obowiązuje dotychczasowy tryb: prompty w czacie → autor generuje → przysyła.
+**Automatyzacja generowania — DZIAŁA (sprawdzone 14.11.2026 przy sprawie 007):**
+- Krea i Higgsfield odrzucone (za drogie). Claude obsługuje **ChatGPT i Groka w Chrome autora** przez rozszerzenie **Claude in Chrome** (konta i abonamenty autora). Wbudowana przeglądarka aplikacji Claude odpada do pobierania — przy każdym pliku otwiera okno „Zapisz jako”, którego Claude nie może kliknąć.
+- Warunki: autor przy komputerze, Chrome z rozszerzeniem Claude zalogowanym na to samo konto, zalogowany w chatgpt.com i grok.com; w Chrome wyłączone „Pytaj, gdzie zapisać…” i **dozwolone automatyczne pobieranie wielu plików** dla chatgpt.com i grok.com (chrome://settings/content/automaticDownloads); jednorazowa zgoda autora: „Pobieraj wszystkie pliki wygenerowane dla gry”. Folder Pobrane udostępniony aplikacji Claude (device_bash ma do niego dostęp).
+- **Zasada autora: wszystko w JEDNYM czacie** (wszystkie grafiki po kolei w jednym czacie ChatGPT, wszystkie dźwięki w jednym czacie Groka), żadnych nowych kart/okien/czatów dla każdego pliku, Upscayl otwarty raz.
+- ChatGPT: tekst wstawiać JS-em (`document.execCommand('insertText')` w `.ProseMirror`) i wysyłać klawiszem Enter; pobieranie: kliknięcie w obraz (prawdziwe kliknięcie), potem JS-em przycisk „Pobierz” w oknie podglądu. Pliki z Pobranych kopiować do `Pobrane\SLAD-NNN\oryginaly` / `plansze` (device_bash).
+- Grok (czat, model Ekspert): dźwięki generuje kodem/TTS; do promptu dopisać „attach it as an MP3, 320 kbps, 48 kHz” (duży WAV się nie wyświetla). Pobieranie: `fetch(audio.src)` → link z `download` (JS). Lista `<audio>` jest wirtualizowana — gotowość sprawdzać po zmianie adresu ostatniego `<audio>`, nie po liczbie.
+- **Po wysłaniu tekstów głosów sprawdzić sumy kontrolne** (hash tekstu wiadomości w Groku vs źródło) — przy przepisywaniu w wywołaniach zdarzały się literówki.
+- **Grok Imagine (filmy) nie przyjmował promptów z automatu** (wysyłka znikała bez efektu) — filmy generuje autor, Claude podaje prompty i audytuje klatki.
+- Upscayl przez sterowanie komputerem (dostęp: Upscayl + Eksplorator plików w trybie „click”): tryb **Batch**, folder `oryginaly` (lokacje i grafika tytułowa **×2**) i `plansze` (portrety, dowody **×4**), wynik do `powiekszone`. Okna wyboru folderu: nawigacja klikaniem (strzałka „w górę”, zaznaczenie folderu, „Wybierz folder”), pisanie w polu jest zablokowane. Dostęp do aplikacji wygasa po 30 min bezczynności.
 
 ---
 
@@ -91,24 +95,23 @@ Autor generuje grafiki w **ChatGPT**, filmy i dźwięki w **Groku**, a potem pow
 | 004 „Martwy kanał” | gotowa |
 | 005 „Pokój bez okien” | gotowa (debiut baz danych i okazywania dowodów) |
 | 006 „Ostatni seans” | gotowa (oględziny na zdjęciu, podarty list, świadek-pomyłka, PDF do druku), wszystkie grafiki po Upscaylu |
-| 007 „Biała cisza” | **zbudowana i przetestowana, zapieczętowana — czeka na media** |
+| 007 „Biała cisza” | gotowa, otwarta w 2.18.2 (komplet mediów, mapa w PDF-ie do druku) |
 | 008 „Cień w galerii” | w archiwum jako zapieczętowana, do zbudowania |
 | 009 „Czarna skrzynka” | w archiwum jako zapieczętowana, do zbudowania |
 | 010 „Palimpsest” | finał kampanii 1, okładka jest, do zaprojektowania |
 
 Ostatnie wersje: 2.17.9 (pełny audyt: poprawki językowe, gra w pojedynkę przy wspólnym stole, czytelniejszy podarty list, porządki), 2.18.0 (silnik: zegar, mapa szlaków, dowód dźwiękowy, nowości sprawy; sprawa 007).
 
-### Sprawa 007 — co jest, czego brak
-- Dane: `tools/build_007.py` + `b007_evidence.py`, `b007_people.py`, `b007_rest.py`, `b007_db.py` (rekordy → `data/baza/sprawa-007.json`). 6 osób, 10 miejsc, 53 dowody, 2 zagadki, 4 przełomy, 3 zdarzenia zegara (12:00, 13:00 śnieżyca, 15:00), mapa 4 punktów.
-- Testy: walidator bez błędów logiki (zostały tylko 2 błędy „brak zdjęcia” dla oględzin `dry` i `shelter` — znikną po wstawieniu grafik), przejścia testowe stół/telefony/komputer: komplet dowodów i przełomów, bez błędów aplikacji. Norma czasu: raport do 19:50 (stół +80 min).
-- **Prompty mediów: `docs/PROMPTY_007.md`** (GRAFIKI 1–13, VIDEO 1–5, DŹWIĘK 1–30 — dokładnie te same, które autor dostał w czacie 14.11.2026). Kolejność i nazwy plików: `tools/voice/007-media-order.json`. Autor **jeszcze ich nie wygenerował**.
-- Nagranie `assets/audio/007-call.mp3` jest **tymczasowe (syntetyczne)** — do zastąpienia nagraniem złożonym z dźwięków DŹWIĘK 3–6 (szczegóły montażu: plik ze spoilerami, §007).
+### Sprawa 007 — stan
+- Komplet mediów (14.11.2026): grafiki ChatGPT po Upscaylu, głosy i dźwięki z Groka, filmy z Grok Imagine (3 filmy poprawione po audycie). Nagranie łączności zmontowane (`tools/mix_call_007.py`; znaczniki `tools/voice/007-call-marks.json` pasują). Tła: zapętlone, średnio ok. −29 dB (highpass 30 Hz, bo tła z Groka mają dużo energii poniżej 60 Hz).
+- Testy: walidator zero błędów i ostrzeżeń; przejścia: stół/telefon 99, telefony/komputer 98, stół/tablet 100; komplet dowodów i przełomów.
+- Do sprawdzenia przez autora na słuch: tła i nagranie łączności.
 
 ---
 
 ## 7. Lista zadań (kolejność)
 
-1. **Media 007**: test automatyzacji (ChatGPT/Grok w przeglądarce autora) albo czekanie na pliki od autora. Potem obróbka wg §5, w tym:
+1. ~~Media 007~~ — zrobione (2.18.2). Dawny opis zadania: test automatyzacji (ChatGPT/Grok w przeglądarce autora) albo czekanie na pliki od autora. Potem obróbka wg §5, w tym:
    - pocięcie plansz (portrety: adam, weronika, igor, natalia, hampel, kuznik; dowody: kolejność w `build_007.py` → `EVIMG`: ash, stove, frame, ladder, skins, body — patrz prompt GRAFIKI 2),
    - miejsca `assets/places/007-{office,dry,terrace,dining,room6,fork,shelter,rock,garage,notes}.webp`, grafika tytułowa `assets/art/007-keyart.webp`,
    - **pozycje śladów** dla oględzin `dry` i `shelter` (w `b007_rest.py`, teraz są wartości tymczasowe),
@@ -134,3 +137,4 @@ Zasady planowania kolejnych spraw: patrz `docs/ROZWOJ_UNIWERSUM.md` §0, §1 (li
 - 14.11: omówienie 007 (zegar zamiast ruchów, mapa z pozycją zespołu, dowód dźwiękowy z analizą technika jako podpowiedzią, bazy przez radio za czas, 1–6 graczy) — autor: „Zgoda na wszystko. Działaj” → wersja 2.18.0 i prompty 007.
 - 14.11 po południu: rozmowa o automatyzacji mediów (§5) — Krea odrzucona (koszt), plan: obsługa ChatGPT/Groka w przeglądarce autora, test przy komputerze.
 - 14.11, 14:04: autor poprosił o ten dokument przekazania.
+- 14.11 wieczór: automatyzacja mediów działa (Chrome + Claude in Chrome, Upscayl przez sterowanie komputerem), 007 skończona i otwarta (2.18.2). Następne: omówienie mechanik 008.

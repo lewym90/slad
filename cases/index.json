@@ -87,8 +87,9 @@
    "players": "1–6",
    "difficulty": "Trudna",
    "cover": "assets/cases/007-cover.webp",
-   "ready": false,
-   "teaser": "Karkonosze, zamknięty schron i nadajnik, który pracował po północy."
+   "ready": true,
+   "teaser": "Karkonosze, zamknięty schron i nadajnik, który pracował po północy.",
+   "print": "assets/print/007.pdf"
   },
   {
    "id": "008",

@@ -1,7 +1,7 @@
 # ŚLAD — plan rozwoju uniwersum
 
 Dokument roboczy z decyzjami autora gry (właściciel repo). Służy do kontynuacji prac w dowolnej sesji/koncie Claude.
-Stan na: 14.11.2026, wersja aplikacji 2.18.0. Sprawy 001–006 gotowe, 007 zbudowana (czeka na media), 008–010 zapieczętowane. Bieżący stan i lista zadań: `docs/PRZEKAZANIE.md`.
+Stan na: 14.11.2026, wersja aplikacji 2.18.2. Sprawy 001–007 gotowe, 008–010 zapieczętowane. Bieżący stan i lista zadań: `docs/PRZEKAZANIE.md`.
 
 ## 0. Zasady nadrzędne (obowiązują zawsze)
 
@@ -176,3 +176,7 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 - Generowanie mediów wtyczką Krea odrzucone przez autora (za drogo). Wtyczek do ChatGPT i Groka nie ma. Uzgodniony kierunek do sprawdzenia: Claude obsługuje ChatGPT (grafiki) i Groka (filmy, dźwięki) w przeglądarce autora, na jego kontach — test na jednej grafice 007, gdy autor będzie przy komputerze. Szczegóły: `docs/PRZEKAZANIE.md` §5.
 - Pełne przekazanie projektu na inne konto Claude: `docs/PRZEKAZANIE.md` (bez spoilerów) i `docs/PRZEKAZANIE_DLA_CLAUDE_SPOILERY.md` (tylko dla Claude).
 
+
+## 19. Automatyzacja mediów (14.11.2026, 2.18.1–2.18.2)
+- Claude sam generuje grafiki (ChatGPT) i dźwięki (Grok) w Chrome autora, pobiera je, powiększa w Upscaylu i obrabia; filmy z Grok Imagine robi autor z promptów Claude. Szczegóły i pułapki: `docs/PRZEKAZANIE.md` §5. Zasada autora: wszystko w jednym czacie, bez otwierania nowych kart dla każdego pliku.
+- Sprawa 007 otwarta w 2.18.2; PDF do druku ma stronę z mapą szlaków (`gen_print.py`, gdy sprawa ma `map`).
