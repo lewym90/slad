@@ -109,7 +109,7 @@
     {
      "id": "ew-q7",
      "q": "Dlaczego od razu powiedziała pani, że puszka spadła z półki?",
-     "a": "Bo tak to wyglądało. Leżała pod regałem. Co miałam pomyśleć? Że ktoś... Nie, wtedy nawet przez myśl mi to nie przeszło.",
+     "a": "Bo tak to wyglądało. Leżała pod regałem. Co miałam pomyśleć? Że ktoś… Nie, wtedy nawet przez myśl mi to nie przeszło.",
      "requires": [
       "st:d-c4"
      ]
@@ -496,7 +496,7 @@
     {
      "id": "j-q2",
      "q": "Czy pan Leon mówił coś szczególnego?",
-     "a": "Miał kopertę w kieszeni marynarki. Powiedział, że po seansie da coś pani konserwator i że wszyscy się zdziwią, co się dzieje z naszymi plakatami. Pytałam o co chodzi — machnął ręką.",
+     "a": "Miał kopertę w kieszeni marynarki. Powiedział, że po seansie da coś pani konserwator i że wszyscy się zdziwią, co się dzieje z naszymi plakatami. Pytałam, o co chodzi — machnął ręką.",
      "claims": [
       "j-c3"
      ]
@@ -663,7 +663,7 @@
       "e24",
       "e25"
      ],
-     "response": "Godzinę więcej? Mój Boże... Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — nakręcam go, ale wskazówek nie ruszam, kto by o tym pamiętał. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić.",
+     "response": "Godzinę więcej? Mój Boże… Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — nakręcam go, ale wskazówek nie ruszam, kto by o tym pamiętał. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić.",
      "gives": [
       "t4"
      ]
@@ -1025,7 +1025,7 @@
       ]
      ]
     },
-    "W sobotę kino zorganizowało „Ostatni seans” — pożegnalną projekcję z taśmy 35 mm przed zamknięciem kina. Film skończył się przed 22:00, potem w foyer trwało pożegnanie. Kinooperator na nie nie zszedł. Kierowniczka i technik poszli na górę. Wewnętrzne drzwi kabiny były zamknięte na klucz, a klucz od nich miał w kieszeni zmarły. Kierowniczka otworzyła zapasowym kluczem z biura.",
+    "W sobotę kino zorganizowało „Ostatni seans” — pożegnalną projekcję z taśmy 35 mm przed zamknięciem kina. Film skończył się przed 22:00, potem w foyer trwało pożegnanie. Kinooperator się na nim nie pojawił. Kierowniczka i technik poszli na górę. Wewnętrzne drzwi kabiny były zamknięte na klucz, a klucz od nich miał w kieszeni zmarły. Kierowniczka otworzyła zapasowym kluczem z biura.",
     "Leon Barcz leżał na podłodze na środku kabiny, przed stołem przewijarki, z raną tyłu głowy. Obok leżała stalowa puszka na taśmę filmową z krwią na krawędzi. Drzwi ewakuacyjne kabiny, prowadzące na zewnętrzne schody pożarowe, były zamknięte. W projektorze B wciąż paliła się lampa; zgasił ją technik.",
     {
      "note": "Wstępna ocena patrolu: możliwy nieszczęśliwy wypadek — upadek ciężkiej puszki z regału. Prokurator nie przyjął tej wersji bez sekcji."
@@ -1310,7 +1310,7 @@
    "summary": "Przeszklona gablota na ścianie foyer.",
    "body": [
     "Cztery plakaty filmowe w ramach: „Czarna perła” (1934), „Wiatr od Bałtyku” (1949), „Dziewczyna z Bałut” (1958), „Noc nad Wartą” (1962). Gablota zamknięta na zamek patentowy.",
-    "Przy dolnej krawędzi dwóch plakatów — „Czarnej perły” i „Dziewczyny z Bałut” — widać pod lupą maleńki nadruk wtopiony w papier: „FX 25”. Na dwóch pozostałych nie ma niczego podobnego."
+    "Przy dolnej krawędzi dwóch plakatów — „Czarnej perły” i „Dziewczyny z Bałut” — widać pod lupą maleńki nadruk wtopiony w papier: „FX 26”. Na dwóch pozostałych nie ma niczego podobnego."
    ],
    "img": "assets/evidence/006-posters.webp"
   },
@@ -1357,7 +1357,7 @@
        "„Czarna perła” (1934) — 92 000 zł; „Dziewczyna z Bałut” (1958) — 41 000 zł"
       ],
       [
-       "Faktura VESPER z 14.10.2025",
+       "Faktura VESPER z 14.10.2026",
        "wykonanie dwóch faksymile ekspozycyjnych: „Czarna perła”, „Dziewczyna z Bałut” — 3 800 zł"
       ],
       [
@@ -1372,7 +1372,7 @@
    ],
    "time": [
     [
-     "2025-10-14 10:00",
+     "2026-10-14 10:00",
      "Kierowniczka zamawia w pracowni VESPER dwie faksymile plakatów",
      "Teczka „Plakaty”"
     ]
@@ -1407,7 +1407,7 @@
    "body": [
     "Na wierzchu, pod uchyloną klapą: mokra kartka w linie, podarta na dziewięć kawałków. Pismo odręczne, staranne, atrament miejscami się rozmył. Pod spodem kartony po kubkach z baru.",
     {
-     "note": "Skrawki zabezpieczono i wysuszono. Złóżcie je w analizie — zagadka „Podarty list”."
+     "note": "Skrawki zabezpieczono i wysuszono. Złóżcie je w zakładce Analiza — zagadka „Podarty list”."
     }
    ],
    "img": "assets/evidence/006-scraps.webp"
@@ -1442,7 +1442,7 @@
      "by": "odręczny list, pismo Leona Barcza"
     },
     {
-     "note": "To list z pustej koperty na biurku w kabinie. Ktoś go podarł i wyrzucił do kontenera przy tylnych drzwiach kina."
+     "note": "Najpewniej to list z pustej koperty na biurku w kabinie. Ktoś go podarł i wyrzucił do kontenera przy tylnych drzwiach kina."
     }
    ]
   },
@@ -1502,7 +1502,7 @@
    "title": "Sekcja zwłok — wnioski",
    "summary": "Zakład Medycyny Sądowej, niedziela 8:00.",
    "body": [
-    "Jedno silne uderzenie krawędzią wieczka puszki e08 w tył głowy, zadane z góry i z zamachem przez osobę stojącą za ofiarą. Puszka o wadze 2,9 kg spadająca z wysokości 1,9 m nie wytworzyłaby takiego urazu ani takiego kąta rany.",
+    "Jedno silne uderzenie krawędzią wieczka puszki zabezpieczonej przy ciele, w tył głowy, zadane z góry i z zamachem przez osobę stojącą za ofiarą. Puszka o wadze 2,9 kg spadająca z wysokości 1,9 m nie wytworzyłaby takiego urazu ani takiego kąta rany.",
     {
      "kv": [
       [
@@ -2401,7 +2401,7 @@
    },
    {
     "h": "List i plakaty",
-    "p": "W kontenerze przy tylnych drzwiach — skrawki listu Barcza do konserwator: dwa plakaty to kopie, oryginały są w katalogu „Rewersu”, klucz do gabloty mieli tylko on i kierowniczka. Sitek zamówiła w 2025 roku faksymile, a komitentem aukcji jest Ars-Lokus — spółka jej męża, Tomasza Sitka."
+    "p": "W kontenerze przy tylnych drzwiach — skrawki listu Barcza do konserwator: dwa plakaty to kopie, oryginały są w katalogu „Rewersu”, klucz do gabloty mieli tylko on i kierowniczka. Sitek zamówiła w październiku 2026 roku faksymile, a komitentem aukcji jest Ars-Lokus — spółka jej męża, Tomasza Sitka."
    },
    {
     "h": "Fałszywe tropy",
@@ -2437,7 +2437,7 @@
   "wrong": {
    "damian": {
     "title": "Uczeń",
-    "text": "Damian umiał zmienić projektor i skłamał, gdzie był, więc wskazujecie jego. Ale o 21:03 płacił kartą w sklepie przy Gdańskiej 60, a kamera pizzerii widziała, jak wraca frontem z reklamówką. Zanim śledztwo wraca na właściwy tor, plakaty zostają sprzedane na aukcji."
+    "text": "Damian umiał zmienić projektor i skłamał, gdzie był, więc wskazujecie jego. Ale o 21:03 płacił kartą w sklepie przy Gdańskiej 60, a kamera pizzerii widziała, jak wraca frontem z reklamówką. Zanim śledztwo wróci na właściwy tor, plakaty zostaną sprzedane na aukcji."
    },
    "grzegorz": {
     "title": "Syn",
@@ -2449,7 +2449,7 @@
    },
    "accident": {
     "title": "Nieszczęśliwy wypadek",
-    "text": "Uznajecie, że ciężka puszka spadła z regału. Dokładnie tak miało to wyglądać. Sekcja mówi co innego, ale zanim prokurator to przeczyta, w Krakowie stuka młotek licytatora. „Czarna perła” idzie za sto dziesięć tysięcy."
+    "text": "Uznajecie, że ciężka puszka spadła z regału. Dokładnie tak miało to wyglądać. Sekcja mówi co innego, ale zanim ktokolwiek zestawi ją z waszym raportem, w Krakowie stuka młotek licytatora. „Czarna perła” idzie za sto dziesięć tysięcy."
    }
   },
   "partial": "Wskazaliście właściwą osobę, ale część wniosków jest błędna lub niepoparta dowodami. Sitek zostaje zatrzymana, ale obrona będzie miała o co walczyć."

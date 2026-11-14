@@ -40,7 +40,7 @@ people = [
    Q('ew-q4', 'Kto w kinie umie zmienić projektor w trakcie seansu?', 'Pan Leon i Damian, którego pan Leon uczył. Ja się na tym nie znam. Nigdy w życiu nie obsługiwałam projektora, jestem od papierów i ludzi.', ['e-l7']),
    Q('ew-q5', 'Co z plakatami w gablocie, kiedy kino zostanie zamknięte?', 'To duma „Zorzy”. Cztery oryginały, wiszą tu od lat. Po zamknięciu trafią do muzeum kinematografii, już to uzgodniłam.', ['e-l5']),
    Q('ew-q6', 'Wiedziała pani, co pan Leon chciał powiedzieć po seansie?', 'Miał przemówić na pożegnaniu, jak wszyscy. Nie wiem, co przygotował. Nie pokazywał mi tekstu.', requiresAny=['st:j-c3', 'e12']),
-   Q('ew-q7', 'Dlaczego od razu powiedziała pani, że puszka spadła z półki?', 'Bo tak to wyglądało. Leżała pod regałem. Co miałam pomyśleć? Że ktoś... Nie, wtedy nawet przez myśl mi to nie przeszło.', requires=['st:d-c4']),
+   Q('ew-q7', 'Dlaczego od razu powiedziała pani, że puszka spadła z półki?', 'Bo tak to wyglądało. Leżała pod regałem. Co miałam pomyśleć? Że ktoś… Nie, wtedy nawet przez myśl mi to nie przeszło.', requires=['st:d-c4']),
   ],
   'statements': [
    S('e-c1', 'O 22:41 otworzyłam kabinę zapasowym kluczem i znalazłam pana Leona.', truth=True),
@@ -130,7 +130,7 @@ people = [
   'showDefault': ['Pierwszy raz widzę.', 'Nie znam się na tym, ja jestem od kawy i ciastek.'],
   'questions': [
    Q('j-q1', 'Co się działo przed seansem?', 'Pan Leon przyszedł o wpół do ósmej na herbatę. Przy barze pokłócił się z synem — o pieniądze, o mieszkanie, aż ludzie się oglądali. Potem poszedł na górę, cały czerwony.', ['j-c1']),
-   Q('j-q2', 'Czy pan Leon mówił coś szczególnego?', 'Miał kopertę w kieszeni marynarki. Powiedział, że po seansie da coś pani konserwator i że wszyscy się zdziwią, co się dzieje z naszymi plakatami. Pytałam o co chodzi — machnął ręką.', ['j-c3']),
+   Q('j-q2', 'Czy pan Leon mówił coś szczególnego?', 'Miał kopertę w kieszeni marynarki. Powiedział, że po seansie da coś pani konserwator i że wszyscy się zdziwią, co się dzieje z naszymi plakatami. Pytałam, o co chodzi — machnął ręką.', ['j-c3']),
    Q('j-q3', 'Kto wychodził z foyer w czasie seansu?', 'Damian wyszedł frontem za pięć dziewiąta i wrócił z ulicy jakoś dziesięć po, z reklamówką. A syn pana Leona wyszedł z sali koło dziewiątej, przed kino, z telefonem przy uchu. Wrócił po kwadransie.', ['j-c5', 'j-c4']),
    Q('j-q4', 'Widziała pani kierowniczkę w czasie seansu?', 'Przyszła od zaplecza kwadrans po dziewiątej. Mokra, z płaszczem zarzuconym na ramiona, włosy jej się rozsypały. Powiedziała, że wynosiła śmieci. Zdziwiłam się, bo śmieci zawsze wynosi Damian.', ['j-c2']),
    Q('j-q5', 'Jak skończył się film?', 'Ostatnia scena, napisy i nagle biały ekran. Świecił tak z pięć minut. Ludzie bili brawo, myśleli, że pan Leon zaraz zejdzie się ukłonić. W końcu pani Ewa zapaliła światło panelem przy drzwiach sali.', ['j-c7']),
@@ -165,7 +165,7 @@ people = [
    S('l-c4', 'Kiedy ta osoba zbiegała, drzwi kabiny były już zamknięte.', truth=True),
    S('l-c5', 'Zegar nastawiłem w czwartek z zegarka po bracie.', truth=True),
    S('l-m1', 'Kogoś na schodach pożarowych widziałem około dziesięć po dziesiątej wieczorem.', mistake=True, contradicts=['e24', 'e25'],
-     response='Godzinę więcej? Mój Boże... Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — nakręcam go, ale wskazówek nie ruszam, kto by o tym pamiętał. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić.',
+     response='Godzinę więcej? Mój Boże… Zegarek po Mietku. Przecież ja go w październiku nie przestawiłem — nakręcam go, ale wskazówek nie ruszam, kto by o tym pamiętał. A zegar nastawiłem z niego w czwartek. Czyli to było dziesięć po dziewiątej, nie po dziesiątej. Przepraszam państwa, nie chciałem nikogo zmylić.',
      gives=['t4']),
   ],
   'shows': [

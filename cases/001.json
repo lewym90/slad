@@ -4,7 +4,7 @@
  "subtitle": "Morderstwo w odosobnionej rezydencji",
  "genre": "Thriller psychologiczny",
  "duration": "75–110 min",
- "players": "2–6",
+ "players": "1–6",
  "difficulty": "Wymagająca",
  "cover": "assets/cases/001-cover.webp",
  "keyart": "assets/art/001-keyart.webp",
@@ -326,7 +326,7 @@
       "t2",
       "e29"
      ],
-     "response": "Nazywam się Kinga Wolska. Ania była moją najlepszą przyjaciółką. Piętnastego listopada rano miałyśmy razem wyjechać do Dublina. Czternastego, o dziewiątej wieczorem, widziałam z ogrodu, jak Leon przekręca klucz w drzwiach jej pokoju. Czekałam pod oknem do wpół do dwunastej, aż on zaśnie. Wtedy zobaczyłam ogień. Okno było za wysoko. Leon wyszedł do mnie w ogród i powiedział, że to moje świece i że pójdę siedzieć za podpalenie, jeśli piśnę słowo. Rano wyjechałam. Chciałam, żeby wreszcie zapłacił. I tak — chciałam też tego, co Ania miała dostać.",
+     "response": "Nazywam się Kinga Wolska. Ania była moją najlepszą przyjaciółką. Piętnastego listopada rano miałyśmy razem wyjechać do Dublina. Czternastego, o dziewiątej wieczorem, widziałam z ogrodu, jak Leon przekręca klucz w drzwiach jej pokoju. Czekałam pod oknem do wpół do dwunastej, aż on zaśnie. Wtedy zobaczyłam ogień. Okno było za wysoko. Leon wyszedł do mnie w ogród i powiedział, że to moje świece i że pójdę siedzieć za podpalenie, jeśli pisnę słowo. Rano wyjechałam. Chciałam, żeby wreszcie zapłacił. I tak — chciałam też tego, co Ania miała dostać.",
      "gives": [
       "t4"
      ],

@@ -142,7 +142,7 @@ solution = {
   {'h': 'Alibi o 21:04', 'p': 'Damian Wróbel o 21:03 płacił kartą w sklepie 300 m od kina, a kamera pizzerii widziała go wychodzącego i wracającego frontem. Grzegorz Barcz od 21:01 do 21:12 stał przed kinem z telefonem. Joanna Rak nie odchodziła od baru. Sitek była „w biurze” — sama.'},
   {'h': 'Godzina pana Lipki', 'p': 'Sąsiad widział osobę w jasnym płaszczu zbiegającą schodami pożarowymi „dziesięć po dziesiątej”. Jego zegar śpieszy się o godzinę: nastawił go z zegarka po bracie, wciąż na czasie letnim. Naprawdę była 21:10 — minuta przed zamknięciem drzwi kabiny o 21:11:02 w dzienniku alarmu. Pomylił się, ale nie kłamał.'},
   {'h': 'Droga przez podwórze', 'p': 'Tylne drzwi zaplecza, trzy kroki od biura: wyjście o 20:41, powrót o 21:13. Deszcz od 21:05. Mokry płaszcz kierowniczki z farbą i rdzą z poręczy schodów pożarowych, starta farba na poręczy, klin kinooperatora na czerwonym sznurku w kałuży u stóp schodów.'},
-  {'h': 'List i plakaty', 'p': 'W kontenerze przy tylnych drzwiach — skrawki listu Barcza do konserwator: dwa plakaty to kopie, oryginały są w katalogu „Rewersu”, klucz do gabloty mieli tylko on i kierowniczka. Sitek zamówiła w 2025 roku faksymile, a komitentem aukcji jest Ars-Lokus — spółka jej męża, Tomasza Sitka.'},
+  {'h': 'List i plakaty', 'p': 'W kontenerze przy tylnych drzwiach — skrawki listu Barcza do konserwator: dwa plakaty to kopie, oryginały są w katalogu „Rewersu”, klucz do gabloty mieli tylko on i kierowniczka. Sitek zamówiła w październiku 2026 roku faksymile, a komitentem aukcji jest Ars-Lokus — spółka jej męża, Tomasza Sitka.'},
   {'h': 'Fałszywe tropy', 'p': 'Damian ukrył wyjście po wódkę na po imprezie, Grzegorz — telefon do wierzyciela i kłótnię z ojcem o pieniądze. Obaj kłamali, żaden nie zabił. Pan Lipka nie kłamał wcale: pomylił godzinę przez nieprzestawiony zegarek.'},
  ]}
 
@@ -154,10 +154,10 @@ endings = {
    {'id': 'vesper', 'label': 'Ustalić, kto w pracowni VESPER wykonał faksymile i czy wiedział, do czego posłużą', 'text': 'Wrocławska pracownia odpowiada uprzejmym pismem: wykonała faksymile ekspozycyjne zgodnie ze zleceniem, oznaczone dyskretnym nadrukiem, jak każe dobra praktyka. Pismo podpisuje prezes, Teodor Ancel. Do pisma dołączono katalog usług. Na ostatniej stronie, drobnym drukiem: „ekspertyzy autentyczności dokumentów dawnych”.'},
   ]}},
  'wrong': {
-  'damian': {'title': 'Uczeń', 'text': 'Damian umiał zmienić projektor i skłamał, gdzie był, więc wskazujecie jego. Ale o 21:03 płacił kartą w sklepie przy Gdańskiej 60, a kamera pizzerii widziała, jak wraca frontem z reklamówką. Zanim śledztwo wraca na właściwy tor, plakaty zostają sprzedane na aukcji.'},
+  'damian': {'title': 'Uczeń', 'text': 'Damian umiał zmienić projektor i skłamał, gdzie był, więc wskazujecie jego. Ale o 21:03 płacił kartą w sklepie przy Gdańskiej 60, a kamera pizzerii widziała, jak wraca frontem z reklamówką. Zanim śledztwo wróci na właściwy tor, plakaty zostaną sprzedane na aukcji.'},
   'grzegorz': {'title': 'Syn', 'text': 'Kłótnia o pieniądze, długi, umiejętność zmiany projektora — wszystko pasowało. Tyle że od 21:01 do 21:12 Grzegorz stał przed kinem z telefonem, na oczach kamery. Prawdziwa sprawczyni ma czas, by odebrać z Krakowa pieniądze za plakaty.'},
   'joanna': {'title': 'Bufet', 'text': 'Joanna Rak nie odchodziła od baru i nie umiała obsłużyć projektora. Jej zeznania były prawdziwe od pierwszego do ostatniego słowa — i to one powinny was zaprowadzić do sprawczyni.'},
-  'accident': {'title': 'Nieszczęśliwy wypadek', 'text': 'Uznajecie, że ciężka puszka spadła z regału. Dokładnie tak miało to wyglądać. Sekcja mówi co innego, ale zanim prokurator to przeczyta, w Krakowie stuka młotek licytatora. „Czarna perła” idzie za sto dziesięć tysięcy.'},
+  'accident': {'title': 'Nieszczęśliwy wypadek', 'text': 'Uznajecie, że ciężka puszka spadła z regału. Dokładnie tak miało to wyglądać. Sekcja mówi co innego, ale zanim ktokolwiek zestawi ją z waszym raportem, w Krakowie stuka młotek licytatora. „Czarna perła” idzie za sto dziesięć tysięcy.'},
  },
  'partial': 'Wskazaliście właściwą osobę, ale część wniosków jest błędna lub niepoparta dowodami. Sitek zostaje zatrzymana, ale obrona będzie miała o co walczyć.',
 }

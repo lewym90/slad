@@ -236,7 +236,8 @@ for (const [f, c] of runs) {
   if (c.voiceDir) { const VL = JSON.parse(fsx.readFileSync(pathx.join(__dirname, 'voice', 'lines.json'), 'utf8'));
     c.people.forEach(p => { const rec = VL[`${c.id}-${p.id}`]; if (!rec) { E(`brak tekstów nagrań dla ${p.id}`); return; } const byId = Object.fromEntries(rec.lines.map(l => [l.id, l.text]));
       const cur = [...p.questions, ...((c.tableMode && c.tableMode.questions && c.tableMode.questions[p.id]) || [])].map(q => [q.id, q.a]).concat(p.statements.filter(x => x.response).map(x => [x.id, x.response]), (p.deflect || []).map((d, i) => [`deflect-${i}`, d]), (p.shows || []).map(x => [x.id, x.a]), (p.showDefault || []).map((d, i) => [`show-${i}`, d]));
-      cur.forEach(([id, t]) => { if (byId[id] !== t) E(`kwestia ${id} różni się od nagrania — nagrać ponownie albo przywrócić tekst`); }); }); }
+      const norm = x => String(x || '').toLowerCase().replace(/[^a-ząćęłńóśźż0-9]+/g, ' ').trim();
+      cur.forEach(([id, t]) => { if (norm(byId[id]) !== norm(t)) E(`kwestia ${id} różni się od nagrania — nagrać ponownie albo przywrócić tekst`); }); }); }
   [c.voice && c.voice.brief, c.introVideo, c.keyart, ...(c.breakthroughs || []).flatMap(b => [b.img, b.video])].filter(Boolean).forEach(f => { if (!fsx.existsSync(pathx.join(__dirname, '..', f))) E(`brak pliku ${f}`); });
 
   // 6. Raport

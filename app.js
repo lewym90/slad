@@ -1,7 +1,7 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.17.8';
-const BUILD = '13.11.2026';
+const VERSION = '2.17.9';
+const BUILD = '14.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
 
@@ -440,7 +440,7 @@ async function renderHome() {
   app().innerHTML = `<div class="home">
    <header class="hero"><div class="hero-bg" style="background-image:url('assets/art/001-manor.webp')"></div>
     <div class="hero-top"><span class="mini">Wydział spraw niewyjaśnionych</span><button class="icon-btn" data-a="settings" aria-label="Ustawienia">${I.gear}</button></div>
-    <div class="hero-inner"><div class="logo">ŚLAD</div><div class="tag">Interaktywna gra detektywistyczna · 2–6 graczy</div>
+    <div class="hero-inner"><div class="logo">ŚLAD</div><div class="tag">Interaktywna gra detektywistyczna · 1–6 graczy</div>
      <p class="lead">Każda sprawa ma swoją prawdę. Wy macie jedną noc, żeby ją odkryć.</p>
      <div class="actions"><button class="btn" data-a="open-case" data-id="${c1.id}">${G(c1.id) ? 'Wróć do śledztwa' : 'Otwórz sprawę 001'}</button><button class="btn ghost" data-a="how">Jak grać</button><button class="btn ghost" data-a="chronicle">Kronika wydziału</button></div></div>
    </header>
@@ -485,8 +485,8 @@ async function renderIntro(id) {
       <button class="tv-chip" data-a="tv" aria-pressed="${!!S.settings.tv}"><span class="switch" aria-hidden="true" aria-pressed="${!!S.settings.tv}"></span><span><b>Tryb telewizora</b> — większy tekst, czytelny z kanapy. ${S.settings.tv ? 'Włączony.' : 'Włącz, jeśli gracie na telewizorze.'} Zmienisz go też w ustawieniach (⚙).</span></button>
     </div>
     ${setupMode ? `<div class="setup"><div class="eyebrow">Krok 2 z 2</div><h3>Kto siada do stołu?</h3>
-      <p class="muted">${setupMode === 'table' ? 'Imiona przydadzą się do podziału ról w zespole. Każdy dostanie funkcję, która podpowiada, czym się zająć.' : 'Za chwilę na ekranie pojawi się kod QR dla każdego gracza. Każdy skanuje swój — i nie pokazuje telefonu reszcie.'}</p>
-      <div class="count" role="group" aria-label="Liczba graczy">${[2, 3, 4, 5, 6].map(n => `<button aria-pressed="${n === setupCount}" data-a="count" data-n="${n}">${n}</button>`).join('')}</div>
+      <p class="muted">${setupMode === 'table' ? 'Imiona przydadzą się do podziału ról w zespole. Każdy dostanie funkcję, która podpowiada, czym się zająć. Można grać także w pojedynkę.' : 'Za chwilę na ekranie pojawi się kod QR dla każdego gracza. Każdy skanuje swój — i nie pokazuje telefonu reszcie.'}</p>
+      <div class="count" role="group" aria-label="Liczba graczy">${(setupMode === 'table' ? [1, 2, 3, 4, 5, 6] : [2, 3, 4, 5, 6]).map(n => `<button aria-pressed="${n === setupCount}" data-a="count" data-n="${n}">${n}</button>`).join('')}</div>
       <div class="names">${names}</div>
       <div class="eyebrow" style="margin-top:18px">Poziom trudności</div>
       <div class="diffs">${Object.entries(DIFFS).map(([k, d]) => `<button class="diff ${setupDiff === k ? 'on' : ''}" aria-pressed="${setupDiff === k}" data-a="diff" data-k="${k}"><b>${esc(d.name)}</b><small>${esc(d.sub)}</small></button>`).join('')}</div>
@@ -927,10 +927,10 @@ function ovPuzzle(c, g, id, msg) {
   const hints = pz.hints.slice(0, st.hints || 0).map((h, i) => `<div class="hint-box"><span class="eyebrow">Podpowiedź ${i + 1}</span><br>${esc(h)}</div>`).join('');
   return { title: pz.title, kicker: pz.kind, body: st.solved ? `<div class="result-ok"><b>Rozwiązane.</b> ${esc(pz.solution)}</div>${pz.input === 'torn' ? `<div class="torn-done">${tornPaperHTML(pz)}</div>` : ''}` :
    `<p style="font-family:var(--f-display);font-size:1.3rem;margin-top:0">${esc(pz.prompt)}</p>
-   <p class="muted" style="font-size:.88rem">Potrzebne materiały: ${pz.requires.map(r => c.ev[r] ? `<button class="chip" data-a="ev" data-id="${r}">${esc(c.ev[r].title)}</button>` : '').join(' ')} ${c.mode === 'table' ? '— i może coś, czego dowiecie się w centrali.' : '— i może coś, co ma ktoś z was w tajnych aktach.'}</p>
+   <p class="muted" style="font-size:.88rem">Potrzebne materiały: ${pz.requires.map(r => c.ev[r] ? `<button class="chip" data-a="ev" data-id="${r}">${esc(c.ev[r].title)}</button>` : '').join(' ')}${pz.input === 'torn' ? '' : c.mode === 'table' ? ' — i może coś, czego dowiecie się w centrali.' : ' — i może coś, co ma ktoś z was w tajnych aktach.'}</p>
    ${input}${msg ? `<div class="result-bad">${esc(msg)}</div>` : ''}${hints}
    <div class="row-actions">${pz.input === 'torn' ? '' : `<button class="btn" data-a="solve" data-id="${id}">Sprawdź</button>`}${(st.hints || 0) < Math.min(pz.hints.length, diffOf(g).hints) ? `<button class="btn ghost" data-a="phint" data-id="${id}">Podpowiedź (${g.armed === 'hint' ? 'zdolność: bez kary' : '−' + diffOf(g).hint + ' pkt'})</button>` : ''}</div>
-   <p class="muted" style="font-size:.8rem;margin-top:12px">Próby: ${st.attempts || 0}. Błędne próby nie kosztują punktów.</p>` };
+   ${pz.input === 'torn' ? '' : `<p class="muted" style="font-size:.8rem;margin-top:12px">Próby: ${st.attempts || 0}. Błędne próby nie kosztują punktów.</p>`}` };
 }
 function doSolve(c, g, id) {
   const pz = c.puzzle[id]; const st = (g.puzzles[id] = g.puzzles[id] || { hints: 0, attempts: 0 });
@@ -978,8 +978,8 @@ function tornScatter(pz) {
   const order = [...Array(n).keys()];
   for (let i = n - 1; i > 0; i--) { const k = Math.floor(r() * (i + 1)); [order[i], order[k]] = [order[k], order[i]]; }
   for (let i = 0; i < n; i++) if (order[i] === i) { const k = (i + 1) % n; [order[i], order[k]] = [order[k], order[i]]; }
-  const pos = {}; order.forEach((pi, slot) => { const b = G[pi].bb, cx = TOX - 50 + ((slot % C) + .5) * (TW + 100) / C, cy = TOY - 30 + (Math.floor(slot / C) + .5) * (TH + 60) / R;
-    let dx = cx - (b[0] + b[2]) / 2 + (r() - .5) * 40, dy = cy - (b[1] + b[3]) / 2 + (r() - .5) * 40;
+  const pos = {}; order.forEach((pi, slot) => { const b = G[pi].bb, cx = 8 + ((slot % C) + .5) * (TBW - 16) / C, cy = 8 + (Math.floor(slot / C) + .5) * (TBH - 16) / R;
+    let dx = cx - TOX - (b[0] + b[2]) / 2 + (r() - .5) * 24, dy = cy - TOY - (b[1] + b[3]) / 2 + (r() - .5) * 24;
     dx = Math.max(6 - TOX - b[0], Math.min(TBW - 6 - TOX - b[2], dx)); dy = Math.max(6 - TOY - b[1], Math.min(TBH - 6 - TOY - b[3], dy)); pos[pi] = [dx, dy]; });
   return pos;
 }
@@ -1446,7 +1446,7 @@ const handlers = {
   'open-case': el => go('sprawa/' + el.dataset.id),
   continue: el => go(`gra/${el.dataset.id}/${G(el.dataset.id).report ? 'wynik' : 'akta'}`),
   count: el => { setupCount = +el.dataset.n; render(); },
-  mode: el => { setupMode = el.dataset.m; render(); setTimeout(() => { const st = document.querySelectorAll('.setup')[1]; st && st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60); },
+  mode: el => { setupMode = el.dataset.m; if (setupMode !== 'table' && setupCount < 2) setupCount = 2; render(); setTimeout(() => { const st = document.querySelectorAll('.setup')[1]; st && st.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60); },
   'qr-done': () => { const { g, c } = ctx(); g.phase = 'play'; save(); render(); startMsg(c, g); },
   qr: el => openOv({ type: 'qr', i: +el.dataset.i }),
   reveal: () => openOv({ type: 'reveal' }),

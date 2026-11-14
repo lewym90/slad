@@ -151,10 +151,17 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 
 ## 14. Stan wdrożenia 2.17 (13.11.2026)
 - Silnik: zagadka „podarty dokument” (`input: "torn"`), zeznania-pomyłki (`mistake: true`), materiały do wydruku (`tools/gen_print.py`, Ustawienia → „Do wydruku”).
-- 006: komplet mediów, ślady na zdjęciach rozmieszczone, walidacja bez błędów, przejścia testowe 100 pkt; otwarta w 2.17.1 (13.11.2026). Do zrobienia przy okazji: przeskalowanie grafik 006 w Upscaylu razem z 001–005.
+- 006: komplet mediów, ślady na zdjęciach rozmieszczone, walidacja bez błędów, przejścia testowe 100 pkt; otwarta w 2.17.1 (13.11.2026). Wszystkie grafiki 001–006 przeskalowane w Upscaylu (×4) i podmienione (2.17.6–2.17.8).
 
 ## 15. Sprawa 010 — finał pierwszej kampanii (decyzja 13.11.2026)
 - Kampania pierwsza liczy 10 spraw: 001–006 gotowe, 007–009 według planu z §13, **010 to wielki finał** (4–5 h gry, z przerwami — postęp zapisuje się na urządzeniu, sprawa podzielona na akty).
 - Tytuł roboczy: **„Palimpsest”**. Ma być najbardziej zaawansowaną rozgrywką ze wszystkich: wszystkie odblokowane uprawnienia działają jednocześnie, wracają postacie i miejsca z wcześniejszych spraw, a baza danych pokazuje skutki rozwiązanych spraw.
 - Kandydaci na nowości finału (do omówienia przed budową): role w zespole i wspólne wnioski, decyzje nieodwracalne, powiadomienia dla ról, akty z osobnymi raportami cząstkowymi i jeden raport końcowy.
 - Po finale: planowanie kampanii drugiej (sprawy 011–020).
+
+## 16. Audyt całości (14.11.2026, wersja 2.17.9)
+- Walidator: zero błędów i ostrzeżeń dla 001–006; przejścia testowe (stół i telefony) 100 pkt.
+- Poprawki językowe w 001, 002 i 006 (formy czasowników, wielokropki, przecinki, jedno niezręczne zdanie, odsyłacz z identyfikatorem w treści sekcji).
+- 006: daty faktury i oznaczenia faksymile ujednolicone z resztą osi czasu (faksymile zamówione tuż przed oddaniem oryginałów do komisu).
+- Walidator porównuje teksty z nagraniami bez względu na interpunkcję i wielkość liter (poprawka przecinka nie wymaga nowego nagrania).
+- Zagadka „Podarty list”: skrawki rozłożone równomierniej na stole, bez zbędnych komunikatów o próbach.

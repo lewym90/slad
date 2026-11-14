@@ -35,7 +35,7 @@ evidence = [
            ['Zmarły', 'Leon Barcz, 73 l., kinooperator kina „Zorza” od 1974 roku'],
            ['Zgłoszenie', 'Ewa Sitek, kierowniczka kina, telefon na 112 o 22:43'],
            ['Znaleźli', 'Ewa Sitek i Damian Wróbel, około 22:41']]},
-   'W sobotę kino zorganizowało „Ostatni seans” — pożegnalną projekcję z taśmy 35 mm przed zamknięciem kina. Film skończył się przed 22:00, potem w foyer trwało pożegnanie. Kinooperator na nie nie zszedł. Kierowniczka i technik poszli na górę. Wewnętrzne drzwi kabiny były zamknięte na klucz, a klucz od nich miał w kieszeni zmarły. Kierowniczka otworzyła zapasowym kluczem z biura.',
+   'W sobotę kino zorganizowało „Ostatni seans” — pożegnalną projekcję z taśmy 35 mm przed zamknięciem kina. Film skończył się przed 22:00, potem w foyer trwało pożegnanie. Kinooperator się na nim nie pojawił. Kierowniczka i technik poszli na górę. Wewnętrzne drzwi kabiny były zamknięte na klucz, a klucz od nich miał w kieszeni zmarły. Kierowniczka otworzyła zapasowym kluczem z biura.',
    'Leon Barcz leżał na podłodze na środku kabiny, przed stołem przewijarki, z raną tyłu głowy. Obok leżała stalowa puszka na taśmę filmową z krwią na krawędzi. Drzwi ewakuacyjne kabiny, prowadzące na zewnętrzne schody pożarowe, były zamknięte. W projektorze B wciąż paliła się lampa; zgasił ją technik.',
    {'note': 'Wstępna ocena patrolu: możliwy nieszczęśliwy wypadek — upadek ciężkiej puszki z regału. Prokurator nie przyjął tej wersji bez sekcji.'}],
    start=True, time=[T(22, 41, 'Ewa Sitek i Damian Wróbel znajdują ciało Leona Barcza w kabinie', 'Raport'), T(22, 43, 'Zgłoszenie na 112', 'Raport')]),
@@ -102,7 +102,7 @@ evidence = [
  # ---------- FOYER ----------
  ev('e13', 'Oględziny', 'Gablota z plakatami', 'Przeszklona gablota na ścianie foyer.', [
    'Cztery plakaty filmowe w ramach: „Czarna perła” (1934), „Wiatr od Bałtyku” (1949), „Dziewczyna z Bałut” (1958), „Noc nad Wartą” (1962). Gablota zamknięta na zamek patentowy.',
-   'Przy dolnej krawędzi dwóch plakatów — „Czarnej perły” i „Dziewczyny z Bałut” — widać pod lupą maleńki nadruk wtopiony w papier: „FX 25”. Na dwóch pozostałych nie ma niczego podobnego.']),
+   'Przy dolnej krawędzi dwóch plakatów — „Czarnej perły” i „Dziewczyny z Bałut” — widać pod lupą maleńki nadruk wtopiony w papier: „FX 26”. Na dwóch pozostałych nie ma niczego podobnego.']),
  ev('e14', 'Oględziny', 'Panel oświetlenia sali', 'Przy drzwiach z foyer na salę.', [
    'Szafka z przełącznikami oświetlenia widowni. Nad nią mosiężna tabliczka:',
    {'quote': 'Światło na sali zapala kinooperator z kabiny. Panel tylko w razie awarii. L.B.', 'by': 'tabliczka nad panelem'}]),
@@ -114,10 +114,10 @@ evidence = [
  ev('e17', 'Dokument', 'Teczka „Plakaty”', 'Z szafy w biurze kierowniczki.', [
    {'kv': [['Wycena (2024)', 'Pracownia Konserwacji i Ekspertyz Papieru VESPER, Wrocław: cztery plakaty, oryginały, łącznie 186 000 zł'],
            ['Najcenniejsze', '„Czarna perła” (1934) — 92 000 zł; „Dziewczyna z Bałut” (1958) — 41 000 zł'],
-           ['Faktura VESPER z 14.10.2025', 'wykonanie dwóch faksymile ekspozycyjnych: „Czarna perła”, „Dziewczyna z Bałut” — 3 800 zł'],
+           ['Faktura VESPER z 14.10.2026', 'wykonanie dwóch faksymile ekspozycyjnych: „Czarna perła”, „Dziewczyna z Bałut” — 3 800 zł'],
            ['Zamawiająca', 'Ewa Sitek, kierowniczka kina']]},
    {'note': 'Na zamówieniu dopisek: „oryginały — do depozytu”. W teczce nie ma żadnego dokumentu depozytu.'}],
-   time=[T(10, 0, 'Kierowniczka zamawia w pracowni VESPER dwie faksymile plakatów', 'Teczka „Plakaty”', '2025-10-14')]),
+   time=[T(10, 0, 'Kierowniczka zamawia w pracowni VESPER dwie faksymile plakatów', 'Teczka „Plakaty”', '2026-10-14')]),
  ev('e18', 'Oględziny', 'Szafka z kluczami', 'W biurze, obok biurka.', [
    'Zapasowe klucze opisane na zawieszkach: kabina (drzwi wewnętrzne), zaplecze, gablota w foyer — kluczyk nr 2. Zeszyt wydań kluczy: kluczyk do gabloty nie był nikomu wydawany od 2019 roku.',
    {'note': 'Kluczyk nr 1 do gabloty nosił przy sobie Leon Barcz — znaleziono go w jego kieszeni razem z kluczem do kabiny.'}]),
@@ -127,14 +127,14 @@ evidence = [
    'Dwa biegi z pomostem, poręcz pomalowana dawno temu czerwonopomarańczową farbą antykorozyjną, łuszcząca się i rdzawa. W połowie dolnego biegu, na wysokości dłoni, farba jest świeżo starta na długości kilkunastu centymetrów — jakby ktoś zjeżdżał ręką po mokrej poręczy.']),
  ev('e20', 'Przedmiot', 'Skrawki z kontenera', 'Niebieski plastikowy kontener na makulaturę przy tylnych drzwiach.', [
    'Na wierzchu, pod uchyloną klapą: mokra kartka w linie, podarta na dziewięć kawałków. Pismo odręczne, staranne, atrament miejscami się rozmył. Pod spodem kartony po kubkach z baru.',
-   {'note': 'Skrawki zabezpieczono i wysuszono. Złóżcie je w analizie — zagadka „Podarty list”.'}]),
+   {'note': 'Skrawki zabezpieczono i wysuszono. Złóżcie je w zakładce Analiza — zagadka „Podarty list”.'}]),
  ev('e21', 'Przedmiot', 'Drewniany klin', 'U stóp schodów pożarowych, w kałuży.', [
    'Gruby, wytarty klin z jasnego drewna z wywierconą dziurką i pętlą czerwonego sznurka — żeby dało się go wyszarpnąć spod drzwi jednym ruchem. Mokry. Na jednej krawędzi świeże wgniecenie, jakby spadł z wysoka na stalowy stopień.']),
  ev('e22', 'Oględziny', 'Tylne drzwi zaplecza', 'Z podwórza na korytarz zaplecza.', [
    'Metalowe drzwi z zamkiem i czujnikiem alarmu nad framugą. Za nimi korytarz zaplecza: po prawej, trzy kroki od drzwi, biuro kierowniczki; dalej korytarz prowadzi do foyer. Z podwórza nie ma innego wejścia do budynku poza schodami pożarowymi do kabiny.']),
  ev('e27', 'Dokument', 'List Leona Barcza', 'Złożony z mokrych skrawków z kontenera.', [
    {'quote': ' '.join(x for x in LETTER if x), 'by': 'odręczny list, pismo Leona Barcza'},
-   {'note': 'To list z pustej koperty na biurku w kabinie. Ktoś go podarł i wyrzucił do kontenera przy tylnych drzwiach kina.'}]),
+   {'note': 'Najpewniej to list z pustej koperty na biurku w kabinie. Ktoś go podarł i wyrzucił do kontenera przy tylnych drzwiach kina.'}]),
 
  # ---------- MIESZKANIE STANISŁAWA LIPKI ----------
  ev('e23', 'Oględziny', 'Widok z okna pana Lipki', 'II piętro oficyny naprzeciwko kina.', [
@@ -149,7 +149,7 @@ evidence = [
    {'log': ['do 21:05        bez opadu, 4 °C', '21:05–23:40     deszcz słaby do umiarkowanego', 'wiatr           słaby, południowo-zachodni']}],
    private=True, time=[T(21, 5, 'Zaczyna padać deszcz', 'IMGW')]),
  ev('x2', 'Opinia', 'Sekcja zwłok — wnioski', 'Zakład Medycyny Sądowej, niedziela 8:00.', [
-   'Jedno silne uderzenie krawędzią wieczka puszki e08 w tył głowy, zadane z góry i z zamachem przez osobę stojącą za ofiarą. Puszka o wadze 2,9 kg spadająca z wysokości 1,9 m nie wytworzyłaby takiego urazu ani takiego kąta rany.',
+   'Jedno silne uderzenie krawędzią wieczka puszki zabezpieczonej przy ciele, w tył głowy, zadane z góry i z zamachem przez osobę stojącą za ofiarą. Puszka o wadze 2,9 kg spadająca z wysokości 1,9 m nie wytworzyłaby takiego urazu ani takiego kąta rany.',
    {'kv': [['Czas zgonu', 'między 20:30 a 21:30, najpewniej w pierwszej połowie tego przedziału'], ['Wniosek', 'zabójstwo; wypadek wykluczony']]}],
    private=True),
  ev('x3', 'Kadry', 'Kamera pizzerii naprzeciwko kina', 'Pizzeria „Pod Zorzą”, ul. Gdańska 40 — kamera nad wejściem.', [
