@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.18.3';
+const VERSION = '2.18.4';
 const BUILD = '14.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -1454,7 +1454,7 @@ function ovSettings() {
    <div class="settings-row"><div><b>Instruktaż przed sprawą</b><small>Krótki przewodnik po zasadach i ekranach gry, pokazywany po wybraniu trybu. W trakcie gry zawsze dostępny w menu.</small></div><button class="switch" aria-pressed="${s.guide !== false}" data-a="guide-toggle" aria-label="Instruktaż przed sprawą"></button></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
    <div class="settings-row"><div><b>Do wydruku</b><small>Nieobowiązkowe materiały pomocnicze do każdej sprawy: wprowadzenie, osoby, miejsca i puste arkusze na oś czasu, podejrzanych i notatki. Bez dowodów i bez zdradzania czegokolwiek. Gra nie wymaga drukowania. Na telefonie i tablecie otworzy się menu udostępniania — wybierzcie „Drukuj” albo „Zapisz w Plikach”.</small></div></div>
-   <div class="print-list">${(CATALOG || []).filter(k => k.ready && k.print).map(k => `<button class="print-item" data-a="print-pdf" data-href="${esc(k.print)}" data-name="SLAD-${esc(k.id)}-do-wydruku.pdf"><span class="mono">${esc(k.id)}</span><b>${esc(k.title)}</b><small>PDF</small></button>`).join('') || '<p class="muted">Lista spraw wczytuje się…</p>'}</div>
+   <div class="print-list">${(CATALOG || []).filter(k => k.ready && k.print).map(k => `<button class="print-item" data-a="print-pdf" data-href="${esc(k.print)}?v=${VERSION}" data-name="SLAD-${esc(k.id)}-do-wydruku.pdf"><span class="mono">${esc(k.id)}</span><b>${esc(k.title)}</b><small>PDF</small></button>`).join('') || '<p class="muted">Lista spraw wczytuje się…</p>'}</div>
    <div class="settings-row"><div><b>Kopia zapasowa</b><small>Postęp jest zapisywany na tym urządzeniu. Eksportuj, by przenieść go gdzie indziej.</small></div></div>
    <div class="row-actions"><button class="btn small ghost" data-a="export">Eksportuj zapis</button><label class="btn small ghost" style="cursor:pointer">Importuj zapis<input type="file" accept="application/json,.json" data-import hidden></label></div>
    <hr class="sep"><button class="btn small ghost" data-a="wipe">Usuń wszystkie zapisy</button>` };

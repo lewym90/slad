@@ -1,5 +1,5 @@
 /* ŚLAD — Service Worker: offline po pierwszym uruchomieniu. */
-const VERSION = '2.18.3';
+const VERSION = '2.18.4';
 const CACHE = 'slad-' + VERSION;
 const CORE = [
   './',
@@ -300,7 +300,7 @@ self.addEventListener('fetch', event => {
     })());
     return;
   }
-  const isData = url.pathname.endsWith('.json') || url.pathname.endsWith('.js') || url.pathname.endsWith('.css');
+  const isData = url.pathname.endsWith('.json') || url.pathname.endsWith('.js') || url.pathname.endsWith('.css') || url.pathname.endsWith('.pdf');
   if (isData) {
     // Sieć najpierw (świeże treści spraw), cache jako zapas offline.
     event.respondWith((async () => {
