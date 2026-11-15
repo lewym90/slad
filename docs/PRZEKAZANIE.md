@@ -1,4 +1,4 @@
-# ŚLAD — przekazanie projektu (stan na 14.11.2026, 22:00, wersja 2.18.2)
+# ŚLAD — przekazanie projektu (stan na 15.11.2026, wersja 2.18.3)
 
 Ten dokument pozwala kontynuować pracę **dokładnie od tego miejsca** na dowolnym koncie Claude. Bez spoilerów — rozwiązania spraw i ukryty wątek są w osobnym pliku `docs/PRZEKAZANIE_DLA_CLAUDE_SPOILERY.md`, którego **autor gry nie czyta** (sam o to prosi: „staram się wiedzieć jak najmniej”).
 
@@ -37,7 +37,7 @@ Pracuj dokładnie według tych dokumentów. Zacznij od krótkiego potwierdzenia 
 ## 3. Projekt w skrócie
 
 - **Czysta aplikacja PWA** bez serwera: `index.html`, `app.js`, `styles.css`, `sw.js`, `manifest.webmanifest`, `cases/*.json`, `cases/index.json` (lista spraw, `ready`), `data/baza/*.json` (ogólnopolska fikcyjna baza: tło + rekordy spraw + `uniwersum.json`), `assets/` (art, cases, people, places, evidence, video, audio, voice, print, plan).
-- Wersja w dwóch miejscach: `VERSION` w `app.js` i `sw.js` (obecnie **2.18.2**), `BUILD` w `app.js` (data). Każda zmiana plików gry → podbić wersję.
+- Wersja w dwóch miejscach: `VERSION` w `app.js` i `sw.js` (obecnie **2.18.3**), `BUILD` w `app.js` (data). Każda zmiana plików gry → podbić wersję.
 - Tryby: „Wspólny stół” (jeden ekran/TV, Centrala wydziału zamiast tajnych akt) i „Telefony” (każdy gracz ma tajne akta i terminal baz). Role graczy z mocami, poziomy trudności, tropy, przełomy (filmy), tablica śledcza, kronika wydziału, raport końcowy z punktami.
 - Mechaniki odblokowywane kampanijnie (zostają na zawsze): bazy danych PESEL/CEPiK/KRS/EKW (od 005), okazywanie dowodów (od 005), oględziny na zdjęciu (od 006). Mechaniki per sprawa: podarty dokument, zeznania-pomyłki, materiały do druku (006), zegar w grze, mapa szlaków, dowód dźwiękowy (007).
 - Szczegóły formatu danych: `README.md` (sekcje „Nowe mechaniki”) i walidator `tools/validate.js`.
@@ -138,3 +138,4 @@ Zasady planowania kolejnych spraw: patrz `docs/ROZWOJ_UNIWERSUM.md` §0, §1 (li
 - 14.11 po południu: rozmowa o automatyzacji mediów (§5) — Krea odrzucona (koszt), plan: obsługa ChatGPT/Groka w przeglądarce autora, test przy komputerze.
 - 14.11, 14:04: autor poprosił o ten dokument przekazania.
 - 14.11 wieczór: automatyzacja mediów działa (Chrome + Claude in Chrome, Upscayl przez sterowanie komputerem), 007 skończona i otwarta (2.18.2). Następne: omówienie mechanik 008.
+- 15.11 (2.18.3): PDF-y do druku na telefonie/tablecie otwierają systemowe menu udostępniania (Drukuj / Zapisz w Plikach) zamiast wczytywać PDF w aplikacji bez drogi powrotu (na iPhonie w trybie aplikacji nie dało się wyjść); na komputerze zwykłe pobranie. Tabela „Podejrzani” w PDF-ach wypełnia całą stronę, wiersze równo.

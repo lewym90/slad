@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.18.2';
+const VERSION = '2.18.3';
 const BUILD = '14.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -1453,8 +1453,8 @@ function ovSettings() {
    <div class="settings-row"><div><b>Wielkość tekstu</b><small>Dla czytania przy stole</small></div><div class="seg">${[['m', 'A'], ['l', 'A+'], ['xl', 'A++']].map(([k, l]) => `<button aria-pressed="${s.text === k}" data-a="text" data-v="${k}">${l}</button>`).join('')}</div></div>
    <div class="settings-row"><div><b>Instruktaż przed sprawą</b><small>Krótki przewodnik po zasadach i ekranach gry, pokazywany po wybraniu trybu. W trakcie gry zawsze dostępny w menu.</small></div><button class="switch" aria-pressed="${s.guide !== false}" data-a="guide-toggle" aria-label="Instruktaż przed sprawą"></button></div>
    <div class="settings-row"><div><b>Animacje</b><small>Wyłącz, jeśli przeszkadzają</small></div><button class="switch" aria-pressed="${s.motion === 'on'}" data-a="motion" aria-label="Animacje"></button></div>
-   <div class="settings-row"><div><b>Do wydruku</b><small>Nieobowiązkowe materiały pomocnicze do każdej sprawy: wprowadzenie, osoby, miejsca i puste arkusze na oś czasu, podejrzanych i notatki. Bez dowodów i bez zdradzania czegokolwiek. Gra nie wymaga drukowania.</small></div></div>
-   <div class="print-list">${(CATALOG || []).filter(k => k.ready && k.print).map(k => `<a class="print-item" href="${esc(k.print)}" target="_blank" rel="noopener" download="SLAD-${esc(k.id)}-do-wydruku.pdf"><span class="mono">${esc(k.id)}</span><b>${esc(k.title)}</b><small>PDF</small></a>`).join('') || '<p class="muted">Lista spraw wczytuje się…</p>'}</div>
+   <div class="settings-row"><div><b>Do wydruku</b><small>Nieobowiązkowe materiały pomocnicze do każdej sprawy: wprowadzenie, osoby, miejsca i puste arkusze na oś czasu, podejrzanych i notatki. Bez dowodów i bez zdradzania czegokolwiek. Gra nie wymaga drukowania. Na telefonie i tablecie otworzy się menu udostępniania — wybierzcie „Drukuj” albo „Zapisz w Plikach”.</small></div></div>
+   <div class="print-list">${(CATALOG || []).filter(k => k.ready && k.print).map(k => `<button class="print-item" data-a="print-pdf" data-href="${esc(k.print)}" data-name="SLAD-${esc(k.id)}-do-wydruku.pdf"><span class="mono">${esc(k.id)}</span><b>${esc(k.title)}</b><small>PDF</small></button>`).join('') || '<p class="muted">Lista spraw wczytuje się…</p>'}</div>
    <div class="settings-row"><div><b>Kopia zapasowa</b><small>Postęp jest zapisywany na tym urządzeniu. Eksportuj, by przenieść go gdzie indziej.</small></div></div>
    <div class="row-actions"><button class="btn small ghost" data-a="export">Eksportuj zapis</button><label class="btn small ghost" style="cursor:pointer">Importuj zapis<input type="file" accept="application/json,.json" data-import hidden></label></div>
    <hr class="sep"><button class="btn small ghost" data-a="wipe">Usuń wszystkie zapisy</button>` };
@@ -1726,6 +1726,22 @@ const handlers = {
   'bt-close': (el, e) => { if (e && e.target.closest('.bt-text') && !e.target.closest('[data-a="bt-close"].btn')) return; btShow = null; renderBt(); renderOv(); setTimeout(checkBreakthroughs, 60); },
   pzoom: el => openOv({ type: 'zoom', src: el.dataset.src }),
   amark: el => { S.marks = S.marks || {}; if (!S.marks[el.dataset.c]) { S.marks[el.dataset.c] = el.dataset.l; save(); toast('Zabezpieczono obcą pieczęć', `Ślady Archiwisty: ${Object.keys(S.marks).length} z ${MARK_ORDER.length}`, 'Archiwum'); sfx('stamp'); } else toast('Ta pieczęć jest już w kronice', '', 'Archiwum'); renderOv(); },
+  'print-pdf': async el => {
+    const href = el.dataset.href, name = el.dataset.name, lab = el.querySelector('small');
+    const touch = matchMedia('(pointer:coarse)').matches || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const dl = u => { const a = document.createElement('a'); a.href = u; a.download = name; a.rel = 'noopener'; if (!touch) a.target = '_blank'; document.body.appendChild(a); a.click(); a.remove(); };
+    if (!touch) return dl(href);
+    try {
+      let f = PDFS[href];
+      if (!f) { lab.textContent = 'Pobieram…'; f = PDFS[href] = new File([await (await fetch(href)).blob()], name, { type: 'application/pdf' }); }
+      if (navigator.canShare && navigator.canShare({ files: [f] })) {
+        try { await navigator.share({ files: [f], title: name }); lab.textContent = 'PDF'; }
+        catch (err) { lab.textContent = err && err.name === 'NotAllowedError' ? 'Gotowe — dotknij jeszcze raz' : 'PDF'; }
+        return;
+      }
+      dl(URL.createObjectURL(f)); lab.textContent = 'PDF';
+    } catch (err) { lab.textContent = 'PDF'; toast('Nie udało się pobrać PDF', 'Sprawdźcie połączenie z internetem i spróbujcie jeszcze raz.', 'Błąd'); }
+  },
   'print-report': () => { const { c, g } = ctx(); if (g && g.report) printReport(c, g); },
   voice: el => { if (window.__voice && !window.__voice.paused && el.classList.contains('on')) { stopVoice(); return; } const L = el.querySelector('.vl'), T0 = L && (L.dataset.t || (L.dataset.t = L.textContent)); speak(el.dataset.src); const v = window.__voice; if (!v) return; el.classList.add('on'); if (L) L.textContent = 'Zatrzymaj briefing'; const off = () => { el.classList.remove('on'); if (L) L.textContent = T0; }; const t0 = voTok; const chk = setInterval(() => { if (voTok !== t0 || !window.__voice || window.__voice.paused) { clearInterval(chk); off(); } }, 300); },
   'show-guide': () => { const { c, g } = ctx(); ovStack.pop(); history.back(); setTimeout(() => openOv({ type: 'guide', mode: g.mode === 'table' ? 'table' : 'phones', diff: g.diff, i: 0, clock: !!(c && c.clock) }), 60); },
@@ -1755,6 +1771,11 @@ const handlers = {
   'close-all': () => { const n = ovStack.length; if (history.state && history.state.ov) history.go(-n); else { ovStack = []; renderOv(); } },
   'ov-bg': (el, e) => { if (e.target === el) handlers['close-all'](); }
 };
+const PDFS = {};
+document.addEventListener('touchstart', e => {
+  const el = e.target.closest && e.target.closest('[data-a="print-pdf"]'); if (!el || PDFS[el.dataset.href]) return;
+  const href = el.dataset.href; fetch(href).then(r => r.blob()).then(b => { if (!PDFS[href]) PDFS[href] = new File([b], el.dataset.name, { type: 'application/pdf' }); }).catch(() => {});
+}, { passive: true });
 document.addEventListener('click', e => {
   const el = e.target.closest('[data-a]'); if (!el || el.disabled) return;
   const h = handlers[el.dataset.a]; if (!h) return;

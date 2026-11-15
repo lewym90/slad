@@ -216,7 +216,7 @@ def build(cid):
     c.setFont('SansB', 8.5)
     for x, t in zip(xs, heads): c.drawString(x + 4, d.y, t)
     d.y -= 6; top = d.y; n = len(case['people'])
-    rh = min(92, (d.y - 60) / max(n, 1))
+    rh = (d.y - 58) / max(n, 1)  # wiersze rozłożone równo na całą stronę
     for p in case['people']:
         c.setStrokeColor(LINE); c.line(M, d.y, W - M, d.y)
         c.setFont('Serif', 9.5); c.drawString(M + 4, d.y - 13, p['name'])

@@ -833,7 +833,7 @@ body{font-variant-numeric:lining-nums}
 .torn-done .torn-paper{max-width:100%;height:auto;min-height:0}
 @media (max-width:560px){.torn-done .torn-paper{width:100%;padding:28px 22px}}
 .print-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:2px 0 14px}
-.print-item{display:flex;align-items:baseline;gap:8px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:var(--txt);text-decoration:none;background:rgba(255,255,255,.03)}
+.print-item{width:100%;font:inherit;text-align:left;cursor:pointer;display:flex;align-items:baseline;gap:8px;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:var(--txt);text-decoration:none;background:rgba(255,255,255,.03)}
 .print-item:hover{border-color:rgba(255,255,255,.3)}
 .print-item .mono{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
 .print-item b{flex:1;font-weight:500}
