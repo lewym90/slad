@@ -746,7 +746,9 @@
        "e24"
       ]
      },
-     "lockedText": "Zwykła hotelowa szafa: wieszaki, półka, sejf bez zawartości. Bez konkretnego powodu nie będziecie rozbierać mebli."
+     "lockedText": "Zwykła hotelowa szafa: wieszaki, półka, sejf bez zawartości. Bez konkretnego powodu nie będziecie rozbierać mebli.",
+     "unlockTitle": "Powód, by sprawdzić szafę",
+     "unlockText": "Macie już konkretny powód, żeby dokładnie obejrzeć szafę wnękową w pokoju 214."
     }
    ],
    "img": "assets/places/005-room.webp"
@@ -1031,7 +1033,9 @@
        "lie:k-l1"
       ]
      },
-     "lockedText": "Samochód sekretarz komisji. Bez podstaw prokurator nie zgodzi się na przeszukanie. Najpierw wykażcie, że jego właścicielka kłamie o czwartkowym wieczorze."
+     "lockedText": "Samochód sekretarz komisji. Bez podstaw prokurator nie zgodzi się na przeszukanie. Najpierw wykażcie, że jego właścicielka kłamie o czwartkowym wieczorze.",
+     "unlockTitle": "Zgoda na przeszukanie samochodu",
+     "unlockText": "Prokurator zgodził się na przeszukanie samochodu Iwony Kraski na parkingu za hotelem."
     }
    ],
    "img": "assets/places/005-parking.webp"

@@ -880,7 +880,9 @@
        "lie:s-l2"
       ]
      },
-     "lockedText": "Bez podstaw nikt wam gabinetu wiceprezydenta nie otworzy. Najpierw musicie wykazać, że jego zeznania nie trzymają się dokumentów."
+     "lockedText": "Bez podstaw nikt wam gabinetu wiceprezydenta nie otworzy. Najpierw musicie wykazać, że jego zeznania nie trzymają się dokumentów.",
+     "unlockTitle": "Nakaz przeszukania gabinetu",
+     "unlockText": "Prokurator uznał, że zeznania wiceprezydenta nie trzymają się dokumentów, i wydał nakaz przeszukania jego gabinetu w Urzędzie Miasta."
     }
    ],
    "img": "assets/places/004-city.webp"
@@ -928,7 +930,9 @@
        "lie:h-l1"
       ]
      },
-     "lockedText": "Bez nakazu redakcja nie wyda notatek reporterki, a tajemnica dziennikarska to nie wymysł. Potrzebujecie podstawy."
+     "lockedText": "Bez nakazu redakcja nie wyda notatek reporterki, a tajemnica dziennikarska to nie wymysł. Potrzebujecie podstawy.",
+     "unlockTitle": "Nakaz dla redakcji",
+     "unlockText": "Prokurator wydał nakaz: redakcja „Głosu Rudy” musi wydać notatki reporterki i udostępnić jej skrzynkę pocztową."
     },
     {
      "id": "sp-mail",
@@ -942,7 +946,9 @@
        "lie:h-l1"
       ]
      },
-     "lockedText": "Bez nakazu nikt wam skrzynki nie otworzy. Najpierw wykażcie, że reporterka mówi nieprawdę."
+     "lockedText": "Bez nakazu nikt wam skrzynki nie otworzy. Najpierw wykażcie, że reporterka mówi nieprawdę.",
+     "unlockTitle": "Nakaz dla redakcji",
+     "unlockText": "Prokurator wydał nakaz: redakcja „Głosu Rudy” musi wydać notatki reporterki i udostępnić jej skrzynkę pocztową."
     }
    ],
    "img": "assets/places/004-newsroom.webp"
@@ -966,7 +972,9 @@
        "lie:k-l1"
       ]
      },
-     "lockedText": "Bez podstawy firma nie pokaże wam rejestrów. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+     "lockedText": "Bez podstawy firma nie pokaże wam rejestrów. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy.",
+     "unlockTitle": "Nakaz dla Syreonu",
+     "unlockText": "Prokurator wydał nakaz przeszukania w Syreon Polska: rejestr kart i kluczy, firmowy bus, wykaz narzędzi i archiwum zamówień."
     },
     {
      "id": "sp-van",
@@ -980,7 +988,9 @@
        "lie:k-l1"
       ]
      },
-     "lockedText": "Bez podstawy nie przeszukacie samochodu firmowego. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+     "lockedText": "Bez podstawy nie przeszukacie samochodu firmowego. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy.",
+     "unlockTitle": "Nakaz dla Syreonu",
+     "unlockText": "Prokurator wydał nakaz przeszukania w Syreon Polska: rejestr kart i kluczy, firmowy bus, wykaz narzędzi i archiwum zamówień."
     },
     {
      "id": "sp-tw",
@@ -994,7 +1004,9 @@
        "lie:k-l1"
       ]
      },
-     "lockedText": "Bez podstawy firma nie wyda wykazów. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+     "lockedText": "Bez podstawy firma nie wyda wykazów. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy.",
+     "unlockTitle": "Nakaz dla Syreonu",
+     "unlockText": "Prokurator wydał nakaz przeszukania w Syreon Polska: rejestr kart i kluczy, firmowy bus, wykaz narzędzi i archiwum zamówień."
     },
     {
      "id": "sp-orders",
@@ -1008,7 +1020,9 @@
        "lie:k-l1"
       ]
      },
-     "lockedText": "Bez podstawy firma nie otworzy archiwum zamówień. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy."
+     "lockedText": "Bez podstawy firma nie otworzy archiwum zamówień. Najpierw ustalcie, czy Kopeć mówi prawdę o tej nocy.",
+     "unlockTitle": "Nakaz dla Syreonu",
+     "unlockText": "Prokurator wydał nakaz przeszukania w Syreon Polska: rejestr kart i kluczy, firmowy bus, wykaz narzędzi i archiwum zamówień."
     }
    ],
    "img": "assets/places/004-syreon.webp"

@@ -55,5 +55,6 @@ for k, v in NL.items():
     VL[k] = {'name': v['name'], 'lines': [{x: y for x, y in l.items() if x != 'n'} for l in v['lines']]}
 json.dump(VL, open(vl, 'w'), ensure_ascii=False, indent=1)
 out = os.path.join(os.path.dirname(__file__), '..', 'cases', '005.json')
+import sys as _s, os as _o; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); from unlock_texts import apply as _unl; _unl(case)
 json.dump(case, open(out, 'w'), ensure_ascii=False, indent=1)
 print('005:', len(evidence), 'dowodów,', len(people), 'osób,', len(R.locations), 'miejsc')

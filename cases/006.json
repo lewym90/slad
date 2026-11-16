@@ -845,7 +845,9 @@
        "lie:e-l1"
       ]
      },
-     "lockedText": "Płaszcz kierowniczki kina. Bez powodu prokurator nie zgodzi się go zabezpieczyć — najpierw wykażcie, że jego właścicielka mija się z prawdą o tym, co robiła w czasie seansu."
+     "lockedText": "Płaszcz kierowniczki kina. Bez powodu prokurator nie zgodzi się go zabezpieczyć — najpierw wykażcie, że jego właścicielka mija się z prawdą o tym, co robiła w czasie seansu.",
+     "unlockTitle": "Zgoda na zabezpieczenie płaszcza",
+     "unlockText": "Prokurator zgodził się zabezpieczyć płaszcz kierowniczki kina z wieszaka w jej biurze."
     },
     {
      "id": "sp-folder",

@@ -180,3 +180,7 @@ Zasada: filtry i kolory są neutralne — niczego nie podpowiadają (żadnego wy
 ## 19. Automatyzacja mediów (14.11.2026, 2.18.1–2.18.2)
 - Claude sam generuje grafiki (ChatGPT) i dźwięki (Grok) w Chrome autora, pobiera je, powiększa w Upscaylu i obrabia; filmy z Grok Imagine robi autor z promptów Claude. Szczegóły i pułapki: `docs/PRZEKAZANIE.md` §5. Zasada autora: wszystko w jednym czacie, bez otwierania nowych kart dla każdego pliku.
 - Sprawa 007 otwarta w 2.18.2; PDF do druku ma stronę z mapą szlaków (`gen_print.py`, gdy sprawa ma `map`).
+
+## 20. Odblokowania jako przełom (16.11.2026, 2.18.5)
+- Każdy punkt z `requires.all` (nakaz, zgoda prokuratora, „wiecie, czego szukać”) po odblokowaniu wyskakuje jako przełom „Przełom w śledztwie”, a nie cicha zmiana na liście. Gracz grający 003 nie zauważył, że nakaz na szafę już przyszedł.
+- W każdej nowej sprawie: dla każdego takiego punktu dopisać `unlockTitle` i `unlockText` w `tools/unlock_texts.py` (bez spoilera zawartości — mówimy, CO wolno przeszukać, nie co tam jest). Jeden nakaz na kilka punktów = ten sam `unlockText` → jeden komunikat.

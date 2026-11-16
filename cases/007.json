@@ -1185,7 +1185,9 @@
        "st:i-c3"
       ]
      },
-     "lockedText": "Na laptopie są tysiące plików. Najpierw ustalcie, czego właściwie szukać i kto go używa."
+     "lockedText": "Na laptopie są tysiące plików. Najpierw ustalcie, czego właściwie szukać i kto go używa.",
+     "unlockTitle": "Wiecie, czego szukać",
+     "unlockText": "Wiecie już, czego szukać na laptopie wyprawy w jadalni. Możecie go przejrzeć."
     }
    ],
    "img": "assets/places/007-dining.webp"
@@ -1209,7 +1211,9 @@
        "lie:w-l1"
       ]
      },
-     "lockedText": "Bez zgody prokuratora nie przeszukacie pokoju. Najpierw wykażcie, że jego lokatorka mija się z prawdą o tym, gdzie była w nocy."
+     "lockedText": "Bez zgody prokuratora nie przeszukacie pokoju. Najpierw wykażcie, że jego lokatorka mija się z prawdą o tym, gdzie była w nocy.",
+     "unlockTitle": "Zgoda na przeszukanie pokoju",
+     "unlockText": "Prokurator zgodził się na przeszukanie pokoju nr 6."
     },
     {
      "id": "sp-phone",
@@ -1223,7 +1227,9 @@
        "lie:w-l2"
       ]
      },
-     "lockedText": "Prokurator zgodzi się na przeszukanie telefonu, gdy wykażecie, że jego właścicielka była tej nocy na przełęczy."
+     "lockedText": "Prokurator zgodzi się na przeszukanie telefonu, gdy wykażecie, że jego właścicielka była tej nocy na przełęczy.",
+     "unlockTitle": "Zgoda na przeszukanie telefonu",
+     "unlockText": "Prokurator zgodził się na przeszukanie telefonu Weroniki."
     }
    ],
    "img": "assets/places/007-room6.webp"

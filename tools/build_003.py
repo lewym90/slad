@@ -442,5 +442,6 @@ for e in evidence:
     if e['id'] == 'e01' and img('people', 'wilk'): e['img'] = img('people', 'wilk')
     if e['id'] == 'e05' and img('people', 'halina'): e['img'] = img('people', 'halina')
 if 'plan' in old: case['plan'] = old['plan']
+import sys as _s, os as _o; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); from unlock_texts import apply as _unl; _unl(case)
 json.dump(case, open(P, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print('zapisano', P)

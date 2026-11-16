@@ -81,6 +81,7 @@ if os.path.exists(vlp):
     for k, v in NL.items():
         VL[k] = {'name': v['name'], 'lines': [{x: y for x, y in l.items() if x != 'n'} for l in v['lines']]}
     json.dump(VL, open(vl, 'w'), ensure_ascii=False, indent=1)
+import sys as _s, os as _o; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); from unlock_texts import apply as _unl; _unl(case)
 json.dump(case, open(os.path.join(ROOT, 'cases', '007.json'), 'w'), ensure_ascii=False, indent=1)
 ip = os.path.join(ROOT, 'cases', 'index.json'); IX = json.load(open(ip))
 for c in IX['cases']:

@@ -1,6 +1,6 @@
 /* ŚLAD 2.0 — silnik gry. Wszystkie postacie i zdarzenia są fikcyjne. */
 'use strict';
-const VERSION = '2.18.4';
+const VERSION = '2.18.5';
 const BUILD = '14.11.2026';
 let swReg = null;
 const STORE_KEY = 'slad.v2';
@@ -1596,22 +1596,37 @@ const ctx = () => { const r = route(); return { c: caseFor(r.id), g: G(r.id), r 
 let btTimer = null, btShow = null;
 function renderBt() {
   let root = $('#bt-root'); if (!root) { root = document.createElement('div'); root.id = 'bt-root'; document.body.appendChild(root); }
-  const r = route(); const c = btShow && r.id && CASES[r.id] && caseFor(r.id); const b = c && (c.breakthroughs || []).find(x => x.id === btShow);
+  const r = route(); const c = btShow && r.id && CASES[r.id] && caseFor(r.id); const b = c && (String(btShow).startsWith('u:') ? unlockBt(c, btShow.slice(2)) : (c.breakthroughs || []).find(x => x.id === btShow));
   if (!b) { const ov = root.querySelector('video'); if (ov) { ov.pause(); duck(false); } root.innerHTML = ''; btShow = null; if (!ovStack.length) document.body.style.overflow = ''; return; }
   const vOK = b.video && mediaOK(b.video) && S.settings.motion !== 'off'; const pst = vOK ? b.video.replace(/\.mp4$/, '.webp') : (b.img || c.art || c.cover);
   const media = vOK ? `<div class="bt-media"><div class="bt-bg" style="background-image:url('${esc(pst)}')"></div><video class="bt-fg bt-vid" src="${esc(b.video)}" poster="${esc(pst)}" autoplay muted playsinline preload="auto"></video></div>` : `<div class="bt-media"><div class="bt-bg" style="background-image:url('${esc(b.img || c.art || c.cover)}')"></div><img class="bt-fg kb" src="${esc(b.img || c.art || c.cover)}" alt=""></div>`;
-  root.innerHTML = `<div class="bt" data-a="bt-close" role="dialog" aria-modal="true" aria-label="Przełom: ${esc(b.title)}"><div class="bt-in">${media}<div class="bt-shade"></div><div class="bt-text"><span class="bt-stamp">Przełom</span><h2>${esc(b.title)}</h2><p>${esc(b.text)}</p><button class="btn" data-a="bt-close">Dalej</button></div></div></div>`;
+  root.innerHTML = `<div class="bt" data-a="bt-close" role="dialog" aria-modal="true" aria-label="Przełom: ${esc(b.title)}"><div class="bt-in">${media}<div class="bt-shade"></div><div class="bt-text"><span class="bt-stamp">${b.loc ? 'Przełom w śledztwie' : 'Przełom'}</span><h2>${esc(b.title)}</h2><p>${esc(b.text)}</p>${b.loc ? `<p class="bt-where">${I.lock} Odblokowane: ${b.spots.map(esc).join(', ')} — ${esc(b.locName)}</p><div class="bt-btns"><button class="btn" data-a="bt-loc" data-id="${esc(b.loc)}">Przejdź do miejsca</button><button class="btn ghost" data-a="bt-close">Później</button></div>` : '<button class="btn" data-a="bt-close">Dalej</button>'}</div></div></div>`;
   document.body.style.overflow = 'hidden'; const vid = root.querySelector('video');
   if (vid) { vid.volume = vol('fx'); vid.onended = () => { vid.currentTime = Math.max(0, vid.duration - 0.05); vid.pause(); }; const go = () => vid.play().catch(() => {}); if (S.settings.sound) { vid.muted = false; duck(true); vid.play().catch(() => { vid.muted = true; go(); }); } else go(); }
   const bt = root.querySelector('.btn'); if (bt) setTimeout(() => bt.focus({ preventScroll: true }), 900);
 }
-function checkLater(id) { const r = route(); const g = r.id && G(r.id); if (g) { g.bt = (g.bt || []).filter(x => x !== id); save(); } }
+function unlockBt(c, sid) { // przełom „bez filmu”: odblokowane miejsce (nakaz, zgoda prokuratora…)
+  for (const l of c.locations) { const sp = l.spots.find(x => x.id === sid); if (!sp) continue;
+    const key = sp.unlockText || sp.id; const all = c.locations.flatMap(L => L.spots.filter(x => x.requires && x.requires.all && (x.unlockText || x.id) === key).map(x => ({ x, L })));
+    const here = all.filter(o => o.L.id === l.id).map(o => o.x.name);
+    return { id: 'u:' + sid, title: sp.unlockTitle || 'Nowe uprawnienia', text: sp.unlockText || `Możecie teraz przeszukać: ${sp.name} (${l.name}).`, img: l.img, loc: l.id, locName: l.name, spots: here }; }
+  return null;
+}
+function gatedSpots(c) { return c.locations.flatMap(l => l.spots.filter(s => s.requires && s.requires.all)); }
+function checkUnlocks(c, g) {
+  const gs = gatedSpots(c); if (!gs.length) return null;
+  if (!g.unl) { g.unl = gs.filter(s => spotState(c, g, s) !== 'locked').map(s => s.id); save(); return null; } // stare zapisy: bez zaległych komunikatów
+  const n = gs.find(s => !g.unl.includes(s.id) && spotState(c, g, s) !== 'locked'); if (!n) return null;
+  const key = n.unlockText || n.id; gs.filter(s => (s.unlockText || s.id) === key && spotState(c, g, s) !== 'locked').forEach(s => { if (!g.unl.includes(s.id)) g.unl.push(s.id); });
+  save(); return 'u:' + n.id;
+}
+function checkLater(id) { if (String(id).startsWith('u:')) { const r = route(); const g = r.id && G(r.id); if (g && g.unl) { const c = caseFor(r.id); const sp = gatedSpots(c).find(s => s.id === id.slice(2)); const key = sp && (sp.unlockText || sp.id); g.unl = g.unl.filter(x => { const o = gatedSpots(c).find(s => s.id === x); return !o || (o.unlockText || o.id) !== key; }); save(); } return; } const r = route(); const g = r.id && G(r.id); if (g) { g.bt = (g.bt || []).filter(x => x !== id); save(); } }
 function checkBreakthroughs() {
-  const r = route(); if (r.name !== 'gra' || !r.id) return; const g = G(r.id); const c = r.id && CASES[r.id] && caseFor(r.id); if (!c || !g || g.report || !c.breakthroughs) return;
-  if (!g.bt) { g.bt = c.breakthroughs.filter(b => has(g, c, b.when)).map(b => b.id); save(); return; } // gra sprzed 2.9: bez zaległych przełomów
+  const r = route(); if (r.name !== 'gra' || !r.id) return; const g = G(r.id); const c = r.id && CASES[r.id] && caseFor(r.id); if (!c || !g || g.report) return; if (!c.breakthroughs) c.breakthroughs = [];
+  if (!g.bt) { g.bt = c.breakthroughs.filter(b => has(g, c, b.when)).map(b => b.id); save(); checkUnlocks(c, g); return; } // gra sprzed 2.9: bez zaległych przełomów
   const nb = c.breakthroughs.find(b => !g.bt.includes(b.id) && has(g, c, b.when));
-  if (!nb) return; g.bt.push(nb.id); save();
-  clearTimeout(btTimer); btTimer = setTimeout(() => { if (btShow) return checkLater(nb.id); btShow = nb.id; renderBt(); sfx('break'); }, 650);
+  const id = nb ? (g.bt.push(nb.id), save(), nb.id) : checkUnlocks(c, g); if (!id) return;
+  clearTimeout(btTimer); btTimer = setTimeout(() => { if (btShow) return checkLater(id); btShow = id; renderBt(); sfx('break'); }, 650);
 }
 const rerender = () => { render(); renderOv(); checkBreakthroughs(); };
 const backToPrev = () => { ovStack.pop(); history.back(); setTimeout(rerender, 30); };
@@ -1723,6 +1738,7 @@ const handlers = {
   'vote-go': () => { const o = topOv(); o.st = 1; renderOv(); let n = 3; const tick = () => { const el = $('#votecount'); if (!el) return; if (n > 1) { n--; el.textContent = n; sfx('paper'); setTimeout(tick, 900); } else { o.st = 2; renderOv(); sfx('stamp'); } }; setTimeout(tick, 900); },
   'vote-res': el => { const { c, g } = ctx(); g.vote = el.dataset.v; save(); ovStack.pop(); history.back(); setTimeout(() => { if (g.vote === 'zgodni') go(`gra/${c.id}/raport`); else { anaTab = 'podejrzani'; render(); toast('Dyskusja', 'Wróćcie do tabeli podejrzanych', 'Zespół'); } }, 60); },
   'vote-card': () => { const w = $('#v-who'), m = $('#v-mot'), card = $('#v-card'); if (!w || !w.value) { alert('Wybierz sprawcę.'); return; } card.hidden = false; card.innerHTML = `<div class="eyebrow">Mój typ</div><b>${esc(w.value)}</b>${m && m.value ? `<small>${esc(m.value)}</small>` : ''}<p class="muted">Schowaj telefon ekranem w dół do sygnału.</p>`; card.scrollIntoView({ behavior: 'smooth' }); },
+  'bt-loc': el => { const id = el.dataset.id; btShow = null; renderBt(); openOv({ type: 'loc', id }); setTimeout(checkBreakthroughs, 60); },
   'bt-close': (el, e) => { if (e && e.target.closest('.bt-text') && !e.target.closest('[data-a="bt-close"].btn')) return; btShow = null; renderBt(); renderOv(); setTimeout(checkBreakthroughs, 60); },
   pzoom: el => openOv({ type: 'zoom', src: el.dataset.src }),
   amark: el => { S.marks = S.marks || {}; if (!S.marks[el.dataset.c]) { S.marks[el.dataset.c] = el.dataset.l; save(); toast('Zabezpieczono obcą pieczęć', `Ślady Archiwisty: ${Object.keys(S.marks).length} z ${MARK_ORDER.length}`, 'Archiwum'); sfx('stamp'); } else toast('Ta pieczęć jest już w kronice', '', 'Archiwum'); renderOv(); },

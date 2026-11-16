@@ -597,7 +597,9 @@
        "lie:z-l1"
       ]
      },
-     "lockedText": "Stróżówka to mieszkanie Zenona Kubika. Bez jego zgody albo nakazu prokuratora szafy nie otworzycie."
+     "lockedText": "Stróżówka to mieszkanie Zenona Kubika. Bez jego zgody albo nakazu prokuratora szafy nie otworzycie.",
+     "unlockTitle": "Nakaz przeszukania",
+     "unlockText": "Prokurator wydał nakaz przeszukania stróżówki. Szafę Zenona Kubika można teraz otworzyć."
     }
    ]
   },
